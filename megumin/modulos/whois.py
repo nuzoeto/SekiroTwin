@@ -21,7 +21,7 @@ def LastOnline(user: User):
     if user.is_bot:
         return ""
     elif user.status == "recently":
-        return "Recently"
+        return "Recentemente"
     elif user.status == "within_week":
         return "Within the last week"
     elif user.status == "within_month":
