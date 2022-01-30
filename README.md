@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="https://telegra.ph/file/d8c34d6012072f39ece4c.png" width="498" height="278"/>
+
+
 </p>
 <h2 align="center">
   <b>Megumin Bot 🔥</b>
