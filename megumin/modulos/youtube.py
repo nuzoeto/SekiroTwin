@@ -67,7 +67,7 @@ async def song(client: megux, message: Message):
     music = " ".join(message.text.split()[1:])
     if not music:
         return await message.reply("`Vou baixar o vento?!`")
-    msg = await message.reply("`Processando...`")
+    msg = await message.reply("📦 __Baixando...__")
     result = search_music(music)
     if result is None:
         return await msg.edit("`Não foi possível encontrar a música.`")
@@ -113,7 +113,7 @@ async def video_(client: megux, message: Message):
     video = " ".join(message.text.split()[1:])
     if not video:
         return await message.reply("`Vou baixar o vento?!`")
-    msg = await message.reply("`Processando...`")
+    msg = await message.reply("📦 __Baixando...__")
     result = search_video(video)
     if result is None:
         return await message.edit("`Não foi possível encontrar o vídeo.`")
