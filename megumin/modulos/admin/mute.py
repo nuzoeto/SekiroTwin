@@ -57,7 +57,7 @@ async def _mute_user(_, message: Message):
         await message.reply("Porque eu iria mutar um administrador? Isso me parece uma idéia idiota.")
         return
     if not await check_bot_rights(chat_id, "can_restrict_members"):
-        await message.reply("`Dê-me privilegios admin para Mute Users.`")
+        await message.reply("Eu não sou um administrador, **Por favor me promova como um administrador!**")
         await sed_sticker(message)
         return
     sent = await message.reply("`Mutando Usuário...`")
@@ -167,12 +167,12 @@ async def _unmute_user(_, message: Message):
         await message.reply("Este usuario é admin, ele não precisa ser desmutado.")
         return
     if not await check_bot_rights(chat_id, "can_restrict_members"):
-        await message.reply("`Dê-me privilegios admin para UnMute Users.`")
+        await message.reply("Eu não sou um administrador, **Por favor me promova como um administrador!**")
         await sed_sticker(message)
         return
-    sent = await message.reply("`Tentando desmutar usuario.. Aguarde!! ⏳`")
+    sent = await message.reply("Desmutando Usuário...")
     try:
         await megux.unban_chat_member(chat_id, user_id)
-        await sent.edit("Ótimo {mention} pode falar novamente!")
+        await sent.edit("Ótimo, este usuário pode falar novamente!")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado!` 🤔\n\n**ERROR:** `{e_f}`")
