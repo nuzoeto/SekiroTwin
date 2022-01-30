@@ -22,7 +22,7 @@ from megumin.utils import (
 async def _promote_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
-        await message.reply("`Você precisa de permissão para fazer isso.`")
+        await message.reply("Eu não tem as seguintes permissões: **Change can promote members**")
         return
     replied = message.reply_to_message
     args = len(message.text)
@@ -43,13 +43,13 @@ async def _promote_user(_, message: Message):
     if await is_self(user_id):
         return
     if is_admin(chat_id, user_id):
-        await message.reply("`Usuario ja foi promovido`")
+        await message.reply("Este usuário já é um administrador ele não precisa ser promovido.")
         return
     if not await check_bot_rights(chat_id, "can_promote_members"):
-        await message.reply("`Dê-me privilegios admin para promover usuarios.`")
+        await message.reply("`Dê-me privilegios admin para promover usuarios.")
         await sed_sticker(message)
         return
-    sent = await message.reply("`Temtando promover usuario.. Aguarde!! ⏳`")
+    sent = await message.reply("`Promovendo usuário...`")
     try:
         await megux.promote_chat_member(
             chat_id,
@@ -63,7 +63,7 @@ async def _promote_user(_, message: Message):
         if args:
             await asyncio.sleep(2)
             await megux.set_administrator_title(chat_id, user_id, args)
-        await sent.edit("`👑 Promovido com sucesso..`")
+        await sent.edit("**Promovido(a)!**")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
@@ -72,7 +72,7 @@ async def _promote_user(_, message: Message):
 async def _demote_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
-        await message.reply("`Você precisa de permissão para fazer isso.`")
+        await message.reply("Você não tem as seguintes permissões: **Change can promote members**")
         return
     replied = message.reply_to_message
     if replied:
@@ -98,7 +98,7 @@ async def _demote_user(_, message: Message):
         await message.reply("`Dê-me privilegios admin para rebaixar usuarios.`")
         await sed_sticker(message)
         return
-    sent = await message.reply("`Tentando rebaixar usuario.. Aguarde!! ⏳`")
+    sent = await message.reply("`Rebaixando Usuário...`")
     try:
         await megux.promote_chat_member(
             chat_id,
@@ -110,6 +110,6 @@ async def _demote_user(_, message: Message):
             can_pin_messages=False,
             can_manage_chat=False,
         )
-        await sent.edit("`🛡 Rebaixado com sucesso..`")
+        await sent.edit("**Rebaixado!**")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
