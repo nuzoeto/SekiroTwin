@@ -23,7 +23,7 @@ from megumin.utils import (
 async def _ban_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
-        await message.reply("Você não tem as seguintes permissões: can restrict members")
+        await message.reply("Você não tem as seguintes permissões: **Can restrict members**")
         return
     cmd = len(message.text)
     replied = message.reply_to_message
@@ -75,7 +75,7 @@ async def _ban_user(_, message: Message):
 async def _unban_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
-        await message.reply("`Você não tem as seguintes permissões: can restrict members")
+        await message.reply("`Você não tem as seguintes permissões: **Can restrict members**")
         return
     replied = message.reply_to_message
     if replied:
@@ -104,7 +104,7 @@ async def _unban_user(_, message: Message):
     sent = await message.reply("`Desbanindo Usuário...`")
     try:
         await megux.unban_chat_member(chat_id, user_id)
-        await sent.edit ("__Ok, este usuário não está mais banido,__\n**ele pode entrar novamente.**")
+        await sent.edit ("__Ok, este usuário não está mais banido,__\n**Ele pode entrar novamente.**")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
@@ -113,7 +113,7 @@ async def _unban_user(_, message: Message):
 async def _kick_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
-        await message.reply("`Você precisa de permissão para fazer isso.`")
+        await message.reply("Você não tem as seguintes permissões: **Can restrict members**")
         return
     cmd = len(message.text)
     replied = message.reply_to_message
