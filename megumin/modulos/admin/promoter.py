@@ -46,7 +46,7 @@ async def _promote_user(_, message: Message):
         await message.reply("Este usuário já é um administrador ele não precisa ser promovido.")
         return
     if not await check_bot_rights(chat_id, "can_promote_members"):
-        await message.reply("Eu não tem as seguintes permissões: **Change can promote members**")
+        await message.reply("Eu não tenho as seguintes permissões: **Change can promote members**")
         await sed_sticker(message)
         return
     sent = await message.reply("`Promovendo usuário...`")
