@@ -24,8 +24,8 @@ async def carbon_func(_, message: Message):
         )
     m = await message.reply_text("`Preparando carbon`")
     carbon = await make_carbon(message.reply_to_message.text)
-    await m.edit("`Uploading`")
-    await megux.send_document(message.chat.id, carbon, caption="__Made by:__ @meguxbot")
+    await m.edit("`Uploading...`")
+    await megux.send_document(message.chat.id, carbon, caption="__Made by:__ @WhiterKangBot")
     await m.delete()
     carbon.close()
 
