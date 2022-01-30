@@ -65,7 +65,7 @@ async def _mute_user(_, message: Message):
         await megux.restrict_chat_member(chat_id, user_id, ChatPermissions())
         await asyncio.sleep(1)
         await sent.edit(
-            f"{mention} está silenciado(mutado) em {message.chat.title}\n"
+            f"{mention} está silenciado(mutado) em **{message.chat.title}**\n"
             f"Motivo: `{reason or None}`"
         )
     except Exception as e_f:
@@ -133,7 +133,7 @@ async def _tmute_user(_, message: Message):
         await megux.restrict_chat_member(chat_id, user_id, ChatPermissions(), time_)
         await asyncio.sleep(1)
         await sent.edit(
-            f"{mention} está silenciado(mutado) por **{time_val}** em {message.chat.title}\n"
+            f"{mention} está silenciado(mutado) por **{time_val}** em **{message.chat.title}**\n"
             f"MOTIVO: `{reason or None}`"
         )
     except Exception as e_f:  # pylint: disable=broad-except
