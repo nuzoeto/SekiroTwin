@@ -22,7 +22,7 @@ from megumin.utils import (
 async def _promote_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
-        await message.reply("Eu não tem as seguintes permissões: **Change can promote members**")
+        await message.reply("Você não tem as seguintes permissões: **Change can promote members**")
         return
     replied = message.reply_to_message
     args = len(message.text)
@@ -46,7 +46,7 @@ async def _promote_user(_, message: Message):
         await message.reply("Este usuário já é um administrador ele não precisa ser promovido.")
         return
     if not await check_bot_rights(chat_id, "can_promote_members"):
-        await message.reply("`Dê-me privilegios admin para promover usuarios.")
+        await message.reply("Eu não tem as seguintes permissões: **Change can promote members**")
         await sed_sticker(message)
         return
     sent = await message.reply("`Promovendo usuário...`")
@@ -95,7 +95,7 @@ async def _demote_user(_, message: Message):
     if is_dev(user_id):
         return
     if not await check_bot_rights(chat_id, "can_promote_members"):
-        await message.reply("`Dê-me privilegios admin para rebaixar usuarios.`")
+        await message.reply("Eu não tem as seguintes permissões: **Change can promote members**")
         await sed_sticker(message)
         return
     sent = await message.reply("`Rebaixando Usuário...`")
