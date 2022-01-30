@@ -20,6 +20,7 @@ async def pegar_cotacoes(_, message):
 
     result = f'''
 **Cotação das moedas:**
+
 💵 **Dólar:** R$ ```{cotacao_dolar}```
 🗓 **Data:**  ```{dat_dolar}```
 
