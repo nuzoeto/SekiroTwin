@@ -46,7 +46,7 @@ async def start_(_, message: Message):
     @megux.on_callback_query(filters.regex(pattern=r"^infos$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
-╔════「 Sobre  Whiterkang 」
+╔════「 Sobre  WhiterKang 」
 ╠ Versão : `{version.__megumin_version__}`
 ╠ Uptime : `{time_formatter(time.time() - START_TIME)}`
 ╠ Python : `{version.__python_version__}`
