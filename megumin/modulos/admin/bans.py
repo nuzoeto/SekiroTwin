@@ -23,7 +23,7 @@ from megumin.utils import (
 async def _ban_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
-        await message.reply("`Você precisa de permissão para fazer isso.`")
+        await message.reply("Você não tem as seguintes permissões: can restrict members")
         return
     cmd = len(message.text)
     replied = message.reply_to_message
@@ -54,19 +54,19 @@ async def _ban_user(_, message: Message):
         await sed_sticker(message)
         return
     if is_dev(user_id):
-        await message.reply("`Lol ele é meu desenvolvedor, não posso bani-lo.`")
+        await message.reply("Porque eu iria banir meu desenvolvedor? Isso me parece uma idéia muito idiota.")
         return
     if is_admin(chat_id, user_id):
-        await message.reply("`Usuario é admin, não posso bani-lo`")
+        await message.reply("Porque eu iria banir um administrador? Isso me parece uma idéia idiota.")
         return
     if not await check_bot_rights(chat_id, "can_restrict_members"):
-        await message.reply("`Me de privilégios para banir usuarios`")
+        await message.reply("Eu não sou um administrador, **Por favor me promova como um administrador!**")
         await sed_sticker(message)
         return
     sent = await message.reply("`Tentando banir o usuário .. Espere aí!! ⏳`")
     try:
         await megux.kick_chat_member(chat_id, user_id)
-        await sent.edit(f"#BAN\n" f"USUARIO: {mention}\n" f"MOTIVO: `{reason or None}`")
+        await sent.edit(f"Usuário {mention} foi banido no chat {message.chat.title}\n" f"Motivo: `{reason or None}`")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
 
@@ -75,7 +75,7 @@ async def _ban_user(_, message: Message):
 async def _unban_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
-        await message.reply("`Você precisa de permissão para fazer isso.`")
+        await message.reply("`Você não tem as seguintes permissões: can restrict members")
         return
     replied = message.reply_to_message
     if replied:
@@ -95,16 +95,16 @@ async def _unban_user(_, message: Message):
     if await is_self(user_id):
         return
     if is_admin(chat_id, user_id):
-        await message.reply("`Usuario é admin.`")
+        await message.reply("Este usuário é admin ele não precisa ser desbanido.")
         return
     if not await check_bot_rights(chat_id, "can_restrict_members"):
-        await message.reply("`Dê-me privilegios admin para UnBan Users.`")
+        await message.reply("Eu não sou um administrador, **Por favor me promova como um administrador!**")
         await sed_sticker(message)
         return
     sent = await message.reply("`Tentando desbanir o usuário.. Aguarde!! ⏳`")
     try:
         await megux.unban_chat_member(chat_id, user_id)
-        await sent.edit("`🛡 Desbanido com sucesso...`")
+        await sent.edit ("Ok, este usuário não está mais banido, ele pode entrar novamente")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
@@ -144,19 +144,19 @@ async def _kick_user(_, message: Message):
         await sed_sticker(message)
         return
     if is_dev(user_id):
-        await message.reply("`Lol ele é meu desenvolvedor, não posso kicka-lo.`")
+        await message.reply("Porque eu iria banir meu desenvolvedor? Isso me parece uma idéia muito idiota.")
         return
     if is_admin(chat_id, user_id):
-        await message.reply("`Usuario é admin, não posso kicka-lo.`")
+        await message.reply("Porque eu iria kickar um administrador? Isso me parece uma idéia idiota.")
         return
     if not await check_bot_rights(chat_id, "can_restrict_members"):
-        await message.reply("`Dê-me privilegios admin para Kick Users.`")
+        await message.reply("Eu não sou um administrador, **Por favor me promova como um administrador!**")
         await sed_sticker(message)
         return
     sent = await message.reply("`Tentando kickar usuario.. Aguarde!! ⏳`")
     try:
         await megux.kick_chat_member(chat_id, user_id, int(time.time() + 60))
-        await sent.edit("#KICK\n" f"USUARIO: {mention}\n" f"MOTIVO: `{reason or None}`")
+        await sent.edit("f" Eu removi o usuário {mention}\n" f"MOTIVO: `{reason or None}`")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
@@ -172,9 +172,9 @@ async def kickme_(_, message: Message):
     else:
         try:
             if not await check_bot_rights(chat_id, "can_restrict_members"):
-                await message.reply("`Não tenho permissão suficiente pra isso.`")
+                await message.reply("Eu não sou um administrador, **Por favor me promova como um administrador!**")
                 return
-            await message.reply("`Ate mais, espero que tenha gostado da estadia.`")
+            await message.reply("Ate mais, espero que tenha gostado da estadia.")
             await megux.kick_chat_member(chat_id, user_id)
         except Exception as e:
             await message.reply(f"**ERRO:**\n{e}")
