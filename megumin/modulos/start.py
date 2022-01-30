@@ -13,9 +13,9 @@ from megumin import START_TIME
 from megumin.utils import time_formatter
 
 START_PRIVADO = """
-<i>Oi, sou o Megumin e posso ajudá-lo a obter informações sobre animes, mangás, personagens,etc e também alguns comandos fun.
+Olá! Meu nome é **WhiterKang** sou um bot útil e divertido para você :3
 
-Este megux ainda esta em desenvolvimento.</i>
+__Se você gostar das minhas funções me adicione a seu grupo!__
 """
 
 
