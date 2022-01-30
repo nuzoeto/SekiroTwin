@@ -23,13 +23,13 @@ def LastOnline(user: User):
     elif user.status == "recently":
         return "Recentemente"
     elif user.status == "within_week":
-        return "Within the last week"
+        return "visto na última semana"
     elif user.status == "within_month":
-        return "Within the last month"
+        return "visto no último mês"
     elif user.status == "long_time_ago":
-        return "A long time ago :("
+        return "visto há muito tempo :("
     elif user.status == "online":
-        return "Currently Online"
+        return "Online"
     elif user.status == "offline":
         return datetime.fromtimestamp(user.status.date).strftime(
             "%a, %d %b %Y, %H:%M:%S"
@@ -69,7 +69,7 @@ async def whois(client, message):
                 last_name=user.last_name if user.last_name else "None",
                 username=user.username if user.username else "None",
                 last_online=LastOnline(user),
-                bio=bio if bio else "`No bio set up.`",
+                bio=bio if bio else "`None`",
             ),
             disable_notification=True,
         )
