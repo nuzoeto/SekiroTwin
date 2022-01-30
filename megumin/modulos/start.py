@@ -24,7 +24,7 @@ async def start_(_, message: Message):
     if message.chat.type == "private":
         keyboard = InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton(text="Comandos", callback_data="help_menu")],
+                [InlineKeyboardButton(text="❔ Ajuda", callback_data="help_menu")],
                 [
                     InlineKeyboardButton(text="Info", callback_data="infos"),
                     InlineKeyboardButton(text="Suporte", url="https://t.me/fnixsup"),
@@ -37,7 +37,7 @@ async def start_(_, message: Message):
                 ],
             ]
         )
-        gif = "https://telegra.ph/file/64f9d0c8e4e56a58a7949.gif"
+        gif = "https://telegra.ph/file/a003598d771e24f4abb13.gif"
         msg = START_PRIVADO
         await message.reply_animation(gif, caption=msg, reply_markup=keyboard)
     else:
@@ -46,7 +46,7 @@ async def start_(_, message: Message):
     @megux.on_callback_query(filters.regex(pattern=r"^infos$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
-╔════「 Sobre  Megumin 」
+╔════「 Sobre  Whiterkang 」
 ╠ Versão : `{version.__megumin_version__}`
 ╠ Uptime : `{time_formatter(time.time() - START_TIME)}`
 ╠ Python : `{version.__python_version__}`
