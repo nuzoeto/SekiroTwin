@@ -63,10 +63,10 @@ async def _ban_user(_, message: Message):
         await message.reply("Eu não sou um administrador, **Por favor me promova como um administrador!**")
         await sed_sticker(message)
         return
-    sent = await message.reply("`Tentando banir o usuário .. Espere aí!! ⏳`")
+    sent = await message.reply("`Banindo usuário...`")
     try:
         await megux.kick_chat_member(chat_id, user_id)
-        await sent.edit(f"Usuário {mention} foi banido no chat {message.chat.title}\n" f"Motivo: `{reason or None}`")
+        await sent.edit(f"Usuário {mention} foi banido no chat: {message.chat.title}\n" f"Motivo: `{reason or None}`")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
 
@@ -101,10 +101,10 @@ async def _unban_user(_, message: Message):
         await message.reply("Eu não sou um administrador, **Por favor me promova como um administrador!**")
         await sed_sticker(message)
         return
-    sent = await message.reply("`Tentando desbanir o usuário.. Aguarde!! ⏳`")
+    sent = await message.reply("`Desbanindo Usuário...`")
     try:
         await megux.unban_chat_member(chat_id, user_id)
-        await sent.edit ("Ok, este usuário não está mais banido, ele pode entrar novamente")
+        await sent.edit ("__Ok, este usuário não está mais banido,__\n**ele pode entrar novamente.**")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
@@ -153,10 +153,10 @@ async def _kick_user(_, message: Message):
         await message.reply("Eu não sou um administrador, **Por favor me promova como um administrador!**")
         await sed_sticker(message)
         return
-    sent = await message.reply("`Tentando kickar usuario.. Aguarde!! ⏳`")
+    sent = await message.reply("`Kickando usuário...`")
     try:
         await megux.kick_chat_member(chat_id, user_id, int(time.time() + 60))
-        await sent.edit(f" Eu removi o usuário {mention}\n" f"MOTIVO: `{reason or None}`")
+        await sent.edit(f"Eu removi o usuário {mention}\n" f"Motivo: `{reason or None}`")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
