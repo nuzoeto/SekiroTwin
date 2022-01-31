@@ -161,3 +161,4 @@ H_YOUTUBE = """
 
 • /song Baixe músicas
 • /video Baixe videos
+"""
