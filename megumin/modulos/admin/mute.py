@@ -134,7 +134,7 @@ async def _tmute_user(_, message: Message):
         await asyncio.sleep(1)
         await sent.edit(
             f"{mention} está silenciado(mutado) por **{time_val}** em **{message.chat.title}**\n"
-            f"MOTIVO: `{reason or None}`"
+            f"Motivo: `{reason or None}`"
         )
     except Exception as e_f:  # pylint: disable=broad-except
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR**: `{e_f}`")
@@ -164,7 +164,7 @@ async def _unmute_user(_, message: Message):
     if await is_self(user_id):
         return
     if is_admin(chat_id, user_id):
-        await message.reply("Este usuario é admin, ele não precisa ser desmutado.")
+        await message.reply("Este usuario é administrador, ele não precisa ser desmutado.")
         return
     if not await check_bot_rights(chat_id, "can_restrict_members"):
         await message.reply("Eu não sou um administrador, **Por favor me promova como um administrador!**")
