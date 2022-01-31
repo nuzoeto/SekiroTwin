@@ -81,6 +81,13 @@ async def help_ani_(client: megux, cb: CallbackQuery):
     await cb.edit_message_text(text=H_ANILIST, reply_markup=button)
 
 
+@megux.on_callback_query(filters.regex(pattern=r"help_yt$"))
+async def help_yt_(client: megux, cb: Callbackquery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("Voltar", callback_data="help_yt")]]
+    )
+    await cb.edit_message_text(text=H_YOUTUBE, reply_markup=button
+
 @megux.on_callback_query(filters.regex(pattern=r"^help_andr$"))
 async def help_andro(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
@@ -148,3 +155,9 @@ Aqui estão alguns comandos de admin do chat
  • /title < titulo aqui >: define uma custom tag de administrador de um usuario promovido pelo megux (ainda não disponível)
  • /zombies - Procura e limpa contas excluidas no chat (ainda não disponível)
 """
+
+
+H_YOUTUBE = """
+
+• /song Baixe músicas
+• /video Baixe videos
