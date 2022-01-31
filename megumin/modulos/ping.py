@@ -9,8 +9,7 @@ from megumin import START_TIME
 from megumin.utils import time_formatter
 
 
-@megux.on_message(filters.command([
-"ping"]))
+@megux.on_message(filters.command(["ping"]))
 
 async def pingme(_, message: Message):
     text = " ".join(message.text.split()[1:])  
