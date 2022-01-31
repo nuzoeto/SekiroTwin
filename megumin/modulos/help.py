@@ -81,14 +81,6 @@ async def help_ani_(client: megux, cb: CallbackQuery):
     await cb.edit_message_text(text=H_ANILIST, reply_markup=button)
 
 
-@megux.on_callback_query(filters.regex(pattern=r"help_yt$"))
-async def help_yt_(client: megux, cb: Callbackquery):
-    button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("Voltar", callback_data="help_yt")]]
-    )
-    await cb.edit_message_text(text=H_YOUTUBE, reply_markup=button
-
-
 @megux.on_callback_query(filters.regex(pattern=r"^help_andr$"))
 async def help_andro(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
