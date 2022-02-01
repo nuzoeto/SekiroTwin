@@ -5,7 +5,7 @@ from megumin import megux, version
 
 @megux.on_message(filters.command(["alive"]))
 async def start(_, message):
-    text= "ᴏɪ ᴇᴜ ᴇsᴛᴏᴜ ᴠɪᴠᴏ!\n**• Versão do Bot **: {__megumin_version__}\n**• Versão do Python **: {__python_version__}\n**• Versão do Pyrogram **: {__pyro_version__}"
+    text= "ᴏɪ ᴇᴜ ᴇsᴛᴏᴜ ᴠɪᴠᴏ!\n**• Versão do Bot **: {version.__megumin_version__}\n**• Versão do Python **: {version.__python_version__}\n**• Versão do Pyrogram **: {version.__pyro_version__}"
     
     keyboard = InlineKeyboardMarkup(
                             [
