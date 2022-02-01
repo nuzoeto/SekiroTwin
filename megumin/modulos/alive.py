@@ -1,7 +1,7 @@
 from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 
-from megumin import megux
+from megumin import megux, version
 
 @megux.on_message(filters.command(["alive"]))
 async def start(_, message):
