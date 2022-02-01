@@ -25,7 +25,7 @@ async def carbon_func(_, message: Message):
     m = await message.reply_text("`Preparando carbon`")
     carbon = await make_carbon(message.reply_to_message.text)
     await m.edit("`Uploading...`")
-    await megux.send_document(message.chat.id, carbon, caption="__Made by:__ @WhiterKangBot")
+    await megux.send_document(message.chat.id, carbon, caption="__Made by:__ @WhiterKangBOT")
     await m.delete()
     carbon.close()
 
@@ -34,5 +34,5 @@ async def make_carbon(code):
     url = "https://carbonara.vercel.app/api/cook"
     async with aiohttpsession.post(url, json={"code": code}) as resp:
         image = BytesIO(await resp.read())
-    image.name = "carbon.jpg"
+    image.name = "carbon.png"
     return image
