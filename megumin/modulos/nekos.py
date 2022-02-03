@@ -15,7 +15,7 @@ async def random_cat_commands(c: Client, m: types.Message):
     if not r.status_code == 200:
         return await m.reply_text(f"<b>Error!</b> <code>{r.status_code}</code>")
     cat = r.json
-    await m.reply_photo(cat()[0]["url"], caption= "Miau!")
+    await m.reply_photo(cat()[0]["url"], caption= "__Miau!__")
 
 
 @Client.on_message(filters.command("neko"))
@@ -41,7 +41,7 @@ async def random_dog_commands(c: Client, m: types.Message):
             f"<b>Error!</b> <code>{r.status_code}</code>", parse_mode="html"
         )
     cat = r.json
-    await m.reply_photo(cat()[0]["url"])
+    await m.reply_photo(cat()[0]["url"], caption="__Au au!__")
 
 
 @megux.on_message(filters.command("baka"))
@@ -55,4 +55,4 @@ async def baka_(_, message: Message):
 async def baka_(_, message: Message):
     r = requests.get("https://nekos.life/api/v2/img/wallpaper")
     g = r.json().get("url")
-    await megux.send_document(message.chat.id, g, caption="__Send by:__ @meguxbot")
+    await megux.send_document(message.chat.id, g, caption="__Send by:__ @WhiterKangBOT")
