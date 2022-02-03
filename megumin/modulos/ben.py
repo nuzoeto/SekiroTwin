@@ -5,7 +5,6 @@ import re
 import requests
 import wget
 import datetime
-import math
 
 from pyrogram import filters
 
