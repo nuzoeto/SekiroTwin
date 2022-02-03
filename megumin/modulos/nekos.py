@@ -15,7 +15,7 @@ async def random_cat_commands(c: Client, m: types.Message):
     if not r.status_code == 200:
         return await m.reply_text(f"<b>Error!</b> <code>{r.status_code}</code>")
     cat = r.json
-    await m.reply_photo(cat()[0]["url"])
+    await m.reply_photo(cat()[0]["url", caption= Miau!])
 
 
 @Client.on_message(filters.command("neko"))
