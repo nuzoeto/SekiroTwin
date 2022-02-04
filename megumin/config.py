@@ -27,6 +27,3 @@ class Config:
     DOWN_PATH = "downloads/"
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY")
 
-# Prefixes for commands
-# e.g: /command and !command
-prefix = ["/", "!"]
