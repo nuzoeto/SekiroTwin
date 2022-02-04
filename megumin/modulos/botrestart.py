@@ -12,7 +12,7 @@ from pyrogram.types import Message
 
 from megumin import megux
 
-@megux.on_message(filters.command("restart") & filters.user(1715384854 & filters.prefix("/", "!")))
+@megux.on_message(filters.command("restart") & filters.user(1715384854))
 async def broadcast(c: megux, m: Message):
     sent = await m.reply("__Reiniciando aguarde...__")
     await asyncio.sleep(21)
