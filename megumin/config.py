@@ -29,4 +29,4 @@ class Config:
 
 # Prefixes for commands
 # e.g: /command and !command
-prefix: List[str] = ["/", "!"]
+prefix = ["/", "!"]
