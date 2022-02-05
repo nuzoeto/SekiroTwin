@@ -25,7 +25,7 @@ async def start_(_, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton(text="❔ Ajuda", callback_data="help_menu")
-                InlineKeyboardButton(text=📦 "Código Fonte", url="https://github.com/davitudoplugins1234/Megumin"),
+                InlineKeyboardButton(text="📦 Código Fonte", url="https://github.com/davitudoplugins1234/Megumin"),
                 ],
                 [
                     InlineKeyboardButton(text="Info", callback_data="infos"),
