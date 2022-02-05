@@ -80,7 +80,7 @@ async def start_(_, message: Message):
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_menu$"))
     async def help(client: megux, cb: CallbackQuery):
-        info_text = f"""
+        help_text = f"""
 Use /ping para verificar se o megux esta online ou não
 Use /start para iniciar o megux em um grupo ou privado
 Use /help para os comandos disponíveis sobre o megux
@@ -96,7 +96,7 @@ Use /about para saber sobre os desenvolvedores e mais
             await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
             message_id=cb.message.message_id,
-            caption=info_text,
+            caption=help_text,
             reply_markup=button,
 )
 
@@ -105,6 +105,6 @@ Use /about para saber sobre os desenvolvedores e mais
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
             message_id=cb.message.message_id,
-            caption=help_menu,
+            caption=help_text,
             reply_markup=button,
         )
