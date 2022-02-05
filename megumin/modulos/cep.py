@@ -21,5 +21,5 @@ async def lastfm(c: Client, m: Message):
     neighborhood = res.json().get("neighborhood")
     street = res.json().get("street")
 
-        rep = await message.reply(      f"""🌏 <b>{cep}</b>\n<b>- Cidade:</b> {city}\n<b>- Estado:</b>  - \n<b>- Bairro:</b> \n<b>- Rua:</b>""")
-        await m.reply_text(rep)
+        await message.reply(f"""🌏 <b>{cep}</b>\n<b>- Cidade:</b> {city}\n<b>- Estado:</b>  - \n<b>- Bairro:</b> \n<b>- Rua:</b>""")
+        
