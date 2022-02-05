@@ -62,7 +62,7 @@ async def start_(_, message: Message):
                 ]
             ]
         )
-            await megux.edit_message_caption(
+        await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
             message_id=cb.message.message_id,
             caption=info_text,
