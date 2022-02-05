@@ -62,7 +62,7 @@ async def start_(_, message: Message):
                 ]
             ]
         )
-        await megux.edit_message_caption(
+            await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
             message_id=cb.message.message_id,
             caption=info_text,
@@ -93,7 +93,14 @@ Use /about para saber sobre os desenvolvedores e mais
                 ]
             ]
         )
-        @megux.on_callback_query(filters.regex(pattern=r"^start_back$"))
+            await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=info_text,
+            reply_markup=button,
+)
+
+    @megux.on_callback_query(filters.regex(pattern=r"^start_back$"))
     async def start_back(client: megux, cb: CallbackQuery):
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
