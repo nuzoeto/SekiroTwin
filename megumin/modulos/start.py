@@ -97,14 +97,13 @@ Use /about para saber sobre os desenvolvedores e mais
             chat_id=cb.message.chat.id,
             message_id=cb.message.message_id,
             caption=help_text,
-            reply_markup=button,
-)
+            reply_markup=button)
 
     @megux.on_callback_query(filters.regex(pattern=r"^start_back$"))
     async def start_back(client: megux, cb: CallbackQuery):
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
             message_id=cb.message.message_id,
-            caption=help_text,
+            caption=START_PRIVADO,
             reply_markup=button,
         )
