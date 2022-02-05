@@ -11,7 +11,7 @@ async def purge_command(megux, message: Message):
     can_purge = await admin_check(message)
     if can_purge:
         try:
-            message_reply = int(message.reply_to_message.message_id, m.message_id)
+            message_reply = int(message.reply_to_message.message_id, message.message_id)
         except AttributeError:
             await message.reply(
                 "Por favor, marque a mensagem que deseja apagar."
