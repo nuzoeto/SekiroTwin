@@ -6,7 +6,7 @@ from megumin import megux
 from megumin.utils import admin_check
 
 
-@megux.on_message(filters.command("purge"))
+@megux.on_message(filters.command("del"))
 async def purge_command(megux, message: Message):
     can_purge = await admin_check(message)
     if can_purge:
