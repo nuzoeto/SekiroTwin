@@ -79,7 +79,7 @@ async def start_(_, message: Message):
         )
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_menu$"))
-    async def infos(client: megux, cb: CallbackQuery):
+    async def help_menu(client: megux, cb: CallbackQuery):
         info_text = f"""
 Use /ping para verificar se o megux esta online ou não
 Use /start para iniciar o megux em um grupo ou privado
