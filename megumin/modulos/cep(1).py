@@ -7,6 +7,8 @@ from megumin import megux
 
 @megux.on_message(filters.command(["cota"]))
 async def pegar_cotacoes(_, message):
+    try:
+        cep = m.text.split(maxsplit=1)[1]
     requisicao = http.get("https://brasilapi.com.br/api/cep/v1")
 
     base_url = requisicao.json()
