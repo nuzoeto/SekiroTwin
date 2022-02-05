@@ -8,7 +8,6 @@ from megumin.utils import admin_check
 
 @megux.on_message(filters.command("purge"))
 async def purge_command(megux, message: Message):
-  msg_ids = [message.message_id]
     can_purge = await admin_check(message)
     if can_purge:
         try:
@@ -21,7 +20,7 @@ async def purge_command(megux, message: Message):
 
         while True:
             try:
-                await megux.delete_messages(message.chat.id, msg_ids
+                await megux.delete_messages(message.chat.id, message_reply 
             except MessageDeleteForbidden:
                 await message.reply(
                     "Eu não tenho as seguintes permissões: **Can delete messages**.  "
