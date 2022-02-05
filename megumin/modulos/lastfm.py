@@ -32,7 +32,7 @@ async def last_(_, message: Message):
     user_ = message.from_user.id
     lastdb = await USERS.find_one({"_id": user_})
     if lastdb is None:
-        await message.reply("__Você ainda não esta registrado, use /reg (username).__")
+        await message.reply("__Você ainda não esta registrado, use /setuser (username).__")
         return
     user_lastfm = lastdb["last_data"]
     resp = await http.get(
@@ -44,7 +44,7 @@ async def last_(_, message: Message):
     try:
         first_track = resp.json().get("recenttracks").get("track")[0]
     except IndexError:
-        await message.reply("Você não scrobblou nenhuma música...")
+        await message.reply("Você não me parece ter scrobblado(escutado) nenhuma música...")
         return
     image = first_track.get("image")[3].get("#text")
     artist = first_track.get("artist").get("name")
