@@ -5,13 +5,12 @@ from pyrogram.types import Message
 
 from megumin import megux
 
-@megux.on_message(filters.command(["cota"]))
+@megux.on_message(filters.command(["cep"]))
 async def pegar_cotacoes(_, message):
     try:
         cep = m.text.split(maxsplit=1)[1]
 
     requisicao = http.get("https://brasilapi.com.br/api/cep/v1")
-
     base_url = requisicao.json()
     res = await http.get(f"{base_url}/{cep}")
     city = res.json().get("city")
