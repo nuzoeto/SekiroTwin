@@ -9,7 +9,7 @@ async def lastfm(c: Client, m: Message):
     try:
         cep = m.text.split(maxsplit=1)[1]
     except IndexError:
-        await m.reply_text(await tld(m.chat.id, "no_cep"))
+        await message.reply("CEP NÃO INSERIDO!")
         return
 
     base_url = "https://brasilapi.com.br/api/cep/v1"
