@@ -44,7 +44,7 @@ async def last_(_, message: Message):
     try:
         first_track = resp.json().get("recenttracks").get("track")[0]
     except IndexError:
-        await message.reply("Você não me parece ter scrobblado(escutado) nenhuma música...")
+        await message.reply("Você não me parece ter scrobblado(escutado) nenhuma música.")
         return
     image = first_track.get("image")[3].get("#text")
     artist = first_track.get("artist").get("name")
