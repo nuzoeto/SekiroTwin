@@ -34,4 +34,4 @@ async def unpin_(_, message: Message):
         await message.reply("`Responda a uma mensagem para que eu possa desfixa-la`")
         return
     await message.reply_to_message.unpin()
-    await message.reply(f"""Eu Desfixei a [mensagem](http://t.me/c/{(msg.forward_from_chat or msg.chat).id}/{msg.forward_from_message_id or msg.message_id})!""")
+    await message.reply(f"""Eu Desfixei a [mensagem](http://t.me/c/{message.chat.id}/{message.message_id})!""")
