@@ -68,7 +68,7 @@ async def help(client, message):
 @megux.on_callback_query(filters.regex(pattern=r"^help_admin$"))
 async def help_admin(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("Voltar", callback_data="help_back")]]
+        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_ADM, reply_markup=button)
 
@@ -76,7 +76,7 @@ async def help_admin(client: megux, cb: CallbackQuery):
 @megux.on_callback_query(filters.regex(pattern=r"^help_ani$"))
 async def help_ani_(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("Voltar", callback_data="help_back")]]
+        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_ANILIST, reply_markup=button)
 
@@ -98,7 +98,7 @@ async def help_lt_(client: megux, cb: CallbackQuery):
                     "Criar uma conta LasFM", url="https://www.last.fm/join"
                 )
             ],
-            [InlineKeyboardButton("Voltar", callback_data="help_back")],
+            [InlineKeyboardButton("↩ Voltar", callback_data="help_back")],
         ]
     )
     await cb.edit_message_text(text=H_LAST, reply_markup=button)
