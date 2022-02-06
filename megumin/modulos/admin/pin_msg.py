@@ -19,6 +19,7 @@ async def pin_(_, message: Message):
         await message.reply("`Responda a uma mensagem para que eu possa fixa-la`")
         return
     await message.reply_to_message.pin()
+    await message.reply("Eu fixei a mensagem!")
 
 
 @megux.on_message(filters.command("unpin"))
@@ -34,4 +35,4 @@ async def unpin_(_, message: Message):
         await message.reply("`Responda a uma mensagem para que eu possa desfixa-la`")
         return
     await message.reply_to_message.unpin()
-    await message.reply(f"""Eu Desfixei a [mensagem](http://t.me/c/{message.chat.id}/{message.message_id})!""")
+    await message.reply(f"""Eu desfixei a mensagem!""")
