@@ -33,3 +33,4 @@ async def unpin_(_, message: Message):
         await message.reply("`Responda a uma mensagem para que eu possa desfixa-la`")
         return
     await message.reply_to_message.unpin()
+    await message.reply("Eu Desfixei a mensagem!")
