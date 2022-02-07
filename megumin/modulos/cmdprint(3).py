@@ -86,7 +86,7 @@ async def cssworker_url(target_url: str):
         return None
 
 
-async def search_yt(query):
+async def print(query):
     page = (
         await http.get(
             "https://www.youtube.com/results",
