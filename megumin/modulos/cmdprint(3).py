@@ -24,11 +24,11 @@ async def prints(c: megux, m: Message):
         the_url = the_url[1]
 
     if wrong:
-        await m.reply("print_error")
+        await m.reply("Por Favor, especifique um link para eu printar.")
         return
 
     try:
-        sent = await m.reply_text("print_printing")
+        sent = await m.reply_text("Obtendo captura de tela...")
         res_json = await cssworker_url(target_url=the_url)
     except BaseException as e:
         return
@@ -49,7 +49,7 @@ async def prints(c: megux, m: Message):
                 "couldn't get url value, most probably API is not accessible."
             )
     else:
-        await m.reply("print_api_dead")
+        await m.reply("Sua solicitação deu errada!")
         
 
 async def cssworker_url(target_url: str):
