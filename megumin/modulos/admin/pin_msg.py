@@ -10,10 +10,10 @@ async def pin_(_, message: Message):
     chat_id = message.chat.id
     msg = message.reply_to_message or message
     if not await check_rights(chat_id, message.from_user.id, "can_pin_messages"):
-        await reply("`Você não tem as seguintes permissões: **Can pin message**")
+        await reply("`Você não tem as seguintes permissões: **Can pin messages**")
         return
     if not await check_bot_rights(chat_id, "can_pin_messages"):
-        await message.reply("`Eu não tenho as seguintes permissões: **Can pin message**")
+        await message.reply("`Eu não tenho as seguintes permissões: **Can pin messages**")
         return
     if not message.reply_to_message:
         await message.reply("Responda a uma mensagem para que eu possa fixa-la")
@@ -26,10 +26,10 @@ async def pin_(_, message: Message):
 async def unpin_(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_pin_messages"):
-        await reply("Você não tem as seguintes permissões: **Can pinned message")
+        await reply("Você não tem as seguintes permissões: **Can pinned messages")
         return
     if not await check_bot_rights(chat_id, "can_pin_messages"):
-        await message.reply("Eu não tenho as seguintes permissões: **Can pineed message**")
+        await message.reply("Eu não tenho as seguintes permissões: **Can pineed messages**")
         return
     if not message.reply_to_message:
         await message.reply("`Responda a uma mensagem para que eu possa desfixa-la`")
