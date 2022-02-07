@@ -32,6 +32,7 @@ async def prints(c: megux, m: Message):
         res_json = await cssworker_url(target_url=the_url)
     except BaseException as e:
         user_mention = m.from_user.mention(m.from_user.first_name)
+        await LOG_CHANNEL_ID(c, user_mention, user_id, e)
         await m.reply(f"falhou!")
         return
 
