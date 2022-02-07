@@ -10,29 +10,29 @@ async def pin_(_, message: Message):
     chat_id = message.chat.id
     msg = message.reply_to_message or message
     if not await check_rights(chat_id, message.from_user.id, "can_pin_messages"):
-        await reply("`Você não tem permissão pra fazer isso`")
+        await reply("`Você não tem as seguintes permissões: **Can pin message**")
         return
     if not await check_bot_rights(chat_id, "can_pin_messages"):
-        await message.reply("`Eu preciso de permissão para fixar mensagens`")
+        await message.reply("`Eu não tenho as seguintes permissões: **Can pin message**")
         return
     if not message.reply_to_message:
-        await message.reply("`Responda a uma mensagem para que eu possa fixa-la`")
+        await message.reply("Responda a uma mensagem para que eu possa fixa-la")
         return
     await message.reply_to_message.pin()
-    await message.reply(f"""Eu fixei </b> <a href='t.me/{message.chat.username}/{message.reply_to_message.message_id}'>esta mensagem</a>.""", disable_web_page_preview=True)
+    await message.reply(f"""Eu fixei</b> <a href='t.me/{message.chat.username}/{message.reply_to_message.message_id}'>esta mensagem</a>.""", disable_web_page_preview=True)
 
 
 @megux.on_message(filters.command("unpin"))
 async def unpin_(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_pin_messages"):
-        await reply("`Você não tem permissão pra fazer isso`")
+        await reply("Você não tem as seguintes permissões: **Can pinned message")
         return
     if not await check_bot_rights(chat_id, "can_pin_messages"):
-        await message.reply("`Eu preciso de permissão para desfixar mensagens`")
+        await message.reply("Eu não tenho as seguintes permissões: **Can pineed message**")
         return
     if not message.reply_to_message:
         await message.reply("`Responda a uma mensagem para que eu possa desfixa-la`")
         return
     await message.reply_to_message.unpin()
-    await message.reply(f"""Eu desfixei </b> <a href='t.me/{message.chat.username}/{message.reply_to_message.message_id}'>esta mensagem</a>.""", disable_web_page_preview=True)
+    await message.reply(f"""Eu desfixei</b> <a href='t.me/{message.chat.username}/{message.reply_to_message.message_id}'>esta mensagem</a>.""", disable_web_page_preview=True)
