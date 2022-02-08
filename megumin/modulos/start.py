@@ -79,7 +79,7 @@ async def start_(_, message: Message):
         )
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_menu$"))
-    async def infos(client: megux, cb: CallbackQuery):
+    async def help_(client: megux, cb: CallbackQuery):
         help_text = f"""
 __Teste...__
     """
