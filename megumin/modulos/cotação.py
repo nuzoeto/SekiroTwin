@@ -23,7 +23,7 @@ async def pegar_cotacoes(_, message):
     var_btc = requisicao_dic ['BTCBRL']['varBid']
 
     obting_info = await message.reply(f"""```Obtendo informações sobre as moedas...```""")
-    await asyncio.sleep(0.4)
+    await asyncio.sleep(0.3)
     await obting_info.delete()
 
     result = f'''
