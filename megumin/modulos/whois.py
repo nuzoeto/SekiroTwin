@@ -23,11 +23,11 @@ def LastOnline(user: User):
     elif user.status == "recently":
         return "Recentemente"
     elif user.status == "within_week":
-        return "visto na última semana"
+        return "última semana"
     elif user.status == "within_month":
-        return "visto no último mês"
+        return "último mês"
     elif user.status == "long_time_ago":
-        return "visto há muito tempo :("
+        return "há muito tempo :("
     elif user.status == "online":
         return "Online"
     elif user.status == "offline":
@@ -87,3 +87,9 @@ async def whois(client, message):
             ),
             disable_web_page_preview=True,
         )
+
+
+@megux.on_message(filters.command("online"))
+async def online_count(client, message):
+user_on = await megux.get_chat_online_count(chat_id)
+await message.reply(f"""Atualmente {user_on} estão online""")
