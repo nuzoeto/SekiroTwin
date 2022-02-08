@@ -20,9 +20,9 @@ async def pegar_cotacoes(_, message):
     cotacao_btc = requisicao_dic['BTCBRL']['bid']
     dat_btc = requisicao_dic['BTCBRL']['create_date']
     var_btc = requisicao_dic ['BTCBRL']['varBid']
-    cotacao_iene = requisicao_dic ['GPYBRL']['bid']
-    dat_iene = requisicao_dic ['GPYBRL']['create_date']
-    var_iene = requisicao_dic ['GPYBRL']['varBid']
+    cotacao_iene = requisicao_dic ['JPYBRL']['bid']
+    dat_iene = requisicao_dic ['JPYBRL']['create_date']
+    var_iene = requisicao_dic ['JPYBRL']['varBid']
 
     result = f'''
 **Cotação das moedas:**
