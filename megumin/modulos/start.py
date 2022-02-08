@@ -88,3 +88,4 @@ await megux.edit_inline_caption(
             message_id=cb.message.message_id,
             caption=help_text,
             reply_markup=button
+)
