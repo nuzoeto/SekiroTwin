@@ -39,7 +39,7 @@ async def pegar_cotacoes(_, message):
 🗓 **Data:**  ```{dat_btc}```
 📊 **Variação:** ```{var_btc}```
 
-💵 **iene:** ```{cotacao_iene}```
+💵 **iene:** R$ ```{cotacao_iene}```
 🗓 **Data:** ```{dat_iene}```
 📊 **Variação:** ```{var_iene}```'''
 
