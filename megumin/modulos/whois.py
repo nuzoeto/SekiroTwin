@@ -90,6 +90,6 @@ async def whois(client, message):
 
 
 @megux.on_message(filters.command("online"))
-async def online_count(client, message):
+async def online_count(megux, message):
 user_on = await megux.get_chat_online_count(chat_id)
 await message.reply(f"""Atualmente {user_on} estão online""")
