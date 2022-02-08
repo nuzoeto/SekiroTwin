@@ -25,15 +25,21 @@ async def pegar_cotacoes(_, message):
 **Cotação das moedas:**
 
 💵 **Dólar:** R$ ```{cotacao_dolar}```
+
 🗓 **Data:**  ```{dat_dolar}```
+
 📊 **Variação:** ```{var_dolar}```
 
 💵 **Euro:** R$ ```{cotacao_euro}```
+
 🗓 **Data:**  ```{dat_euro}```
+
 📊 **Variação:** ```{var_euro}```
 
 💵 **BTC:** R$ ```{cotacao_btc}```
+
 🗓 **Data:**  ```{dat_btc}```
+
 📊 **Variação:** ```{var_btc}```'''
 
     await message.reply_photo(photo="https://telegra.ph/file/d60e879db1cdba793a98c.jpg",
