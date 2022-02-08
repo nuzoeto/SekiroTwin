@@ -79,13 +79,12 @@ async def start_(_, message: Message):
         )
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_menu$"))
-    async def help_(client: megux, cb: CallbackQuery):
+    async def help_m(client: megux, cb: CallbackQuery):
         help_text = f"""
 __Teste...__
     """
 await megux.edit_inline_caption(
             chat_id=cb.message.chat.id,
             message_id=cb.message.message_id,
-            caption=help_text,
-            reply_markup=button
+            caption=help_text
 )
