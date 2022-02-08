@@ -44,7 +44,7 @@ async def last_(_, message: Message):
     try:
         first_track = resp.json().get("recenttracks").get("track")[0]
     except IndexError:
-        await message.reply("Você não me parece ter scrobblado(escutado) nenhuma música.")
+        await message.reply("Você não me parece ter scrobblado(escutado) nenhuma música...")
         return
     image = first_track.get("image")[3].get("#text")
     artist = first_track.get("artist").get("name")
@@ -75,7 +75,7 @@ async def last_save_user(_, message: Message):
     user_ = message.from_user.id
     text = " ".join(message.text.split()[1:])
     if not text:
-        await message.reply("__Você não me informou seu username 🙃.__")
+        await message.reply("__Você esqueceu username 🙃.__")
         return
     await USERS.update_one({"_id": user_}, {"$set": {"last_data": text}}, upsert=True)
     await message.reply("__Seu username foi definido com sucesso.__")
@@ -85,4 +85,4 @@ async def last_save_user(_, message: Message):
 async def last_save_user(_, message: Message):
     user_ = message.from_user.id
     await USERS.delete_one({"_id": user_})
-    await message.reply("__Seu username foi removido do banco de dados.__")
+    await message.reply("__Seu username foi removido do meu banco de dados.__")
