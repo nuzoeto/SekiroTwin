@@ -17,7 +17,5 @@ async def framengo(c: megux, m: Message):
 
 @megux.on_message(filters.regex(r"^Olá",r"^Ola",r"^olá",r"^ola", r"^Oi", r"^Oi,Tudo bem?"))
 async def complimentacao_(c: megux, m: Message):
-sla = random.choice(OI)
-    await m.reply(f"__{sla}__")
-
-OI = [f"""Olá! Como posso ajudar {message.from_user.first_name}""", "Olá! Tudo bem com você?", "Oi, tudo bom?", "Olá! Tudo bem com você? Posso ajudar?"]
+  if m.chat.type == "private":
+await message.reply(f"""Olá! Como posso ajudar {message.from_user.first_name}""")
