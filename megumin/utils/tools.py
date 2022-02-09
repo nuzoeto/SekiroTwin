@@ -22,6 +22,8 @@ def time_formatter(seconds: float) -> str:
     return tmp[:-2]
 
 
+http = httpx.AsyncClient(http2=True, timeout=timeout)
+
 async def admin_check(message: Message) -> bool:
     client = message._client
     chat_id = message.chat.id
