@@ -21,6 +21,7 @@ async def pegar_cotacoes(_, message):
     cotacao_btc = requisicao_dic['BTCBRL']['bid']
     dat_btc = requisicao_dic['BTCBRL']['create_date']
     var_btc = requisicao_dic ['BTCBRL']['varBid']
+    cotacao_ars = requisicao_dic['ARSBRL']['bid']
 
     obting_info = await message.reply(f"""```Obtendo informações sobre as moedas...```""")
     await asyncio.sleep(0.3)
@@ -31,15 +32,20 @@ async def pegar_cotacoes(_, message):
 
 💵 **Dólar:** R$ ```{cotacao_dolar}```
 🗓 **Data:**  ```{dat_dolar}```
+
 📊 **Variação:** ```{var_dolar}```
 
 💵 **Euro:** R$ ```{cotacao_euro}```
 🗓 **Data:**  ```{dat_euro}```
+
 📊 **Variação:** ```{var_euro}```
 
 💵 **BTC:** R$ ```{cotacao_btc}```
 🗓 **Data:**  ```{dat_btc}```
-📊 **Variação:** ```{var_btc}```'''
+
+📊 **Variação:** ```{var_btc}```
+
+{cotacao_ars}'''
 
     await message.reply_photo(photo="https://telegra.ph/file/d60e879db1cdba793a98c.jpg",
     caption=result)
