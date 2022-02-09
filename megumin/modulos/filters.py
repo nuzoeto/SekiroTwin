@@ -15,6 +15,6 @@ async def framengo(c: megux, m: Message):
     )
 
 
-@megux.on_message(filters.regex(r"^hello"))
+@megux.on_message(filters.regex(r"^hello", r"^Hello"))
 async def helloyou(c: megux, m: Message):
     await m.reply(f"""Hello how are you!""")
