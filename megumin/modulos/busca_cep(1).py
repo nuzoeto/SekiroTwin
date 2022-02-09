@@ -16,11 +16,11 @@ async def lastfm(c: megux, m: Message):
     try:
         cep = m.text.split(maxsplit=1)[1]
     except IndexError:
-        await m.reply("CEP not inserido.")
+        await m.reply("CEP não inserido.")
         return
 
     base_url = "https://brasilapi.com.br/api/cep/v1"
-    res = await http.get(f"{base_url}/{cep}")
+    res = await requests.get(f"{base_url}/{cep}")
     city = res.json().get("city")
     state = res.json().get("state")
     states = await http.get(f"https://brasilapi.com.br/api/ibge/uf/v1/{state}")
