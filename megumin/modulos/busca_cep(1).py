@@ -23,7 +23,7 @@ async def lastfm(c: megux, m: Message):
     res = await http.get(f"{base_url}/{cep}")
     city = res.json().get("city")
     state = res.json().get("state")
-    states = await http.get(f"https://brasilapi.com.br/api/ibge/uf/v1/{state}")
+    states = await httpx.get(f"https://brasilapi.com.br/api/ibge/uf/v1/{state}")
     state_name = states.json().get("nome")
     neighborhood = res.json().get("neighborhood")
     street = res.json().get("street")
