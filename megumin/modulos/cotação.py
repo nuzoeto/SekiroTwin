@@ -21,7 +21,6 @@ async def pegar_cotacoes(_, message):
     cotacao_btc = requisicao_dic['BTCBRL']['bid']
     dat_btc = requisicao_dic['BTCBRL']['create_date']
     var_btc = requisicao_dic ['BTCBRL']['varBid']
-    cotacao_boliviano = requisicao_dic['BOBBRL']['bid']
 
     obting_info = await message.reply(f"""```Obtendo informações sobre as moedas...```""")
     await asyncio.sleep(0.3)
@@ -43,9 +42,7 @@ async def pegar_cotacoes(_, message):
 💵 **BTC:** R$ ```{cotacao_btc}```
 🗓 **Data:**  ```{dat_btc}```
 
-📊 **Variação:** ```{var_btc}```
-
-💵 **Boliviano:**{cotacao_boliviano}'''
+📊 **Variação:** ```{var_btc}```'''
 
     await message.reply_photo(photo="https://telegra.ph/file/d60e879db1cdba793a98c.jpg",
     caption=result)
