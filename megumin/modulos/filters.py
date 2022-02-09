@@ -15,6 +15,7 @@ async def framengo(c: megux, m: Message):
     )
 
 
-@megux.on_message(filters.regex(r"^Olá",r"^Ola",r"^olá",r"^ola", r"^Oi", r"^Oi,Tudo bem?"))
-async def chatbot_(c: megux, m: Message):
-await message.reply(f"""Olá! Como posso ajudar {message.from_user.first_name}""")
+@megux.on_message(filters.regex(r"^hello"))
+async def helloyou(c: megux, m: Message):
+    await m.reply("Hello how are you 
+    )
