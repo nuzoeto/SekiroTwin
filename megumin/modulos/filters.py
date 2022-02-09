@@ -16,6 +16,5 @@ async def framengo(c: megux, m: Message):
 
 
 @megux.on_message(filters.regex(r"^Olá",r"^Ola",r"^olá",r"^ola", r"^Oi", r"^Oi,Tudo bem?"))
-async def complimentacao_(c: megux, m: Message):
-  if m.chat.type == "private":
+async def chatbot_(c: megux, m: Message):
 await message.reply(f"""Olá! Como posso ajudar {message.from_user.first_name}""")
