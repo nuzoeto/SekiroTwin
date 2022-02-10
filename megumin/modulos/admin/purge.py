@@ -24,7 +24,6 @@ async def purge_command(megux, message: Message):
          
         while True:
             try:
-                await asyncio.sleep(1)
                 await message.edit("**Limpeza completa!**")
                 await megux.delete_messages(message.chat.id, message_reply)
                 message_reply += 1
