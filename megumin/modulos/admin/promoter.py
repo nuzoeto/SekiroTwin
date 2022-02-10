@@ -21,7 +21,6 @@ from megumin.utils import (
 @megux.on_message(filters.command("promote"))
 async def _promote_user(_, message: Message):
     chat_id = message.chat.id
-    args = m.text.split(maxsplit=1)[1]
     if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
         await message.reply("Você não tem as seguintes permissões: **Change can promote members**")
         return
@@ -63,7 +62,6 @@ async def _promote_user(_, message: Message):
         )
         if args:
             await asyncio.sleep(2)
-        await megux.set_administrator_title(chat_id, user_id, args)
         await sent.edit("**Promovido(a)!**")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
