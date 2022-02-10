@@ -11,6 +11,7 @@ from megumin.utils import admin_check
 
 @megux.on_message(filters.command("purge"))
 async def purge_command(megux, message: Message):
+    await message.reply("```Apagando as mensagens...```)
     can_purge = await admin_check(message)
     if can_purge:
         try:
@@ -20,9 +21,11 @@ async def purge_command(megux, message: Message):
                 "Por favor, marque a mensagem por onde deseja começar o purge."
             )
             return
-
+         
         while True:
             try:
+                await asyncio.sleep(1)
+                await message.edit("**Limpeza completa!**")
                 await megux.delete_messages(message.chat.id, message_reply)
                 message_reply += 1
             except MessageDeleteForbidden:
