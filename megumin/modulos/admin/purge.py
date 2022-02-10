@@ -1,6 +1,3 @@
-import os
-import asyncio 
-
 from pyrogram import filters
 from pyrogram.errors import MessageDeleteForbidden
 from pyrogram.types import Message
@@ -11,7 +8,7 @@ from megumin.utils import admin_check
 
 @megux.on_message(filters.command("purge"))
 async def purge_command(megux, message: Message):
-    await message.reply("```Apagando as mensagens...```)
+    await message.reply("```Apagando as mensagens...```")
     can_purge = await admin_check(message)
     if can_purge:
         try:
@@ -21,7 +18,7 @@ async def purge_command(megux, message: Message):
                 "Por favor, marque a mensagem por onde deseja começar o purge."
             )
             return
-         
+
         while True:
             try:
                 await message.edit("**Limpeza completa!**")
