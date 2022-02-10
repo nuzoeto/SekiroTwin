@@ -20,7 +20,7 @@ async def purge_command(megux, message: Message):
 
         while True:
             try:
-                await limpando.reply("**Limpeza completa!**")
+                await message.reply("**Limpeza completa!**")
                 await megux.delete_messages(message.chat.id, message_reply)
                 message_reply += 1
             except MessageDeleteForbidden:
