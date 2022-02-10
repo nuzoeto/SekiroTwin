@@ -1,3 +1,6 @@
+import os
+import asyncio 
+
 from pyrogram import filters
 from pyrogram.errors import MessageDeleteForbidden
 from pyrogram.types import Message
@@ -20,7 +23,9 @@ async def purge_command(megux, message: Message):
 
         while True:
             try:
+                purging = await message.reply("`Apagando mensagens...`")
                 await megux.delete_messages(message.chat.id, message_reply)
+                await message.edit("**Limpeza completa!**")
                 message_reply += 1
             except MessageDeleteForbidden:
                 await message.reply(
