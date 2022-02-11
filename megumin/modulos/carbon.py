@@ -35,4 +35,4 @@ async def make_carbon(code):
     async with aiohttpsession.post(url, json={"code": code}) as resp:
         image = BytesIO(await resp.read())
     image.name = "carbon.png"
-    return image
+    return await message.reply_photo(image)
