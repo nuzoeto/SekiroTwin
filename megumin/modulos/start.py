@@ -18,6 +18,9 @@ Olá! Meu nome é **WhiterKang** sou um bot útil e divertido para você :3
 __Se você gostar das minhas funções me adicione a seu grupo!__
 """
 
+HELP_TEXT = """
+Oi? Precisa de ajuda sobre como me usar? Clique nos meguxões abaixo para saber mais sobre os comandos
+
 
 @megux.on_message(filters.command("start"))
 async def start_(_, message: Message):
@@ -78,4 +81,27 @@ async def start_(_, message: Message):
             reply_markup=keyboard,
         )
 
-
+@megux.on_message(filters.command("help") & filters.private)
+async def help(client, message):
+    button = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("Admin", callback_data="help_admin"),
+                InlineKeyboardButton("Anilist", callback_data="help_ani"),
+                InlineKeyboardButton("Android", callback_data="help_andr"),
+            ],
+            [
+                InlineKeyboardButton("Fun", callback_data="help_fun"),
+                InlineKeyboardButton("Geral", callback_data="help_geral"),
+                InlineKeyboardButton("Lastfm", callback_data="help_last"),
+            ],
+            [
+                InlineKeyboardButton("Notas", callback_data="help_notes"),
+                InlineKeyboardButton("Tradutor", callback_data="help_tr"),
+                InlineKeyboardButton("Youtube", callback_data="help_yt"),
+            ],
+        ]
+    )
+    await megux.send_message(
+        chat_id=message.chat.id, text=HELP_TEXT, reply_markup=button
+    )
