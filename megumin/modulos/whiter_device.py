@@ -6,7 +6,7 @@ from pyrogram.types import Message
 
 from megumin import megux
 
-@megux.on_message(filters.command("device")
+@megux.on_message(filters.command("device"))
 async def device_recovery(message: Message):
     """Get Latest TWRP"""
     args = message.filtered_input_str
