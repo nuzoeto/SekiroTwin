@@ -71,7 +71,7 @@ async def whois(client, message):
                 username=user.username if user.username else "None",
                 last_online=LastOnline(user),
                 bio=bio if bio else "`None`",
-                is_scam=user.is_scan
+                is_scam=user.is_scam
             ),
             disable_notification=True,
         )
