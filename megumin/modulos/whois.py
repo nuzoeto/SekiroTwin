@@ -9,11 +9,12 @@ from megumin import megux
 infotext = (
     "**Who is [{full_name}](tg://user?id={user_id})**\n"
     " 🕵️‍♂️ User ID: `{user_id}`\n"
-    " 🗣 Primeiro Nome: `{first_name}`\n"
-    " 🗣 Ultimo Nome: `{last_name}`\n"
-    " 👤 Username: `{username}`\n"
+    " 🗣 Primeiro Nome: **{first_name}**\n"
+    " 🗣 Ultimo Nome: **{last_name}**\n"
+    " 👤 Username: __@{username}__\n"
     " 👁 Visto por Ultimo: `{last_online}`\n"
     " 📝 Bio: {bio}"
+    " 🛇 É Restrito: `{is_scam}`"
 )
 
 
@@ -40,7 +41,7 @@ def FullName(user: User):
     return user.first_name + " " + user.last_name if user.last_name else user.first_name
 
 
-@megux.on_message(filters.command("whois"))
+@megux.on_message(filters.command("whois", "info"))
 async def whois(client, message):
     cmd = " ".join(message.text.split()[1:])
     try:
@@ -70,6 +71,7 @@ async def whois(client, message):
                 username=user.username if user.username else "None",
                 last_online=LastOnline(user),
                 bio=bio if bio else "`None`",
+                is_scam=user.is_scan
             ),
             disable_notification=True,
         )
@@ -84,6 +86,7 @@ async def whois(client, message):
                 username=user.username if user.username else "None",
                 last_online=LastOnline(user),
                 bio=bio if bio else "`No bio set up.`",
+                is_scam=user.is_scam
             ),
             disable_web_page_preview=True,
         )
