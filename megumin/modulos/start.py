@@ -82,28 +82,4 @@ async def start_(_, message: Message):
         )
 
 
-@megux.on_callback_query(filters.regex(pattern=r"^help_menu$"))
-    async def help_back_(client: megux, cb: CallbackQuery):
-        await cb.edit_message_text(text=HELP_TEXT, reply_markup=button)
-    button = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("Admin", callback_data="help_admin"),
-                InlineKeyboardButton("Anilist", callback_data="help_ani"),
-                InlineKeyboardButton("Android", callback_data="help_andr"),
-            ],
-            [
-                InlineKeyboardButton("Fun", callback_data="help_fun"),
-                InlineKeyboardButton("Geral", callback_data="help_geral"),
-                InlineKeyboardButton("Lastfm", callback_data="help_last"),
-            ],
-            [
-                InlineKeyboardButton("Notas", callback_data="help_notes"),
-                InlineKeyboardButton("Tradutor", callback_data="help_tr"),
-                InlineKeyboardButton("Youtube", callback_data="help_yt"),
-            ],
-        ]
-    )
-    await megux.send_message(
-        chat_id=message.chat.id, text=HELP_TEXT, reply_markup=button
-    )
+
