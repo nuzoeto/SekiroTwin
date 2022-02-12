@@ -81,6 +81,7 @@ async def start_(_, message: Message):
             reply_markup=keyboard,
         )
 
+
 @megux.on_callback_query(filters.regex(pattern=r"^help_menu$"))
     async def help_back_(client: megux, cb: CallbackQuery):
         await cb.edit_message_text(text=HELP_TEXT, reply_markup=button)
