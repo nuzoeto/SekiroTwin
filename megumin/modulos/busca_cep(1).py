@@ -11,6 +11,10 @@ from pyrogram.errors import BadRequest
 
 from megumin import megux
 
+timeout = httpx.Timeout(20)
+http = httpx.AsyncClient(http2=True, timeout=timeout)
+
+
 @megux.on_message(filters.command("cep"))
 async def lastfm(c: megux, m: Message):
     try:
