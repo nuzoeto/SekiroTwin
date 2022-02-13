@@ -15,12 +15,13 @@ infotext = (
     " 👁 Visto por Ultimo: `{last_online}`\n"
     " 📝 Bio: {bio}\n"
     " 🛇 É Restrito: `{is_scam}`"
+    " ✅ É Verificado: `{is_verified}`"
 )
 
 
 def LastOnline(user: User):
     if user.is_bot:
-        return ""
+        return "bot"
     elif user.status == "recently":
         return "Recentemente"
     elif user.status == "within_week":
@@ -72,6 +73,7 @@ async def whois(client, message):
                 last_online=LastOnline(user),
                 bio=bio if bio else "`No bio set up.`",
                 is_scam=user.is_scam,
+                is_verified=user.is_verified,
             ),
             disable_notification=True,
         )
@@ -87,6 +89,7 @@ async def whois(client, message):
                 last_online=LastOnline(user),
                 bio=bio if bio else "`No bio set up.`",
                 is_scam=user.is_scam,
+                is_verified=user.is_verified,
             ),
             disable_web_page_preview=True,
         )
