@@ -21,7 +21,7 @@ infotext = (
 
 def LastOnline(user: User):
     if user.is_bot:
-        return "bot"
+        return "usuário é bot"
     elif user.status == "recently":
         return "Recentemente"
     elif user.status == "within_week":
