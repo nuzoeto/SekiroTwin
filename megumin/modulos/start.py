@@ -14,8 +14,9 @@ from megumin import START_TIME
 from megumin.utils import time_formatter
 
 START_PRIVADO = """
-<i>Oi, sou o Megumin e posso ajudá-lo a obter informações sobre animes, mangás, personagens,etc e também alguns comandos fun.
-Este megux ainda esta em desenvolvimento.</i>
+Olá! Meu nome é **WhiterKang** sou um bot útil e divertido para você :3
+
+__Se você gostar das minhas funções me adicione a seu grupo!__
 """
 
 
@@ -39,7 +40,7 @@ async def start_(_, message: Message):
                 ],
             ]
         )
-        gif = "https://telegra.ph/file/64f9d0c8e4e56a58a7949.gif"
+        gif = "https://telegra.ph/file/576f9c3193a1dade06bce.gif"
         msg = START_PRIVADO
         await message.reply_animation(gif, caption=msg, reply_markup=keyboard)
     else:
