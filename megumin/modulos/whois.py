@@ -13,8 +13,8 @@ infotext = (
     " 🗣 Ultimo Nome: `{last_name}`\n"
     " 👤 Username: `{username}`\n"
     " 👁 Visto por Ultimo: `{last_online}`\n"
-    " 📝 Bio: {bio}"
-    " 🛇 É Restrito: {is_scam}"
+    " 📝 Bio: {bio}\n"
+    " 🛇 É Restrito: `{is_scam}`"
 )
 
 
