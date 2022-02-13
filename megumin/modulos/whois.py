@@ -7,7 +7,7 @@ from pyrogram.types import User
 from megumin import megux
 
 infotext = (
-    "**[{full_name}](tg://user?id={user_id})**\n"
+    "**Who is [{full_name}](tg://user?id={user_id})**\n"
     " 🕵️‍♂️ User ID: `{user_id}`\n"
     " 🗣 Primeiro Nome: `{first_name}`\n"
     " 🗣 Ultimo Nome: `{last_name}`\n"
