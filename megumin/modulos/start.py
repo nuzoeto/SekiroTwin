@@ -1,3 +1,4 @@
+
 import time
 
 from pyrogram import filters
@@ -13,13 +14,9 @@ from megumin import START_TIME
 from megumin.utils import time_formatter
 
 START_PRIVADO = """
-Olá! Meu nome é **WhiterKang** sou um bot útil e divertido para você :3
-
-__Se você gostar das minhas funções me adicione a seu grupo!__
+<i>Oi, sou o Megumin e posso ajudá-lo a obter informações sobre animes, mangás, personagens,etc e também alguns comandos fun.
+Este megux ainda esta em desenvolvimento.</i>
 """
-
-HELP_TEXT = """
-Oi? Precisa de ajuda sobre como me usar? Clique nos meguxões abaixo para saber mais sobre os comandos
 
 
 @megux.on_message(filters.command("start"))
@@ -27,8 +24,8 @@ async def start_(_, message: Message):
     if message.chat.type == "private":
         keyboard = InlineKeyboardMarkup(
             [
-                [   InlineKeyboardButton(text="❔ Ajuda", callback_data="help_menu"),
-                    InlineKeyboardButton(text=" 📦 Código Fonte", url="https://github.com/davitudoplugins1234/Megumin")
+                [InlineKeyboardButton(text="❔Ajuda", callback_data="help_menu"),
+                 InlineKeyboardButton(text="📦 Código Fonte", url="https://github.com/davitudoplugins1234/Megumin")
                 ],
                 [
                     InlineKeyboardButton(text="Info", callback_data="infos"),
@@ -42,7 +39,7 @@ async def start_(_, message: Message):
                 ],
             ]
         )
-        gif = "https://telegra.ph/file/a003598d771e24f4abb13.gif"
+        gif = "https://telegra.ph/file/64f9d0c8e4e56a58a7949.gif"
         msg = START_PRIVADO
         await message.reply_animation(gif, caption=msg, reply_markup=keyboard)
     else:
@@ -80,4 +77,3 @@ async def start_(_, message: Message):
             caption=START_PRIVADO,
             reply_markup=keyboard,
         )
-
