@@ -40,7 +40,7 @@ def FullName(user: User):
     return user.first_name + " " + user.last_name if user.last_name else user.first_name
 
 
-@megux.on_message(filters.command("whois", "info"))
+@megux.on_message(filters.command("whois"))
 async def whois(client, message):
     cmd = " ".join(message.text.split()[1:])
     try:
