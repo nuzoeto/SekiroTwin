@@ -14,6 +14,7 @@ infotext = (
     " 👤 Username: `{username}`\n"
     " 👁 Visto por Ultimo: `{last_online}`\n"
     " 📝 Bio: {bio}"
+    " 🛇 É Restrito: {is_scam}
 )
 
 
@@ -70,6 +71,7 @@ async def whois(client, message):
                 username=user.username if user.username else "None",
                 last_online=LastOnline(user),
                 bio=bio if bio else "`No bio set up.`",
+                is_scam=user.is_scam,
             ),
             disable_notification=True,
         )
@@ -84,6 +86,7 @@ async def whois(client, message):
                 username=user.username if user.username else "None",
                 last_online=LastOnline(user),
                 bio=bio if bio else "`No bio set up.`",
+                is_scam=user.is_scam,
             ),
             disable_web_page_preview=True,
         )
