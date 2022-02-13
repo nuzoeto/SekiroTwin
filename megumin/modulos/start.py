@@ -56,7 +56,8 @@ async def start_(_, message: Message):
 ╠ Uptime : `{time_formatter(time.time() - START_TIME)}`
 ╠ Python : `{version.__python_version__}`
 ╠ Pyrogram : `{version.__pyro_version__}`
-╚═╗"""
+╚═╗
+"""
         button = InlineKeyboardMarkup(
             [
                 [
