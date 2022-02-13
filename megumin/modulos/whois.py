@@ -14,7 +14,7 @@ infotext = (
     " 👤 Username: `{username}`\n"
     " 👁 Visto por Ultimo: `{last_online}`\n"
     " 📝 Bio: {bio}\n"
-    " 🛇 É Restrito: `{is_scam}`"
+    " 🛇 É Restrito: `{is_scam}`\n"
     " ✅ É Verificado: `{is_verified}`"
 )
 
