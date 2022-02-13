@@ -34,4 +34,3 @@ async def purge_command(megux, message: Message):
                 return
     else:
         await message.reply("Você precisa ser admin para dar purge.")
-        ignore_errors=True
