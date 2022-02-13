@@ -35,8 +35,6 @@ def LastOnline(user: User):
     elif user.status == "offline":
         return datetime.fromtimestamp(user.status.date).strftime(
             "%a, %d %b %Y, %H:%M:%S"
-    elif user.status == "False":
-        return "Falso"
         )
 
 
