@@ -7,11 +7,11 @@ from pyrogram.types import User
 from megumin import megux
 
 infotext = (
-    "**Who is [{full_name}](tg://user?id={user_id})**\n"
+    "**[{full_name}](tg://user?id={user_id})**\n"
     " 🕵️‍♂️ User ID: `{user_id}`\n"
-    " 🗣 Primeiro Nome: **{first_name}**\n"
-    " 🗣 Ultimo Nome: **{last_name}**\n"
-    " 👤 Username: __@{username}__\n"
+    " 🗣 Primeiro Nome: `{first_name}`\n"
+    " 🗣 Ultimo Nome: `{last_name}`\n"
+    " 👤 Username: `{username}`\n"
     " 👁 Visto por Ultimo: `{last_online}`\n"
     " 📝 Bio: {bio}"
 )
@@ -23,11 +23,11 @@ def LastOnline(user: User):
     elif user.status == "recently":
         return "Recentemente"
     elif user.status == "within_week":
-        return "última semana"
+        return "Na última semana"
     elif user.status == "within_month":
-        return "último mês"
+        return "No último mês"
     elif user.status == "long_time_ago":
-        return "há muito tempo :("
+        return "Há muito tempo :("
     elif user.status == "online":
         return "Online"
     elif user.status == "offline":
@@ -69,7 +69,7 @@ async def whois(client, message):
                 last_name=user.last_name if user.last_name else "None",
                 username=user.username if user.username else "None",
                 last_online=LastOnline(user),
-                bio=bio if bio else "`Não tem.`",
+                bio=bio if bio else "`No bio set up.`",
             ),
             disable_notification=True,
         )
