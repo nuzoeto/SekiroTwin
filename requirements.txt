@@ -46,4 +46,3 @@ youtube-search-python
 wget
 gpytranslate
 yt-dlp==2022.1.21
-httpx[http2]==0.22.0
