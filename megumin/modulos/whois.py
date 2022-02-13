@@ -8,14 +8,14 @@ from megumin import megux
 
 infotext = (
     "**Who is [{full_name}](tg://user?id={user_id})**\n"
-    " 🕵️‍♂️ User ID: `{user_id}`\n"
-    " 🗣 Primeiro Nome: `{first_name}`\n"
-    " 🗣 Ultimo Nome: `{last_name}`\n"
-    " 👤 Username: `{username}`\n"
-    " 👁 Visto por Ultimo: `{last_online}`\n"
-    " 📝 Bio: {bio}\n"
-    " 🛇 É Restrito: `{is_scam}`\n"
-    " ✅ É Verificado: `{is_verified}`"
+    " 🕵️‍♂️ **User ID**: `{user_id}`\n"
+    " 🗣 **Primeiro Nome**: `{first_name}`\n"
+    " 🗣 **Ultimo Nome**: `{last_name}`\n"
+    " 👤 **Username**: __@{username}__\n"
+    " 👁 **Visto por Ultimo**: __{last_online}__\n"
+    " 📝 **Bio**: {bio}\n"
+    " 🛇 **É Restrito**: `{is_scam}`\n"
+    " ✅ **É Verificado**: `{is_verified}`"
 )
 
 
@@ -35,6 +35,8 @@ def LastOnline(user: User):
     elif user.status == "offline":
         return datetime.fromtimestamp(user.status.date).strftime(
             "%a, %d %b %Y, %H:%M:%S"
+    elif user.status == "False":
+        return "Falso"
         )
 
 
