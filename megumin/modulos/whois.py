@@ -11,7 +11,7 @@ infotext = (
     " 🕵️‍♂️ **User ID**: `{user_id}`\n"
     " 🗣 **Primeiro Nome**: `{first_name}`\n"
     " 🗣 **Ultimo Nome**: `{last_name}`\n"
-    " 🤖 **É Bot**: __{is_bot}__
+    " 🤖 **É Bot**: __{is_bot}__\n"
     " 👤 **Username**: __@{username}__\n"
     " 👁 **Visto por Ultimo**: __{last_online}__\n"
     " 📝 **Bio**: {bio}\n"
