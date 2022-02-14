@@ -11,6 +11,7 @@ infotext = (
     " 🕵️‍♂️ **User ID**: `{user_id}`\n"
     " 🗣 **Primeiro Nome**: `{first_name}`\n"
     " 🗣 **Ultimo Nome**: `{last_name}`\n"
+    " 🤖 **É Bot**: {is_bot}
     " 👤 **Username**: __@{username}__\n"
     " 👁 **Visto por Ultimo**: __{last_online}__\n"
     " 📝 **Bio**: {bio}\n"
@@ -74,11 +75,12 @@ async def whois(client, message):
                 bio=bio if bio else "`No bio set up.`",
                 is_scam=user.is_scam,
                 is_verified=user.is_verified,
+                is_bot=user.is_bot,
             ),
             disable_notification=True,
         )
     else:
-        await message.reply_text(
+        await message.reply_text(📸 **Nenhuma Foto encontrada.**\n
             infotext.format(
                 full_name=FullName(user),
                 user_id=user.id,
@@ -90,6 +92,7 @@ async def whois(client, message):
                 bio=bio if bio else "`No bio set up.`",
                 is_scam=user.is_scam,
                 is_verified=user.is_verified,
+                is_bot=user.is_bot
             ),
             disable_web_page_preview=True,
         )
