@@ -11,7 +11,7 @@ infotext = (
     " 🕵️‍♂️ **User ID**: `{user_id}`\n"
     " 🗣 **Primeiro Nome**: `{first_name}`\n"
     " 🗣 **Ultimo Nome**: `{last_name}`\n"
-    " 🤖 **É Bot**: {is_bot}
+    " 🤖 **É Bot**: __{is_bot}__
     " 👤 **Username**: __@{username}__\n"
     " 👁 **Visto por Ultimo**: __{last_online}__\n"
     " 📝 **Bio**: {bio}\n"
@@ -80,7 +80,7 @@ async def whois(client, message):
             disable_notification=True,
         )
     else:
-        await message.reply_text(📸 **Nenhuma Foto encontrada.**\n
+        await message.reply_text("📸 **Nenhuma Foto encontrada.**\n"
             infotext.format(
                 full_name=FullName(user),
                 user_id=user.id,
