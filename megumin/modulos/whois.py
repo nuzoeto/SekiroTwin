@@ -76,7 +76,6 @@ async def whois(client, message):
                 is_scam=user.is_scam,
                 is_verified=user.is_verified,
                 is_bot=user.is_bot,
-                count=count_photos
             ),
             disable_notification=True,
         )
