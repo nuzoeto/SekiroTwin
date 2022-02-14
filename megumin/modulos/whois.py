@@ -80,7 +80,7 @@ async def whois(client, message):
             disable_notification=True,
         )
     else:
-        await message.reply_text("📸 **Nenhuma Foto encontrada.**\n"
+        await message.reply_text(
             infotext.format(
                 full_name=FullName(user),
                 user_id=user.id,
