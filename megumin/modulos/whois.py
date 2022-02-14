@@ -17,7 +17,7 @@ infotext = (
     " 📝 **Bio**: {bio}\n"
     " 🛇 **É Restrito**: `{is_scam}`\n"
     " ✅ **É Verificado**: `{is_verified}`"
-    f""".... {count_photos}"""
+    f{count}"
 )
 
 
@@ -78,6 +78,7 @@ async def whois(client, message):
                 is_scam=user.is_scam,
                 is_verified=user.is_verified,
                 is_bot=user.is_bot,
+                count=count_photos
             ),
             disable_notification=True,
         )
