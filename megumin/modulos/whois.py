@@ -16,7 +16,7 @@ infotext = (
     " 📝 **Bio**: {bio}\n"
     " 🛇 **É Restrito**: `{is_scam}`\n"
     " ✅ **É Verificado**: `{is_verified}`\n"
-    "Fotos de perfil: {photo_count}
+    "Fotos de perfil: {photo_count}"
 )
 
 
