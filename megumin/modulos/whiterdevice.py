@@ -9,7 +9,7 @@ DEVICE_LIST = "https://raw.githubusercontent.com/androidtrackers/certified-andro
 
 @megux.on_message(filters.command(["device", "whatis"]))
 async def device_(_, message: Message):
-    msg = await message.reply("Procurando...")
+    msg = await message.reply("__Procurando...__")
     if len(message.text.split()) == 1:
         await message.edit("Quer que eu adivinhe? Por favor digite um codename")
         return
