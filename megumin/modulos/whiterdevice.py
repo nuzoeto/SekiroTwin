@@ -18,7 +18,7 @@ async def device_(_, message: Message):
         device = getlist.get(target_device)
         text = ""
         for x in device:
-            text += f"Brand: {x['brand']}\nName: {x['name']}\nDevice: {x['model']}\nCodename: {target_device}"
+            text += f"**Marca:** ```{x['brand']}```\n**Nome:** ```{x['name']}```\n**Dispositivo:** ```{x['model']}```\n**Codename:** ```{target_device}```"
             text += "\n\n"
         await msg.edit(text)
     else:
