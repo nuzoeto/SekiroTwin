@@ -4,6 +4,8 @@ from pyrogram.types import Message
 
 from megumin import megux
 
+DEVICE_LIST = "https://raw.githubusercontent.com/androidtrackers/certified-android-devices/master/by_device.json"
+
 @megux.on_message(filters.command(["device", "whatis"]))
 async def device_(_, message: Message):
     msg = await message.reply("Procurando...")
