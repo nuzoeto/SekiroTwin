@@ -1,3 +1,4 @@
+import asyncio 
 import requests
 from pyrogram import filters
 from pyrogram.types import Message
@@ -22,6 +23,6 @@ async def device_(_, message: Message):
             text += "\n\n"
         await msg.edit(text)
     else:
-        await msg.edit(f"Device {target_device} não foi encontrado!")
-        await sleep(5)
+        await msg.edit(f"`Device` **{target_device}** `não foi encontrado!`")
+        await asyncio.sleep(5)
         await msg.delete()
