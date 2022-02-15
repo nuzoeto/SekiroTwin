@@ -1,8 +1,8 @@
 import requests
-from pyrogram import Client, filters
+from pyrogram import filters
 from pyrogram.types import Message
 
-
+from megumin import megux
 
 @megux.on_message(filters.command(["device", "whatis"]))
 async def device_(_, message: Message):
