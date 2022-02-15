@@ -18,7 +18,7 @@ async def lastfm(c: megux, m: Message):
     try:
         cep = m.text.split(maxsplit=1)[1]
     except IndexError:
-        await m.reply("CEP not inserido.")
+        await m.reply("CEP não inserido. **Uso do comando**: /cep (cep)")
         return
 
     base_url = "https://brasilapi.com.br/api/cep/v1"
@@ -31,7 +31,7 @@ async def lastfm(c: megux, m: Message):
     street = res.json().get("street")
 
     if res.status_code == 404:
-        await m.reply("cep invalido")
+        await m.reply("Este CEP é invalido.")
         return
     else:
         rep =  f"""🌏 <b>{cep}</b>\n<b>- Cidade:</b> {city}\n<b>- Estado:</b> {state_name} - {state}\n<b>- Bairro:</b> {neighborhood}\n<b>- Rua:</b> {street}"""
