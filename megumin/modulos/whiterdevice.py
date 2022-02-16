@@ -7,7 +7,7 @@ from megumin import megux
 
 DEVICE_LIST = "https://raw.githubusercontent.com/androidtrackers/certified-android-devices/master/by_device.json"
 
-@megux.on_message(filters.command(["device", "whatis"]))
+@megux.on_message(filters.command(["device", "whatis"], filters.prefix("/", "!")))
 async def device_(_, message: Message):
     msg = await message.reply("__Procurando...__")
     if len(message.text.split()) == 1:
