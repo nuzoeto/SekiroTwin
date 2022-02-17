@@ -8,7 +8,8 @@ from pyrogram.errors import BadRequest
 
 from megumin import megux
 
- http = httpx.AsyncClient()
+http = httpx.AsyncClient()
+
 
 @megux.on_message(filters.command(["ddd"]))
 async def lastfm(c: megux, m: Message):
