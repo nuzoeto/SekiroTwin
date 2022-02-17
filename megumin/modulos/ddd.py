@@ -27,4 +27,4 @@ async def lastfm(c: megux, m: Message):
     cities = res.json().get("cities")
     
     rep =f"📞 <b>DDD - {ddd}</b> \n<b>- Estado:</b> {state_name} - {state}\n\n **Cidades\n{cities}"
-    await message.reply(rep)
+    await m.reply_text(rep)
