@@ -34,6 +34,6 @@ async def lastfm(c: megux, m: Message):
             .lower()
             .title()
         )
-    
     rep =f"📞 <b>DDD - {ddd}</b> \n<b>- Estado:</b> {state_name} - {state}\n\n<b> Cidades:</b> <code>{cidade}</code>"
+    
     await m.reply_text(rep)
