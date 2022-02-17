@@ -16,7 +16,7 @@ async def lastfm(c: megux, m: Message):
     try:
          ddd = m.text.split(maxsplit=1)[1]
     except IndexError:
-        await m.reply_text("DDD nao inserido!")
+        await m.reply_text("**Você esqueceu do DDD.**\n<b>Uso do comando:</b> /ddd (ddd).")
         return
 
     base_url = "https://brasilapi.com.br/api/ddd/v1"
@@ -25,7 +25,7 @@ async def lastfm(c: megux, m: Message):
     states = await http.get(f"https://brasilapi.com.br/api/ibge/uf/v1/{state}")
     state_name = states.json().get("nome")
     cities = res.json().get("cities")
-    (",".join(cities))
+    
 
     rep = f"📞 <b>DDD - {ddd}</b> \n<b>- Estado:</b> {state_name} - {state}\n\n<b> Cidades:</b> <code>{cities}</code>"
     
