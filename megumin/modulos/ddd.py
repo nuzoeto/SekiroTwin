@@ -14,7 +14,7 @@ http = httpx.AsyncClient()
 @megux.on_message(filters.command(["ddd"]))
 async def lastfm(c: megux, m: Message):
     try:
-            ddd = m.text.split(maxsplit=1)[1]
+         ddd = m.text.split(maxsplit=1)[1]
     except IndexError:
         await m.reply_text("DDD nao inserido!")
         return
