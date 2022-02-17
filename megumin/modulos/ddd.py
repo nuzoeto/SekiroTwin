@@ -14,6 +14,9 @@ http = httpx.AsyncClient()
 @megux.on_message(filters.command(["ddd"]))
 async def lastfm(c: megux, m: Message):
     try:
+    if len(ddd) > 2:
+    await message.reply("Este DDD não existe!!!")
+    else:
          ddd = m.text.split(maxsplit=1)[1]
     except IndexError:
         await m.reply_text("**Você esqueceu do DDD.**\n<b>Uso do comando:</b> /ddd (ddd).")
