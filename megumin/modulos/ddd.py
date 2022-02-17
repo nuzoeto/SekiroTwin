@@ -26,15 +26,6 @@ async def lastfm(c: megux, m: Message):
     state_name = states.json().get("nome")
     cities = res.json().get("cities")
 
-    cities.reverse()
-        cities = (
-            str(cities)
-            .replace("'", "")
-            .replace("]", "")
-            .replace("[", "")
-            .lower()
-            .title()
-        )
-    rep =f"📞 <b>DDD - {ddd}</b> \n<b>- Estado:</b> {state_name} - {state}\n\n<b> Cidades:</b> <code>{cities}</code>"
+    rep = f"📞 <b>DDD - {ddd}</b> \n<b>- Estado:</b> {state_name} - {state}\n\n<b> Cidades:</b> <code>{cities}</code>"
     
     await m.reply_text(rep)
