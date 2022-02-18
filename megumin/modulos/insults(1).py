@@ -48,7 +48,7 @@ INSULTS = ["Por que você é tão idiota assim?",
      "Pare de falar besteiras e pule na frente de um trem-bala.",
      "Tente tomar banho com ácido clorídrico em vez de água.",
      "Tente o seguinte: se você ficar sem fôlego por uma hora, poderá salvá-lo para sempre.",
-     "Fica verde! Pare de inalar oxigênio."
+     "Fica verde! Pare de inalar oxigênio.",
      "Deus estava procurando por você. Você deveria sair para encontrá-lo.",
      "Dê 100%. Agora, doe sangue.",
      "Tente pular de cem andares, mas você só pode fazê-lo uma vez.",
