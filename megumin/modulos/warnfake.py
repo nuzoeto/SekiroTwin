@@ -1,11 +1,12 @@
 import random
 
 from pyrogram import filters
+from pyrogram.types import Message
 
 from megumin import megux
 
 @megux.on_message(filters.command(["warm"]))
-async def printer(_, message):
+async def printer(_, message: Message):
     warmf = random.choice(rep)
     await message.reply(f"{warmf}")
 
