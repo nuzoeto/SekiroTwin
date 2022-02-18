@@ -27,11 +27,6 @@ async def lastfm(c: megux, m: Message):
     cities = res.json().get("cities")
     cidade = ", ".join(cities).lower() + "."
 
-    if res.status_code == 404:
-        await m.reply("Este DDD é invalido.")
-        return
-    else:
     rep = f"📞 <b>DDD - {ddd}</b> \n<b>- Estado:</b> {state_name} - {state}\n\n<b>Cidades:</b> <code>{cidade}</code>"
     
-
     await m.reply_text(rep)
