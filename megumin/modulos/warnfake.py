@@ -6,7 +6,7 @@ from pyrogram.types import Message
 from megumin import megux
 
 @megux.on_message(filters.command(["warm"]))
-async def printer(_, message: Message):
+async def printer(_, m: Message):
     warmf = random.choice(rep)
     await m.reply(f"{warmf}")
 
