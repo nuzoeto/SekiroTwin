@@ -26,6 +26,7 @@ async def chatbot_(c: megux, message: Message):
   elif "Nada" in message.text:
     await message.reply("Nada? Impossível.")
   elif "Não" in message.text:
-    await message.reply("Eu ajudo a preservar energia conversando sobre o assunto, divulgando as metas do CONPET e passando dicas de economia!")
+    string_nao = "Eu ajudo a preservar energia conversando sobre o assunto, divulgando as metas do CONPET e passando [dicas de economia!]("https://telegra.ph/Dicas-de-economia-02-19")" 
+    await message.reply(string_nao)    
   else:
     return
