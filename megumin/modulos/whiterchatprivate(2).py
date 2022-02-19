@@ -26,6 +26,8 @@ async def chatbot_(c: megux, message: Message):
   elif "Nada" in message.text:
     await message.reply("Nada? Impossível.")
   elif "Não" in message.text: 
-    await message.reply("Eu ajudo a preservar energia conversando sobre o assunto, divulgando as metas do CONPET e passando dicas de economia!")    
+    await message.reply("Eu ajudo a preservar energia conversando sobre o assunto, divulgando as metas do CONPET e passando dicas de economia!")
+  elif "Cotação" in message.text:
+    await message.reply("Para ver a cotação do **Dolar**, **Euro**, **Bitcoin** __Digite:__ /cota")
   else:
     return
