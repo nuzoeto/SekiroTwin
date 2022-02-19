@@ -47,7 +47,7 @@ async def chatbot_(c: megux, message: Message):
     await message.reply("Hm, sei não.")
   elif "Geografia" in message.text:
     await message.reply("Gosto muito de geografia. Estudando geografia aprendi qual o oceano mais profundo, o que é fuso horário, jusante, enseada, planalto, planície, camada sedimentar e mais uma porção de coisas.")
-  elif "Geográfico" in message.text
+  elif "Geográfico" in message.text:
     await message.reply("Estudar geografia é bem legal. Desde seu nascimento aos mais modernos ramos, passando por relevo, camada sedimentar, oasis, fuso horário... E aprendi ainda as diferenças entre geografia e geologia, planalto e planície, mar e oceano, jusante e montante.")
   else:
     return
