@@ -9,7 +9,12 @@ from megumin import megux
 
 @megux.on_message(filters.private)
 async def chatbot_(c: megux, message: Message):
-  if "oi" in message.text:
+  if "Oi" in message.text:
     await message.reply("Oi, tudo bom?")
+  else:
+    return
+
+elif "Olá" in message.text:
+    await message.reply("Olá! Tudo bem com você?")
   else:
     return
