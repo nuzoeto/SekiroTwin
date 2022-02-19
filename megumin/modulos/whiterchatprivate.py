@@ -14,5 +14,5 @@ async def ola_oi_(c: megux, m: Message):
   
   
 @megux.on_message(filters.regex(r"^Olá") & filters.private)
-async def ola_oi(c: megux, m: message):
+async def ola_oi(c: megux, m: Message):
  await m.reply("Olá! Tudo bem com você?")
