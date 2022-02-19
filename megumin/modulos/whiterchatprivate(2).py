@@ -11,5 +11,7 @@ from megumin import megux
 async def chatbot_(c: megux, message: Message):
   if "Oi" in message.text:
     await message.reply("Oi, tudo bom?")
+  elif "Olá" in message.text:
+    await message.reply("Olá! Como vai você?")
   else:
     return
