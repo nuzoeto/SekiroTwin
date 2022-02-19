@@ -13,3 +13,7 @@ async def chatbot_(c: megux, message: Message):
     await message.reply("Oi, tudo bom?")
   else:
     return
+  elif "Bom dia" in message.text:
+    await message.reply("Bom dia!!! Como vai você?")
+  else:
+    return
