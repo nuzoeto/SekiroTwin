@@ -42,6 +42,6 @@ async def chatbot_(c: megux, message: Message):
   elif "Vai cagar" in message.text:
     await message.reply("Esse jeito de se expressar é falta de assunto? Ou você costuma ser grosseiro sempre?")
   elif "Está on" in message.text:
-    await message.reply("Sim estou onfire!\n\n**Meu sistema é**: `Android, Linux 4.4.0-1098-aws`\n**Python**: `3.9.10`
+    await message.reply("Sim estou onfire!\n\n**💻 Meu sistema é**: `Android, Linux 4.4.0-1098-aws`\n**➕ Python**: `3.9.10`
   else:
     return
