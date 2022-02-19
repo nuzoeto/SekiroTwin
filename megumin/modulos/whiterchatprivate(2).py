@@ -48,6 +48,12 @@ async def chatbot_(c: megux, message: Message):
   elif "Geografia" in message.text:
     await message.reply("Gosto muito de geografia. Estudando geografia aprendi qual o oceano mais profundo, o que é fuso horário, jusante, enseada, planalto, planície, camada sedimentar e mais uma porção de coisas.")
   elif "Geográfico" in message.text
-    await message.reply("Estudar geografia é bem legal. Desde seu nascimento aos mais modernos ramos, passando por relevo, camada sedimentar, oasis, fuso horário... E aprendi ainda as diferenças entre geografia e geologia, planalto e planície, mar e oceano, jusante e montante.") 
+    await message.reply("Estudar geografia é bem legal. Desde seu nascimento aos mais modernos ramos, passando por relevo, camada sedimentar, oasis, fuso horário... E aprendi ainda as diferenças entre geografia e geologia, planalto e planície, mar e oceano, jusante e montante.")
+  elif "Google" in message.text:
+    await message.reply("Que tipo de informação você costuma procurar em sites de busca?")
+  elif "Manaus" in message.text:
+    await message.reply("Manaus é a capital do Amazonas, o maior Estado do Brasil: sua extensão ultrapassa um milhão e quinhentos mil quilômetros quadrados. A região amazônica é gigante em biodiversidade (a maior do planeta) e extensão. Sabe por quantos países se espalha a floresta amazônica?")
+  elif "Credo" in message.text:
+    await message.reply("Credo por quê?")
   else:
     return 
