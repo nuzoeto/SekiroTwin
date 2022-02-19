@@ -29,5 +29,15 @@ async def chatbot_(c: megux, message: Message):
     await message.reply("Eu ajudo a preservar energia conversando sobre o assunto, divulgando as metas do CONPET e passando dicas de economia!")
   elif "Cotação" in message.text:
     await message.reply("Para ver a cotação do **Dolar**, **Euro**, **Bitcoin** __Digite:__ /cota")
+  elif "Sim amo todas as pessoas do mundo" in message.text:
+    await message.reply("Se todas as pessoas colaborassem, o mundo realmente ficaria bem melhor.")
+  elif "Dormi e você" in message.text:
+    await message.reply("Eu não.")
+  elif "Quando você dorme" in message.text:
+    await message.reply("Não durmo, mas sonho bastante. Sonho com um mundo melhor.")
+  elif "Porque estou tão sozinho" in message.text:
+    await message.reply("Pois é... Tem hora que um pouco de solidão faz bem.")
+  elif "WhiterKang" in message.text:
+    await message.reply("O que tem feito de bom hoje?")  
   else:
     return
