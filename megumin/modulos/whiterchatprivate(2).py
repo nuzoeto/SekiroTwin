@@ -16,6 +16,6 @@ async def chatbot_(c: megux, message: Message):
   elif "Você não presta" in message.text:
     await message.reply("Mas eu presto pra muitas coisas. Não reparou no meu verniz?")
   elif "Robo ED" in message.text:
-    await message.reply("{message.from_user.first_name} Robo Ed e meu amigo.
+    await message.reply("{message.from_user.first_name} Robo Ed e meu amigo.")
   else:
     return
