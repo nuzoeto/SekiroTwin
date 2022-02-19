@@ -22,6 +22,6 @@ async def chatbot_(c: megux, message: Message):
   elif "Boa tarde" in message.text: 
     await message.reply("Boa tarde! Como posso ajudar? Sobre o que quer conversar?")
   elif "Boa noite" in message.text:
-    await message.reply("Boa noite! Como posso ajudar? Sobre o que quer conversar?
+    await message.reply("Boa noite! Como posso ajudar? Sobre o que quer conversar?")
   else:
     return
