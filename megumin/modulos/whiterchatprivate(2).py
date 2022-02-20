@@ -71,5 +71,7 @@ async def chatbot_(c: megux, message: Message):
     await message.reply("KKKK.")
   elif "Haha" in message.text:
     await message.reply("hahahaha.")
+  elif "Americana" in message.text:
+    await message.reply("Americana... é uma cidade perto de Campinas!")
   else:
     return
