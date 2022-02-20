@@ -68,7 +68,7 @@ async def chatbot_(c: megux, message: Message):
   elif "Davi" in message.text:
     await message.reply("Davi significa predileto, amado e respeitado, em hebraico.")
   elif "Kkk" in message.text:
-    await message.reply("KKKK.)
+    await message.reply("KKKK.")
   elif "Haha" in message.text:
     await message.reply("hahahaha.")
   else:
