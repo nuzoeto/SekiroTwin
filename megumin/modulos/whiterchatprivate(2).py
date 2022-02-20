@@ -63,5 +63,13 @@ async def chatbot_(c: megux, message: Message):
     await message.reply("América do Sul e América do Norte fazem parte do continente Americano, também conhecido como Novo Mundo. Os estudiosos dizem que o continente recebeu este nome em homenagem ao navegador Américo Vespúcio.")
   elif "Youtube" in message.text:
     await message.reply("O que você costuma buscar no youtube?")
+  elif "Bomba" in message.text:
+    await message.reply("Que tipo de bomba?")
+  elif "Davi" in message.text:
+    await message.reply("Davi significa predileto, amado e respeitado, em hebraico.")
+  elif "Kkk" in message.text:
+    await message.reply("KKKK.)
+  elif "Haha" in message.text:
+    await message.reply("hahahaha.")
   else:
     return
