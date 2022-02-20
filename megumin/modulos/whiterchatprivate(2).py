@@ -78,6 +78,8 @@ async def chatbot_(c: megux, message: Message):
   elif "Bomba atômica" in message.text:
     await message.reply("Não aguento nem ouvir falar em explosão de bomba. As leis robóticas implantadas no meu cérebro positrônico entram em conflito, eu passo mal, vou acabar tendo que ajustar os circuitos cerebrais de novo!")
   elif "Conpet" in message.text or "CONPET" in message.text:
-    await message.reply("O CONPET é um programa do Governo Federal, criado em 1991, por decreto presidencial, para promover o desenvolvimento de uma cultura antidesperdício no uso dos recursos naturais não renováveis no Brasil, garantindo um país melhor para as gerações futuras. O programa é vinculado ao Ministério de Minas e Energia, executado com apoio técnico e administrativo da Petrobras, e sua atuação é orientada por diversos Marcos Legais.") 
+    await message.reply("O CONPET é um programa do Governo Federal, criado em 1991, por decreto presidencial, para promover o desenvolvimento de uma cultura antidesperdício no uso dos recursos naturais não renováveis no Brasil, garantindo um país melhor para as gerações futuras. O programa é vinculado ao Ministério de Minas e Energia, executado com apoio técnico e administrativo da Petrobras, e sua atuação é orientada por diversos Marcos Legais.")
+  elif "Serra negra" in message.text:
+    await message.reply("Me contaram que Serra Negra/SP é uma estância hidromineral muito gostosa, em meio a montanhas cobertas pela Mata Atlântica. Serra Negra é a tradução de Itiruna, o antigo nome da cidade. Em Tupi, Ibitira quer dizer serra e Una significa negro.")
   else:
     return
