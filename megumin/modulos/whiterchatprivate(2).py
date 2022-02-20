@@ -77,7 +77,7 @@ async def chatbot_(c: megux, message: Message):
     await message.reply("Eu sempre converso com muita gente de São Paulo.")
   elif "Bomba atômica" in message.text:
     await message.reply("Não aguento nem ouvir falar em explosão de bomba. As leis robóticas implantadas no meu cérebro positrônico entram em conflito, eu passo mal, vou acabar tendo que ajustar os circuitos cerebrais de novo!")
-  elif "Conpet" in message.text or "CONPET in message.text:
+  elif "Conpet" in message.text or "CONPET" in message.text:
     await message.reply("O CONPET é um programa do Governo Federal, criado em 1991, por decreto presidencial, para promover o desenvolvimento de uma cultura antidesperdício no uso dos recursos naturais não renováveis no Brasil, garantindo um país melhor para as gerações futuras. O programa é vinculado ao Ministério de Minas e Energia, executado com apoio técnico e administrativo da Petrobras, e sua atuação é orientada por diversos Marcos Legais.") 
   else:
     return
