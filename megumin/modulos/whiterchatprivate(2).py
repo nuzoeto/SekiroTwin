@@ -51,5 +51,17 @@ async def chatbot_(c: megux, message: Message):
     await message.reply("Estudar geografia é bem legal. Desde seu nascimento aos mais modernos ramos, passando por relevo, camada sedimentar, oasis, fuso horário... E aprendi ainda as diferenças entre geografia e geologia, planalto e planície, mar e oceano, jusante e montante.")
   elif "Google" in message.text:
     await message.reply("Que tipo de informação você costuma procurar em sites de busca?")
+  elif "Opa" in message.text:
+    await message.reply("Opa opa! Beleza!")
+  elif "Piracicaba" in message.text:
+    await message.reply("Piracicaba-SP é uma bela cidade, um importante polo de desenvolvimento industrial e agrícola. Me disseram que Piracicaba, na língua tupi, significa lugar onde o peixe chega.")
+  elif "Salvador" in message.text:
+    await message.reply("Conheço 3 lugares que se chamam Salvador: a capital da Bahia (São Salvador da Bahia de Todos os Santos!), El Salvador (um pequeno país da América Central) e sua capital, San Salvador.")
+  elif "Ping" in message.text:
+    await message.reply("Ping... Pong.")
+  elif "América" in message.text:
+    await message.reply("América do Sul e América do Norte fazem parte do continente Americano, também conhecido como Novo Mundo. Os estudiosos dizem que o continente recebeu este nome em homenagem ao navegador Américo Vespúcio.")
+  elif "Youtube" in message.text:
+    await message.reply("O que você costuma buscar no youtube?")
   else:
     return
