@@ -25,7 +25,7 @@ async def lastfm(c: megux, m: Message):
     states = await http.get(f"https://brasilapi.com.br/api/ibge/uf/v1/{state}")
     state_name = states.json().get("nome")
     cities = res.json().get("cities")
-    cidade = ", ".join(cities) + "."
+    cidade = ", ".join(cities).lower().title + "."
 
     rep = f"📞 <b>DDD - {ddd}</b> \n<b>- Estado:</b> {state_name} - {state}\n\n<b>Cidades:</b> <code>{cidade}</code>"
     
