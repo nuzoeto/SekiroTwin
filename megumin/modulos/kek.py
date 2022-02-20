@@ -15,7 +15,7 @@ async def lastfm(c: megux, m: Message):
         await m.reply_text("__Kek..__")
         return
 
-rep = f"__{kek}__"
+ rep = f"__{kek}__"
 
 
-await message.reply(rep)
+        await message.reply(rep)
