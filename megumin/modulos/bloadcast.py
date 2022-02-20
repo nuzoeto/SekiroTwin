@@ -6,11 +6,6 @@ from pyrogram.types import Message
 
 from megumin import megux
 
-class groups(Model):
-    id = fields.IntField(pk=True)
-    git_repo = fields.TextField(null=True)
-    git_repo_name = fields.TextField(null=True)
-
 
 @megux.on_message(filters.command("broadcast") & filters.user(1715384854))
 async def broadcast(c: megux, m: Message):
