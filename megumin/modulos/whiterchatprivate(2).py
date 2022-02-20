@@ -37,8 +37,8 @@ async def chatbot_(c: megux, message: Message):
     await message.reply("Não durmo, mas sonho bastante. Sonho com um mundo melhor.")
   elif "Porque estou tão sozinho" in message.text:
     await message.reply("Pois é... Tem hora que um pouco de solidão faz bem.")
-  elif "WhiterKang" in message.text:
-    await message.reply("O que tem feito de bom hoje?")  
+  elif "Nossa" in message.text:
+    await message.reply("Nossa mesmo...")  
   elif "Vai cagar" in message.text:
     await message.reply("Esse jeito de se expressar é falta de assunto? Ou você costuma ser grosseiro sempre?")
   elif "Está on" in message.text:
@@ -52,4 +52,4 @@ async def chatbot_(c: megux, message: Message):
   elif "Google" in message.text:
     await message.reply("Que tipo de informação você costuma procurar em sites de busca?")
   else:
-    return
+    return await message.reply("Sobre isso eu não sei")
