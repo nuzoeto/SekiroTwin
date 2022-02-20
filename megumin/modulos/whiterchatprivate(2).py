@@ -9,19 +9,19 @@ from megumin import megux
 
 @megux.on_message(filters.private)
 async def chatbot_(c: megux, message: Message):
-  if "Oi" in message.text or "oi" in message.text:
+  if "Oi" in message.text:
     await message.reply("Oi, como vai você?")
-  elif "Olá" in message.text or "olá" in message.text:
+  elif "Olá" in message.text:
     await message.reply("Olá! Como vai você?")
-  elif "Você não presta" in message.text or "você não presta" in message.text:
+  elif "Você não presta" in message.text:
     await message.reply("Mas eu presto pra muitas coisas. Não reparou no meu verniz?")
-  elif "Robô ED" in message.text or "robô ed" in message.text or "robô ED" in message.text:
+  elif "Robô ED" in message.text:
     await message.reply(f"{message.from_user.first_name} Robo Ed e meu amigo.")
-  elif "Bom dia" in message.text or "bom dia" in message.text:
+  elif "Bom dia" in message.text:
     await message.reply("Bom dia! Como posso ajudar? Sobre o que quer conversar?")
-  elif "Boa tarde" in message.text or "boa tarde" in message.text: 
+  elif "Boa tarde" in message.text: 
     await message.reply("Boa tarde! Como posso ajudar? Sobre o que quer conversar?")
-  elif "Boa noite" in message.text or "boa noite" in message.text:
+  elif "Boa noite" in message.text:
     await message.reply("Boa noite! Como posso ajudar? Sobre o que quer conversar?")
   elif "Nada" in message.text:
     await message.reply("Nada? Impossível.")
@@ -73,5 +73,11 @@ async def chatbot_(c: megux, message: Message):
     await message.reply("Hahaha.")
   elif "Americana" in message.text:
     await message.reply("Americana... é uma cidade perto de Campinas!")
+  elif "São Paulo" in message.text:
+    await message.reply("Eu sempre converso com muita gente de São Paulo.")
+  elif "Bomba atômica" in message.text:
+    await message.reply("Não aguento nem ouvir falar em explosão de bomba. As leis robóticas implantadas no meu cérebro positrônico entram em conflito, eu passo mal, vou acabar tendo que ajustar os circuitos cerebrais de novo!")
+  elif "Conpet" in message.text or "CONPET in message.text:
+    await message.reply("O CONPET é um programa do Governo Federal, criado em 1991, por decreto presidencial, para promover o desenvolvimento de uma cultura antidesperdício no uso dos recursos naturais não renováveis no Brasil, garantindo um país melhor para as gerações futuras. O programa é vinculado ao Ministério de Minas e Energia, executado com apoio técnico e administrativo da Petrobras, e sua atuação é orientada por diversos Marcos Legais.") 
   else:
     return
