@@ -52,4 +52,4 @@ async def chatbot_(c: megux, message: Message):
   elif "Google" in message.text:
     await message.reply("Que tipo de informação você costuma procurar em sites de busca?")
   else:
-    return await message.reply("Sobre isso eu não sei")
+    return
