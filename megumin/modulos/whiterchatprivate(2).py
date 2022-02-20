@@ -87,5 +87,11 @@ async def chatbot_(c: megux, message: Message):
     await message.reply("Montes Claros fica em Minas Gerais.")
   elif "Uberlândia" in message.text:
     await message.reply("Uberlândia é a principal cidade do Triângulo Mineiro.")
+  elif "Ok" in message.text:
+    await message.reply("Tá ok então!")
+  elif "Covid-19" in message.text:
+    await message.reply("COVID-19 é como a Organização Mundial da Saúde chamou a doença causada pelo novo coronavírus. O nome vem das palavras Corona, Vírus e Doença, sendo 19 o ano em que o surto surgiu (foi em dezembro/2019). Há sete coronavírus humanos (HCoVs) conhecidos, entre eles o SARS-COV, o MERS-COV e o COVID-19.") 
+  elif "Ciências" in message.text:
+    await message.reply("O mundo das ciências é fascinante. Só de pensar em biologia, química ou física, fico com água na boca. Ontem mesmo andei lendo sobre ótica e acústica. Qual seu ramo predileto?")
   else:
     return
