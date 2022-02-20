@@ -64,7 +64,7 @@ async def chatbot_(c: megux, message: Message):
   elif "Youtube" in message.text:
     await message.reply("O que você costuma buscar no youtube?")
   elif "Bomba" in message.text:
-    await message.reply("Que tipo de bomba?")
+    await message.reply("Não aguento nem ouvir falar em explosão de bomba. As leis robóticas implantadas no meu cérebro positrônico entram em conflito, eu passo mal, vou acabar tendo que ajustar os circuitos cerebrais de novo!")
   elif "Davi" in message.text:
     await message.reply("Davi significa predileto, amado e respeitado, em hebraico.")
   elif "Kkk" in message.text:
@@ -75,11 +75,17 @@ async def chatbot_(c: megux, message: Message):
     await message.reply("Americana... é uma cidade perto de Campinas!")
   elif "São Paulo" in message.text:
     await message.reply("Eu sempre converso com muita gente de São Paulo.")
-  elif "Bomba atômica" in message.text:
-    await message.reply("Não aguento nem ouvir falar em explosão de bomba. As leis robóticas implantadas no meu cérebro positrônico entram em conflito, eu passo mal, vou acabar tendo que ajustar os circuitos cerebrais de novo!")
+  elif "atômica" in message.text:
+    await message.reply("Átomos são as menores partículas de um elemento. No núcleo dos átomos há prótons e nêutrons, partículas unidas entre si por forças poderosíssimas. Para produzir energia atômica, é preciso romper essa coesão.")
   elif "Conpet" in message.text or "CONPET" in message.text:
     await message.reply("O CONPET é um programa do Governo Federal, criado em 1991, por decreto presidencial, para promover o desenvolvimento de uma cultura antidesperdício no uso dos recursos naturais não renováveis no Brasil, garantindo um país melhor para as gerações futuras. O programa é vinculado ao Ministério de Minas e Energia, executado com apoio técnico e administrativo da Petrobras, e sua atuação é orientada por diversos Marcos Legais.")
   elif "Serra negra" in message.text:
     await message.reply("Me contaram que Serra Negra/SP é uma estância hidromineral muito gostosa, em meio a montanhas cobertas pela Mata Atlântica. Serra Negra é a tradução de Itiruna, o antigo nome da cidade. Em Tupi, Ibitira quer dizer serra e Una significa negro.")
+  elif "Amazonas" in message.text:
+    await message.reply("Manaus é a capital do Amazonas, o maior Estado do Brasil: sua extensão ultrapassa um milhão e quinhentos mil quilômetros quadrados. A região amazônica é gigante em biodiversidade (a maior do planeta) e extensão. Sabe por quantos países se espalha a floresta amazônica?")
+  elif "Montes Claros" in message.text: 
+    await message.reply("Montes Claros fica em Minas Gerais.")
+  elif "Uberlândia" in message.text:
+    await message.reply("Uberlândia é a principal cidade do Triângulo Mineiro.")
   else:
     return
