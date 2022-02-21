@@ -44,7 +44,6 @@ async def start_(_, message: Message):
         await message.reply_animation(gif, caption=msg, reply_markup=keyboard)
     else:
         return
-       await message.reply("Olá, Meu nome é o WhiterKang.")
 
     @megux.on_callback_query(filters.regex(pattern=r"^infos$"))
     async def infos(client: megux, cb: CallbackQuery):
