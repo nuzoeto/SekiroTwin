@@ -19,6 +19,9 @@ Olá! Meu nome é **WhiterKang** sou um bot útil e divertido para você :3
 __Se você gostar das minhas funções me adicione a seu grupo!__
 """
 
+START_ELSE = """
+Ei, **{message.from_user.first_name}**, estou vivo me chame no privado :3
+"""
 
 @megux.on_message(filters.command("start"))
 async def start_(_, message: Message):
@@ -45,6 +48,15 @@ async def start_(_, message: Message):
         await message.reply_animation(gif, caption=msg, reply_markup=keyboard)
     else:
         return
+           button_markup = InlineKeyboardMarkup(
+             [
+                 [InlineKeyboardButton(text="Start", url="https://t.me/WhiterKangBOT?start=start",
+                ),
+             ],
+         ]
+     )
+      começar = START_ELSE
+      await message.reply(caption=começar, reply_markup=button_markup
 
     @megux.on_callback_query(filters.regex(pattern=r"^infos$"))
     async def infos(client: megux, cb: CallbackQuery):
