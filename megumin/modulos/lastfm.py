@@ -81,7 +81,7 @@ async def last_save_user(_, message: Message):
     await message.reply("__Seu username foi definido com sucesso.__")
 
 
-@megux.on_message(filters.command(["deluser"]))
+@megux.on_message(filters.command(["deluser", "duser"]))
 async def last_save_user(_, message: Message):
     user_ = message.from_user.id
     await USERS.delete_one({"_id": user_})
