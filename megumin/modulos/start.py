@@ -48,15 +48,7 @@ async def start_(_, message: Message):
         await message.reply_animation(gif, caption=msg, reply_markup=keyboard)
     else:
         return
-           button_markup = InlineKeyboardMarkup(
-             [
-                 [InlineKeyboardButton(text="Start", url="https://t.me/WhiterKangBOT?start=start",
-                ),
-             ],
-         ]
-     )
-      começar = START_ELSE
-      await message.reply(caption=começar, reply_markup=button_markup)
+       await message.reply("Olá, Meu nome é o WhiterKang.")
 
     @megux.on_callback_query(filters.regex(pattern=r"^infos$"))
     async def infos(client: megux, cb: CallbackQuery):
