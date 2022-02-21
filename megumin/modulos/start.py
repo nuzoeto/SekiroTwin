@@ -78,3 +78,36 @@ async def start_(_, message: Message):
             caption=START_PRIVADO,
             reply_markup=keyboard,
         )
+
+    @megux.on_callback_query(filters.regex(pattern=r"^help_menu$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        info_text = f"""
+╔════「 Sobre  WhiterKang 」
+╠ Versão : `{version.__megumin_version__}`
+╠ Uptime : `{time_formatter(time.time() - START_TIME)}`
+╠ Python : `{version.__python_version__}`
+╠ Pyrogram : `{version.__pyro_version__}`
+╚═╗
+    """
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("Voltar", callback_data="start_back"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=info_text,
+            reply_markup=button,
+        )
+
+    @megux.on_callback_query(filters.regex(pattern=r"^start_back$"))
+    async def start_back(client: megux, cb: CallbackQuery):
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=START_PRIVADO,
+            reply_markup=keyboard,
+        )
