@@ -82,46 +82,46 @@ async def start_(_, message: Message):
     @megux.on_callback_query(filters.regex(pattern=r"^help_menu$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
-     ❔Ajuda   ------   ✨ Geral
+❔Ajuda   ------   ✨ Geral
 
-      **Admin:**
+**Admin:**
 
-      /ban  Bane a um usuário.
+/ban  Bane a um usuário.
 
-      /unban Desbane a um usuário.
+/unban Desbane a um usuário.
 
-      /mute Silencia o usuário.
+/mute Silencia o usuário.
 
-      /tmute ( tempo ) Silencia o usuário por um tempo determinado m/h/d.
+/tmute ( tempo ) Silencia o usuário por um tempo determinado m/h/d.
 
-      /purge Limpa seu grupo.
+/purge Limpa seu grupo.
 
 
-       **Misc:**
+**Misc:**
 
-       /cota : Veja a cotação do Dólar, Euro, BTC
+/cota : Veja a cotação do Dólar, Euro, BTC
 
-       /cep : (cep) Busque um CEP
+/cep : (cep) Busque um CEP
 
-       /ddd : Busque um DDD
+/ddd : Busque um DDD
 
-       **Android:**
+**Android:**
 
-       /device : Busque um aparelho pelo codename.
+/device : Busque um aparelho pelo codename.
 
-       /app : Busque um app da PlayStore. ( em breve )
+/app : Busque um app da PlayStore. ( em breve )
 
-       **Last.fm**
+**Last.fm**
 
-       /setuser : Defina seu username.
+/setuser : Defina seu username.
 
-       /lt ou /lastfm : Veja que musica você está scobblando.
+/lt ou /lastfm : Veja que musica você está scobblando.
 
-       Anilist:
+Anilist:
 
-       /char ou /character Busque um Character.
+/char ou /character Busque um Character.
 
-      /anime Busque um anime
+/anime Busque um anime
     """
         button = InlineKeyboardMarkup(
             [
