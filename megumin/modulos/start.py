@@ -90,6 +90,8 @@ async def start_(_, message: Message):
 
 /unban Desbane a um usuário.
 
+/kick Chute o usuário.
+
 /mute Silencia o usuário.
 
 /tmute ( tempo ) Silencia o usuário por um tempo determinado m/h/d.
@@ -104,6 +106,8 @@ async def start_(_, message: Message):
 /cep : (cep) Busque um CEP
 
 /ddd : Busque um DDD
+
+/kickme Saia do grupo.
 
 **Android:**
 
