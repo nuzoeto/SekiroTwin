@@ -117,11 +117,21 @@ async def start_(_, message: Message):
 
 /lt ou /lastfm : Veja que musica você está scobblando.
 
-Anilist:
+**Anilist:**
 
 /char ou /character Busque um Character.
 
-/anime Busque um anime
+/anime Busque um anime.
+
+**Memes**
+
+/runs Execute strings aleatórias.
+
+/slap Bate no usuário.
+
+/insults O bot insulta.
+
+/bun finge que baniu o usuário.
     """
         button = InlineKeyboardMarkup(
             [
