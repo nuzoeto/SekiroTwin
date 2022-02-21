@@ -19,10 +19,6 @@ Olá! Meu nome é **WhiterKang** sou um bot útil e divertido para você :3
 __Se você gostar das minhas funções me adicione a seu grupo!__
 """
 
-START_ELSE = """
-Ei, **{message.from_user.first_name}**, estou vivo me chame no privado :3
-"""
-
 @megux.on_message(filters.command("start"))
 async def start_(_, message: Message):
     if message.chat.type == "private":
