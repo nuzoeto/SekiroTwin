@@ -56,7 +56,7 @@ async def start_(_, message: Message):
          ]
      )
       começar = START_ELSE
-      await message.reply(caption=começar, reply_markup=button_markup
+      await message.reply(caption=começar, reply_markup=button_markup)
 
     @megux.on_callback_query(filters.regex(pattern=r"^infos$"))
     async def infos(client: megux, cb: CallbackQuery):
