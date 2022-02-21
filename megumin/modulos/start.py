@@ -82,17 +82,51 @@ async def start_(_, message: Message):
     @megux.on_callback_query(filters.regex(pattern=r"^help_menu$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
-╔════「 Sobre  WhiterKang 」
-╠ Versão : `{version.__megumin_version__}`
-╠ Uptime : `{time_formatter(time.time() - START_TIME)}`
-╠ Python : `{version.__python_version__}`
-╠ Pyrogram : `{version.__pyro_version__}`
-╚═╗
+     ❔Ajuda   ------   ✨ Geral
+
+      **Admin:**
+
+      /ban  Bane a um usuário.
+
+      /unban Desbane a um usuário.
+
+      /mute Silencia o usuário.
+
+      /tmute ( tempo ) Silencia o usuário por um tempo determinado m/h/d.
+
+      /purge Limpa seu grupo.
+
+
+       **Misc:**
+
+       /cota : Veja a cotação do Dólar, Euro, BTC
+
+       /cep : (cep) Busque um CEP
+
+       /ddd : Busque um DDD
+
+       **Android:**
+
+       /device : Busque um aparelho pelo codename.
+
+       /app : Busque um app da PlayStore. ( em breve )
+
+       **Last.fm**
+
+       /setuser : Defina seu username.
+
+       /lt ou /lastfm : Veja que musica você está scobblando.
+
+       Anilist:
+
+       /char ou /character Busque um Character.
+
+      /anime Busque um anime
     """
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("Voltar", callback_data="start_back"),
+                    InlineKeyboardButton("↩ Voltar", callback_data="start_back"),
                 ]
             ]
         )
