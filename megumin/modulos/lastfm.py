@@ -27,7 +27,7 @@ timeout = httpx.Timeout(20)
 http = httpx.AsyncClient(http2=True, timeout=timeout)
 
 
-@megux.on_message(filters.command(["lt", "lastfm"],filters.prefix("/", "!")))
+@megux.on_message(filters.command(["lt", "lastfm"]))
 async def last_(_, message: Message):
     user_ = message.from_user.id
     lastdb = await USERS.find_one({"_id": user_})
