@@ -188,14 +188,14 @@ async def kickme_(_, message: Message):
     user_id = message.from_user.id
     admin_ = await admin_check(message)
     if admin_:
-        await message.reply("`Hmmm admin...\nVocê não vai a lugar nenhum senpai.`")
+        await message.reply("Por que eu baniria um(a) administrador(a)? Parece uma ideia bem idiota.")
         return
     else:
         try:
             if not await check_bot_rights(chat_id, "can_restrict_members"):
                 await message.reply("Eu não sou um administrador, **Por favor me promova como um administrador!**")
                 return
-            await message.reply("Ate mais, espero que tenha gostado da estadia.")
+            await message.reply("Sem Problemas.")
             await megux.kick_chat_member(chat_id, user_id)
         except Exception as e:
             await message.reply(f"**ERRO:**\n{e}")
