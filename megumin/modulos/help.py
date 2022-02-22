@@ -204,6 +204,8 @@ H_GERAL = """
 
 • /ddd : Busque um DDD
 
+• /clima ou /weather  ( cidade ) Busque o clima para uma cidade.
+
 • /kickme Saia do grupo.
 
 **Android:**
@@ -217,6 +219,8 @@ H_GERAL = """
 • /setuser : Defina seu username.
 
 • /lt ou /lastfm : Veja que musica você está scobblando.
+
+•/deluser ou /duser Apague seu username lastfm do meu banco de dados.
 
 **Anilist:**
 
