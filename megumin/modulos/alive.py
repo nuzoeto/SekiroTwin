@@ -18,11 +18,6 @@ async def start(_, message):
                             ]
                         )
 
-@megux.on_callback_query(filters.regex(pattern=r"^alive_status$"))
-async def status_alive_(client: megux, cb: CallbackQuery):
-    await cb.answer(f"""Uptime: """, show_alert=True)
-    
-
     await message.reply_animation(
      animation="https://telegra.ph/file/a003598d771e24f4abb13.gif",
         caption=text,
