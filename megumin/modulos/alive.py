@@ -18,14 +18,6 @@ async def start(_, message):
                             ]
                         )
 
-     button = InlineKeyboardMarkup(
-                            [
-                               [
-                                   InlineKeyboardButton(text="❔Curioso", callback_data="alive_status")
-                               ]
-                            ]
-                         )
-
 @megux.on_callback_query(filters.regex(pattern=r"^alive_status$"))
 async def status_alive_(client: megux, cb: CallbackQuery):
     await cb.answer(f"""Uptime: """, show_alert=True)
