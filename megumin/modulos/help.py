@@ -136,7 +136,7 @@ async def help_ani_(client: megux, cb: CallbackQuery):
 
 
 H_ANILIST = """
-Abaixo está a lista de comandos anilist básicos para informações sobre animes, personagens, mangás, etc.
+Aqui está a ajuda para o módulo **Anilist**
 
 • /anime - Use este comando para obter informações sobre um anime específico usando nome do anime ou ID do anilist
 • /char ou /character - Use este comando para obter informações sobre algum personagem
@@ -145,9 +145,7 @@ Abaixo está a lista de comandos anilist básicos para informações sobre anime
 """
 
 H_ANDR = """
-Aqui estão alguns comandos úteis para Android.
-
-Comandos disponíveis:
+Aqui está a ajuda para o módulo **Android**
 
 • /app < nome do app > - Use para pesquisar aplicativos na Google Play Store
 • /magisk - Obtenha a última versão do magisk
@@ -156,7 +154,7 @@ Comandos disponíveis:
 """
 
 H_LAST = """
-A LastFM usa o seu histórico musical para recomendar novas músicas e eventos. Também mostra oque você esta ouvindo ou as músicas que voce ja ouviu.
+Aqui está a ajuda para o módulo **LastFm**
 
 Antes de tudo você deve estar registrado no lastfm
 
@@ -166,7 +164,7 @@ Antes de tudo você deve estar registrado no lastfm
 """
 
 H_ADM = """
-Aqui estão alguns comandos de admin do chat
+Aqui está a ajuda para o módulo **Admin**:
 
 **Todos usuarios:**
  • /admins - Lista todos administradores do chat
@@ -182,6 +180,7 @@ Aqui estão alguns comandos de admin do chat
 
 
 H_YOUTUBE = """
+Aqui está a ajuda para o módulo **YouTube**:
 
 • /song Baixe músicas
 • /video Baixe videos
