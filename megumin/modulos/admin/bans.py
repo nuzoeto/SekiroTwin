@@ -156,6 +156,7 @@ async def _kick_user(_, message: Message):
     sent = await message.reply("`Kickando usuário...`")
     try:
         await megux.kick_chat_member(chat_id, user_id, int(time.time() + 60))
+        await megux.unban_chat_member(chat_id, user_id)
         await sent.edit(f"Eu removi o usuário {mention}\n" f"Motivo: `{reason or None}`")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
@@ -176,5 +177,6 @@ async def kickme_(_, message: Message):
                 return
             await message.reply("Ate mais, espero que tenha gostado da estadia.")
             await megux.kick_chat_member(chat_id, user_id)
+            await megux.unban_chat_member(chat_id, user_id)
         except Exception as e:
             await message.reply(f"**ERRO:**\n{e}")
