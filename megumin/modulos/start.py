@@ -34,7 +34,7 @@ async def start_(_, message: Message):
                 [
                     InlineKeyboardButton(
                         text="✨ Me adicione a um grupo",
-                        url=f"https://t.me/meguxtestbot?startgroup=new",
+                        url=f"https://t.me/whiterkangbot?startgroup=new",
                     ),
                 ],
             ]
@@ -43,7 +43,7 @@ async def start_(_, message: Message):
         msg = START_PRIVADO
         await message.reply_animation(gif, caption=msg, reply_markup=keyboard)
     else:
-        return
+        return await message.reply("Oi meu nome é **WhiterKang**!
 
     @megux.on_callback_query(filters.regex(pattern=r"^infos$"))
     async def infos(client: megux, cb: CallbackQuery):
