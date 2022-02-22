@@ -126,6 +126,8 @@ async def start_(_, message: Message):
 
 /anime Busque um anime.
 
+/manga Busque um mangá 
+
 **Memes**
 
 /runs Execute strings aleatórias.
