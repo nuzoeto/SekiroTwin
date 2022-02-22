@@ -4,12 +4,12 @@ from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMa
 from megumin import megux
 
 HELP_TEXT = """
-Oi? Precisa de ajuda sobre como me usar? Clique nos meguxões abaixo para saber mais sobre os comandos
+Aqui estão todos os meu plugins, para saber mais sobre os plugins, **basta clicar no nome deles.**
 
 Comandos Básicos:
-Use /ping para verificar se o megux esta online ou não
-Use /start para iniciar o megux em um grupo ou privado
-Use /help para os comandos disponíveis sobre o megux
+Use /ping para verificar o atraso para o WhiterKang retornar a mensagem.
+Use /start para iniciar o WhiterKang em um grupo ou privado
+Use /help para os comandos disponíveis sobre o WhiterKang 
 Use /about para saber sobre os desenvolvedores e mais
 """
 
