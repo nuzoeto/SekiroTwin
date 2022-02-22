@@ -14,14 +14,14 @@ async def start(_, message):
                             [
                                 [
                                     InlineKeyboardButton (text="✨ Me adicione a um grupo", url="t.me/whiterkangbot?startgroup=new"),
-                                    InlineKeyboardButton (text="⛭ status", callback_data="alive_status")
-                                ],
+                                    InlineKeyboardButton(text="❔Ajuda", callback_data="alive_status")
+                                ]
                             ]
                         )
 
 @megux.on_callback_query(filters.regex(pattern=r"^alive_status$"))
 async def help_ani_(client: megux, cb: CallbackQuery):
-    await cb.answer(f"""Uptime: {time_formatter(time.time() - START_TIME)}""", show_alert=True)
+    await cb.answer(f"""Uptime: """, show_alert=True)
     
 
     await message.reply_animation(
