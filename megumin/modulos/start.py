@@ -107,9 +107,12 @@ async def start_(_, message: Message):
 
 /ddd : Busque um DDD
 
+/weather ou /clima  ( cidade ) Busque o clima para uma cidade.
+
+/banme Se bane do grupo.
+
 /kickme Saia do grupo.
 
-/weather ou /clima  ( cidade ) Busque o clima para uma cidade.
 
 **Android:**
 
