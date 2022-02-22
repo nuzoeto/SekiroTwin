@@ -44,6 +44,7 @@ async def start_(_, message: Message):
         await message.reply_animation(gif, caption=msg, reply_markup=keyboard)
     else:
         return await message.reply("Oi meu nome é **WhiterKang**.")
+        
 
     @megux.on_callback_query(filters.regex(pattern=r"^infos$"))
     async def infos(client: megux, cb: CallbackQuery):
@@ -107,6 +108,8 @@ async def start_(_, message: Message):
 /ddd : Busque um DDD
 
 /kickme Saia do grupo.
+
+/weather ou /clima  ( cidade ) Busque o clima para uma cidade.
 
 **Android:**
 
