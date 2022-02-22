@@ -104,6 +104,14 @@ async def help_lt_(client: megux, cb: CallbackQuery):
     await cb.edit_message_text(text=H_LAST, reply_markup=button)
 
 
+@megux.on_callback_query(filters.regex(pattern=r"^help_yt$"))
+async def help_andro(client: megux, cb: CallbackQuery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=H_YOUTUBE, reply_markup=button)
+
+
 H_ANILIST = """
 Abaixo está a lista de comandos anilist básicos para informações sobre animes, personagens, mangás, etc.
 
@@ -145,7 +153,7 @@ Aqui estão alguns comandos de admin do chat
  • /unpin - Desfixa a mensagem atualmente fixada
  • /promote < username/reply msg > - promove um usuario a administrador do chat
  • /demote < username/reply msg > - remove os privilégios de administrador do usuario
- • /title < titulo aqui >: define uma custom tag de administrador de um usuario promovido pelo megux (ainda não disponível)
+ • /title < titulo aqui >: define uma custom tag de administrador de um usuario promovido pelo WhiterKang (ainda não disponível)
  • /zombies - Procura e limpa contas excluidas no chat (ainda não disponível)
 """
 
