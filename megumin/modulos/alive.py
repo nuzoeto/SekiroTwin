@@ -1,7 +1,10 @@
 from pyrogram import filters
-from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
 from megumin import megux, version
+from megumin import START_TIME
+from megumin.utils import time_formatter
+
 
 @megux.on_message(filters.command(["alive"]))
 async def start(_, message):
@@ -10,11 +13,17 @@ async def start(_, message):
     keyboard = InlineKeyboardMarkup(
                             [
                                 [
-                                    InlineKeyboardButton (text="✨ Me adicione a um grupo", url="t.me/whiterkangbot?startgroup=new")
+                                    InlineKeyboardButton (text="✨ Me adicione a um grupo", url="t.me/whiterkangbot?startgroup=new"),
+                                    InlineKeyboardButton (text="⛭ status", callbackdata="alive_status")
                                 ]
                             ]
                         )
+
+@megux.on_callback_query(filters.regex(pattern=r"^alive_status$"))
+async def help_ani_(client: megux, cb: CallbackQuery):
+    await cb.answer(f"""Uptime: {time_formatter(time.time() - START_TIME)}""", show_alert=True)
     
+
     await message.reply_animation(
      animation="https://telegra.ph/file/a003598d771e24f4abb13.gif",
         caption=text,
