@@ -122,7 +122,17 @@ async def help_andro(client: megux, cb: CallbackQuery):
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_fun$"))
 async def help_ani_(client: megux, cb: CallbackQuery):
-    await cb.answer(f"""Apenas teste.""", show_alert=True)
+    await cb.answer(f"""Under development.""", show_alert=True)
+
+
+@megux.on_callback_query(filters.regex(pattern=r"^help_tr$"))
+async def help_ani_(client: megux, cb: CallbackQuery):
+    await cb.answer(f"""Under development.""", show_alert=True)
+
+
+@megux.on_callback_query(filters.regex(pattern=r"^help_notes$"))
+async def help_ani_(client: megux, cb: CallbackQuery):
+    await cb.answer(f"""Under development.""", show_alert=True)
 
 
 H_ANILIST = """
