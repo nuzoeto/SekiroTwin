@@ -13,14 +13,21 @@ async def start(_, message):
     keyboard = InlineKeyboardMarkup(
                             [
                                 [
-                                    InlineKeyboardButton (text="✨ Me adicione a um grupo", url="t.me/whiterkangbot?startgroup=new"),
-                                    InlineKeyboardButton(text="❔Curioso", callback_data="alive_status")
+                                    InlineKeyboardButton (text="✨ Me adicione a um grupo", url="t.me/whiterkangbot?startgroup=new")
                                 ]
                             ]
                         )
 
+     button = InlineKeyboardMarkup(
+                            [
+                               [
+                                   InlineKeyboardButton(text="❔Curioso", callback_data="alive_status")
+                               ]
+                            ]
+                         )
+
 @megux.on_callback_query(filters.regex(pattern=r"^alive_status$"))
-async def help_ani_(client: megux, cb: CallbackQuery):
+async def status_alive_(client: megux, cb: CallbackQuery):
     await cb.answer(f"""Uptime: """, show_alert=True)
     
 
