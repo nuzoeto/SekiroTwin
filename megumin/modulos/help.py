@@ -112,6 +112,14 @@ async def help_andro(client: megux, cb: CallbackQuery):
     await cb.edit_message_text(text=H_YOUTUBE, reply_markup=button)
 
 
+@megux.on_callback_query(filters.regex(pattern=r"^help_geral$"))
+async def help_andro(client: megux, cb: CallbackQuery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=H_GERAL, reply_markup=button)
+
+
 H_ANILIST = """
 Abaixo está a lista de comandos anilist básicos para informações sobre animes, personagens, mangás, etc.
 
@@ -162,4 +170,64 @@ H_YOUTUBE = """
 
 • /song Baixe músicas
 • /video Baixe videos
+"""
+
+
+H_GERAL = """
+✨ Geral
+
+**Admin:**
+
+• /ban  Bane a um usuário.
+
+• /unban Desbane a um usuário.
+
+• /kick Chute o usuário.
+
+• /mute Silencia o usuário.
+
+• /tmute ( tempo ) Silencia o usuário por um tempo determinado m/h/d.
+
+• /purge Limpa seu grupo.
+
+
+**Misc:**
+
+• /cota : Veja a cotação do Dólar, Euro, BTC
+
+• /cep : (cep) Busque um CEP
+
+• /ddd : Busque um DDD
+
+• /kickme Saia do grupo.
+
+**Android:**
+
+• /device : Busque um aparelho pelo codename.
+
+• /app : Busque um app da PlayStore. ( em breve )
+
+**Lastfm**
+
+• /setuser : Defina seu username.
+
+• /lt ou /lastfm : Veja que musica você está scobblando.
+
+**Anilist:**
+
+• /char ou /character Busque um Character.
+
+• /anime Busque um anime.
+
+• /manga Busque um mangá 
+
+**Memes**
+
+• /runs Execute strings aleatórias.
+
+• /slap Bate no usuário.
+
+• /insults O bot insulta.
+
+• /bun finge que baniu o usuário.
 """
