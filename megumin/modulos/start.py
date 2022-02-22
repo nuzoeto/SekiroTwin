@@ -141,8 +141,11 @@ async def start_(_, message: Message):
         button = InlineKeyboardMarkup(
             [
                 [
+                    InlineKeyboardButton("Admin", callback_data="help_admin"),
+                     ],
+                     [
                     InlineKeyboardButton("↩ Voltar", callback_data="start_back"),
-                ]
+                ],
             ]
         )
         await megux.edit_message_caption(
