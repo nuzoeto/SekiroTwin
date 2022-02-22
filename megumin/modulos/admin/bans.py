@@ -10,6 +10,7 @@ from pyrogram.types import Message
 from megumin import megux
 from megumin.utils import (
     admin_check,
+    extract_time,
     check_bot_rights,
     check_rights,
     is_admin,
@@ -220,7 +221,7 @@ async def _tban_user(_, message: Message):
         if " " in text:
             id_, args = text.split(" ", maxsplit=1)
         else:
-            await message.reply("__Você deve especificar um tempo após o comando. Por exemplo:__ **/tmute 7d.**")
+            await message.reply("__Você deve especificar um tempo após o comando. Por exemplo:__ **/tban 7d.**")
     else:
         await message.reply("`Nenhum User_id válido ou mensagem especificada.`")
         return
