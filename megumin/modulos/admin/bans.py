@@ -193,7 +193,7 @@ async def kickme_(_, message: Message):
     else:
         try:
             if not await check_bot_rights(chat_id, "can_restrict_members"):
-                await message.reply("Eu não sou um administrador, **Por favor me promova como um administrador!**")
+                await message.reply("Eu não sou um(a) administrador(a)!")
                 return
             await message.reply("Sem Problemas.")
             await megux.kick_chat_member(chat_id, user_id)
