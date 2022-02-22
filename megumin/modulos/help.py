@@ -120,6 +120,11 @@ async def help_andro(client: megux, cb: CallbackQuery):
     await cb.edit_message_text(text=H_GERAL, reply_markup=button)
 
 
+@megux.on_callback_query(filters.regex(pattern=r"^help_fun$"))
+async def help_ani_(client: megux, cb: CallbackQuery):
+    await cb.answer(f"""Apenas teste.""", show_alert=True)
+
+
 H_ANILIST = """
 Abaixo está a lista de comandos anilist básicos para informações sobre animes, personagens, mangás, etc.
 
