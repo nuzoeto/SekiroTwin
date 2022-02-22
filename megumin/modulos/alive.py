@@ -14,7 +14,7 @@ async def start(_, message):
                             [
                                 [
                                     InlineKeyboardButton (text="✨ Me adicione a um grupo", url="t.me/whiterkangbot?startgroup=new"),
-                                    InlineKeyboardButton(text="❔Ajuda", callback_data="alive_status")
+                                    InlineKeyboardButton(text="❔Curioso", callback_data="alive_status")
                                 ]
                             ]
                         )
