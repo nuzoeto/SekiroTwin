@@ -117,7 +117,7 @@ Comandos básicos:
         )
 
 
-@megux.on_callback_query(filters.regex(pattern=r"^admin_help_button$"))
+    @megux.on_callback_query(filters.regex(pattern=r"^admin_help_button$"))
     async def start_back(client: megux, cb: CallbackQuery):
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
