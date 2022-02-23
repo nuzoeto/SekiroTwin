@@ -93,7 +93,7 @@ Comandos básicos:
             [
                 [
                     InlineKeyboardButton("Admin", callback_data="admin_help_button"),
-                    InlineKeyboardButton("Anilist", callback_data="anilist_help_button
+                    InlineKeyboardButton("Anilist", callback_data="anilist_help_button"),
                 ],
                 [
                     InlineKeyboardButton("↩ Voltar", callback_data="start_back"),
