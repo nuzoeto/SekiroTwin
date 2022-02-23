@@ -82,70 +82,19 @@ async def start_(_, message: Message):
     @megux.on_callback_query(filters.regex(pattern=r"^help_menu$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
-❔Ajuda   ------   ✨ Geral
+Olá! Me chamo WhiterKang. Sou um bot de gerenciamento de grupo modular com alguns extras divertidos! Dê uma olhada no seguinte para ter uma idéia de algumas das coisas em que posso ajudá-lo. 
 
-**Admin:**
-
-/ban  Bane a um usuário.
-
-/unban Desbane a um usuário.
-
-/kick Chute o usuário.
-
-/mute Silencia o usuário.
-
-/tmute ( tempo ) Silencia o usuário por um tempo determinado m/h/d.
-
-/purge Limpa seu grupo.
-
-
-**Misc:**
-
-/cota : Veja a cotação do Dólar, Euro, BTC
-
-/cep : (cep) Busque um CEP
-
-/ddd : Busque um DDD
-
-/weather ou /clima  ( cidade ) Busque o clima para uma cidade.
-
-/banme Se bane do grupo.
-
-/kickme Saia do grupo.
-
-
-**Android:**
-
-/device : Busque um aparelho pelo codename.
-
-/app : Busque um app da PlayStore. ( em breve )
-
-**Last.fm**
-
-/setuser : Defina seu username.
-
-/lt ou /lastfm : Veja que musica você está scobblando.
-
-**Anilist:**
-
-/char ou /character Busque um Character.
-
-/anime Busque um anime.
-
-/manga Busque um mangá 
-
-**Memes**
-
-/runs Execute strings aleatórias.
-
-/slap Bate no usuário.
-
-/insults O bot insulta.
-
-/bun finge que baniu o usuário.
+Comandos básicos:
+- /start: Comando Legal pra ver se eu estou Vivo ou Não:3
+- /help: envia esta mensagem de ajuda
+- /ping Ver o atraso para o bot retornar a mensagem.
     """
         button = InlineKeyboardMarkup(
             [
+                [
+                    InlineKeyboardButton("Admin", callback_data="admin_help_button"),
+                    InlineKeyboardButton("Anilist", callback_data="anilist_help_button
+                ],
                 [
                     InlineKeyboardButton("↩ Voltar", callback_data="start_back"),
                 ],
@@ -166,3 +115,29 @@ async def start_(_, message: Message):
             caption=START_PRIVADO,
             reply_markup=keyboard,
         )
+
+
+@megux.on_callback_query(filters.regex(pattern=r"^admin_help_button$"))
+    async def start_back(client: megux, cb: CallbackQuery):
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=HELP_ADMIN,
+            reply_markup=keyboard,
+        )
+
+
+HELP_ADMIN = """
+Aqui está a ajuda para o módulo **Admin**:
+
+**Todos usuarios:**
+ • /admins - Lista todos administradores do chat
+
+**Apenas admin:**
+ • /pin - Fixa a mensagem respondida
+ • /unpin - Desfixa a mensagem atualmente fixada
+ • /promote < username/reply msg > - promove um usuario a administrador do chat
+ • /demote < username/reply msg > - remove os privilégios de administrador do usuario
+ • /title < titulo aqui >: define uma custom tag de administrador de um usuario promovido pelo WhiterKang (ainda não disponível)
+ • /zombies - Procura e limpa contas excluidas no chat (ainda não disponível)
+"""
