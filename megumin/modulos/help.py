@@ -283,14 +283,14 @@ H_GERAL = """
 H_BANS = """
 Aqui está a ajuda para o módulo **Bans**:
 
-/ban Bane um usuário no chat.
-/banme Bane-se.
-/unban Desbane a um usuário.
-/mute Silencia um usuário no chat.
-/tmute (tempo) Silencia temporariamente um usuário no chat.
-/unmute Desmuta um usuário no chat.
-/kick Chuta um usuário do chat.
-/kickme Saia do grupo.
+• /ban Bane um usuário no chat.
+• /banme Bane-se.
+• /unban Desbane a um usuário.
+• /mute Silencia um usuário no chat.
+• /tmute (tempo) Silencia temporariamente um usuário no chat.
+• /unmute Desmuta um usuário no chat.
+• /kick Chuta um usuário do chat.
+• /kickme Saia do grupo.
   
 Um exemplo de silenciar alguém temporariamente:\n/tmute @username 2h isso silencia o usuário por 2 horas.
 """
@@ -299,14 +299,14 @@ Um exemplo de silenciar alguém temporariamente:\n/tmute @username 2h isso silen
 H_GIT = """
 Aqui está a ajuda para o módulo **GitHub**:
 
-/github Retorna informações sobre um usuário ou organização do GitHub.
+• /github Retorna informações sobre um usuário ou organização do GitHub.
 """
 
 
 H_MEMES = """
 Aqui está a ajuda para o módulo **Memes**:
 
-/slap Dá um tapa no usuário.
-/insults Insulta alguém com um insulto aleatório de minhas strings.
-/runs Responde uma sequência aleatória de minhas strings.
+• /slap Dá um tapa no usuário.
+• /insults Insulta alguém com um insulto aleatório de minhas strings.
+• /runs Responde uma sequência aleatória de minhas strings.
 """
