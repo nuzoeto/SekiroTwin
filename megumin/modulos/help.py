@@ -57,6 +57,7 @@ async def help(client, message):
             [
                 InlineKeyboardButton("Bans", callback_data="help_bans"),
                 InlineKeyboardButton("GitHub", callback_data="help_git"),
+                InlineKeyboardButton("Memes", callback_data="help_memes"), 
             ],
         ]
     )
@@ -75,6 +76,14 @@ async def help_admin(client: megux, cb: CallbackQuery):
         [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_ADM, reply_markup=button)
+
+
+@megux.on_callback_query(filters.regex(pattern=r"^help_memes$"))
+async def help_diversao(client: megux, cb: CallbackQuery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=H_MEMES, reply_markup=button)
 
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_ani$"))
@@ -109,7 +118,7 @@ async def help_lt_(client: megux, cb: CallbackQuery):
 
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_yt$"))
-async def help_andro(client: megux, cb: CallbackQuery):
+async def help_youtube(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
         [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
     )
@@ -117,7 +126,7 @@ async def help_andro(client: megux, cb: CallbackQuery):
 
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_geral$"))
-async def help_andro(client: megux, cb: CallbackQuery):
+async def help_gen(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
         [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
     )
@@ -125,25 +134,33 @@ async def help_andro(client: megux, cb: CallbackQuery):
 
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_bans$"))
-async def help_andro(client: megux, cb: CallbackQuery):
+async def help_restricions(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
         [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_BANS, reply_markup=button)
 
 
+@megux.on_callback_query(filters.regex(pattern=r"^help_git$"))
+async def help_github(client: megux, cb: CallbackQuery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=H_GIT, reply_markup=button)
+
+
 @megux.on_callback_query(filters.regex(pattern=r"^help_fun$"))
-async def help_ani_(client: megux, cb: CallbackQuery):
+async def help_funcoes_(client: megux, cb: CallbackQuery):
     await cb.answer(f"""Under development.""", show_alert=True)
 
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_tr$"))
-async def help_ani_(client: megux, cb: CallbackQuery):
+async def help_translator_(client: megux, cb: CallbackQuery):
     await cb.answer(f"""Under development.""", show_alert=True)
 
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_notes$"))
-async def help_ani_(client: megux, cb: CallbackQuery):
+async def help_notes_(client: megux, cb: CallbackQuery):
     await cb.answer(f"""Under development.""", show_alert=True)
 
 
@@ -276,4 +293,20 @@ Aqui está a ajuda para o módulo **Bans**:
 /kickme Saia do grupo.
   
 Um exemplo de silenciar alguém temporariamente:\n/tmute @username 2h isso silencia o usuário por 2 horas.
+"""
+
+
+H_GIT = """
+Aqui está a ajuda para o módulo **GitHub**:
+
+/github Retorna informações sobre um usuário ou organização do GitHub.
+"""
+
+
+H_MEMES = """
+Aqui está a ajuda para o módulo **Memes**:
+
+/slap Dá um tapa no usuário.
+/insults Insulta alguém com um insulto aleatório de minhas strings.
+/runs Responde uma sequência aleatória de minhas strings.
 """
