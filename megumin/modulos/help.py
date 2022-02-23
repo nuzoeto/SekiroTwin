@@ -136,7 +136,7 @@ async def help_ani_(client: megux, cb: CallbackQuery):
 
 
 H_ANILIST = """
-Aqui está a ajuda para o módulo **Anilist**
+Aqui está a ajuda para o módulo **Anilist**:
 
 • /anime - Use este comando para obter informações sobre um anime específico usando nome do anime ou ID do anilist
 • /char ou /character - Use este comando para obter informações sobre algum personagem
@@ -145,7 +145,7 @@ Aqui está a ajuda para o módulo **Anilist**
 """
 
 H_ANDR = """
-Aqui está a ajuda para o módulo **Android**
+Aqui está a ajuda para o módulo **Android**:
 
 • /app < nome do app > - Use para pesquisar aplicativos na Google Play Store
 • /magisk - Obtenha a última versão do magisk
@@ -154,7 +154,7 @@ Aqui está a ajuda para o módulo **Android**
 """
 
 H_LAST = """
-Aqui está a ajuda para o módulo **LastFm**
+Aqui está a ajuda para o módulo **LastFm**:
 
 Antes de tudo você deve estar registrado no lastfm
 
