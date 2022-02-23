@@ -161,3 +161,28 @@ Aqui está a ajuda para o módulo **Admin**:
             caption=info_text,
             reply_markup=button,
         )
+
+
+    @megux.on_callback_query(filters.regex(pattern=r"^anilist_help_button$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        info_text = f"""
+Aqui está a ajuda para o módulo **Anilist**:
+
+• /anime - Use este comando para obter informações sobre um anime específico usando nome do anime ou ID do anilist
+• /char ou /character - Use este comando para obter informações sobre algum personagem
+• /manga - Use este comando para obter informações sobre algum mangá
+• /airing - Ainda será adicionado
+    """
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("Voltar", callback_data="help_menu"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=info_text,
+            reply_markup=button,
+        )
