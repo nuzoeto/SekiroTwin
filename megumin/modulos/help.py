@@ -276,3 +276,4 @@ Aqui está a ajuda para o módulo **Bans**:
 /kickme Saia do grupo.
   
 Um exemplo de silenciar alguém temporariamente:\n/tmute @username 2h isso silencia o usuário por 2 horas.
+"""
