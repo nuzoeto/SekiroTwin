@@ -113,6 +113,8 @@ Comandos básicos:
                 ],
                 [
                     InlineKeyboardButton("Fun", callback_data="fun_help_button"),
+                    InlineKeyboardButton("Geral", callback_data="geral_help_button"),
+                    InlineKeyboardButton("LastFm", callback_data="last_help_button"),
                 ],
                 [
                     InlineKeyboardButton("↩ Voltar", callback_data="start_back"),
