@@ -54,6 +54,10 @@ async def help(client, message):
                 InlineKeyboardButton("Tradutor", callback_data="help_tr"),
                 InlineKeyboardButton("Youtube", callback_data="help_yt"),
             ],
+            [
+                InlineKeyboardButton("Bans", callback_data="help_bans"),
+                InlineKeyboardButton("GitHub", callback_data="help_git"),
+            ],
         ]
     )
     await megux.send_message(
@@ -118,6 +122,14 @@ async def help_andro(client: megux, cb: CallbackQuery):
         [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_GERAL, reply_markup=button)
+
+
+@megux.on_callback_query(filters.regex(pattern=r"^help_bans$"))
+async def help_andro(client: megux, cb: CallbackQuery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=H_BANS, reply_markup=button)
 
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_fun$"))
@@ -249,3 +261,18 @@ H_GERAL = """
 
 • /bun finge que baniu o usuário.
 """
+
+
+H_BANS = """
+Aqui está a ajuda para o módulo **Bans**:
+
+/ban Bane um usuário no chat.
+/banme Bane-se.
+/unban Desbane a um usuário.
+/mute Silencia um usuário no chat.
+/tmute (tempo) Silencia temporariamente um usuário no chat.
+/unmute Desmuta um usuário no chat.
+/kick Chuta um usuário do chat.
+/kickme Saia do grupo.
+  
+Um exemplo de silenciar alguém temporariamente:\n/tmute @username 2h isso silencia o usuário por 2 horas.
