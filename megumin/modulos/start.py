@@ -97,7 +97,7 @@ async def start_(_, message: Message):
     @megux.on_callback_query(filters.regex(pattern=r"^help_menu$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
-Olá! Me chamo WhiterKang. Sou um bot de gerenciamento de grupo modular com alguns extras divertidos! Dê uma olhada no seguinte para ter uma idéia de algumas das coisas em que posso ajudá-lo. 
+Olá! Me chamo **WhiterKang**. Sou um bot de gerenciamento de grupo modular com alguns extras divertidos! Dê uma olhada no seguinte para ter uma idéia de algumas das coisas em que posso ajudá-lo. 
 
 Comandos básicos:
 - /start: Comando Legal pra ver se eu estou Vivo ou Não:3
@@ -109,6 +109,10 @@ Comandos básicos:
                 [
                     InlineKeyboardButton("Admin", callback_data="admin_help_button"),
                     InlineKeyboardButton("Anilist", callback_data="anilist_help_button"),
+                    InlineKeyboardButton("Android", callback_data="android_help_button"),
+                ],
+                [
+                    InlineKeyboardButton("Fun", callback_data="fun_help_button"),
                 ],
                 [
                     InlineKeyboardButton("↩ Voltar", callback_data="start_back"),
@@ -151,7 +155,7 @@ Aqui está a ajuda para o módulo **Admin**:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
                 ]
             ]
         )
@@ -176,7 +180,7 @@ Aqui está a ajuda para o módulo **Anilist**:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
                 ]
             ]
         )
@@ -186,3 +190,49 @@ Aqui está a ajuda para o módulo **Anilist**:
             caption=info_text,
             reply_markup=button,
         )
+
+
+    @megux.on_callback_query(filters.regex(pattern=r"^android_help_button$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        info_text = f"""
+Aqui está a ajuda para o módulo **Android**:
+
+• /app < nome do app > - Use para pesquisar aplicativos na Google Play Store
+• /magisk - Obtenha a última versão do magisk
+• /twrp < codename > - Busca o último TWRP disponível para um determinado codinome de dispositivo
+• /ofox < codename > - Busca a última versão do OrangeFox disponível para um determinado dispositivo
+    """
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=info_text,
+            reply_markup=button,
+        )
+
+
+    @megux.on_callback_query(filters.regex(pattern=r"^fun_help_button$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        info_text = f"""
+Under development...
+    """
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=info_text,
+            reply_markup=button,
+        )
+    
