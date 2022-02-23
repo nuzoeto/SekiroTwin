@@ -133,10 +133,9 @@ Comandos básicos:
 
 
     @megux.on_callback_query(filters.regex(pattern=r"^admin_help_button$"))
-    async def start_back(client: megux, cb: CallbackQuery):
-        await megux.edit_message_caption(
-            chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
-            caption=HELP_ADMIN,
-            reply_markup=keyboard,
-        )
+    async def help_youtube(client: megux, cb: CallbackQuery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=HELP_ADMIN, reply_markup=button)
+
