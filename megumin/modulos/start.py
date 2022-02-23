@@ -19,6 +19,21 @@ Olá! Meu nome é **WhiterKang** sou um bot útil e divertido para você :3
 __Se você gostar das minhas funções me adicione a seu grupo!__
 """
 
+HELP_ADMIN = """
+Aqui está a ajuda para o módulo **Admin**:
+
+**Todos usuarios:**
+ • /admins - Lista todos administradores do chat
+
+**Apenas admin:**
+ • /pin - Fixa a mensagem respondida
+ • /unpin - Desfixa a mensagem atualmente fixada
+ • /promote < username/reply msg > - promove um usuario a administrador do chat
+ • /demote < username/reply msg > - remove os privilégios de administrador do usuario
+ • /title < titulo aqui >: define uma custom tag de administrador de um usuario promovido pelo WhiterKang (ainda não disponível)
+ • /zombies - Procura e limpa contas excluidas no chat (ainda não disponível)
+"""
+
 @megux.on_message(filters.command("start"))
 async def start_(_, message: Message):
     if message.chat.type == "private":
@@ -125,19 +140,3 @@ Comandos básicos:
             caption=HELP_ADMIN,
             reply_markup=keyboard,
         )
-
-
-HELP_ADMIN = """
-Aqui está a ajuda para o módulo **Admin**:
-
-**Todos usuarios:**
- • /admins - Lista todos administradores do chat
-
-**Apenas admin:**
- • /pin - Fixa a mensagem respondida
- • /unpin - Desfixa a mensagem atualmente fixada
- • /promote < username/reply msg > - promove um usuario a administrador do chat
- • /demote < username/reply msg > - remove os privilégios de administrador do usuario
- • /title < titulo aqui >: define uma custom tag de administrador de um usuario promovido pelo WhiterKang (ainda não disponível)
- • /zombies - Procura e limpa contas excluidas no chat (ainda não disponível)
-"""
