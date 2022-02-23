@@ -133,9 +133,31 @@ Comandos básicos:
 
 
     @megux.on_callback_query(filters.regex(pattern=r"^admin_help_button$"))
-    async def help_youtube(client: megux, cb: CallbackQuery):
-    button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("↩ Voltar", callback_data="start_back")]]
-    )
-    await cb.edit_message_text(text=HELP_ADMIN, reply_markup=button)
+    async def infos(client: megux, cb: CallbackQuery):
+        info_text = f"""
+Aqui está a ajuda para o módulo **Admin**:
 
+**Todos usuarios:**
+ • /admins - Lista todos administradores do chat
+
+**Apenas admin:**
+ • /pin - Fixa a mensagem respondida
+ • /unpin - Desfixa a mensagem atualmente fixada
+ • /promote < username/reply msg > - promove um usuario a administrador do chat
+ • /demote < username/reply msg > - remove os privilégios de administrador do usuario
+ • /title < titulo aqui >: define uma custom tag de administrador de um usuario promovido pelo WhiterKang (ainda não disponível)
+ • /zombies - Procura e limpa contas excluidas no chat (ainda não disponível)
+    """
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("Voltar", callback_data="help_menu"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=info_text,
+            reply_markup=button,
+        )
