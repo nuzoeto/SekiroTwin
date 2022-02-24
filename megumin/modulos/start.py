@@ -112,7 +112,7 @@ Comandos básicos:
                     InlineKeyboardButton("Android", callback_data="android_help_button"),
                 ],
                 [
-                    InlineKeyboardButton("Fun", callback_data="fun_help_button"),
+                    InlineKeyboardButton("Outros", callback_data="misc_help_button"),
                     InlineKeyboardButton("Geral", callback_data="geral_help_button"),
                     InlineKeyboardButton("LastFm", callback_data="last_help_button"),
                 ],
@@ -228,13 +228,6 @@ Aqui está a ajuda para o módulo **Android**:
             reply_markup=button,
         )
 
-
-    @megux.on_callback_query(filters.regex(pattern=r"^fun_help_button$"))
-    async def infos(client: megux, cb: CallbackQuery):
-        await cb.answer(f"""Under development.""", show_alert=True)
-    
-
-    
 
     @megux.on_callback_query(filters.regex(pattern=r"^last_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
@@ -470,6 +463,36 @@ Aqui está a ajuda para o módulo **Memes**:
 • /slap Dá um tapa no usuário.
 • /insults Insulta alguém com um insulto aleatório de minhas strings.
 • /runs Responde uma sequência aleatória de minhas strings.
+    """
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=info_text,
+            reply_markup=button,
+        )
+
+
+@megux.on_callback_query(filters.regex(pattern=r"^misc_help_button$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        info_text = f"""
+Aqui está a ajuda para o módulo **Outros**:
+
+• /id Busca o ID de um usuário ou de um grupo
+
+• /info ou /whois Obtem informações sobre um usuário.
+
+• /cota Mostra a cotação do Dólar, Euro, HTC
+
+• /cep (cep)  Busque um CEP.
+
+• /ddd (ddd) Busque um DDD.
     """
         button = InlineKeyboardMarkup(
             [
