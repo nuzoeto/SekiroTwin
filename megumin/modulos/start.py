@@ -479,16 +479,16 @@ Aqui está a ajuda para o módulo **Memes**:
         )
 
 
-     @megux.on_callback_query(filters.regex(pattern=r"^misc_help_button$"))
+    @megux.on_callback_query(filters.regex(pattern=r"^misc_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
 Aqui está a ajuda para o módulo **Outros**:
 
-• /id Busca o ID de um usuário ou de um grupo
+• /id Busca o ID de um usuário ou de um grupo.
 
 • /info ou /whois Obtem informações sobre um usuário.
 
-• /cota Mostra a cotação do Dólar, Euro, HTC
+• /cota Mostra a cotação do Dólar, Euro, BTC.
 
 • /cep (cep)  Busque um CEP.
 
