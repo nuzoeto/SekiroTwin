@@ -34,7 +34,7 @@ Aqui está a ajuda para o módulo **Admin**:
  • /zombies - Procura e limpa contas excluidas no chat (ainda não disponível)
 """
 
-@megux.on_message(filters.command("start"))
+@megux.on_message(filters.command("start", prefixes=["/", "!"]))
 async def start_(_, message: Message):
     if message.chat.type == "private":
         keyboard = InlineKeyboardMarkup(
