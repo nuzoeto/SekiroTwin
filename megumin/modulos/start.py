@@ -479,7 +479,7 @@ Aqui está a ajuda para o módulo **Memes**:
         )
 
 
-@megux.on_callback_query(filters.regex(pattern=r"^misc_help_button$"))
+     @megux.on_callback_query(filters.regex(pattern=r"^misc_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
 Aqui está a ajuda para o módulo **Outros**:
