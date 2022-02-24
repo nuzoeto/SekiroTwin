@@ -122,6 +122,11 @@ Comandos básicos:
                     InlineKeyboardButton("YouTube", callback_data="yt_help_button"),
                 ],
                 [
+                    InlineKeyboardButton("Bans", callback_data="bans_help_button"),
+                    InlineKeyboardButton("GitHub", callback_data="git_help_button"),
+                    InlineKeyboardButton("Memes", callback_data="memes_help_button"),
+                ],
+                [
                     InlineKeyboardButton("↩ Voltar", callback_data="start_back"),
                 ],
             ]
@@ -399,6 +404,84 @@ Aqui está a ajuda para o módulo **YouTube**:
 
 • /song Baixe músicas
 • /video Baixe videos
+    """
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=info_text,
+            reply_markup=button,
+        )
+
+
+    @megux.on_callback_query(filters.regex(pattern=r"^bans_help_button$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        info_text = f"""
+Aqui está a ajuda para o módulo Bans:
+
+• /ban Bane um usuário no chat.
+• /banme Bane-se.
+• /unban Desbane a um usuário.
+• /mute Silencia um usuário no chat.
+• /tmute (tempo) Silencia temporariamente um usuário no chat.
+• /unmute Desmuta um usuário no chat.
+• /kick Chuta um usuário do chat.
+• /kickme Saia do grupo.
+  
+Um exemplo de silenciar alguém temporariamente:
+/tmute @username 2h isso silencia o usuário por 2 horas.
+    """
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=info_text,
+            reply_markup=button,
+        )
+
+
+    @megux.on_callback_query(filters.regex(pattern=r"^git_help_button$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        info_text = f"""
+Aqui está a ajuda para o módulo **GitHub**:
+
+• /github Retorna informações sobre um usuário ou organização do GitHub.
+    """
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=info_text,
+            reply_markup=button,
+        )
+
+
+    @megux.on_callback_query(filters.regex(pattern=r"^memes_help_button$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        info_text = f"""
+Aqui está a ajuda para o módulo Memes:
+
+• /slap Dá um tapa no usuário.
+• /insults Insulta alguém com um insulto aleatório de minhas strings.
+• /runs Responde uma sequência aleatória de minhas strings.
     """
         button = InlineKeyboardMarkup(
             [
