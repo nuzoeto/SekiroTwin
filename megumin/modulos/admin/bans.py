@@ -20,7 +20,7 @@ from megumin.utils import (
 )
 
 
-@megux.on_message(filters.command("ban", prefixes=["/", "!"]))
+@megux.on_message(filters.command("ban"))
 async def _ban_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
