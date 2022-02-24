@@ -231,22 +231,7 @@ Aqui está a ajuda para o módulo **Android**:
 
     @megux.on_callback_query(filters.regex(pattern=r"^fun_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
-        info_text = f"""
-Under development...
-    """
-        button = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
-                ]
-            ]
-        )
-        await megux.edit_message_caption(
-            chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
-            caption=info_text,
-            reply_markup=button,
-        )
+        await cb.answer(f"""Under development.""", show_alert=True)
     
 
     @megux.on_callback_query(filters.regex(pattern=r"^geral_help_button$"))
