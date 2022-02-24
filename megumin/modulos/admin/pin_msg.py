@@ -5,7 +5,7 @@ from megumin import megux
 from megumin.utils import check_bot_rights, check_rights
 
 
-@megux.on_message(filters.command("pin"))
+@megux.on_message(filters.command("pin", prefixes=["/", "!"]))
 async def pin_(_, message: Message):
     chat_id = message.chat.id
     msg = message.reply_to_message or message
@@ -22,7 +22,7 @@ async def pin_(_, message: Message):
     await message.reply(f"""Eu fixei</b> <a href='t.me/{message.chat.username}/{message.reply_to_message.message_id}'>esta mensagem</a>.""", disable_web_page_preview=True, disable_notification=True)
 
 
-@megux.on_message(filters.command("loudpin"))
+@megux.on_message(filters.command("loudpin", prefixes=["/", "!"]))
 async def pin_(_, message: Message):
     chat_id = message.chat.id
     msg = message.reply_to_message or message
@@ -39,7 +39,7 @@ async def pin_(_, message: Message):
     await message.reply(f"""Eu fixei</b> <a href='t.me/{message.chat.username}/{message.reply_to_message.message_id}'>esta mensagem</a> e notifiquei todos os membros.""", disable_web_page_preview=True, disable_notification=False)
 
 
-@megux.on_message(filters.command("unpin"))
+@megux.on_message(filters.command("unpin", prefixes=["/", "!"))
 async def unpin_(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_pin_messages"):
