@@ -423,7 +423,7 @@ Aqui está a ajuda para o módulo **YouTube**:
     @megux.on_callback_query(filters.regex(pattern=r"^bans_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
-Aqui está a ajuda para o módulo Bans:
+Aqui está a ajuda para o módulo **Bans**:
 
 • /ban Bane um usuário no chat.
 • /banme Bane-se.
@@ -477,7 +477,7 @@ Aqui está a ajuda para o módulo **GitHub**:
     @megux.on_callback_query(filters.regex(pattern=r"^memes_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
-Aqui está a ajuda para o módulo Memes:
+Aqui está a ajuda para o módulo **Memes**:
 
 • /slap Dá um tapa no usuário.
 • /insults Insulta alguém com um insulto aleatório de minhas strings.
