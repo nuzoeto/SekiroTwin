@@ -117,6 +117,11 @@ Comandos básicos:
                     InlineKeyboardButton("LastFm", callback_data="last_help_button"),
                 ],
                 [
+                    InlineKeyboardButton("Notas", callback_data="notes_help_button"),
+                    InlineKeyboardButton("Tradutor", callback_data="tr_help_button"),
+                    InlineKeyboardButton("YouTube", callback_data="yt_help_button"),
+                ],
+                [
                     InlineKeyboardButton("↩ Voltar", callback_data="start_back"),
                 ],
             ]
@@ -331,6 +336,69 @@ Antes de tudo você deve estar registrado no lastfm
 • /lt ou /lastfm para mostrar oque você esta ouvindo agora.
 • /reg ou /setuser para definir seu usuario LastFM.
 • /deluser ou /duser para remover seu nome de usuario do banco de dados.
+    """
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=info_text,
+            reply_markup=button,
+        )
+
+
+    @megux.on_callback_query(filters.regex(pattern=r"^notes_help_button$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        info_text = f"""
+Under development...
+    """
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=info_text,
+            reply_markup=button,
+        )
+
+
+    @megux.on_callback_query(filters.regex(pattern=r"^tr_help_button$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        info_text = f"""
+Under development...
+    """
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=info_text,
+            reply_markup=button,
+        )
+
+
+    @megux.on_callback_query(filters.regex(pattern=r"^yt_help_button$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        info_text = f"""
+Aqui está a ajuda para o módulo **YouTube**:
+
+• /song Baixe músicas
+• /video Baixe videos
     """
         button = InlineKeyboardMarkup(
             [
