@@ -18,7 +18,7 @@ __Um Weeb Bot feito com carinho ❤️__.
 """
 
 
-@megux.on_message(filters.command("about"))
+@megux.on_message(filters.command("about", prefixes=["/", "!"]))
 async def info(client, message):
     buttons = [
         [
@@ -35,7 +35,7 @@ async def info(client, message):
     )
 
 
-@megux.on_message(filters.command("help") & filters.private)
+@megux.on_message(filters.command("help", prefixes=["/", "!") & filters.private)
 async def help(client, message):
     button = InlineKeyboardMarkup(
         [
