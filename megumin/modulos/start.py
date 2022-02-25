@@ -212,10 +212,11 @@ Aqui está a ajuda para o módulo **Anilist**:
         info_text = f"""
 Aqui está a ajuda para o módulo **Android**:
 
-• /app < nome do app > - Use para pesquisar aplicativos na Google Play Store
-• /magisk - Obtenha a última versão do magisk
-• /twrp < codename > - Busca o último TWRP disponível para um determinado codinome de dispositivo
-• /ofox < codename > - Busca a última versão do OrangeFox disponível para um determinado dispositivo
+• /device ou /whatis ( codename ) Obtenha um dispositivo pelo codename.
+• /app < nome do app > - Use para pesquisar aplicativos na Google Play Store ( não disponível)
+• /magisk - Obtenha a última versão do magisk ( não disponível )
+• /twrp < codename > - Busca o último TWRP disponível para um determinado codinome de dispositivo ( não disponível  )
+• /ofox < codename > - Busca a última versão do OrangeFox disponível para um determinado dispositivo ( não disponível )
     """
         button = InlineKeyboardMarkup(
             [
