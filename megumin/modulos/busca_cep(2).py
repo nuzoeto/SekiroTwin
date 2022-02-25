@@ -13,7 +13,7 @@ from megumin import megux
 http = httpx.AsyncClient()
 
 
-@megux.on_message(filters.command("cep"))
+@megux.on_message(filters.command("cep", prefixes=["/", "!"]))
 async def lastfm(c: megux, m: Message):
     try:
         cep = m.text.split(maxsplit=1)[1]
