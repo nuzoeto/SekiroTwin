@@ -5,7 +5,7 @@ from pyrogram import filters
 from megumin import megux
 
 
-@megux.on_message(filters.command("github"))
+@megux.on_message(filters.command("github", prefixes=["/", "!"]))
 async def github_(client, message):
     username = " ".join(message.text.split()[1:])
     if not username:
