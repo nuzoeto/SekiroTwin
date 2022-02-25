@@ -6,7 +6,7 @@ from pyrogram.types import Message
 
 from megumin import megux
 
-@megux.on_message(filters.command(["cota"]))
+@megux.on_message(filters.command(["cota"], prefixes=["/", "!"]))
 async def pegar_cotacoes(_, message):
     requisicao = requests.get("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL")
 
