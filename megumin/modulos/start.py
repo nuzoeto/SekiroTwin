@@ -103,6 +103,9 @@ Comandos básicos:
 - /start: Comando Legal pra ver se eu estou Vivo ou Não:3
 - /help: envia esta mensagem de ajuda
 - /ping Ver o atraso para o bot retornar a mensagem.
+- /about Veja mais sobre os desenvolvedores. 
+
+Todos os comandos podem ser usados com os seguintes caracteres: /  !
     """
         button = InlineKeyboardMarkup(
             [
@@ -493,6 +496,8 @@ Aqui está a ajuda para o módulo **Outros**:
 • /cep (cep)  Busque um CEP.
 
 • /ddd (ddd) Busque um DDD.
+
+• /clima ou /weather ( cidade ) Busque o clima para uma cidade.
     """
         button = InlineKeyboardMarkup(
             [
