@@ -12,7 +12,7 @@ from megumin import megux
 aiohttpsession = ClientSession()
 
 
-@megux.on_message(filters.command("carbon"))
+@megux.on_message(filters.command("carbon", prefixes=["/", "!"]))
 async def carbon_func(_, message: Message):
     if not message.reply_to_message:
         return await message.reply_text(
