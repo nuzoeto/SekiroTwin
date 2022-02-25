@@ -8,7 +8,7 @@ from pyrogram.types import Message
 from megumin import megux
 
 
-@Client.on_message(filters.command("cat"))
+@Client.on_message(filters.command("cat", prefixes=["/", "!"]))
 async def random_cat_commands(c: Client, m: types.Message):
     async with httpx.AsyncClient() as client:
         r = await client.get("https://api.thecatapi.com/v1/images/search")
@@ -18,7 +18,7 @@ async def random_cat_commands(c: Client, m: types.Message):
     await m.reply_photo(cat()[0]["url"], caption= "__Miau!__")
 
 
-@Client.on_message(filters.command("neko"))
+@Client.on_message(filters.command("neko", prefixes=["/", "!"]))
 async def random_neko_command(c: Client, m: types.Message):
     while True:
         try:
@@ -32,7 +32,7 @@ async def random_neko_command(c: Client, m: types.Message):
             pass
 
 
-@Client.on_message(filters.command("dog"))
+@Client.on_message(filters.command("dog", prefixes=["/", "!"]))
 async def random_dog_commands(c: Client, m: types.Message):
     async with httpx.AsyncClient() as client:
         r = await client.get("https://api.thedogapi.com/v1/images/search")
@@ -44,14 +44,14 @@ async def random_dog_commands(c: Client, m: types.Message):
     await m.reply_photo(cat()[0]["url"], caption="__Au au!__")
 
 
-@megux.on_message(filters.command("baka"))
+@megux.on_message(filters.command("baka", prefixes=["/", "!"]))
 async def baka_(_, message: Message):
     r = requests.get("https://nekos.life/api/v2/img/baka")
     g = r.json().get("url")
     await message.reply_animation(g)
 
 
-@megux.on_message(filters.command(["wall", "wallpaper"]))
+@megux.on_message(filters.command(["wall", "wallpaper"], prefixes=["/", "!"]))
 async def baka_(_, message: Message):
     r = requests.get("https://nekos.life/api/v2/img/wallpaper")
     g = r.json().get("url")
