@@ -10,7 +10,7 @@ from pyrogram import filters
 
 from megumin import megux
 
-@megux.on_message(filters.command(["bun"]))
+@megux.on_message(filters.command(["bun"], prefixes=["/", "!"]))
 async def get_stats(_, message):
 
   sent = await message.reply("```Banindo usuario...```")
