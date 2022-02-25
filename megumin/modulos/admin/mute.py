@@ -16,7 +16,7 @@ from megumin.utils import (
 )
 
 
-@megux.on_message(filters.command("mute"))
+@megux.on_message(filters.command("mute", prefixes=["/", "!"]))
 async def _mute_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
@@ -72,7 +72,7 @@ async def _mute_user(_, message: Message):
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR**: `{e_f}`")
 
 
-@megux.on_message(filters.command("tmute"))
+@megux.on_message(filters.command("tmute", prefixes=["/", "!"]))
 async def _tmute_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
@@ -140,7 +140,7 @@ async def _tmute_user(_, message: Message):
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR**: `{e_f}`")
 
 
-@megux.on_message(filters.command("unmute"))
+@megux.on_message(filters.command("unmute", prefixes=["/", "!"]))
 async def _unmute_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
