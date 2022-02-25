@@ -27,7 +27,7 @@ timeout = httpx.Timeout(20)
 http = httpx.AsyncClient(http2=True, timeout=timeout)
 
 
-@megux.on_message(filters.command(["lt", "lastfm"]))
+@megux.on_message(filters.command(["lt", "lastfm"], prefixes=["/", "!"]))
 async def last_(_, message: Message):
     user_ = message.from_user.id
     lastdb = await USERS.find_one({"_id": user_})
@@ -70,7 +70,7 @@ async def last_(_, message: Message):
     await message.reply(rep)
 
 
-@megux.on_message(filters.command(["setuser", "reg"]))
+@megux.on_message(filters.command(["setuser", "reg"], prefixes=["/", "!"]))
 async def last_save_user(_, message: Message):
     user_ = message.from_user.id
     text = " ".join(message.text.split()[1:])
@@ -81,7 +81,7 @@ async def last_save_user(_, message: Message):
     await message.reply("__Seu username foi definido com sucesso.__")
 
 
-@megux.on_message(filters.command(["deluser", "duser"]))
+@megux.on_message(filters.command(["deluser", "duser"], prefixes=["/", "!"]))
 async def last_save_user(_, message: Message):
     user_ = message.from_user.id
     await USERS.delete_one({"_id": user_})
