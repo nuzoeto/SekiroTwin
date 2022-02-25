@@ -11,7 +11,7 @@ from megumin import megux
 http = httpx.AsyncClient()
 
 
-@megux.on_message(filters.command(["ddd"]))
+@megux.on_message(filters.command(["ddd"], prefixes=["/", "!"]))
 async def lastfm(c: megux, m: Message):
     try:
          ddd = m.text.split(maxsplit=1)[1]
