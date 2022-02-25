@@ -18,7 +18,7 @@ from megumin.utils import (
 )
 
 
-@megux.on_message(filters.command("promote"))
+@megux.on_message(filters.command("promote", prefixes=["/", "!"]))
 async def _promote_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
@@ -67,7 +67,7 @@ async def _promote_user(_, message: Message):
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
 
-@megux.on_message(filters.command("demote"))
+@megux.on_message(filters.command("demote", prefixes=["/", "!"]))
 async def _demote_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
