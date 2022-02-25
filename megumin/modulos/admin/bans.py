@@ -20,7 +20,7 @@ from megumin.utils import (
 )
 
 
-@megux.on_message(filters.command("ban"))
+@megux.on_message(filters.command("ban", prefixes=["/", "!"]))
 async def _ban_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
@@ -72,7 +72,7 @@ async def _ban_user(_, message: Message):
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
 
 
-@megux.on_message(filters.command("unban"))
+@megux.on_message(filters.command("unban", prefixes=["/", "!"]))
 async def _unban_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
@@ -110,7 +110,7 @@ async def _unban_user(_, message: Message):
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
 
-@megux.on_message(filters.command("kick"))
+@megux.on_message(filters.command("kick", prefixes=["/", "!"]))
 async def _kick_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
@@ -163,7 +163,7 @@ async def _kick_user(_, message: Message):
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
 
-@megux.on_message(filters.command("kickme"))
+@megux.on_message(filters.command("kickme", prefixes=["/", "!"]))
 async def kickme_(_, message: Message):
     chat_id = message.chat.id
     user_id = message.from_user.id
@@ -183,7 +183,7 @@ async def kickme_(_, message: Message):
             await message.reply(f"**ERRO:**\n{e}")
 
 
-@megux.on_message(filters.command("banme"))
+@megux.on_message(filters.command("banme", prefixes=["/", "!"]))
 async def kickme_(_, message: Message):
     chat_id = message.chat.id
     user_id = message.from_user.id
