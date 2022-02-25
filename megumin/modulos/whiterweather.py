@@ -17,7 +17,7 @@ headers = {
 }
 
 
-@megux.on_message(filters.command(["weather", "clima"]))
+@megux.on_message(filters.command(["weather", "clima"], prefixes=["/", "!"]))
 async def weather(c: megux, m: Message):
     if len(m.command) == 1:
         return await m.reply_text(
