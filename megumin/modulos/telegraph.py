@@ -9,7 +9,7 @@ from telegraph import upload_file
 from megumin import megux
 
 
-@megux.on_message(filters.command(["tg", "telegraph"]))
+@megux.on_message(filters.command(["tg", "telegraph"], prefixes=["/", "!"]))
 async def telegraph_(megux, message: Message):
     replied = message.reply_to_message
     if not replied:
