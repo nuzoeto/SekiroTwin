@@ -1,6 +1,7 @@
 import sys
 import os
 import re
+import io
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
