@@ -178,7 +178,7 @@ async def _unmute_user(_, message: Message):
         await sent.edit(f"`Algo deu errado!` 🤔\n\n**ERROR:** `{e_f}`")
 
 
-megux.on_message(filters.command("muteme", prefixes=["/", "!"]))
+@megux.on_message(filters.command("muteme", prefixes=["/", "!"]))
 async def muteme_(_, message: Message):
     chat_id = message.chat.id
     user_id = message.from_user.id
