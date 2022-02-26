@@ -176,3 +176,22 @@ async def _unmute_user(_, message: Message):
         await sent.edit("Ótimo, este usuário pode falar novamente!")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado!` 🤔\n\n**ERROR:** `{e_f}`")
+
+
+megux.on_message(filters.command("muteme", prefixes=["/", "!"]))
+async def muteme_(_, message: Message):
+    chat_id = message.chat.id
+    user_id = message.from_user.id
+    admin_ = await admin_check(message)
+    if admin_:
+        await message.reply("Por que eu baniria um(a) administrador(a)? Parece uma ideia bem idiota.")
+        return
+    else:
+        try:
+            if not await check_bot_rights(chat_id, "can_restrict_members"):
+                await message.reply("Eu não sou um(a) administrador(a)!")
+                return
+            await message.reply("Sem Problemas, Mutado!")
+            await megux.restrict_chat_member(chat_id, user_id, ChatPermissions())
+        except Exception as e:
+            await message.reply(f"**ERRO:**\n{e}")
