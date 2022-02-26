@@ -8,6 +8,7 @@ from megumin.utils import check_bot_rights, check_rights
 @megux.on_message(filters.command("pin", prefixes=["/", "!"]))
 async def pin_(_, message: Message):
     chat_id = message.chat.id
+    ids_chat = str(chat_id).replace("-100", ""
     msg = message.reply_to_message or message
     if not await check_rights(chat_id, message.from_user.id, "can_pin_messages"):
         await reply("`Você não tem as seguintes permissões: **Can pin messages**")
@@ -19,7 +20,7 @@ async def pin_(_, message: Message):
         await message.reply("Responda a uma mensagem para que eu possa fixa-la")
         return
     await message.reply_to_message.pin()
-    await message.reply(f"""Eu fixei</b> <a href='t.me/{message.chat.username}/{message.reply_to_message.message_id}'>esta mensagem</a>.""", disable_web_page_preview=True, disable_notification=True)
+    await message.reply(f"""Eu fixei</b> <a href='t.me/{ids_chat}/{message.reply_to_message.message_id}'>esta mensagem</a>.""", disable_web_page_preview=True, disable_notification=True)
 
 
 @megux.on_message(filters.command("loudpin", prefixes=["/", "!"]))
