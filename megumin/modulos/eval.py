@@ -3,6 +3,7 @@ import os
 import re
 import io
 import traceback
+import random
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
