@@ -335,6 +335,7 @@ Aqui está a ajuda para o módulo **Bans**:
 • /unmute Desmuta um usuário no chat.
 • /kick Chuta um usuário do chat.
 • /kickme Saia do grupo.
+• /muteme Muta-se.
   
 Um exemplo de silenciar alguém temporariamente:
 /tmute @username 2h isso silencia o usuário por 2 horas.
