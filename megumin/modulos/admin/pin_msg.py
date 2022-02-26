@@ -19,7 +19,7 @@ async def pin_(_, message: Message):
         await message.reply("Responda a uma mensagem para que eu possa fixa-la")
         return
     await message.reply_to_message.pin()
-    await message.reply(f"""Eu fixei</b> <a href='t.me/{ids_chat}/{message.reply_to_message.message_id}'>esta mensagem</a>.""", disable_web_page_preview=True, disable_notification=True)
+    await message.reply(f"""Eu fixei</b> <a href='t.me/c/{ids_chat}/{message.reply_to_message.message_id}'>esta mensagem</a>.""", disable_web_page_preview=True, disable_notification=True)
 
 
 @megux.on_message(filters.command("loudpin", prefixes=["/", "!"]))
