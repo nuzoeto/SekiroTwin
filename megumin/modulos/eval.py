@@ -2,6 +2,7 @@ import sys
 import os
 import re
 import io
+import traceback
 
 from pyrogram import Client, filters
 from pyrogram.types import Message
