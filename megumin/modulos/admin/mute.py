@@ -182,9 +182,9 @@ async def _unmute_user(_, message: Message):
 async def muteme_(_, message: Message):
     chat_id = message.chat.id
     user_id = message.from_user.id
-    admin_ = await admin_check(message)
+    admin_ = await is_admin(message)
     if admin_:
-        await message.reply("Por que eu baniria um(a) administrador(a)? Parece uma ideia bem idiota.")
+        await message.reply("Por que eu mutaria um(a) administrador(a)? Parece uma ideia bem idiota.")
         return
     else:
         try:
