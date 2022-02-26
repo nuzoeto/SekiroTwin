@@ -8,7 +8,7 @@ from megumin.utils import check_bot_rights, check_rights
 @megux.on_message(filters.command("pin", prefixes=["/", "!"]))
 async def pin_(_, message: Message):
     chat_id = message.chat.id
-    ids_chat = str(chat_id).replace("-100", ""
+    ids_chat = str(chat_id).replace("-100", "")
     msg = message.reply_to_message or message
     if not await check_rights(chat_id, message.from_user.id, "can_pin_messages"):
         await reply("`Você não tem as seguintes permissões: **Can pin messages**")
