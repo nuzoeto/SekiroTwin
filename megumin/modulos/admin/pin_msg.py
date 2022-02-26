@@ -25,7 +25,7 @@ async def pin_(_, message: Message):
 @megux.on_message(filters.command("loudpin", prefixes=["/", "!"]))
 async def pin_(_, message: Message):
     chat_id = message.chat.id
-    msg = message.reply_to_message or message
+    ids_chat = str(chat_id).replace("-100", "")
     if not await check_rights(chat_id, message.from_user.id, "can_pin_messages"):
         await reply("`Você não tem as seguintes permissões: **Can pin messages**")
         return
@@ -36,12 +36,13 @@ async def pin_(_, message: Message):
         await message.reply("Responda a uma mensagem para que eu possa fixa-la")
         return
     await message.reply_to_message.pin()
-    await message.reply(f"""Eu fixei</b> <a href='t.me/{message.chat.username}/{message.reply_to_message.message_id}'>esta mensagem</a> e notifiquei todos os membros.""", disable_web_page_preview=True, disable_notification=False)
+    await message.reply(f"""Eu fixei</b> <a href='t.me/c/{ids_chat}/{message.reply_to_message.message_id}'>esta mensagem</a> e notifiquei todos os membros.""", disable_web_page_preview=True, disable_notification=False)
 
 
 @megux.on_message(filters.command("unpin", prefixes=["/", "!"]))
 async def unpin_(_, message: Message):
     chat_id = message.chat.id
+    ids_chat = str(chat_id).replace("-100", "")
     if not await check_rights(chat_id, message.from_user.id, "can_pin_messages"):
         await reply("Você não tem as seguintes permissões: **Can pinned messages")
         return
@@ -52,4 +53,4 @@ async def unpin_(_, message: Message):
         await message.reply("`Responda a uma mensagem para que eu possa desfixa-la`")
         return
     await message.reply_to_message.unpin()
-    await message.reply(f"""Eu desfixei</b> <a href='t.me/{message.chat.username}/{message.reply_to_message.message_id}'>esta mensagem</a>.""", disable_web_page_preview=True)
+    await message.reply(f"""Eu desfixei</b> <a href='t.me/c/{ids_chat}/{message.reply_to_message.message_id}'>esta mensagem</a>.""", disable_web_page_preview=True)
