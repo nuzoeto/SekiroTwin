@@ -71,7 +71,7 @@ async def pegar_cotacoes(_, message):
 💵 **Peso Argentino:** R$ ```{cotacao_ars}```
 🗓 **Data:** ```{dat_ars}```
 
-📊 **Variação:**  ```{var_ars}```
+📊 **Variação:** ```{var_ars}```
 '''
 
     await message.reply_photo(photo="https://telegra.ph/file/d60e879db1cdba793a98c.jpg",
