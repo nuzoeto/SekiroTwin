@@ -8,7 +8,7 @@ from megumin import megux
 
 @megux.on_message(filters.command(["cota"], prefixes=["/", "!"]))
 async def pegar_cotacoes(_, message):
-    requisicao = requests.get("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,GBP-BRL,JPY-BRL,BTC-BRL,ETH-BRL,XRP-BRL,DOGE-BRL,ARS-BRL,AOA-BRL")
+    requisicao = requests.get("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,GBP-BRL,JPY-BRL,BTC-BRL,ETH-BRL,XRP-BRL,DOGE-BRL,ARS-BRL")
 
     requisicao_dic = requisicao.json()
 
@@ -30,7 +30,6 @@ async def pegar_cotacoes(_, message):
     cotacao_ars = requisicao_dic ['ARSBRL']['bid']
     dat_ars = requisicao_dic ['ARSBRL']['create_date']
     var_ars = requisicao_dic ['ARSBRL']['varBid']
-    cotacao_kwanza = requisicao_dic ['AOABRL']['bid']
 
     obting_info = await message.reply(f"""```Obtendo informações sobre as moedas...```""")
     await asyncio.sleep(0.3)
@@ -73,9 +72,6 @@ async def pegar_cotacoes(_, message):
 🗓 **Data:** ```{dat_ars}```
 
 📊 **Variação:** ```{var_ars}```
-
-
-💵 **KWANZA** R$ ```{cotacao_kwanza}```
 '''
 
     await message.reply_photo(photo="https://telegra.ph/file/d60e879db1cdba793a98c.jpg",
