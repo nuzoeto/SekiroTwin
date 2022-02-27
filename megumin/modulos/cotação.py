@@ -57,7 +57,7 @@ async def pegar_cotacoes(_, message):
 
 
 💵 **DOGE:** R$ ```{cotacao_doge}
-🗓 **Data:** ```{dat_doge}
+🗓 **Data:** ```{dat_doge}```
 
 📊 **Variação:** ```{var_doge}```
 
