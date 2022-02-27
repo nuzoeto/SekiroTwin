@@ -8,7 +8,7 @@ from megumin import megux
 
 @megux.on_message(filters.command(["cota"], prefixes=["/", "!"]))
 async def pegar_cotacoes(_, message):
-    requisicao = requests.get("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL")
+    requisicao = requests.get("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,GBP-BRL,JPY-BRL,BTC-BRL,ETH-BRL,XRP-BRL,DOGE-BRL")
 
     requisicao_dic = requisicao.json()
 
@@ -21,6 +21,9 @@ async def pegar_cotacoes(_, message):
     cotacao_btc = requisicao_dic['BTCBRL']['bid']
     dat_btc = requisicao_dic['BTCBRL']['create_date']
     var_btc = requisicao_dic ['BTCBRL']['varBid']
+    cotacao_iene = requisicao_dic ['JPYBRL']['bid']
+    dat_iene = requisicao_dic ['JPYBRL']['create_date']
+    var_iene = requisicao_dic ['JPYBRL']['varBid']
 
     obting_info = await message.reply(f"""```Obtendo informações sobre as moedas...```""")
     await asyncio.sleep(0.3)
@@ -42,7 +45,13 @@ async def pegar_cotacoes(_, message):
 💵 **BTC:** R$ ```{cotacao_btc}```
 🗓 **Data:**  ```{dat_btc}```
 
-📊 **Variação:** ```{var_btc}```'''
+📊 **Variação:** ```{var_btc}```
+
+💵 **Iene:** R$ ```{cotacao_iene}```
+🗓 **Data:** ```{dat_iene}```
+
+📊 **Variação:** ```{var_iene}```
+'''
 
     await message.reply_photo(photo="https://telegra.ph/file/d60e879db1cdba793a98c.jpg",
     caption=result)
