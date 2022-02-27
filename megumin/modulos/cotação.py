@@ -8,7 +8,7 @@ from megumin import megux
 
 @megux.on_message(filters.command(["cota"], prefixes=["/", "!"]))
 async def pegar_cotacoes(_, message):
-    requisicao = requests.get("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,GBP-BRL,JPY-BRL,BTC-BRL,ETH-BRL,XRP-BRL,DOGE-BRL,ARS-BRL")
+    requisicao = requests.get("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,GBP-BRL,JPY-BRL,BTC-BRL,ETH-BRL,XRP-BRL,DOGE-BRL,ARS-BRL,RUB-BRL")
 
     requisicao_dic = requisicao.json()
 
@@ -30,6 +30,9 @@ async def pegar_cotacoes(_, message):
     cotacao_ars = requisicao_dic ['ARSBRL']['bid']
     dat_ars = requisicao_dic ['ARSBRL']['create_date']
     var_ars = requisicao_dic ['ARSBRL']['varBid']
+    cotacao_rub = requisicao_dic ['RUBBRL']['bid']
+    dat_rub = requisicao_dic ['RUBBRL']['create_date']
+    var_rub = requisicao_dic ['RUBBRL']['varBid']
 
     obting_info = await message.reply(f"""```Obtendo informações sobre as moedas...```""")
     await asyncio.sleep(0.3)
@@ -72,6 +75,12 @@ async def pegar_cotacoes(_, message):
 🗓 **Data:** ```{dat_ars}```
 
 📊 **Variação:** ```{var_ars}```
+
+
+💵 **Ruplo Russo:** R$ ```{cotacao_rub}```
+🗓 **Data:** ```{dat_rub}```
+
+📊 **Variação:** ```{var_rub}```
 '''
 
     await message.reply_photo(photo="https://telegra.ph/file/d60e879db1cdba793a98c.jpg",
