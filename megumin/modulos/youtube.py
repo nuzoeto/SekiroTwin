@@ -62,7 +62,7 @@ def down_video(link, filename):
     )
 
 
-@megux.on_message(filters.command(["song", "music"]))
+@megux.on_message(filters.command(["song", "music"], prefixes=["/", "!"]))
 async def song(client: megux, message: Message):
     music = " ".join(message.text.split()[1:])
     if not music:
@@ -108,7 +108,7 @@ async def song(client: megux, message: Message):
                 os.remove(f"./megumin/xcache/{thumb}")
 
 
-@megux.on_message(filters.command(["video"]))
+@megux.on_message(filters.command(["video"], prefixes=["/", "!"]))
 async def video_(client: megux, message: Message):
     video = " ".join(message.text.split()[1:])
     if not video:
