@@ -56,3 +56,11 @@ async def baka_(_, message: Message):
     r = requests.get("https://nekos.life/api/v2/img/wallpaper")
     g = r.json().get("url")
     await megux.send_document(message.chat.id, g, caption="__Send by:__ @WhiterKangBOT")
+
+
+@megux.on_message(filters.command(["bird", "passaro"], prefixes=["/", "!"]))
+async def bird_photo(c: megux, m: Message):
+   http = httpx.AsyncClient()
+   r = await http.get("http://shibe.online/api/birds")
+   bird = r.json()
+   await m.reply_photo(bird[0], caption="🐦")
