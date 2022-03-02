@@ -28,6 +28,7 @@ async def getsticker_(c: megux, m: Message):
                 caption=(
                     f"<b>Emoji:</b> {sticker.emoji}\n"
                     f"<b>Sticker ID:</b> <code>{sticker.file_id}</code>"
+                    f"<b>Send by:</b> @WhiterKangBOT"
                 ),
             )
             shutil.rmtree(tempdir, ignore_errors=True)
