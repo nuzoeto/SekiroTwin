@@ -27,7 +27,7 @@ async def getsticker_(c: megux, m: Message):
                 document=sticker_file,
                 caption=(
                     f"<b>Emoji:</b> {sticker.emoji}\n"
-                    f"<b>Sticker ID:</b> <code>{sticker.file_id}</code>"
+                    f"<b>Sticker ID:</b> <code>{sticker.file_id}</code>\n"
                     f"<b>Send by:</b> @WhiterKangBOT"
                 ),
             )
