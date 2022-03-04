@@ -9,26 +9,26 @@ from megumin import megux
 
 @megux.on_message(filters.command("speedtest"))
 async def test_speed(c: megux, m: Message):
-    string = "<b>Teste de velocidade</b>\n\n<b>🌐 Host:</b> <code>{host}</code>\n\n<b>🏓 Latência:</b> <code>{ping} ms</code>\n<b>⬇️ Download:</b> <code>{download} Mbps</code>\n<b>⬇️ Upload:</b> <code>{upload} Mbps</code>"
+    string = "<b>Teste de velocidade</b>\n\n<b>🌐 Host:</b> <code>{host}</code>\n\n<b>🏓 Latência:</b> <code>{ping} ms</code>\n<b>⬇️ Download:</b> <code>{download} Mbps</code>\n<b>⬆️ Upload:</b> <code>{upload} Mbps</code>\n<b>💻 ISP:</b> <code>{isp}<code>"
     sent = await m.reply(string.format(host="", ping="", download="", upload=""))
     s = speedtest.Speedtest()
     bs = s.get_best_server()
     result = s.results.dict()
     await sent.edit_text(
         string.format(
-            host=bs["sponsor"], ping=int(bs["latency"]), download="", upload=""
+            host=bs["sponsor"], ping=int(bs["latency"]), download="", upload="", isp=""
         )
     )
     dl = round(s.download() / 1024 / 1024, 2)
     await sent.edit_text(
         string.format(
-            host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=""
+            host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload="", isp=""
         )
     )
     ul = round(s.upload() / 1024 / 1024, 2)
     await sent.edit_text(
         string.format(
-            host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=ul
+            host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=ul, isp=bs["isp"]
         )
     )
     
