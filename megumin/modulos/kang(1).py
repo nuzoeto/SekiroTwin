@@ -25,14 +25,14 @@ http = httpx.AsyncClient()
 @megux.on_message(filters.command(["kang"], prefixes=["/", "!"]))
 async def kang_sticker(c: megux, m: Message):
   prog_msg = await m.reply_text("Aguarde...")
-    bot_username = c.me.username
-    sticker_emoji = "🤔"
-    packnum = 0
-    packname_found = False
-    resize = False
-    animated = False
-    reply = m.reply_to_message
-    user = await c.resolve_peer(m.from_user.username or m.from_user.id)
+  bot_username = c.me.username
+  sticker_emoji = "🤔"
+  packnum = 0
+  packname_found = False
+  resize = False
+  animated = False
+  reply = m.reply_to_message
+  user = await c.resolve_peer(m.from_user.username or m.from_user.id)
     if reply and reply.media:
         if reply.photo:
             resize = True
