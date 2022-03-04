@@ -32,3 +32,11 @@ async def test_speed(c: megux, m: Message):
         )
     )
     
+
+@megux.on_message(filters.command("speed"))
+async def test_speed(c: megux, m: Message):
+    s = speedtest.Speedtest()
+    bs = s.get_best_server()
+    result = s.results.dict()
+    path= wget.download(result["share"])
+    await m.reply_photo(photo=path)
