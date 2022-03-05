@@ -24,7 +24,7 @@ http = httpx.AsyncClient()
 
 @megux.on_message(filters.command(["kang"], prefixes=["/", "!"]))
 async def kang_sticker(c: megux, m: Message):
-      prog_msg = await m.reply_text("kanging_sticker")
+    prog_msg = await m.reply_text("kanging_sticker")
     bot_username = c.me.username
     sticker_emoji = "🤔"
     packnum = 0
