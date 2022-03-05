@@ -6,7 +6,7 @@ from pyrogram.types import Message
 
 from megumin import megux
 
-@megux.on_message(filters.command(["slap"]))
+@megux.on_message(filters.command(["slap"], prefixes=["/", "!"]))
 async def printer(_, m: Message):
     if m.reply_to_message:
         try:
