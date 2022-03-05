@@ -16,19 +16,19 @@ async def test_speed(c: megux, m: Message):
     result = s.results.dict()
     await sent.edit_text(
         string.format(
-            host=bs["sponsor"], ping=int(bs["latency"]), download="", upload="", isp=result["client"]["isp"], name=result["server"]["name"], country=result["server"]["country"], result["server"]["cc"]
+            host=bs["sponsor"], ping=int(bs["latency"]), download="", upload="", isp=result["client"]["isp"], name=result["server"]["name"], country=result["server"]["country"]
         )
     )
     dl = round(s.download() / 1024 / 1024, 2)
     await sent.edit_text(
         string.format(
-            host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload="", isp=result["client"]["isp"], name=result["server"]["name"], country=result["server"]["country"], result["server"]["cc"]
+            host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload="", isp=result["client"]["isp"], name=result["server"]["name"], country=result["server"]["country"]
         )
     )
     ul = round(s.upload() / 1024 / 1024, 2)
     await sent.edit_text(
         string.format(
-            host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=ul, isp=result["client"]["isp"], name=result["server"]["name"], country=result["server"]["country"], result["server"]["cc"]
+            host=bs["sponsor"], ping=int(bs["latency"]), download=dl, upload=ul, isp=result["client"]["isp"], name=result["server"]["name"], country=result["server"]["country"]
         )
     )
     
