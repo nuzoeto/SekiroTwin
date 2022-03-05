@@ -9,7 +9,7 @@ from megumin import megux
 
 @megux.on_message(filters.command("speedtest"))
 async def test_speed(c: megux, m: Message):
-    string = "<b>Teste de velocidade</b>\n\n<b>💻 ISP:</b> <code>{isp}<code>\n<b>🌐 Host:</b> <code>{host}</code>\n\n<b>🏓 Latência:</b> <code>{ping} ms</code>\n<b>⬇️ Download:</b> <code>{download} Mbps</code>\n<b>⬆️ Upload:</b> <code>{upload} Mbps</code>"
+    string = "<b>Teste de velocidade</b>\n\n<b>💻 ISP:</b> `{isp}`\n<b>🌐 Host:</b> <code>{host}</code>\n\n<b>🏓 Latência:</b> <code>{ping} ms</code>\n<b>⬇️ Download:</b> <code>{download} Mbps</code>\n<b>⬆️ Upload:</b> <code>{upload} Mbps</code>"
     sent = await m.reply(string.format(host="", ping="", download="", upload="", isp=""))
     s = speedtest.Speedtest()
     bs = s.get_best_server()
