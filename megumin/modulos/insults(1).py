@@ -5,7 +5,7 @@ from pyrogram.types import Message
 
 from megumin import megux
 
-@megux.on_message(filters.command(["insults"]))
+@megux.on_message(filters.command(["insults"], prefixes=["/", "!"]))
 async def printer(_, m: Message):
     insult = random.choice(INSULTS)
     await m.reply(f"__{insult}__")
