@@ -3,6 +3,7 @@ import re
 
 from pyrogram import filters
 from pyrogram.types import Message
+from pyrogram.errors import BadRequest, Forbidden
 
 from megumin import megux
 
