@@ -114,7 +114,7 @@ async def ytdl_(c: megux, m: Message):
     text += f"💾 <code>{pretty_size(afsize)}</code> (áudio) / <code>{pretty_size(int(vfsize))}</code> (vídeo)\n"
     text += f"⏳ <code>{datetime.timedelta(seconds=yt.get('duration'))}</code>"
 
-    await m.reply_text(text, reply_markup=(keyboard))
+    await m.reply_text(text, reply_markup=c.ikb(keyboard))
 
 
 @megux.on_callback_query(filters.regex("^(_(vid|aud))"))
