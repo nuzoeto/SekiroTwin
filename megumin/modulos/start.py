@@ -165,7 +165,7 @@ Aqui está a ajuda para o módulo **Admin**:
  • /promote < username/reply msg > - promove um usuario a administrador do chat
  • /demote < username/reply msg > - remove os privilégios de administrador do usuario
  • /title < titulo aqui >: define uma custom tag de administrador de um usuario promovido pelo WhiterKang (ainda não disponível)
- • /zombies - Procura e limpa contas excluidas no chat (ainda não disponível)
+ • /zombies - Procura e limpa contas excluidas no chat
     """
         button = InlineKeyboardMarkup(
             [
@@ -468,6 +468,9 @@ Aqui está a ajuda para o módulo **Memes**:
 • /slap Dá um tapa no usuário.
 • /insults Insulta alguém com um insulto aleatório de minhas strings.
 • /runs Responde uma sequência aleatória de minhas strings.
+• /bird ou /passaro Envia a foto de um pássaro.
+• /dog Envia a foto de um cachorro.
+• /cat Envia a foto de um gato
     """
         button = InlineKeyboardMarkup(
             [
@@ -493,7 +496,7 @@ Aqui está a ajuda para o módulo **Outros**:
 
 • /info ou /whois Obtem informações sobre um usuário.
 
-• /cota Mostra a cotação do Dólar, Euro, BTC.
+• /cota Mostra a cotação do Dólar, Euro, BTC, Peso Argentino, Ruplo Russo ETC...
 
 • /cep (cep)  Busque um CEP.
 
