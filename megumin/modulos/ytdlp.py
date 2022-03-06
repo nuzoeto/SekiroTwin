@@ -13,7 +13,7 @@ from megumin import megux
 
 @megux.on_message(filters.command("ytdl", prefixes=["/","!"]))
 async def ytdl_(c: megux, m: Message):
-    args = " ".join(message.text.split()[1:])
+    args = " ".join(m.text.split()[1:])
     user = m.from_user.id
 
     if m.reply_to_message and m.reply_to_message.text:
