@@ -32,7 +32,7 @@ async def cleanup(c: megux, m: Message):
                     return
         if deleted:
             await sent.edit_text(
-                f"Eu removi {len(deleted)} contas excluídas do grupo {m.chat.title}!"
+                f"Eu removi **{len(deleted)}** contas excluídas do grupo **{m.chat.title}**!"
             )
         else:
             await sent.edit_text("Não há contas excluídas no aqui!")
