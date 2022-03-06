@@ -5,6 +5,7 @@ import tempfile
 import re
 import io
 import asyncio
+import datetime 
 
 from typing import Tuple, Callable
 from functools import wraps, partial
@@ -29,6 +30,16 @@ def aiowrap(func: Callable) -> Callable:
 @aiowrap
 def extract_info(instance, url, download=True):
     return instance.extract_info(url, download)
+
+
+def pretty_size(size_bytes):
+    if size_bytes == 0:
+        return "0B"
+    size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
+    i = int(math.floor(math.log(size_bytes, 1024)))
+    p = math.pow(1024, i)
+    s = round(size_bytes / p, 2)
+    return "%s %s" % (s, size_name[i])
 
 
 @megux.on_message(filters.command("ytdl", prefixes=["/","!"]))
