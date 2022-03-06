@@ -5,12 +5,28 @@ import tempfile
 import re
 import io
 
+from functools import wraps, partial
 from yt_dlp.utils import DownloadError
 from pyrogram import filters
 from pyrogram.errors import BadRequest, Forbidden, MessageTooLong
 from pyrogram.types import CallbackQuery, Message
 
 from megumin import megux
+
+def aiowrap(func: Callable) -> Callable:
+    @wraps(func)
+    async def run(*args, loop=None, executor=None, **kwargs):
+        if loop is None:
+            loop = asyncio.get_event_loop()
+        pfunc = partial(func, *args, **kwargs)
+        return await loop.run_in_executor(executor, pfunc)
+
+    return run
+
+
+@aiowrap
+def extract_info(instance, url, download=True):
+    return instance.extract_info(url, download)
 
 
 @megux.on_message(filters.command("ytdl", prefixes=["/","!"]))
