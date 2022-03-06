@@ -1,5 +1,5 @@
 import os
-import ytdlp
+import yt_dlp
 import shutil
 import tempfile
 
