@@ -14,7 +14,8 @@ from functools import wraps, partial
 from yt_dlp.utils import DownloadError
 from pyrogram import filters
 from pyrogram.errors import BadRequest, Forbidden, MessageTooLong
-from pyrogram.types import CallbackQuery, Message
+from pyrogram.types import CallbackQuery, Message, InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton, ReplyKeyboardMarkup, ForceReply
+
 
 from megumin import megux
 
@@ -42,6 +43,22 @@ def pretty_size(size_bytes):
     p = math.pow(1024, i)
     s = round(size_bytes / p, 2)
     return "%s %s" % (s, size_name[i])
+
+
+def ikb(rows = []):
+    lines = []
+    for row in rows:
+        line = []
+        for button in row:
+            button = btn(*button) # InlineKeyboardButton
+            line.append(button)
+        lines.append(line)
+    return InlineKeyboardMarkup(inline_keyboard=lines)
+    #return {'inline_keyboard': lines}
+
+def btn(text, value, type = 'callback_data'):
+    return InlineKeyboardButton(text, **{type: value})
+    #return {'text': text, type: value}
 
 
 @megux.on_message(filters.command("ytdl", prefixes=["/","!"]))
