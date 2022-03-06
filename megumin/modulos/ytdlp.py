@@ -5,6 +5,7 @@ import tempfile
 import re
 import io
 
+from typing import Tuple, Callable
 from functools import wraps, partial
 from yt_dlp.utils import DownloadError
 from pyrogram import filters
