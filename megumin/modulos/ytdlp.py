@@ -2,6 +2,8 @@ import os
 import yt_dlp
 import shutil
 import tempfile
+import re
+import io
 
 from yt_dlp.utils import DownloadError
 from pyrogram import filters
