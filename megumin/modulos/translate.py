@@ -86,7 +86,7 @@ async def translate(c: megux, m: Message):
         )
 
 
-@Client.on_inline_query(filters.regex(r"^tr"))
+@megux.on_inline_query(filters.regex(r"^tr"))
 async def tr_inline(c: megux, q: InlineQuery):
     try:
         to_tr = q.query.split(None, 2)[2]
