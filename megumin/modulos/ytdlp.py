@@ -15,7 +15,6 @@ from yt_dlp.utils import DownloadError
 from pyrogram import filters
 from pyrogram.errors import BadRequest, Forbidden, MessageTooLong
 from pyrogram.types import CallbackQuery, Message
-from pyrogram.helpers import ikb
 
 from megumin import megux
 
