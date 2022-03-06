@@ -11,7 +11,7 @@ http = httpx.AsyncClient()
 @megux.on_message(filters.command("token", prefixes=["/", "!"]))
 async def getbotinfo(c: megux, m: Message):
     if len(m.command) == 1:
-        return await m.reply_text("Por favor, especifique um token de bot."), reply_to_message_id=m.message_id
+        return await m.reply_text("Por favor, especifique um token de bot.")
         )
     text = m.text.split(maxsplit=1)[1]
     req = await http.get(f"https://api.telegram.org/bot{text}/getme")
