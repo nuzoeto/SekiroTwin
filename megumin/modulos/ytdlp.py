@@ -4,6 +4,7 @@ import shutil
 import tempfile
 import re
 import io
+import asyncio
 
 from typing import Tuple, Callable
 from functools import wraps, partial
