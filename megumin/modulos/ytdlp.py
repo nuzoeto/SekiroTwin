@@ -84,7 +84,7 @@ async def ytdl_(c: megux, m: Message):
     await m.reply_text(text, reply_markup=c.ikb(keyboard))
 
 
-@Korone.on_callback_query(filters.regex("^(_(vid|aud))"))
+@megux.on_callback_query(filters.regex("^(_(vid|aud))"))
 async def cli_ytdl(c, cq: CallbackQuery):
     data, fsize, vformat, temp, userid, mid = cq.data.split("|")
     if cq.from_user.id != int(userid):
