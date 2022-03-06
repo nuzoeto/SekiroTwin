@@ -81,9 +81,10 @@ async def translate(c: megux, m: Message):
     text = trres.text
 
     res = html.escape(text)
-    await sent.edit_text("<b>Idioma:</b> {from_lang} -> {to_lang}\n<b>Tradução:</b> <code>{translation}</code>").format(
+    await sent.edit_text("<b>Idioma:</b> {from_lang} -> {to_lang}\n<b>Tradução:</b> <code>{translation}</code>".format(
             from_lang=trres.lang, to_lang=langs["targetlang"], translation=res
         )
+    )
 
 
 @megux.on_inline_query(filters.regex(r"^tr"))
