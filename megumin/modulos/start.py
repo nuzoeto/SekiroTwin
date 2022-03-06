@@ -516,8 +516,8 @@ Aqui está a ajuda para o módulo **Outros**:
         )
 
 
-   @megux.on_message(filters.new_chat_members)
-   async def thanks_for(c: megux, m: Message):
+    @megux.on_message(filters.new_chat_members)
+    async def thanks_for(c: megux, m: Message):
     if c.me.id in [x.id for x in m.new_chat_members]:
         await c.send_message(
             chat_id=m.chat.id,
