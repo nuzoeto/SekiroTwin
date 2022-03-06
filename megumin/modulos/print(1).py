@@ -1,9 +1,12 @@
+import httpx
+
 from httpx import HTTPError
 from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux
 
+http = httpx.AsyncClient()
 
 @megux.on_message(filters.command("print", prefixes=["/","!"]))
 async def prints(c: megux, message: Message):
