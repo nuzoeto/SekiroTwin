@@ -54,7 +54,7 @@ async def _mute_user(_, message: Message):
         await message.reply("Porque eu iria mutar meu desenvolvedor? Isso me parece uma idéia muito idiota.")
         return
     if is_admin(chat_id, user_id):
-        await message.reply("Porque eu iria mutar um administrador? Isso me parece uma idéia idiota.")
+        await message.reply("Porque eu iria mutar um(a) administrador(a)? Isso me parece uma idéia bem idiota.")
         return
     if not await check_bot_rights(chat_id, "can_restrict_members"):
         await message.reply("Eu não tenho as seguintes permissões: <b>Can restrict members</b>")
@@ -83,7 +83,7 @@ async def _tmute_user(_, message: Message):
     if replied:
         id_ = replied.from_user.id
         if cmd <= 6:
-            await message.reply("__Você deve especificar um tempo após o comando. Por exemplo:__ **/tmute 7d.**")
+            await message.reply("__Você deve especificar um tempo após o comando. Por exemplo:__ <b>/tmute 7d.</b>")
             return
         _, args = message.text.split(maxsplit=1)
     elif cmd > 6:
@@ -165,7 +165,7 @@ async def _unmute_user(_, message: Message):
         await message.reply("Eu não vou mutar!")
         return
     if is_admin(chat_id, user_id):
-        await message.reply("Este usuario é administrador, ele não precisa ser desmutado.")
+        await message.reply("Este usuario é administrador(a), ele não precisa ser desmutado(a).")
         return
     if not await check_bot_rights(chat_id, "can_restrict_members"):
         await message.reply("Eu não tenho as seguintes permissões: <b>Can restrict members</b>")
