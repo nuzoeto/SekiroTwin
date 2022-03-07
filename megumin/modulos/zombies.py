@@ -22,7 +22,7 @@ async def cleanup(c: megux, m: Message):
             if t.user.is_deleted:
                 try:
                     await c.kick_chat_member(m.chat.id, t.user.id)
-                    await sent.edit(f"Eu removi **{len(deleted)}** contas excluídas do grupo **{m.chat.title}**!")
+                    await sent.edit("Limpando...")
                     deleted.append(t)
                 except BadRequest:
                     pass
@@ -36,6 +36,6 @@ async def cleanup(c: megux, m: Message):
                 f"Eu removi **{len(deleted)}** contas excluídas do grupo **{m.chat.title}**!"
             )
         else:
-            await sent.edit_text("Não há contas excluídas no aqui!")
+            await sent.edit_text("Não há contas excluídas aqui!")
     else:
         await m.reply_text("Você não é um(a) administrador(a)")
