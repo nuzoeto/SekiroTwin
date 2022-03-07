@@ -22,7 +22,7 @@ async def cleanup(c: megux, m: Message):
             if t.user.is_deleted:
                 try:
                     await c.kick_chat_member(m.chat.id, t.user.id)
-                    await sent.edit("Limpando...")
+                    await sent.edit(f"Eu removi **{len(deleted)}** contas excluídas do grupo **{m.chat.title}**!")
                     deleted.append(t)
                 except BadRequest:
                     pass
