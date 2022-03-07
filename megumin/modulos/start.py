@@ -121,7 +121,7 @@ Todos os comandos podem ser usados com os seguintes caracteres: /  !
                 ],
                 [
                     InlineKeyboardButton("Notas", callback_data="notes_help_button"),
-                    InlineKeyboardButton("Purges", callback_data="purges_delete_button"), 
+                    InlineKeyboardButton("Purges", callback_data="purges_help_button"), 
                     InlineKeyboardButton("YouTube", callback_data="yt_help_button"),
                 ],
                 [
