@@ -1,0 +1,27 @@
+from pyrogram import filters
+from pyrogram.errors import Forbidden
+from pyrogram.types import Message
+
+
+@megux.on_message(filters.command("del", prefixes=["/", "!"]))
+async def del_message(c: megux, m: Message):
+    if m.chat.type != "private":
+        member = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
+
+    if m.chat.type == "private" or member.status in [
+        "administrator",
+        "creator",
+    ]:
+        try:
+            if m.reply_to_message:
+                await c.delete_messages(
+                    chat_id=m.chat.id,
+                    message_ids=[m.reply_to_message.message_id, m.message_id],
+                    revoke=True,
+                )
+        except Forbidden as e:
+            await m.reply_text(
+                f"<b>Error:</b> <code>{e}</code>  <b>report in</b> @DaviTudo."
+            )
+    else:
+        await m.reply_text("Você não é um administrador(a)...")
