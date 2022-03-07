@@ -385,60 +385,41 @@ Aqui está a ajuda para o módulo **GitHub**:
 **Admin:**
 
 • /ban  Bane a um usuário.
-
 • /unban Desbane a um usuário.
-
 • /kick Chute o usuário.
-
 • /mute Silencia o usuário.
-
 • /tmute ( tempo ) Silencia o usuário por um tempo determinado m/h/d.
-
 • /purge Limpa seu grupo.
-
-
-**Misc:**
+<b>Misc:</b>
 
 • /cota : Veja a cotação do Dólar, Euro, BTC
-
 • /cep : (cep) Busque um CEP
-
 • /ddd : Busque um DDD
-
 • /clima ou /weather  ( cidade ) Busque o clima para uma cidade.
-
 • /kickme Saia do grupo.
 
 **Android:**
 
 • /device : Busque um aparelho pelo codename.
-
 • /app : Busque um app da PlayStore. ( em breve )
 
 **Lastfm:**
 
 • /setuser : Defina seu username.
-
 • /lt ou /lastfm : Veja que musica você está scobblando.
-
 •/deluser ou /duser Apague seu username lastfm do meu banco de dados.
 
 **Anilist:**
 
 • /char ou /character Busque um Character.
-
 • /anime Busque um anime.
-
 • /manga Busque um mangá 
 
 **Memes:**
 
 • /runs Execute strings aleatórias.
-
 • /slap Bate no usuário.
-
 • /insults O bot insulta.
-
 • /bun finge que baniu o usuário.
 
 **GitHub:**
