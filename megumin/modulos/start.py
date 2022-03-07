@@ -121,13 +121,17 @@ Todos os comandos podem ser usados com os seguintes caracteres: /  !
                 ],
                 [
                     InlineKeyboardButton("Notas", callback_data="notes_help_button"),
-                    InlineKeyboardButton("Tradutor", callback_data="tr_help_button"),
+                    InlineKeyboardButton("Purges", callback_data="purges_delete_button"), 
                     InlineKeyboardButton("YouTube", callback_data="yt_help_button"),
                 ],
                 [
                     InlineKeyboardButton("Bans", callback_data="bans_help_button"),
                     InlineKeyboardButton("GitHub", callback_data="git_help_button"),
                     InlineKeyboardButton("Memes", callback_data="memes_help_button"),
+                ],
+                [
+                    InlineKeyboardButton("Tradutor", callback_data="tr_help_button"),
+                    InlineKeyboardButton("Stickers", callback_data="stickers_help_button"), 
                 ],
                 [
                     InlineKeyboardButton("↩ Voltar", callback_data="start_back"),
@@ -154,7 +158,7 @@ Todos os comandos podem ser usados com os seguintes caracteres: /  !
     @megux.on_callback_query(filters.regex(pattern=r"^admin_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
-Aqui está a ajuda para o módulo **Admin**:
+Aqui está a ajuda para o módulo <b>Admin</b>:
 
 **Todos usuarios:**
  • /admins - Lista todos administradores do chat
@@ -185,7 +189,7 @@ Aqui está a ajuda para o módulo **Admin**:
     @megux.on_callback_query(filters.regex(pattern=r"^anilist_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
-Aqui está a ajuda para o módulo **Anilist**:
+Aqui está a ajuda para o módulo <b>Anilist</b>:
 
 • /anime - Use este comando para obter informações sobre um anime específico usando nome do anime ou ID do anilist
 • /char ou /character - Use este comando para obter informações sobre algum personagem
@@ -210,10 +214,10 @@ Aqui está a ajuda para o módulo **Anilist**:
     @megux.on_callback_query(filters.regex(pattern=r"^android_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
-Aqui está a ajuda para o módulo **Android**:
+Aqui está a ajuda para o módulo <b>Android</b>:
 
 • /device ou /whatis ( codename ) Obtenha um dispositivo pelo codename.
-• /app < nome do app > - Use para pesquisar aplicativos na Google Play Store ( não disponível)
+• /app < nome do app > - Use para pesquisar aplicativos na Google Play Store ( não disponível )
 • /magisk - Obtenha a última versão do magisk ( não disponível )
 • /twrp < codename > - Busca o último TWRP disponível para um determinado codinome de dispositivo ( não disponível  )
 • /ofox < codename > - Busca a última versão do OrangeFox disponível para um determinado dispositivo ( não disponível )
@@ -236,7 +240,7 @@ Aqui está a ajuda para o módulo **Android**:
     @megux.on_callback_query(filters.regex(pattern=r"^last_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
-Aqui está a ajuda para o módulo LastFm:
+Aqui está a ajuda para o módulo <b>LastFm</b>:
 
 Antes de tudo você deve estar registrado no lastfm
 
@@ -282,7 +286,9 @@ Under development...
     @megux.on_callback_query(filters.regex(pattern=r"^tr_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
-Under development...
+Aqui está a ajuda para o módulo <b>Tradutor</b>
+
+• /tr (código de idioma) <b>Texto</b> ou mensagem respondida.
     """
         button = InlineKeyboardMarkup(
             [
@@ -390,6 +396,7 @@ Aqui está a ajuda para o módulo **GitHub**:
 • /mute Silencia o usuário.
 • /tmute ( tempo ) Silencia o usuário por um tempo determinado m/h/d.
 • /purge Limpa seu grupo.
+
 <b>Misc:</b>
 
 • /cota : Veja a cotação do Dólar, Euro, BTC
@@ -474,16 +481,56 @@ Aqui está a ajuda para o módulo **Memes**:
 Aqui está a ajuda para o módulo **Outros**:
 
 • /id Busca o ID de um usuário ou de um grupo.
-
 • /info ou /whois Obtem informações sobre um usuário.
-
 • /cota Mostra a cotação do Dólar, Euro, BTC, Peso Argentino, Ruplo Russo ETC...
-
 • /cep (cep)  Busque um CEP.
-
 • /ddd (ddd) Busque um DDD.
-
 • /clima ou /weather ( cidade ) Busque o clima para uma cidade.
+    """
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=info_text,
+            reply_markup=button,
+        )
+
+
+    @megux.on_callback_query(filters.regex(pattern=r"^purges_help_button$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        info_text = f"""
+Aqui está a ajuda para o módulo <b>Purges</b>:
+
+• /purge Exclui todas as mensagens desde a marcada até a última mensagem.
+• /del Exclui a mensagem que você respondeu. 
+    """
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=info_text,
+            reply_markup=button,
+        )
+
+
+    @megux.on_callback_query(filters.regex(pattern=r"^stickers_help_button$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        info_text = f"""
+Aqui está a ajuda para o módulo <b>Stickers</b>:
+
+• /getsticker Responda a um adesivo para eu enviar o PNG e as informações do sticker.
     """
         button = InlineKeyboardMarkup(
             [
