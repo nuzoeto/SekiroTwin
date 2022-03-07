@@ -2,6 +2,8 @@ from pyrogram import filters
 from pyrogram.errors import Forbidden
 from pyrogram.types import Message
 
+from megumin import megux 
+
 
 @megux.on_message(filters.command("del", prefixes=["/", "!"]))
 async def del_message(c: megux, m: Message):
