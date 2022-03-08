@@ -160,7 +160,7 @@ async def ytdl_(c: megux, m: Message):
     caption += "\n<b>Views:</b> <code>{:,}</code>".format(yt["view_count"])
     caption += "\n<b>Likes:</b> <code>{:,}</code>".format(yt["like_count"])
             await c.send_video(
-                chat_id=cq.message.chat.id,
+                chat_id=m.chat.id,
                 video=filename,
                 width=1920,
                 height=1080,
@@ -171,7 +171,7 @@ async def ytdl_(c: megux, m: Message):
             )
         except BadRequest as e:
             await c.send_message(
-                chat_id= m.chat.id,
+                chat_id=m.chat.id,
                 text=(
                     "Desculpe! Não consegui enviar o "
                     "vídeo por causa de um erro.\n"
