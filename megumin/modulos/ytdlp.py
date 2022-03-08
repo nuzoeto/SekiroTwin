@@ -108,18 +108,6 @@ async def ytdl_(c: megux, m: Message):
             vfsize = f["filesize"] or 0
             vformat = f["format_id"]
 
-    keyboard = [
-        [
-            (
-                "💿 Áudio",
-                f"_aud.{yt['id']}|{afsize}|{vformat}|{temp}|{user}|{m.message_id}",
-            ),
-            (
-                "🎬 Vídeo",
-                f"_vid.{yt['id']}|{vfsize}|{vformat}|{temp}|{user}|{m.message_id}",
-            ),
-        ]
-    ]
 
     if " - " in yt["title"]:
         performer, title = yt["title"].rsplit(" - ", 1)
@@ -127,31 +115,18 @@ async def ytdl_(c: megux, m: Message):
         performer = yt.get("creator") or yt.get("uploader")
         title = yt["title"]
 
-    text = f"🎧 <b>{performer}</b> - <i>{title}</i>\n"
-    text += f"💾 <code>{pretty_size(afsize)}</code> (áudio) / <code>{pretty_size(int(vfsize))}</code> (vídeo)\n"
-    text += f"⏳ <code>{datetime.timedelta(seconds=yt.get('duration'))}</code>"
-
-    await m.reply_text(text, reply_markup=keyboard)
-
-
-@megux.on_callback_query(filters.regex("^(_(vid|aud))"))
-async def cli_ytdl(c, cq: CallbackQuery):
     data, fsize, vformat, temp, userid, mid = cq.data.split("|")
     if cq.from_user.id != int(userid):
         return await cq.answer("Este botão não é para você!", cache_time=60)
-    if int(fsize) > 309715200:
-        return await cq.answer(
+    if int(fsize) > 709715200:
+        return await m.reply(
             (
                 "Desculpe! Não posso baixar esta mídia pois ela "
-                "ultrapassa o meu limite de 300MB de download."
-            ),
-            show_alert=True,
-            cache_time=60,
-        )
+                "ultrapassa o meu limite de 700MB de download."
+            )
     vid = re.sub(r"^\_(vid|aud)\.", "", data)
     url = "https://www.youtube.com/watch?v=" + vid
-    await cq.message.edit("Baixando...")
-    await cq.answer("Seu pedido é uma ordem... >-<", cache_time=0)
+    msg = await m.reply("Baixando...")
     with tempfile.TemporaryDirectory() as tempdir:
         path = os.path.join(tempdir, "ytdl")
     if "vid" in data:
@@ -174,9 +149,9 @@ async def cli_ytdl(c, cq: CallbackQuery):
     try:
         yt = await extract_info(ydl, url, download=True)
     except DownloadError as e:
-        await cq.message.edit(f"<b>Error!</b>\n<code>{e}</code>")
+        await msg.edit(f"<b>Error!</b>\n<code>{e}</code>")
         return
-    await cq.message.edit("Enviando...")
+    await msg.edit("Enviando...")
     filename = ydl.prepare_filename(yt)
     ttemp = f"⏰ {datetime.timedelta(seconds=int(temp))} | " if int(temp) else ""
     thumb = io.BytesIO((await http.get(yt["thumbnail"])).content)
@@ -184,9 +159,6 @@ async def cli_ytdl(c, cq: CallbackQuery):
     caption = f"{ttemp} <a href='{yt['webpage_url']}'>{yt['title']}</a></b>"
     caption += "\n<b>Views:</b> <code>{:,}</code>".format(yt["view_count"])
     caption += "\n<b>Likes:</b> <code>{:,}</code>".format(yt["like_count"])
-    if "vid" in data:
-        try:
-            await c.send_chat_action(cq.message.chat.id, "upload_video")
             await c.send_video(
                 chat_id=cq.message.chat.id,
                 video=filename,
@@ -199,7 +171,7 @@ async def cli_ytdl(c, cq: CallbackQuery):
             )
         except BadRequest as e:
             await c.send_message(
-                chat_id=cq.message.chat.id,
+                chat_id= m.chat.id,
                 text=(
                     "Desculpe! Não consegui enviar o "
                     "vídeo por causa de um erro.\n"
@@ -210,30 +182,6 @@ async def cli_ytdl(c, cq: CallbackQuery):
     else:
         if " - " in yt["title"]:
             performer, title = yt["title"].rsplit(" - ", 1)
-        else:
-            performer = yt.get("creator") or yt.get("uploader")
-            title = yt["title"]
-        try:
-            await c.send_chat_action(cq.message.chat.id, "upload_audio")
-            await c.send_audio(
-                chat_id=cq.message.chat.id,
-                audio=filename,
-                caption=caption,
-                title=title,
-                performer=performer,
-                duration=yt["duration"],
-                thumb=thumb,
-                reply_to_message_id=int(mid),
-            )
-        except BadRequest as e:
-            await c.send_message(
-                chat_id=cq.message.chat.id,
-                text=(
-                    "Desculpe! Não consegui enviar o "
-                    "vídeo por causa de um erro.\n"
-                    f"<b>Erro:</b> <code>{e}</code>"
-                ),
-                reply_to_message_id=int(mid),
-            )
-    await cq.message.delete()
+        
+    await msg.delete()
     shutil.rmtree(tempdir, ignore_errors=True)
