@@ -10,7 +10,7 @@ from pyrogram.types import Message
 
 from megumin import megux
 
-http = https.AsyncClient()
+http = httpx.AsyncClient()
 @megux.on_message(filters.command("pypi", prefixes=["/", "!"]))
 async def pypi(c: megux, m: Message):
     text = m.text.split(maxsplit=1)[1]
