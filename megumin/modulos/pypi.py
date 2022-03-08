@@ -12,7 +12,7 @@ from megumin import megux
 
 
 @megux.on_message(filters.command("pypi", prefixes=["/", "!"]))
-async def pypi(c: Korone, m: Message):
+async def pypi(c: megux, m: Message):
     text = m.matches[0]["search"]
     r = await http.get(f"https://pypi.org/pypi/{text}/json")
     if r.status_code == 200:
