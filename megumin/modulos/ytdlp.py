@@ -124,7 +124,6 @@ async def ytdl_(c: megux, m: Message):
                 "Desculpe! Não posso baixar esta mídia pois ela "
                 "ultrapassa o meu limite de 700MB de download."
             )
-    vid = re.sub(r"^\_(vid|aud)\.", "", data)
     url = "https://www.youtube.com/watch?v=" + vid
     msg = await m.reply("Baixando...")
     with tempfile.TemporaryDirectory() as tempdir:
