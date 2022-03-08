@@ -71,8 +71,6 @@ async def song(client: megux, message: Message):
     result = search_music(music)
     if result is None:
         return await msg.edit("`Não foi possível encontrar a música.`")
-    if int(fsize) > 800000000:
-        return await msg.edit("Descupe, esse vídeo é muito longo, e ultrapassa 800MB.")
     link = get_link(result)
     duration, dur = get_duration(result)
     filename, m = get_filename(result)
