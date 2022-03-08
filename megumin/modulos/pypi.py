@@ -10,10 +10,10 @@ from pyrogram.types import Message
 
 from megumin import megux
 
-
+http = https.AsyncClient()
 @megux.on_message(filters.command("pypi", prefixes=["/", "!"]))
 async def pypi(c: megux, m: Message):
-    text = m.matches[0]["search"]
+    text = m.text.split(maxsplit=1)[1]
     r = await http.get(f"https://pypi.org/pypi/{text}/json")
     if r.status_code == 200:
         json = r.json()
