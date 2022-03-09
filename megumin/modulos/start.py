@@ -396,6 +396,8 @@ Aqui está a ajuda para o módulo **GitHub**:
 • /mute Silencia o usuário.
 • /tmute ( tempo ) Silencia o usuário por um tempo determinado m/h/d.
 • /purge Limpa seu grupo.
+• /del Deleta a mensagem que você respondeu.
+• /zombies Bane contas excluídas do grupo 
 
 <b>Misc:</b>
 
