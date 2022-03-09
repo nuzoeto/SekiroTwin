@@ -45,7 +45,7 @@ async def help(client, message):
                 InlineKeyboardButton("Android", callback_data="help_andr"),
             ],
             [
-                InlineKeyboardButton("Fun", callback_data="help_fun"),
+                InlineKeyboardButton("Outros", callback_data="help_misc"),
                 InlineKeyboardButton("Geral", callback_data="help_geral"),
                 InlineKeyboardButton("Lastfm", callback_data="help_last"),
             ],
@@ -195,16 +195,36 @@ Antes de tudo você deve estar registrado no lastfm
 H_ADM = """
 Aqui está a ajuda para o módulo **Admin**:
 
-**Todos usuarios:**
+Todos usuarios:
  • /admins - Lista todos administradores do chat
 
-**Apenas admin:**
+Apenas admin:
  • /pin - Fixa a mensagem respondida
  • /unpin - Desfixa a mensagem atualmente fixada
  • /promote < username/reply msg > - promove um usuario a administrador do chat
  • /demote < username/reply msg > - remove os privilégios de administrador do usuario
  • /title < titulo aqui >: define uma custom tag de administrador de um usuario promovido pelo WhiterKang (ainda não disponível)
- • /zombies - Procura e limpa contas excluidas no chat (ainda não disponível)
+ • /zombies - Procura e limpa contas excluidas no chat
+"""
+
+
+@megux.on_callback_query(filters.regex(pattern=r"^help_admin$"))
+async def help_admin(client: megux, cb: CallbackQuery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=H_MISC, reply_markup=button)
+
+
+H_MISC = """
+Aqui está a ajuda para o módulo Outros:
+
+• /id Busca o ID de um usuário ou de um grupo.
+• /info ou /whois Obtem informações sobre um usuário.
+• /cota Mostra a cotação do Dólar, Euro, BTC, Peso Argentino, Ruplo Russo ETC...
+• /cep (cep)  Busque um CEP.
+• /ddd (ddd) Busque um DDD.
+• /clima ou /weather ( cidade ) Busque o clima para uma cidade.
 """
 
 
