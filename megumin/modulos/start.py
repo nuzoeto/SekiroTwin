@@ -398,42 +398,26 @@ Aqui está a ajuda para o módulo **GitHub**:
 • /purge Limpa seu grupo.
 • /del Deleta a mensagem que você respondeu.
 • /zombies Bane contas excluídas do grupo 
-
-<b>Misc:</b>
-
 • /cota : Veja a cotação do Dólar, Euro, BTC
 • /cep : (cep) Busque um CEP
 • /ddd : Busque um DDD
 • /clima ou /weather  ( cidade ) Busque o clima para uma cidade.
 • /kickme Saia do grupo.
-
-**Android:**
-
 • /device : Busque um aparelho pelo codename.
 • /app : Busque um app da PlayStore. ( em breve )
-
-**Lastfm:**
-
 • /setuser : Defina seu username.
 • /lt ou /lastfm : Veja que musica você está scobblando.
 •/deluser ou /duser Apague seu username lastfm do meu banco de dados.
-
-**Anilist:**
-
 • /char ou /character Busque um Character.
 • /anime Busque um anime.
 • /manga Busque um mangá 
-
-**Memes:**
-
 • /runs Execute strings aleatórias.
 • /slap Bate no usuário.
 • /insults O bot insulta.
 • /bun finge que baniu o usuário.
-
-**GitHub:**
-
 • /github Retorna informações sobre um usuário ou organização do GitHub.
+• /tr (código de idioma) <b>Texto<b> ou mensagem respondida.
+• /getsticker Responda a um adesivo para eu enviar o PNG e as informações do sticker.
     """
         button = InlineKeyboardMarkup(
             [
