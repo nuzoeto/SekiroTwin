@@ -535,10 +535,4 @@ Aqui está a ajuda para o módulo <b>Stickers</b>:
 
     @megux.on_message(filters.new_chat_members, filters.user(5059188795))
     async def thanks_for(c: megux, m: Message):
-           await c.send_message(
-               chat_id=m.chat.id,
-               text=(
-                   "Olá pessoal! Obrigado por me adicionar a esse grupo."
-               ),
-               disable_notification=True,
-           )
+           await m.reply("Olá pessoal! Obrigado por me adicionar a esse grupo.")
