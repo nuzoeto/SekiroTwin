@@ -329,4 +329,5 @@ Aqui está a ajuda para o módulo **Memes**:
 • /slap Dá um tapa no usuário.
 • /insults Insulta alguém com um insulto aleatório de minhas strings.
 • /runs Responde uma sequência aleatória de minhas strings.
+• /bird Envia a foto de um pássaro 
 """
