@@ -1,5 +1,7 @@
 
 import time
+import psutil
+import humanize
 
 from pyrogram import filters
 from pyrogram.types import (
@@ -34,6 +36,9 @@ Aqui está a ajuda para o módulo **Admin**:
  • /zombies - Procura e limpa contas excluidas no chat (ainda não disponível)
 """
 
+sm = psutil.swap_memory()
+
+
 @megux.on_message(filters.command("start", prefixes=["/", "!"]))
 async def start_(_, message: Message):
     if message.chat.type == "private":
@@ -67,6 +72,7 @@ async def start_(_, message: Message):
 ╔════「 Sobre  WhiterKang 」
 ╠ Versão : `{version.__megumin_version__}`
 ╠ Uptime : `{time_formatter(time.time() - START_TIME)}`
+╠ Cpu : `{psutil.cpu_percent(interval=1)}%`
 ╠ Python : `{version.__python_version__}`
 ╠ Pyrogram : `{version.__pyro_version__}`
 ╚═╗
