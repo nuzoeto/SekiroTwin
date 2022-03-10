@@ -535,7 +535,8 @@ Aqui está a ajuda para o módulo <b>Stickers</b>:
 
     @megux.on_message(filters.new_chat_members)
     async def thanks_for(c: megux, m: Message):
-       if bot.id in [z.id for z in m.new_chat_members]:
+       bot_id = 5059188795
+       if bot_id in [z.id for z in m.new_chat_members]:
            await c.send_message(
                chat_id=m.chat.id,
                text=(
