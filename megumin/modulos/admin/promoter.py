@@ -112,3 +112,32 @@ async def _demote_user(_, message: Message):
         await sent.edit("**Rebaixado!**")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
+
+
+@megux.on_message(filters.command("title", prefixes=["/", "!"]))
+async def _promote_user(_, message: Message):
+    chat_id = message.chat.id
+    if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
+        await message.reply("Você não tem as seguintes permissões: **Change can promote members**")
+        return
+    replied = message.reply_to_message
+    args = message.text.split(maxsplit=1)[1]
+    if replied:
+        id_ = replied.from_user.id
+    elif len(message.text) > 8:
+        _, id_ = message.text.split(maxsplit=1)
+    else:
+        await message.reply("`Nenhum User_id válido ou mensagem especificada.`")
+        return
+    try:
+        user_id = (await megux.get_users(id_)).id
+    except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
+        await message.reply(
+            "`User_id ou nome de usuário inválido, tente novamente com informações válidas ⚠`"
+        )
+    if not await check_bot_rights(chat_id, "can_promote_members"):
+        await message.reply("Eu não tenho as seguintes permissões: **Change can promote members**")
+        await sed_sticker(message)
+        return
+    try:
+        await megux.set_administrator_title(chat_id, user_id, args)
