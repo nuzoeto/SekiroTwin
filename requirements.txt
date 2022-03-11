@@ -31,7 +31,6 @@ python-dotenv==0.19.0
 pymongo
 pytube
 python-rapidjson
-plataform
 requests==2.26.0
 rfc3986==1.5.0
 sniffio==1.2.0
