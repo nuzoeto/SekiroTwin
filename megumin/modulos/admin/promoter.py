@@ -25,7 +25,7 @@ async def _promote_user(_, message: Message):
         await message.reply("Você não tem as seguintes permissões: **Change can promote members**")
         return
     replied = message.reply_to_message
-    args = len(message.text)
+    args = text.split(maxsplit=1)[1]
     if replied:
         id_ = replied.from_user.id
     elif len(message.text) > 8:
@@ -62,6 +62,7 @@ async def _promote_user(_, message: Message):
         )
         if args:
             await asyncio.sleep(2)
+        await megux.set_administrator_title(chat_id, user_id, args
         await sent.edit("**Promovido(a)!**")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
