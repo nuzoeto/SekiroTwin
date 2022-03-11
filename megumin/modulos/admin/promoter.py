@@ -25,7 +25,7 @@ async def _promote_user(_, message: Message):
         await message.reply("Você não tem as seguintes permissões: **Change can promote members**")
         return
     replied = message.reply_to_message
-    args = text.split(maxsplit=1)[1]
+    args = message.text.split(maxsplit=1)[1]
     if replied:
         id_ = replied.from_user.id
     elif len(message.text) > 8:
