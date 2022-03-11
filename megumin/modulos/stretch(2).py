@@ -12,7 +12,7 @@ from megumin import megux
 @megux.on_message(filters.command("stretch"))
 async def vapor(c: megux, m: Message):
     text = m.text.split(maxsplit=1)[1]
-        if not text and m.reply_to_message:
+            if not text and m.reply_to_message:
             if (m.reply_to_message.text or m.reply_to_message.caption) is not None:
                 text = m.reply_to_message.text or m.reply_to_message.caption
             else:
