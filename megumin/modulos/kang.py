@@ -213,6 +213,7 @@ async def kang_sticker(c: megux, m: Message):
                             [
                                 InlineKeyboardButton(
                                     "/start", url=f"https://t.me/whiterkangbot?start"
+                                )
                             ]
                         ]
                     )
@@ -228,6 +229,7 @@ async def kang_sticker(c: megux, m: Message):
                     )
                 ]
             ]
+        )
         kanged_success_msg = "Sticker roubado <b>com sucesso</b> ao pacote\nEmoji: {sticker_emoji}"
         await prog_msg.edit_text(
             kanged_success_msg.format(sticker_emoji=sticker_emoji), reply_markup=markup
