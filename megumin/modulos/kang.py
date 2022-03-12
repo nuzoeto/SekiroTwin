@@ -41,7 +41,7 @@ from megumin import megux
 http = httpx.AsyncClient()
 
 @megux.on_message(filters.command(["kang"]))
-async def kang_sticker(c: Client, m: Message, strings):
+async def kang_sticker(c: megux, m: Message):
     prog_msg = await m.reply_text("kanging_sticker_msg")
     bot_username = "@WhiterKangBOT"
     sticker_emoji = "🤔"
@@ -70,7 +70,7 @@ async def kang_sticker(c: Client, m: Message, strings):
             if not reply.sticker.file_name.endswith(".tgs"):
                 resize = True
         else:
-            return await prog_msg.edit_text("invalid_media_string"))
+            return await prog_msg.edit_text("invalid_media_string")
         pack_prefix = "anim" if animated else "a"
         packname = f"{pack_prefix}_{m.from_user.id}_by_{bot_username}"
 
@@ -216,7 +216,6 @@ async def kang_sticker(c: Client, m: Message, strings):
                                 )
                             ]
                         ]
-                    )
     except Exception as all_e:
         await prog_msg.edit_text(f"{all_e.__class__.__name__} : {all_e}")
     else:
