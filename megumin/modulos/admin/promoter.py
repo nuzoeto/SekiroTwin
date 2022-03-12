@@ -59,14 +59,13 @@ async def _promote_user(_, message: Message):
             can_restrict_members=True,
             can_invite_users=True,
             can_pin_messages=True,
-        )
+        ) 
         if not args:
             await asyncio.sleep(2)
-        await sent.edit("<b>Promovido(a)!</b>")
+        await sent.edit("**Promovido(a)!**")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
-        return 
-        else:
+        elif args:
             await asyncio.sleep(2)
         await megux.set_administrator_title(chat_id, user_id, args)
         await sent.edit("<b>Promovido(a)!</b>")
