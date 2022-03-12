@@ -207,7 +207,7 @@ async def kang_sticker(c: megux, m: Message):
                 )
             except PeerIdInvalid:
                 return await prog_msg.edit_text(
-                    ("Ops, parece que eu não tenho permissões suficientes para criar um pacote de sticker para você!\n<b>Por favor, inicie o bot primeiro.</b>"),
+                    ("Ops, parece que eu não tenho permissões suficientes para criar um pacote de sticker para você!\n<b>Por favor, inicie o bot primeiro.</b>",
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
@@ -216,6 +216,7 @@ async def kang_sticker(c: megux, m: Message):
                                 )
                             ]
                         ]
+                    )
     except Exception as all_e:
         await prog_msg.edit_text(f"{all_e.__class__.__name__} : {all_e}")
     else:
@@ -228,7 +229,7 @@ async def kang_sticker(c: megux, m: Message):
                     )
                 ]
             ]
-        kanged_success_msg = ("Sticker roubado <b>com sucesso</b> ao pacote\nEmoji: {sticker_emoji}")
+        kanged_success_msg = "Sticker roubado <b>com sucesso</b> ao pacote\nEmoji: {sticker_emoji}"
         await prog_msg.edit_text(
             kanged_success_msg.format(sticker_emoji=sticker_emoji), reply_markup=markup
         )
