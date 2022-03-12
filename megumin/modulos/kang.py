@@ -207,13 +207,12 @@ async def kang_sticker(c: megux, m: Message):
                 )
             except PeerIdInvalid:
                 return await prog_msg.edit_text(
-                    ("Ops, parece que eu não tenho permissões suficientes para criar um pacote de sticker para você!\n<b>Por favor, inicie o bot primeiro.</b>",
+                    ("Ops, parece que eu não tenho permissões suficientes para criar um pacote de sticker para você!\n<b>Por favor, inicie o bot primeiro.</b>"),
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
                                 InlineKeyboardButton(
-                                    "/start", url=f"https://t.me/{bot_username}?start"
-                                )
+                                    "/start", url=f"https://t.me/whiterkangbot?start"
                             ]
                         ]
                     )
