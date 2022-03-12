@@ -83,6 +83,7 @@ async def song(client: megux, message: Message):
         time.sleep(2)
         await msg.delete()
     else:
+        await msg.edit("📦 __Enviando...__")
         if os.path.exists(f"./megumin/xcache/{thumb}"):
             caption = f"""
 **Título:** __[{result[0]['title']}]({link})__
