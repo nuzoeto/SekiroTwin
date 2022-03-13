@@ -68,9 +68,12 @@ async def song(client: megux, message: Message):
     if not music:
         return await message.reply("`Vou baixar o vento?!`")
     msg = await message.reply("📦 __Baixando...__")
+    duraction = result[0]["duration"]
     result = search_music(music)
     if result is None:
         return await msg.edit("`Não foi possível encontrar a música.`")
+    elif int(duraction) > 3609
+        return await msg.edit("Essa música é muito longa, a duração máxima é de 1 hora")
     link = get_link(result)
     duration, dur = get_duration(result)
     filename, m = get_filename(result)
