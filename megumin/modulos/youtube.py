@@ -41,6 +41,10 @@ def get_duration(result):
     return duration, dur
 
 
+def duraction(result):
+    duracion = result[0]["duration"]
+
+
 def get_thumb(result):
     thumbnail = result[0]["thumbnails"][0]["url"]
     title = str(result[0]["title"]).replace("/", "")
@@ -68,11 +72,10 @@ async def song(client: megux, message: Message):
     if not music:
         return await message.reply("`Vou baixar o vento?!`")
     msg = await message.reply("📦 __Baixando...__")
-    duraction = result[0]["duration"]
     result = search_music(music)
     if result is None:
         return await msg.edit("`Não foi possível encontrar a música.`")
-    elif int(duraction) > 3609:
+    elif int(duracion) > 3609:
         return await msg.edit("Essa música é muito longa, a duração máxima é de 1 hora")
     link = get_link(result)
     duration, dur = get_duration(result)
