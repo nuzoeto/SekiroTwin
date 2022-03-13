@@ -72,7 +72,7 @@ async def song(client: megux, message: Message):
     result = search_music(music)
     if result is None:
         return await msg.edit("`Não foi possível encontrar a música.`")
-    elif int(duraction) > 3609
+    elif int(duraction) > 3609:
         return await msg.edit("Essa música é muito longa, a duração máxima é de 1 hora")
     link = get_link(result)
     duration, dur = get_duration(result)
