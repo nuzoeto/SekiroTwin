@@ -24,7 +24,7 @@ from megumin.utils import (
 async def _ban_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
-        await message.reply("Você não tem as seguintes permissões: **Can restrict members**")
+        await message.reply("Você não tem direitos administrativos suficientes para banir/desbanir usuários!")
         return
     cmd = len(message.text)
     replied = message.reply_to_message
@@ -61,7 +61,7 @@ async def _ban_user(_, message: Message):
         await message.reply("Porque eu iria banir um administrador? Isso me parece uma idéia idiota.")
         return
     if not await check_bot_rights(chat_id, "can_restrict_members"):
-        await message.reply("Eu não sou um administrador, **Por favor me promova como um administrador!**")
+        await message.reply("Não posso restringir as pessoas aqui! Certifique-se de que sou administrador e de que posso adicionar novos administradores.")
         await sed_sticker(message)
         return
     sent = await message.reply("`Banindo usuário...`")
