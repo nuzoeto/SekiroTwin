@@ -76,7 +76,7 @@ async def _ban_user(_, message: Message):
 async def _unban_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
-        await message.reply("`Você não tem as seguintes permissões: **Can restrict members**")
+        await message.reply("Você não tem direitos administrativos suficientes para banir/desbanir usuários!")
         return
     replied = message.reply_to_message
     if replied:
@@ -148,7 +148,7 @@ async def _kick_user(_, message: Message):
         await message.reply("Porque eu iria banir meu desenvolvedor? Isso me parece uma idéia muito idiota.")
         return
     if is_admin(chat_id, user_id):
-        await message.reply("Porque eu iria kickar um administrador? Isso me parece uma idéia idiota.")
+        await message.reply("Porque eu iria kickar um(a) administrador(a)? Isso me parece uma idéia bem idiota.")
         return
     if not await check_bot_rights(chat_id, "can_restrict_members"):
         await message.reply("Eu não sou um administrador, **Por favor me promova como um administrador!**")
