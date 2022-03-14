@@ -69,7 +69,7 @@ async def song(client: megux, message: Message):
     if not music:
         return await message.reply("`Vou baixar o vento?!`")
     if user_id in Config.BLACK_LIST:
-        return
+        return await message.reply("Você não pode me usar devido ao seu id estar na blacklist.\n\n<b>Seu ID é</b>: {user_id}.")
     msg = await message.reply("📦 __Baixando...__")
     result = search_music(music)
     if result is None:
@@ -115,8 +115,11 @@ async def song(client: megux, message: Message):
 @megux.on_message(filters.command(["video"], prefixes=["/", "!"]))
 async def video_(client: megux, message: Message):
     video = " ".join(message.text.split()[1:])
+    user_id = message.from_user.id
     if not video:
         return await message.reply("`Vou baixar o vento?!`")
+    if user_id in Config.BLACK_LIST:
+        return await message.reply("Você não pode me usar devido ao seu id estar na blacklist.\n\n<b>Seu ID é</b>: {user_id}.")
     msg = await message.reply("📦 __Baixando...__")
     result = search_video(video)
     if result is None:
