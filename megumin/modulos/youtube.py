@@ -8,7 +8,7 @@ from youtubesearchpython import Search, SearchVideos
 
 from pyrogram.types import Message
 from pyrogram import filters
-from megumin import megux
+from megumin import megux, BLACK_LIST
 
 
 def search_music(query):
@@ -67,6 +67,8 @@ async def song(client: megux, message: Message):
     music = " ".join(message.text.split()[1:])
     if not music:
         return await message.reply("`Vou baixar o vento?!`")
+    if user_id in Config.BLACK_LIST:
+        return
     msg = await message.reply("📦 __Baixando...__")
     result = search_music(music)
     if result is None:
