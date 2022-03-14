@@ -26,4 +26,7 @@ class Config:
     EDIT_SLEEP_TIMEOUT = 10
     DOWN_PATH = "downloads/"
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY")
+    BLACK_LIST = (
+      2053588077,
+)
 
