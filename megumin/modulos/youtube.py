@@ -8,7 +8,7 @@ from youtubesearchpython import Search, SearchVideos
 
 from pyrogram.types import Message
 from pyrogram import filters
-from megumin import megux, BLACK_LIST
+from megumin import megux, Config
 
 
 def search_music(query):
@@ -65,6 +65,7 @@ def down_video(link, filename):
 @megux.on_message(filters.command(["song", "music"], prefixes=["/", "!"]))
 async def song(client: megux, message: Message):
     music = " ".join(message.text.split()[1:])
+    user_id = message.from_user.id
     if not music:
         return await message.reply("`Vou baixar o vento?!`")
     if user_id in Config.BLACK_LIST:
