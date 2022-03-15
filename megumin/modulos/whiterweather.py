@@ -25,7 +25,7 @@ async def weather(c: megux, m: Message):
             "<b>Uso:</b> <code>/clima localização ou cidade</code> - Obtém informações sobre o clima na <i>localização ou cidade</i>."
         )
     if user_id in Config.BLACK_LIST:
-        return await message.reply("Você não pode me usar devido ao seu id estar na blacklist.\n\n<b>Seu ID é</b>: {user_id}.")
+        return await message.reply(f"Você não pode me usar devido ao seu id estar na blacklist.\n\n<b>Seu ID é</b>: {user_id}.")
 
     r = await http.get(
         get_coords,
