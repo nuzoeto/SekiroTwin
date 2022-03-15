@@ -92,6 +92,7 @@ async def song(client: megux, message: Message):
 **Título:** __[{result[0]['title']}]({link})__
 **Duração:** __{duration}__
 **Views:** __{result[0]['viewCount']["text"]}__
+**Canal:** __{result[0]['channel']}__
 """
             try:
                 await msg.reply_audio(
@@ -136,7 +137,7 @@ async def video_(client: megux, message: Message):
         print(str(e))
     else:
         await msg.edit("📦 __Enviando...__")
-        caption = f"**Título ➠** __[{result[0]['title']}]({link})__\n**Duração ➠** __{duration}__\n**Canal ➠** __{result[0]['channel']}__"
+        caption = f"**Título ➠** __[{result[0]['title']}]({link})__\n**Duração ➠** __{duration}__\n**Views ➠** __{result[0]['viewCount']["text"]}__\n**Canal ➠** __{result[0]['channel']}__"
         try:
             await msg.reply_video(
                 video=f"./megumin/xcache/{filename}",
