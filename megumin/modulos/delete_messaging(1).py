@@ -23,7 +23,7 @@ async def del_message(c: megux, m: Message):
                 )
         except Forbidden as e:
             await m.reply_text(
-                f"<b>Error:</b> <code>{e}</code>  <b>report in</b> @DaviTudo."
+                "Não é possível excluir essa mensagem. Essa mensagem podem ser muito antiga, talvez eu não tenha direitos de exclusão ou isso pode não ser um supergrupo."
             )
     else:
         await m.reply_text("Você não é um administrador(a)...")
