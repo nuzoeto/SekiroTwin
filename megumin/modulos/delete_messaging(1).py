@@ -23,7 +23,7 @@ async def del_message(c: megux, m: Message):
                 )
         except Forbidden as e:
             await m.reply_text(
-                f"<b>Error:</b> <code>{e}</code> <b>Report in @DaviTudo."
+                f"<b>Error:</b> <code>{e}</code>, <b>Report in @DaviTudo."
             )
     else:
         await m.reply_text("Você não é um administrador(a)...")
