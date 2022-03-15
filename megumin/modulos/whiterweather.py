@@ -2,7 +2,7 @@ import httpx
 from pyrogram import filters
 from pyrogram.types import Message
 
-from megumin import megux
+from megumin import megux, Config
 
 weather_apikey = "8de2d8b3a93542c9a2d8b3a935a2c909"
 
@@ -19,10 +19,13 @@ headers = {
 
 @megux.on_message(filters.command(["weather", "clima"], prefixes=["/", "!"]))
 async def weather(c: megux, m: Message):
+    user_id = m.from_user.id
     if len(m.command) == 1:
         return await m.reply_text(
             "<b>Uso:</b> <code>/clima localização ou cidade</code> - Obtém informações sobre o clima na <i>localização ou cidade</i>."
         )
+    if user_id in Config.BLACK_LIST:
+        return await message.reply("Você não pode me usar devido ao seu id estar na blacklist.\n\n<b>Seu ID é</b>: {user_id}.")
 
     r = await http.get(
         get_coords,
