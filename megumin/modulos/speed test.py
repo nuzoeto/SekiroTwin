@@ -1,6 +1,7 @@
 import speedtest
 import os
 import wget
+import sys
 
 from pyrogram import filters
 from pyrogram.types import Message
@@ -14,6 +15,8 @@ async def test_speed(c: megux, m: Message):
     s = speedtest.Speedtest()
     bs = s.get_best_server()
     result = s.results.dict()
+    share = test.results.share()
+    path = wget.download(result["share"])
     await sent.edit_text(
         string.format(
             host=bs["sponsor"], ping=int(bs["latency"]), download="", upload="", isp=result["client"]["isp"], name=result["server"]["name"], country=result["server"]["country"]
