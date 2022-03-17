@@ -12,7 +12,7 @@ from megumin import megux
 async def test_speed(c: megux, m: Message):
     running = await m.reply("`Rodando speedtest...`") 
     string = "<b>Teste de velocidade</b>\n\n<b>🌀 Nome:</b> `{name}`\n<b>🏁 País:</b> `{country}`\n<b>💻 ISP:</b> `{isp}`\n<b>🌐 Host:</b> <code>{host}</code>\n\n<b>🏓 Latência:</b> <code>{ping} ms</code>\n<b>⬇️ Download:</b> <code>{download} Mbps</code>\n<b>⬆️ Upload:</b> <code>{upload} Mbps</code>"
-    sent = await m.reply(string.format(host="", ping="", download="", upload="", isp="", name="", country=""))
+    sent = string.format(host="", ping="", download="", upload="", isp="", name="", country="")
     test = speedtest.Speedtest()
     bs = test.get_best_server()
     test.download()
