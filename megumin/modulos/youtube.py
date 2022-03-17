@@ -83,7 +83,7 @@ async def song(client: megux, message: Message):
     duration, dur = get_duration(result)
     filename, m = get_filename(result)
     thumb = get_thumb(result)
-    if duracion > 3609:
+    if int(duracion) > 3609:
         return await msg.edit("__Esse video é muito longo e ultrapassa o tempo de 1 hora.__")
     try:
         down_song(link, filename)
