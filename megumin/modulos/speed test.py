@@ -18,6 +18,6 @@ async def test_speed(c: megux, m: Message):
     result = test.results.dict()  
     path = wget.download(result["share"]) 
     response = await m.reply_photo(
-        photo=path, caption=f"🌀 <b>Nome:</b> <code>{result["server"]["name"]}</code>\n🌐 <b>Sponsor:</b> <code>{bs["sponsor"]}</code>\n🏁 <b>País:</b> <code>{result["server"]["country"]}</code>\n\n<b>SpeedTest Results:</b>\n🏓 <b>Latência:</b> <code>{int(bs["latency"])} ms</code>\n🔽 <b>Download:</b> <code>{dl} Mbps</code>\n🔼 <b>Upload:</b> <code>{up} Mbps</code>\n🖥  <b>ISP:</b> <code>{result ["client"]["isp"]}</code>"
+        photo=path, caption=f"🌀 <b>Nome:</b> <code>{result["server"]["name"]}</code>\n🌐 <b>Sponsor:</b> <code>{bs["sponsor"]}</code>\n🏁 <b>País:</b> <code>{result["server"]["country"]}</code>\n\n<b>SpeedTest Results:</b>\n🏓 <b>Latência:</b> <code>{int(bs["latency"])} ms</code>\n🔽 <b>Download:</b> <code>{dl} Mbps</code>\n🔼 <b>Upload:</b> <code>{up} Mbps</code>\n🖥  <b>ISP:</b> <code>{result["client"]["isp"]}</code>"
     )
     
