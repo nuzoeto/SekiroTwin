@@ -15,7 +15,7 @@ async def test_speed(c: megux, m: Message):
     bs = test.get_best_server()
     dl = round(test.download() / 1024 / 1024, 2)
     ul = round(test.upload() / 1024 / 1024, 2)
-    test.results.share()
+    
     result = test.results.dict()
     name = result["server"]["name"]
     host = bs["sponsor"]
