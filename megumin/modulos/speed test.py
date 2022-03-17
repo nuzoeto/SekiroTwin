@@ -31,7 +31,7 @@ async def test_speed(c: megux, m: Message):
 
 @megux.on_message(filters.command("speed"))
 async def test_speed(c: megux, m: Message):
-    running = await m.reply("`Processando...`)
+    running = await m.reply("`Processando...`")
     test = speedtest.Speedtest()
     bs = test.get_best_server()
     dl = round(test.download() / 1024 / 1024, 2)
