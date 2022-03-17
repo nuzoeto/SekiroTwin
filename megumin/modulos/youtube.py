@@ -41,6 +41,10 @@ def get_duration(result):
     return duration, dur
 
 
+def durate(result):
+    duraction = result[0]["duration"]
+
+
 def get_thumb(result):
     thumbnail = result[0]["thumbnails"][0]["url"]
     title = str(result[0]["title"]).replace("/", "")
@@ -75,9 +79,12 @@ async def song(client: megux, message: Message):
     if result is None:
         return await msg.edit("`Não foi possível encontrar a música.`")
     link = get_link(result)
+    duracion = durate(result) 
     duration, dur = get_duration(result)
     filename, m = get_filename(result)
     thumb = get_thumb(result)
+    if duracion in Config.DURACION_YT:
+        return await msg.edit("__Esse video é muito longo e ultrapassa o tempo de 1 hora.__")
     try:
         down_song(link, filename)
     except Exception as e:
