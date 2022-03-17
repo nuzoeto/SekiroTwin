@@ -15,9 +15,14 @@ async def test_speed(c: megux, m: Message):
     dl = round(test.download() / 1024 / 1024, 2)
     ul = round(test.upload() / 1024 / 1024, 2)
     test.results.share()
-    result = test.results.dict()  
+    result = test.results.dict()
+    name = result["server"]["name"]
+    host = bs["sponsor"]
+    ping = bs["latency"]
+    isp = result["client"]["isp"]   
+    country = result["server"]["country"] 
     path = wget.download(result["share"]) 
     response = await m.reply_photo(
-        photo=path, caption=f"🌀 <b>Nome:</b> <code>{result["server"]["name"]}</code>\n🌐 <b>Sponsor:</b> <code>{bs["sponsor"]}</code>\n🏁 <b>País:</b> <code>{result["server"]["country"]}</code>\n\n<b>SpeedTest Results:</b>\n🏓 <b>Latência:</b> <code>{int(bs["latency"])} ms</code>\n🔽 <b>Download:</b> <code>{dl} Mbps</code>\n🔼 <b>Upload:</b> <code>{up} Mbps</code>\n🖥  <b>ISP:</b> <code>{result["client"]["isp"]}</code>"
+        photo=path, caption=f"🌀 <b>Nome:</b> <code>{name}</code>\n🌐 <b>Host:</b>{host}</code>\n🏁 <b>País:</b> <code>{country}</code>\n\n<b>SpeedTest Results:</b>\n🏓 <b>Latência:</b> <code>{ping} ms</code>\n🔽 <b>Download:</b> <code>{dl} Mbps</code>\n🔼 <b>Upload:</b> <code>{ul} Mbps</code>\n🖥  <b>ISP:</b> <code>{isp}</code>"
     )
     
