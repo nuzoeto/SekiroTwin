@@ -15,7 +15,7 @@ async def test_speed(c: megux, m: Message):
     bs = test.get_best_server()
     dl = round(test.download() / 1024 / 1024, 2)
     ul = round(test.upload() / 1024 / 1024, 2)
-    
+    test.results.share()
     result = test.results.dict()
     name = result["server"]["name"]
     host = bs["sponsor"]
@@ -28,3 +28,18 @@ async def test_speed(c: megux, m: Message):
     )
     await running.delete()
     
+
+@megux.on_message(filters.command("speed"))
+async def test_speed(c: megux, m: Message):
+    running = await m.reply("`Processando...`)
+    test = speedtest.Speedtest()
+    bs = test.get_best_server()
+    dl = round(test.download() / 1024 / 1024, 2)
+    ul = round(test.upload() / 1024 / 1024, 2)
+    test.results.share()
+    result = test.results.dict()
+    path = wget.download(result["share"])
+    response = await m.reply_photo(
+        photo=path
+    )
+    await running.delete() 
