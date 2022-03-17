@@ -18,7 +18,7 @@ async def test_speed(c: megux, m: Message):
     result = s.results.dict()
     s.results.share()
     path = wget.download(result["share"])
-    response = await m.reply_photo (photo=path, caption=sent)
+    response = await m.reply_photo(photo=path, caption=sent)
     await sent.edit_text(
         string.format(
             host=bs["sponsor"], ping=int(bs["latency"]), download="", upload="", isp=result["client"]["isp"], name=result["server"]["name"], country=result["server"]["country"]
