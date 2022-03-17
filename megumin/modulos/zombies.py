@@ -28,7 +28,7 @@ async def cleanup(c: megux, m: Message):
                     pass
                 except Forbidden as e:
                     await m.reply_text(
-                        f"Eu estou impedido de executar este comando! >-<\n<b>Erro:</b> <code>{e}</code>"
+                        f"<b>Error:</b> <code>{e}</code>"
                     )
                     return
         if deleted:
@@ -38,4 +38,4 @@ async def cleanup(c: megux, m: Message):
         else:
             await sent.edit_text("Não há contas excluídas aqui!")
     else:
-        await m.reply_text("Você não é um(a) administrador(a)")
+        await m.reply_text("Balabacheia! Você não é um(a) administrador(a)")
