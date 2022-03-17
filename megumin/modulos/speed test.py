@@ -10,7 +10,7 @@ from megumin import megux
 
 @megux.on_message(filters.command("speedtest"))
 async def test_speed(c: megux, m: Message):
-    running = await m.reply(`Rodando Speedtest. . .`") 
+    running = await m.reply("`Rodando Speedtest. . .`") 
     test = speedtest.Speedtest()
     bs = test.get_best_server()
     dl = round(test.download() / 1024 / 1024, 2)
