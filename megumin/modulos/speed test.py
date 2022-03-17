@@ -15,7 +15,7 @@ async def test_speed(c: megux, m: Message):
     s = speedtest.Speedtest()
     bs = s.get_best_server()
     result = s.results.dict()
-    share = test.results.share()
+    share = s.results.share()
     path = wget.download(result["share"])
     await sent.edit_text(
         string.format(
