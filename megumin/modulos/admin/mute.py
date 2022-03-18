@@ -175,7 +175,7 @@ async def _unmute_user(_, message: Message):
     sent = await message.reply("Desmutando Usuário...")
     try:
         await megux.unban_chat_member(chat_id, user_id)
-        await sent.edit("Ok, {mention} já pode começar a falar novamente em {message.chat.title}!")
+        await sent.edit(f"Ok, {mention} já pode começar a falar novamente em {message.chat.title}!")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado!` 🤔\n\n**ERROR:** `{e_f}`")
 
