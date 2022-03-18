@@ -20,7 +20,7 @@ from megumin.utils import (
 async def _mute_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
-        await message.reply("Você não tem as seguintes permissões: <b>Can restrict members</b>")
+        await message.reply("Você não tem direitos suficientes para silenciar usuários")
         return
     cmd = len(message.text)
     replied = message.reply_to_message
@@ -57,7 +57,7 @@ async def _mute_user(_, message: Message):
         await message.reply("Porque eu iria mutar um(a) administrador(a)? Isso me parece uma idéia bem idiota.")
         return
     if not await check_bot_rights(chat_id, "can_restrict_members"):
-        await message.reply("Eu não tenho as seguintes permissões: <b>Can restrict members</b>")
+        await message.reply("Não posso restringir as pessoas aqui! Certifique-se de que sou administrador e de que posso adicionar novos administradores.")
         await sed_sticker(message)
         return
     sent = await message.reply("`Mutando Usuário...`")
@@ -66,7 +66,7 @@ async def _mute_user(_, message: Message):
         await asyncio.sleep(1)
         await sent.edit(
             f"{mention} está silenciado(mutado) em <b>{message.chat.title}</b>\n"
-            f"Motivo: `{reason or None}`"
+            f"<b>Motivo:</b> `{reason or No reason given}`"
         )
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR**: `{e_f}`")
@@ -76,7 +76,7 @@ async def _mute_user(_, message: Message):
 async def _tmute_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
-        await message.reply("Você não tem as seguintes permissões: **Can restrict members**")
+        await message.reply("Você não tem direitos suficientes para silenciar usuários")
         return
     cmd = len(message.text)
     replied = message.reply_to_message
@@ -125,7 +125,7 @@ async def _tmute_user(_, message: Message):
         await message.reply("Porque eu iria mutar um(a) administrador(a)? Isso me parece uma idéia bem idiota.")
         return
     if not await check_bot_rights(chat_id, "can_restrict_members"):
-        await message.reply("Eu não tenho as seguintes permissões: <b>Can restrict members</b>")
+        await message.reply("Não posso restringir as pessoas aqui! Certifique-se de que sou administrador e de que posso adicionar novos administradores.")
         await sed_sticker(message)
         return
     sent = await message.reply("`Mutando usuário...`")
@@ -134,7 +134,7 @@ async def _tmute_user(_, message: Message):
         await asyncio.sleep(1)
         await sent.edit(
             f"{mention} está silenciado(mutado) por <b>{time_val}</b> em <b>{message.chat.title}</b>\n"
-            f"Motivo: `{reason or None}`"
+            f"Motivo: `{reason or No reason given}`"
         )
     except Exception as e_f:  # pylint: disable=broad-except
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR**: `{e_f}`")
@@ -144,7 +144,7 @@ async def _tmute_user(_, message: Message):
 async def _unmute_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
-        await message.reply("Você não tem as seguintes permissões: **Can restrict members**")
+        await message.reply("Você não tem direitos suficientes para silenciar usuários")
         return
     replied = message.reply_to_message
     if replied:
@@ -169,7 +169,7 @@ async def _unmute_user(_, message: Message):
         await message.reply("Este usuario é administrador(a), ele não precisa ser desmutado(a).")
         return
     if not await check_bot_rights(chat_id, "can_restrict_members"):
-        await message.reply("Eu não tenho as seguintes permissões: <b>Can restrict members</b>")
+        await message.reply("Não posso restringir as pessoas aqui! Certifique-se de que sou administrador e de que posso adicionar novos administradores.")
         await sed_sticker(message)
         return
     sent = await message.reply("Desmutando Usuário...")
@@ -190,7 +190,7 @@ async def muteme_(_, message: Message):
     else:
         try:
             if not await check_bot_rights(chat_id, "can_restrict_members"):
-                await message.reply("Eu não sou um(a) administrador(a)!")
+                await message.reply("Não posso restringir as pessoas aqui! Certifique-se de que sou administrador e de que posso adicionar novos administradores.")
                 return
             await message.reply("Sem Problemas, Mutado!")
             await megux.restrict_chat_member(chat_id, user_id, ChatPermissions())
