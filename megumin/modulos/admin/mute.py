@@ -155,7 +155,9 @@ async def _unmute_user(_, message: Message):
         await message.reply("`Nenhum User_id válido ou mensagem especificada.`")
         return
     try:
-        user_id = (await megux.get_users(id_)).id
+        user = (await megux.get_users(id_))
+        mention = user.mention
+        user_id = user.id
     except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
         await message.reply(
             "`User_id ou nome de usuário inválido, tente novamente com informações válidas ⚠`"
@@ -173,7 +175,7 @@ async def _unmute_user(_, message: Message):
     sent = await message.reply("Desmutando Usuário...")
     try:
         await megux.unban_chat_member(chat_id, user_id)
-        await sent.edit("Ótimo, este usuário pode falar novamente!")
+        await sent.edit("Ok, {mention} já pode começar a falar novamente em {message.chat.title}!")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado!` 🤔\n\n**ERROR:** `{e_f}`")
 
