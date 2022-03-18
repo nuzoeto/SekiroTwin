@@ -10,10 +10,10 @@ async def pin_(_, message: Message):
     chat_id = message.chat.id
     ids_chat = str(chat_id).replace("-100", "")
     if not await check_rights(chat_id, message.from_user.id, "can_pin_messages"):
-        await message.reply("`Você não tem as seguintes permissões: <b>Can pin messages</b>")
+        await message.reply("Você não tem direitos administrativos suficientes para fazer fixar/desafixar mensagens!")
         return
     if not await check_bot_rights(chat_id, "can_pin_messages"):
-        await message.reply("`Eu não tenho as seguintes permissões: <b>Can pin messages</b>")
+        await message.reply("Não consigo fixar mensagens aqui! Verifique se sou administrador e posso fixar mensagens.")
         return
     if not message.reply_to_message:
         await message.reply("Responda a uma mensagem para que eu possa fixa-la")
@@ -27,10 +27,10 @@ async def pin_(_, message: Message):
     chat_id = message.chat.id
     ids_chat = str(chat_id).replace("-100", "")
     if not await check_rights(chat_id, message.from_user.id, "can_pin_messages"):
-        await message.reply("`Você não tem as seguintes permissões: **Can pin messages**")
+        await message.reply("Você não tem direitos administrativos suficientes para fazer fixar/desafixar mensagens!")
         return
     if not await check_bot_rights(chat_id, "can_pin_messages"):
-        await message.reply("`Eu não tenho as seguintes permissões: <b>Can pin messages</b>")
+        await message.reply("Não consigo fixar mensagens aqui! Verifique se sou administrador e posso fixar mensagens.")
         return
     if not message.reply_to_message:
         await message.reply("Responda a uma mensagem para que eu possa fixa-la")
@@ -44,10 +44,10 @@ async def unpin_(_, message: Message):
     chat_id = message.chat.id
     ids_chat = str(chat_id).replace("-100", "")
     if not await check_rights(chat_id, message.from_user.id, "can_pin_messages"):
-        await message.reply("Você não tem as seguintes permissões: <b>Can pin messages</b>")
+        await message.reply("Você não tem direitos administrativos suficientes para fazer fixar/desafixar mensagens!")
         return
     if not await check_bot_rights(chat_id, "can_pin_messages"):
-        await message.reply("Eu não tenho as seguintes permissões: <b>Can pin messages</b>")
+        await message.reply("Não consigo fixar mensagens aqui! Verifique se sou administrador e posso fixar mensagens.")
         return
     if not message.reply_to_message:
         await message.reply("`Responda a uma mensagem para que eu possa desfixa-la`")
