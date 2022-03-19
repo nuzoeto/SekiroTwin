@@ -116,6 +116,7 @@ async def _demote_user(_, message: Message):
 
 @megux.on_message(filters.command(["title", "settitle"], prefixes=["/", "!"]))
 async def set_user_title(_, message: Message):
+    chat_id = message.chat.id
     replied = message.reply_to_message
     if replied:
         id_ = replied.from_user.id
