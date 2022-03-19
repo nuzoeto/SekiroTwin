@@ -177,7 +177,7 @@ Aqui está a ajuda para o módulo <b>Admin</b>:
  • /unpin - Desfixa a mensagem atualmente fixada
  • /promote < username/reply msg > - promove um usuario a administrador do chat
  • /demote < username/reply msg > - remove os privilégios de administrador do usuario
- • /title < titulo aqui >: define uma custom tag de administrador de um usuario promovido pelo WhiterKang (ainda não disponível)
+ • /title < titulo aqui >: define uma custom tag de administrador de um usuario promovido pelo WhiterKang
  • /zombies - Procura e limpa contas excluidas no chat
     """
         button = InlineKeyboardMarkup(
