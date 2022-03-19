@@ -116,6 +116,7 @@ async def _demote_user(_, message: Message):
 
 @megux.on_message(filters.command(["title", "settitle"], prefixes=["/", "!"]))
 async def set_user_title(_, message: Message):
+    chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
         await message.reply("Você não tem as seguintes permissões: **Change can promote members**")
         return
@@ -127,7 +128,6 @@ async def set_user_title(_, message: Message):
         return await message.reply_text(
             "I can't change admin title of an unknown entity"
         )
-    chat_id = message.chat.id
     from_user = message.reply_to_message.from_user
     if len(message.command) < 2:
         return await message.reply_text(
