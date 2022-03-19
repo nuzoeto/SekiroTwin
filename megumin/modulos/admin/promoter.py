@@ -116,7 +116,8 @@ async def _demote_user(_, message: Message):
 
 @megux.on_message(filters.command(["title", "settitle"], prefixes=["/", "!"]))
 async def set_user_title(_, message: Message):
-    user = (await megux.get_users(id_))
+    try:
+        user = (await megux.get_users(id_))
     except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
         await message.reply(
             "`User_id ou nome de usuário inválido, tente novamente com informações válidas ⚠`"
