@@ -16,7 +16,7 @@ aiohttpsession = ClientSession()
 async def carbon_func(_, message: Message):
     if not message.reply_to_message:
         return await message.reply_text(
-            "`Responda uma mensagem para carbonizar o texto.`"
+            "__Responda uma mensagem para carbonizar o texto.__"
         )
     if not message.reply_to_message.text:
         return await message.reply_text(
@@ -24,7 +24,7 @@ async def carbon_func(_, message: Message):
         )
     m = await message.reply_text("`Preparando carbon`")
     carbon = await make_carbon(message.reply_to_message.text)
-    await m.edit("`Uploading...`")
+    await m.edit("__Uploading...__")
     await megux.send_document(message.chat.id, carbon, caption="__Made by:__ @WhiterKangBOT")
     await m.delete()
     carbon.close()
