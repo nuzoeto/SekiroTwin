@@ -21,7 +21,7 @@ async def cleanup(c: megux, m: Message):
         async for t in c.iter_chat_members(chat_id=m.chat.id, filter="all"):
             if t.user.is_deleted:
                 try:
-                    await c.kick_chat_member(m.chat.id, t.user.id)
+                    await c.ban_chat_member(m.chat.id, t.user.id)
                     await sent.edit("Limpando...")
                     deleted.append(t)
                 except BadRequest:
