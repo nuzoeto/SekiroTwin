@@ -1,5 +1,7 @@
+import time
+
 from pyrogram import filters
-from pyrogram.errors PeerIdInvalid, UserIdInvalid, UsernameInvalid
+from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
 from pyrogram.types import Message
 
 from megumin import megux
