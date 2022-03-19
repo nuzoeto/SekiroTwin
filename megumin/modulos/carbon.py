@@ -25,7 +25,7 @@ async def carbon_func(_, message: Message):
     m = await message.reply_text("`Preparando carbon`")
     carbon = await make_carbon(message.reply_to_message.text)
     await m.edit("__Uploading...__")
-    await megux.send_document(message.chat.id, carbon, caption="__Made by:__ @WhiterKangBOT")
+    await megux.send_photo(message.chat.id, carbon, caption="__Made by:__ @WhiterKangBOT")
     await m.delete()
     carbon.close()
 
@@ -35,4 +35,4 @@ async def make_carbon(code):
     async with aiohttpsession.post(url, json={"code": code}) as resp:
         image = BytesIO(await resp.read())
     image.name = "carbon.png"
-    return await message.reply_photo(photo=image)
+    return image
