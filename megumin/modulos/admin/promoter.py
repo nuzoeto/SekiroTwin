@@ -134,7 +134,7 @@ async def set_user_title(_, message: Message):
     if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
         await message.reply("Você não tem as seguintes permissões: **Change can promote members**")
         return
-    from_user = user.mention
+    from_user = user.first_name
     if len(message.command) < 2:
         return await message.reply_text(
             "**Usage:**\n/settitle NEW ADMINISTRATOR TITLE"
