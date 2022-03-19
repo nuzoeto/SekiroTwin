@@ -14,6 +14,7 @@ from megumin.utils import (
     sed_sticker,
 )
 
+
 @megux.on_message(filters.command("banc", prefixes=["/", "!"]))
 async def _ban_channel(_, message: Message):
   chat_id = message.chat.id
