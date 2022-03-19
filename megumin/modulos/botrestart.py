@@ -15,5 +15,5 @@ from megumin import megux
 async def broadcast(c: megux, m: Message):
     sent = await m.reply("__Reiniciando aguarde...__") 
     args = [sys.executable, "-m", "megumin"]
-    os.execl(sys.executable, *args)
     await sent.edit("**WhiterKang Reiniciado com Sucesso!**")
+    os.execl(sys.executable, *args)
