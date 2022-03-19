@@ -139,7 +139,7 @@ async def set_user_title(_, message: Message):
         return await message.reply_text(
             "**Usage:**\n/settitle NEW ADMINISTRATOR TITLE"
         )
-    title = message.text.split(None, 1)[1]
+    title = len(message.text)
     await megux.set_administrator_title(chat_id, user_id, title)
     await message.reply_text(
         f"Successfully Changed {from_user}'s Admin Title To {title}"
