@@ -114,7 +114,7 @@ async def _demote_user(_, message: Message):
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
 
-@megux.on_message(filters.command(["title", "settitle"], prefixes["/", "!"]))
+@megux.on_message(filters.command(["title", "settitle"], prefixes=["/", "!"]))
 async def set_user_title(_, message: Message):
     if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
         await message.reply("Você não tem as seguintes permissões: **Change can promote members**")
@@ -134,7 +134,7 @@ async def set_user_title(_, message: Message):
             "**Usage:**\n/settitle NEW ADMINISTRATOR TITLE"
         )
     title = message.text.split(None, 1)[1]
-    await app.set_administrator_title(chat_id, from_user.id, title)
+    await megux.set_administrator_title(chat_id, from_user.id, title)
     await message.reply_text(
         f"Successfully Changed {from_user.mention}'s Admin Title To {title}"
     )
