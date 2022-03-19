@@ -66,7 +66,7 @@ async def _ban_user(_, message: Message):
         return
     sent = await message.reply("`Banindo usuário...`")
     try:
-        await megux.kick_chat_member(chat_id, user_id)
+        await megux.ban_chat_member(chat_id, user_id)
         await sent.edit(f"Usuário {mention} foi banido por <a href='tg://user?id={message.from_user.id}'>{message.from_user.first_name}</a> no chat: **{message.chat.title}**\n" f"**Motivo**: `{reason or None}`")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
@@ -156,7 +156,7 @@ async def _kick_user(_, message: Message):
         return
     sent = await message.reply("`Kickando usuário...`")
     try:
-        await megux.kick_chat_member(chat_id, user_id, int(time.time() + 60))
+        await megux.ban_chat_member(chat_id, user_id, int(time.time() + 60))
         await megux.unban_chat_member(chat_id, user_id)
         await sent.edit(f"Eu removi o usuário {mention}\n" f"Motivo: `{reason or None}`")
     except Exception as e_f:
@@ -177,7 +177,7 @@ async def kickme_(_, message: Message):
                 await message.reply("Não posso restringir as pessoas aqui! Certifique-se de que sou administrador e de que posso adicionar novos administradores.")
                 return
             await message.reply("Ate mais, espero que tenha gostado da estadia.")
-            await megux.kick_chat_member(chat_id, user_id)
+            await megux.ban_chat_member(chat_id, user_id)
             await megux.unban_chat_member(chat_id, user_id)
         except Exception as e:
             await message.reply(f"**ERRO:**\n{e}")
@@ -197,6 +197,6 @@ async def kickme_(_, message: Message):
                 await message.reply("Eu não sou um(a) administrador(a)!")
                 return
             await message.reply("Sem Problemas.")
-            await megux.kick_chat_member(chat_id, user_id)
+            await megux.ban_chat_member(chat_id, user_id)
         except Exception as e:
             await message.reply(f"**ERRO:**\n{e}")
