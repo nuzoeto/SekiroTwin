@@ -20,7 +20,7 @@ async def carbon_func(_, message: Message):
         )
     if not message.reply_to_message.text:
         return await message.reply_text(
-            "`Você precisa responder a um texto para carbonizar.`"
+            "__Você precisa responder a um texto para carbonizar.__"
         )
     m = await message.reply_text("`Preparando carbon`")
     carbon = await make_carbon(message.reply_to_message.text)
