@@ -117,30 +117,24 @@ async def _demote_user(_, message: Message):
 @megux.on_message(filters.command(["title", "settitle"], prefixes=["/", "!"]))
 async def set_user_title(_, message: Message):
     chat_id = message.chat.id
-    replied = message.reply_to_message
-    if replied:
-        id_ = replied.from_user.id
-    elif len(message.text) > 7:
-        _, id_ = message.text.split(maxsplit=1)
-    else:
-        await message.reply("`Nenhum User_id válido ou mensagem especificada.`")
-    try:
-        user = (await megux.get_users(id_))
-    except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
-        await message.reply(
-            "`User_id ou nome de usuário inválido, tente novamente com informações válidas ⚠`"
-        )
-    user_id = user.id
     if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
         await message.reply("Você não tem as seguintes permissões: **Change can promote members**")
         return
-    from_user = user.mention 
+    if not message.reply_to_message:
+        return await message.reply_text(
+            "Reply to user's message to set his admin title"
+        )
+    if not message.reply_to_message.from_user:
+        return await message.reply_text(
+            "I can't change admin title of an unknown entity"
+        )
+    from_user = message.reply_to_message.from_user
     if len(message.command) < 2:
         return await message.reply_text(
             "**Usage:**\n/settitle NEW ADMINISTRATOR TITLE"
         )
-    title = len(message.text)
-    await megux.set_administrator_title(chat_id, user_id, title)
+    title = message.text.split(None, 1)[1]
+    await app.set_administrator_title(chat_id, from_user.id, title)
     await message.reply_text(
-        f"Successfully Changed {from_user}'s Admin Title To {title}"
+        f"Successfully Changed {from_user.mention}'s Admin Title To {title}"
     )
