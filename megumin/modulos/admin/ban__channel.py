@@ -28,6 +28,5 @@ async def _ban_channel(_, message: Message):
       return await message.reply("A mensagem respondida nao e de um canal.")
       id_ = replied.sender_chat.id
       title_ = replied.sender_chat.title
-        try:
-          await megux.ban_chat_member(chat_id, id_)
-          await message.reply(f"#BAN_CHANNEL\nNome: {title_}\nID: {id_}")
+      await megux.ban_chat_member(chat_id, id_)
+      await message.reply(f"#BAN_CHANNEL\nNome: {title_}\nID: {id_}")
