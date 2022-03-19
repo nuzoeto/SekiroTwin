@@ -118,23 +118,23 @@ async def _demote_user(_, message: Message):
 async def set_user_title(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
-        await message.reply("Você não tem as seguintes permissões: **Change can promote members**")
+        await message.reply("Você não tem direitos administrativos suficientes para promover/rebaixar alguém!")
         return
     if not message.reply_to_message:
         return await message.reply_text(
-            "Reply to user's message to set his admin title"
+            "Responda à mensagem do usuário para definir um título de administrador"
         )
     if not message.reply_to_message.from_user:
         return await message.reply_text(
-            "I can't change admin title of an unknown entity"
+            "Não consigo alterar o título de administrador de uma identidade desconhecida"
         )
     from_user = message.reply_to_message.from_user
     if len(message.command) < 2:
         return await message.reply_text(
-            "**Usage:**\n/settitle NEW ADMINISTRATOR TITLE"
+            "**Uso:**\n/title <título aqui>."
         )
     title = message.text.split(None, 1)[1]
     await megux.set_administrator_title(chat_id, from_user.id, title)
     await message.reply_text(
-        f"Successfully Changed {from_user.mention}'s Admin Title To {title}"
+        f"Alterado com sucesso o título de administrador de {from_user.mention}'s foi alterado para {title}"
     )
