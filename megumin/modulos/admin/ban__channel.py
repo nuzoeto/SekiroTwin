@@ -36,6 +36,6 @@ async def _ban_channel(_, message: Message):
           await megux.ban_chat_member(chat_id, id_)
           await message.reply(text)
       except Exception as e:
-        await m.reply(f"Error: {e}")
+          await m.reply(f"Error: {e}")
   
   
