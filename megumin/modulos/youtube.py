@@ -92,6 +92,7 @@ async def song(client: megux, message: Message):
         await msg.delete()
     else:
         await msg.edit("📦 __Enviando...__")
+        await megux.send_chat_action(message.chat.id, "upload_audio")
         if os.path.exists(f"./megumin/xcache/{thumb}"):
             caption = f"""
 **Título:** __[{result[0]['title']}]({link})__
@@ -141,6 +142,7 @@ async def video_(client: megux, message: Message):
         print(str(e))
     else:
         await msg.edit("📦 __Enviando...__")
+        await megux.send_chat_action(message.chat.id, "upload_video")
         caption = f"**Título ➠** __[{result[0]['title']}]({link})__\n**Duração ➠** __{duration}__\n**Canal ➠** __{result[0]['channel']}__"
         try:
             await msg.reply_video(
