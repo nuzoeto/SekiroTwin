@@ -14,11 +14,12 @@ async def purge_command(megux, message: Message):
             message_reply = int(message.reply_to_message.message_id)
         except AttributeError:
             await message.reply(
-                "Por favor, marque a mensagem por onde deseja começar o purge."
+                "Responda a uma mensagem para selecionar por onde iniciar a limpeza."
             )
             return
 
         while True:
+            await message.reply("Purge completo.")
             try:
                 await megux.delete_messages(message.chat.id, message_reply)
                 message_reply += 1
@@ -28,7 +29,7 @@ async def purge_command(megux, message: Message):
                 )
                 return
             except Exception as exc:
-                await message.reply(f"ERRO: {exc}")
+                await message.reply(f" Não é possível excluir todas as mensagens. As mensagens podem ser muito antigas, talvez eu não tenha direitos de exclusão ou isso pode não ser um supergrupo.")
                 return
     else:
         await message.reply("Você precisa ser admin para dar purge.")
