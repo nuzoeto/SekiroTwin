@@ -22,7 +22,7 @@ from megumin.utils import (
 async def _promote_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
-        await message.reply("Você não tem as seguintes permissões: **Change can promote members**")
+        await message.reply("Você não tem direitos administrativos suficientes para promover/rebaixar alguém!")
         return
     replied = message.reply_to_message
     args = len(message.text)
@@ -34,19 +34,22 @@ async def _promote_user(_, message: Message):
         await message.reply("`Nenhum User_id válido ou mensagem especificada.`")
         return
     try:
-        user_id = (await megux.get_users(id_)).id
+        user = (await megux.get_users(id_))
+        user_id = user.id
+        mention = user.mention
     except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
         await message.reply(
             "`User_id ou nome de usuário inválido, tente novamente com informações válidas ⚠`"
         )
         return
     if await is_self(user_id):
+        await m.reply("Eu não posso me promover")
         return
     if is_admin(chat_id, user_id):
-        await message.reply("Este usuário já é um administrador ele não precisa ser promovido.")
+        await message.reply("Como devo promover alguém que já é administrador?")
         return
     if not await check_bot_rights(chat_id, "can_promote_members"):
-        await message.reply("Eu não tenho as seguintes permissões: **Change can promote members**")
+        await message.reply("Não posso promover/rebaixar pessoas aqui! Verifique se eu sou um(a) administrador(a) e posso adicionar novos administradores.")
         await sed_sticker(message)
         return
     sent = await message.reply("`Promovendo usuário...`")
@@ -62,7 +65,7 @@ async def _promote_user(_, message: Message):
         ) 
         if args:
             await asyncio.sleep(2)
-        await sent.edit("<b>Promovido(a)!</b>")
+        await sent.edit(f"{mention} Foi promovido com sucesso!")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
@@ -71,7 +74,7 @@ async def _promote_user(_, message: Message):
 async def _demote_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
-        await message.reply("Você não tem as seguintes permissões: **Change can promote members**")
+        await message.reply("Você não tem direitos administrativos suficientes para promover/rebaixar alguém!")
         return
     replied = message.reply_to_message
     if replied:
@@ -82,19 +85,22 @@ async def _demote_user(_, message: Message):
         await message.reply("`Nenhum User_id válido ou mensagem especificada.`")
         return
     try:
-        user_id = (await megux.get_users(id_)).id
+        user = (await megux.get_users(id_))
+        user_id = user.id
+        mention = user.mention 
     except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
         await message.reply(
             "`User_id ou nome de usuário inválido, tente novamente com informações válidas ⚠`"
         )
         return
     if await is_self(user_id):
+        await message.reply("Eu não posso me rebaixar!")
         await sed_sticker(message)
         return
     if is_dev(user_id):
         return
     if not await check_bot_rights(chat_id, "can_promote_members"):
-        await message.reply("Eu não tem as seguintes permissões: **Change can promote members**")
+        await message.reply("Não posso promover/rebaixar pessoas aqui! Verifique se eu sou um(a) administrador(a) e posso adicionar novos administradores.")
         await sed_sticker(message)
         return
     sent = await message.reply("`Rebaixando Usuário...`")
@@ -109,7 +115,7 @@ async def _demote_user(_, message: Message):
             can_pin_messages=False,
             can_manage_chat=False,
         )
-        await sent.edit("<b>Rebaixado!</b>")
+        await sent.edit(f"{mention} Foi rebaixado com sucesso! ")
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
