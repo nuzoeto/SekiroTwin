@@ -29,7 +29,7 @@ async def purge_command(megux, message: Message):
                 )
                 return
             except Exception as exc:
-                await message.reply(f" Não é possível excluir todas as mensagens. As mensagens podem ser muito antigas, talvez eu não tenha direitos de exclusão ou isso pode não ser um supergrupo.")
+                await message.reply(f"Não é possível excluir todas as mensagens. As mensagens podem ser muito antigas, talvez eu não tenha direitos de exclusão ou isso pode não ser um supergrupo.")
                 return
     else:
         await message.reply("Você precisa ser admin para dar purge.")
