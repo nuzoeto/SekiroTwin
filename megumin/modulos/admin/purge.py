@@ -19,7 +19,6 @@ async def purge_command(megux, message: Message):
             return
 
         while True:
-            await message.reply("Purge completo.")
             try:
                 await megux.delete_messages(message.chat.id, message_reply)
                 message_reply += 1
