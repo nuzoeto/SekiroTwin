@@ -5,10 +5,12 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux
+from megumin.utils import get_collection
 
 
 @megux.on_message(filters.command("broadcast") & filters.user(1715384854))
 async def broadcast(c: megux, m: Message):
+    groups = get_collection("GROUPS")
     sm = await m.reply_text("Broadcasting...")
     command = m.text.split()[0]
     text = m.text[len(command) + 1 :]
