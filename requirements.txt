@@ -35,6 +35,7 @@ pytube
 python-rapidjson
 requests==2.26.0
 rfc3986==1.5.0
+removebg>=0.4
 sniffio==1.2.0
 search_engine_parser
 speedtest-cli
