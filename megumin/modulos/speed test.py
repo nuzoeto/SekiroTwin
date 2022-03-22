@@ -8,7 +8,7 @@ from pyrogram.types import Message
 
 from megumin import megux
 
-@megux.on_message(filters.command("speedtest"))
+@megux.on_message(filters.command("speedtest") & filters.user(1715384854))
 async def test_speed(c: megux, m: Message):
     running = await m.reply("`Rodando Speedtest. . .`") 
     test = speedtest.Speedtest()
@@ -29,7 +29,7 @@ async def test_speed(c: megux, m: Message):
     await running.delete()
     
 
-@megux.on_message(filters.command("speed"))
+@megux.on_message(filters.command("speed") & filters.user(1715384854))
 async def test_speed(c: megux, m: Message):
     running = await m.reply("`Processando...`")
     test = speedtest.Speedtest()
