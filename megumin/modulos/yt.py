@@ -40,7 +40,7 @@ async def search_yt(query):
             list_videos.append(dic)
     return list_videos
 
-@megux.on_message(filters.command("yt"))
+@megux.on_message(filters.command("yt", prefixes=["/", "!"]))
 async def yt_search_cmd(c: megux, m: Message):
     vids = [
         '{}: <a href="{}">{}</a>'.format(num + 1, i["url"], i["title"])
