@@ -21,6 +21,7 @@ class Config:
     LOG_CHANNEL_ID = set([-1001569084822])
     ADMINS = {}
     LASTFM_API_KEY = os.environ.get("LASTFM_API_KEY")
+    REMOVE_BG_API_KEY = os.environ.get("REMOVE_BG_API_KEY")
     DB_URI = os.environ.get("DATABASE_URL")
     WHITELIST_CHATS = set([])  # chat id aq
     EDIT_SLEEP_TIMEOUT = 10
