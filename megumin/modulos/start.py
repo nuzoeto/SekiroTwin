@@ -319,8 +319,9 @@ Aqui está a ajuda para o módulo <b>Tradutor</b>
         info_text = f"""
 Aqui está a ajuda para o módulo **YouTube**:
 
-• /song Baixe músicas
-• /video Baixe videos
+• /song <titulo> Baixe músicas.
+• /video <titulo> Baixe videos.
+• /yt <b>[Palavra]</b> Faz uma busca no YouTube vídeos com a palavra que você escreveu e retorna uma lista com vídeos.
     """
         button = InlineKeyboardMarkup(
             [
