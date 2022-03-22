@@ -24,6 +24,3 @@ Copyright (C) 2022 Davi, fnixdev, yusukisy, Luska1331.
 
 
 
-# Informações Repo 
-
-[![Size](https://img.shields.io/github/repo-size/davitudoplugins1234/megumin?style=flat-square&color=green)](https://github.com/DaviTudoPlugins1234/megumin/)
