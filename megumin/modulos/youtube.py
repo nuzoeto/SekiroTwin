@@ -98,7 +98,6 @@ async def song(client: megux, message: Message):
 **Título:** __[{result[0]['title']}]({link})__
 **Duração:** __{duration}__
 **Views:** __{result[0]['viewCount']["text"]}__
-**Likes:** __{result[0]['likesCount']["text"]}__
 """
             try:
                 await msg.reply_audio(
