@@ -22,6 +22,7 @@ class Config:
     ADMINS = {}
     LASTFM_API_KEY = os.environ.get("LASTFM_API_KEY")
     REMOVE_BG_API_KEY = os.environ.get("REMOVE_BG_API_KEY")
+    DOWN_PATH = os.environ.get("DOWN_PATH")
     DB_URI = os.environ.get("DATABASE_URL")
     WHITELIST_CHATS = set([])  # chat id aq
     EDIT_SLEEP_TIMEOUT = 10
