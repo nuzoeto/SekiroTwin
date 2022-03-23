@@ -19,7 +19,7 @@ async def set_chat_photo(_, message):
 
     if not reply:
         return await message.reply_text(
-            "Reply to a photo to set it as chat_photo"
+            "Marque uma foto ou documento para que eu possa alterar a foto do Grupo"
         )
     if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
         await message.reply("Você não tem direitos administrativos suficientes para alterar dados do grupo!")
@@ -28,7 +28,7 @@ async def set_chat_photo(_, message):
     file = reply.document or reply.photo
     if not file:
         return await message.reply_text(
-            "Marque uma foto ou documento para que eu possa alterar a foto do Google"
+            "Marque uma foto ou documento para que eu possa alterar a foto do Grupo"
         )
 
     if file.file_size > 5000000:
@@ -36,5 +36,5 @@ async def set_chat_photo(_, message):
 
     photo = await reply.download()
     await message.chat.set_photo(photo)
-    await message.reply_text("Foto alterada com sucesso no grupo {message.chat.title}")
+    await message.reply_text(f"Foto alterada com sucesso no grupo {message.chat.title}")
 
