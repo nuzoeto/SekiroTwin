@@ -14,7 +14,7 @@ from megumin.utils import (
 @megux.on_message(filters.command("setgrouppic", prefixes=["/", "!"]))
 async def set_chat_photo(_, message):
     chat_id = message.chat.id
-    user_id = message.user.id
+    user_id = message.from_user.id
     reply = message.reply_to_message
 
     if not reply:
@@ -28,7 +28,7 @@ async def set_chat_photo(_, message):
     file = reply.document or reply.photo
     if not file:
         return await message.reply_text(
-            "Reply to a photo or document to set it as chat_photo"
+            "Marque uma foto ou documento para que eu possa alterar a foto do Google"
         )
 
     if file.file_size > 5000000:
