@@ -13,6 +13,8 @@ from megumin.utils import (
 
 @megux.on_message(filters.command("setgrouppic", prefixes=["/", "!"]))
 async def set_chat_photo(_, message):
+    chat_id = message.chat.id
+    user_id = message.user.id
     reply = message.reply_to_message
 
     if not reply:
