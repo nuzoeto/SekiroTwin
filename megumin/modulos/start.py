@@ -76,6 +76,8 @@ async def start_(_, message: Message):
 ╠ Uptime : `{time_formatter(time.time() - START_TIME)}`
 ╠ System : `{uname.system}`
 ╠ Cpu : `{psutil.cpu_percent(interval=1)}%`
+╠ Ram : `{psutil.virtual_memory().percent}`
+╠ Disco : `{psutil.disk_usage("/").percent}`
 ╠ Python : `{version.__python_version__}`
 ╠ Pyrogram : `{version.__pyro_version__}`
 ╚═╗
