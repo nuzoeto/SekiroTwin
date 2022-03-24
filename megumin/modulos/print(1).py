@@ -68,8 +68,8 @@ async def cssworker_url(target_url: str):
     data = {
         "url": target_url,
         "render_when_ready": False,
-        "viewport_width": 1280,
-        "viewport_height": 720,
+        "viewport_width": 2048,
+        "viewport_height": 1080,
         "device_scale": 1,
     }
 
