@@ -65,13 +65,12 @@ async def start_(_, message: Message):
         msg = START_PRIVADO
         await message.reply_animation(gif, caption=msg, reply_markup=keyboard)
     else:
-    keyboard = InlineKeyboardMarkup(
-                            [
-                                [
-                                    InlineKeyboardButton (text="✨ Me adicione a um grupo, url="t.me/whiterkangbot?startgroup=new")
-                                ]
-                            ]
-                        )
+        keyboard = InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton(text="✨ Me adicione a um grupo, url="t.me/whiterkangbot?startgroup=new")     
+                ]
+            ]
+        )
                         
         return await message.reply("Oi meu nome é **WhiterKang**.", reply_markup=keyboard)
         
