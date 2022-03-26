@@ -30,6 +30,7 @@ class Config:
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY")
     BLACK_LIST = (
       2053588077,
+      101166254,
 )
     DURACION_YT = (
       3609
