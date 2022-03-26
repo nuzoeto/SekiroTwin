@@ -4,7 +4,10 @@
 __all__ = ["Config"]
 
 import os
+from dotenv import load_dotenv
 
+if os.path.isfile("config.env"):
+    load_dotenv("config.env")
 
 class Config:
     AUTH_CHATS = set(
