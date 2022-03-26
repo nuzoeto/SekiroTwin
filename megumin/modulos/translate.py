@@ -65,10 +65,10 @@ async def translate(c: megux, m: Message):
         text = m.reply_to_message.text or m.reply_to_message.caption
 
     if not text:
-        return await m.reply_text("`Vou traduzir o vento?!`"), reply_to_message_id=m.message_id
+        return await m.reply_text("`Vou traduzir o vento?!`")
         
 
-    sent = await m.reply_text("Traduzindo..."), reply_to_message_id=m.message_id
+    sent = await m.reply_text("Traduzindo...")
     langs = {}
 
     if len(lang.split("-")) > 1:
