@@ -2,7 +2,6 @@ import io
 import os
 import re
 import httpx
-import yt_dlp
 import datetime
 import rapidjson
 import youtube_search
