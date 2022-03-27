@@ -5,6 +5,7 @@ import re
 import requests
 import wget
 import datetime
+import signal
 
 from pyrogram import filters
 from pyrogram.types import Message
