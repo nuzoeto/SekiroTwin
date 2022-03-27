@@ -32,7 +32,7 @@ async def broadcast(c: megux, m: Message):
     await sent.edit("**WhiterKang Reiniciado com Sucesso!**")
 
 
-@megux.on_message(filters.command(r"shutdown") & filters.user(OWNER))
+@megux.on_message(filters.command(r"shutdown") & filters.user(1715384854))
 async def shutdown(c: megux, m: Message):
     await m.reply_text("Adeus...")
     os.kill(os.getpid(), signal.SIGINT)
