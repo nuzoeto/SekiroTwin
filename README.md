@@ -17,10 +17,10 @@ Can be found as [WhiterKang](https://t.me/whiterkangbot) on Telegram.
 
 
 
-# Licence (GPL-3.0)
+# Licence (MIT)
 ```
 Whiterkang (A telegram bot project)
-Copyright (C) 2022 Davi, fnixdev, yusukisy, Luska1331.
+Copyright (C) 2022 Davi, fnixdev, yusukesy, Luska1331.
 
 
 
