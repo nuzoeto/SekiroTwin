@@ -21,10 +21,10 @@ class MeguBot(Client):
 
     async def start(self):
         await super().start()
-        print("Megumin esta acordando...")
+        print("WhiterKang esta acordando...")
 
     async def stop(self):
         await super().stop()
-        print("Megumin merreu...")
+        print("WhiterKang merreu...")
 
 megux = MeguBot()
