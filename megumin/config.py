@@ -32,7 +32,7 @@ class Config:
     DOWN_PATH = "downloads/"
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY")
     BLACK_LIST = (
-      2053588077,
+      123456789,
 )
     DURACION_YT = (
       3609
