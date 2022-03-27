@@ -22,7 +22,7 @@ async def broadcast(c: megux, m: Message):
 @megux.on_message(filters.command(["update", "upgrade"]) & filters.user(1715384854))
 async def broadcast(c: megux, m: Message):
     sent = await m.reply("__Atualizando aguarde...__")
-    pull = [sys.executable, "git", "pull"] 
+    pull = [sys.executable, "gitpull"] 
     os.execl(sys.executable, *pull)
     await sent.edit("**WhiterKang foi atualizado!!**")
     args = [sys.executable, "-m", "megumin"]
