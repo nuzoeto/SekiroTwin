@@ -6,6 +6,7 @@ import requests
 import wget
 import datetime
 import signal
+import asyncio 
 
 from pyrogram import filters
 from pyrogram.types import Message
@@ -23,9 +24,15 @@ async def broadcast(c: megux, m: Message):
 @megux.on_message(filters.command(["update", "upgrade"]) & filters.user(1715384854))
 async def broadcast(c: megux, m: Message):
     sent = await m.reply("__Atualizando aguarde...__")
-    pull = [sys.executable, "gitpull"] 
-    os.execl(sys.executable, *pull)
-    await sent.edit("**WhiterKang foi atualizado!!**")
+    pull = await asyncio.create_subprocess_shell(
+        "git pull",
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.STDOUT,)
+        stdout = (await proc.communicate())[0]
+        if proc.returncode == 0:
+            if "Already up to date." in stdout.decode():
+            await sm.edit_text("There's nothing to upgrade.")
+        else:
     args = [sys.executable, "-m", "megumin"]
     await sent.edit("__Reiniciando aguarde...__")
     os.execl(sys.executable, *args)
