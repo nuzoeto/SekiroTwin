@@ -47,4 +47,4 @@ async def cleanup(c: megux, m: Message):
         else:
             await sent.edit_text("Não há contas excluídas aqui!")
     else:
-        await m.reply_text("Balabacheia! Você não é um(a) administrador(a)")
+        await m.reply_text("Balabacheia! Você não tem direitos administrativos suficientes para banir/desbanir usuários!")
