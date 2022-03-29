@@ -21,25 +21,7 @@ async def broadcast(c: megux, m: Message):
     os.execl(sys.executable, *args)
 
 
-@megux.on_message(filters.command(["update", "upgrade"]) & filters.user(1715384854))
-async def broadcast(c: megux, m: Message):
-    sent = await m.reply("__Atualizando aguarde...__")
-    pull = await asyncio.create_subprocess_shell(
-        "git pull",
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.STDOUT,)
-        stdout = (await pull.communicate())[0]
-        if pull.returncode == 0:
-            if "Already up to date." in stdout.decode():
-            await sent.edit_text("There's nothing to upgrade.")
-        else:
-    args = [sys.executable, "-m", "megumin"]
-    await sent.edit("__Reiniciando aguarde...__")
-    os.execl(sys.executable, *args)
-    await sent.edit("**WhiterKang Reiniciado com Sucesso!**")
-
-
 @megux.on_message(filters.command(r"shutdown") & filters.user(1715384854))
 async def shutdown(c: megux, m: Message):
-    await m.reply_text("Adeus...")
+    await m.reply_text("**WhiterKang foi desligado!**")
     os.kill(os.getpid(), signal.SIGINT)
