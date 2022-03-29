@@ -20,10 +20,11 @@ from megumin.utils import (
 
 @megux.on_message(filters.command(["zombies", "cleanup"], prefixes=["/", "!"]))
 async def cleanup(c: megux, m: Message):
+    chat_id = m.chat.id
     if m.chat.type == "private":
         await m.reply_text("Este comando é para ser usado em grupos!")
         return
-    if await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
+    if await check_rights(chat_id, m.from_user.id, "can_restrict_members"):
         deleted = []
         sent = await m.reply_text("Iniciando limpeza...")
         async for t in c.iter_chat_members(chat_id=m.chat.id, filter="all"):
