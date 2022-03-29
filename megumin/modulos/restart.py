@@ -28,10 +28,10 @@ async def broadcast(c: megux, m: Message):
         "git pull",
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.STDOUT,)
-        stdout = (await proc.communicate())[0]
-        if proc.returncode == 0:
+        stdout = (await pull.communicate())[0]
+        if pull.returncode == 0:
             if "Already up to date." in stdout.decode():
-            await sm.edit_text("There's nothing to upgrade.")
+            await sent.edit_text("There's nothing to upgrade.")
         else:
     args = [sys.executable, "-m", "megumin"]
     await sent.edit("__Reiniciando aguarde...__")
