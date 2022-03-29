@@ -6,6 +6,16 @@ from pyrogram.types import Message
 from pyrogram.errors import BadRequest, Forbidden
 
 from megumin import megux
+from megumin.utils import (
+    admin_check,
+    extract_time,
+    check_bot_rights,
+    check_rights,
+    is_admin,
+    is_dev,
+    is_self,
+    sed_sticker,
+)
 
 
 @megux.on_message(filters.command(["zombies", "cleanup"], prefixes=["/", "!"]))
@@ -13,9 +23,7 @@ async def cleanup(c: megux, m: Message):
     if m.chat.type == "private":
         await m.reply_text("Este comando é para ser usado em grupos!")
         return
-
-    member = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
-    if member.status in ["administrator", "creator"]:
+    if await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
         deleted = []
         sent = await m.reply_text("Iniciando limpeza...")
         async for t in c.iter_chat_members(chat_id=m.chat.id, filter="all"):
