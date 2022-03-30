@@ -34,3 +34,13 @@ async def getsticker_(c: megux, m: Message):
             shutil.rmtree(tempdir, ignore_errors=True)
     else:
         await m.reply_text("Isso não é um sticker!")
+
+
+@megux.on_message(filters.command("stickerid", prefixes=["/", "!"]) & filters.reply)
+async def getstickerid(c: megux, m: Message):
+    if m.reply_to_message.sticker:
+        await m.reply_text(
+            "O id deste sticker é: <code>{stickerid}</code>".format(
+                stickerid=m.reply_to_message.sticker.file_id
+            )
+        )
