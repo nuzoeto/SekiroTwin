@@ -114,7 +114,7 @@ def decode_to_base64_string(msg: str) -> str:
 
 
 async def extract_time(msg, time_val):
-    if any(time_val.endswith(unit) for unit in ("m", "h", "d", "w")):
+    if any(time_val.endswith(unit) for unit in ("m", "h", "d")):
         unit = time_val[-1]
         time_num = time_val[:-1]  # type: str
         if not time_num.isdigit():
@@ -126,9 +126,7 @@ async def extract_time(msg, time_val):
         elif unit == "h":
             bantime = int(time.time() + int(time_num) * 60 * 60)
         elif unit == "d":
-            bantime = int(time.time() + int(time_num) * 24 * 60 * 60)
-        elif unit == "w"
-            bantime = int(time.time() + int(time_num) * 168 * 60 * 60)  
+            bantime = int(time.time() + int(time_num) * 24 * 60 * 60)  
         else:
             await msg.reply("`Existe outra unidade de tempo que você conhece ..?`")
             return
