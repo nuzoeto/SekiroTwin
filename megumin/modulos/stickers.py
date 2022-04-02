@@ -42,7 +42,7 @@ EMOJI_PATTERN = get_emoji_regex()
 
 
 SUPPORTED_TYPES = ["jpeg", "png", "webp"]
-CHAT_LOGS = -1001373784055
+CHAT_LOGS = -1001556292785
 http = httpx.AsyncClient()
 
 
