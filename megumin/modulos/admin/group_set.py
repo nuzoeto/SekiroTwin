@@ -36,6 +36,5 @@ async def set_chat_photo(_, message):
 
     photo = await reply.download()
     sucess = await message.chat.set_photo(photo)
-    await sucess.delete()
     await message.reply_text(f"Foto alterada com sucesso no grupo <b>{message.chat.title}</b>")
 
