@@ -101,7 +101,7 @@ def make_it_rw(time_stamp, as_countdown=False):
     return str(humanize.naturaldate(datetime.fromtimestamp(time_stamp)))
 
 
-@megux.on_message(filters.command("anime"))
+@megux.on_message(filters.command("anime", prefixes=["/", "!"]))
 async def anim_arch(client: megux, message: Message):
     """Search Anime Info"""
     query = " ".join(message.text.split()[1:])
