@@ -24,7 +24,7 @@ async def cleanup(c: megux, m: Message):
     if m.chat.type == "private":
         await m.reply_text("Este comando é para ser usado em grupos!")
         return
-    if not await admin_check(chat_id, m.from_user.id)
+    if not await admin_check(chat_id, m.from_user.id):
         await m.reply_text("Você não é um(a) administrador(a)!")
         return
     if await check_rights(chat_id, m.from_user.id, "can_restrict_members"):
