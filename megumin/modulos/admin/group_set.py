@@ -35,6 +35,7 @@ async def set_chat_photo(_, message):
         return await message.reply("__Esse arquivo é muito grande__")
 
     photo = await reply.download()
-    await message.chat.set_photo(photo)
+    sucess = await message.chat.set_photo(photo)
+    await sucess.delete()
     await message.reply_text(f"Foto alterada com sucesso no grupo <b>{message.chat.title}</b>")
 
