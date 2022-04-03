@@ -16,6 +16,8 @@ from megumin import megux, version
 from megumin import START_TIME
 from megumin.utils import time_formatter
 
+CHAT_LOGS = -1001556292785
+
 START_PRIVADO = """
 Olá! Meu nome é **WhiterKang** sou um bot útil e divertido para você :3
 
@@ -556,10 +558,11 @@ async def thanks_for(c: megux, m: Message):
     if m.chat.username:
         text_add += f"**\nUsername:** @{m.chat.username}"
     if c.me.id in [x.id for x in m.new_chat_members]:
+        await c.send_message(chat_id=CHAT_LOGS, text=text_add)
         await c.send_message(
             chat_id=m.chat.id,
             text=("""
-**print("**__Hi guys. Thanks for adding me to the group, report bugs and errors at -> @fnixsup__**")**
+__Olá pessoal obrigado por me adicionar aqui! **Eu sou o WhiterKang**, Prazer em conhece-los.__
 """
                   ),
             disable_notification=True,
