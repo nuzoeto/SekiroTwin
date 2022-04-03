@@ -34,6 +34,7 @@ async def restart_(_, message: Message):
     user_id = message.from_user.id
     if not is_dev(user_id):
         return
+    await m.reply("`Atualizando...`")
     process = subprocess.Popen(["git", "pull"], stdout=subprocess.PIPE)
     output = process.communicate()[0]
     kek = await message.reply(f"`{output}`")
