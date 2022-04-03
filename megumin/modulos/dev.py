@@ -8,7 +8,7 @@ import subprocess
 import io
 
 
-from pyrogram import filters
+from pyrogram import Client, filters 
 from pyrogram.types import Message
 from datetime import datetime 
 
