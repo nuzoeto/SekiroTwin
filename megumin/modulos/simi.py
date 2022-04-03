@@ -12,6 +12,7 @@ async def chatbot_(c: megux, m: Message):
         text_ = m.text.split(maxsplit=1)[1]
         API = f"https://api.simsimi.net/v2/?text={text_}&lc=pt&cf=false"
         r = requests.get(API).json()
+        await m.reply(r["success"])
     except ValueError:
         return await m.reply("**API ERROR:** Value-Error")
-        await m.reply(r["success"])
+        
