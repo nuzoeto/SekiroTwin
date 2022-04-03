@@ -37,8 +37,6 @@ async def restart_(_, message: Message):
     process = subprocess.Popen(["git", "pull"], stdout=subprocess.PIPE)
     output = process.communicate()[0]
     kek = await message.reply(f"`{output}`")
-    await asyncio.sleep(2)
-    await kek.edit("**WhiterKang foi atualizado!**")
     await asyncio.sleep(3)
     await kek.edit("`Reiniciando...`")
     await asyncio.sleep(2)
