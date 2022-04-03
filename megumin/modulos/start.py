@@ -545,6 +545,22 @@ Aqui está a ajuda para o módulo <b>Stickers</b>:
         )
 
 
-    @megux.on_message(filters.new_chat_members, filters.user(5059188795))
-    async def thanks_for(c: megux, m: Message):
-           await m.reply("Olá pessoal! Obrigado por me adicionar a esse grupo.")
+@megux.on_message(filters.new_chat_members)
+async def thanks_for(c: megux, m: Message):
+    user = (
+        f"<a href='tg://user?id={m.from_user.id}'>{m.from_user.first_name}</a>")
+    gp_title = m.chat.title
+    gp_id = m.chat.id
+
+    text_add = f"#NEW_GROUP #LOGS\n\n**Grupo**: __{gp_title}__\n**ID:** __{gp_id}__\n**User:** __{user}__"
+    if m.chat.username:
+        text_add += f"**\nUsername:** @{m.chat.username}"
+    if c.me.id in [x.id for x in m.new_chat_members]:
+        await c.send_message(
+            chat_id=m.chat.id,
+            text=("""
+**print("**__Hi guys. Thanks for adding me to the group, report bugs and errors at -> @fnixsup__**")**
+"""
+                  ),
+            disable_notification=True,
+        )
