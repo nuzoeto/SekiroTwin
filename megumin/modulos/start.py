@@ -562,7 +562,7 @@ async def thanks_for(c: megux, m: Message):
         await c.send_message(
             chat_id=m.chat.id,
             text=("""
-__Olá pessoal obrigado por me adicionar aqui! **Eu sou o WhiterKang**, Prazer em conhece-los.__
+__Olá pessoal obrigado por me adicionar aqui!__\n**Eu sou o WhiterKang**, Prazer em conhece-los.
 """
                   ),
             disable_notification=True,
