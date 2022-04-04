@@ -1,9 +1,10 @@
-import tempfile
 import os
 import shutil
-import httpx
+import tempfile
+import ffmpeg
 import re
 import math
+import httpx
 
 
 from PIL import Image
@@ -88,7 +89,7 @@ async def getstickerid(c: megux, m: Message):
 
 @megux.on_message(filters.command("kang", prefixes=["/", "!"]))
 async def kang_sticker(c: megux, m: Message):
-    prog_msg = await m.reply_text("Roubando o Sticker...")
+    prog_msg = await m.reply_text("Roubando o sticker...")
     user = await c.get_me()
     bot_username = user.username
     sticker_emoji = "🤔"
@@ -96,19 +97,27 @@ async def kang_sticker(c: megux, m: Message):
     packname_found = False
     resize = False
     animated = False
+    videos = False
     reply = m.reply_to_message
     user = await c.resolve_peer(m.from_user.username or m.from_user.id)
 
     if reply and reply.media:
         if reply.photo:
             resize = True
+        elif reply.animation:
+            videos = True
+            convert = True
         elif reply.document:
             if "image" in reply.document.mime_type:
                 # mime_type: image/webp
                 resize = True
+            elif "video/mp4" in reply.document.mime_type:
+                # mime_type: application/v
+                videos = True
             elif "tgsticker" in reply.document.mime_type:
-                # mime_type: application/x-tgsticker
+                # mime_type: application/v
                 animated = True
+
         elif reply.sticker:
             if not reply.sticker.file_name:
                 return await prog_msg.edit_text(
@@ -117,11 +126,18 @@ async def kang_sticker(c: megux, m: Message):
             if reply.sticker.emoji:
                 sticker_emoji = reply.sticker.emoji
             animated = reply.sticker.is_animated
-            if not reply.sticker.file_name.endswith(".tgs"):
-                resize = True
+            videos = reply.sticker.is_video
+            if videos:
+                convert = False
+            else:
+                if not reply.sticker.file_name.endswith(".tgs"):
+                    resize = True
         else:
-            return await prog_msg.edit_text("`Não suportado!`")
-        pack_prefix = "anim" if animated else "a"
+            return await prog_msg.edit_text(
+                "<code>Não suportado!</code>"
+            )
+
+        pack_prefix = "anim" if animated else "vid" if videos else "a"
         packname = f"{pack_prefix}_{m.from_user.id}_by_{bot_username}"
 
         if len(m.command) > 1:
@@ -172,10 +188,12 @@ async def kang_sticker(c: megux, m: Message):
                 )
             resize = True
     else:
-        return await prog_msg.edit_text("`Quer que eu adivinhe o sticker? Por Favor marque um sticker.")
+        return await prog_msg.edit_text("Quer que eu adivinhe o sticker? Por Favor marque um sticker.")
     try:
         if resize:
             filename = resize_image(filename)
+        elif convert:
+            filename = convert_video(filename)
         max_stickers = 50 if animated else 120
         while not packname_found:
             try:
@@ -226,10 +244,11 @@ async def kang_sticker(c: megux, m: Message):
             )
         else:
             await prog_msg.edit_text("<b>Criando um novo pacote de stickers...</b>")
-            stkr_title = f"{m.from_user.first_name[:32]}'s "
+            stkr_title = f"@{m.from_user.username[:32]}'s "
             if animated:
-                stkr_title += "Anim. "
-            stkr_title += "WhiterKang Pack"
+                stkr_title += "WhiterKang AnimPack"
+            elif videos:
+                stkr_title += "WhiterKang VidPack"
             if packnum != 0:
                 stkr_title += f" v{packnum}"
             try:
@@ -249,6 +268,7 @@ async def kang_sticker(c: megux, m: Message):
                             )
                         ],
                         animated=animated,
+                        videos=videos,
                     )
                 )
             except PeerIdInvalid:
@@ -291,3 +311,17 @@ def resize_image(filename: str) -> str:
     if png_image != filename:
         os.remove(filename)
     return png_image
+
+
+def convert_video(filename: str) -> str:
+    downpath, f_name = os.path.split(filename)
+    webm_video = os.path.join(downpath, f"{f_name.split('.', 1)[0]}.webm")
+    webm_video = os.path.join(downpath, f"{f_name.split('.', 1)[0]}.webm")
+    stream = ffmpeg.input(filename).filter("fps", fps=30, round="up").trim(duration=3)
+    stream = ffmpeg.output(
+        stream, webm_video, s="512x512", vcodec="vp9", video_bitrate="500k"
+    )
+    ffmpeg.run(stream, overwrite_output=True, quiet=True)
+    if webm_video != filename:
+        os.remove(filename)
+    return webm_video
