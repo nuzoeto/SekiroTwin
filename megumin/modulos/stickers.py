@@ -89,7 +89,7 @@ async def getstickerid(c: megux, m: Message):
 
 @megux.on_message(filters.command("kang", prefixes=["/", "!"]))
 async def kang_sticker(c: megux, m: Message):
-    if user_id in Config.CHATS_DISABLED_KANG:
+    if m.chat.id in Config.CHATS_DISABLED_KANG:
         return
     prog_msg = await m.reply_text("Roubando o sticker...")
     user = await c.get_me()
