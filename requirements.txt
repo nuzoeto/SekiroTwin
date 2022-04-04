@@ -26,7 +26,7 @@ lxml==4.8.0
 meval==2.5
 multidict==5.1.0
 motor
-Pillow==8.3.2
+Pillow==9.1.0
 pyaes==1.6.1
 pyrogram==1.4.12
 PyroMod
@@ -39,7 +39,7 @@ python-rapidjson
 requests==2.26.0
 rfc3986==1.5.0
 removebg>=0.4
-rich==12.0.1
+rich==12.1.0
 sniffio==1.2.0
 search_engine_parser
 speedtest-cli
