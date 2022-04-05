@@ -19,6 +19,7 @@ from megumin.utils import get_collection, time_formatter
 
 CHAT_LOGS = -1001556292785
 GROUPS = get_collection("GROUPS")
+USERS = get_collection("USERS")
 
 START_PRIVADO = """
 Olá! Meu nome é **WhiterKang** sou um bot útil e divertido para você :3
@@ -74,7 +75,11 @@ async def start_(_, message: Message):
         user_start = f"#NEW_USER #LOGS\n\n**User:** {fname}\n**ID:** {m.from_user.id} <a href='tg://user?id={user_id}'>**Link**</a>"
         if uname:
             user_start += f"\n**Username:** @{uname}"
-            await c.send_message(chat_id=CHAT_LOGS, text=user_start)
+        found = await USERS.find_one({"id_": user_id})
+        if not found:
+            await asyncio.gather(
+                USERS.insert_one({"id_": user_id, "user": fname}))
+            await c.send_message(chat_id=CHAT_LOGS, text=user_start
     else:
         return await message.reply("Oi meu nome é **WhiterKang**.")
         
