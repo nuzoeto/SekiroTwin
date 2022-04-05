@@ -15,9 +15,10 @@ from pyrogram.types import (
 
 from megumin import megux, version
 from megumin import START_TIME
-from megumin.utils import time_formatter
+from megumin.utils import get_collection, time_formatter
 
 CHAT_LOGS = -1001556292785
+GROUPS = get_collection("GROUPS")
 
 START_PRIVADO = """
 Olá! Meu nome é **WhiterKang** sou um bot útil e divertido para você :3
