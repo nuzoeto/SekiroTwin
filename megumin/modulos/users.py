@@ -9,7 +9,7 @@ from megumin.utils import get_collection, is_dev
 USERS = get_collection("USERS")
 GROUPS = get_collection("GROUPS")
 
-@yuuna.on_message(filters.command(["status"]))
+@megux.on_message(filters.command(["status"]))
 async def status_(_, m: Message):
     user_id = m.from_user.id
     if not is_dev(user_id):
