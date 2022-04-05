@@ -19,6 +19,3 @@ async def get_stats(_, message):
 {neofetch}
 ```''')
     await message.reply_text(stats)
-
-
-
