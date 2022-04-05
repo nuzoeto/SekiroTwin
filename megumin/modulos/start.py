@@ -3,6 +3,7 @@ import time
 import psutil
 import humanize
 import platform
+import asyncio 
 
 from pyrogram import filters
 from pyrogram.types import (
@@ -574,3 +575,7 @@ __Olá pessoal obrigado por me adicionar aqui!__\n**Eu sou o WhiterKang**, Praze
                   ),
             disable_notification=True,
         )
+        found = await GROUPS.find_one({"id_": gp_id})
+        if not found:
+            await asyncio.gather(
+                GROUPS.insert_one({"id_": gp_id, "title": gp_title}),
