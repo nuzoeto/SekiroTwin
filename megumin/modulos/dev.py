@@ -15,7 +15,7 @@ from datetime import datetime
 from megumin import megux
 from megumin.utils import is_dev
 
-@megux.on_message(filters.command("restart") & filters.user(1715384854))
+@megux.on_message(filters.command("restart", prefixes=["/", "!"]) & filters.user(1715384854))
 async def broadcast(c: megux, m: Message):
     sent = await m.reply("__Reiniciando aguarde...__") 
     args = [sys.executable, "-m", "megumin"]
@@ -23,13 +23,13 @@ async def broadcast(c: megux, m: Message):
     os.execl(sys.executable, *args)
 
 
-@megux.on_message(filters.command(r"shutdown") & filters.user(1715384854))
+@megux.on_message(filters.command(r"shutdown", prefixes=["/", "!"]) & filters.user(1715384854))
 async def shutdown(c: megux, m: Message):
     await m.reply_text("**WhiterKang foi desligado!**")
     os.kill(os.getpid(), signal.SIGINT)
 
 
-@megux.on_message(filters.command(["up", "update"]))
+@megux.on_message(filters.command(["up", "update"], prefixes=["/", "!"]))
 async def restart_(_, message: Message):
     user_id = message.from_user.id
     if not is_dev(user_id):
@@ -107,7 +107,7 @@ async def aexec(code, b, m, r):
     return await locals()["__aexec"](b, m, r)
 
 
-@megux.on_message(filters.command("term"))
+@megux.on_message(filters.command("term", prefixes=["/", "!"]))
 async def terminal(client: megux, message: Message):
     user_id = message.from_user.id
     if not is_dev(user_id):
