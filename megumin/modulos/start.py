@@ -126,7 +126,7 @@ Comandos básicos:
 - /ping Ver o atraso para o bot retornar a mensagem.
 - /about Veja mais sobre os desenvolvedores. 
 
-Todos os comandos podem ser usados com os seguintes caracteres: /  !
+Todos os comandos podem ser usados com os seguintes caracteres: <code>/  !</code>
     """
         button = InlineKeyboardMarkup(
             [
@@ -536,9 +536,11 @@ Aqui está a ajuda para o módulo <b>Purges</b>:
     @megux.on_callback_query(filters.regex(pattern=r"^stickers_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
-Aqui está a ajuda para o módulo <b>Stickers</b>:
+Aqui está a ajuda para o modulo <b>Stickers</b>:
 
-• /getsticker Responda a um adesivo para eu enviar o PNG e as informações do sticker.
+- /stickerid: responda a um adesivo para eu lhe dizer seu ID de arquivo.
+- /getsticker: responda a um adesivo para fazer o upload do arquivo PNG bruto.
+- /kang: responda a um sticker para adicioná-lo ao seu pacote.
     """
         button = InlineKeyboardMarkup(
             [
