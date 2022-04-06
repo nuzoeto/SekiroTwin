@@ -73,12 +73,6 @@ async def start_(_, message: Message):
         fname = message.from_user.first_name
         uname = message.from_user.username
         user_start = f"#NEW_USER #LOGS\n\n**User:** {fname}\n**ID:** {m.from_user.id} <a href='tg://user?id={user_id}'>**Link**</a>"
-        if uname:
-            user_start += f"\n**Username:** @{uname}"
-        found = await USERS.find_one({"id_": user_id})
-        if not found:
-            await asyncio.gather(
-                USERS.insert_one({"id_": user_id, "user": fname}))
             await c.send_message(chat_id=CHAT_LOGS, text=user_start
     else:
         return await message.reply("Oi meu nome é **WhiterKang**.")
