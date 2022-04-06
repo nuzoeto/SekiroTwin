@@ -538,9 +538,9 @@ Aqui está a ajuda para o módulo <b>Purges</b>:
         info_text = f"""
 Aqui está a ajuda para o modulo <b>Stickers</b>:
 
-- /stickerid: responda a um adesivo para eu lhe dizer seu ID de arquivo.
-- /getsticker: responda a um adesivo para fazer o upload do arquivo PNG bruto.
-- /kang: responda a um sticker para adicioná-lo ao seu pacote.
+• /stickerid: responda a um adesivo para eu lhe dizer seu ID de arquivo.
+• /getsticker: responda a um adesivo para fazer o upload do arquivo PNG bruto.
+• /kang: responda a um sticker para adicioná-lo ao seu pacote.
     """
         button = InlineKeyboardMarkup(
             [
