@@ -35,7 +35,7 @@ async def info(client, message):
     )
 
 
-@megux.on_message(filters.command("help" | filters.regex("/start help_", prefixes=["/", "!"]) & filters.private))
+@megux.on_message(filters.command("help", prefixes=["/", "!"]) & filters.private | filters.regex("/start help_"))
 async def help(client, message):
     button = InlineKeyboardMarkup(
         [
