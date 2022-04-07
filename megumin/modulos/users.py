@@ -16,4 +16,4 @@ async def status_(_, m: Message):
         return
     glist = await GROUPS.estimated_document_count()
     ulist = await USERS.estimated_document_count()
-    await m.reply(f"**♬🎷【 Bot Status 】●♪**\n\n**Users**: __{ulist}__\n**Groups**: __{glist}__")
+    await m.reply(f"**【 WhiterKang Status 】**\n\n**Regs**: __{ulist}__\n**Grupos**: __{glist}__")
