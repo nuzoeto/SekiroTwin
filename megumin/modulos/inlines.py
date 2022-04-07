@@ -10,6 +10,7 @@ from pyrogram.types import (
 
 from megumin import megux 
 
+
 @megux.on_inline_query(filters.regex(r"^info"))
 async def info_inline(c: megux, q: InlineQuery):
     try:
