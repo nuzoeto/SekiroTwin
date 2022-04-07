@@ -115,7 +115,7 @@ async def start_(_, message: Message):
             reply_markup=keyboard,
         )
 
-    @megux.on_callback_query(filters.regex(pattern=r"^help_menu$"))
+    @megux.on_callback_query(filters.regex(pattern=r"^help_menu$") | filters.regex("/start help_"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
 Olá! Me chamo **WhiterKang**. Sou um bot de gerenciamento de grupo modular com alguns extras divertidos! Dê uma olhada no seguinte para ter uma idéia de algumas das coisas em que posso ajudá-lo. 
