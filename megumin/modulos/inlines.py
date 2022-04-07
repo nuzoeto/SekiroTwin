@@ -35,7 +35,7 @@ async def info_inline(c: megux, q: InlineQuery):
             InlineQueryResultArticle(
                 title="Clique aqui para obter informações do usuário.",
                 input_message_content=InputTextMessageContent(
-                    "Nome de usuário: {usernameformat}\nID: {useridformat}\nDC: {userdcformat}\nLink do usuário: {usermentionformat}\nÉ bot {is_bot_user}".format(
+                    "Nome de usuário: {usernameformat}\nID: {useridformat}\nDC: {userdcformat}\nLink do usuário: {usermentionformat}\nÉ bot: {is_bot_user}".format(
                         usernameformat=user.username,
                         useridformat=user.id,
                         userdcformat=user.dc_id,
