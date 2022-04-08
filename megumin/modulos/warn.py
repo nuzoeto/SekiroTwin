@@ -13,15 +13,11 @@ from megumin import megux
 from megumin.utils import get_collection
 
 
-m = Message
-
-ids = (m.reply_to_message.from_user.id)
-WARMS = get_collection(f"WARM {ids}")
-name_user = (message.reply_to_message.from_user.mention())
-
-
 @megux.on_message(filters.command(["warm"], prefixes=["/", "!"]))
 async def get_stats(_, message):
+    ids = (m.reply_to_message.from_user.id)
+    WARMS = get_collection(f"WARM {ids}")
+    name_user = (message.reply_to_message.from_user.mention())
     await asyncio.gather(WARMS.insert_one({"id_": ids, "title": name_user}))
     G = await WARMS.estimated_document_count()
     keyboard = InlineKeyboardMarkup(
