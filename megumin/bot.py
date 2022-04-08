@@ -37,4 +37,12 @@ class MeguBot(Client):
         await self.send_message(chat_id=GP_LOGS, text=text_)
         print("WhiterKang merreu...")
 
+    async def send_log(self, text: str, *args, **kwargs):
+        await self.send_message(
+            chat_id=GP_LOGS,
+            text=text,
+            *args,
+            **kwargs,
+        )
+
 megux = MeguBot()
