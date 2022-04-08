@@ -72,7 +72,7 @@ async def start_(_, message: Message):
         user_id = message.from_user.id
         fname = message.from_user.first_name
         uname = message.from_user.username
-        user_start = f"#NEW_USER #LOGS\n\n**User:** {fname}\n**ID:** {m.from_user.id} <a href='tg://user?id={user_id}'>**Link**</a>"
+        user_start = f"#NEW_USER #LOGS\n\n**User:** {fname}\n**ID:** {message.from_user.id} <a href='tg://user?id={user_id}'>**Link**</a>"
         await c.send_message(chat_id=CHAT_LOGS, text=user_start)
     else:
         return await message.reply("Oi meu nome é **WhiterKang**.")
