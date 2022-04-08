@@ -77,8 +77,8 @@ async def start_(c: megux, message: Message):
         found = await USERS_STARTED.find_one({"id_": user_id})
         if not found:
             await asyncio.gather(
-                USERS_STARTED.insert_one({"id_": user_id, "user": fname}))
-        await c.send_message(chat_id=CHAT_LOGS, text=user_start)
+                USERS_STARTED.insert_one({"id_": user_id, "user": fname}),
+                c.send_log(user_start, disable_notification=False, disable_web_page_preview=True))
     else:
         return await message.reply("Oi meu nome é **WhiterKang**.")
         
