@@ -22,6 +22,6 @@ async def nekobin(c: megux, m: Message):
         url = "https://nekobin.com/api/documents"
         r = await http.post(url, json={"content": mean})
         url = f"https://nekobin.com/{r.json()['result']['key']}"
-        await m.reply_text("<b>Nekobin [URL](url)</b>", disable_web_page_preview=True)
+        await m.reply_text(f"<b>Nekobin [URL]({url})</b>", disable_web_page_preview=True)
     else:
         await m.reply_text("Por favor, responda a um texto ou documento para colar o conteúdo.")
