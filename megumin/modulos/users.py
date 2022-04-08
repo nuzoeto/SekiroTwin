@@ -8,7 +8,7 @@ from megumin.utils import get_collection, is_dev
 
 USERS = get_collection("USERS")
 GROUPS = get_collection("GROUPS")
-USERS_STARTED = get_collection("USERS_STARTED")
+USERS_STARTED = get_collection("USERS_START")
 
 @megux.on_message(filters.command(["status"]))
 async def status_(_, m: Message):
