@@ -9,7 +9,7 @@ http = httpx.AsyncClient()
 
 
 @megux.on_message(filters.command("paste", prefixes=["/", "!"]))
-async def nekobin(c: Client, m: Message, strings):
+async def nekobin(c: megux, m: Message):
     if m.reply_to_message:
         if m.reply_to_message.document:
             tfile = m.reply_to_message
