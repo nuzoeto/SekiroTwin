@@ -89,7 +89,7 @@ async def start_(c: megux, message: Message):
 ╔════「 Sobre  WhiterKang 」
 ╠ Versão : `{version.__megumin_version__}`
 ╠ Uptime : `{time_formatter(time.time() - START_TIME)}`
-╠ System : `{uname.system}`
+╠ System : `{client.system_version}`
 ╠ Cpu : `{psutil.cpu_percent(interval=1)}%`
 ╠ Ram : `{psutil.virtual_memory().percent}%`
 ╠ Disco : `{psutil.disk_usage("/").percent}%`
