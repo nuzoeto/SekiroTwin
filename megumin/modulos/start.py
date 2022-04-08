@@ -47,7 +47,7 @@ uname = platform.uname()
 
 
 @megux.on_message(filters.command("start", prefixes=["/", "!"]))
-async def start_(_, c: megux, message: Message):
+async def start_(c: megux, message: Message):
     if message.chat.type == "private":
         keyboard = InlineKeyboardMarkup(
             [
