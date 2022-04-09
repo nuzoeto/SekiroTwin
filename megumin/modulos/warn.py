@@ -1,6 +1,7 @@
 import os
 import asyncio 
 
+from typing import Union
 from pyrogram import filters 
 from pyrogram.types import (CallbackQuery, 
 InlineKeyboardButton, 
@@ -31,7 +32,7 @@ async def warm_(_, message):
 
 @megux.on_callback_query(filters.regex(pattern=r"^remove_warm_$"))
 @megux.on_message(filters.command(["unwarm"], prefixes=["/", "!"]))
-async def warm_(_, message):
+async def warm_(message: Union[Message, CallbackQuery]):
     ids = (message.reply_to_message.from_user.id)
     WARMS = get_collection(f"WARMS {ids}")
     name_user = (message.reply_to_message.from_user.mention())
