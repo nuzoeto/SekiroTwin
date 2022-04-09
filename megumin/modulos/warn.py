@@ -26,23 +26,19 @@ async def warm_(_, message):
               callback_data="remove_warm_")]
             ]
         )
-    await message.reply(f"Usuario {name_user} tem {G}/3 Advertências tenha cuidado!\nReason: <code>Xingando o bot</code>", reply_markup=(keyboard))
+    await message.reply(f"{name_user} <b>foi advertido!</b>\nEle(a) tem {G}/3 Advertências.", reply_markup=(keyboard))
 
 
+@megux.on_callback_query(filters.regex(pattern=r"^remove_warm_$"))
 @megux.on_message(filters.command(["unwarm"], prefixes=["/", "!"]))
 async def warm_(_, message):
     ids = (message.reply_to_message.from_user.id)
     WARMS = get_collection(f"WARMS {ids}")
     name_user = (message.reply_to_message.from_user.mention())
+    admin = (message.from_user.mention())
     await asyncio.gather(WARMS.delete_one({"id_": ids, "title": name_user}))
     G = await WARMS.estimated_document_count()
-    keyboard = InlineKeyboardMarkup(
-            [
-                [InlineKeyboardButton("Remover Advertencia",
-              callback_data="remove_warm_")]
-            ]
-        )
-    await message.reply(f"Usuario {name_user} tem {G}/3 Advertências tenha cuidado!\nReason: <code>Xingando o bot</code>", reply_markup=(keyboard))
+    await message.reply(f"Advertência removida por {admin}")
     
           
 
