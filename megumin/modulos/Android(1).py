@@ -1,5 +1,7 @@
 import rapidjson
 import httpx
+import asyncio 
+import requests
 
 from bs4 import BeautifulSoup
 
@@ -11,6 +13,7 @@ from megumin import megux
 
 
 http = httpx.AsyncClient()
+DEVICE_LIST = "https://raw.githubusercontent.com/androidtrackers/certified-android-devices/master/by_device.json"
 
 
 @megux.on_message(filters.command(["twrp"]))
@@ -57,3 +60,24 @@ async def magisk(c: megux, m: Message):
             f' | <a href="{data["magisk"]["note"]}" >Changelog</a> \n'
         )
     await m.reply_text(text, disable_web_page_preview=True)
+
+
+@megux.on_message(filters.command(["device", "whatis"], prefixes=["/", "!"]))
+async def device_(_, message: Message):
+    msg = await message.reply("__Procurando...__")
+    getlist = requests.get(DEVICE_LIST).json()
+    target_device = message.text.split()[1].lower()
+    if not target_device:
+        await message.edit("Quer que eu adivinhe? Por favor digite um codename")
+        return
+    if target_device in list(getlist):
+        device = getlist.get(target_device)
+        text = ""
+        for x in device:
+            text += f"**Marca:** ```{x['brand']}```\n**Nome:** ```{x['name']}```\n**Dispositivo:** ```{x['model']}```\n**Codename:** ```{target_device}```"
+            text += "\n\n"
+        await msg.edit(text)
+    else:
+        await msg.edit(f"`Device` **{target_device}** `não foi encontrado!`")
+        await asyncio.sleep(5)
+        await msg.delete()
