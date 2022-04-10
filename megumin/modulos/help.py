@@ -12,7 +12,7 @@ Use /start para iniciar o WhiterKang em um grupo ou privado
 Use /help para os comandos disponíveis sobre o WhiterKang 
 Use /about para saber sobre os desenvolvedores e mais
 
-**Em desenvolvimento...**
+**❔ Help Em desenvolvimento...**
 """
 
 ABOUT_TEXT = """
