@@ -44,8 +44,8 @@ async def twrp(c: megux, m: Message):
         )
 
 
-@Client.on_message(filters.command(["magisk"]))
-async def magisk(c: Client, m: Message):
+@megux.on_message(filters.command(["magisk"]))
+async def magisk(c: megux, m: Message):
     repo_url = "https://raw.githubusercontent.com/topjohnwu/magisk-files/master/"
     text = "<b>Últimos lançamentos do magisk</b>\n\n"
     for magisk_type in ["stable", "beta", "canary"]:
