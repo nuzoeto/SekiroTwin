@@ -11,6 +11,8 @@ Use /ping para verificar o atraso para o WhiterKang retornar a mensagem.
 Use /start para iniciar o WhiterKang em um grupo ou privado
 Use /help para os comandos disponíveis sobre o WhiterKang 
 Use /about para saber sobre os desenvolvedores e mais
+
+**Em desenvolvimento...**
 """
 
 ABOUT_TEXT = """
