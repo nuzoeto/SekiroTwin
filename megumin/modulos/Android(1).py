@@ -24,10 +24,10 @@ async def twrp(c: megux, m: Message):
     if url.status_code == 404:
         await m.reply_text(f"TWRP currently is not avaliable for <code>{device}</code>")
     else:
-        message = f"<b>Latest TWRP Recovery For {device}</b>\n"
+        message = f"<b>Último recovery TWRP para {device}</b>\n"
         page = BeautifulSoup(url.content, "lxml")
         date = page.find("em").text.strip()
-        message += f"<b>Updated:</b> <code>{date}</code>\n"
+        message += f"<b>Atualizado em:</b> <code>{date}</code>\n"
         trs = page.find("table").find_all("tr")
         row = 2 if trs[0].find("a").text.endswith("tar") else 1
         for i in range(row):
@@ -35,8 +35,8 @@ async def twrp(c: megux, m: Message):
             dl_link = f"https://eu.dl.twrp.me{download['href']}"
             dl_file = download.text
             size = trs[i].find("span", {"class": "filesize"}).text
-        message += f"<b>Size:</b> <code>{size}</code>\n"
-        message += f"<b>File:</b> <code>{dl_file.upper()}</code>"
+        message += f"<b>Tamanho:</b> <code>{size}</code>\n"
+        message += f"<b>Arquivo:</b> <code>{dl_file.upper()}</code>"
         keyboard = [[InlineKeyboardButton(text="Download", url=dl_link)]]
         await m.reply_text(
             message,
