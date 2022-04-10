@@ -43,3 +43,17 @@ async def twrp(c: megux, m: Message):
             reply_markup=InlineKeyboardMarkup(keyboard),
         )
 
+
+@Client.on_message(filters.command(["magisk"]))
+async def magisk(c: Client, m: Message):
+    repo_url = "https://raw.githubusercontent.com/topjohnwu/magisk-files/master/"
+    text = "<b>Últimos lançamentos do magisk</b>\n\n"
+    for magisk_type in ["stable", "beta", "canary"]:
+        fetch = await http.get(repo_url + magisk_type + ".json")
+        data = rapidjson.loads(fetch.content)
+        text += (
+            f"<b>{magisk_type.capitalize()}</b>:\n"
+            f'<a href="{data["magisk"]["link"]}" >Magisk - V{data["magisk"]["version"]}</a>'
+            f' | <a href="{data["magisk"]["note"]}" >Changelog</a> \n'
+        )
+    await m.reply_text(text, disable_web_page_preview=True)
