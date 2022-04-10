@@ -16,16 +16,16 @@ http = httpx.AsyncClient()
 DEVICE_LIST = "https://raw.githubusercontent.com/androidtrackers/certified-android-devices/master/by_device.json"
 
 
-@megux.on_message(filters.command(["twrp"]))
+@megux.on_message(filters.command(["twrp"], prefixes=["/", "!"]))
 async def twrp(c: megux, m: Message):
     if not len(m.command) == 2:
-        message = "Please write your codename into it, i.e <code>/twrp herolte</code>"
+        message = "Por favor, escreva seu codinome nele, ou seja, <code>/twrp herolte</code>"
         await m.reply_text(message)
         return
     device = m.command[1]
     url = await http.get(f"https://eu.dl.twrp.me/{device}/")
     if url.status_code == 404:
-        await m.reply_text(f"TWRP currently is not avaliable for <code>{device}</code>")
+        await m.reply_text(f"TWRP atualmente não está disponível para <code>{device}</code>")
     else:
         message = f"<b>Último recovery TWRP para {device}</b>\n"
         page = BeautifulSoup(url.content, "lxml")
@@ -47,7 +47,7 @@ async def twrp(c: megux, m: Message):
         )
 
 
-@megux.on_message(filters.command(["magisk"]))
+@megux.on_message(filters.command(["magisk"], prefixes=["/", "!"]))
 async def magisk(c: megux, m: Message):
     repo_url = "https://raw.githubusercontent.com/topjohnwu/magisk-files/master/"
     text = "<b>Últimos lançamentos do magisk</b>\n\n"
