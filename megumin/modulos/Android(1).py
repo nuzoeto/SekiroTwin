@@ -1,0 +1,45 @@
+import rapidjson
+import httpx
+
+from bs4 import BeautifulSoup
+
+from pyrogram import filters
+from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
+
+
+from megumin import megux 
+
+
+http = httpx.AsyncClient()
+
+
+@megux.on_message(filters.command(["twrp"]))
+async def twrp(c: megux, m: Message):
+    if not len(m.command) == 2:
+        message = "Please write your codename into it, i.e <code>/twrp herolte</code>"
+        await m.reply_text(message)
+        return
+    device = m.command[1]
+    url = await http.get(f"https://eu.dl.twrp.me/{device}/")
+    if url.status_code == 404:
+        await m.reply_text(f"TWRP currently is not avaliable for <code>{device}</code>")
+    else:
+        message = f"<b>Latest TWRP Recovery For {device}</b>\n"
+        page = BeautifulSoup(url.content, "lxml")
+        date = page.find("em").text.strip()
+        message += f"<b>Updated:</b> <code>{date}</code>\n"
+        trs = page.find("table").find_all("tr")
+        row = 2 if trs[0].find("a").text.endswith("tar") else 1
+        for i in range(row):
+            download = trs[i].find("a")
+            dl_link = f"https://eu.dl.twrp.me{download['href']}"
+            dl_file = download.text
+            size = trs[i].find("span", {"class": "filesize"}).text
+        message += f"<b>Size:</b> <code>{size}</code>\n"
+        message += f"<b>File:</b> <code>{dl_file.upper()}</code>"
+        keyboard = [[InlineKeyboardButton(text="Download", url=dl_link)]]
+        await m.reply_text(
+            message,
+            reply_markup=InlineKeyboardMarkup(keyboard),
+        )
+
