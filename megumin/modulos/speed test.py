@@ -2,6 +2,7 @@ import speedtest
 import os
 import wget
 import sys
+import asyncio 
 
 from pyrogram import filters
 from pyrogram.types import Message
@@ -30,7 +31,9 @@ async def test_speed(c: megux, m: Message):
         )
         await running.delete()
     except Exception as e:
-        await running.edit(e)
+        await running.edit(f"<b>Erro</b>: {e}")
+        await asyncio.sleep(10)
+        await running.delete()
         return
     
 
