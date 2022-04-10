@@ -24,14 +24,14 @@ async def test_speed(c: megux, m: Message):
         isp = result["client"]["isp"]   
         country = result["server"]["country"] 
         cc = result["server"]["cc"]
-    except Exception as e:
-        await running.err(text=e)
-        return
         path = wget.download(result["share"]) 
         response = await m.reply_photo(
             photo=path, caption=f"🌀 <b>Nome:</b> <code>{name}</code>\n🌐 <b>Host:</b> <code>{host}</code>\n🏁 <b>País:</b> <code>{country}, {cc}</code>\n\n🏓 <b>Latência:</b> <code>{ping} ms</code>\n🔽 <b>Download:</b> <code>{dl} Mbps</code>\n🔼 <b>Upload:</b> <code>{ul} Mbps</code>\n🖥  <b>ISP:</b> <code>{isp}</code>"
         )
         await running.delete()
+    except Exception as e:
+        await running.edit(e)
+        return
     
 
 @megux.on_message(filters.command("speed") & filters.user(1715384854))
