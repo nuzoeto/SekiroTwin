@@ -57,7 +57,7 @@ async def start_(c: megux, message: Message):
                 ],
                 [
                     InlineKeyboardButton(text="Info", callback_data="infos"),
-                    InlineKeyboardButton(text="Suporte", url="https://t.me/fnixsup"),
+                    InlineKeyboardButton(text="📢 Suporte", url="https://t.me/fnixsup"),
                 ],
                 [
                     InlineKeyboardButton(
@@ -131,7 +131,7 @@ Comandos básicos:
 - /ping Ver o atraso para o bot retornar a mensagem.
 - /about Veja mais sobre os desenvolvedores. 
 
-Todos os comandos podem ser usados com os seguintes caracteres: <code>/  !</code>
+Todos os comandos podem ser usados com os seguintes caracteres: <code>/ !</code>
     """
         button = InlineKeyboardMarkup(
             [
