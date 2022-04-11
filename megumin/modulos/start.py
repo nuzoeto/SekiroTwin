@@ -160,7 +160,7 @@ Todos os comandos podem ser usados com os seguintes caracteres: <code>/ !</code>
                     InlineKeyboardButton("Stickers", callback_data="stickers_help_button"), 
                 ],
                 [
-                    InlineKeyboardButton("↩ Voltar", callback_data="start_back"),
+                    InlineKeyboardButton("⬅ Voltar", callback_data="start_back"),
                 ],
             ]
         )
