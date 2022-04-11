@@ -57,7 +57,7 @@ async def start_(c: megux, message: Message):
                 ],
                 [
                     InlineKeyboardButton(text="Info", callback_data="infos"),
-                    InlineKeyboardButton(text="📢 Suporte", url="https://t.me/fnixsup"),
+                    InlineKeyboardButton(text="Suporte", url="https://t.me/fnixsup"),
                 ],
                 [
                     InlineKeyboardButton(
@@ -200,7 +200,7 @@ Aqui está a ajuda para o módulo <b>Admin</b>:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
                 ]
             ]
         )
@@ -225,7 +225,7 @@ Aqui está a ajuda para o módulo <b>Anilist</b>:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
                 ]
             ]
         )
@@ -251,7 +251,7 @@ Aqui está a ajuda para o módulo <b>Android</b>:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
                 ]
             ]
         )
@@ -277,7 +277,7 @@ Antes de tudo você deve estar registrado no lastfm
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
                 ]
             ]
         )
@@ -297,7 +297,7 @@ Under development...
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
                 ]
             ]
         )
@@ -319,7 +319,7 @@ Aqui está a ajuda para o módulo <b>Tradutor</b>
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
                 ]
             ]
         )
@@ -343,7 +343,7 @@ Aqui está a ajuda para o módulo **YouTube**:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
                 ]
             ]
         )
@@ -376,7 +376,7 @@ Um exemplo de silenciar alguém temporariamente:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
                 ]
             ]
         )
@@ -398,7 +398,7 @@ Aqui está a ajuda para o módulo **GitHub**:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
                 ]
             ]
         )
@@ -449,7 +449,7 @@ Aqui está a ajuda para o módulo **GitHub**:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
                 ]
             ]
         )
@@ -476,7 +476,7 @@ Aqui está a ajuda para o módulo **Memes**:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
                 ]
             ]
         )
@@ -503,7 +503,7 @@ Aqui está a ajuda para o módulo **Outros**:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
                 ]
             ]
         )
@@ -526,7 +526,7 @@ Aqui está a ajuda para o módulo <b>Purges</b>:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
                 ]
             ]
         )
@@ -550,7 +550,7 @@ Aqui está a ajuda para o modulo <b>Stickers</b>:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("↩ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
                 ]
             ]
         )
