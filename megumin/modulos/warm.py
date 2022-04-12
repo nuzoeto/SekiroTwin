@@ -21,7 +21,7 @@ async def warm_(_, message):
     name_user = (message.reply_to_message.from_user.mention())
     await asyncio.gather(WARMS.insert_one({"id_": ids, "title": name_user}))
     G = await WARMS.estimated_document_count()
-    if G > 3:
+    if G > 2:
         await message.reply(f"{G}/3 Advertencias, {name_user} foi banido!")
         await asyncio.gather(WARMS.drop())
         return
