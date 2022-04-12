@@ -21,8 +21,8 @@ async def warm_(_, message):
     name_user = (message.reply_to_message.from_user.mention())
     await asyncio.gather(WARMS.insert_one({"id_": ids, "title": name_user}))
     G = await WARMS.estimated_document_count()
-    if G > 4:
-        await m.reply("você está banido")
+    if G > 3:
+        await message.reply("{G} Advertencias, {name_user} foi banido!")
         await asyncio.gather(WARMS.drop())
         return
     keyboard = InlineKeyboardMarkup(
