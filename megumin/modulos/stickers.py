@@ -89,6 +89,8 @@ async def getstickerid(c: megux, m: Message):
 
 @megux.on_message(filters.command("kang", prefixes=["/", "!"]))
 async def kang_sticker(c: megux, m: Message):
+    if m.chat.id == -1001471874620:
+       return
     prog_msg = await m.reply_text("Roubando o sticker...")
     user = await c.get_me()
     bot_username = user.username
@@ -101,7 +103,7 @@ async def kang_sticker(c: megux, m: Message):
     reply = m.reply_to_message
     user = await c.resolve_peer(m.from_user.username or m.from_user.id)
 
-    if reply and reply.media:
+    elif reply and reply.media:
         if reply.photo:
             resize = True
         elif reply.animation:
