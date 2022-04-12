@@ -119,7 +119,7 @@ async def kang_sticker(c: megux, m: Message):
                 animated = True
 
         elif m.chat.id in CHATS_DISABLED_KANG:
-            return await prog_msg.delete()
+            return ""
 
         elif reply.sticker:
             if not reply.sticker.file_name:
