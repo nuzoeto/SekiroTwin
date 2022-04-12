@@ -24,6 +24,7 @@ async def warm_(_, message):
     if G > 4:
         await m.reply("você está banido")
         await asyncio.gather(WARMS.drop())
+        return
     keyboard = InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton("Remover Advertencia",
