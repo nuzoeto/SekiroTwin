@@ -52,7 +52,7 @@ async def return_json_senpai(query, vars_):
     return json_data
 
 
-@megux.on_message(filters.command("manga"))
+@megux.on_message(filters.command("manga", prefixes=["/", "!"]))
 async def manga_search(client: megux, message: Message):
     query = " ".join(message.text.split()[1:])
     if not query:
