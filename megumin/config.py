@@ -20,6 +20,7 @@ class Config:
         2138770172,  # @Luska1331
         1157759484,  # @yusukesy
         1715384854,  # @DaviTudo 
+        5204291028, #TiltLesm
     )
     LOG_CHANNEL_ID = set([-1001569084822])
     ADMINS = {}
