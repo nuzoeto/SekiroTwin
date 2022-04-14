@@ -4,7 +4,7 @@ from pyrogram import filters
 from megumin import megux 
 
 
-@megux.on_message(filters.command(["stats", "sys"]))
+@megux.on_message(filters.command(["stats", "sys", "neofetch"]))
 async def get_stats(_, message):
     os.system("neofetch --stdout > neofetch.txt")
     i = open("neofetch.txt", "r")
