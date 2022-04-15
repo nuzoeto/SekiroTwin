@@ -24,7 +24,7 @@ from megumin import megux
 
 
 @megux.on_message(filters.command("pypi", prefixes=["/", "!"]))
-async def pypi(c: megux, m: Message, strings):
+async def pypi(c: megux, m: Message):
     if len(m.command) == 1:
         return await m.reply_text("pypi_usage")
 
@@ -40,9 +40,9 @@ async def pypi(c: megux, m: Message, strings):
             author_email=f"&lt;{pypi_info['author_email']}&gt;"
             if pypi_info["author_email"]
             else "",
-            platform=pypi_info["platform"] or "not_specified",
+            platform=pypi_info["platform"] or "Não especificado!",
             version=pypi_info["version"],
-            license=pypi_info["license"] or "not_specified",
+            license=pypi_info["license"] or "Não especificado!",
             summary=pypi_info["summary"],
         )
 
