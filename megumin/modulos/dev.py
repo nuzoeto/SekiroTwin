@@ -107,7 +107,7 @@ async def aexec(code, b, m, r):
     return await locals()["__aexec"](b, m, r)
 
 
-@megux.on_message(filters.command("term", prefixes=["/", "!"]))
+@megux.on_message(filters.command(["term", "sh"], prefixes=["/", "!"]))
 async def terminal(client: megux, message: Message):
     user_id = message.from_user.id
     if not is_dev(user_id):
