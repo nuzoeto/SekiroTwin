@@ -23,6 +23,9 @@ def escape_definition(definition):
 from megumin import megux 
 
 
+http = httpx.AsyncClient()
+
+
 @megux.on_message(filters.command("pypi", prefixes=["/", "!"]))
 async def pypi(c: megux, m: Message):
     if len(m.command) == 1:
