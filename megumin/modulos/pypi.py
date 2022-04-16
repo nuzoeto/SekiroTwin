@@ -43,9 +43,9 @@ async def pypi(c: megux, m: Message):
             author_email=f"&lt;{pypi_info['author_email']}&gt;"
             if pypi_info["author_email"]
             else "",
-            platform=pypi_info["platform"] or "Não especificado!",
+            platform=pypi_info["platform"] or "Não especificada!",
             version=pypi_info["version"],
-            license=pypi_info["license"] or "Não especificado!",
+            license=pypi_info["license"] or "Não especificada!",
             summary=pypi_info["summary"],
         )
 
