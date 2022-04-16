@@ -32,7 +32,7 @@ async def pypi(c: megux, m: Message):
         return await m.reply_text("pypi_usage")
 
     text = m.text.split(maxsplit=1)[1]
-    r = await http.get(f"https://pypi.org/pypi/{text}/json", follow_redirects=True)
+    r = await http.get(f"https://pypi.org/pypi/{text}/json")
     if r.status_code == 200:
         json = r.json()
         pypi_info = escape_definition(json["info"])
