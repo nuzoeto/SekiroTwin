@@ -65,7 +65,7 @@ async def pypi(c: megux, m: Message):
         await m.reply_text(message, disable_web_page_preview=True, reply_markup=kb)
     else:
         await m.reply_text(
-            "Não foi possível encontrar {package_name} no PyPI (O código retornado foi {http_status}).".format(
+            "Não foi possível encontrar <b>{package_name}</b> no PyPI (O código retornado foi {http_status}).".format(
                 package_name=text, http_status=r.status_code
             )
         )
