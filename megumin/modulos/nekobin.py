@@ -13,7 +13,7 @@ async def nekobin(c: megux, m: Message):
     if m.reply_to_message:
         if m.reply_to_message.document:
             tfile = m.reply_to_message
-            sm = await m.reply_text("Processando, Aguarde...")
+            sm = await m.reply_text("<i>Processando...</i>")
             to_file = await tfile.download()
             with open(to_file, "rb") as fd:
                 mean = fd.read().decode("UTF-8")
