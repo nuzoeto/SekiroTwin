@@ -472,6 +472,7 @@ Aqui está a ajuda para o módulo **Memes**:
 • /bird ou /passaro Envia a foto de um pássaro.
 • /dog Envia a foto de um cachorro.
 • /cat Envia a foto de um gato
+• /vapor ｖａｐｏｒｗａｖｅ.
     """
         button = InlineKeyboardMarkup(
             [
@@ -499,6 +500,7 @@ Aqui está a ajuda para o módulo **Outros**:
 • /cep (cep)  Busque um CEP.
 • /ddd (ddd) Busque um DDD.
 • /clima ou /weather ( cidade ) Busque o clima para uma cidade.
+• /paste Envia texto/documento respondido para o nekobin.com.
     """
         button = InlineKeyboardMarkup(
             [
