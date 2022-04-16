@@ -29,7 +29,7 @@ http = httpx.AsyncClient()
 @megux.on_message(filters.command("pypi", prefixes=["/", "!"]))
 async def pypi(c: megux, m: Message):
     if len(m.command) == 1:
-        return await m.reply_text("pypi_usage")
+        return await m.reply_text("Uso: /pypi nome_do_pacote - Procura por um pacote no Python Package Index (PyPI).")
 
     text = m.text.split(maxsplit=1)[1]
     r = await http.get(f"https://pypi.org/pypi/{text}/json")
@@ -37,7 +37,7 @@ async def pypi(c: megux, m: Message):
         json = r.json()
         pypi_info = escape_definition(json["info"])
 
-        message = "<b>{package_name}</b> por <i>{author_name} {author_email}</i>\nPlataforma: <b>{platform}</b>\nVersão: <b>{version}</b>\nLicença: <b>{license}</b>\nResumo: <b>{summary}</b>".format(
+        message = "<b>{package_name}</b> por <i>{author_name} {author_email}</i>\nPlataforma: <b>{platform}</b>\n\nVersão: <b>{version}</b>\n\nLicença: <b>{license}</b>\n\nResumo: <b>{summary}</b>".format(
             package_name=pypi_info["name"],
             author_name=pypi_info["author"],
             author_email=f"&lt;{pypi_info['author_email']}&gt;"
@@ -54,7 +54,7 @@ async def pypi(c: megux, m: Message):
                 inline_keyboard=[
                     [
                         InlineKeyboardButton(
-                            text="package_home_page",
+                            text="Página inicial do pacote",
                             url=pypi_info["home_page"],
                         )
                     ]
