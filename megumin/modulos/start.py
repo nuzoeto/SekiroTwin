@@ -415,8 +415,6 @@ Aqui está a ajuda para o módulo **GitHub**:
         info_text = f"""
 ✨ Geral
 
-**Admin:**
-
 • /ban  Bane a um usuário.
 • /unban Desbane a um usuário.
 • /kick Chute o usuário.
@@ -434,10 +432,7 @@ Aqui está a ajuda para o módulo **GitHub**:
 • /app : Busque um app da PlayStore. ( em breve )
 • /setuser : Defina seu username.
 • /lt ou /lastfm : Veja que musica você está scobblando.
-•/deluser ou /duser Apague seu username lastfm do meu banco de dados.
-• /char ou /character Busque um Character.
-• /anime Busque um anime.
-• /manga Busque um mangá 
+• /deluser ou /duser Apague seu username lastfm do meu banco de dados.
 • /runs Execute strings aleatórias.
 • /slap Bate no usuário.
 • /insults O bot insulta.
@@ -501,6 +496,7 @@ Aqui está a ajuda para o módulo **Outros**:
 • /ddd (ddd) Busque um DDD.
 • /clima ou /weather ( cidade ) Busque o clima para uma cidade.
 • /paste Envia texto/documento respondido para o nekobin.com.
+• /telegraph ou /tg Envie uma mídia para o telegra.ph.
     """
         button = InlineKeyboardMarkup(
             [
