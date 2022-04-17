@@ -17,6 +17,7 @@ infotext = (
     " 📝 **Bio**: {bio}\n"
     " 🛇 **É Restrito**: `{is_scam}`\n"
     " ✅ **É Verificado**: `{is_verified}`"
+    " 🇧🇷 **Idioma**: `{language}`
 )
 
 
@@ -76,6 +77,7 @@ async def whois(client, message):
                 is_scam=user.is_scam,
                 is_verified=user.is_verified,
                 is_bot=user.is_bot,
+                language=user.language_code,
             ),
             disable_notification=True,
         )
@@ -92,7 +94,8 @@ async def whois(client, message):
                 bio=bio if bio else "`No bio set up.`",
                 is_scam=user.is_scam,
                 is_verified=user.is_verified,
-                is_bot=user.is_bot
+                is_bot=user.is_bot,
+                language=user.language_code,
             ),
             disable_web_page_preview=True,
         )
