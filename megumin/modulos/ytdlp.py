@@ -16,7 +16,6 @@ import asyncio
 from typing import Union, Tuple, Callable
 from functools import wraps, partial
 
-from tortoise.exceptions import DoesNotExist
 from yt_dlp.utils import DownloadError
 
 
