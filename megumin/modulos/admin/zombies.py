@@ -18,7 +18,7 @@ from megumin.utils import (
 )
 
 
-@megux.on_message(filters.command("cleanup", prefixes=["/", "!"]))
+@megux.on_message(filters.command(["cleanup", "zombies"], prefixes=["/", "!"]))
 async def cleanup(c: megux, m: Message):
     if m.chat.type == "private":
         return await m.reply_text("Esse comando não pode ser usado em um grupo privado, use esse comando em um grupo que você administra.")
@@ -39,7 +39,7 @@ async def cleanup(c: megux, m: Message):
             try:
                 await c.ban_chat_member(m.chat.id, a.user.id)
                 deleted_users.append(a)
-                await sent.edit_text("Contas excluídas: {}").format(
+                await sent.edit_text("Contas excluídas: {}".format(
                     {len(deleted_users)}
                 )
             except BadRequest:
