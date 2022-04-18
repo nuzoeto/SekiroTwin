@@ -18,33 +18,33 @@ from megumin.utils import (
 )
 
 
-@megux.on_message(filters.command(["zombies", "cleanup"], prefixes=["/", "!"]))
+@megux.on_message(filters.command("cleanup", prefixes=["/", "!"]))
 async def cleanup(c: megux, m: Message):
-    chat_id = m.chat.id
     if m.chat.type == "private":
-        await m.reply_text("Este comando é para ser usado em grupos!")
-        return
-    if await check_rights(chat_id, m.from_user.id, "can_restrict_members"):
-        deleted = []
-        sent = await m.reply_text("Iniciando limpeza...")
-        async for t in c.iter_chat_members(chat_id=m.chat.id, filter="all"):
-            if t.user.is_deleted:
-                try:
-                    await c.ban_chat_member(m.chat.id, t.user.id)
-                    await sent.edit("Limpando...")
-                    deleted.append(t)
-                except BadRequest:
-                    pass
-                except Forbidden as e:
-                    await m.reply_text(
-                        f"<b>Error:</b> <code>{e}</code>"
-                    )
-                    return
-        if deleted:
-            await sent.edit_text(
-                f"Eu removi todas as contas excluídas do grupo **{m.chat.title}**!"
-            )
-        else:
-            await sent.edit_text("Não há contas excluídas aqui!")
+        return await m.reply_text("Esse comando não pode ser usado em um grupo privado, use esse comando em um grupo que você administra.")
     else:
-        await m.reply_text("Balabacheia! Você não tem direitos administrativos suficientes para banir/desbanir usuários!")
+        bot = await c.get_chat_member(chat_id=m.chat.id, user_id=(await c.get_me()).id)
+        member = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
+        if member.status in ["administrator", "creator"]:
+            if bot.status in ["administrator"]:
+                pass
+            else:
+                return await m.reply_text("Eu não sou um administrador do grupo!")
+        else:
+            return await m.reply_text("Você não é um administrador do grupo")
+    deleted_users = []
+    sent = await m.reply_text("Removendo contas excluídas...")
+    async for a in c.iter_chat_members(chat_id=m.chat.id, filter="all"):
+        if a.user.is_deleted:
+            try:
+                await c.ban_chat_member(m.chat.id, a.user.id)
+                deleted_users.append(a)
+                await sent.edit_text("Contas excluídas: {}".format(
+                    {len(deleted_users)}
+                )
+            except BadRequest:
+                pass
+            except Forbidden as e:
+                return await m.reply_text(f"<b>Erro:</b> {e}")
+        else:
+            await sent.edit_text("Não há contas excluídas no grupo.")
