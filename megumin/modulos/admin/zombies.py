@@ -39,7 +39,7 @@ async def cleanup(c: megux, m: Message):
             try:
                 await c.ban_chat_member(m.chat.id, a.user.id)
                 deleted_users.append(a)
-                await sent.edit_text(f"Contas excluídas: {len(deleted_users}}")
+                await sent.edit_text(f"Contas excluídas: {len(deleted_users)}")
             except BadRequest:
                 pass
             except Forbidden as e:
