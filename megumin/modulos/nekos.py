@@ -64,3 +64,11 @@ async def bird_photo(c: megux, m: Message):
    r = await http.get("http://shibe.online/api/birds")
    bird = r.json()
    await m.reply_photo(bird[0], caption="🐦")
+
+
+@megux.on_message(filters.command(["rpanda", "redpanda", "red_panda"], prefixes=["/", "!"]))
+async def bird_photo(c: megux, m: Message):
+   http = httpx.AsyncClient()
+   r = await http.get("https://some-random-api.ml/img/red_panda")
+   rpanda = r.json()
+   await m.reply_photo(rpanda["link"], caption="🐼")
