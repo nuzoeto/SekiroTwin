@@ -33,7 +33,7 @@ async def test_speed(c: megux, m: Message):
         )
         await running.delete()
     except Exception as e:
-        await running.edit(f"<b>Erro</b>: {e}")
+        await running.edit(f"<b>Erro</b>: <i>{e}</i>")
         await asyncio.sleep(10)
         await running.delete()
         return
