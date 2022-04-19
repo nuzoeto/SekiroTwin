@@ -67,8 +67,24 @@ async def bird_photo(c: megux, m: Message):
 
 
 @megux.on_message(filters.command(["rpanda", "redpanda", "red_panda"], prefixes=["/", "!"]))
-async def bird_photo(c: megux, m: Message):
+async def redpanda_photo(c: megux, m: Message):
    http = httpx.AsyncClient()
    r = await http.get("https://some-random-api.ml/img/red_panda")
    rpanda = r.json()
    await m.reply_photo(rpanda["link"], caption="🐼")
+
+
+@megux.on_message(filters.command(["panda"], prefixes=["/", "!"]))
+async def panda_photo(c: megux, m: Message):
+   http = httpx.AsyncClient()
+   r = await http.get("https://some-random-api.ml/img/panda")
+   panda = r.json()
+   await m.reply_photo(panda["link"], caption="🐼")
+
+
+@megux.on_message(filters.command(["fox", "raposa"], prefixes=["/", "!"]))
+async def fox_photo(c: megux, m: Message):
+   http = httpx.AsyncClient()
+   r = await http.get("https://some-random-api.ml/img/fox")
+   fox = r.json()
+   await m.reply_photo(fox["link"], caption="O que a Raposa diz?")
