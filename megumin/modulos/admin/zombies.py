@@ -25,7 +25,7 @@ async def cleanup(c: megux, m: Message):
     else:
         bot = await c.get_chat_member(chat_id=m.chat.id, user_id=(await c.get_me()).id)
         member = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
-        if await check_rights(member, "can_restrict_members"):
+        if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"):
             if bot.status in ["administrator"]:
                 pass
             else:
