@@ -466,7 +466,10 @@ Aqui está a ajuda para o módulo **Memes**:
 • /runs Responde uma sequência aleatória de minhas strings.
 • /bird ou /passaro Envia a foto de um pássaro.
 • /dog Envia a foto de um cachorro.
-• /cat Envia a foto de um gato
+• /cat Envia a foto de um gato.
+• /fox Envia a foto de uma raposa.
+• /redpanda ou /rpanda Envia a foto de um panda vermelho.
+• /panda Envia a foto de um panda.
 • /vapor ｖａｐｏｒｗａｖｅ.
     """
         button = InlineKeyboardMarkup(
