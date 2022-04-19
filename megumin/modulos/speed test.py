@@ -16,9 +16,9 @@ async def test_speed(c: megux, m: Message):
         test = speedtest.Speedtest()
         bs = test.get_best_server()
         dl = round(test.download() / 1024 / 1024, 2)
-        await running.edit("<i>Fazendo teste de Download...</i>")
+        await running.edit("<code>Fazendo teste de Download...</code>")
         ul = round(test.upload() / 1024 / 1024, 2)
-        await running.edit("<i>Fazendo teste de Upload...</i>")
+        await running.edit("<code>Fazendo teste de Upload...</code>")
         test.results.share()
         result = test.results.dict()
         name = result["server"]["name"]
