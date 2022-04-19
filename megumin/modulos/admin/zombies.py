@@ -23,10 +23,8 @@ async def cleanup(c: megux, m: Message):
     if m.chat.type == "private":
         return await m.reply_text("Esse comando não pode ser usado em um grupo privado, use esse comando em um grupo que você administra.")
     else:
-        bot = await c.get_chat_member(chat_id=m.chat.id, user_id=(await c.get_me()).id)
-        member = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
         if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"):
-            if bot.status in ["administrator"]:
+            if await check_bot_rights(m.chat.id, "can_restrict_members"):
                 pass
             else:
                 return await m.reply_text("Eu não sou um administrador do grupo!")
