@@ -25,13 +25,13 @@ async def cleanup(c: megux, m: Message):
     else:
         bot = await c.get_chat_member(chat_id=m.chat.id, user_id=(await c.get_me()).id)
         member = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
-        if member.status in ["administrator", "creator"]:
+        if await check_rights(member, "can_restrict_members"):
             if bot.status in ["administrator"]:
                 pass
             else:
                 return await m.reply_text("Eu não sou um administrador do grupo!")
         else:
-            return await m.reply_text("Você não é um administrador do grupo")
+            return await m.reply_text("Você não tem direitos administrativos suficientes para banir/desbanir usuários!")
     deleted_users = []
     sent = await m.reply_text("Removendo contas excluídas...")
     async for a in c.iter_chat_members(chat_id=m.chat.id, filter="all"):
@@ -39,7 +39,7 @@ async def cleanup(c: megux, m: Message):
             try:
                 await c.ban_chat_member(m.chat.id, a.user.id)
                 deleted_users.append(a)
-                await sent.edit_text(f"Contas excluídas: {len(deleted_users)}")
+                await sent.edit_text(f"Eu removi todas contas excluídas: <b>{len(deleted_users)}</b>")
             except BadRequest:
                 pass
             except Forbidden as e:
