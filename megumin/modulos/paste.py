@@ -13,7 +13,7 @@ async def nekobin(c: megux, m: Message):
     if m.reply_to_message:
         if m.reply_to_message.document:
             tfile = m.reply_to_message
-            running = await m.reply_text("<i>Processando...</i>")
+            sm = await m.reply_text("<i>Processando...</i>")
             to_file = await tfile.download()
             with open(to_file, "rb") as fd:
                 mean = fd.read().decode("UTF-8")
@@ -23,12 +23,12 @@ async def nekobin(c: megux, m: Message):
         url = "https://nekobin.com/api/documents"
         r = await http.post(url, json={"content": mean})
         url = f"https://nekobin.com/{r.json()['result']['key']}"
-        await running.edit(f"<b>Nekobin [URL]({url})</b>", disable_web_page_preview=True)
+        await sm.edit(f"<b>Nekobin [URL]({url})</b>", disable_web_page_preview=True)
     else:
         await m.reply_text("Por favor, responda a um texto ou documento para colar o conteúdo.")
 
 
-@megux.on_message(filters.command("paste -h", prefixes=["/", "!"]))
+@megux.on_message(filters.command("hastebin", prefixes=["/", "!"]))
 async def hastebin(c: megux, m: Message):
     if m.reply_to_message:
         if m.reply_to_message.document:
