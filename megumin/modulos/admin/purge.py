@@ -1,3 +1,4 @@
+import asyncio 
 from pyrogram import filters
 from pyrogram.errors import MessageDeleteForbidden
 from pyrogram.types import Message
@@ -11,7 +12,6 @@ async def purge_command(megux, message: Message):
     can_purge = await admin_check(message)
     if can_purge:
         try:
-            await message.reply("Purge completo.")
             message_reply = int(message.reply_to_message.message_id)
         except AttributeError:
             await message.reply(
@@ -23,6 +23,8 @@ async def purge_command(megux, message: Message):
             try:
                 await megux.delete_messages(message.chat.id, message_reply)
                 message_reply += 1
+                await asyncio.sleep(6)
+                await message.reply("Purge completo.")
             except MessageDeleteForbidden:
                 await message.reply(
                     "Não é possível excluir todas as mensagens. As mensagens podem ser muito antigas, talvez eu não tenha direitos de exclusão ou isso pode não ser um supergrupo."
