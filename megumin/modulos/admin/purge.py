@@ -10,8 +10,8 @@ from megumin.utils import admin_check
 async def purge_command(megux, message: Message):
     can_purge = await admin_check(message)
     if can_purge:
-    await message.reply("Purge completo.")
         try:
+            await message.reply("Purge completo.")
             message_reply = int(message.reply_to_message.message_id)
         except AttributeError:
             await message.reply(
