@@ -203,7 +203,7 @@ async def video_(client: megux, message: Message):
 @megux.on_message(filters.command(["video"], prefixes=["/", "!"]))
 async def vid_(message: Message):
     chat_id = message.chat.id
-    query = message.input_str
+    query = " ".join(message.text.split()[1:])
     if not query:
         return await message.edit("`Vou baixar o vento?!`", del_in=5)
     msg = await message.reply("📦 <i>Baixando...</i>")
