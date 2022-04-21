@@ -199,3 +199,19 @@ async def video_(client: megux, message: Message):
         finally:
             await msg.delete()
             os.remove(f"./megumin/xcache/{filename}")
+
+@megux.on_message(filters.command(["video"], prefixes=["/", "!"]))
+async def vid_(message: Message):
+    chat_id = message.chat.id
+    query = message.input_str
+    if not query:
+        return await message.edit("`Vou baixar o vento?!`", del_in=5)
+    msg = await message.reply("📦 <i>Baixando...</i>")
+    link, vid_id = await get_link(query)
+    thumb_ = download(f"https://i.ytimg.com/vi/{vid_id}/maxresdefault.jpg", Config.DOWN_PATH)
+    await msg.edit("📦 <i>Enviando...</i>")
+    capt_, title_, duration_ = await extract_inf(link, vid_opts)
+    await msg.delete()
+    await message.reply_video(video=f"{Config.DOWN_PATH}{title_}.webm", caption=capt_, thumb=thumb_, duration=duration_)
+    os.remove(f"{Config.DOWN_PATH}{title_}.webm")
+    os.remove(f"{Config.DOWN_PATH}maxresdefault.jpg")
