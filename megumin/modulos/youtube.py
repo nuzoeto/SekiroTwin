@@ -56,6 +56,7 @@ async def extract_inf(link, opts_):
 
 @megux.on_message(filters.command(["video"], prefixes=["/", "!"]))
 async def vid_(c: megux, message: Message):
+    chat_id = message.chat.id 
     query = " ".join(message.text.split()[1:])
     if not query:
         return await message.reply("`Vou baixar o vento?!`")
@@ -77,13 +78,14 @@ async def vid_(c: megux, message: Message):
     await msg.edit("📦 <i>Enviando...</i>")
     capt_, title_, duration_ = await extract_inf(link, vid_opts)
     await msg.delete()
-    await message.reply_video(video=f"{Config.DOWN_PATH}{title_}.webm", caption=capt_, thumb=thumb_, duration=duration_)
+    await c.send_video(chat_id, video=f"{Config.DOWN_PATH}{title_}.webm", caption=capt_, thumb=thumb_, duration=duration_)
     os.remove(f"{Config.DOWN_PATH}{title_}.webm")
     os.remove(f"{Config.DOWN_PATH}maxresdefault.jpg")
 
 
 @megux.on_message(filters.command(["song", "music"], prefixes=["/", "!"]))
 async def song_(c: megux, message: Message):
+    chat_id = message.chat.id 
     query = " ".join(message.text.split()[1:])
     if not query:
         return await message.reply("`Vou baixar o vento?!`")
@@ -119,6 +121,6 @@ async def song_(c: megux, message: Message):
     capt_, title_, duration_ = await extract_inf(link, aud_opts)
     capt_ += f"\n❯ Formato: {fid}"
     await msg.delete()
-    await message.reply_audio(audio=f"{Config.DOWN_PATH}{title_}.{fid}", caption=capt_, thumb=thumb_, duration=duration_)
+    await c.send_audio(chat_id, audio=f"{Config.DOWN_PATH}{title_}.{fid}", caption=capt_, thumb=thumb_, duration=duration_)
     os.remove(f"{Config.DOWN_PATH}{title_}.{fid}")
     os.remove(f"{Config.DOWN_PATH}maxresdefault.jpg")
