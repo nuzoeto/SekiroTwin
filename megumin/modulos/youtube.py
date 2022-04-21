@@ -84,7 +84,7 @@ async def vid_(c: megux, message: Message):
 
 
 @megux.on_message(filters.command(["song", "music"], prefixes=["/", "!"]))
-async def song_(message: Message):
+async def song_(c: megux, message: Message):
     query = " ".join(message.text.split()[1:])
     if not query:
         return await message.reply("`Vou baixar o vento?!`", del_in=5)
