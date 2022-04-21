@@ -77,7 +77,7 @@ async def vid_(c: megux, message: Message):
     thumb_ = download(f"https://i.ytimg.com/vi/{vid_id}/maxresdefault.jpg", Config.DOWN_PATH)
     capt_, title_, duration_ = await extract_inf(link, vid_opts)
     if int(duration_) > 3609:
-        return await msg.edit("Esse vídeo é muito longo, a duração máxima é de 1 hora")
+        return await msg.edit("__Esse vídeo é muito longo, a duração máxima é de 1 hora__")
     await msg.edit("📦 <i>Enviando...</i>")
     await c.send_video(chat_id, video=f"{Config.DOWN_PATH}{title_}.webm", caption=capt_, thumb=thumb_, duration=duration_)
     await msg.delete()
@@ -118,11 +118,13 @@ async def song_(c: megux, message: Message):
     }
     query_ = query.strip("-f")
     link, vid_id = await get_link(query_)
-    await msg.edit("📦 <i>Enviando...</i>")
     thumb_ = download(f"https://i.ytimg.com/vi/{vid_id}/maxresdefault.jpg", Config.DOWN_PATH)
     capt_, title_, duration_ = await extract_inf(link, aud_opts)
     capt_ += f"\n❯ Formato: {fid}"
-    await msg.delete()
+    if int(duration_) > 3609:
+        return await msg.edit("__Esse vídeo é muito longo, a duração máxima é de 1 hora__")
+    await msg.edit("📦 <i>Enviando...</i>")
     await c.send_audio(chat_id, audio=f"{Config.DOWN_PATH}{title_}.{fid}", caption=capt_, thumb=thumb_, duration=duration_)
+    await msg.delete()
     os.remove(f"{Config.DOWN_PATH}{title_}.{fid}")
     os.remove(f"{Config.DOWN_PATH}maxresdefault.jpg")
