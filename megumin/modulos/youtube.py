@@ -73,6 +73,41 @@ def down_video(link, filename):
     )
 
 
+def get_yt_video_id(url: str):
+    # https://regex101.com/r/c06cbV/1
+    match = YOUTUBE_REGEX.search(url)
+    if match:
+        return match.group(1)
+
+
+async def get_link(query):
+    vid_id = get_yt_video_id(query)
+    link = f"{BASE_YT_URL}{vid_id}"
+    if vid_id is None:
+        try:
+            res_ = SearchVideos(query, offset=1, mode="json", max_results=1)
+            link = json.loads(res_.result())["search_result"][0]["link"]
+            id_ = link = json.loads(res_.result())["search_result"][0]["id"]
+            return link, id_
+        except Exception as e:
+            LOGGER.exception(e)
+            return e
+    else:
+        return link, vid_id
+
+# yt-dl args - extract video info
+async def extract_inf(link, opts_):
+    with YoutubeDL(opts_) as ydl:
+        infoo = ydl.extract_info(link, False)
+        ydl.process_info(infoo)
+        duration_ = infoo["duration"]
+        title_ = infoo["title"]
+        channel_ = infoo["channel"]
+        views_ = infoo["view_count"]
+        capt_ = f"<a href={link}><b>{title_}</b></a>\n❯ Duração: {duration_}\n❯ Views: {views_}\n❯ Canal: {channel_}"
+        return capt_, title_, duration_
+
+
 @megux.on_message(filters.command(["ytsong", "ytmusic"], prefixes=["/", "!"]))
 async def song(client: megux, message: Message):
     music = " ".join(message.text.split()[1:])
