@@ -116,6 +116,8 @@ async def song_(c: megux, message: Message):
         ],
         "quiet": True,
     }
+    if int(duration_) > 3609:
+        return await msg.edit("Esse áudio é muito longo, a duração máxima é de 1 hora")
     query_ = query.strip("-f")
     link, vid_id = await get_link(query_)
     await msg.edit("📦 <i>Enviando...</i>")
