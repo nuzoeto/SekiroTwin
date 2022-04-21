@@ -5,11 +5,12 @@ import time
 import requests
 from pytube import YouTube
 from youtubesearchpython import Search, SearchVideos
+from wget import download
+from re import compile as comp_regex  
 
 from pyrogram.types import Message
 from pyrogram import filters
 from megumin import megux, Config
-from re import compile as comp_regex
 
 
 BASE_YT_URL = ("https://www.youtube.com/watch?v=")
@@ -90,7 +91,6 @@ async def get_link(query):
             id_ = link = json.loads(res_.result())["search_result"][0]["id"]
             return link, id_
         except Exception as e:
-            LOGGER.exception(e)
             return e
     else:
         return link, vid_id
