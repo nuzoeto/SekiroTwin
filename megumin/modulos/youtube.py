@@ -79,6 +79,7 @@ async def vid_(c: megux, message: Message):
     if int(duration_) > 3609:
         return await msg.edit_text("__Esse vídeo é muito longo, a duração máxima é de 1 hora__")
     await msg.edit_text("📦 <i>Enviando...</i>")
+    await c.send_chat_action(chat_id, "upload video")
     await c.send_video(chat_id, video=f"{Config.DOWN_PATH}{title_}.webm", caption=capt_, thumb=thumb_, duration=duration_)
     await msg.delete()
     os.remove(f"{Config.DOWN_PATH}{title_}.webm")
@@ -124,6 +125,7 @@ async def song_(c: megux, message: Message):
         return await msg.edit_text("__Essa música é muito longa, a duração máxima é de 1 hora__")   
     capt_ += f"\n❯ Formato: {fid}"
     await msg.edit_text("📦 <i>Enviando...</i>")
+    await c.send_chat_action(chat_id, "upload_audio")
     await c.send_audio(chat_id, audio=f"{Config.DOWN_PATH}{title_}.{fid}", caption=capt_, thumb=thumb_, duration=duration_)
     await msg.delete()
     os.remove(f"{Config.DOWN_PATH}{title_}.{fid}")
