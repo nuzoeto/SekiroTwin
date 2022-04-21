@@ -87,7 +87,7 @@ async def vid_(c: megux, message: Message):
 async def song_(c: megux, message: Message):
     query = " ".join(message.text.split()[1:])
     if not query:
-        return await message.reply("`Vou baixar o vento?!`", del_in=5)
+        return await message.reply("`Vou baixar o vento?!`")
     msg = await message.reply("📦 <i>Baixando...</i>")
     if query.startswith("-f"):
         format_ = "flac/best"
