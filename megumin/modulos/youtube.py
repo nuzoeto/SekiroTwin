@@ -75,10 +75,12 @@ async def vid_(c: megux, message: Message):
     }
     link, vid_id = await get_link(query)
     thumb_ = download(f"https://i.ytimg.com/vi/{vid_id}/maxresdefault.jpg", Config.DOWN_PATH)
-    await msg.edit("📦 <i>Enviando...</i>")
     capt_, title_, duration_ = await extract_inf(link, vid_opts)
-    await msg.delete()
+    if int(duration_) > 3609:
+        return await msg.edit("Esse vídeo é muito longo, a duração máxima é de 1 hora")
+    await msg.edit("📦 <i>Enviando...</i>")
     await c.send_video(chat_id, video=f"{Config.DOWN_PATH}{title_}.webm", caption=capt_, thumb=thumb_, duration=duration_)
+    await msg.delete()
     os.remove(f"{Config.DOWN_PATH}{title_}.webm")
     os.remove(f"{Config.DOWN_PATH}maxresdefault.jpg")
 
