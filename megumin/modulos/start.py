@@ -336,9 +336,9 @@ Aqui está a ajuda para o módulo <b>Tradutor</b>
         info_text = f"""
 Aqui está a ajuda para o módulo **YouTube**:
 
-• /song <titulo> ou <link> Baixe músicas em <b>mp3</b>.
-• /song -f <titulo> ou <link> Baixe músicas no formato <b>flac</b>.
-• /video <titulo> Baixe videos.
+• /song [titulo] ou [link] Baixe músicas em <b>mp3</b>.
+• /song -f [titulo] ou [link] Baixe músicas no formato <b>flac</b>.
+• /video [titulo] ou [link] Baixe videos.
 • /yt <b>[Palavra]</b> Faz uma busca no YouTube vídeos com a palavra que você escreveu e retorna uma lista com vídeos.
     """
         button = InlineKeyboardMarkup(
