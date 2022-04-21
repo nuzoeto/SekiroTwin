@@ -54,8 +54,7 @@ async def extract_inf(link, opts_):
 
 
 @megux.on_message(filters.command(["video"], prefixes=["/", "!"]))
-async def vid_(message: Message):
-    chat_id = message.chat.id
+async def vid_(c: megux, message: Message):
     query = " ".join(message.text.split()[1:])
     if not query:
         return await message.reply("`Vou baixar o vento?!`")
