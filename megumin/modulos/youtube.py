@@ -9,9 +9,13 @@ from youtubesearchpython import Search, SearchVideos
 from pyrogram.types import Message
 from pyrogram import filters
 from megumin import megux, Config
+from re import compile as comp_regex
 
 
 BASE_YT_URL = ("https://www.youtube.com/watch?v=")
+YOUTUBE_REGEX = comp_regex(
+    r"(?:youtube\.com|youtu\.be)/(?:[\w-]+\?v=|embed/|v/|shorts/)?([\w-]{11})"
+)
 
 
 def search_music(query):
