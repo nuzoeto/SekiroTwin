@@ -74,8 +74,6 @@ async def vid_(c: megux, message: Message):
         "quiet": True,
     }
     link, vid_id = await get_link(query)
-    if int(duration_) > 3609:
-        return await msg.edit("Esse vídeo é muito longo, a duração máxima é de 1 hora")
     thumb_ = download(f"https://i.ytimg.com/vi/{vid_id}/maxresdefault.jpg", Config.DOWN_PATH)
     await msg.edit("📦 <i>Enviando...</i>")
     capt_, title_, duration_ = await extract_inf(link, vid_opts)
@@ -116,8 +114,6 @@ async def song_(c: megux, message: Message):
         ],
         "quiet": True,
     }
-    if int(duration_) > 3609:
-        return await msg.edit("Esse áudio é muito longo, a duração máxima é de 1 hora")
     query_ = query.strip("-f")
     link, vid_id = await get_link(query_)
     await msg.edit("📦 <i>Enviando...</i>")
