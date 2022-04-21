@@ -3,8 +3,7 @@ import json
 import os
 import time
 
-import requests
-from pytube import YouTube
+
 from yt_dlp import YoutubeDL
 from youtubesearchpython import Search, SearchVideos
 from wget import download
@@ -38,7 +37,7 @@ async def get_link(query):
             id_ = link = json.loads(res_.result())["search_result"][0]["id"]
             return link, id_
         except Exception as e:
-            return e
+            return await msg.edit("Não foi possível encontrar a música.")
     else:
         return link, vid_id
 
