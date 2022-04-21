@@ -58,7 +58,7 @@ async def vid_(message: Message):
     chat_id = message.chat.id
     query = " ".join(message.text.split()[1:])
     if not query:
-        return await message.edit("`Vou baixar o vento?!`")
+        return await message.reply("`Vou baixar o vento?!`")
     msg = await message.reply("📦 <i>Baixando...</i>")
     link, vid_id = await get_link(query)
     thumb_ = download(f"https://i.ytimg.com/vi/{vid_id}/maxresdefault.jpg", Config.DOWN_PATH)
