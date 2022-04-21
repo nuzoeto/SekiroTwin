@@ -37,7 +37,7 @@ async def get_link(query):
             id_ = link = json.loads(res_.result())["search_result"][0]["id"]
             return link, id_
         except Exception as e:
-            return await msg.edit("Não foi possível encontrar a música.")
+            return e
     else:
         return link, vid_id
 
