@@ -1,3 +1,4 @@
+#Obrigado @fnixdev.
 import json
 import os
 import time
@@ -79,4 +80,46 @@ async def vid_(c: megux, message: Message):
     await msg.delete()
     await message.reply_video(video=f"{Config.DOWN_PATH}{title_}.webm", caption=capt_, thumb=thumb_, duration=duration_)
     os.remove(f"{Config.DOWN_PATH}{title_}.webm")
+    os.remove(f"{Config.DOWN_PATH}maxresdefault.jpg")
+
+
+@megux.on_message(filters.command(["song", "music"], prefixes=["/", "!"]))
+async def song_(message: Message):
+    query = " ".join(message.text.split()[1:])
+    if not query:
+        return await message.reply("`Vou baixar o vento?!`", del_in=5)
+    msg = await message.reply("📦 <i>Baixando...</i>")
+    if query.startswith("-f"):
+        format_ = "flac/best"
+        fid = "flac"
+    else:
+        format_ = "bestaudio/best"
+        fid = "mp3"
+    aud_opts = {
+        "outtmpl": os.path.join(Config.DOWN_PATH, "%(title)s.%(ext)s"),
+        "writethumbnail": True,
+        "prefer_ffmpeg": True,
+        'format': format_,
+        "geo_bypass": True,
+        "nocheckcertificate": True,
+        "postprocessors": [
+                {
+                     'key': 'FFmpegExtractAudio',
+                     'preferredcodec': fid,
+                     'preferredquality': '320',
+                 },
+            {"key": "EmbedThumbnail"},
+            {"key": "FFmpegMetadata"},
+        ],
+        "quiet": True,
+    }
+    query_ = query.strip("-f")
+    link, vid_id = await get_link(query_)
+    await msg.edit("📦 <i>Enviando...</i>")
+    thumb_ = download(f"https://i.ytimg.com/vi/{vid_id}/maxresdefault.jpg", Config.DOWN_PATH)
+    capt_, title_, duration_ = await extract_inf(link, aud_opts)
+    capt_ += f"\n❯ Formato: {fid}"
+    await msg.delete()
+    await message.reply_audio(audio=f"{Config.DOWN_PATH}{title_}.{fid}", caption=capt_, thumb=thumb_, duration=duration_)
+    os.remove(f"{Config.DOWN_PATH}{title_}.{fid}")
     os.remove(f"{Config.DOWN_PATH}maxresdefault.jpg")
