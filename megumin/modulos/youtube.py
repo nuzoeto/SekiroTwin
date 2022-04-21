@@ -11,6 +11,9 @@ from pyrogram import filters
 from megumin import megux, Config
 
 
+BASE_YT_URL = ("https://www.youtube.com/watch?v=")
+
+
 def search_music(query):
     search = Search(query, limit=1)
     return search.result()["result"]
