@@ -120,9 +120,9 @@ async def song_(c: megux, message: Message):
     link, vid_id = await get_link(query_)
     thumb_ = download(f"https://i.ytimg.com/vi/{vid_id}/maxresdefault.jpg", Config.DOWN_PATH)
     capt_, title_, duration_ = await extract_inf(link, aud_opts)
-    capt_ += f"\n❯ Formato: {fid}"
     if int(duration_) > 3609:
-        return await msg.edit("__Esse vídeo é muito longo, a duração máxima é de 1 hora__")
+        return await msg.edit("__Essa música é muito longa, a duração máxima é de 1 hora__")   
+    capt_ += f"\n❯ Formato: {fid}"
     await msg.edit("📦 <i>Enviando...</i>")
     await c.send_audio(chat_id, audio=f"{Config.DOWN_PATH}{title_}.{fid}", caption=capt_, thumb=thumb_, duration=duration_)
     await msg.delete()
