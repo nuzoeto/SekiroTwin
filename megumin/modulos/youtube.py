@@ -4,6 +4,7 @@ import time
 
 import requests
 from pytube import YouTube
+from yt_dlp import YoutubeDL
 from youtubesearchpython import Search, SearchVideos
 from wget import download
 from re import compile as comp_regex  
