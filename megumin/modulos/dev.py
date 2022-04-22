@@ -45,7 +45,7 @@ async def restart_(_, message: Message):
     os.execv(sys.executable, [sys.executable, "-m", "megumin"])
 
 
-@Client.on_message(filters.command(["ev", "eval"], prefixes=["/", "!"]) & filters.user(1715384854))
+@Client.on_message(filters.command(["ev", "eval"], prefixes=["/", "!"]))
 async def eval_(client: megux, message: Message):
     user_id = message.from_user.id
     if not is_dev(user_id):
