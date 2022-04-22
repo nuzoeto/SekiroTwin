@@ -588,3 +588,25 @@ __Olá pessoal obrigado por me adicionar aqui!__\n**Eu sou o WhiterKang**, Praze
         if not found:
             await asyncio.gather(
                 GROUPS.insert_one({"id_": gp_id, "title": gp_title}))    
+
+
+@megux.on_message(filters.left_chat_member)
+async def thanks_for(c: megux, m: Message):
+    gp_title = m.chat.title
+    gp_id = m.chat.id
+    text_left = f"#Whiter #LEFT_GROUP #LOGS\n\n**Group**: __{gp_title}__\n**ID:** __{gp_id}__"
+    if m.chat.username:
+        text_left += f"**\nUsername:** @{m.chat.username}"
+    if c.me.id == m.left_chat_member.id:
+        found = await GROUPS.find_one({"id_": gp_id})
+        if found:
+            await asyncio.gather(
+                GROUPS.delete_one({"id_": gp_id, "title": gp_title}),
+                c.send_log(
+                    text_left,
+                    disable_notification=False,
+                    disable_web_page_preview=True,
+                )
+            )
+        else:
+            return
