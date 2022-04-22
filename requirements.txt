@@ -55,5 +55,5 @@ youtube_search
 youtube-search-python
 wget
 gpytranslate
-yt-dlp==2022.1.21
+yt-dlp==2022.4.8
 psutil==5.9.0
