@@ -79,7 +79,6 @@ async def vid_(c: megux, message: Message):
     if int(duration_) > 3600:
         return await msg.edit_text("__Esse vídeo é muito longo, a duração máxima é de 1 hora__")
     await msg.edit_text("📦 <i>Enviando...</i>")
-    await c.send_chat_action(chat_id, "upload video")
     await c.send_video(chat_id, video=f"{Config.DOWN_PATH}{title_}.webm", caption=capt_, thumb=thumb_, duration=duration_)
     await msg.delete()
     os.remove(f"{Config.DOWN_PATH}{title_}.webm")
