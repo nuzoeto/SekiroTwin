@@ -28,6 +28,7 @@ class Config:
     REMOVE_BG_API_KEY = os.environ.get("REMOVE_BG_API_KEY")
     DOWN_PATH = os.environ.get("DOWN_PATH")
     DB_URI = os.environ.get("DATABASE_URL")
+    TRIGGER = os.environ.get("TRIGGER", "/ !".split())
     WHITELIST_CHATS = set([])  # chat id aq
     EDIT_SLEEP_TIMEOUT = 10
     DOWN_PATH = "downloads/"
