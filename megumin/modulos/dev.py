@@ -77,9 +77,9 @@ async def eval_(client: megux, message: Message):
         evaluation = stdout
     else:
         evaluation = "Success"
-    final_output = "<b>Eval</b>: "
+    final_output = "<b>Expression</b>: "
     final_output += f"<code>{cmd}</code>\n\n"
-    final_output += "<b>Output</b>:\n"
+    final_output += "<b>Result</b>:\n"
     final_output += f"<code>{evaluation.strip()}</code> \n"
     if len(final_output) > 4096:
         with io.BytesIO(str.encode(final_output)) as out_file:
