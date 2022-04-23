@@ -15,7 +15,7 @@ from pyrogram.types import Message
 from datetime import datetime 
 
 from megumin import megux
-from megumin.utils import is_dev
+from megumin.utils import is_dev, get_collection
 from megumin.utils.decorators import input_str
 
 
