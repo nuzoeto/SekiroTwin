@@ -25,6 +25,7 @@ from pyrogram.raw.types import (
     InputStickerSetShortName,
 )
 
+
 def get_emoji_regex():
     e_list = [
         getattr(emoji, e).encode("unicode-escape").decode("ASCII")
