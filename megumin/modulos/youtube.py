@@ -30,7 +30,7 @@ def get_yt_video_id(url: str):
 
 
 @megux.on_message(filters.command(["song", "music"]))
-async def song_(message: Message):
+async def song_(c: megux, message: Message):
     query = " ".join(message.text.split()[1:])
     if not query:
         return await message.reply("`Vou baixar o vento?!`", del_in=5)
@@ -72,7 +72,7 @@ async def song_(message: Message):
 
 
 @megux.on_message(filters.command(["video", "vid"]))
-async def vid_(message: Message):
+async def vid_(c: megux, message: Message):
     query = " ".join(message.text.split()[1:])
     if not query:
         return await message.reply("`Vou baixar o vento?!`", del_in=5)
