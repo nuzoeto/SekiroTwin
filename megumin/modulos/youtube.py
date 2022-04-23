@@ -34,6 +34,8 @@ async def song_(c: megux, message: Message):
     query = " ".join(message.text.split()[1:])
     if not query:
         return await message.reply("`Vou baixar o vento?!`")
+    if (message.from_user.id) in Config.BLACKLIST:
+        return await message.reply("Se baixe porque não irei baixar para você...")
     msg = await message.reply("📦 <i>Baixando... </i>")
     link = await get_link(query)
     aud_opts = {
@@ -78,6 +80,8 @@ async def vid_(c: megux, message: Message):
     query = " ".join(message.text.split()[1:])
     if not query:
         return await message.reply("`Vou baixar o vento?!`")
+    if (message.from_user.id) in Config.BLACKLIST:
+        return await message.reply("Se baixe porque não irei baixar para você...") 
     msg = await message.reply("📦 <i>Baixando...</i>")
     vid_opts = {
         "outtmpl": os.path.join(Config.DOWN_PATH, "%(title)s.%(ext)s"),
