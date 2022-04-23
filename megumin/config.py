@@ -37,7 +37,7 @@ class Config:
       -1001471874620
 )
     BLACK_LIST = (
-      123456789,
+      5257974366,
 )
     DURACION_YT = (
       3609
