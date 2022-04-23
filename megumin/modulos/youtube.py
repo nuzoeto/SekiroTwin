@@ -68,7 +68,7 @@ async def song_(message: Message):
         await message.reply_audio(audio=Path(_fpath), caption=capt_, duration=duration_)
         os.remove(Path(_fpath))
     else:
-        await message.edit(str(filename_))
+        await message.reply(str(filename_))
 
 
 @megux.on_message(filters.command(["video", "vid"]))
@@ -103,7 +103,7 @@ async def vid_(message: Message):
         await message.reply_video(video=Path(_fpath), caption=capt_, duration=duration_)
         os.remove(Path(_fpath))
     else:
-        await message.edit(str(filename_))
+        await message.reply(str(filename_))
 
 
 # retunr regex link or get link with query
