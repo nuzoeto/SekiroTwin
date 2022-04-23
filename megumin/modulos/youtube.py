@@ -34,9 +34,8 @@ async def song_(c: megux, message: Message):
     query = " ".join(message.text.split()[1:])
     if not query:
         return await message.reply("`Vou baixar o vento?!`", del_in=5)
-    msg = await message.reply("`Aguarde ...`")
+    msg = await message.reply("📦 <i>Baixando... </i>")
     link = await get_link(query)
-    await msg.edit("`Processando o audio ...`")
     aud_opts = {
         "outtmpl": os.path.join(Config.DOWN_PATH, "%(title)s.%(ext)s"),
         "writethumbnail": True,
@@ -56,6 +55,8 @@ async def song_(c: megux, message: Message):
         "quiet": True,
     }
     filename_, capt_, duration_ = extract_inf(link, aud_opts)
+    if int(duration_) > 3600:
+        return await msg.edit("__Esse áudio é muito longo, a duração máxima é de 1 hora__")
     if filename_ == 0:
         _fpath = ''
         for _path in glob.glob(os.path.join(Config.DOWN_PATH, '*')):
@@ -64,8 +65,9 @@ async def song_(c: megux, message: Message):
         if not _fpath:
             await msg.edit("nothing found !")
             return
-        await msg.delete()
+        await msg.edit("📦 <i>Enviando...</i>")
         await message.reply_audio(audio=Path(_fpath), caption=capt_, duration=duration_)
+        await msg.delete()
         os.remove(Path(_fpath))
     else:
         await message.reply(str(filename_))
@@ -76,7 +78,7 @@ async def vid_(c: megux, message: Message):
     query = " ".join(message.text.split()[1:])
     if not query:
         return await message.reply("`Vou baixar o vento?!`", del_in=5)
-    msg = await message.reply("`Aguarde ...`")
+    msg = await message.reply("📦 <i>Baixando...</i>")
     vid_opts = {
         "outtmpl": os.path.join(Config.DOWN_PATH, "%(title)s.%(ext)s"),
         'writethumbnail': False,
@@ -90,8 +92,9 @@ async def vid_(c: megux, message: Message):
         "quiet": True,
     }
     link = await get_link(query)
-    await msg.edit("`Processando o video ...`")
     filename_, capt_, duration_ = extract_inf(link, vid_opts)
+    if int(duration_) > 3600:
+        return await msg.edit("__Esse áudio é muito longo, a duração máxima é de 1 hora__")
     if filename_ == 0:
         _fpath = ''
         for _path in glob.glob(os.path.join(Config.DOWN_PATH, '*')):
@@ -99,8 +102,9 @@ async def vid_(c: megux, message: Message):
                 _fpath = _path
         if not _fpath:
             return await msg.edit("nothing found !")
-        await msg.delete()
+        await msg.edit("📦 <i>Enviando...</i>")
         await message.reply_video(video=Path(_fpath), caption=capt_, duration=duration_)
+        await msg.delete()
         os.remove(Path(_fpath))
     else:
         await message.reply(str(filename_))
