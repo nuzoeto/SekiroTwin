@@ -2,9 +2,11 @@
 import json
 import os
 import time
+import glob
 
 
 from yt_dlp import YoutubeDL
+from pathlib import Path
 from youtubesearchpython import Search, SearchVideos
 from wget import download
 from re import compile as comp_regex  
@@ -73,16 +75,22 @@ async def vid_(c: megux, message: Message):
             ],
         "quiet": True,
     }
-    link, vid_id = await get_link(query)
-    thumb_ = download(f"https://i.ytimg.com/vi/{vid_id}/maxresdefault.jpg", Config.DOWN_PATH)
-    capt_, title_, duration_ = await extract_inf(link, vid_opts)
-    if int(duration_) > 3600:
-        return await msg.edit_text("__Esse vídeo é muito longo, a duração máxima é de 1 hora__")
-    await msg.edit_text("📦 <i>Enviando...</i>")
-    await c.send_video(chat_id, video=f"{Config.DOWN_PATH}{title_}.webm", caption=capt_, thumb=thumb_, duration=duration_)
-    await msg.delete()
-    os.remove(f"{Config.DOWN_PATH}{title_}.webm")
-    os.remove(f"{Config.DOWN_PATH}maxresdefault.jpg")
+link = await get_link(query)
+    filename_, capt_, duration_ = extract_inf(link, vid_opts)
+    if int(duration_) > 3600
+        return await msg.edit("__Esse vídeo é muito longo, a duração máxima é de 1 hora__")
+    elif filename_ == 0:
+        _fpath = ''
+        for _path in glob.glob(os.path.join(Config.DOWN_PATH, '*')):
+            if not _path.lower().endswith((".jpg", ".png", ".webp")):
+                _fpath = _path
+        if not _fpath:
+            return await msg.edit("Não foi possível encontrar o video na pasta!")
+        await msg.edit("📦 <i>Enviando...</i>")
+        await message.reply_video(video=Path(_fpath), caption=capt_, duration=duration_)
+        os.remove(Path(_fpath))
+    else:
+        await message.edit(str(filename_))
 
 
 @megux.on_message(filters.command(["song", "music"], prefixes=["/", "!"]))
