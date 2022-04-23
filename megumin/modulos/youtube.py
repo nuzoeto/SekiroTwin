@@ -28,9 +28,10 @@ def get_yt_video_id(url: str):
     if match:
         return match.group(1)
 
+
 @megux.on_message(filters.command(["song", "music"]))
 async def song_(message: Message):
-    query = message.input_str
+    query = " ".join(message.text.split()[1:])
     if not query:
         return await message.reply("`Vou baixar o vento?!`", del_in=5)
     msg = await message.reply("`Aguarde ...`")
@@ -70,23 +71,14 @@ async def song_(message: Message):
         await message.edit(str(filename_))
 
 
-@kannax.on_cmd(
-    "video",
-    about={
-        "header": "Video Downloader",
-        "description": "Baixe videos usando o yt_dlp",
-        'examples': ['{tr}video link',
-                     '{tr}video nome do video',]
-        }
-    )
+@megux.on_message(filters.command(["video", "vid"]))
 async def vid_(message: Message):
-    query = message.input_str
+    query = " ".join(message.text.split()[1:])
     if not query:
-        return await message.edit("`Vou baixar o vento?!`", del_in=5)
-    await message.edit("`Aguarde ...`")
+        return await message.reply("`Vou baixar o vento?!`", del_in=5)
+    msg = await message.reply("`Aguarde ...`")
     vid_opts = {
         "outtmpl": os.path.join(Config.DOWN_PATH, "%(title)s.%(ext)s"),
-        'logger': LOGGER,
         'writethumbnail': False,
         'prefer_ffmpeg': True,
         'format': 'bestvideo+bestaudio/best',
@@ -98,7 +90,7 @@ async def vid_(message: Message):
         "quiet": True,
     }
     link = await get_link(query)
-    await message.edit("`Processando o video ...`")
+    await msg.edit("`Processando o video ...`")
     filename_, capt_, duration_ = extract_inf(link, vid_opts)
     if filename_ == 0:
         _fpath = ''
@@ -106,8 +98,8 @@ async def vid_(message: Message):
             if not _path.lower().endswith((".jpg", ".png", ".webp")):
                 _fpath = _path
         if not _fpath:
-            return await message.err("nothing found !")
-        await message.delete()
+            return await msg.edit("nothing found !")
+        await msg.delete()
         await message.reply_video(video=Path(_fpath), caption=capt_, duration=duration_)
         os.remove(Path(_fpath))
     else:
