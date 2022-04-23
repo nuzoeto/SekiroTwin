@@ -75,7 +75,7 @@ async def vid_(c: megux, message: Message):
             ],
         "quiet": True,
     }
-link = await get_link(query)
+    link = await get_link(query)
     filename_, capt_, duration_ = extract_inf(link, vid_opts)
     if int(duration_) > 3600
         return await msg.edit("__Esse vídeo é muito longo, a duração máxima é de 1 hora__")
