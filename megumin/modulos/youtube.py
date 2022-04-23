@@ -28,14 +28,65 @@ def get_yt_video_id(url: str):
     if match:
         return match.group(1)
 
-@megux.on_message(filters.command(["video"], prefixes=["/", "!"]))
-async def vid_(c: megux, message: Message):
-    query = " ".join(message.text.split()[1:])
+@megux.on_message(filters.command(["song", "music"]))
+async def song_(message: Message):
+    query = message.input_str
     if not query:
         return await message.reply("`Vou baixar o vento?!`", del_in=5)
     msg = await message.reply("`Aguarde ...`")
+    link = await get_link(query)
+    await msg.edit("`Processando o audio ...`")
+    aud_opts = {
+        "outtmpl": os.path.join(Config.DOWN_PATH, "%(title)s.%(ext)s"),
+        "writethumbnail": True,
+        "prefer_ffmpeg": True,
+        'format': 'bestaudio/best',
+        "geo_bypass": True,
+        "nocheckcertificate": True,
+        "postprocessors": [
+                {
+                     'key': 'FFmpegExtractAudio',
+                     'preferredcodec': "mp3",
+                     'preferredquality': '320',
+                 },
+            {"key": "EmbedThumbnail"},
+            {"key": "FFmpegMetadata"},
+        ],
+        "quiet": True,
+    }
+    filename_, capt_, duration_ = extract_inf(link, aud_opts)
+    if filename_ == 0:
+        _fpath = ''
+        for _path in glob.glob(os.path.join(Config.DOWN_PATH, '*')):
+            if not _path.lower().endswith((".jpg", ".png", ".webp")):
+                _fpath = _path
+        if not _fpath:
+            await msg.edit("nothing found !")
+            return
+        await msg.delete()
+        await message.reply_audio(audio=Path(_fpath), caption=capt_, duration=duration_)
+        os.remove(Path(_fpath))
+    else:
+        await message.edit(str(filename_))
+
+
+@kannax.on_cmd(
+    "video",
+    about={
+        "header": "Video Downloader",
+        "description": "Baixe videos usando o yt_dlp",
+        'examples': ['{tr}video link',
+                     '{tr}video nome do video',]
+        }
+    )
+async def vid_(message: Message):
+    query = message.input_str
+    if not query:
+        return await message.edit("`Vou baixar o vento?!`", del_in=5)
+    await message.edit("`Aguarde ...`")
     vid_opts = {
         "outtmpl": os.path.join(Config.DOWN_PATH, "%(title)s.%(ext)s"),
+        'logger': LOGGER,
         'writethumbnail': False,
         'prefer_ffmpeg': True,
         'format': 'bestvideo+bestaudio/best',
@@ -47,7 +98,7 @@ async def vid_(c: megux, message: Message):
         "quiet": True,
     }
     link = await get_link(query)
-    await msg.edit("`Processando o video ...`")
+    await message.edit("`Processando o video ...`")
     filename_, capt_, duration_ = extract_inf(link, vid_opts)
     if filename_ == 0:
         _fpath = ''
@@ -55,60 +106,15 @@ async def vid_(c: megux, message: Message):
             if not _path.lower().endswith((".jpg", ".png", ".webp")):
                 _fpath = _path
         if not _fpath:
-            return await msg.edit("nothing found !")
-        await msg.delete()
+            return await message.err("nothing found !")
+        await message.delete()
         await message.reply_video(video=Path(_fpath), caption=capt_, duration=duration_)
         os.remove(Path(_fpath))
     else:
-        await message.reply(str(filename_))
+        await message.edit(str(filename_))
 
 
-@megux.on_message(filters.command(["song", "music"], prefixes=["/", "!"]))
-async def song_(c: megux, message: Message):
-    chat_id = message.chat.id 
-    query = " ".join(message.text.split()[1:])
-    if not query:
-        return await message.reply_text("`Vou baixar o vento?!`")
-    msg = await message.reply_text("📦 <i>Baixando...</i>")
-    if query.startswith("-f"):
-        format_ = "flac/best"
-        fid = "flac"
-    else:
-        format_ = "bestaudio/best"
-        fid = "mp3"
-    aud_opts = {
-        "outtmpl": os.path.join(Config.DOWN_PATH, "%(title)s.%(ext)s"),
-        "writethumbnail": True,
-        "prefer_ffmpeg": True,
-        'format': format_,
-        "geo_bypass": True,
-        "nocheckcertificate": True,
-        "postprocessors": [
-                {
-                     'key': 'FFmpegExtractAudio',
-                     'preferredcodec': fid,
-                     'preferredquality': '320',
-                 },
-            {"key": "EmbedThumbnail"},
-            {"key": "FFmpegMetadata"},
-        ],
-        "quiet": True,
-    }
-    query_ = query.strip("-f")
-    link, vid_id = await get_link(query_)
-    thumb_ = download(f"https://i.ytimg.com/vi/{vid_id}/maxresdefault.jpg", Config.DOWN_PATH)
-    capt_, title_, duration_ = await extract_inf(link, aud_opts)
-    if int(duration_) > 3600:
-        return await msg.edit_text("__Essa música é muito longa, a duração máxima é de 1 hora__")   
-    capt_ += f"\n❯ Formato: {fid}"
-    await msg.edit_text("📦 <i>Enviando...</i>")
-    await c.send_chat_action(chat_id, "upload_audio")
-    await c.send_audio(chat_id, audio=f"{Config.DOWN_PATH}{title_}.{fid}", caption=capt_, thumb=thumb_, duration=duration_)
-    await msg.delete()
-    os.remove(f"{Config.DOWN_PATH}{title_}.{fid}")
-    os.remove(f"{Config.DOWN_PATH}maxresdefault.jpg")
-
-
+# retunr regex link or get link with query
 async def get_link(query):
     vid_id = get_yt_video_id(query)
     link = f"{BASE_YT_URL}{vid_id}"
