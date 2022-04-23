@@ -29,7 +29,7 @@ def get_yt_video_id(url: str):
         return match.group(1)
 
 
-@megux.on_message(filters.command(["song", "music"]))
+@megux.on_message(filters.command(["song", "music"], Config.TRIGGER))
 async def song_(c: megux, message: Message):
     query = " ".join(message.text.split()[1:])
     if not query:
@@ -73,7 +73,7 @@ async def song_(c: megux, message: Message):
         await message.reply(str(filename_))
 
 
-@megux.on_message(filters.command(["video", "vid"]))
+@megux.on_message(filters.command(["video", "vid"], Config.TRIGGER))
 async def vid_(c: megux, message: Message):
     query = " ".join(message.text.split()[1:])
     if not query:
