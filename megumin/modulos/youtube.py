@@ -79,7 +79,7 @@ async def vid_(c: megux, message: Message):
     filename_, capt_, duration_ = extract_inf(link, vid_opts)
     if int(duration_) > 3600;
         return await msg.edit("__Esse vídeo é muito longo, a duração máxima é de 1 hora__")
-    elif filename_ == 0:
+    if filename_ == 0:
         _fpath = ''
         for _path in glob.glob(os.path.join(Config.DOWN_PATH, '*')):
             if not _path.lower().endswith((".jpg", ".png", ".webp")):
