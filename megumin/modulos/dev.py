@@ -10,6 +10,7 @@ import io
 
 
 from pyrogram import Client, filters 
+from pyrogram.errors import UserIsBlocked
 from pyrogram.types import Message
 from datetime import datetime 
 
