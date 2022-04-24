@@ -12,14 +12,15 @@ from megumin import version, Config
 
 GP_LOGS = -1001556292785
 
-class MeguBot(Client):
+class MeguminBot(Client):
     def __init__(self):
         kwargs = {
+            'name': "megumin",
             'api_id': Config.API_ID,
             'api_hash': Config.API_HASH,
             'bot_token': Config.BOT_TOKEN,
             'in_memory': True,
-            'plugins': dict(root="megumin.modulos")
+            'plugins': dict(root="megumin.plugins")
         }
         super().__init__(**kwargs)
 
@@ -45,4 +46,4 @@ class MeguBot(Client):
             **kwargs,
         )
 
-megux = MeguBot()
+megux = MeguminBot()
