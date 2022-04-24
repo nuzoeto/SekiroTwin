@@ -15,7 +15,6 @@ GP_LOGS = -1001556292785
 class MeguBot(Client):
     def __init__(self):
         kwargs = {
-            'name': "megumin",
             'api_id': Config.API_ID,
             'api_hash': Config.API_HASH,
             'bot_token': Config.BOT_TOKEN,
