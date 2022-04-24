@@ -8,18 +8,19 @@ import os
 
 START_TIME = time.time()
 
-from megumin import version
+from megumin import version, Config
 
 GP_LOGS = -1001556292785
 
 class MeguBot(Client):
     def __init__(self):
         kwargs = {
-            'api_id': os.environ.get("API_ID"),
-            'api_hash': os.environ.get("API_HASH"),
-            'session_name': ":memory:",
-            'bot_token': os.environ.get("BOT_TOKEN"),
-            'plugins': dict(root="megumin/modulos")
+            'name': "megumin",
+            'api_id': Config.API_ID,
+            'api_hash': Config.API_HASH,
+            'bot_token': Config.BOT_TOKEN,
+            'in_memory': True,
+            'plugins': dict(root="megumin.modulos")
         }
         super().__init__(**kwargs)
 
