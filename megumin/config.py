@@ -25,6 +25,9 @@ class Config:
     LOG_CHANNEL_ID = set([-1001569084822])
     ADMINS = {}
     LASTFM_API_KEY = os.environ.get("LASTFM_API_KEY")
+    API_ID = int(os.environ.get("API_ID"))
+    API_HASH = os.environ.get("API_HASH")
+    BOT_TOKEN = os.environ.get("BOT_TOKEN")
     REMOVE_BG_API_KEY = os.environ.get("REMOVE_BG_API_KEY")
     DOWN_PATH = os.environ.get("DOWN_PATH")
     DB_URI = os.environ.get("DATABASE_URL")
