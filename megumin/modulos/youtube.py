@@ -143,7 +143,6 @@ def extract_inf(url, _opts):
         capt_ = f"<a href={url}><b>{title_}</b></a>\n❯ Duração: {duration_}\n❯ Views: {views_}\n❯ Canal: {channel_}"
         dloader = x.download(url)
     except Exception as y_e:  # pylint: disable=broad-except
-        await msg.edit("`Não foi possível baixar a música/video`")
         os.remove(f"{Config.DOWN_PATH}*")
         return y_e
     else:
