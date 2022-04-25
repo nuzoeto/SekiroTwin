@@ -124,7 +124,7 @@ async def get_link(query):
             link = json.loads(res_.result())["search_result"][0]["link"]
             return link
         except Exception as e:
-            os.remove(Config.DOWN_PATH*)
+            os.remove(Config.DOWN_PATH)
             return e
     else:
         return link
@@ -142,7 +142,7 @@ def extract_inf(url, _opts):
         capt_ = f"<a href={url}><b>{title_}</b></a>\n❯ Duração: {duration_}\n❯ Views: {views_}\n❯ Canal: {channel_}"
         dloader = x.download(url)
     except Exception as y_e:  # pylint: disable=broad-except
-        os.remove(Config.DOWN_PATH*)
+        os.remove(Config.DOWN_PATH)
         return y_e
     else:
         return dloader, capt_, duration_
