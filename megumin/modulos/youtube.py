@@ -65,7 +65,7 @@ async def song_(c: megux, message: Message):
             if not _path.lower().endswith((".jpg", ".png", ".webp")):
                 _fpath = _path
         if not _fpath:
-            await msg.edit("nothing found !")
+            await msg.edit("nada encontrado !")
             return
         await msg.edit("📦 <i>Enviando...</i>")
         await message.reply_audio(audio=Path(_fpath), caption=capt_, duration=duration_)
