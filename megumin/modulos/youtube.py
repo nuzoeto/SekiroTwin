@@ -72,6 +72,7 @@ async def song_(c: megux, message: Message):
         await msg.delete()
         path = os.path.join(Config.DOWN_PATH, "*")
         os.remove(Path(_fpath))
+        os.remove(path)
     else:
         await message.reply(str(filename_))
 
@@ -112,6 +113,7 @@ async def vid_(c: megux, message: Message):
         await msg.delete()
         path = os.path.join(Config.DOWN_PATH, "*")
         os.remove(Path(_fpath))
+        os.remove(path)
     else:
         await message.reply(str(filename_))
 
@@ -144,6 +146,7 @@ def extract_inf(url, _opts):
         dloader = x.download(url)
     except Exception as y_e:  # pylint: disable=broad-except
         path = os.path.join(Config.DOWN_PATH, "*")
+        os.remove(path)
         return y_e
     else:
         return dloader, capt_, duration_
