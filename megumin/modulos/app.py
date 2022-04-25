@@ -10,8 +10,8 @@ from megumin.utils.decorators import input_str
 @megux.on_message(filters.command(["app"], Config.TRIGGER))
 async def app(c: megux, message: Message):
     try:
-        msg = await message.edit("`Procurando...`")
-        app_name = message.input_str
+        msg = await message.reply("`Procurando...`")
+        app_name = " ".join(message.text.split()[1:])
         remove_space = app_name.split(" ")
         final_name = "+".join(remove_space)
         page = requests.get(
