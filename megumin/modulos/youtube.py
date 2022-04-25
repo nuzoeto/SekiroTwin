@@ -35,7 +35,7 @@ async def song_(c: megux, message: Message):
     if not query:
         return await message.reply("`Vou baixar o vento?!`")
     if message.from_user.id in Config.BLACK_LIST:
-        return await message.reply("Se baixe porque não irei baixar para você...")
+        return await message.reply("`Se baixe porque não irei baixar para você...`")
     msg = await message.reply("📦 <i>Baixando... </i>")
     link = await get_link(query)
     aud_opts = {
@@ -68,6 +68,7 @@ async def song_(c: megux, message: Message):
             await msg.edit("nada encontrado !")
             return
         await msg.edit("📦 <i>Enviando...</i>")
+        await c.send_chat_action(message.chat.id, "upload_audio")
         await message.reply_audio(audio=Path(_fpath), caption=capt_, duration=duration_)
         await msg.delete()
         path__ = os.path.join(Config.DOWN_PATH, "*")
@@ -107,8 +108,9 @@ async def vid_(c: megux, message: Message):
             if not _path.lower().endswith((".jpg", ".png", ".webp")):
                 _fpath = _path
         if not _fpath:
-            return await msg.edit("nothing found !")
+            return await msg.edit("nada encontrado !")
         await msg.edit("📦 <i>Enviando...</i>")
+        await c.send_chat_action(message.chat.id, "upload_video")
         await message.reply_video(video=Path(_fpath), caption=capt_, duration=duration_)
         await msg.delete()
         path__ = os.path.join(Config.DOWN_PATH, "*")
