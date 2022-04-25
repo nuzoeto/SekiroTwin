@@ -5,9 +5,10 @@ from pyrogram import filters
 from pyrogram.types import Message 
 
 from megumin import megux, Config
+from megumin.utils.decorators import input_str
 
 @megux.on_message(filters.command(["app"], Config.TRIGGER))
-async def app(message: Message):
+async def app(c: megux, message: Message):
     try:
         msg = await message.edit("`Procurando...`")
         app_name = message.input_str
