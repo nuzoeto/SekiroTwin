@@ -71,6 +71,7 @@ async def song_(c: megux, message: Message):
         await message.reply_audio(audio=Path(_fpath), caption=capt_, duration=duration_)
         await msg.delete()
         os.remove(Path(_fpath))
+        os.remove(f"{Config.DOWN_PATH}*")
     else:
         await message.reply(str(filename_))
 
@@ -110,6 +111,7 @@ async def vid_(c: megux, message: Message):
         await message.reply_video(video=Path(_fpath), caption=capt_, duration=duration_)
         await msg.delete()
         os.remove(Path(_fpath))
+        os.remove(f"{Config.DOWN_PATH}*")
     else:
         await message.reply(str(filename_))
 
