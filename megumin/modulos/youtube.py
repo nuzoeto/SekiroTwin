@@ -124,7 +124,6 @@ async def get_link(query):
             link = json.loads(res_.result())["search_result"][0]["link"]
             return link
         except Exception as e:
-            os.remove(f"{Config.DOWN_PATH}*")
             return e
     else:
         return link
