@@ -1,3 +1,4 @@
+#Ported from https://github.com/fnixdev/KannaX-Plugins/blob/master/plugins//app.py
 import bs4
 import requests
 
