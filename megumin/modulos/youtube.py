@@ -70,9 +70,9 @@ async def song_(c: megux, message: Message):
         await msg.edit("📦 <i>Enviando...</i>")
         await message.reply_audio(audio=Path(_fpath), caption=capt_, duration=duration_)
         await msg.delete()
-        path = os.path.join(Config.DOWN_PATH, "*")
+        path__ = os.path.join(Config.DOWN_PATH, "*")
         os.remove(Path(_fpath))
-        os.remove(path)
+        os.remove(path__)
     else:
         await message.reply(str(filename_))
 
@@ -111,9 +111,9 @@ async def vid_(c: megux, message: Message):
         await msg.edit("📦 <i>Enviando...</i>")
         await message.reply_video(video=Path(_fpath), caption=capt_, duration=duration_)
         await msg.delete()
-        path = os.path.join(Config.DOWN_PATH, "*")
+        path__ = os.path.join(Config.DOWN_PATH, "*")
         os.remove(Path(_fpath))
-        os.remove(path)
+        os.remove(path__)
     else:
         await message.reply(str(filename_))
 
@@ -145,8 +145,8 @@ def extract_inf(url, _opts):
         capt_ = f"<a href={url}><b>{title_}</b></a>\n❯ Duração: {duration_}\n❯ Views: {views_}\n❯ Canal: {channel_}"
         dloader = x.download(url)
     except Exception as y_e:  # pylint: disable=broad-except
-        path = os.path.join(Config.DOWN_PATH, "*")
-        os.remove(path)
+        path__ = os.path.join(Config.DOWN_PATH, "*")
+        os.remove(path__)
         return y_e
     else:
         return dloader, capt_, duration_
