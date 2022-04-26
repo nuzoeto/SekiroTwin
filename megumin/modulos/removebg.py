@@ -43,7 +43,7 @@ async def remove_background(_, message: Message):
         await msg.edit("Baixando imagem...")
         end_t = datetime.now()
         m_s = (end_t - start_t).seconds
-        await msg.edit(f"Image saved in {m_s} seconds.\nRemoving Background Now...")
+        await msg.edit(f"Imagem salva em {m_s} segundos.\nRemovendo plano de fundo agora...")
         # Cooking Image
         try:
             await msg.edit("Enviando imagem...")
@@ -58,7 +58,7 @@ async def remove_background(_, message: Message):
             )
             await msg.delete()
         except Exception:
-            await message.reply("Something went wrong!\nCheck your usage quota!")
+            await message.reply("Algo deu errado!\nVerifique sua cota de uso!")
             return
     else:
-        await message.reply("Reply to a photo to remove background!")
+        await message.reply("Responda a uma foto para remover o fundo!")
