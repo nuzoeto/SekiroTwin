@@ -57,8 +57,10 @@ async def remove_background(_, message: Message):
                 disable_notification=True,
             )
             await msg.delete()
+            os.remove(IMG_PATH)
         except Exception:
             await message.reply("Algo deu errado!\nVerifique o tamanho do arquivo!")
+            os.remove(IMG_PATH)
             return
     else:
         await message.reply("Responda a uma foto para remover o fundo!")
