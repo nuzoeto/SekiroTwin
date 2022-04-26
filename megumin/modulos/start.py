@@ -498,6 +498,7 @@ Aqui está a ajuda para o módulo **Outros**:
 • /cota Mostra a cotação do Dólar, Euro, BTC, Peso Argentino, Ruplo Russo ETC...
 • /cep (cep)  Busque um CEP.
 • /ddd (ddd) Busque um DDD.
+• /removebg <reply/msg> Remova o fundo de uma imagem.
 • /clima ou /weather ( cidade ) Busque o clima para uma cidade.
 • /paste Envia texto/documento respondido para o nekobin.com.
 • /telegraph ou /tg Envie uma mídia para o telegra.ph.
