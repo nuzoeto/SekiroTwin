@@ -23,7 +23,6 @@ async def remove_background(_, message: Message):
             parse_mode="html",
         )
         return
-    msg = await message.reply("Analisando...")
     replied = message.reply_to_message
     if (
         replied
@@ -33,6 +32,7 @@ async def remove_background(_, message: Message):
             or (replied.document and "image" in replied.document.mime_type)
         )
     ):
+        msg = await message.reply("Analisando...")
         start_t = datetime.now()
         if os.path.exists(IMG_PATH):
             os.remove(IMG_PATH)
