@@ -9,6 +9,10 @@ from pyrogram.types import Message
 from megumin import megux, Config 
 
 
+IMG_PATH = Config.DOWN_PATH + "dl_image.jpg"
+
+
+
 @megux.on_message(filters.command("removebg", Config.TRIGGER))
 async def remove_background(_, message: Message):
     if not Config.REMOVE_BG_API_KEY:
