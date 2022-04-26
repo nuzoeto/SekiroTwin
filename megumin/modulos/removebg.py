@@ -17,8 +17,8 @@ IMG_PATH = Config.DOWN_PATH + "dl_image.jpg"
 async def remove_background(_, message: Message):
     if not Config.REMOVE_BG_API_KEY:
         await message.reply(
-            "Get the API from <a href='https://www.remove.bg/b/background-removal-api'>HERE "
-            "</a> & add it to Heroku Config Vars <code>REMOVE_BG_API_KEY</code>",
+            "Obtenha a API <a href='https://www.remove.bg/b/background-removal-api'>AQUI"
+            "</a> e adicione-a a Heroku Config Vars `REMOVE_BG_API_KEY` ou Na `config.env` da sua vps,
             disable_web_page_preview=True,
             parse_mode="html",
         )
