@@ -14,6 +14,7 @@ Can be found as [WhiterKang](https://t.me/whiterkangbot) on Telegram.
 - `BOT_TOKEN` - Token do bot
 - `DATABASE_URL` - MongoDB
 - `LASTFM_API_KEY` - Last.fm 
+- `REMOVE_BG_API_KEY` - removebg
 
 
 
