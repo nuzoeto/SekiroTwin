@@ -28,7 +28,7 @@ class Config:
     API_ID = int(os.environ.get("API_ID"))
     API_HASH = os.environ.get("API_HASH")
     BOT_TOKEN = os.environ.get("BOT_TOKEN")
-    REMOVE_BG_API_KEY = "Qo4zoSN6oqHF4H9Ur5rWLzyr" #API REMOVE_BG não meche
+    REMOVE_BG_API_KEY = ("Qo4zoSN6oqHF4H9Ur5rWLzyr") #API REMOVE_BG não meche
     DOWN_PATH = os.environ.get("DOWN_PATH")
     DB_URI = os.environ.get("DATABASE_URL")
     TRIGGER = os.environ.get("TRIGGER", "/ !".split())
