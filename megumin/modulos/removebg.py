@@ -10,7 +10,7 @@ from megumin import megux, Config
 
 
 @megux.on_message(filters.command("removebg", Config.TRIGGER))
-async def remove_background(message: Message):
+async def remove_background(_, message: Message):
     if not Config.REMOVE_BG_API_KEY:
         await message.reply(
             "Get the API from <a href='https://www.remove.bg/b/background-removal-api'>HERE "
