@@ -42,9 +42,9 @@ async def reverse_search(_, message: Message):
     if message.reply_to_message:
         try:
             media = await message.reply_to_message.download()
-            texto = await message.reply("__Uploading it to Google.__")
+            texto = await message.reply("`Processando...`")
         except ValueError:
-            return await texto.edit("A mensagem não contém nenhum arquivo de midia.")
+            return await texto.edit("`Responda a uma foto ou sticker.`")
         if media.endswith((".jpg", ".gif", ".png", ".bmp", ".tif", ".webp")):
             try:
                 reverse = GRS(media)
@@ -57,7 +57,7 @@ async def reverse_search(_, message: Message):
                 text += "\n\tLink não encontrado."
             await texto.edit(text,parse_mode="md", disable_web_page_preview=True)
         else:
-            await texto.edit("Arquivo não suportado.")
+            await texto.edit("`Formato não suportado.`")
         os.remove(media)
     else:
-        await message.reply("Por favor, responda a uma foto ou video para que eu possa pesquisar")
+        await message.reply("Responda a uma foto ou sticker.")
