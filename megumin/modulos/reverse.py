@@ -38,26 +38,25 @@ def GRS(path_to_file):
 
 @megux.on_message(filters.command("reverse", Config.TRIGGER))
 async def reverse_search(_, message: Message):
-    """reverse search on google"""
     if message.reply_to_message:
         try:
             media = await message.reply_to_message.download()
-            texto = await message.reply("`Processando...`")
+            msg = await message.reply("`Processando...`")
         except ValueError:
-            return await texto.edit("`Responda a uma foto, sticker ou vídeo.`")
+            return await msg.edit("`Responda a uma foto, sticker ou vídeo.`")
         if media.endswith((".jpg", ".gif", ".png", ".bmp", ".tif", ".webp")):
             try:
                 reverse = GRS(media)
             except BaseException as error:
-                return await texto.edit(error)
+                return await msg.edit(error)
             text = "**Resultados da pesquisa:** "
             if reverse:
                 text += f"[{reverse[1]}]({reverse[0]})"
             else:
                 text += "\n\tLink não encontrado."
-            await texto.edit(text,parse_mode="md", disable_web_page_preview=True)
+            await msg.edit(text,parse_mode="md", disable_web_page_preview=True)
         else:
-            await texto.edit("`Formato não suportado.`")
+            await msg.edit("`Formato não suportado.`")
         os.remove(media)
     else:
         await message.reply("`Responda a uma foto, sticker ou video.`")
