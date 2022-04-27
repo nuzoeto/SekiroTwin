@@ -43,7 +43,7 @@ async def reverse_search(_, message: Message):
             media = await message.reply_to_message.download()
             msg = await message.reply("`Processando...`")
         except ValueError:
-            return await msg.edit("`Responda a uma foto, sticker ou vídeo.`")
+            return await msg.edit("`Responda a uma foto ou sticker.`")
         if media.endswith((".jpg", ".gif", ".png", ".bmp", ".tif", ".webp")):
             try:
                 reverse = GRS(media)
@@ -59,4 +59,4 @@ async def reverse_search(_, message: Message):
             await msg.edit("`Formato não suportado.`")
         os.remove(media)
     else:
-        await message.reply("`Responda a uma foto, sticker ou video.`")
+        await message.reply("`Responda a uma foto ou sticker.`")
