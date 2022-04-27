@@ -37,7 +37,7 @@ def GRS(path_to_file):
     return fetchUrl, regex[0]
 
 @megux.on_message(filters.command("reverse", Config.TRIGGER))
-async def reverse_search(message: Message):
+async def reverse_search(_, message: Message):
     """reverse search on google"""
     if message.reply_to_message:
         try:
