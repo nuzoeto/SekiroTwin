@@ -44,7 +44,7 @@ async def reverse_search(message: Message):
             media = await message.reply_to_message.download()
             texto = await message.reply("__Uploading it to Google.__")
         except ValueError:
-            return await message.reply("A mensagem não contém nenhum arquivo de midia.")
+            return await texto.edit("A mensagem não contém nenhum arquivo de midia.")
         if media.endswith((".jpg", ".gif", ".png", ".bmp", ".tif", ".webp")):
             try:
                 reverse = GRS(media)
