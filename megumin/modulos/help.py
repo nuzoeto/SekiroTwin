@@ -4,15 +4,15 @@ from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMa
 from megumin import megux
 
 HELP_TEXT = """
-Aqui estão todos os meu plugins, para saber mais sobre os plugins, **basta clicar no nome deles.**
+Olá! Me chamo <b>WhiterKang</b>. Sou um bot de gerenciamento de grupo modular com alguns extras divertidos! Dê uma olhada no seguinte para ter uma idéia de algumas das coisas em que posso ajudá-lo. 
 
-Comandos Básicos:
-Use /ping para verificar o atraso para o WhiterKang retornar a mensagem.
-Use /start para iniciar o WhiterKang em um grupo ou privado
-Use /help para os comandos disponíveis sobre o WhiterKang 
-Use /about para saber sobre os desenvolvedores e mais
+Comandos básicos:
+- /start: Comando Legal pra ver se eu estou Vivo ou Não:3
+- /help: envia esta mensagem de ajuda
+- /ping Ver o atraso para o bot retornar a mensagem.
+- /about Veja mais sobre os desenvolvedores. 
 
-**❔ Help Em desenvolvimento...**
+Todos os comandos podem ser usados com os seguintes caracteres: / !
 """
 
 ABOUT_TEXT = """
@@ -53,13 +53,17 @@ async def help(client, message):
             ],
             [
                 InlineKeyboardButton("Notas", callback_data="help_notes"),
-                InlineKeyboardButton("Tradutor", callback_data="help_tr"),
+                InlineKeyboardButton("Purges", callback_data="help_purges"),
                 InlineKeyboardButton("Youtube", callback_data="help_yt"),
             ],
             [
                 InlineKeyboardButton("Bans", callback_data="help_bans"),
                 InlineKeyboardButton("GitHub", callback_data="help_git"),
-                InlineKeyboardButton("Memes", callback_data="help_memes"), 
+                InlineKeyboardButton("Memes", callback_data="help_memes"),
+            ],
+            [
+                InlineKeyboardButton("Tradutor", callback_data="help_tr"),
+                InlineKeyboardButton("Stickers", callback_data="help_stickers"),
             ],
         ]
     )
