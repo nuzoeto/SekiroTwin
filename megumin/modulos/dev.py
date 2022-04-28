@@ -21,6 +21,7 @@ from megumin.utils.decorators import input_str
 
 
 USERS = get_collection("USERS_START")
+GROUPS = get_collection("GROUPS")
 
 
 @megux.on_message(filters.command(["broadcast", "bc"], Config.TRIGGER))
@@ -31,7 +32,7 @@ async def broadcasting_(_, message: Message):
     query = input_str(message)
     if not query:
         return await message.reply("__I need text to broadcasting.__")
-    msg = await message.reply("__Processing ...__")
+    msg = await message.reply("__Broadcasting ...__")
     web_preview = False
     sucess_br = 0
     no_sucess = 0
@@ -55,7 +56,7 @@ async def broadcasting_(_, message: Message):
 ╭─❑ 「 **Anúncio Completo** 」 ❑──
 │- __Total de Usuários:__ `{total_user}`
 │- __Com sucesso:__ `{sucess_br}`
-│- __Failed :__ `{no_sucess}`
+│- __Falhados :__ `{no_sucess}`
 ╰❑
     """)
 
