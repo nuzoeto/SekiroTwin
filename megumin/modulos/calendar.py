@@ -19,7 +19,7 @@ async def cal_(_, message: Message):
             await msg.edit(e)
         return
     if "|" not in input_str(message):
-        await message.err("both year and month required!")
+        await msg.edit("both year and month required!")
         return
     msg = await message.reply("__Procurando...__")
     year, month = input_str(message.split("|", maxsplit=1))
