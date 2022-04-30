@@ -16,10 +16,10 @@ async def cal_(_, message: Message):
             input_ = calendar.month(today.year, today.month)
             await msg.edit(f"```{input_}```")
         except Exception as e:
-            await msg.edit(e)
+            await message.reply(e)
         return
     if "|" not in input_str(message):
-        await msg.edit("both year and month required!")
+        await message.reply("both year and month required!")
         return
     msg = await message.reply("__Procurando...__")
     year, month = input_str(message.split("|", maxsplit=1))
