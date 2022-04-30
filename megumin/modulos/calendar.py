@@ -9,7 +9,7 @@ from megumin.utils.decorators import input_str
 
 @megux.on_message(filters.command("cal"))
 async def cal_(_, message: Message):
-    if not input_str(message):
+    if not " ".join(message.text.split()[1:]):
         msg = await message.reply("__Procurando...__")
         try:
             today = datetime.today()
@@ -18,11 +18,11 @@ async def cal_(_, message: Message):
         except Exception as e:
             await message.reply(e)
         return
-    if "|" not in input_str(message):
+    if "|" not in " ".join(message.text.split()[1:]) :
         await message.reply("both year and month required!")
         return
     msg = await message.reply("__Procurando...__")
-    year, month = input_str(message)
+    year, month = " ".join(message.text.split()[1:])
     try:
         input_ = calendar.month(int(year.strip()), int(month.strip()))
         await message.reply(f"```{input_}```")
