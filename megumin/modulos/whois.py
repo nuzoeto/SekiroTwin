@@ -109,10 +109,7 @@ async def whois(client, message):
 
 @megux.on_message(filters.command("spamwatch"))
 async def spam_watch(_, m: Message):
-    if input_str(m):
-        id = input_str(m)
-    else:
-    elif not m.reply_to_message: 
+    if not m.reply_to_message: 
         id = m.from_user.id
     else:
         id = m.reply_to_message.from_user.id
