@@ -65,12 +65,7 @@ async def whois(client, message):
         return await message.reply_text("Isso não me parece ser um usuário!")
 
     bio = (await client.get_chat(chat_id=user.id)).bio
-    r = await http.get(f"https://api.spamwat.ch/banlist/{int(user.id)}", headers={"Authorization": f"Bearer {SW_API}"})
-    if r.status_code == 200:
-        ban = r.json()
-        infotext += "\n\nEste usuário está banido no @SpamWatch!"
-        infotext += f"\nMotivo: <code>{ban['reason']}</code>"
-
+    
     if user.photo:
         photos = await client.get_profile_photos(user.id)
         await message.reply_photo(
