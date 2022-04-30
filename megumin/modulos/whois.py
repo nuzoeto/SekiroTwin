@@ -3,7 +3,7 @@ import httpx
 
 from pyrogram import filters
 from pyrogram.errors import BadRequest
-from pyrogram.types import User
+from pyrogram.types import User, Message
 
 from megumin import megux, Config
 
@@ -107,7 +107,7 @@ async def whois(client, message):
 
 
 @megux.on_message(filters.command("spamwatch"))
-async def spam_watch(_, m: message):
+async def spam_watch(_, m: Message):
     user = message.reply_to_message.from_user or message.from_user
     r = await http.get(f"https://api.spamwat.ch/banlist/{int(user.id)}", headers={"Authorization": f"Bearer {SW_API}"})
 
@@ -116,6 +116,6 @@ async def spam_watch(_, m: message):
         ban = r.json()
         text += "\n\nEste usuário está banido no @SpamWatch!" 
         text += f"\nMotivo: <code>{ban['reason']}</code>"
-        await message.reply(text)
+        await m.reply(text)
     else:
-        return await message.reply("{user.mention()} Livre como um passaro!")
+        return await m.reply("{user.mention()} Livre como um passaro!")
