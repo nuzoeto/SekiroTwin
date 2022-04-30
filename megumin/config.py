@@ -34,6 +34,7 @@ class Config:
     WHITELIST_CHATS = set([])  # chat id aq
     EDIT_SLEEP_TIMEOUT = 10
     DOWN_PATH = "downloads/"
+    SW_API = os.environ.get("SW_API")
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY")
     CHATS_DISABLED_KANG = (
       -1001471874620
