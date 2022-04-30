@@ -112,10 +112,10 @@ async def spam_watch(_, m: message)
     r = await http.get(f"https://api.spamwat.ch/banlist/{int(user.id)}", headers={"Authorization": f"Bearer {SW_API}"})
 
     if r.status_code == 200: 
-    result = ""
-    ban = r.json()
-    text += "\n\nEste usuário está banido no @SpamWatch!" 
-    text += f"\nMotivo: <code>{ban['reason']}</code>"
-    await message.reply(text)
+        text = ""
+        ban = r.json()
+        text += "\n\nEste usuário está banido no @SpamWatch!" 
+        text += f"\nMotivo: <code>{ban['reason']}</code>"
+        await message.reply(text)
     else:
-       return await message.reply("{user.mention()} Livre como um passaro!")
+        return await message.reply("{user.mention()} Livre como um passaro!")
