@@ -43,7 +43,7 @@ def LastOnline(user: User):
         )
 
 
-SW_API = CONFIG.SW_API
+SW_API = Config.SW_API
 
 def FullName(user: User):
     return user.first_name + " " + user.last_name if user.last_name else user.first_name
