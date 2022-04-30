@@ -6,6 +6,7 @@ from pyrogram.errors import BadRequest
 from pyrogram.types import User, Message
 
 from megumin import megux, Config
+from megumin.utils.decorators import input_str 
 
 http = httpx.AsyncClient()
 
@@ -108,11 +109,14 @@ async def whois(client, message):
 
 @megux.on_message(filters.command("spamwatch"))
 async def spam_watch(_, m: Message):
-    if not m.reply_to_message: 
-        user = m.from_user
+    if input_str(m):
+        id = input_str(m)
     else:
-        user = m.reply_to_message.from_user
-    r = await http.get(f"https://api.spamwat.ch/banlist/{int(user.id)}", headers={"Authorization": f"Bearer {SW_API}"})
+    if not m.reply_to_message: 
+        id = m.from_user.id
+    else:
+        id = m.reply_to_message.from_user.id
+    r = await http.get(f"https://api.spamwat.ch/banlist/{int(id)}", headers={"Authorization": f"Bearer {SW_API}"})
 
     if r.status_code == 200: 
         text = ""
