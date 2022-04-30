@@ -25,6 +25,6 @@ async def cal_(_, message: Message):
     year, month = input_str(message)
     try:
         input_ = calendar.month(int(year.strip()), int(month.strip()))
-        await msg.edit(f"```{input_}```")
+        await message.reply(f"```{input_}```")
     except Exception as e:
         await msg.edit(e)
