@@ -107,7 +107,7 @@ async def whois(client, message):
 
 
 @megux.on_message(filters.command("spamwatch"))
-async def spam_watch(_, m: message)
+async def spam_watch(_, m: message):
     user = message.reply_to_message.from_user or message.from_user
     r = await http.get(f"https://api.spamwat.ch/banlist/{int(user.id)}", headers={"Authorization": f"Bearer {SW_API}"})
 
