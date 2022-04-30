@@ -22,7 +22,7 @@ async def cal_(_, message: Message):
         await message.reply("both year and month required!")
         return
     msg = await message.reply("__Procurando...__")
-    year, month = input_str(message).split("|", maxsplit=1)
+    year, month = input_str(message)
     try:
         input_ = calendar.month(int(year.strip()), int(month.strip()))
         await msg.edit(f"```{input_}```")
