@@ -111,7 +111,7 @@ async def spam_watch(_, m: Message):
     if not m.reply_to_message: 
         user = m.from_user
     else:
-        user = m.reply_to_message 
+        user = m.reply_to_message.from_user
     r = await http.get(f"https://api.spamwat.ch/banlist/{int(user.id)}", headers={"Authorization": f"Bearer {SW_API}"})
 
     if r.status_code == 200: 
