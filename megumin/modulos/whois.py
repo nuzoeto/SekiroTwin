@@ -1,10 +1,13 @@
 from datetime import datetime
+import httpx
 
 from pyrogram import filters
 from pyrogram.errors import BadRequest
 from pyrogram.types import User
 
 from megumin import megux
+
+http = https.AsyncClient()
 
 infotext = (
     "**Who is [{full_name}](tg://user?id={user_id})**\n"
@@ -60,6 +63,11 @@ async def whois(client, message):
         return await message.reply_text("Isso não me parece ser um usuário!")
 
     bio = (await client.get_chat(chat_id=user.id)).bio
+    r = await http.get(f"https://api.spamwat.ch/banlist/{int(user.id)}", headers={"Authorization": f"Bearer {SW_API}"})
+    if r.status_code == 200:
+        ban = r.json()
+        infotext += "\n\nEste usuário está banido no @SpamWatch!"
+        infotext += f"\nMotivo: <code>{ban['reason']}</code>"
 
     if user.photo:
         photos = await client.get_profile_photos(user.id)
