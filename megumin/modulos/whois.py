@@ -115,7 +115,7 @@ async def spam_watch(_, m: Message):
         id = m.reply_to_message.from_user.id
     r = await http.get(f"https://api.spamwat.ch/banlist/{int(id)}", headers={"Authorization": f"Bearer {SW_API}"})
 
-    elif r.status_code == 200: 
+    if r.status_code == 200: 
         text = ""
         ban = r.json()
         text += "\n\nEste usuário está banido no @SpamWatch!" 
