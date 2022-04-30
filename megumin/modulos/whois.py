@@ -5,7 +5,7 @@ from pyrogram import filters
 from pyrogram.errors import BadRequest
 from pyrogram.types import User
 
-from megumin import megux
+from megumin import megux, Config
 
 http = httpx.AsyncClient()
 
@@ -42,6 +42,8 @@ def LastOnline(user: User):
             "%a, %d %b %Y, %H:%M:%S"
         )
 
+
+SW_API = CONFIG.SW_API
 
 def FullName(user: User):
     return user.first_name + " " + user.last_name if user.last_name else user.first_name
