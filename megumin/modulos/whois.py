@@ -7,7 +7,7 @@ from pyrogram.types import User
 
 from megumin import megux
 
-http = https.AsyncClient()
+http = httpx.AsyncClient()
 
 infotext = (
     "**Who is [{full_name}](tg://user?id={user_id})**\n"
