@@ -44,3 +44,6 @@ class Config:
     DURACION_YT = (
       3609
 )
+
+
+trg = Config.TRIGGER
