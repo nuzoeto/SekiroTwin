@@ -110,10 +110,10 @@ async def whois(client, message):
 @megux.on_message(filters.command("spamwatch"))
 async def spam_watch(_, m: Message):
     if not m.reply_to_message: 
-        id = m.from_user.id
+        user = m.from_user
     else:
-        id = m.reply_to_message.from_user.id
-    r = await http.get(f"https://api.spamwat.ch/banlist/{int(id)}", headers={"Authorization": f"Bearer {SW_API}"})
+        user = m.reply_to_message.from_user
+    r = await http.get(f"https://api.spamwat.ch/banlist/{int(user.id)}", headers={"Authorization": f"Bearer {SW_API}"})
 
     if r.status_code == 200: 
         text = ""
@@ -122,4 +122,4 @@ async def spam_watch(_, m: Message):
         text += f"\nMotivo: <code>{ban['reason']}</code>"
         await m.reply(text)
     else:
-        return await m.reply(f"{id.mention()} Está livre como um passaro!")
+        return await m.reply(f"{user.mention()} Está livre como um passaro!")
