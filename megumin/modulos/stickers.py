@@ -88,7 +88,7 @@ async def getstickerid(c: megux, m: Message):
         )
 
 
-@megux.on_message(filters.command("kibe", prefixes=["/", "!"]) & ~filters.edited)
+@megux.on_message(filters.command(["kibe", "kang"], prefixes=["/", "!"]) & ~filters.edited)
 async def kang_sticker(c: megux, m: Message):
     prog_msg = await m.reply_text("Roubando o sticker...")
     user = await c.get_me()
