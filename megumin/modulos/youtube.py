@@ -3,6 +3,7 @@ import json
 import os
 import time
 import glob
+import tempfile
 
 
 from yt_dlp import YoutubeDL
@@ -22,6 +23,10 @@ YOUTUBE_REGEX = comp_regex(
 )
 
 
+with tempfile.TemporaryDirectory() as tempdir:
+    path_ = os.path.join(tempdir, "ytdl")
+
+
 def get_yt_video_id(url: str):
     # https://regex101.com/r/c06cbV/1
     match = YOUTUBE_REGEX.search(url)
@@ -39,7 +44,7 @@ async def song_(c: megux, message: Message):
     msg = await message.reply("📦 <i>Baixando... </i>")
     link = await get_link(query)
     aud_opts = {
-        "outtmpl": os.path.join(Config.DOWN_PATH, "%(title)s.%(ext)s"),
+        "outtmpl": os.path.join(path_, "%(title)s.%(ext)s"),
         "writethumbnail": True,
         "prefer_ffmpeg": True,
         'format': 'bestaudio/best',
@@ -61,7 +66,7 @@ async def song_(c: megux, message: Message):
         return await msg.edit("__Esse áudio é muito longo, a duração máxima é de 1 hora__")
     if filename_ == 0:
         _fpath = ''
-        for _path in glob.glob(os.path.join(Config.DOWN_PATH, '*')):
+        for _path in glob.glob(os.path.join(path_, '*')):
             if not _path.lower().endswith((".jpg", ".png", ".webp")):
                 _fpath = _path
         if not _fpath:
@@ -71,9 +76,9 @@ async def song_(c: megux, message: Message):
         await c.send_chat_action(message.chat.id, "upload_audio")
         await message.reply_audio(audio=Path(_fpath), caption=capt_, duration=duration_)
         await msg.delete()
-        path__ = os.path.join(Config.DOWN_PATH, "*")
+        tpath = os.path.join(path_, "*")
         os.remove(Path(_fpath))
-        os.remove(path__)
+        os.remove(tpath)
     else:
         await message.reply(str(filename_))
 
@@ -87,7 +92,7 @@ async def vid_(c: megux, message: Message):
         return await message.reply("Se baixe porque não irei baixar para você...") 
     msg = await message.reply("📦 <i>Baixando...</i>")
     vid_opts = {
-        "outtmpl": os.path.join(Config.DOWN_PATH, "%(title)s.%(ext)s"),
+        "outtmpl": os.path.join(path_, "%(title)s.%(ext)s"),
         'writethumbnail': False,
         'prefer_ffmpeg': True,
         'format': 'bestvideo+bestaudio/best',
@@ -104,7 +109,7 @@ async def vid_(c: megux, message: Message):
         return await msg.edit("__Esse áudio é muito longo, a duração máxima é de 1 hora__")
     if filename_ == 0:
         _fpath = ''
-        for _path in glob.glob(os.path.join(Config.DOWN_PATH, '*')):
+        for _path in glob.glob(os.path.join(path_, '*')):
             if not _path.lower().endswith((".jpg", ".png", ".webp")):
                 _fpath = _path
         if not _fpath:
@@ -113,7 +118,7 @@ async def vid_(c: megux, message: Message):
         await c.send_chat_action(message.chat.id, "upload_video")
         await message.reply_video(video=Path(_fpath), caption=capt_, duration=duration_)
         await msg.delete()
-        path__ = os.path.join(Config.DOWN_PATH, "*")
+        path__ = os.path.join(path_, "*")
         os.remove(Path(_fpath))
         os.remove(path__)
     else:
@@ -147,8 +152,8 @@ def extract_inf(url, _opts):
         capt_ = f"<a href={url}><b>{title_}</b></a>\n❯ Duração: {duration_}\n❯ Views: {views_}\n❯ Canal: {channel_}"
         dloader = x.download(url)
     except Exception as y_e:  # pylint: disable=broad-except
-        path__ = os.path.join(Config.DOWN_PATH, "*")
-        os.remove(path__)
+        tpath__ = os.path.join(path_, "*")
+        os.remove(tpath__)
         return y_e
     else:
         return dloader, capt_, duration_
