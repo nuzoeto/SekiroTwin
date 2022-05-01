@@ -118,9 +118,9 @@ async def vid_(c: megux, message: Message):
         await c.send_chat_action(message.chat.id, "upload_video")
         await message.reply_video(video=Path(_fpath), caption=capt_, duration=duration_)
         await msg.delete()
-        path__ = os.path.join(path_, "*")
+        tpath = os.path.join(path_, "*")
         os.remove(Path(_fpath))
-        os.remove(path__)
+        os.remove(tpath)
     else:
         await message.reply(str(filename_))
 
