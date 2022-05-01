@@ -122,4 +122,4 @@ async def spam_watch(_, m: Message):
         text += f"\nMotivo: <code>{ban['reason']}</code>"
         await m.reply(text)
     else:
-        return await m.reply(f"{user.mention()} Está livre como um passaro!")
+        return await m.reply(f"{id.mention()} Está livre como um passaro!")
