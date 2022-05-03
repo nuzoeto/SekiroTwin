@@ -23,27 +23,24 @@ async def cleanup(c: megux, m: Message):
     if m.chat.type == "private":
         await m.reply_text("Este comando é para ser usado em grupos!")
         return
-
-    member = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
-    if member.status in ("administrator", "creator"):
+    if await check_rights(chat_id, m.from_user.id, "can_restrict_members"): 
         deleted = []
-        sent = await m.reply_text("Iniciando limpeza...")
+        sent = await m.reply_text("Limpando...")
         async for t in c.iter_chat_members(chat_id=m.chat.id, filter="all"):
             if t.user.is_deleted:
                 try:
                     await c.ban_chat_member(m.chat.id, t.user.id)
-                    await m.chat.unban_member(t.user.id)
                     deleted.append(t)
                 except BadRequest:
                     pass
                 except Forbidden as e:
                     await m.reply_text(
-                        f"Eu estou impedido de executar este comando! >-<\n<b>Erro:</b> <code>{e}</code>"
+                        f"<b>Erro:</b> <code>{e}</code>"
                     )
                     return
         if deleted:
             await sent.edit_text(
-                f"Removi todas as {len(deleted)} contas excluídas do grupo!"
+                f"Removi todas as contas excluídas do grupo **{m.chat.title}**!"
             )
         else:
             await sent.edit_text("Não há contas excluídas no grupo!")
