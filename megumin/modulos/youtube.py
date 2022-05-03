@@ -149,7 +149,7 @@ def extract_inf(url, _opts):
         title_ = infoo["title"].replace("/", "_")
         channel_ = infoo["channel"]
         views_ = infoo["view_count"]
-        capt_ = f"<a href={url}><b>{title_}</b></a>\n❯ Duração: {duration_}\n❯ Views: {views_}\n❯ Canal: {channel_}"
+        capt_ = f"<a href={url}><b>{title_}</b></a>\n<b>❯ Duração:</b> {duration_}\n<b>❯ Views:</b> {views_}\n❯ Canal:</b> {channel_}"
         dloader = x.download(url)
     except Exception as y_e:  # pylint: disable=broad-except
         tpath__ = os.path.join(path_, "*")
