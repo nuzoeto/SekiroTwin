@@ -45,4 +45,4 @@ class WhiterKang(Client):
             **kwargs,
         )
 
-whiter = WhiterKang()
+megux = WhiterKang()
