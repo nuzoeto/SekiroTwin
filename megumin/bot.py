@@ -12,7 +12,7 @@ from megumin import version, Config
 
 GP_LOGS = -1001556292785
 
-class MeguBot(Client):
+class WhiterKang(Client):
     def __init__(self):
         kwargs = {
             'api_id': os.environ.get("API_ID"),
@@ -45,4 +45,4 @@ class MeguBot(Client):
             **kwargs,
         )
 
-megux = MeguBot()
+whiter = WhiterKang()
