@@ -44,11 +44,13 @@ EMOJI_PATTERN = get_emoji_regex()
 
 
 SUPPORTED_TYPES = ["jpeg", "png", "webp"]
-CHAT_LOGS = -1001556292785
 http = httpx.AsyncClient()
 
 
 from megumin import megux, Config
+
+
+CHAT_LOGS = Config.GP_LOGS 
 
 
 @megux.on_message(filters.command(["getsticker"], prefixes=["/", "!"]))
