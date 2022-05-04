@@ -1,13 +1,15 @@
 import rapidjson
 import httpx
 import html
+import asyncio 
 
 from pyrogram import filters 
 from pyrogram.types import Message 
 
 from megumin import megux 
 
-http = httpx.AsyncClient()
+timeout = httpx.Timeout(120)
+http = httpx.AsyncClient(http2=True, timeout=timeout)
 
 
 @megux.on_message(filters.command("short"))
