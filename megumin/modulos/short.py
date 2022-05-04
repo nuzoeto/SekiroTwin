@@ -6,7 +6,7 @@ from pyrogram.types import Message
 
 from megumin import megux 
 
-http = https.AsyncClient()
+http = httpx.AsyncClient()
 
 
 @megux.on_message(filters.command("short"))
