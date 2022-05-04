@@ -1,5 +1,6 @@
 import rapidjson
 import httpx
+import html
 
 from pyrogram import filters 
 from pyrogram.types import Message 
