@@ -134,7 +134,7 @@ async def _tmute_user(_, message: Message):
         await asyncio.sleep(1)
         await sent.edit(
             f"{mention} está silenciado(mutado) por <b>{time_val}</b> em <b>{message.chat.title}</b>\n"
-            f"Motivo: `{reason or None}`"
+            f"<b>Motivo</b>: `{reason or None}`"
         )
     except Exception as e_f:  # pylint: disable=broad-except
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR**: `{e_f}`")
