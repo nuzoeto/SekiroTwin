@@ -9,7 +9,7 @@ from megumin import megux
     & filters.group
     & filters.reply
 )
-async def reportadmins(c: megux, m: Message, strings):
+async def report_admins(c: megux, m: Message):
     if m.reply_to_message.from_user:
         check_admin = await m.chat.get_member(m.reply_to_message.from_user.id)
         if check_admin.status not in admin_status:
