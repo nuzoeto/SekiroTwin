@@ -35,15 +35,12 @@ async def warm_(_, message):
 
 
 @megux.on_callback_query(filters.regex(pattern=r"^remove_warm_$"))
-@megux.on_message(filters.command(["unwarm"], prefixes=["/", "!"]))
-async def warm_(message: Union[Message, CallbackQuery]):
-    ids = (message.reply_to_message.from_user.id)
-    WARMS = get_collection(f"WARMS {ids}")
-    name_user = (message.reply_to_message.from_user.mention())
-    admin = (message.from_user.mention())
+async def warm_remove_(client: megux, cb: CallbackQuery):
+    ids = (cb.reply_to_message.from_user.id)
+    name_user = (cb.reply_to_message.from_user.mention())
+    await cb.answer(f"""Advertência removida.""", show_alert=True)
     await asyncio.gather(WARMS.delete_one({"id_": ids, "title": name_user}))
-    G = await WARMS.estimated_document_count()
-    await message.reply(f"Advertência removida por {admin}")
+
     
           
 
