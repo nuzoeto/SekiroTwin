@@ -623,7 +623,14 @@ async def thanks_owner(c: megux, m: Message):
     if m.chat.username:
         text_left += f"**\nUsername:** @{m.chat.username}"
     if id == m.left_chat_member.id:
-        await m.reply("Bem, meu mestre se foi, a festa acabou!")
+        await c.send_message(
+            chat_id=m.chat.id,
+            text=("""
+Bem, meu mestre se foi, a festa acabou!
+"""
+                  ),
+            disable_notification=True,
+        )
         await asyncio.gather(
             c.send_log(
                 text_left,
