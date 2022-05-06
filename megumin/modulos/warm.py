@@ -35,10 +35,8 @@ async def warm_(_, message):
 
 
 @megux.on_callback_query(filters.regex(pattern=r"^remove_warm_$"))
-async def warm_remove_(client: megux, cb: CallbackQuery, message: Message):
+async def warm_remove_(client: megux, cb: CallbackQuery):
     await cb.answer(f"""Advertência removida.""", show_alert=True)
-    await asyncio.gather(WARMS.delete_one())
-
     
           
 
