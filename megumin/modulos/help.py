@@ -203,7 +203,7 @@ Aqui está a ajuda para o módulo **Android**:
 • /app < nome do app > - Use para pesquisar aplicativos na Google Play Store
 • /magisk - Obtenha a última versão do magisk
 • /twrp < codename > - Busca o último TWRP disponível para um determinado codinome de dispositivo
-• /ofox < codename > - Busca a última versão do OrangeFox disponível para um determinado dispositivo
+• /ofox < codename > - Busca a última versão do OrangeFox disponível para um determinado dispositivo ( não disponível )
 """
 
 H_LAST = """
@@ -251,64 +251,25 @@ Aqui está a ajuda para o módulo **YouTube**:
 H_GERAL = """
 ✨ Geral
 
-**Admin:**
-
 • /ban  Bane a um usuário.
-
 • /unban Desbane a um usuário.
-
 • /kick Chute o usuário.
-
 • /mute Silencia o usuário.
-
-• /tmute ( tempo ) Silencia o usuário por um tempo determinado m/h/d.
-
 • /purge Limpa seu grupo.
-
-
-**Misc:**
-
+• /del Deleta a mensagem que você respondeu.
+• /zombies Bane contas excluídas do grupo 
 • /cota : Veja a cotação do Dólar, Euro, BTC
-
 • /cep : (cep) Busque um CEP
-
 • /ddd : Busque um DDD
-
 • /clima ou /weather  ( cidade ) Busque o clima para uma cidade.
-
-• /kickme Saia do grupo.
-
-**Android:**
-
 • /device : Busque um aparelho pelo codename.
-
-• /app : Busque um app da PlayStore. ( em breve )
-
-**Lastfm**
-
+• /app : Busque um app da PlayStore. 
 • /setuser : Defina seu username.
-
-• /lt ou /lastfm : Veja que musica você está scobblando.
-
-•/deluser ou /duser Apague seu username lastfm do meu banco de dados.
-
-**Anilist:**
-
-• /char ou /character Busque um Character.
-
-• /anime Busque um anime.
-
-• /manga Busque um mangá 
-
-**Memes**
-
-• /runs Execute strings aleatórias.
-
-• /slap Bate no usuário.
-
-• /insults O bot insulta.
-
-• /bun finge que baniu o usuário.
+• /lt : Veja que musica você está scobblando.
+• /deluser : Apague seu username lastfm do meu banco de dados.
+• /github Retorna informações sobre um usuário ou organização do GitHub.
+• /tr (código de idioma) Texto ou mensagem respondida.
+• /getsticker Responda a um adesivo para eu enviar o PNG e as informações do sticker.
 """
 
 
@@ -379,4 +340,13 @@ H_TRANSLATOR = """
 Aqui está a ajuda para o módulo **Tradutor**:
 
 • /tr (código de idioma) Texto ou mensagem respondida.
+"""
+
+
+H_STICKERS = """
+Aqui está a ajuda para o modulo Stickers:
+
+• /stickerid: responda a um adesivo para eu lhe dizer seu ID de arquivo.
+• /getsticker: responda a um adesivo para fazer o upload do arquivo PNG bruto.
+• /kang: responda a um sticker para adicioná-lo ao seu pacote.
 """
