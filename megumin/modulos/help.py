@@ -170,6 +170,24 @@ async def help_github(client: megux, cb: CallbackQuery):
     await cb.edit_message_text(text=H_MISC, reply_markup=button)
 
 
+
+@megux.on_callback_query(filters.regex(pattern=r"^help_tr$"))
+async def help_github(client: megux, cb: CallbackQuery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=H_TRANSLATOR, reply_markup=button)
+
+
+
+@megux.on_callback_query(filters.regex(pattern=r"^help_purges$"))
+async def help_github(client: megux, cb: CallbackQuery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=H_PURGES, reply_markup=button)
+
+
 H_ANILIST = """
 Aqui está a ajuda para o módulo **Anilist**:
 
@@ -356,3 +374,8 @@ Aqui está a ajuda para o módulo **Purges**:
 • /purge Exclui todas as mensagens desde a marcada até a última mensagem.
 • /del Exclui a mensagem que você respondeu.
 """
+
+H_TRANSLATOR = """
+Aqui está a ajuda para o módulo **Tradutor**:
+
+• /tr (código de idioma) Texto ou mensagem respondida.
