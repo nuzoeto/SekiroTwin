@@ -222,18 +222,6 @@ async def help_admin(client: megux, cb: CallbackQuery):
     await cb.edit_message_text(text=H_MISC, reply_markup=button)
 
 
-H_MISC = """
-Aqui está a ajuda para o módulo Outros:
-
-• /id Busca o ID de um usuário ou de um grupo.
-• /info ou /whois Obtem informações sobre um usuário.
-• /cota Mostra a cotação do Dólar, Euro, BTC, Peso Argentino, Ruplo Russo ETC...
-• /cep (cep)  Busque um CEP.
-• /ddd (ddd) Busque um DDD.
-• /clima ou /weather ( cidade ) Busque o clima para uma cidade.
-"""
-
-
 H_YOUTUBE = """
 Aqui está a ajuda para o módulo **YouTube**:
 
@@ -307,7 +295,7 @@ H_GERAL = """
 
 
 H_BANS = """
-Aqui está a ajuda para o módulo **Bans**:
+Aqui está a ajuda para o módulo Bans:
 
 • /ban Bane um usuário no chat.
 • /banme Bane-se.
@@ -317,8 +305,10 @@ Aqui está a ajuda para o módulo **Bans**:
 • /unmute Desmuta um usuário no chat.
 • /kick Chuta um usuário do chat.
 • /kickme Saia do grupo.
+• /muteme Muta-se.
   
-Um exemplo de silenciar alguém temporariamente:\n/tmute @username 2h isso silencia o usuário por 2 horas.
+Um exemplo de silenciar alguém temporariamente:
+/tmute @username 2h isso silencia o usuário por 2 horas.
 """
 
 
@@ -335,5 +325,34 @@ Aqui está a ajuda para o módulo **Memes**:
 • /slap Dá um tapa no usuário.
 • /insults Insulta alguém com um insulto aleatório de minhas strings.
 • /runs Responde uma sequência aleatória de minhas strings.
-• /bird Envia a foto de um pássaro 
+• /bird ou /passaro Envia a foto de um pássaro.
+• /dog Envia a foto de um cachorro.
+• /cat Envia a foto de um gato.
+• /fox Envia a foto de uma raposa.
+• /redpanda ou /rpanda Envia a foto de um panda vermelho.
+• /panda Envia a foto de um panda.
+• /vapor ｖａｐｏｒｗａｖｅ.
+"""
+
+H_MISC = """
+Aqui está a ajuda para o módulo **Outros**:
+
+• /id Busca o ID de um usuário ou de um grupo.
+• /info ou /whois Obtem informações sobre um usuário.
+• /cota Mostra a cotação do Dólar, Euro, BTC, Peso Argentino, Ruplo Russo ETC...
+• /cep (cep)  Busque um CEP.
+• /ddd (ddd) Busque um DDD.
+• /removebg  Remova o fundo de uma imagem.
+• /clima ou /weather (cidade) Busque o clima para uma cidade.
+• /paste Envia texto/documento respondido para o nekobin.com.
+• /telegraph ou /tg Envie uma mídia para o telegra.ph.
+• /reverse Faz uma busca reversa de imagens(usando o google) basta responder uma imagem ou sticker com /reverse.
+• /short (url) Encurta o link especificado.
+"""
+
+H_PURGES = """
+Aqui está a ajuda para o módulo **Purges**:
+
+• /purge Exclui todas as mensagens desde a marcada até a última mensagem.
+• /del Exclui a mensagem que você respondeu.
 """
