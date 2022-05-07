@@ -79,7 +79,7 @@ async def help(client, message):
 @megux.on_callback_query(filters.regex(pattern=r"^help_admin$"))
 async def help_admin(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+        [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_ADM, reply_markup=button)
 
@@ -87,7 +87,7 @@ async def help_admin(client: megux, cb: CallbackQuery):
 @megux.on_callback_query(filters.regex(pattern=r"^help_memes$"))
 async def help_diversao(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+        [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_MEMES, reply_markup=button)
 
@@ -95,7 +95,7 @@ async def help_diversao(client: megux, cb: CallbackQuery):
 @megux.on_callback_query(filters.regex(pattern=r"^help_ani$"))
 async def help_ani_(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+        [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_ANILIST, reply_markup=button)
 
@@ -103,7 +103,7 @@ async def help_ani_(client: megux, cb: CallbackQuery):
 @megux.on_callback_query(filters.regex(pattern=r"^help_andr$"))
 async def help_andro(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+        [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_ANDR, reply_markup=button)
 
@@ -117,7 +117,7 @@ async def help_lt_(client: megux, cb: CallbackQuery):
                     "Criar uma conta LasFM", url="https://www.last.fm/join"
                 )
             ],
-            [InlineKeyboardButton("↩ Voltar", callback_data="help_back")],
+            [InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")],
         ]
     )
     await cb.edit_message_text(text=H_LAST, reply_markup=button)
@@ -126,7 +126,7 @@ async def help_lt_(client: megux, cb: CallbackQuery):
 @megux.on_callback_query(filters.regex(pattern=r"^help_yt$"))
 async def help_youtube(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+        [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_YOUTUBE, reply_markup=button)
 
@@ -134,7 +134,7 @@ async def help_youtube(client: megux, cb: CallbackQuery):
 @megux.on_callback_query(filters.regex(pattern=r"^help_geral$"))
 async def help_gen(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+        [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_GERAL, reply_markup=button)
 
@@ -142,7 +142,7 @@ async def help_gen(client: megux, cb: CallbackQuery):
 @megux.on_callback_query(filters.regex(pattern=r"^help_bans$"))
 async def help_restricions(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+        [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_BANS, reply_markup=button)
 
@@ -150,7 +150,7 @@ async def help_restricions(client: megux, cb: CallbackQuery):
 @megux.on_callback_query(filters.regex(pattern=r"^help_git$"))
 async def help_github(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+        [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_GIT, reply_markup=button)
 
@@ -165,7 +165,7 @@ async def help_notes_(client: megux, cb: CallbackQuery):
 @megux.on_callback_query(filters.regex(pattern=r"^help_misc$"))
 async def help_github(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+        [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_MISC, reply_markup=button)
 
@@ -174,7 +174,7 @@ async def help_github(client: megux, cb: CallbackQuery):
 @megux.on_callback_query(filters.regex(pattern=r"^help_tr$"))
 async def help_github(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+        [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_TRANSLATOR, reply_markup=button)
 
@@ -183,7 +183,7 @@ async def help_github(client: megux, cb: CallbackQuery):
 @megux.on_callback_query(filters.regex(pattern=r"^help_purges$"))
 async def help_github(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+        [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_PURGES, reply_markup=button)
 
@@ -191,7 +191,7 @@ async def help_github(client: megux, cb: CallbackQuery):
 @megux.on_callback_query(filters.regex(pattern=r"^help_misc$"))
 async def help_admin(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+        [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_MISC, reply_markup=button)
 
@@ -200,7 +200,7 @@ async def help_admin(client: megux, cb: CallbackQuery):
 @megux.on_callback_query(filters.regex(pattern=r"^help_stickers$"))
 async def help_github(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+        [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_STICKERS, reply_markup=button)
 
