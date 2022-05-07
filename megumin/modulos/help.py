@@ -379,3 +379,4 @@ H_TRANSLATOR = """
 Aqui está a ajuda para o módulo **Tradutor**:
 
 • /tr (código de idioma) Texto ou mensagem respondida.
+"""
