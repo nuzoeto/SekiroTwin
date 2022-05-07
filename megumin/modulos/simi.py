@@ -14,5 +14,5 @@ async def chatbot_(c: megux, m: Message):
         r = requests.get(API).json()
         await m.reply(r["success"])
     except ValueError:
-        return await m.reply("**API ERROR:**")
+        await m.reply("**API ERROR:**")
         
