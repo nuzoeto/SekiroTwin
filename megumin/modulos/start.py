@@ -26,6 +26,8 @@ START_PRIVADO = """
 Olá! Meu nome é **WhiterKang** sou um bot útil e divertido para você :3
 
 __Se você gostar das minhas funções me adicione a seu grupo!__
+
+<b>WhiterKang's News 📬</b>: [Clique aqui](https://t.me/whiterkangnews)
 """
 
 HELP_ADMIN = """
