@@ -329,14 +329,14 @@ Aqui está a ajuda para o módulo **Outros**:
 • /id Busca o ID de um usuário ou de um grupo.
 • /info ou /whois Obtem informações sobre um usuário.
 • /cota Mostra a cotação do Dólar, Euro, BTC, Peso Argentino, Ruplo Russo ETC...
-• /cep (cep)  Busque um CEP.
-• /ddd (ddd) Busque um DDD.
+• /cep **(cep)**  Busque um CEP.
+• /ddd **(ddd)** Busque um DDD.
 • /removebg  Remova o fundo de uma imagem.
-• /clima ou /weather (cidade) Busque o clima para uma cidade.
+• /clima ou /weather **(cidade)** Busque o clima para uma cidade.
 • /paste Envia texto/documento respondido para o nekobin.com.
 • /telegraph ou /tg Envie uma mídia para o telegra.ph.
 • /reverse Faz uma busca reversa de imagens(usando o google) basta responder uma imagem ou sticker com /reverse.
-• /short (url) Encurta o link especificado.
+• /short **(url)** Encurta o link especificado.
 """
 
 
@@ -351,7 +351,7 @@ Aqui está a ajuda para o módulo **Purges**:
 H_TRANSLATOR = """
 Aqui está a ajuda para o módulo **Tradutor**:
 
-• /tr (código de idioma) Texto ou mensagem respondida.
+• /tr (código de idioma) **Texto** ou mensagem respondida.
 """
 
 
