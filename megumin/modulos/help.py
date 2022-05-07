@@ -283,7 +283,7 @@ H_GERAL = """
 
 
 H_BANS = """
-Aqui está a ajuda para o módulo Bans:
+Aqui está a ajuda para o módulo **Bans**:
 
 • /ban Bane um usuário no chat.
 • /banme Bane-se.
@@ -356,7 +356,7 @@ Aqui está a ajuda para o módulo **Tradutor**:
 
 
 H_STICKERS = """
-Aqui está a ajuda para o modulo Stickers:
+Aqui está a ajuda para o modulo **Stickers**:
 
 • /stickerid: responda a um adesivo para eu lhe dizer seu ID de arquivo.
 • /getsticker: responda a um adesivo para fazer o upload do arquivo PNG bruto.
