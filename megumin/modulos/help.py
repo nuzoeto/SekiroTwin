@@ -188,6 +188,23 @@ async def help_github(client: megux, cb: CallbackQuery):
     await cb.edit_message_text(text=H_PURGES, reply_markup=button)
 
 
+@megux.on_callback_query(filters.regex(pattern=r"^help_misc$"))
+async def help_admin(client: megux, cb: CallbackQuery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=H_MISC, reply_markup=button)
+
+
+
+@megux.on_callback_query(filters.regex(pattern=r"^help_stickers$"))
+async def help_github(client: megux, cb: CallbackQuery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=H_STICKERS, reply_markup=button)
+
+
 H_ANILIST = """
 Aqui está a ajuda para o módulo **Anilist**:
 
@@ -230,23 +247,6 @@ Apenas admin:
  • /title < titulo aqui >: define uma custom tag de administrador de um usuario promovido pelo WhiterKang (ainda não disponível)
  • /zombies - Procura e limpa contas excluidas no chat
 """
-
-
-@megux.on_callback_query(filters.regex(pattern=r"^help_misc$"))
-async def help_admin(client: megux, cb: CallbackQuery):
-    button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
-    )
-    await cb.edit_message_text(text=H_MISC, reply_markup=button)
-
-
-
-@megux.on_callback_query(filters.regex(pattern=r"^help_stickers$"))
-async def help_github(client: megux, cb: CallbackQuery):
-    button = InlineKeyboardMarkup(
-        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
-    )
-    await cb.edit_message_text(text=H_STICKERS, reply_markup=button)
 
 
 H_YOUTUBE = """
@@ -322,6 +322,7 @@ Aqui está a ajuda para o módulo **Memes**:
 • /vapor ｖａｐｏｒｗａｖｅ.
 """
 
+
 H_MISC = """
 Aqui está a ajuda para o módulo **Outros**:
 
@@ -338,12 +339,14 @@ Aqui está a ajuda para o módulo **Outros**:
 • /short (url) Encurta o link especificado.
 """
 
+
 H_PURGES = """
 Aqui está a ajuda para o módulo **Purges**:
 
 • /purge Exclui todas as mensagens desde a marcada até a última mensagem.
 • /del Exclui a mensagem que você respondeu.
 """
+
 
 H_TRANSLATOR = """
 Aqui está a ajuda para o módulo **Tradutor**:
