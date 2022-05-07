@@ -12,7 +12,7 @@ Comandos básicos:
 - /ping Ver o atraso para o bot retornar a mensagem.
 - /about Veja mais sobre os desenvolvedores. 
 
-Todos os comandos podem ser usados com os seguintes caracteres: / !
+Todos os comandos podem ser usados com os seguintes caracteres: <code>/ !</code>
 """
 
 ABOUT_TEXT = """
