@@ -155,19 +155,19 @@ async def help_github(client: megux, cb: CallbackQuery):
     await cb.edit_message_text(text=H_GIT, reply_markup=button)
 
 
-@megux.on_callback_query(filters.regex(pattern=r"^help_fun$"))
-async def help_funcoes_(client: megux, cb: CallbackQuery):
-    await cb.answer(f"""Under development.""", show_alert=True)
-
-
-@megux.on_callback_query(filters.regex(pattern=r"^help_tr$"))
-async def help_translator_(client: megux, cb: CallbackQuery):
-    await cb.answer(f"""Under development.""", show_alert=True)
-
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_notes$"))
 async def help_notes_(client: megux, cb: CallbackQuery):
     await cb.answer(f"""Under development.""", show_alert=True)
+
+
+
+@megux.on_callback_query(filters.regex(pattern=r"^help_misc$"))
+async def help_github(client: megux, cb: CallbackQuery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=H_MISC, reply_markup=button)
 
 
 H_ANILIST = """
@@ -214,7 +214,7 @@ Apenas admin:
 """
 
 
-@megux.on_callback_query(filters.regex(pattern=r"^help_admin$"))
+@megux.on_callback_query(filters.regex(pattern=r"^help_misc$"))
 async def help_admin(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
         [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
