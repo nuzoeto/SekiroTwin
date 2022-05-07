@@ -240,6 +240,15 @@ async def help_admin(client: megux, cb: CallbackQuery):
     await cb.edit_message_text(text=H_MISC, reply_markup=button)
 
 
+
+@megux.on_callback_query(filters.regex(pattern=r"^help_stickers$"))
+async def help_github(client: megux, cb: CallbackQuery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("↩ Voltar", callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=H_STICKERS, reply_markup=button)
+
+
 H_YOUTUBE = """
 Aqui está a ajuda para o módulo **YouTube**:
 
