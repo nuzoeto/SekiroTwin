@@ -419,7 +419,6 @@ Aqui está a ajuda para o módulo **GitHub**:
 • /unban Desbane a um usuário.
 • /kick Chute o usuário.
 • /mute Silencia o usuário.
-• /tmute ( tempo ) Silencia o usuário por um tempo determinado m/h/d.
 • /purge Limpa seu grupo.
 • /del Deleta a mensagem que você respondeu.
 • /zombies Bane contas excluídas do grupo 
@@ -427,16 +426,11 @@ Aqui está a ajuda para o módulo **GitHub**:
 • /cep : (cep) Busque um CEP
 • /ddd : Busque um DDD
 • /clima ou /weather  ( cidade ) Busque o clima para uma cidade.
-• /kickme Saia do grupo.
 • /device : Busque um aparelho pelo codename.
-• /app : Busque um app da PlayStore. ( em breve )
+• /app : Busque um app da PlayStore. 
 • /setuser : Defina seu username.
-• /lt ou /lastfm : Veja que musica você está scobblando.
-• /deluser ou /duser Apague seu username lastfm do meu banco de dados.
-• /runs Execute strings aleatórias.
-• /slap Bate no usuário.
-• /insults O bot insulta.
-• /bun finge que baniu o usuário.
+• /lt : Veja que musica você está scobblando.
+• /deluser : Apague seu username lastfm do meu banco de dados.
 • /github Retorna informações sobre um usuário ou organização do GitHub.
 • /tr (código de idioma) <b>Texto<b> ou mensagem respondida.
 • /getsticker Responda a um adesivo para eu enviar o PNG e as informações do sticker.
