@@ -160,8 +160,8 @@ def extract_inf(url, _opts):
     except Exception as y_e:  # pylint: disable=broad-except
         shutil.rmtree(tempdir, ignore_errors=True)
         temp_path = os.path.join(path_)
-        await asyncio.gather(c.send_log("#Down_Error #YOUTUBE_DL"))
         os.remove(temp_path)
+        c.send_log("#Down_Error #YOUTUBE_DL")
         return y_e
     else:
         return dloader, capt_, duration_
