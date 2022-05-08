@@ -123,6 +123,7 @@ async def vid_(c: megux, message: Message):
         await message.reply_video(video=Path(_fpath), caption=capt_, duration=duration_)
         await msg.delete()
         os.remove(Path(_fpath))
+        await asyncio.gather(c.send_log("#Send #YOUTUBE_DL"))
         shutil.rmtree(tempdir, ignore_errors=True)
         temp_path = os.path.join(path_)
         os.remove(temp_path)
