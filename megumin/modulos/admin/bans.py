@@ -163,8 +163,6 @@ async def _kick_user(_, message: Message):
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
 
-
-
 @megux.on_message(filters.command("kickme", prefixes=["/", "!"]))
 async def kickme_(_, message: Message):
     chat_id = message.chat.id
