@@ -67,6 +67,6 @@ async def app(c: megux, message: Message):
             app_details, disable_web_page_preview=False, parse_mode="html"
         )
     except IndexError:
-        await message.reply("No result found in search. Please enter **Valid app name**")
+        await message.reply("Nenhum resultado encontrado na pesquisa. Digite **Nome do aplicativo válido**")
     except Exception as err:
         await message.reply(err)
