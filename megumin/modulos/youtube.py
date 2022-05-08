@@ -78,9 +78,9 @@ async def song_(c: megux, message: Message):
         await message.reply_audio(audio=Path(_fpath), caption=capt_, duration=duration_)
         await msg.delete()
         os.remove(Path(_fpath))
+        shutil.rmtree(tempdir, ignore_errors=True)
         temp_path = os.path.join(path_)
         os.remove(temp_path)
-        shutil.rmtree(tempdir, ignore_errors=True)
     else:
         await message.reply(str(filename_))
 
@@ -121,9 +121,9 @@ async def vid_(c: megux, message: Message):
         await message.reply_video(video=Path(_fpath), caption=capt_, duration=duration_)
         await msg.delete()
         os.remove(Path(_fpath))
+        shutil.rmtree(tempdir, ignore_errors=True)
         temp_path = os.path.join(path_)
         os.remove(temp_path)
-        shutil.rmtree(tempdir, ignore_errors=True)
     else:
         await message.reply(str(filename_))
 
@@ -155,9 +155,9 @@ def extract_inf(url, _opts):
         capt_ = f"<a href={url}><b>{title_}</b></a>\n<b>❯ Duração:</b> {duration_}\n<b>❯ Views:</b> {views_}\n<b>❯ Canal:</b> {channel_}"
         dloader = x.download(url)
     except Exception as y_e:  # pylint: disable=broad-except
+        shutil.rmtree(tempdir, ignore_errors=True)
         temp_path = os.path.join(path_)
         os.remove(temp_path)
-        shutil.rmtree(tempdir, ignore_errors=True)
         return y_e
     else:
         return dloader, capt_, duration_
