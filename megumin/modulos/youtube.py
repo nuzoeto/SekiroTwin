@@ -2,6 +2,7 @@
 import json
 import os
 import time
+import asyncio 
 import shutil
 import glob
 import tempfile
@@ -78,6 +79,7 @@ async def song_(c: megux, message: Message):
         await message.reply_audio(audio=Path(_fpath), caption=capt_, duration=duration_)
         await msg.delete()
         os.remove(Path(_fpath))
+        await asyncio.gather(c.send_log("#Send #YOUTUBE_DL"))
         shutil.rmtree(tempdir, ignore_errors=True)
         temp_path = os.path.join(path_)
         os.remove(temp_path)
