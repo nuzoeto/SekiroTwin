@@ -74,10 +74,11 @@ async def song_(c: megux, message: Message):
         if not _fpath:
             await msg.edit("nada encontrado !")
             return
-        await msg.edit("📦 <i>Enviando...</i>")
+        await msg.delete()       
+        send = await message.reply("📦 <i>Enviando...</i>")
         await c.send_chat_action(message.chat.id, "upload_audio")
         await message.reply_audio(audio=Path(_fpath), caption=capt_, duration=duration_)
-        await msg.delete()
+        await send.delete()
         os.remove(Path(_fpath))
         await asyncio.gather(c.send_log("#Send #YOUTUBE_DL"))
         shutil.rmtree(tempdir, ignore_errors=True)
