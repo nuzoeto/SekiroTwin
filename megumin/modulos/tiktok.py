@@ -14,7 +14,7 @@ API = "https://hadi-api.herokuapp.com/api/tiktok";
 async def ttdown_(_, message: Message):
     link = input_str(message)
     if not "tiktok.co" in link:
-        return await message.edit("`Isso não é um link tiktok`")
+        return await message.reply("`Isso não é um link tiktok`")
     params = {
             "url": link,
         };
