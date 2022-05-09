@@ -117,7 +117,6 @@ async def vid_(c: megux, message: Message):
                 _fpath = _path
         if not _fpath:
             return await msg.edit("nada encontrado !")
-        await msg.edit("📦 <i>Enviando...</i>")
         await c.send_chat_action(message.chat.id, "upload_video")
         await message.reply_video(video=Path(_fpath), width=1280, height=720, caption=capt_, duration=duration_)
         await msg.delete()
