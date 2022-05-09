@@ -6,6 +6,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux, Config 
+from megumin.utils.decorators import input_str 
 
 API = "https://hadi-api.herokuapp.com/api/tiktok";
 
