@@ -3,7 +3,7 @@ from wget import download
 import requests 
 
 from pyrogram import filters 
-from pyrogram import.types Message
+from pyrogram.types import Message
 
 from megumin import megux, Config 
 
