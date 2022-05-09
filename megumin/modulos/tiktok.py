@@ -8,7 +8,6 @@ from pyrogram.types import Message
 from megumin import megux, Config 
 from megumin.utils.decorators import input_str 
 
-API = "https://hadi-api.herokuapp.com/api/tiktok";
 
 @megux.on_message(filters.command("tdl", Config.TRIGGER))
 async def ttdown_(_, message: Message):
@@ -19,7 +18,8 @@ async def ttdown_(_, message: Message):
             "url": link,
         };
     try:
-        r = await requests.get(link=API, params=params)
+        API = f"https://hadi-api.herokuapp.com/api/tiktok/{params}"
+        r = await requests.get(link=API)
         response = r.json()
     except ValueError:
         return await message.reply("API Inativa")
