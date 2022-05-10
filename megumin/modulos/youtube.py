@@ -118,7 +118,7 @@ async def vid_(c: megux, message: Message):
         if not _fpath:
             return await msg.edit("nada encontrado !")
         await c.send_chat_action(message.chat.id, "upload_video")
-        await message.reply_video(video=Path(_fpath), width=1280, height=720, caption=capt_, duration=duration_)
+        await message.reply_video(video=Path(_fpath), caption=capt_, duration=duration_)
         await msg.delete()
         os.remove(Path(_fpath))
         await asyncio.gather(c.send_log("#Send #YOUTUBE_DL"))
