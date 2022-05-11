@@ -59,7 +59,7 @@ async def remove_background(_, message: Message):
             await msg.delete()
             os.remove(IMG_PATH)
         except Exception:
-            await message.reply("Algo deu errado!\nVerifique o tamanho do arquivo!")
+            await message.reply("Algo deu errado!\nVerifique o uso da api!")
             os.remove(IMG_PATH)
             return
     else:
