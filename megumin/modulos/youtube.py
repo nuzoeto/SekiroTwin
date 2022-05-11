@@ -65,7 +65,7 @@ async def song_(c: megux, message: Message):
     }
     filename_, capt_, duration_ = extract_inf(link, aud_opts)
     if int(duration_) > 3600:
-        await asyncio.gather(c.send_log("#Send #YOUTUBE_DL"))
+        await asyncio.gather(c.send_log("#Down_Error #YOUTUBE_DL"))
         return await msg.edit("__Esse áudio é muito longo, a duração máxima é de 1 hora__")
     if filename_ == 0:
         _fpath = ''
@@ -79,7 +79,7 @@ async def song_(c: megux, message: Message):
         await message.reply_audio(audio=Path(_fpath), caption=capt_, duration=duration_)
         await msg.delete()
         os.remove(Path(_fpath))
-        await asyncio.gather(c.send_log("#Down_Error #YOUTUBE_DL"))
+        await asyncio.gather(c.send_log("#Send #YOUTUBE_DL"))
         shutil.rmtree(tempdir, ignore_errors=True)
         temp_path = os.path.join(path_)
         os.remove(temp_path)
