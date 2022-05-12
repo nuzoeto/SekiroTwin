@@ -111,7 +111,7 @@ async def vid_(c: megux, message: Message):
     filename_, capt_, duration_ = extract_inf(link, vid_opts)
     if int(duration_) > 3600:
         await asyncio.gather(c.send_log("#Down_Error #YOUTUBE_DL"))
-        return await msg.edit("__Esse áudio é muito longo, a duração máxima é de 1 hora__")
+        return await msg.edit("__Esse vídeo é muito longo, a duração máxima é de 1 hora__")
     if filename_ == 0:
         _fpath = ''
         for _path in glob.glob(os.path.join(path_, '*')):
