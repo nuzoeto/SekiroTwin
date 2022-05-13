@@ -59,7 +59,7 @@ async def prints(c: megux, message: Message):
         await message.reply("Failed because API is not responding, try again later.")
 
 
-@megux.on_message(filters.command("google", prefixes=["/","!"]))
+@megux.on_message(filters.command(["google", "search"], prefixes=["/","!"]))
 async def prints_google(c: megux, message: Message):
     msg = message.text
     the_url = msg.split(" ", 1)
