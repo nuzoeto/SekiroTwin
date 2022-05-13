@@ -60,7 +60,7 @@ async def prints(c: megux, message: Message):
 
 
 @megux.on_message(filters.command("google", prefixes=["/","!"]))
-async def prints(c: megux, message: Message):
+async def prints_google(c: megux, message: Message):
     msg = message.text
     the_url = msg.split(" ", 1)
     wrong = False
@@ -83,7 +83,8 @@ async def prints(c: megux, message: Message):
 
     try:
         sent = await message.reply_text("Obtendo captura de tela...")
-        res_json = await cssworker_url(target_url=f"https://www.google.com/search?q={the_url}&oq={the_url}")
+        search_google = f"{the_url}".replace(" ", "+")
+        res_json = await cssworker_url(target_url=f"https://www.google.com/search?q={search_google}&oq={search_google}")
     except BaseException as e:
         await message.reply(f"<b>Failed due to:</b> <code>{e}</code>")
         return
