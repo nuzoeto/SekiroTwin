@@ -2,6 +2,10 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux
+from megumin.utils import admin_check 
+
+
+admin_status = await admin_check 
 
 
 @megux.on_message(
