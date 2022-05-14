@@ -18,8 +18,7 @@ async def disble_cmd(_, m: Message):
     query = input_str(m)
     found = await DISABLED.find_one({'_id': gid, '_cmd': query})
     if found:
-        return await m.reply("__Comando já desativado!__") 
-    else:
+        return await m.reply("__Comando já desativado!__")
     dis_cmd = await DISABLED.insert_one({'_id': gid, '_cmd': query})
     if not query in CMDS:
         return await m.reply("__Qual comando você deseja desativar?__")
