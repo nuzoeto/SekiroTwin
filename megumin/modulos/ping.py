@@ -14,7 +14,7 @@ DISABLED = get_collection("DISABLED")
 
 async def pingme(_, message: Message):
     gid = m.chat.id  
-    off = await DISABLED.find_one({"_id: gid})
+    off = await DISABLED.find_one({"_id": gid})
     text = " ".join(message.text.split()[1:])  
     start = datetime.now() 
     if text and text == "-a":
