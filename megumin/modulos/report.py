@@ -1,10 +1,9 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from megumin import megux
-from megumin.utils import admin_check 
+from megumin import megux 
 
-
+admin_status = "administrator" or "creator"
 
 @megux.on_message(
     (filters.command("report", prefixes=["/", "!"]) | filters.regex("^@admin"))
