@@ -7,12 +7,20 @@ from pyrogram.types import Message
 from pyrogram.errors import BadRequest
 
 from megumin import megux
+from megumin.utils import get_collection 
 
 http = httpx.AsyncClient()
 
+DISABLED = get_collection("DISABLED")
+
 
 @megux.on_message(filters.command(["ddd"], prefixes=["/", "!"]))
-async def lastfm(c: megux, m: Message):
+async def ddd(c: megux, m: Message):
+    gid = m.chat.id 
+    query = "ddd"
+    off = await DISABLED.find_one({"_id": gid, "_cmd": query})
+    if off:
+        return
     try:
          ddd = m.text.split(maxsplit=1)[1]
     except IndexError:
