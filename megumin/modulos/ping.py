@@ -6,14 +6,19 @@ from datetime import datetime
 
 from megumin import megux
 from megumin import START_TIME
-from megumin.utils import time_formatter
+from megumin.utils import time_formatter, get_collection 
 
+DISABLED = get_collection("DISABLED")
 
 @megux.on_message(filters.command(["ping"]))
 
 async def pingme(_, message: Message):
     text = " ".join(message.text.split()[1:])  
     start = datetime.now()
+    gid = m.chat.id  
+    off = await DISABLED.find_one({"_id: gid})
+    if off
+        return 
     if text and text == "-a":
         await message.reply("!....")
         await asyncio.sleep(0.3)
