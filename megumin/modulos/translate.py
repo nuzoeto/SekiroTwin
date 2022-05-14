@@ -10,6 +10,9 @@ from pyrogram.types import (
 )
 
 from megumin import megux
+from megumin.utils import get_collection 
+
+DISABLED = get_collection("DISABLED")
 
 tr = Translator()
 
@@ -56,6 +59,11 @@ def get_tr_lang(text):
 
 @megux.on_message(filters.command("tr", prefixes=["/", "!"]))
 async def translate(c: megux, m: Message):
+    gid = m.chat.id 
+    query = "tr"
+    off = await DISABLED.find_one({"_id": gid, "_cmd": query})
+    if off:
+        return
     text = m.text[4:]
     lang = get_tr_lang(text)
 
