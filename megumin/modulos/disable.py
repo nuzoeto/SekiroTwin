@@ -19,7 +19,7 @@ async def disble_cmd(_, m: Message):
     gid = m.chat.id
     check_admin = m.from_user.id  
     query = input_str(m)
-    if m.chat.type == "private"
+    if m.chat.type == "private":
         return await m.reply("Esse comando é para ser usado em grupos")
     else:
         if not query in CMDS:
