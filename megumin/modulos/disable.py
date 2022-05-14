@@ -52,8 +52,8 @@ async def enable_cmd(_, m: Message):
             found = await DISABLED.find_one({'_id': gid, '_cmd': query})
             if found:
                 if await check_rights(chat_id, check_admin, "can_change_info"):
-                    dis_cmd = await DISABLED.insert_one({'_id': gid, '_cmd': query})
-                    await m.reply(f"__Comando Agora Desativado!!!__")
+                    dis_cmd = await DISABLED.delete_one({'_id': gid, '_cmd': query})
+                    await m.reply(f"__Comando Agora Ativado!!!__")
             else:
                 return await message.reply("Comando não desativado!")
                 else:
