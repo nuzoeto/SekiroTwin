@@ -21,7 +21,7 @@ async def disble_cmd(_, m: Message):
     check_admin = m.from_user.id  
     query = input_str(m)
     if m.chat.type == "private":
-        return await m.reply("Esse comando é para ser usado em grupos")
+        return await m.reply("Esse comando é para ser usado em grupos.")
     else:
         if not query in CMDS:
             return await m.reply("__Qual comando você deseja desativar?__")
@@ -44,10 +44,10 @@ async def enable_cmd(_, m: Message):
     check_admin = m.from_user.id  
     query = input_str(m)
     if m.chat.type == "private":
-        return await m.reply("Esse comando é para ser usado em grupos")
+        return await m.reply("Esse comando é para ser usado em grupos.")
     else:
         if not query in CMDS:
-            return await m.reply("__Qual comando você deseja desativar?__")
+            return await m.reply("__Qual comando você deseja ativar?__")
         else:
             found = await DISABLED.find_one({'_id': gid, '_cmd': query})
             if found:
