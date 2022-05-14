@@ -13,12 +13,10 @@ DISABLED = get_collection("DISABLED")
 @megux.on_message(filters.command(["ping"]))
 
 async def pingme(_, message: Message):
-    text = " ".join(message.text.split()[1:])  
-    start = datetime.now()
     gid = m.chat.id  
     off = await DISABLED.find_one({"_id: gid})
-    if off
-        return 
+    text = " ".join(message.text.split()[1:])  
+    start = datetime.now() 
     if text and text == "-a":
         await message.reply("!....")
         await asyncio.sleep(0.3)
@@ -34,3 +32,5 @@ async def pingme(_, message: Message):
         end = datetime.now()
         m_s = (end - start).microseconds / 1000
         await sla.edit(f"🏓 **Ping:** ```{m_s} ᴍs``` \n⏱ **Uptime:** ```{time_formatter(time.time() - START_TIME)}```")
+       if off:
+           return
