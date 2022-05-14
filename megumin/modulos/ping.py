@@ -32,5 +32,5 @@ async def pingme(_, message: Message):
         end = datetime.now()
         m_s = (end - start).microseconds / 1000
         await sla.edit(f"🏓 **Ping:** ```{m_s} ᴍs``` \n⏱ **Uptime:** ```{time_formatter(time.time() - START_TIME)}```")
-       if off:
-           return
+        if off:
+            return
