@@ -420,10 +420,9 @@ Aqui está a ajuda para o módulo **Desativar**:
 
 Nem todo mundo quer todos os recursos que o bot oferece. Alguns comandos são melhores quando não utilizados para evitar spam e abuso.
 
-Isso permite que você desative alguns comandos comumente usados, para que não administradores não possam usá-los.
-Também permitirá que você os exclua automaticamente, impedindo que as pessoas enviem texto azul.
+Isso permite que você desative alguns comandos.
 
-Apenas administrador:
+**Apenas administrador:**
 - /enable <nome do cmd>: habilita um comando
 - /disable <nome do cmd>: Desativa um comando
     """
