@@ -64,6 +64,7 @@ async def help(client, message):
             [
                 InlineKeyboardButton("Tradutor", callback_data="help_tr"),
                 InlineKeyboardButton("Stickers", callback_data="help_stickers"),
+                InlineKeyboardButton("Desativar", callback_data="help_disable"),
             ],
         ]
     )
@@ -153,6 +154,15 @@ async def help_github(client: megux, cb: CallbackQuery):
         [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
     await cb.edit_message_text(text=H_GIT, reply_markup=button)
+
+
+
+@megux.on_callback_query(filters.regex(pattern=r"^help_disable$"))
+async def help_github(client: megux, cb: CallbackQuery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=H_DISABLE, reply_markup=button)
 
 
 
@@ -361,4 +371,18 @@ Aqui está a ajuda para o modulo **Stickers**:
 • /stickerid: responda a um adesivo para eu lhe dizer seu ID de arquivo.
 • /getsticker: responda a um adesivo para fazer o upload do arquivo PNG bruto.
 • /kang: responda a um sticker para adicioná-lo ao seu pacote.
+"""
+
+
+H_DISABLE = """
+Aqui está a ajuda para o módulo **Desativar**:
+
+Nem todo mundo quer todos os recursos que o bot oferece. Alguns comandos são melhores quando não utilizados para evitar spam e abuso.
+
+Isso permite que você desative alguns comandos comumente usados, para que não administradores não possam usá-los.
+Também permitirá que você os exclua automaticamente, impedindo que as pessoas enviem texto azul.
+
+Apenas administrador:
+- /enable <nome do cmd>: habilita um comando.
+- /disable <nome do cmd>: Desativa um comando.
 """
