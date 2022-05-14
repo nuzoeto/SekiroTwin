@@ -159,7 +159,8 @@ Todos os comandos podem ser usados com os seguintes caracteres: <code>/ !</code>
                 ],
                 [
                     InlineKeyboardButton("Tradutor", callback_data="tr_help_button"),
-                    InlineKeyboardButton("Stickers", callback_data="stickers_help_button"), 
+                    InlineKeyboardButton("Stickers", callback_data="stickers_help_button"),
+                    InlineKeyboardButton("Desativar", callback_data="disable_help_button"),
                 ],
                 [
                     InlineKeyboardButton("⬅ Voltar", callback_data="start_back"),
@@ -410,6 +411,36 @@ Aqui está a ajuda para o módulo **GitHub**:
             caption=info_text,
             reply_markup=button,
         )
+
+
+    @megux.on_callback_query(filters.regex(pattern=r"^disable_help_button$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        info_text = f"""
+Aqui está a ajuda para o módulo **Desativar**:
+
+Nem todo mundo quer todos os recursos que o bot oferece. Alguns comandos são melhores quando não utilizados para evitar spam e abuso.
+
+Isso permite que você desative alguns comandos comumente usados, para que não administradores não possam usá-los.
+Também permitirá que você os exclua automaticamente, impedindo que as pessoas enviem texto azul.
+
+Apenas administrador:
+- /enable <nome do cmd>: habilita um comando
+- /disable <nome do cmd>: Desativa um comando
+    """
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.message_id,
+            caption=info_text,
+            reply_markup=button,
+        )
+
 
 
     @megux.on_callback_query(filters.regex(pattern=r"^geral_help_button$"))
