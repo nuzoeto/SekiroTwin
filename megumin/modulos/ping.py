@@ -15,6 +15,8 @@ DISABLED = get_collection("DISABLED")
 async def pingme(_, message: Message):
     gid = message.chat.id  
     off = await DISABLED.find_one({"_id": gid})
+    if off:
+        return
     text = " ".join(message.text.split()[1:])  
     start = datetime.now() 
     if text and text == "-a":
@@ -32,5 +34,4 @@ async def pingme(_, message: Message):
         end = datetime.now()
         m_s = (end - start).microseconds / 1000
         await sla.edit(f"🏓 **Ping:** ```{m_s} ᴍs``` \n⏱ **Uptime:** ```{time_formatter(time.time() - START_TIME)}```")
-        if off:
-            return
+        
