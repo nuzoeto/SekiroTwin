@@ -5,8 +5,6 @@ from megumin import megux
 from megumin.utils import admin_check 
 
 
-admin_status = await admin_check 
-
 
 @megux.on_message(
     (filters.command("report", prefixes=["/", "!"]) | filters.regex("^@admin"))
