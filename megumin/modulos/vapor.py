@@ -6,11 +6,18 @@ from pyrogram import filters
 from pyrogram.errors import BadRequest
 from pyrogram.types import Message
 
-from megumin import megux
+from megumin import megux, trg
+from megumin.utils import get_collection 
 
+DISABLED = get_collection("DISABLED")
 
-@megux.on_message(filters.command("vapor"))
+@megux.on_message(filters.command("vapor", trg))
 async def vapor(c: megux, m: Message):
+    gid = m.chat.id 
+    query = "vapor"
+    off = await DISABLED.find_one({"_id": gid, "_cmd": query})
+    if off:
+        return
     text = m.text.split(maxsplit=1)[1]
     if not text and m.reply_to_message:
         if (m.reply_to_message.text or m.reply_to_message.caption) is not None:
