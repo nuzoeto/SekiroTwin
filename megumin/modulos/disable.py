@@ -12,7 +12,10 @@ CMDS = [
     "print",
     "ip",
     "tr",
-    "vapor"
+    "vapor",
+    "report",
+    "ddd",
+    "cep"
 ]
 
 
