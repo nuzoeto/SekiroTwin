@@ -10,7 +10,9 @@ DISABLED = get_collection("DISABLED")
 CMDS = [
     "ping",
     "print",
-    "ip"
+    "ip",
+    "tr",
+    "vapor"
 ]
 
 
