@@ -21,11 +21,11 @@ async def pingme(_, message: Message):
     text = " ".join(message.text.split()[1:])  
     start = datetime.now() 
     if text and text == "-a":
-        await message.reply("!....")
+        m = await message.reply("!....")
         await asyncio.sleep(0.3)
-        await message.reply("..!..")
+        await m.edit("..!..")
         await asyncio.sleep(0.3)
-        await message.reply("....!")
+        await m.edit("....!")
         end = datetime.now()
         t_m_s = (end - start).microseconds / 1000
         m_s = round((t_m_s - 0.6) / 3, 3)
