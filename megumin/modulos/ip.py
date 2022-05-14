@@ -19,6 +19,8 @@ async def ip_cmd_(c: megux, m: Message):
     gid = m.chat.id 
     query = "ip"
     off = await DISABLED.find_one({"_id": gid, "_cmd": query})
+    if off:
+        return
     if len(m.text.split()) > 1:
         text = m.text.split(maxsplit=1)[1]
         url: str = URL(text).host or text
