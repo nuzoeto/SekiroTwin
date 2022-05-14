@@ -54,7 +54,8 @@ async def enable_cmd(_, m: Message):
                 if await check_rights(chat_id, check_admin, "can_change_info"):
                     dis_cmd = await DISABLED.delete_one({'_id': gid, '_cmd': query})
                     await m.reply(f"__Comando Agora Ativado!!!__")
-            else:
-                return await message.reply("Comando não desativado!")
                 else:
                     return await m.reply("Você não tem direitos administrativos suficientes para alterar dados do grupo!")
+            else:
+                return await message.reply("Comando não desativado!")
+                
