@@ -17,7 +17,7 @@ CMDS = [
 @megux.on_message(filters.command("disable", Config.TRIGGER))
 async def disble_cmd(_, m: Message):
     gid = m.chat.id
-    chat_id = message.chat.id 
+    chat_id = m.chat.id 
     check_admin = m.from_user.id  
     query = input_str(m)
     if m.chat.type == "private":
