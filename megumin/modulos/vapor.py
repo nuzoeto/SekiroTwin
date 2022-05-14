@@ -6,12 +6,12 @@ from pyrogram import filters
 from pyrogram.errors import BadRequest
 from pyrogram.types import Message
 
-from megumin import megux, trg
+from megumin import megux, Config
 from megumin.utils import get_collection 
 
 DISABLED = get_collection("DISABLED")
 
-@megux.on_message(filters.command("vapor", trg))
+@megux.on_message(filters.command("vapor", Config.TRIGGER))
 async def vapor(c: megux, m: Message):
     gid = m.chat.id 
     query = "vapor"
