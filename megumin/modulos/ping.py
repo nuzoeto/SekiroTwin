@@ -13,7 +13,7 @@ DISABLED = get_collection("DISABLED")
 @megux.on_message(filters.command(["ping"]))
 
 async def pingme(_, message: Message):
-    gid = m.chat.id  
+    gid = message.chat.id  
     off = await DISABLED.find_one({"_id": gid})
     text = " ".join(message.text.split()[1:])  
     start = datetime.now() 
