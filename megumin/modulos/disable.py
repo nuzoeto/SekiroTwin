@@ -36,3 +36,25 @@ async def disble_cmd(_, m: Message):
                 else:
                     return await m.reply("Você não tem direitos administrativos suficientes para alterar dados do grupo!")
         
+
+@megux.on_message(filters.command("enable", Config.TRIGGER))
+async def enable_cmd(_, m: Message):
+    gid = m.chat.id
+    chat_id = m.chat.id 
+    check_admin = m.from_user.id  
+    query = input_str(m)
+    if m.chat.type == "private":
+        return await m.reply("Esse comando é para ser usado em grupos")
+    else:
+        if not query in CMDS:
+            return await m.reply("__Qual comando você deseja desativar?__")
+        else:
+            found = await DISABLED.find_one({'_id': gid, '_cmd': query})
+            if found:
+                if await check_rights(chat_id, check_admin, "can_change_info"):
+                    dis_cmd = await DISABLED.insert_one({'_id': gid, '_cmd': query})
+                    await m.reply(f"__Comando Agora Desativado!!!__")
+            else:
+                return await message.reply("Comando não desativado!")
+                else:
+                    return await m.reply("Você não tem direitos administrativos suficientes para alterar dados do grupo!")
