@@ -29,7 +29,7 @@ async def pingme(_, message: Message):
         end = datetime.now()
         t_m_s = (end - start).microseconds / 1000
         m_s = round((t_m_s - 0.6) / 3, 3)
-        await message.reply(f"🏓 ᴘᴏɴɢ! \n`{m_s} ᴍs`")
+        await m.edit(f"🏓 ᴘᴏɴɢ! \n`{m_s} ᴍs`")
     else:
         sla = await message.reply("🏓 ᴘᴏɴɢ!")
         end = datetime.now()
