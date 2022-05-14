@@ -57,5 +57,5 @@ async def enable_cmd(_, m: Message):
                 else:
                     return await m.reply("Você não tem direitos administrativos suficientes para alterar dados do grupo!")
             else:
-                return await message.reply("Comando não desativado!")
+                return await m.reply("Comando não desativado!")
                 
