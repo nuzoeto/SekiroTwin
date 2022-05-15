@@ -9,13 +9,13 @@ from pyrogram.types import Message
 from megumin import megux, Config
 from megumin.utils import get_collection 
 
-DISABLED = get_collection("DISABLED")
+DISABLED = get_collection(f"DISABLED {Message.chat.id}")
 
 @megux.on_message(filters.command("vapor", Config.TRIGGER))
 async def vapor(c: megux, m: Message):
     gid = m.chat.id 
     query = "vapor"
-    off = await DISABLED.find_one({"_id": gid, "_cmd": query})
+    off = await DISABLED.find_one({"_cmd": query})
     if off:
         return
     text = m.text.split(maxsplit=1)[1]
