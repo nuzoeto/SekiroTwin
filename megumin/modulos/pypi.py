@@ -31,7 +31,7 @@ DISABLED = get_collection("DISABLED")
 
 @megux.on_message(filters.command("pypi", prefixes=["/", "!"]))
 async def pypi(c: megux, m: Message):
-    gid = message.chat.id 
+    gid = m.chat.id 
     query = "pypi"  
     off = await DISABLED.find_one({"_id": gid, "_cmd": query})
     if off:
