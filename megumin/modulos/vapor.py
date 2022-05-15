@@ -9,10 +9,11 @@ from pyrogram.types import Message
 from megumin import megux, Config
 from megumin.utils import get_collection 
 
-DISABLED = get_collection(f"DISABLED {Message.chat.id}")
 
 @megux.on_message(filters.command("vapor", Config.TRIGGER))
 async def vapor(c: megux, m: Message):
+DISABLED = get_collection(f"DISABLED {m.chat.id}")
+
     gid = m.chat.id 
     query = "vapor"
     off = await DISABLED.find_one({"_cmd": query})
