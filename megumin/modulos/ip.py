@@ -8,7 +8,7 @@ from megumin import megux, Config
 from megumin.utils import get_collection 
 
 
-DISABLED = get_collection("DISABLED {Message.chat.id}")
+DISABLED = get_collection(f"DISABLED {Message.chat.id}")
 
 
 http = httpx.AsyncClient()
