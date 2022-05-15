@@ -73,7 +73,10 @@ async def enable_cmd(_, m: Message):
 
 @megux.on_message(filters.command("disableable", Config.TRIGGER))
 async def disableable(_, m: Message):
-    DISENABLE = """
+    chat_id = m.chat.id 
+    check_admin = m.from_user.id 
+    if await check_rights(chat_id, check_admin, "can_change_info"):
+        DISENABLE = """
 **Comandos disponíveis para ser desativados**:
 
 - __ddd__
@@ -93,3 +96,6 @@ async def disableable(_, m: Message):
 """
 
     await m.reply(DISENABLE)
+    else:
+        return await message.reply("Você precisa ser administrador.")
+        
