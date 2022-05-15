@@ -20,6 +20,8 @@ CMDS = [
     "pypi",
     "slap",
     "reverse",
+    "song",
+    "video",
 ]
 
 
@@ -85,7 +87,9 @@ async def disableable(_, m: Message):
 - __report__
 - __reverse__
 - __slap__
+- __song__
 - __vapor__
+- __video__
 """
 
     await m.reply(DISENABLE)
