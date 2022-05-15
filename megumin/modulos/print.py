@@ -7,15 +7,14 @@ from pyrogram.types import Message
 from megumin import megux
 from megumin.utils import get_collection 
 
-DISABLED = get_collection("DISABLED")
+DISABLED = get_collection("DISABLED {Message.chat.id}")
 
 http = httpx.AsyncClient()
 
 @megux.on_message(filters.command("print", prefixes=["/","!"]))
 async def prints(c: megux, message: Message):
-    gid = message.chat.id 
     query = "print"
-    off = await DISABLED.find_one({"_id": gid, "_cmd": query})
+    off = await DISABLED.find_one({"_cmd": query})
     if off:
         return 
     msg = message.text
