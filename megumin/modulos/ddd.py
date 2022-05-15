@@ -11,14 +11,13 @@ from megumin.utils import get_collection
 
 http = httpx.AsyncClient()
 
-DISABLED = get_collection("DISABLED")
+DISABLED = get_collection("DISABLED {Message.chat.id}")
 
 
 @megux.on_message(filters.command(["ddd"], prefixes=["/", "!"]))
 async def ddd(c: megux, m: Message):
-    gid = m.chat.id 
     query = "ddd"
-    off = await DISABLED.find_one({"_id": gid, "_cmd": query})
+    off = await DISABLED.find_one({"_cmd": query})
     if off:
         return
     try:
