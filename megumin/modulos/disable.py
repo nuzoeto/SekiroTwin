@@ -8,6 +8,7 @@ from megumin.utils.decorators import input_str
 
 
 CMDS = [
+    "clima",
     "ping",
     "print",
     "ip",
@@ -75,6 +76,7 @@ async def disableable(_, m: Message):
 
 - __ddd__
 - __cep__
+- __clima__
 - __ip__
 - __ping__
 - __pypi__
