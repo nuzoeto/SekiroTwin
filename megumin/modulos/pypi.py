@@ -30,10 +30,9 @@ DISABLED = get_collection(f"DISABLED {Message.chat.id}")
 
 
 @megux.on_message(filters.command("pypi", prefixes=["/", "!"]))
-async def pypi(c: megux, m: Message):
-    gid = m.chat.id 
+async def pypi(c: megux, m: Message): 
     query = "pypi"  
-    off = await DISABLED.find_one({"_id": gid, "_cmd": query})
+    off = await DISABLED.find_one({"_cmd": query})
     if off:
         return
     if len(m.command) == 1:
