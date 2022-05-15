@@ -6,7 +6,8 @@ from requests.structures import CaseInsensitiveDict
 from pyrogram import filters 
 from pyrogram.types import Message 
 
-from megumin import megux, Config 
+from megumin import megux, Config
+from megumin.utils import get_collection  
 
 
 def GRS(path_to_file):
