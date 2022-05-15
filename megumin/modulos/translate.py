@@ -59,7 +59,6 @@ def get_tr_lang(text):
 @megux.on_message(filters.command("tr", prefixes=["/", "!"]))
 async def translate(c: megux, m: Message):
     DISABLED = get_collection(f"DISABLED {m.chat.id}")
-    gid = m.chat.id 
     query = "tr"
     off = await DISABLED.find_one({"_cmd": query})
     if off:
