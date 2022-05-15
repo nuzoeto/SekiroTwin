@@ -9,14 +9,13 @@ from megumin import megux
 from megumin import START_TIME
 from megumin.utils import time_formatter, get_collection 
 
-DISABLED = get_collection("DISABLED")
+DISABLED = get_collection(f"DISABLED {Message.chat.id}")
 
 @megux.on_message(filters.command(["ping"]))
 
 async def pingme(_, message: Message):
-    gid = message.chat.id 
     query = "ping"  
-    off = await DISABLED.find_one({"_id": gid, "_cmd": query})
+    off = await DISABLED.find_one({"_cmd": query})
     if off:
         return
     text = " ".join(message.text.split()[1:])  
