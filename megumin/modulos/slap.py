@@ -8,6 +8,11 @@ from megumin import megux
 
 @megux.on_message(filters.command(["slap"], prefixes=["/", "!"]))
 async def printer(_, m: Message):
+    DISABLED = get_collection(f"DISABLED {m.chat.id}")
+    query = "slap"  
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     if m.reply_to_message:
         try:
             user1 = (
