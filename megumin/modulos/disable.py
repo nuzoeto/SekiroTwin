@@ -6,7 +6,7 @@ from megumin.utils import get_collection, check_rights
 from megumin.utils.decorators import input_str 
 
 
-DISABLED = get_collection(f"DISABLED {Message.chat.id}")
+
 CMDS = [
     "ping",
     "print",
