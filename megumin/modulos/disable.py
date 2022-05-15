@@ -22,6 +22,7 @@ CMDS = [
 
 @megux.on_message(filters.command("disable", Config.TRIGGER))
 async def disble_cmd(_, m: Message):
+    DISABLED = get_collection(f"DISABLED {m.chat.id}")
     chat_id = m.chat.id 
     check_admin = m.from_user.id  
     query = input_str(m)
@@ -44,6 +45,7 @@ async def disble_cmd(_, m: Message):
 
 @megux.on_message(filters.command("enable", Config.TRIGGER))
 async def enable_cmd(_, m: Message):
+    DISABLED = get_collection(f"DISABLED {m.chat.id}")
     chat_id = m.chat.id
     check_admin = m.from_user.id  
     query = input_str(m)
