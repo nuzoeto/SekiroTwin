@@ -4,7 +4,6 @@ from pyrogram.types import Message
 from megumin import megux 
 from megumin.utils import get_collection 
 
-DISABLED = get_collection(f"DISABLED {Message.chat.id}")
 
 admin_status = "administrator" or "creator"
 
@@ -14,6 +13,7 @@ admin_status = "administrator" or "creator"
     & filters.reply
 )
 async def report_admins(c: megux, m: Message):
+    DISABLED = get_collection(f"DISABLED {m.chat.id}")
     query = "report"
     off = await DISABLED.find_one({"_cmd": query})
     if off:
