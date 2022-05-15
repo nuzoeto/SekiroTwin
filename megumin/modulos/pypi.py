@@ -20,14 +20,22 @@ def escape_definition(definition):
     return definition
     
     
-from megumin import megux 
+from megumin import megux
+from megumin.utils import get_collection  
 
 
 http = httpx.AsyncClient()
 
+DISABLED = get_collection("DISABLED")
+
 
 @megux.on_message(filters.command("pypi", prefixes=["/", "!"]))
 async def pypi(c: megux, m: Message):
+    gid = message.chat.id 
+    query = "pypi"  
+    off = await DISABLED.find_one({"_id": gid, "_cmd": query})
+    if off:
+        return
     if len(m.command) == 1:
         return await m.reply_text("Uso: /pypi nome_do_pacote - Procura por um pacote no Python Package Index (PyPI).")
 
