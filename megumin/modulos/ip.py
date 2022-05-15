@@ -8,7 +8,7 @@ from megumin import megux, Config
 from megumin.utils import get_collection 
 
 
-DISABLED = get_collection("DISABLED")
+DISABLED = get_collection("DISABLED {Message.chat.id}")
 
 
 http = httpx.AsyncClient()
@@ -16,9 +16,8 @@ http = httpx.AsyncClient()
 
 @megux.on_message(filters.command("ip", Config.TRIGGER))
 async def ip_cmd_(c: megux, m: Message):
-    gid = m.chat.id 
     query = "ip"
-    off = await DISABLED.find_one({"_id": gid, "_cmd": query})
+    off = await DISABLED.find_one({"_cmd": query})
     if off:
         return
     if len(m.text.split()) > 1:
