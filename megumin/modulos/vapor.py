@@ -13,7 +13,6 @@ from megumin.utils import get_collection
 @megux.on_message(filters.command("vapor", Config.TRIGGER))
 async def vapor(c: megux, m: Message):
     DISABLED = get_collection(f"DISABLED {m.chat.id}")
-    gid = m.chat.id 
     query = "vapor"
     off = await DISABLED.find_one({"_cmd": query})
     if off:
