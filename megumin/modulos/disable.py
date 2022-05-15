@@ -65,3 +65,21 @@ async def enable_cmd(_, m: Message):
             else:
                 return await m.reply("__Comando não desativado!__")
                 
+
+@megux.on_message(filters.command("disableable", Config.TRIGGER))
+async def disableable(_, m: Message):
+    DISENABLE = """
+**Comandos disponíveis para ser desativados**:
+
+- __ddd__
+- __cep__
+- __ip__
+- __ping__
+- __pypi__
+- __print__
+- __tr__
+- __report__
+- __vapor__
+"""
+
+    await m.reply(DISENABLE)
