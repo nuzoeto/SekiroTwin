@@ -38,7 +38,7 @@ async def disble_cmd(_, m: Message):
             else:
                 if await check_rights(chat_id, check_admin, "can_change_info"):
                     dis_cmd = await DISABLED.insert_one({'_cmd': query})
-                    await m.reply(f"__Comando Agora Desativado!!!__")
+                    await m.reply(f"__Comando {query} Agora Desativado!!!__")
                 else:
                     return await m.reply("Você não tem direitos administrativos suficientes para alterar dados do grupo!")
         
@@ -59,7 +59,7 @@ async def enable_cmd(_, m: Message):
             if found:
                 if await check_rights(chat_id, check_admin, "can_change_info"):
                     dis_cmd = await DISABLED.delete_one({'_cmd': query})
-                    await m.reply(f"__Comando Agora Ativado!!!__")
+                    await m.reply(f"__Comando {query} Agora Ativado!!!__")
                 else:
                     return await m.reply("Você não tem direitos administrativos suficientes para alterar dados do grupo!")
             else:
