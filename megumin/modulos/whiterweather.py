@@ -3,6 +3,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux, Config
+from megumin.utils import get_collection 
 
 weather_apikey = "8de2d8b3a93542c9a2d8b3a935a2c909"
 
@@ -19,6 +20,11 @@ headers = {
 
 @megux.on_message(filters.command(["weather", "clima"], prefixes=["/", "!"]))
 async def weather(c: megux, m: Message):
+    DISABLED = get_collection(f"DISABLED {m.chat.id}")
+    query = "clima"
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     user_id = m.from_user.id
     if len(m.command) == 1:
         return await m.reply_text(
