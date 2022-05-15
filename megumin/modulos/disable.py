@@ -15,7 +15,8 @@ CMDS = [
     "vapor",
     "report",
     "ddd",
-    "cep"
+    "cep",
+    "pypi"
 ]
 
 
