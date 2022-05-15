@@ -13,11 +13,10 @@ from megumin.utils import get_collection
 
 http = httpx.AsyncClient()
 
-DISABLED = get_collection(f"DISABLED {Message.chat.id}")
 
 @megux.on_message(filters.command("cep", prefixes=["/", "!"]))
 async def cep(c: megux, m: Message):
-    gid = m.chat.id 
+    DISABLED = get_collection(f"DISABLED {m.chat.id}")
     query = "cep"
     off = await DISABLED.find_one({"_id": gid, "_cmd": query})
     if off:
