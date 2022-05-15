@@ -422,9 +422,11 @@ Nem todo mundo quer todos os recursos que o bot oferece. Alguns comandos são me
 
 Isso permite que você desative alguns comandos.
 
+• /disableable Veja quais comandos podem ser desativados.
+
 **Apenas administrador:**
-- /enable <nome do cmd>: habilita um comando.
-- /disable <nome do cmd>: Desativa um comando.
+• /enable <nome do cmd>: habilita um comando.
+• /disable <nome do cmd>: Desativa um comando.
     """
         button = InlineKeyboardMarkup(
             [
