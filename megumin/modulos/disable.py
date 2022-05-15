@@ -75,8 +75,7 @@ async def enable_cmd(_, m: Message):
 async def disableable(_, m: Message):
     chat_id = m.chat.id 
     check_admin = m.from_user.id 
-    if await check_rights(chat_id, check_admin, "can_change_info"):
-        DISENABLE = """
+    DISENABLE = """
 **Comandos disponíveis para ser desativados**:
 
 - __ddd__
@@ -96,6 +95,4 @@ async def disableable(_, m: Message):
 """
 
     await m.reply(DISENABLE)
-    else:
-        return await message.reply("Você precisa ser administrador.")
-        
+
