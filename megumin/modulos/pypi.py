@@ -26,11 +26,11 @@ from megumin.utils import get_collection
 
 http = httpx.AsyncClient()
 
-DISABLED = get_collection(f"DISABLED {Message.chat.id}")
 
 
 @megux.on_message(filters.command("pypi", prefixes=["/", "!"]))
 async def pypi(c: megux, m: Message): 
+    DISABLED = get_collection(f"DISABLED {m.chat.id}")
     query = "pypi"  
     off = await DISABLED.find_one({"_cmd": query})
     if off:
