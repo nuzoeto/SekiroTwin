@@ -18,7 +18,7 @@ http = httpx.AsyncClient()
 async def cep(c: megux, m: Message):
     DISABLED = get_collection(f"DISABLED {m.chat.id}")
     query = "cep"
-    off = await DISABLED.find_one({"_id": gid, "_cmd": query})
+    off = await DISABLED.find_one({"_cmd": query})
     if off:
         return
     try:
