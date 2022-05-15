@@ -38,6 +38,11 @@ def GRS(path_to_file):
 
 @megux.on_message(filters.command("reverse", Config.TRIGGER))
 async def reverse_search(_, message: Message):
+    DISABLED = get_collection(f"DISABLED {m.chat.id}")
+    query = "reverse"  
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     if message.reply_to_message:
         try:
             media = await message.reply_to_message.download()
