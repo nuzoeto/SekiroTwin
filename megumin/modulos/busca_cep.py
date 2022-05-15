@@ -13,7 +13,7 @@ from megumin.utils import get_collection
 
 http = httpx.AsyncClient()
 
-DISABLED = get_collection("DISABLED")
+DISABLED = get_collection(f"DISABLED {Message.chat.id}")
 
 @megux.on_message(filters.command("cep", prefixes=["/", "!"]))
 async def cep(c: megux, m: Message):
