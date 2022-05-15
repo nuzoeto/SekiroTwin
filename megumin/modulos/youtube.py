@@ -17,6 +17,7 @@ from re import compile as comp_regex
 from pyrogram.types import Message
 from pyrogram import filters
 from megumin import megux, Config
+from megumin.utils import get_collection 
 
 
 BASE_YT_URL = ("https://www.youtube.com/watch?v=")
@@ -38,6 +39,11 @@ def get_yt_video_id(url: str):
 
 @megux.on_message(filters.command(["song", "music"], Config.TRIGGER))
 async def song_(c: megux, message: Message):
+    DISABLED = get_collection(f"DISABLED {message.chat.id}")
+    query = "song"  
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     query = " ".join(message.text.split()[1:])
     if not query:
         return await message.reply("`Vou baixar o vento?!`")
@@ -89,6 +95,11 @@ async def song_(c: megux, message: Message):
 
 @megux.on_message(filters.command(["video", "vid"], Config.TRIGGER))
 async def vid_(c: megux, message: Message):
+    DISABLED = get_collection(f"DISABLED {message.chat.id}")
+    query = "video"  
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     query = " ".join(message.text.split()[1:])
     if not query:
         return await message.reply("`Vou baixar o vento?!`")
