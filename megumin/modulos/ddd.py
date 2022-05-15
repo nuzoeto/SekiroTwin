@@ -11,7 +11,7 @@ from megumin.utils import get_collection
 
 http = httpx.AsyncClient()
 
-DISABLED = get_collection("DISABLED {Message.chat.id}")
+DISABLED = get_collection(f"DISABLED {Message.chat.id}")
 
 
 @megux.on_message(filters.command(["ddd"], prefixes=["/", "!"]))
