@@ -5,12 +5,12 @@ from pyrogram import filters
 from pyrogram.types import Message
 from datetime import datetime
 
-from megumin import megux
+from megumin import megux, Config 
 from megumin import START_TIME
 from megumin.utils import time_formatter, get_collection 
 
 
-@megux.on_message(filters.command(["ping"]))
+@megux.on_message(filters.command(["ping"], Config.TRIGGER))
 
 async def pingme(_, message: Message):
     DISABLED = get_collection(f"DISABLED {message.chat.id}")
