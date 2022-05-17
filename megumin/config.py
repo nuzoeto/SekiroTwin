@@ -38,10 +38,11 @@ class Config:
     SW_API = os.environ.get("SW_API")
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY")
     SUDOS_GT_OFERTAS = (
-       548711141,
-       1248926627,
-       1197461875,
-       490226275,
+      548711141,
+      1248926627,
+      1197461875,
+      490226275,
+      1715384854,      
 )
     BLACK_LIST = (
       123456789,
