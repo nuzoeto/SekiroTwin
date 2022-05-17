@@ -7,7 +7,7 @@ from megumin.utils.decorators import input_str
 SUDOS = Config.SUDOS_GT_OFERTAS
 
 
-@megux.on_message(filters.command("s" Config.TRIGGER) & filters.user(SUDOS))
+@megux.on_message(filters.command("s"))
 async def description_gt(c: megux, m: Message):
     title = input_str(m)
     preco = input_str(m)
