@@ -64,5 +64,17 @@ async def setwarnaction_cmd(_, m: Message):
         if not query in ACTION:
             return await m.reply("__Especifique uma ação de advertências valida, **ban, mute, kick**__")
         else:
-           found = await CHAT_ACTION.find_one()
-     
+            found = await CHAT_ACTION.find_one()
+            if found:
+                if await check_rights(chat_id, check_admin, "can_change_info"):
+                    await CHAT_ACTION.delete_one({"_action": query})
+                    await CHAT_ACTION.insert_one({"_action": query})
+                    await m.reply(f"A ação após o número de advertência atingida foi alterado para **{query}**")
+                else:
+                    return await m.reply("`Você precisa de permissão para fazer isso.`")
+            else:
+                if await check_rights(chat_id, check_admin, "can_change_info"):
+                    await CHAT_ACTION.insert_one({"_action": query})
+                    await m.reply(f"A ação após o número de advertência atingida foi alterado para **{query}**")
+                else: 
+                    return await m.reply("`Você precisa de permissão para fazer isso`")
