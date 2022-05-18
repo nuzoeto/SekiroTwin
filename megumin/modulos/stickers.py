@@ -48,6 +48,7 @@ http = httpx.AsyncClient()
 
 
 from megumin import megux, Config
+from megumin.utils import get_collection 
 
 
 CHAT_LOGS = Config.GP_LOGS 
@@ -55,6 +56,11 @@ CHAT_LOGS = Config.GP_LOGS
 
 @megux.on_message(filters.command(["getsticker"], prefixes=["/", "!"]))
 async def getsticker_(c: megux, m: Message):
+    DISABLED = get_collection(f"DISABLED {m.chat.id}")
+    query = "getsticker"  
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     sticker = m.reply_to_message.sticker
 
     if sticker:
@@ -82,6 +88,11 @@ async def getsticker_(c: megux, m: Message):
 
 @megux.on_message(filters.command("stickerid", prefixes=["/", "!"]) & filters.reply)
 async def getstickerid(c: megux, m: Message):
+    DISABLED = get_collection(f"DISABLED {m.chat.id}")
+    query = "stickerid"  
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     if m.reply_to_message.sticker:
         await m.reply_text(
             "O id deste sticker é: <code>{stickerid}</code>".format(
@@ -92,6 +103,11 @@ async def getstickerid(c: megux, m: Message):
 
 @megux.on_message(filters.command(["kibe", "kang"], prefixes=["/", "!"]) & ~filters.edited)
 async def kang_sticker(c: megux, m: Message):
+    DISABLED = get_collection(f"DISABLED {m.chat.id}")
+    query = "kang"  
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     prog_msg = await m.reply_text("Roubando o sticker...")
     user = await c.get_me()
     bot_username = user.username
