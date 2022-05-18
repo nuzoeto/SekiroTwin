@@ -52,3 +52,17 @@ async def setwarnlimit_cmd(_, m: Message):
                     return await m.reply("`Você precisa de permissão para fazer isso`")
 
 
+@megux.on_message(filters.command("setwarnmode", Config.TRIGGER))
+async def setwarnaction_cmd(_, m: Message):
+    CHAT_ACTION = get_collection(f"ACTION {m.chat.id}")
+    chat_id = m.chat.id 
+    check_admin = m.from_user.id  
+    query = input_str(m)
+    if m.chat.type == "private":
+        return await m.reply("Esse comando é para ser usado em grupos.")
+    else:
+        if not query in ACTION:
+            return await m.reply("__Especifique uma ação de advertências valida, **ban, mute, kick**__")
+        else:
+           found = await CHAT_ACTION.find_one()
+     
