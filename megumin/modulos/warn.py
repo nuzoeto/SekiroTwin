@@ -36,7 +36,7 @@ async def setwarnlimit_cmd(_, m: Message):
         if not query in NUMBER:
             return await m.reply("__Especifique um número de advertências valido, de 1 a 7.__")
         else:
-            found = await LIMIT.find_one({"_warnslimit"})
+            found = await LIMIT.find_one()
             if found:
                 if await check_rights(chat_id, check_admin, "can_change_info"):
                     await LIMIT.update_one({"_warnslimit": query})
