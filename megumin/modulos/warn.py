@@ -52,5 +52,3 @@ async def setwarnlimit_cmd(_, m: Message):
                     return await m.reply("`Você precisa de permissão para fazer isso`")
 
 
-@megux.on_message(filters.command("setwarnlimit", Config.TRIGGER))
-async def setwarnlimit_cmd(_, m: Message):
