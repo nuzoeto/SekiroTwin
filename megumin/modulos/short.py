@@ -7,6 +7,7 @@ from pyrogram import filters
 from pyrogram.types import Message 
 
 from megumin import megux 
+from megumin.utils import get_collection 
 
 timeout = httpx.Timeout(120)
 http = httpx.AsyncClient(http2=True, timeout=timeout)
@@ -14,6 +15,11 @@ http = httpx.AsyncClient(http2=True, timeout=timeout)
 
 @megux.on_message(filters.command("short"))
 async def short(c: megux, m: Message):
+    DISABLED = get_collection(f"DISABLED {m.chat.id}")
+    query = "short"
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     if len(m.command) < 2:
         return await m.reply_text("Erro.\n\nUso: /short (url)\n\n\nFaça isso para encurtar uma url.")
     else:
