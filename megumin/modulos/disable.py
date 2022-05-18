@@ -21,6 +21,7 @@ CMDS = [
     "cep",
     "pypi",
     "slap",
+    "short",
     "stickerid",
     "reverse",
     "song",
@@ -94,6 +95,7 @@ async def disableable(_, m: Message):
 - __report__
 - __reverse__
 - __slap__
+- __short__
 - __stickerid__
 - __song__
 - __vapor__
