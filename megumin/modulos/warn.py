@@ -39,7 +39,8 @@ async def setwarnlimit_cmd(_, m: Message):
             found = await LIMIT.find_one()
             if found:
                 if await check_rights(chat_id, check_admin, "can_change_info"):
-                    await LIMIT.update_one({"$set": {"_warnslimit": query}}, upsert=True)
+                    await LIMIT.delete_one({"_warnslimit": query})
+                    await LIMIT.insert_one({"_warnslimit": query})
                     await m.reply(f" O número de advertência foi alterado para **{query}**")
                 else:
                     return await m.reply("`Você precisa de permissão para fazer isso.`")
@@ -50,3 +51,6 @@ async def setwarnlimit_cmd(_, m: Message):
                 else: 
                     return await m.reply("`Você precisa de permissão para fazer isso`")
 
+
+@megux.on_message(filters.command("setwarnlimit", Config.TRIGGER))
+async def setwarnlimit_cmd(_, m: Message):
