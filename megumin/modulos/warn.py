@@ -39,7 +39,7 @@ async def setwarnlimit_cmd(_, m: Message):
             found = await LIMIT.find_one()
             if found:
                 if await check_rights(chat_id, check_admin, "can_change_info"):
-                    await LIMIT.update_one({"_warnslimit": query})
+                    await LIMIT.update_one({"$set": {"_warnslimit": query}}, upsert=True)
                     await m.reply(f" O número de advertência foi alterado para **{query}**")
                 else:
                     return await m.reply("`Você precisa de permissão para fazer isso.`")
