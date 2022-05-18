@@ -9,6 +9,8 @@ from megumin.utils.decorators import input_str
 
 CMDS = [
     "clima",
+    "getsticker",
+    "kang",
     "ping",
     "print",
     "ip",
@@ -19,6 +21,7 @@ CMDS = [
     "cep",
     "pypi",
     "slap",
+    "stickerid",
     "reverse",
     "song",
     "video",
@@ -81,7 +84,9 @@ async def disableable(_, m: Message):
 - __ddd__
 - __cep__
 - __clima__
+- __getsticker__
 - __ip__
+- __kang__
 - __ping__
 - __pypi__
 - __print__
@@ -89,6 +94,7 @@ async def disableable(_, m: Message):
 - __report__
 - __reverse__
 - __slap__
+- __stickerid__
 - __song__
 - __vapor__
 - __video__
