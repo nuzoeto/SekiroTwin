@@ -98,5 +98,24 @@ async def warn_cmd(_, m: Message):
             await megux.ban_chat_member(m.chat.id, m.reply_to_message.from_user.id)
         else:
             await m.reply(f"{name_user} tem {WARNS}/3 advertências.") 
+    else:
+         return await m.reply("Você não tem permissão suficiente para advertir usuários!")
         
       
+@megux.on_message(filters.command("unwarn", Config.TRIGGER))
+async def warn_cmd(_, m: Message):
+    ids = m.reply_to_message.from_user.id 
+    WARN = get_collection(f"WARN {m.chat.id} {ids}")
+    if await is_self(m.reply_to_message.from_user.id):
+        return await m.reply("Eu não tenho advertências.")
+    if await admin_check(m.reply_to_message):
+        return await m.reply("Como irei remover a advertência de um administrador? já que ele não tem.") 
+    if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"): 
+        if await WARN.find_one()         
+            name_user = (m.reply_to_message.from_user.mention())
+            await WARN.delete_one({"id_": ids, "title": name_user})
+        else:
+            return await m.reply("O usuário não possui advertências.")
+    else: 
+        return await m.reply("Você não tem permissão suficiente para tirar a advertência de um usuário.")
+    
