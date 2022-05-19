@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import Message 
 
 from megumin import megux, Config
-from megumin.utils import get_collection, check_rights, is_admin, is_self    
+from megumin.utils import get_collection, check_rights, is_admin, is_self, admin_check    
 from megumin.utils.decorators import input_str 
 
 
@@ -86,7 +86,7 @@ async def warn_cmd(_, m: Message):
     WARN = get_collection(f"WARN {m.chat.id} {ids}")
     if await is_self(m.reply_to_message.from_user.id):
         return await m.reply("Não irei me advertir")
-    if is_admin(m.chat.id, m.reply_to_message.from_user.id):
+    if await admin_check(m.reply_to_message):
         return await m.reply("Não irei advertir um administrador") 
     if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"):          
         name_user = (m.reply_to_message.from_user.mention())
