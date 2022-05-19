@@ -86,7 +86,7 @@ async def warn_cmd(_, m: Message):
     WARN = get_collection(f"WARN {m.chat.id} {ids}")
     if is_self:
         return await m.reply("Não irei me advertir")
-    if is_admin
+    if is_admin:
         return await m.reply("Não irei advertir um administrador") 
     if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"): 
         name_user = (m.reply_to_message.from_user.mention())
