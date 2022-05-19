@@ -78,3 +78,9 @@ async def setwarnaction_cmd(_, m: Message):
                     await m.reply(f"A ação após o número de advertência atingida foi alterado para **{query}**")
                 else: 
                     return await m.reply("`Você precisa de permissão para fazer isso`")
+
+
+@megux.on_message(filters.command("warn", Config.TRIGGER))
+async def warn_cmd(_, m: Message):
+    ids = message.reply_to_message.from_user.id 
+    WARN = get_collection(f"WARN {ids}") 
