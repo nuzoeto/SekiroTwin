@@ -111,7 +111,7 @@ async def warn_cmd(_, m: Message):
     if await admin_check(m.reply_to_message):
         return await m.reply("Como irei remover a advertência de um administrador? já que ele não tem.") 
     if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"): 
-        if await WARN.find_one()         
+        if await WARN.find_one():        
             name_user = (m.reply_to_message.from_user.mention())
             await WARN.delete_one({"id_": ids, "title": name_user})
         else:
