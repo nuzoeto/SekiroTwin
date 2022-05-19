@@ -198,6 +198,11 @@ async def _unmute_user(_, message: Message):
 
 @megux.on_message(filters.command("muteme", prefixes=["/", "!"]))
 async def muteme_(_, message: Message):
+    DISABLED = get_collection(f"DISABLED {message.chat.id}")
+    query = "muteme"
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     chat_id = message.chat.id
     user_id = message.from_user.id
     if is_admin(chat_id, user_id):
