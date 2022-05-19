@@ -84,7 +84,7 @@ async def setwarnaction_cmd(_, m: Message):
 async def warn_cmd(_, m: Message):
     ids = m.reply_to_message.from_user.id 
     WARN = get_collection(f"WARN {m.chat.id} {ids}")
-    if is_self(m.from_user.id):
+    if is_self(ids):
         return await m.reply("Não irei me advertir")
     if is_admin(m.chat.id, ids):
         return await m.reply("Não irei advertir um administrador") 
