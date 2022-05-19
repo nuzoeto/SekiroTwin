@@ -12,6 +12,8 @@ CMDS = [
     "banme",
     "clima",
     "getsticker",
+    "mute",
+    "tmute",
     "kang",
     "kick",
     "kickme",
@@ -30,6 +32,7 @@ CMDS = [
     "reverse",
     "song",
     "unban",
+    "unmute",
     "video",
 ]
 
@@ -97,6 +100,7 @@ async def disableable(_, m: Message):
 - __kang__
 - __kick__
 - __kickme__ 
+- __mute__
 - __ping__
 - __pypi__
 - __print__
@@ -106,8 +110,10 @@ async def disableable(_, m: Message):
 - __slap__
 - __short__
 - __stickerid__
+- __tmute__
 - __song__
 - __unban__
+- __unmute__
 - __vapor__
 - __video__
 """
