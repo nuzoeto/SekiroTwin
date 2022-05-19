@@ -95,10 +95,9 @@ async def warn_cmd(_, m: Message):
         name_user = (m.reply_to_message.from_user.mention())
         await WARN.insert_one({"id_": ids, "title": name_user})
         WARNS = await WARN.estimated_document_count()
-        if WARNS > 2:
-            if GET_ACTION in "ban": 
-                await m.reply(f"{WARNS}/3 Advertencias, {name_user} foi banido!")
-                return await megux.ban_chat_member(m.chat.id, m.from_user.id)
+        if WARNS > 2: 
+            await m.reply(f"{WARNS}/3 Advertencias, {name_user} foi banido!")
+            return await megux.ban_chat_member(m.chat.id, m.from_user.id)
         else:
             await m.reply(f"{name_user} tem {WARNS}/3 advertências.") 
         
