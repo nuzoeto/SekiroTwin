@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import Message 
 
 from megumin import megux, Config
-from megumin.utils import get_collection, check_rights  
+from megumin.utils import get_collection, check_rights, is_admin, is_self    
 from megumin.utils.decorators import input_str 
 
 
@@ -83,14 +83,11 @@ async def setwarnaction_cmd(_, m: Message):
 @megux.on_message(filters.command("warn", Config.TRIGGER))
 async def warn_cmd(_, m: Message):
     ids = m.reply_to_message.from_user.id 
-    WARN = get_collection(f"WARN {ids}")
-    LIMIT = get_collection(f"WARNS_LIMIT {m.chat.id}")
-    GET_LIMIT = await LIMIT.find_one()
-    CHAT_ACTION = get_collection(f"ACTION {m.chat.id}")
-    GET_ACTION = await CHAT_ACTION.find_one()
-    if not GET_ACTION:
-        GET_ACTION = "ban"
-        return 
+    WARN = get_collection(f"WARN {m.chat.id} {ids}")
+    if is_self:
+        return await m.reply("Não irei me advertir")
+    if is_admin
+        return await m.reply("Não irei advertir um administrador") 
     if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"): 
         name_user = (m.reply_to_message.from_user.mention())
         await WARN.insert_one({"id_": ids, "title": name_user})
