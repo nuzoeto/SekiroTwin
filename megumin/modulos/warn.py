@@ -96,5 +96,7 @@ async def warn_cmd(_, m: Message):
             if GET_ACTION in "ban": 
                 await message.reply(f"{WARNS}/{GET_LIMIT} Advertencias, {name_user} foi banido!")
                 return await megux.ban_chat_member(m.chat.id, m.from_user.id)
+        else:
+            await m.reply(f"{name_user} tem {WARNS}/{GET_LIMIT} advertências.") 
         
       
