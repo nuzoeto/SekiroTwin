@@ -99,7 +99,7 @@ async def warn_cmd(_, m: Message):
         else:
             await m.reply(f"{name_user} tem {WARNS}/3 advertências.") 
     else:
-         return await m.reply("Você não tem permissão suficiente para advertir usuários!")
+        return await m.reply("Você não tem permissão suficiente para advertir usuários!")
         
       
 @megux.on_message(filters.command("unwarn", Config.TRIGGER))
