@@ -80,6 +80,11 @@ async def _ban_user(_, message: Message):
 
 @megux.on_message(filters.command("unban", prefixes=["/", "!"]))
 async def _unban_user(_, message: Message):
+    DISABLED = get_collection(f"DISABLED {message.chat.id}")
+    query = "unban"
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
         await message.reply("Você não tem direitos administrativos suficientes para banir/desbanir usuários!")
@@ -201,6 +206,11 @@ async def kickme_(_, message: Message):
 
 @megux.on_message(filters.command("banme", prefixes=["/", "!"]))
 async def kickme_(_, message: Message):
+    DISABLED = get_collection(f"DISABLED {message.chat.id}")
+    query = "banme"
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     chat_id = message.chat.id
     user_id = message.from_user.id
     admin_ = await admin_check(message)
