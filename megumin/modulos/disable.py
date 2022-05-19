@@ -11,6 +11,7 @@ CMDS = [
     "clima",
     "getsticker",
     "kang",
+    "kick",
     "ping",
     "print",
     "ip",
