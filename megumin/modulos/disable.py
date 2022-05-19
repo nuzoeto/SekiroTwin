@@ -13,6 +13,7 @@ CMDS = [
     "clima",
     "getsticker",
     "mute",
+    "muteme",
     "tmute",
     "kang",
     "kick",
@@ -101,6 +102,7 @@ async def disableable(_, m: Message):
 - __kick__
 - __kickme__ 
 - __mute__
+- __muteme__
 - __ping__
 - __pypi__
 - __print__
