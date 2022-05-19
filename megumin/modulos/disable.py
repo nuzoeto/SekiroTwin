@@ -89,6 +89,7 @@ async def disableable(_, m: Message):
 - __getsticker__
 - __ip__
 - __kang__
+- __kick__
 - __ping__
 - __pypi__
 - __print__
