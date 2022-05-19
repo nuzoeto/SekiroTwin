@@ -88,7 +88,7 @@ async def warn_cmd(_, m: Message):
         return await m.reply("Não irei me advertir")
     if await admin_check(m.reply_to_message):
         return await m.reply("Não irei advertir um administrador") 
-    if not await check_bot_rights(m.chat.id)
+    if not await check_bot_rights(m.chat.id, "can_restrict_members")
         return await m.reply("Eu não tenho permissão suficiente para advertir usuários")
     if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"):          
         name_user = (m.reply_to_message.from_user.mention())
@@ -112,6 +112,8 @@ async def warn_cmd(_, m: Message):
         return await m.reply("Eu não tenho advertências.")
     if await admin_check(m.reply_to_message):
         return await m.reply("Como irei remover a advertência de um administrador? já que ele não tem.") 
+    if not await check_bot_rights(m.chat.id, "can_restrict_members")
+        return await m.reply("Eu não tenho permissão suficiente para advertir usuários")
     if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"): 
         if await WARN.find_one():        
             name_user = (m.reply_to_message.from_user.mention())
