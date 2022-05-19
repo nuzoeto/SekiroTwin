@@ -9,6 +9,7 @@ from megumin.utils.decorators import input_str
 
 CMDS = [
     "ban",
+    "banme",
     "clima",
     "getsticker",
     "kang",
@@ -28,6 +29,7 @@ CMDS = [
     "stickerid",
     "reverse",
     "song",
+    "unban",
     "video",
 ]
 
@@ -86,6 +88,7 @@ async def disableable(_, m: Message):
 **Comandos disponíveis para ser desativados**:
 
 - __ban__
+- __banme__
 - __ddd__
 - __cep__
 - __clima__
@@ -104,6 +107,7 @@ async def disableable(_, m: Message):
 - __short__
 - __stickerid__
 - __song__
+- __unban__
 - __vapor__
 - __video__
 """
