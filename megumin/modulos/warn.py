@@ -88,6 +88,9 @@ async def warn_cmd(_, m: Message):
     GET_LIMIT = await LIMIT.find_one({"_warnslimit"})
     CHAT_ACTION = get_collection(f"ACTION {m.chat.id}")
     GET_ACTION = await CHAT_ACTION.find_one({"_action"})
+    if not GET_ACTION:
+        GET_ACTION = "ban"
+        return 
     if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"): 
         name_user = (m.reply_to_message.from_user.mention())
         await WARN.insert_one({"id_": ids, "title": name_user})
