@@ -86,17 +86,19 @@ async def warn_cmd(_, m: Message):
     WARN = get_collection(f"WARN {m.chat.id} {ids}")
     if is_self(ids):
         return await m.reply("Não irei me advertir")
-    if is_admin(m.chat.id, ids):
-        return await m.reply("Não irei advertir um administrador") 
-    if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"): 
-        name_user = (m.reply_to_message.from_user.mention())
-        await WARN.insert_one({"id_": ids, "title": name_user})
-        WARNS = await WARN.estimated_document_count()
-        if WARNS > 2: 
-            await m.reply(f"{WARNS}/3 Advertencias, {name_user} foi banido!")
-            await WARN.drop()
-            await megux.ban_chat_member(m.chat.id, m.reply_to_message.from_user.id)
+    else:
+        if is_admin(m.chat.id, ids):
+            return await m.reply("Não irei advertir um administrador") 
         else:
-            await m.reply(f"{name_user} tem {WARNS}/3 advertências.") 
+            if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"):          
+            name_user = (m.reply_to_message.from_user.mention())
+            await WARN.insert_one({"id_": ids, "title": name_user})
+            WARNS = await WARN.estimated_document_count()
+            if WARNS > 2: 
+                await m.reply(f"{WARNS}/3 Advertencias, {name_user} foi banido!")
+                await WARN.drop()
+                await megux.ban_chat_member(m.chat.id, m.reply_to_message.from_user.id)
+            else:
+                await m.reply(f"{name_user} tem {WARNS}/3 advertências.") 
         
       
