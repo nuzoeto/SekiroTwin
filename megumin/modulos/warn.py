@@ -85,9 +85,9 @@ async def warn_cmd(_, m: Message):
     ids = m.reply_to_message.from_user.id 
     WARN = get_collection(f"WARN {ids}")
     LIMIT = get_collection(f"WARNS_LIMIT {m.chat.id}")
-    GET_LIMIT = await LIMIT.find_one({"_warnslimit"})
+    GET_LIMIT = await LIMIT.find_one()
     CHAT_ACTION = get_collection(f"ACTION {m.chat.id}")
-    GET_ACTION = await CHAT_ACTION.find_one({"_action"})
+    GET_ACTION = await CHAT_ACTION.find_one()
     if not GET_ACTION:
         GET_ACTION = "ban"
         return 
