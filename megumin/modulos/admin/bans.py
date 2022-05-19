@@ -17,6 +17,7 @@ from megumin.utils import (
     is_dev,
     is_self,
     sed_sticker,
+    get_collection,
 )
 
 
@@ -112,6 +113,11 @@ async def _unban_user(_, message: Message):
 
 @megux.on_message(filters.command("kick", prefixes=["/", "!"]))
 async def _kick_user(_, message: Message):
+    DISABLED = get_collection(f"DISABLED {message.chat.id}")
+    query = "kick"
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
         await message.reply("Você não tem as seguintes permissões: **Can restrict members**")
