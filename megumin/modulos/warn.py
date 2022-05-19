@@ -114,6 +114,7 @@ async def warn_cmd(_, m: Message):
         if await WARN.find_one():        
             name_user = (m.reply_to_message.from_user.mention())
             await WARN.delete_one({"id_": ids, "title": name_user})
+             await m.reply(f"Advertência de {name_user} foi removida")
         else:
             return await m.reply("O usuário não possui advertências.")
     else: 
