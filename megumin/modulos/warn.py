@@ -83,4 +83,18 @@ async def setwarnaction_cmd(_, m: Message):
 @megux.on_message(filters.command("warn", Config.TRIGGER))
 async def warn_cmd(_, m: Message):
     ids = message.reply_to_message.from_user.id 
-    WARN = get_collection(f"WARN {ids}") 
+    WARN = get_collection(f"WARN {ids}")
+    LIMIT = get_collection(f"WARNS_LIMIT {m.chat.id}")
+    GET_LIMIT = await LIMIT.find_one()
+    CHAT_ACTION = get_collection(f"ACTION {m.chat.id}")
+    GET_ACTION = await CHAT_ACTION.find_one()
+    if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"): 
+        name_user = (message.reply_to_message.from_user.mention())
+        await WARN.insert_one({"id_": ids, "title": name_user})
+        WARNS = await WARN.estimated_document_count()
+        if WARNS in GET_LIMIT:
+            if GET_ACTION in "ban": 
+            await message.reply(f"{G}/3 Advertencias, {name_user} foi banido!")
+  
+        
+      
