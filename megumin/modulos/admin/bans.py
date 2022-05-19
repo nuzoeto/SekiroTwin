@@ -23,6 +23,11 @@ from megumin.utils import (
 
 @megux.on_message(filters.command("ban", prefixes=["/", "!"]))
 async def _ban_user(_, message: Message):
+    DISABLED = get_collection(f"DISABLED {message.chat.id}")
+    query = "ban"
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
         await message.reply("Você não tem direitos administrativos suficientes para banir/desbanir usuários!")
@@ -171,6 +176,11 @@ async def _kick_user(_, message: Message):
 
 @megux.on_message(filters.command("kickme", prefixes=["/", "!"]))
 async def kickme_(_, message: Message):
+    DISABLED = get_collection(f"DISABLED {message.chat.id}")
+    query = "kickme"
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     chat_id = message.chat.id
     user_id = message.from_user.id
     admin_ = await admin_check(message)
