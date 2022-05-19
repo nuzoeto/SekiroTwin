@@ -8,10 +8,12 @@ from megumin.utils.decorators import input_str
 
 
 CMDS = [
+    "ban",
     "clima",
     "getsticker",
     "kang",
     "kick",
+    "kickme",
     "ping",
     "print",
     "ip",
@@ -83,6 +85,7 @@ async def disableable(_, m: Message):
     DISENABLE = """
 **Comandos disponíveis para ser desativados**:
 
+- __ban__
 - __ddd__
 - __cep__
 - __clima__
@@ -90,6 +93,7 @@ async def disableable(_, m: Message):
 - __ip__
 - __kang__
 - __kick__
+- __kickme__ 
 - __ping__
 - __pypi__
 - __print__
