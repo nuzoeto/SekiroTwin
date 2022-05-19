@@ -13,11 +13,17 @@ from megumin.utils import (
     is_dev,
     is_self,
     sed_sticker,
+    get_collection,
 )
 
 
 @megux.on_message(filters.command("mute", prefixes=["/", "!"]))
 async def _mute_user(_, message: Message):
+    DISABLED = get_collection(f"DISABLED {message.chat.id}")
+    query = "mute"
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
         await message.reply("Você não tem direitos suficientes para silenciar usuários")
@@ -74,6 +80,11 @@ async def _mute_user(_, message: Message):
 
 @megux.on_message(filters.command("tmute", prefixes=["/", "!"]))
 async def _tmute_user(_, message: Message):
+    DISABLED = get_collection(f"DISABLED {message.chat.id}")
+    query = "tmute"
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
         await message.reply("Você não tem direitos suficientes para silenciar usuários")
@@ -142,6 +153,11 @@ async def _tmute_user(_, message: Message):
 
 @megux.on_message(filters.command("unmute", prefixes=["/", "!"]))
 async def _unmute_user(_, message: Message):
+    DISABLED = get_collection(f"DISABLED {message.chat.id}")
+    query = "unmute"
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
         await message.reply("Você não tem direitos suficientes para silenciar usuários")
