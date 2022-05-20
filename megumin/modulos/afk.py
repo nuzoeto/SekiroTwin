@@ -8,8 +8,7 @@ from megumin.utils import get_collection
 @megux.on_message(filters.command("afk", Config.TRIGGER))
 async def afk(c: megux, m: Message):
     AFK_STATUS = get_collection(f"_AFK {m.from_user.id}")
-    query = "on" 
-    await AFK_STATUS.insert_one({"_id": m.from_user.id, "afk": query}) 
+    await AFK_STATUS.insert_one({"_id": m.from_user.id}) 
     await m.reply(f"{m.from_user.first_nane} agora está AFK!")
    
 
