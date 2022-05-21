@@ -10,7 +10,7 @@ from megumin.utils import get_collection
 
 
 @megux.on_message(filters.command("afk"))
-@Smudge.on_message(filters.regex(r"^(?i)brb(\s(?P<args>.+))?"))
+@megux.on_message(filters.regex(r"^(?i)brb(\s(?P<args>.+))?"))
 async def afk_cmd(_, m: Message):
     AFK_STATUS = get_collection(f"_AFK {m.from_user.id}")
     await AFK_STATUS.drop()
