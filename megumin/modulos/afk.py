@@ -18,7 +18,7 @@ async def rem_afk(c: megux, m: Message):
 
     user_afk = await AFK_STATUS.find_one({"_afk": "on"})
 
-    if m.text == "/afk" or "brb":
+    if "/afk" or "brb" in m.text:
         return 
     else: 
 
