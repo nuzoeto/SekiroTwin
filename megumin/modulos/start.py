@@ -6,6 +6,7 @@ import platform
 import asyncio 
 
 from pyrogram import filters
+from pyrogram.enums import ChatType
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
@@ -51,7 +52,7 @@ uname = platform.uname()
 
 @megux.on_message(filters.command("start", prefixes=["/", "!"]))
 async def start_(c: megux, message: Message):
-    if message.chat.type == "private":
+    if message.chat.type == ChatType.PRIVATE:
         keyboard = InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton(text="❔Ajuda", callback_data="help_menu"),
