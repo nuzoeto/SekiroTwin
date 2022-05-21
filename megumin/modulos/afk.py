@@ -25,10 +25,18 @@ async def rem_afk(c: megux, m: Message):
 
     if not user_afk:
         return
+    else:
 
-    await AFK.delete_one({"_afk": "on"})
-    await m.reply_text(
-        f"{m.from_user.first_name} não está mais AFK!"
-    )
+        await AFK.drop()
+        await m.reply_text(f"{m.from_user.first_name} não está mais AFK!")
 
     
+@megux.on_message(filters.group & ~filters.bot, group=3)
+async def afk_mentioned(c: megux, m: Message):
+    if m.reply_to_message and m.reply_to_message.from_user:
+        AFK = get_collection(f"_AFK {m.reply_to_message.from_user.id}
+        user_afk = await AFK.find_one({"_afk": "on"})
+        if not user_afk:
+            return 
+        else:
+            await message.reply({m.from_user.first_name} está AFK!")
