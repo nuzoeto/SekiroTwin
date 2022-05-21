@@ -1,6 +1,7 @@
 import base64
 import time
 
+from pyrogram.enums import ChatMemberStatus 
 from pyrogram.types import Message
 
 from megumin import megux, Config 
@@ -60,9 +61,9 @@ async def is_self(user_id: int) -> bool:
 async def check_rights(chat_id: int, user_id: int, rights: str) -> bool:
     """checa privilegios admin"""
     user = await megux.get_chat_member(chat_id, user_id)
-    if user.status == "member":
+    if user.status == ChatMemberStatus.MEMBER :
         return False
-    if user.status == "creator" or "administrator":
+    if user.status == ChatMemberStatus.ADMINISTRATOR or ChatMemberStatus.CREATOR:
         if getattr(user, rights, None):
             return True
         return False
@@ -75,7 +76,7 @@ async def check_bot_rights(chat_id: int, rights: str) -> bool:
     if not _BOT_ID:
         _BOT_ID = (await megux.get_me()).id
     bot_ = await megux.get_chat_member(chat_id, _BOT_ID)
-    if bot_.status == "administrator":
+    if bot_.status == ChatMemberStatus.ADMINISTRATOR:
         if getattr(bot_, rights, None):
             return True
         return False
