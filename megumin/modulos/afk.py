@@ -9,15 +9,6 @@ from megumin import megux, Config
 from megumin.utils import get_collection 
 
 
-@megux.on_message(filters.command("afk"))
-@megux.on_message(filters.regex(r"^(?i)brb(\s(?P<args>.+))?"))
-async def afk_cmd(_, m: Message):
-    AFK_STATUS = get_collection(f"_AFK {m.from_user.id}")
-    await AFK_STATUS.drop()
-    await AFK_STATUS.insert_one({"_afk": "on"}) 
-    await m.reply(f"{m.from_user.first_name} agora está AFK!")
-
-
 @megux.on_message(filters.group & ~filters.bot, group=2)
 async def rem_afk(c: megux, m: Message):
     if not m.from_user:
@@ -34,6 +25,15 @@ async def rem_afk(c: megux, m: Message):
 
         await AFK_STATUS.drop()
         await m.reply_text(f"{m.from_user.first_name} não está mais AFK!")
+
+
+@megux.on_message(filters.command("afk"))
+@megux.on_message(filters.regex(r"^(?i)brb(\s(?P<args>.+))?"))
+async def afk_cmd(_, m: Message):
+    AFK_STATUS = get_collection(f"_AFK {m.from_user.id}")
+    await AFK_STATUS.drop()
+    await AFK_STATUS.insert_one({"_afk": "on"}) 
+    await m.reply(f"{m.from_user.first_name} agora está AFK!")
 
     
 @megux.on_message(filters.group & ~filters.bot, group=3)
