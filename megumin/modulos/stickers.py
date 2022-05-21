@@ -307,13 +307,11 @@ async def kang_sticker(c: megux, m: Message):
             except PeerIdInvalid:
                 return await prog_msg.edit_text(
                     "Parece que você nunca interagiu comigo no chat privado, é necessário que faça isso primeiro. .",
-                    reply_markup=ikb(
+                    reply_markup=InlineKeyboardMarkup(
                         [
                             [
-                                (
-                                    "/start",
-                                    f"https://t.me/{bot_username}?start",
-                                    "url",
+                                InlineKeyboardButton(
+                                    "/start", url=f"https://t.me/{bot_username}?start"
                                 )
                             ]
                         ]
