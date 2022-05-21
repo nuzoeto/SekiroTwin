@@ -277,7 +277,7 @@ async def kang_sticker(c: megux, m: Message):
             )
         else:
             await prog_msg.edit_text("<b>Criando um novo pacote de stickers...</b>")
-            stkr_title = f"@{m.from_user.first_name[:3]}'s "
+            stkr_title = f"@{m.from_user.first_name[:32]}'s "
             if animated:
                 stkr_title += "WhiterKang AnimPack"
             elif videos:
