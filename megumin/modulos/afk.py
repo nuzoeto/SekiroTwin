@@ -16,9 +16,6 @@ async def afk_cmd(_, m: Message):
 @megux.on_message(filters.group & ~filters.bot, group=2)
 async def rem_afk(c: megux, m: Message):
     if not m.from_user:
-        return
-
-    if "afk" in m.text:
         return 
 
     AFK_STATUS = get_collection(f"_AFK {m.from_user.id}") 
