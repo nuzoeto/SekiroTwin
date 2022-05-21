@@ -15,7 +15,7 @@ from wget import download
 from re import compile as comp_regex  
 
 from pyrogram.types import Message
-from pyrogram import filters
+from pyrogram import filters, enums
 from megumin import megux, Config
 from megumin.utils import get_collection 
 
@@ -81,7 +81,7 @@ async def song_(c: megux, message: Message):
         if not _fpath:
             await msg.edit("nada encontrado !")
             return
-        await c.send_chat_action(message.chat.id, "upload_audio")
+        await c.send_chat_action(message.chat.id, enums.ChatAction.UPLOAD_AUDIO)
         await message.reply_audio(audio=Path(_fpath), caption=capt_, duration=duration_)
         await asyncio.gather(c.send_log("#Send #YOUTUBE_DL"))
         await msg.delete()
@@ -130,7 +130,7 @@ async def vid_(c: megux, message: Message):
                 _fpath = _path
         if not _fpath:
             return await msg.edit("nada encontrado !")
-        await c.send_chat_action(message.chat.id, "upload_video")
+        await c.send_chat_action(message.chat.id, enums.ChatAction.UPLOAD_VIDEO)
         await message.reply_video(video=Path(_fpath), caption=capt_, duration=duration_)
         await msg.delete()
         os.remove(Path(_fpath))
