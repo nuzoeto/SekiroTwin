@@ -16,25 +16,23 @@ async def afk_cmd(_, m: Message):
     await AFK_STATUS.drop()
     await AFK_STATUS.insert_one({"_afk": "on"}) 
     await m.reply(f"{m.from_user.first_name} agora está AFK!")
+    await m.stop_propagation()
 
-
-@megux.on_message(filters.group & ~filters.bot, group=2)
-async def rem_afk(c: megux, m: Message):
+@Smudge.on_message(filters.group & ~filters.bot, group=2)
+async def rem_afk(c: Smudge, m: Message):
     if not m.from_user:
-        return 
-
-    AFK_STATUS = get_collection(f"_AFK {m.from_user.id}") 
-
+        return
+ 
+    AFK_STATUS = get_collection(f"_AFK {m.from_user.id}")
     user_afk = await AFK_STATUS.find_one({"_afk": "on"})
 
-    if "/afk" or "brb" in m.text:
-        return 
-    else:
-        if not user_afk:
-            return
-        else:
-            await AFK_STATUS.drop()
-            await m.reply_text(f"{m.from_user.first_name} não está mais AFK!")
+    if not user_afk:
+        return
+
+    await AFK_STATUS.drop()
+    await m.reply_text(
+        "{} não está mais AFK!".format(m.from_user.first_name)
+    )
 
     
 @megux.on_message(filters.group & ~filters.bot, group=3)
