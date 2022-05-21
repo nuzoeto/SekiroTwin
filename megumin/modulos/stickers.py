@@ -108,8 +108,11 @@ async def kang_sticker(c: megux, m: Message):
     off = await DISABLED.find_one({"_cmd": query})
     if off:
         return
-    prog_msg = await m.reply_text("Roubando o sticker...")
-    user = await c.get_me()
+    prog_msg = await m.reply_text("Roubando sticker...")
+    try:
+        user = await c.get_me()
+    except FloodWait as e:
+        await asyncio.sleep(e.value)
     bot_username = user.username
     sticker_emoji = "🤔"
     packnum = 0
@@ -117,6 +120,7 @@ async def kang_sticker(c: megux, m: Message):
     resize = False
     animated = False
     videos = False
+    convert = False
     reply = m.reply_to_message
     user = await c.resolve_peer(m.from_user.username or m.from_user.id)
 
@@ -126,17 +130,24 @@ async def kang_sticker(c: megux, m: Message):
         elif reply.animation:
             videos = True
             convert = True
+        elif reply.video:
+            convert = True
+            videos = True
         elif reply.document:
             if "image" in reply.document.mime_type:
                 # mime_type: image/webp
                 resize = True
-            elif "video/mp4" in reply.document.mime_type:
-                # mime_type: application/v
+            elif enums.MessageMediaType.VIDEO == reply.document.mime_type:
+                # mime_type: application/video
                 videos = True
+                convert = True
+            elif enums.MessageMediaType.ANIMATION == reply.document.mime_type:
+                # mime_type: video/mp4
+                videos = True
+                convert = True
             elif "tgsticker" in reply.document.mime_type:
-                # mime_type: application/v
+                # mime_type: application/x-tgsticker
                 animated = True
-
         elif reply.sticker:
             if not reply.sticker.file_name:
                 return await prog_msg.edit_text(
@@ -213,10 +224,12 @@ async def kang_sticker(c: megux, m: Message):
             filename = resize_image(filename)
         elif convert:
             filename = await convert_video(filename)
+            if filename is False:
+                return await prog_msg.edit_text("Error")
         max_stickers = 50 if animated else 120
         while not packname_found:
             try:
-                stickerset = await c.send(
+                stickerset = await c.invoke(
                     GetStickerSet(
                         stickerset=InputStickerSetShortName(short_name=packname),
                         hash=0,
@@ -232,7 +245,7 @@ async def kang_sticker(c: megux, m: Message):
             except StickersetInvalid:
                 break
         file = await c.save_file(filename)
-        media = await c.send(
+        media = await c.invoke(
             SendMedia(
                 peer=(await c.resolve_peer(CHAT_LOGS)),
                 media=InputMediaUploadedDocument(
@@ -248,7 +261,7 @@ async def kang_sticker(c: megux, m: Message):
         stkr_file = msg_.media.document
         if packname_found:
             await prog_msg.edit_text("<code>Usando o pacote de stickers existente...</code>")
-            await c.send(
+            await c.invoke(
                 AddStickerToSet(
                     stickerset=InputStickerSetShortName(short_name=packname),
                     sticker=InputStickerSetItem(
@@ -263,7 +276,7 @@ async def kang_sticker(c: megux, m: Message):
             )
         else:
             await prog_msg.edit_text("<b>Criando um novo pacote de stickers...</b>")
-            stkr_title = f"{m.from_user.first_name[:32]}'s "
+            stkr_title = f"@{m.from_user.first_name[:3]}'s "
             if animated:
                 stkr_title += "WhiterKang AnimPack"
             elif videos:
@@ -271,7 +284,7 @@ async def kang_sticker(c: megux, m: Message):
             if packnum != 0:
                 stkr_title += f" v{packnum}"
             try:
-                await c.send(
+                await c.invoke(
                     CreateStickerSet(
                         user_id=user,
                         title=stkr_title,
@@ -293,16 +306,19 @@ async def kang_sticker(c: megux, m: Message):
             except PeerIdInvalid:
                 return await prog_msg.edit_text(
                     "Parece que você nunca interagiu comigo no chat privado, é necessário que faça isso primeiro. .",
-                    reply_markup=InlineKeyboardMarkup(
+                    reply_markup=ikb(
                         [
                             [
-                                InlineKeyboardButton(
-                                    "/start", url=f"https://t.me/{bot_username}?start"
+                                (
+                                    "/start",
+                                    f"https://t.me/{bot_username}?start",
+                                    "url",
                                 )
                             ]
                         ]
                     ),
                 )
+
     except Exception as all_e:
         await prog_msg.edit_text(f"{all_e.__class__.__name__} : {all_e}")
     else:
@@ -335,15 +351,32 @@ def resize_image(filename: str) -> str:
 async def convert_video(filename: str) -> str:
     downpath, f_name = os.path.split(filename)
     webm_video = os.path.join(downpath, f"{f_name.split('.', 1)[0]}.webm")
-    process = (
-        ffmpeg.input(filename)
-        .filter("fps", fps=30, round="up")
-        .trim(duration=3)
-        .output(webm_video, s="512x512", vcodec="vp9", video_bitrate="500k")
-        .overwrite_output()
-        .run_async(quiet=True)
-    )
-    process.communicate()
+    cmd = [
+        "ffmpeg",
+        "-loglevel",
+        "quiet",
+        "-i",
+        filename,
+        "-t",
+        "00:00:03",
+        "-vf",
+        "fps=30",
+        "-c:v",
+        "vp9",
+        "-b:v:",
+        "500k",
+        "-preset",
+        "ultrafast",
+        "-s",
+        "512x512",
+        "-y",
+        webm_video,
+    ]
+
+    proc = await asyncio.create_subprocess_exec(*cmd)
+    # Wait for the subprocess to finish
+    await proc.communicate()
+
     if webm_video != filename:
         os.remove(filename)
     return webm_video
