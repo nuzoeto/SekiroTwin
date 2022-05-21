@@ -22,11 +22,14 @@ async def rem_afk(c: megux, m: Message):
 
     user_afk = await AFK_STATUS.find_one({"_afk": "on"})
 
+    if "/afk" in m.text:
+        return
+
     if not user_afk:
         return
     else:
 
-        await AFK.drop()
+        await AFK_STATUS.drop()
         await m.reply_text(f"{m.from_user.first_name} não está mais AFK!")
 
     
