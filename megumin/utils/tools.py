@@ -63,7 +63,7 @@ async def check_rights(chat_id: int, user_id: int, rights: str) -> bool:
     user = await megux.get_chat_member(chat_id, user_id)
     if user.status == ChatMemberStatus.MEMBER:
         return False
-    if user.status == ChatMemberStatus.ADMINISTRATOR or ChatMemberStatus.CREATOR:
+    if user.status == ChatMemberStatus.ADMINISTRATOR or ChatMemberStatus.OWNER:
         if getattr(user, rights, None):
             return True
         return False
