@@ -88,6 +88,6 @@ async def afk_mentioned(c: megux, m: Message):
     if not user_afk:
         return
     else:
-        afkmsg = (await tld(m, "{} está AFK!")).format(user_first_name)
+        afkmsg = "{} está AFK!".format(user_first_name)
         await m.reply_text(afkmsg)
     await m.stop_propagation()
