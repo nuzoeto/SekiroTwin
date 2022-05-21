@@ -118,7 +118,7 @@ async def start_(c: megux, message: Message):
     async def start_back(client: megux, cb: CallbackQuery):
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=START_PRIVADO,
             reply_markup=keyboard,
         )
@@ -179,7 +179,7 @@ Todos os comandos podem ser usados com os seguintes caracteres: <code>/ !</code>
     async def start_back(client: megux, cb: CallbackQuery):
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=START_PRIVADO,
             reply_markup=keyboard,
         )
@@ -210,7 +210,7 @@ Aqui está a ajuda para o módulo <b>Admin</b>:
         )
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=info_text,
             reply_markup=button,
         )
