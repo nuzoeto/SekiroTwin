@@ -101,7 +101,7 @@ async def getstickerid(c: megux, m: Message):
         )
 
 
-@megux.on_message(filters.command(["kibe", "kang"], prefixes=["/", "!"]) & ~filters.edited)
+@megux.on_message(filters.command(["kibe", "kang"], prefixes=["/", "!"]))
 async def kang_sticker(c: megux, m: Message):
     DISABLED = get_collection(f"DISABLED {m.chat.id}")
     query = "kang"  
