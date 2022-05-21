@@ -16,7 +16,6 @@ from pyrogram.errors import PeerIdInvalid, StickersetInvalid
 from pyrogram.raw.functions.messages import GetStickerSet, SendMedia
 from pyrogram.raw.functions.stickers import AddStickerToSet, CreateStickerSet
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
-from pyrogram.helpers import ikb
 from typing import Tuple, Callable
 from functools import wraps, partial
 from pyrogram.raw.types import (
