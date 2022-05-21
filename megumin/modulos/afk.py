@@ -14,6 +14,21 @@ async def afk_cmd(_, m: Message):
     
    
 
+@megux.on_message(filters.group & ~filters.bot, group=2)
+async def rem_afk(c: megux, m: Message):
+    if not m.from_user:
+        return
 
+    AFK = get_collection(f"_AFK {m.from_user.id}") 
+
+    user_afk = await AFK.find_one({"_afk": "on"})
+
+    if not user_afk:
+        return
+
+    await AFK.delete_one({"_afk": "on"})
+    await m.reply_text(
+        f"{m.from_user.first_name} não está mais AFK!"
+    )
 
     
