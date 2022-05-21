@@ -39,4 +39,4 @@ async def afk_mentioned(c: megux, m: Message):
         if not user_afk:
             return 
         else:
-            await message.reply({m.from_user.first_name} está AFK!")
+            await message.reply(f"{m.from_user.first_name} está AFK!")
