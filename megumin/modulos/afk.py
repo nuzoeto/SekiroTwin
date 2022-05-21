@@ -18,8 +18,8 @@ async def afk_cmd(_, m: Message):
     await m.reply(f"{m.from_user.first_name} agora está AFK!")
     await m.stop_propagation()
 
-@Smudge.on_message(filters.group & ~filters.bot, group=2)
-async def rem_afk(c: Smudge, m: Message):
+@megux.on_message(filters.group & ~filters.bot, group=2)
+async def rem_afk(c: megux, m: Message):
     if not m.from_user:
         return
  
