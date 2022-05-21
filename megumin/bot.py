@@ -15,11 +15,12 @@ GP_LOGS = Config.GP_LOGS
 class WhiterKang(Client):
     def __init__(self):
         kwargs = {
+            'name': "WhiterKang",
             'api_id': os.environ.get("API_ID"),
             'api_hash': os.environ.get("API_HASH"),
-            'session_name': ":memory:",
             'bot_token': os.environ.get("BOT_TOKEN"),
-            'plugins': dict(root="megumin/modulos")
+            'in_memory': True,
+            'plugins': dict(root="megumin.modulos")
         }
         super().__init__(**kwargs)
 
