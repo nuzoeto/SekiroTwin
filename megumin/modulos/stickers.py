@@ -10,7 +10,7 @@ import httpx
 from PIL import Image
 
 
-from pyrogram import filters, emoji
+from pyrogram import filters, emoji, enums
 from pyrogram.errors import PeerIdInvalid, StickersetInvalid
 from pyrogram.raw.functions.messages import GetStickerSet, SendMedia
 from pyrogram.raw.functions.stickers import AddStickerToSet, CreateStickerSet
