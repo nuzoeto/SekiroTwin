@@ -28,7 +28,7 @@ multidict==5.1.0
 motor
 Pillow==9.1.0
 pyaes==1.6.1
-git+https://github.com/AmanoTeam/pyrogram.git
+git+https://github.com/pyrogram/pyrogram.git
 PyroMod
 PySocks==1.7.1
 pyyaml==6.0
