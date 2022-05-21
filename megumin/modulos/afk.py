@@ -19,9 +19,9 @@ async def rem_afk(c: megux, m: Message):
     if not m.from_user:
         return
 
-    AFK = get_collection(f"_AFK {m.from_user.id}") 
+    AFK_STATUS = get_collection(f"_AFK {m.from_user.id}") 
 
-    user_afk = await AFK.find_one({"_afk": "on"})
+    user_afk = await AFK_STATUS.find_one({"_afk": "on"})
 
     if not user_afk:
         return
@@ -35,7 +35,7 @@ async def rem_afk(c: megux, m: Message):
 async def afk_mentioned(c: megux, m: Message):
     if m.reply_to_message and m.reply_to_message.from_user:
         AFK = get_collection(f"_AFK {m.reply_to_message.from_user.id}")
-        user_afk = await AFK.find_one({"_afk": "on"})
+        user_afk = await AFK_STATUS.find_one({"_afk": "on"})
         if not user_afk:
             return 
         else:
