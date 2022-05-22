@@ -85,6 +85,7 @@ async def setwarnaction_cmd(_, m: Message):
 async def warn_cmd(_, m: Message):
     ids = m.reply_to_message.from_user.id 
     LIMIT = get_collection(f"WARNS_LIMIT {m.chat.id}")
+    GET1 = await LIMIT.find_one({"_warnslimit": "1"})
     WARN = get_collection(f"WARN {m.chat.id} {ids}")
     if await is_self(m.reply_to_message.from_user.id):
         return await m.reply("Não irei me advertir")
