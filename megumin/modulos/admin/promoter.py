@@ -48,7 +48,7 @@ async def _promote_user(_, message: Message):
     if is_admin(chat_id, user_id):
         await message.reply("Como devo promover alguém que já é administrador?")
         return
-    if not await check_bot_rights(chat_id, "can_promote_members"):
+    if not await check_rights(chat_id, megux.me.id, "can_promote_members"):
         await message.reply("Não posso promover/rebaixar pessoas aqui! Verifique se eu sou um(a) administrador(a) e posso adicionar novos administradores.")
         await sed_sticker(message)
         return
@@ -99,7 +99,7 @@ async def _demote_user(_, message: Message):
         return
     if is_dev(user_id):
         return
-    if not await check_bot_rights(chat_id, "can_promote_members"):
+    if not await check_rights(chat_id, megux.me.id, "can_promote_members"):
         await message.reply("Não posso promover/rebaixar pessoas aqui! Verifique se eu sou um(a) administrador(a) e posso adicionar novos administradores.")
         await sed_sticker(message)
         return
