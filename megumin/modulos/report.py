@@ -5,7 +5,7 @@ from megumin import megux
 from megumin.utils import get_collection 
 
 
-admin_status = "administrator" or "creator"
+admin_status = [ChatMemberStatus.ADMINISTRATOR or ChatMemberStatus.OWNER]
 
 @megux.on_message(
     (filters.command("report", prefixes=["/", "!"]) | filters.regex("^@admin"))
@@ -22,7 +22,7 @@ async def report_admins(c: megux, m: Message):
         check_admin = await m.chat.get_member(m.reply_to_message.from_user.id)
         if check_admin.status not in admin_status:
             mention = ""
-            async for i in m.chat.iter_members(filter="administrators"):
+            async for i in m.chat.get_members(filter=ChatMemberFilter.ADMINISTRATORS):
                 if not (i.user.is_deleted or i.is_anonymous or i.user.is_bot):
                     mention += f"<a href='tg://user?id={i.user.id}'>\u2063</a>"
             await m.reply_to_message.reply_text(
