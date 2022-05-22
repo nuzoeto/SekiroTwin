@@ -9,7 +9,7 @@ from megumin import megux
 async def mentionadmins(c: megux, m: Message):
     mention = ""
     async for i in m.chat.get_members(m.chat.id, filter=ChatMembersFilter.ADMINISTRATORS):
-        if not (i.user.is_deleted or i.is_anonymous):
+        if not (i.user.is_deleted or i.privileges.is_anonymous):
             mention += f"{i.user.mention}\n"
     await c.send_message(
         m.chat.id,
