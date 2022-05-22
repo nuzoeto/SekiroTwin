@@ -13,9 +13,13 @@ from megumin.utils import get_collection
 @megux.on_message(filters.regex(r"^(?i)brb(\s(?P<args>.+))?"))
 async def afk_cmd(_, m: Message):
     AFK_STATUS = get_collection(f"_AFK {m.from_user.id}")
+    REASON = get_collection(f"_REASON {m.from_user.id}")
+    xlm = input_str(m)
     await AFK_STATUS.drop()
+    await REASON.drop()
     await AFK_STATUS.insert_one({"_afk": "on"}) 
-    await m.reply(f"{m.from_user.first_name} agora está AFK!")
+    await REASON.insert_one({"_reason": xlm})
+    await m.reply(f"{m.from_user.first_name} agora está AFK!\nDisse que está: {xml}")
     await m.stop_propagation()
 
 @megux.on_message(filters.group & ~filters.bot, group=2)
