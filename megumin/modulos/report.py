@@ -1,6 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import Message
-from pyrogram.enums import ChatMemberStatus, ChatMemberFilter
+from pyrogram.enums import ChatMemberStatus, ChatMembersFilter
 
 
 from megumin import megux 
