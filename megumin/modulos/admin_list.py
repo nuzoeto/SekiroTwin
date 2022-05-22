@@ -7,7 +7,7 @@ from megumin import megux
 @megux.on_message(filters.command("admins", prefixes=["/", "!"]) & filters.group)
 async def mentionadmins(c: megux, m: Message):
     mention = ""
-    async for i in c.iter_chat_members(m.chat.id, filter="administrators"):
+    async for i in m.chat.get_members(m.chat.id, filter=ChatMemberFilter.ADMINISTRATORS):
         if not (i.user.is_deleted or i.is_anonymous):
             mention += f"{i.user.mention}\n"
     await c.send_message(
