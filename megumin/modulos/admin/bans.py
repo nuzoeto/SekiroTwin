@@ -29,7 +29,7 @@ async def _ban_user(_, message: Message):
     if off:
         return
     chat_id = message.chat.id
-    if not await admin_check(chat_id, message.from_user.id):
+    if not await admin_check(message):
         await message.reply("Você não tem direitos administrativos suficientes para banir/desbanir usuários!")
         return
     cmd = len(message.text)
