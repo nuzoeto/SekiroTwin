@@ -20,7 +20,7 @@ async def pin_msg(c: megux, m: Message):
     msg_id = reply.id
     chat = str(f"{gid}").replace("-100", "")
     link = f"https://t.me/c/{chat}/{reply.id}"
-    string = "<i>Eu fixei <a href="{}">esta mensagem</a>.</i>"
+    string = '<i>Eu fixei <a href="{}">esta mensagem</a>.</i>'
     if input_:
         if ("silent" or "s") in input_:
             silent = True
