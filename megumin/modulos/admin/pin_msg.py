@@ -3,6 +3,7 @@ from pyrogram.types import Message
 
 from megumin import megux
 from megumin.utils import check_bot_rights, check_rights
+from megumin.utils.decorators import input_str 
 
 
 @megux.on_message(filters.command("pin"))
