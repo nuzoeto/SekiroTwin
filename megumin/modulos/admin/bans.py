@@ -66,7 +66,7 @@ async def _ban_user(_, message: Message):
     if is_admin(chat_id, user_id):
         await message.reply("Porque eu iria banir um administrador? Isso me parece uma idéia idiota.")
         return
-    if not await check_bot_rights(chat_id, "can_restrict_members"):
+    if not await check_rights(chat_id, c.me.id, "can_restrict_members"):
         await message.reply("Não posso restringir as pessoas aqui! Certifique-se de que sou administrador e de que posso adicionar novos administradores.")
         await sed_sticker(message)
         return
