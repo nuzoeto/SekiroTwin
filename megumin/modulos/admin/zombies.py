@@ -2,6 +2,7 @@ import os
 import re
 
 from pyrogram import filters
+from pyrogram.enums import ChatType
 from pyrogram.types import Message
 from pyrogram.errors import BadRequest, Forbidden
 
@@ -21,7 +22,7 @@ from megumin.utils import (
 @megux.on_message(filters.command(["cleanup", "zombies"], prefixes=["/", "!"]))
 async def cleanup(c: megux, m: Message):
     chat_id = m.chat.id
-    if m.chat.type == "private":
+    if m.chat.type == ChatType.PRIVATE:
         await m.reply_text("Este comando é para ser usado em grupos!")
         return
     if await check_rights(chat_id, m.from_user.id, "can_restrict_members"): 
