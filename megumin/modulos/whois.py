@@ -2,6 +2,7 @@ from datetime import datetime
 import httpx
 
 from pyrogram import filters
+from pyrogram.enums import UserStatus
 from pyrogram.errors import BadRequest
 from pyrogram.types import User, Message
 
@@ -28,17 +29,17 @@ infotext = (
 def LastOnline(user: User):
     if user.is_bot:
         return "bot"
-    elif user.status == "recently":
+    elif user.status == UserStatus.RECENTLY:
         return "Recentemente"
-    elif user.status == "within_week":
+    elif user.status == UserStatus.WITHIN_WEEK:
         return "Na última semana"
-    elif user.status == "within_month":
+    elif user.status == UserStatus.WITHIN_MONTH:
         return "No último mês"
-    elif user.status == "long_time_ago":
+    elif user.status == UserStatus.LONG_TIME_AGO:
         return "Há muito tempo :("
-    elif user.status == "online":
+    elif user.status == UserStatus.ONLINE:
         return "Online"
-    elif user.status == "offline":
+    elif user.status == UserStatus.OFFLINE:
         return datetime.fromtimestamp(user.status.date).strftime(
             "%a, %d %b %Y, %H:%M:%S"
         )
