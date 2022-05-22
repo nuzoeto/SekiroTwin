@@ -28,7 +28,7 @@ async def pin_msg(c: megux, m: Message):
         await megux.pin_chat_message(gid, msg_id, disable_notification=silent)
         await m.reply(string.format(link))
     except Exception as e:
-        await kuuhaku.send_err(e)
+        await megux.send_log(e)
 
 
 @megux.on_message(filters.command("unpin", trg))
