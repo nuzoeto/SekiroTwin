@@ -84,12 +84,13 @@ async def setwarnaction_cmd(_, m: Message):
 @megux.on_message(filters.command("warn", Config.TRIGGER))
 async def warn_cmd(_, m: Message):
     ids = m.reply_to_message.from_user.id 
+    LIMIT = get_collection(f"WARNS_LIMIT {m.chat.id}")
     WARN = get_collection(f"WARN {m.chat.id} {ids}")
     if await is_self(m.reply_to_message.from_user.id):
         return await m.reply("Não irei me advertir")
     if await admin_check(m.reply_to_message):
         return await m.reply("Não irei advertir um administrador") 
-    if not await check_bot_rights(m.chat.id, "can_restrict_members"):
+    if not await check_rights(m.chat.id, megux.me.id, "can_restrict_members"):
         return await m.reply("Eu não tenho permissão suficiente para advertir usuários")
     if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"):          
         name_user = (m.reply_to_message.from_user.mention())
