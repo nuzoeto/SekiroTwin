@@ -52,7 +52,10 @@ async def pin_msg(c: megux, m: Message):
             pass
     elif reply:
         try:
-            await m.reply("__Eu desfixei esta mensagem.__")
+            chat = str(f"{gid}").replace("-100", "")
+            link = f"https://t.me/c/{chat}/{reply.id}"
+            string = '<i>Eu fixei <a href="{}">esta mensagem</a>.</i>'
+            await m.reply(string.format(link))
             return await megux.unpin_chat_message(gid, reply.id)
         except Exception as e:
             await megux.send_log(e)
