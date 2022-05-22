@@ -5,7 +5,7 @@ from megumin import megux
 from megumin.utils import check_bot_rights, check_rights
 
 
-@megux.on_message(filters.command("pin", trg))
+@megux.on_message(filters.command("pin"))
 async def pin_msg(c: megux, m: Message):
     input_ = input_str(m).split()
     reply = m.reply_to_message
@@ -31,7 +31,7 @@ async def pin_msg(c: megux, m: Message):
         await megux.send_log(e)
 
 
-@megux.on_message(filters.command("unpin", trg))
+@megux.on_message(filters.command("unpin"))
 async def pin_msg(c: megux, m: Message):
     input_ = input_str(m).split()
     reply = m.reply_to_message
