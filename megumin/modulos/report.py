@@ -22,6 +22,8 @@ async def report_admins(c: megux, m: Message):
         return
     if m.reply_to_message.from_user:
         check_admin = await m.chat.get_member(m.reply_to_message.from_user.id)
+        user = m.from_user.mention() 
+        chat = m.chat.title
         if check_admin.status not in admin_status:
             mention = ""
             async for i in m.chat.get_members(filter=ChatMembersFilter.ADMINISTRATORS):
@@ -33,3 +35,4 @@ async def report_admins(c: megux, m: Message):
                     reported_user=m.reply_to_message.from_user.mention(),
                 ),
             )
+            await c.send_message(i.user.id, f"{user} está chamando os administradores no "{chat}" ") 
