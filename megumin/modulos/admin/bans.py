@@ -222,7 +222,8 @@ async def kickme_(_, message: Message):
             if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
                 await message.reply("Eu não sou um(a) administrador(a)!")
                 return
-            await message.reply("Sem Problemas.")
-            await megux.ban_chat_member(chat_id, user_id)
+            else:
+                await message.reply("Sem Problemas.")
+                await megux.ban_chat_member(chat_id, user_id)
         except Exception as e:
             await message.reply(f"**ERRO:**\n{e}")
