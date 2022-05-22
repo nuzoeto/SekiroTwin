@@ -129,7 +129,7 @@ async def _kick_user(_, message: Message):
     if off:
         return
     chat_id = message.chat.id
-    if not await admin_check(chat_id, message.from_user.id):
+    if not await admin_check(message):
         await message.reply("Você não tem as seguintes permissões: **Can restrict members**")
         return
     cmd = len(message.text)
