@@ -166,7 +166,7 @@ async def _kick_user(_, message: Message):
     if is_admin(chat_id, user_id):
         await message.reply("Porque eu iria kickar um(a) administrador(a)? Isso me parece uma idéia bem idiota.")
         return
-    if not await check_rights(chat_id, megux.me.id "can_restrict_members"):
+    if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
         await message.reply("Não posso restringir as pessoas aqui! Certifique-se de que sou administrador e de que posso adicionar novos administradores.")
         await sed_sticker(message)
         return
@@ -222,8 +222,7 @@ async def kickme_(_, message: Message):
             if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
                 await message.reply("Eu não sou um(a) administrador(a)!")
                 return
-            else:
-                await message.reply("Sem Problemas.")
-                await megux.ban_chat_member(chat_id, user_id)
+            await message.reply("Sem Problemas.")
+            await megux.ban_chat_member(chat_id, user_id)
         except Exception as e:
             await message.reply(f"**ERRO:**\n{e}")
