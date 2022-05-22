@@ -1,4 +1,5 @@
 from pyrogram import filters 
+from pyrogram.enums import ChatType
 from pyrogram.types import Message 
 
 from megumin import megux, Config
@@ -30,7 +31,7 @@ async def setwarnlimit_cmd(_, m: Message):
     chat_id = m.chat.id 
     check_admin = m.from_user.id  
     query = input_str(m)
-    if m.chat.type == "private":
+    if m.chat.type == ChatType.PRIVATE:
         return await m.reply("Esse comando é para ser usado em grupos.")
     else:
         if not query in NUMBER:
@@ -58,7 +59,7 @@ async def setwarnaction_cmd(_, m: Message):
     chat_id = m.chat.id 
     check_admin = m.from_user.id  
     query = input_str(m)
-    if m.chat.type == "private":
+    if m.chat.type == ChatType.PRIVATE:
         return await m.reply("Esse comando é para ser usado em grupos.")
     else:
         if not query in ACTION:
