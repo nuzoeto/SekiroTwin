@@ -44,7 +44,7 @@ async def pin_msg(c: megux, m: Message):
     if input_:
         if "all" in input_:
             try:
-                await m.reply("__Eu desfixei todas mensagens do chat.__")
+                await m.reply("<i>Eu desfixei todas mensagens do chat.<i>")
                 return await megux.unpin_all_chat_messages(gid)
             except Exception as e:
                 await megux.send_log(e)
