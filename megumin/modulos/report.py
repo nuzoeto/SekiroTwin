@@ -35,4 +35,4 @@ async def report_admins(c: megux, m: Message):
                     reported_user=m.reply_to_message.from_user.mention(),
                 ),
             )
-            await c.send_message(i.user.id, f""{user} está chamando os administradores no "{chat}" "") 
+            await c.send_message(i.user.id, f"{user} está chamando os administradores no {chat}") 
