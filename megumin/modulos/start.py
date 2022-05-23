@@ -532,6 +532,8 @@ Aqui está a ajuda para o módulo **Outros**:
 • /telegraph ou /tg Envie uma mídia para o telegra.ph.
 • /reverse Faz uma busca reversa de imagens(usando o google) basta responder uma imagem ou sticker com /reverse.
 • /short <b>(url)</b> Encurta o link especificado.
+• /afk ou brb - Adicionará você como [afk](https://bit.ly/3yaR9TL) e toda vez que alguém marcar você em um grupo eu irei responder falando que você está afk.
+
     """
         button = InlineKeyboardMarkup(
             [
