@@ -235,7 +235,7 @@ Aqui está a ajuda para o módulo <b>Anilist</b>:
         )
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=info_text,
             reply_markup=button,
         )
@@ -261,7 +261,7 @@ Aqui está a ajuda para o módulo <b>Android</b>:
         )
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=info_text,
             reply_markup=button,
         )
@@ -287,7 +287,7 @@ Antes de tudo você deve estar registrado no lastfm
         )
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=info_text,
             reply_markup=button,
         )
@@ -307,7 +307,7 @@ Under development...
         )
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=info_text,
             reply_markup=button,
         )
@@ -329,7 +329,7 @@ Aqui está a ajuda para o módulo <b>Tradutor</b>:
         )
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=info_text,
             reply_markup=button,
         )
@@ -353,7 +353,7 @@ Aqui está a ajuda para o módulo **YouTube**:
         )
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=info_text,
             reply_markup=button,
         )
@@ -386,7 +386,7 @@ Um exemplo de silenciar alguém temporariamente:
         )
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=info_text,
             reply_markup=button,
         )
@@ -408,7 +408,7 @@ Aqui está a ajuda para o módulo **GitHub**:
         )
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=info_text,
             reply_markup=button,
         )
@@ -438,7 +438,7 @@ Isso permite que você desative alguns comandos.
         )
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=info_text,
             reply_markup=button,
         )
@@ -479,7 +479,7 @@ Isso permite que você desative alguns comandos.
         )
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=info_text,
             reply_markup=button,
         )
@@ -510,7 +510,7 @@ Aqui está a ajuda para o módulo **Memes**:
         )
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=info_text,
             reply_markup=button,
         )
@@ -542,7 +542,7 @@ Aqui está a ajuda para o módulo **Outros**:
         )
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=info_text,
             reply_markup=button,
         )
@@ -565,7 +565,7 @@ Aqui está a ajuda para o módulo <b>Purges</b>:
         )
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=info_text,
             reply_markup=button,
         )
@@ -589,7 +589,7 @@ Aqui está a ajuda para o modulo <b>Stickers</b>:
         )
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=info_text,
             reply_markup=button,
         )
