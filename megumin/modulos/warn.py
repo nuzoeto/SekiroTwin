@@ -86,23 +86,50 @@ async def warn_cmd(_, m: Message):
     ids = m.reply_to_message.from_user.id 
     LIMIT = get_collection(f"WARNS_LIMIT {m.chat.id}")
     GET1 = await LIMIT.find_one({"_warnslimit": "1"})
+    GET2 = await LIMIT.find_one({"_warnslimit": "2"})
+    GET3 = await LIMIT.find_one({"_warnslimit": "3"})
+    GET4 = await LIMIT.find_one({"_warnslimit": "4"})
+    GET5 = await LIMIT.find_one({"_warnslimit": "5"})
+    GET6 = await LIMIT.find_one({"_warnslimit": "6"})
+    GET7 = await LIMIT.find_one({"_warnslimit": "7"})
     WARN = get_collection(f"WARN {m.chat.id} {ids}")
     if await is_self(m.reply_to_message.from_user.id):
         return await m.reply("Não irei me advertir")
     if await admin_check(m.reply_to_message):
         return await m.reply("Não irei advertir um administrador") 
+    if GET1:
+        max_count = 1
+        return
+    if GET2:
+        max_count = 2 
+        return
+    if GET3: 
+        max_count = 3
+        return 
+    if GET4:
+        max_count = 4
+        return 
+    if GET5:
+        max_count = 5
+        return 
+    if GET6:
+        max_count = 6
+        return 
+    if GET7:
+        max_count = 7
+        return 
     if not await check_rights(m.chat.id, megux.me.id, "can_restrict_members"):
         return await m.reply("Eu não tenho permissão suficiente para advertir usuários")
     if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"):          
         name_user = (m.reply_to_message.from_user.mention())
         await WARN.insert_one({"id_": ids, "title": name_user})
         WARNS = await WARN.estimated_document_count()
-        if WARNS > 2: 
-            await m.reply(f"{WARNS}/3 Advertencias, {name_user} foi banido!")
+        if WARNS == max_count: 
+            await m.reply(f"{WARNS}/{max_count} Advertencias, {name_user} foi banido!")
             await WARN.drop()
             await megux.ban_chat_member(m.chat.id, m.reply_to_message.from_user.id)
         else:
-            await m.reply(f"{name_user} tem {WARNS}/3 advertências.") 
+            await m.reply(f"{name_user} tem {WARNS}/{max_count} advertências.") 
     else:
         return await m.reply("Você não tem permissão suficiente para advertir usuários!")
         
