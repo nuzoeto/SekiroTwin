@@ -1,6 +1,6 @@
 from pyrogram import filters 
 from pyrogram.enums import ChatType
-from pyrogram.types import Message
+from pyrogram.types import Message, ChatPermissions
 
 from megumin import megux, Config
 from megumin.utils import get_collection, check_rights, is_admin, is_self, admin_check, check_bot_rights   
@@ -137,8 +137,9 @@ async def warn_cmd(_, m: Message):
             if MUTE:
                 await m.reply(f"{WARNS}/{max_count} Advertencias, {name_user} foi silenciado!")
                 await WARN.drop()
+                await megux.restrict_chat_member(m.chat.id, m.reply_to_message.from_user.id, ChatPermissions())
         else:
-            await m.reply(f"{name_user} tem {WARNS}/{max_count} advertências.") 
+            await m.reply(f"{name_user} <b>foi advertido!</b>\nEle(a) tem {WARNS}/{max_count} advertências.") 
     else:
         return await m.reply("Você não tem permissão suficiente para advertir usuários!")
         
