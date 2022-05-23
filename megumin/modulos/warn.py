@@ -69,13 +69,14 @@ async def setwarnaction_cmd(_, m: Message):
             found = await CHAT_ACTION.find_one()
             if found:
                 if await check_rights(chat_id, check_admin, "can_change_info"):
-                    await CHAT_ACTION.delete_one({"_action": query})
+                    await CHAT_ACTION.drop()
                     await CHAT_ACTION.insert_one({"_action": query})
                     await m.reply(f"A ação após o número de advertência atingida foi alterado para **{query}**")
                 else:
                     return await m.reply("`Você precisa de permissão para fazer isso.`")
             else:
                 if await check_rights(chat_id, check_admin, "can_change_info"):
+                    await CHAT_ACTION.drop()
                     await CHAT_ACTION.insert_one({"_action": query})
                     await m.reply(f"A ação após o número de advertência atingida foi alterado para **{query}**")
                 else: 
@@ -86,6 +87,7 @@ async def setwarnaction_cmd(_, m: Message):
 async def warn_cmd(_, m: Message):
     ids = m.reply_to_message.from_user.id 
     LIMIT = get_collection(f"WARNS_LIMIT {m.chat.id}")
+    ACTION = get_collection(f"ACTION {m.chat.id}")
     GET1 = await LIMIT.find_one({"_warnslimit": "1"})
     GET2 = await LIMIT.find_one({"_warnslimit": "2"})
     GET3 = await LIMIT.find_one({"_warnslimit": "3"})
@@ -93,6 +95,8 @@ async def warn_cmd(_, m: Message):
     GET5 = await LIMIT.find_one({"_warnslimit": "5"})
     GET6 = await LIMIT.find_one({"_warnslimit": "6"})
     GET7 = await LIMIT.find_one({"_warnslimit": "7"})
+    BAN = await ACTION.find_one({"_action": "ban"})
+    KICK = await ACTION.find_one({"_action": "kick"})
     WARN = get_collection(f"WARN {m.chat.id} {ids}")
     if await is_self(m.reply_to_message.from_user.id):
         return await m.reply("Não irei me advertir")
@@ -111,8 +115,7 @@ async def warn_cmd(_, m: Message):
     if GET6:
         max_count = 6
     if GET7:
-        max_count = 7
-    
+        max_count = 7    
     if not await check_rights(m.chat.id, megux.me.id, "can_restrict_members"):
         return await m.reply("Eu não tenho permissão suficiente para advertir usuários")
     if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"):          
@@ -120,9 +123,15 @@ async def warn_cmd(_, m: Message):
         await WARN.insert_one({"id_": ids, "title": name_user})
         WARNS = await WARN.estimated_document_count()
         if WARNS == max_count: 
-            await m.reply(f"{WARNS}/{max_count} Advertencias, {name_user} foi banido!")
-            await WARN.drop()
-            await megux.ban_chat_member(m.chat.id, m.reply_to_message.from_user.id)
+            if BAN:
+                await m.reply(f"{WARNS}/{max_count} Advertencias, {name_user} foi banido!")
+                await WARN.drop()
+                await megux.ban_chat_member(m.chat.id, m.reply_to_message.from_user.id)
+            if KICK:
+                await m.reply(f"{WARNS}/{max_count} Advertencias, {name_user} foi kickado!")
+                await WARN.drop()
+                await megux.ban_chat_member(m.chat.id, m.reply_to_message.from_user.id)
+                await megux.unban_chat_member(m.chat.id, m.reply_to_message.from_user.id)
         else:
             await m.reply(f"{name_user} tem {WARNS}/{max_count} advertências.") 
     else:
