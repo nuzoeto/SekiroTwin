@@ -30,7 +30,7 @@ async def setwarnlimit_cmd(_, m: Message):
     LIMIT = get_collection(f"WARNS_LIMIT {m.chat.id}")
     chat_id = m.chat.id 
     check_admin = m.from_user.id  
-    query = input_str(m)
+    query = input_str(m).split()
     if m.chat.type == ChatType.PRIVATE:
         return await m.reply("Esse comando é para ser usado em grupos.")
     else:
@@ -99,25 +99,18 @@ async def warn_cmd(_, m: Message):
         return await m.reply("Não irei advertir um administrador") 
     if GET1:
         max_count = 1
-        return
     if GET2:
         max_count = 2 
-        return
     if GET3: 
         max_count = 3
-        return 
     if GET4:
         max_count = 4
-        return 
     if GET5:
         max_count = 5
-        return 
     if GET6:
         max_count = 6
-        return 
     if GET7:
         max_count = 7
-        return 
     if not await check_rights(m.chat.id, megux.me.id, "can_restrict_members"):
         return await m.reply("Eu não tenho permissão suficiente para advertir usuários")
     if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"):          
