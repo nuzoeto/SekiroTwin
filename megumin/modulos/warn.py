@@ -137,7 +137,6 @@ async def warn_cmd(_, m: Message):
             if MUTE:
                 await m.reply(f"{WARNS}/{max_count} Advertencias, {name_user} foi silenciado!")
                 await WARN.drop()
-                await megux.restrict_chat_member(chat_id, user_id, ChatPermissions())
         else:
             await m.reply(f"{name_user} tem {WARNS}/{max_count} advertências.") 
     else:
