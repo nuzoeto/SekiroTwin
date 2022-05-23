@@ -1,6 +1,6 @@
 from pyrogram import filters 
 from pyrogram.enums import ChatType
-from pyrogram.types import Message 
+from pyrogram.types import Message, await megux.restrict_chat_member(chat_id, user_id, ChatPermissions
 
 from megumin import megux, Config
 from megumin.utils import get_collection, check_rights, is_admin, is_self, admin_check, check_bot_rights   
@@ -97,6 +97,8 @@ async def warn_cmd(_, m: Message):
     GET7 = await LIMIT.find_one({"_warnslimit": "7"})
     BAN = await ACTION.find_one({"_action": "ban"})
     KICK = await ACTION.find_one({"_action": "kick"})
+    MUTE = await ACTION.find_one({"_action": "mute"})
+    
     WARN = get_collection(f"WARN {m.chat.id} {ids}")
     if await is_self(m.reply_to_message.from_user.id):
         return await m.reply("Não irei me advertir")
@@ -132,6 +134,10 @@ async def warn_cmd(_, m: Message):
                 await WARN.drop()
                 await megux.ban_chat_member(m.chat.id, m.reply_to_message.from_user.id)
                 await megux.unban_chat_member(m.chat.id, m.reply_to_message.from_user.id)
+            if MUTE:
+                await m.reply(f"{WARNS}/{max_count} Advertencias, {name_user} foi silenciado!")
+                await WARN.drop()
+                
         else:
             await m.reply(f"{name_user} tem {WARNS}/{max_count} advertências.") 
     else:
