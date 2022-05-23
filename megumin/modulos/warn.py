@@ -1,6 +1,6 @@
 from pyrogram import filters 
 from pyrogram.enums import ChatType
-from pyrogram.types import Message, await megux.restrict_chat_member(chat_id, user_id, ChatPermissions
+from pyrogram.types import Message
 
 from megumin import megux, Config
 from megumin.utils import get_collection, check_rights, is_admin, is_self, admin_check, check_bot_rights   
