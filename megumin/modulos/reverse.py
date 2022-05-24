@@ -7,7 +7,7 @@ from pyrogram import filters
 from pyrogram.types import Message 
 
 from megumin import megux, Config
-from megumin.utils import get_collection  
+from megumin.utils import get_collection, get_string   
 
 
 def GRS(path_to_file):
@@ -47,7 +47,7 @@ async def reverse_search(_, message: Message):
     if message.reply_to_message:
         try:
             media = await message.reply_to_message.download()
-            msg = await message.reply("`Processando...`")
+            msg = await message.reply(await get_string(message.chat.id, "REVERSING"))
         except ValueError:
             return await msg.edit("`Responda a uma foto ou sticker.`")
         if media.endswith((".jpg", ".gif", ".png", ".bmp", ".tif", ".webp")):
@@ -55,7 +55,7 @@ async def reverse_search(_, message: Message):
                 reverse = GRS(media)
             except BaseException as error:
                 return await msg.edit(error)
-            text = "**Resultados da pesquisa:** "
+            text = await get_string(message.chat.id, "REVERSE_RESULTS")
             if reverse:
                 text += f"[{reverse[1]}]({reverse[0]})"
             else:
