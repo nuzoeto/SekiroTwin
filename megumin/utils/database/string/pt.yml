@@ -8,4 +8,5 @@ LANG_: "<i>Idioma inválido. os idiomas disponiveis atualmente são: PT, EN</i>"
 
 #stickers 
 
+KANGING: "Stealing the sticker..."
 STICKERS_KANGED: "<b>Sticker roubado com sucesso!</b>\n<a href='t.me/addstickers/{}'>Pack</a>.\n<b>Emoji:</b> {}"
