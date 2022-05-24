@@ -49,7 +49,7 @@ async def song_(c: megux, message: Message):
         return await message.reply("`Vou baixar o vento?!`")
     if message.from_user.id in Config.BLACK_LIST:
         return await message.reply("`Se baixe porque não irei baixar para você...`")
-    msg = await message.reply("📦 <i>Baixando... </i>")
+    msg = await message.reply(await get_string(m.chat.id, "DOWNLOAD_YT"))
     link = await get_link(query)
     aud_opts = {
         "outtmpl": os.path.join(path_, "%(title)s.%(ext)s"),
