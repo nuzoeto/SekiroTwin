@@ -5,7 +5,8 @@ from pyrogram.enums import ChatType
 from pyrogram.types import Message
 
 from megumin import megux
-from megumin.utils import get_collection, check_rights, get_string, add_lang, input_str
+from megumin.utils import get_collection, check_rights, get_string, add_lang
+from megumin.utils.decorators import input_str 
 
 
 CHAT_LANG = get_collection("CHAT_LANG")
