@@ -111,7 +111,7 @@ async def start_(c: megux, message: Message):
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
             message_id=cb.message.id,
-            caption=START_PRIVADO,
+            caption=await get_string(cb.chat.id, "START"),
             reply_markup=keyboard,
         )
 
