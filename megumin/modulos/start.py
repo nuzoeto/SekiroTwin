@@ -283,7 +283,7 @@ Under development...
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
                 ]
             ]
         )
@@ -305,7 +305,7 @@ Aqui está a ajuda para o módulo <b>Tradutor</b>:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
                 ]
             ]
         )
@@ -329,7 +329,7 @@ Aqui está a ajuda para o módulo **YouTube**:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
                 ]
             ]
         )
@@ -362,7 +362,7 @@ Um exemplo de silenciar alguém temporariamente:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
                 ]
             ]
         )
@@ -384,7 +384,7 @@ Aqui está a ajuda para o módulo **GitHub**:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
                 ]
             ]
         )
@@ -414,7 +414,7 @@ Isso permite que você desative alguns comandos.
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
                 ]
             ]
         )
@@ -455,7 +455,7 @@ Isso permite que você desative alguns comandos.
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
                 ]
             ]
         )
@@ -486,7 +486,7 @@ Aqui está a ajuda para o módulo **Memes**:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
                 ]
             ]
         )
@@ -520,7 +520,7 @@ Aqui está a ajuda para o módulo **Outros**:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
                 ]
             ]
         )
@@ -543,7 +543,7 @@ Aqui está a ajuda para o módulo <b>Purges</b>:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
                 ]
             ]
         )
@@ -567,7 +567,7 @@ Aqui está a ajuda para o modulo <b>Stickers</b>:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
                 ]
             ]
         )
