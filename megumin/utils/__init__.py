@@ -1,4 +1,5 @@
 from .database import get_collection
+from .database.lang import get_string, add_lang
 from .functions import rand_array  # nao_meche
 from .logger import logging
 from .tools import extract_time  # nao_meche
