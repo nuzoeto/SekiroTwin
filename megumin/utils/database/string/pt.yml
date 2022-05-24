@@ -25,7 +25,7 @@ STICKERS_KANGED: "<b>Sticker roubado com sucesso!</b>\n<a href='t.me/addstickers
 
 #YOUTUBE_DL 
 DOWNLOAD_YT: "📦 <i>Baixando...</i>"
-NO_ARGS_YT: "<code>Vou baixar o vento?!</code>
+NO_ARGS_YT: "<code>Vou baixar o vento?!</code>"
 
 #reverse
 REVERSE_RESULTS: "<b>Resultados da pesquisa:</b> "
