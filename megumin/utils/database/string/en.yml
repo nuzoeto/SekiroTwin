@@ -6,7 +6,7 @@ LANG_: "<i>Invalid language. Currently available languages are: PT, EN</i>"
 
 
 #bot
-START: "Hi!  My name is <b>WhiterKang</b> I'm a useful and fun bot for you :3\n\n<i>If you like my features add me to your group!</i>\n\n<b>WhiterKang's News 📬</b>: [Click here](https://t.me/whiterkangnews)"
+START: "Hi! My name is <b>WhiterKang</b> I'm a useful and fun bot for you :3\n\n<i>If you like my features add me to your group!</i>\n\n<b>WhiterKang's News 📬</b>: [Click here](https://t.me/whiterkangnews)"
 
 BACK_BNT: "⬅️ Back"
 HELP_BNT: "❔ Help"
