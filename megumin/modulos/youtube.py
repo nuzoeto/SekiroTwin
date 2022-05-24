@@ -46,7 +46,7 @@ async def song_(c: megux, message: Message):
         return
     query = " ".join(message.text.split()[1:])
     if not query:
-        return await message.reply("`Vou baixar o vento?!`")
+        return await message.reply(await get_string(message.chat.id, "NO_ARGS_YT"))
     if message.from_user.id in Config.BLACK_LIST:
         return await message.reply("`Se baixe porque não irei baixar para você...`")
     msg = await message.reply(await get_string(message.chat.id, "DOWNLOAD_YT"))
@@ -102,10 +102,10 @@ async def vid_(c: megux, message: Message):
         return
     query = " ".join(message.text.split()[1:])
     if not query:
-        return await message.reply("`Vou baixar o vento?!`")
+        return await message.reply(await get_string(message.chat.id, "NO_ARGS_YT"))
     if message.from_user.id in Config.BLACK_LIST:
         return await message.reply("Se baixe porque não irei baixar para você...") 
-    msg = await message.reply("📦 <i>Baixando...</i>")
+    msg = await message.reply(await get_string(message.chat.id, "DOWNLOAD_YT"))
     vid_opts = {
         "outtmpl": os.path.join(path_, "%(title)s.%(ext)s"),
         'writethumbnail': False,
