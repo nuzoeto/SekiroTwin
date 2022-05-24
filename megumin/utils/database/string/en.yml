@@ -3,3 +3,6 @@ language_flag: "🇱🇷 English"
 LANG_SET: "<i>The chat language has been set to 🇺🇸 English.</i>"
 LANG: "<i>I need you to enter a value.</i>\n<code>Ex: /setlang en</code>"
 LANG_: "<i>Invalid language. Currently available languages are: PT, EN</i>"
+
+#stickers
+STICKERS_KANGED: "<b>Sticker successfully stolen!</b>\n<a href='t.me/addstickers/{}'>Pack</a>.\n<b>Emoji:</b> {}"
