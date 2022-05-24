@@ -152,7 +152,7 @@ async def kang_sticker(c: megux, m: Message):
         elif reply.sticker:
             if not reply.sticker.file_name:
                 return await prog_msg.edit_text(
-                    "O sticker não tem nome."
+                    await get_string(m.chat.id, "STICKER_NOT_NAME")
                 )
             if reply.sticker.emoji:
                 sticker_emoji = reply.sticker.emoji
@@ -219,7 +219,7 @@ async def kang_sticker(c: megux, m: Message):
                 )
             resize = True
     else:
-        return await prog_msg.edit_text("Quer que eu adivinhe o sticker? Por Favor marque um sticker.")
+        return await prog_msg.edit_text(await get_string(m.chat.id, "STICKER_NO_REPLY"))
     try:
         if resize:
             filename = resize_image(filename)
@@ -261,7 +261,7 @@ async def kang_sticker(c: megux, m: Message):
         msg_ = media.updates[-1].message
         stkr_file = msg_.media.document
         if packname_found:
-            await prog_msg.edit_text("<code>Usando o pacote de stickers existente...</code>")
+            await prog_msg.edit_text(await get_string(m.chat.id, "USE_EXISTING_PACK"))
             await c.invoke(
                 AddStickerToSet(
                     stickerset=InputStickerSetShortName(short_name=packname),
@@ -276,7 +276,7 @@ async def kang_sticker(c: megux, m: Message):
                 )
             )
         else:
-            await prog_msg.edit_text("<b>Criando um novo pacote de stickers...</b>")
+            await prog_msg.edit_text(await get_string(m.chat.id, "CREATE_STICKER_PACK"))
             stkr_title = f"{m.from_user.first_name[:32]}'s "
             if animated:
                 stkr_title += "WhiterKang AnimPack"
@@ -306,7 +306,7 @@ async def kang_sticker(c: megux, m: Message):
                 )
             except PeerIdInvalid:
                 return await prog_msg.edit_text(
-                    "Parece que você nunca interagiu comigo no chat privado, é necessário que faça isso primeiro. .",
+                    await get_string(m.chat.id, "STICKERS_NOT_FOUND_USER"),
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
@@ -322,7 +322,7 @@ async def kang_sticker(c: megux, m: Message):
         await prog_msg.edit_text(f"{all_e.__class__.__name__} : {all_e}")
     else:
         await prog_msg.edit_text(
-            "<b>Sticker roubado com sucesso!</b>\n<a href='t.me/addstickers/{}'>Pack</a>.\n<b>Emoji:</b> {}".format(packname, sticker_emoji)
+            await get_string(m.chat.id, "STICKERS_KANGED").format(packname, sticker_emoji)
         )
         # Cleanup
         await c.delete_messages(chat_id=CHAT_LOGS, message_ids=msg_.id, revoke=True)
