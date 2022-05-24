@@ -4,6 +4,8 @@
 from .bot import megux
 from pyrogram import idle
 import asyncio
+from .utils.database.lang import load_language
+
 
 async def main():
     await megux.start()
