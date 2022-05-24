@@ -24,5 +24,5 @@ STICKERS_KANGED: "<b>Sticker successfully stolen!</b>\n<a href='t.me/addstickers
 DOWNLOAD_YT: "📦 <i>Downloading...</i>"
 
 #reverse
-REVERSE_RESULTS: "<b>Search Results:</b> "
+REVERSE_RESULTS: "<b>Search Results:</b>"
 REVERSING: "<code>Processing...</code>
