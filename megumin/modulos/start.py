@@ -111,7 +111,7 @@ async def start_(c: megux, message: Message):
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
             message_id=cb.message.id,
-            caption=await get_string(cb.chat.id, "START"),
+            caption=await get_string(cb.message.chat.id, "START"),
             reply_markup=keyboard,
         )
 
@@ -172,7 +172,7 @@ Todos os comandos podem ser usados com os seguintes caracteres: <code>/ !</code>
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
             message_id=cb.message.id,
-            caption=await get_string(cb.chat.id, "START"),
+            caption=await get_string(cb.message.chat.id, "START"),
             reply_markup=keyboard,
         )
 
