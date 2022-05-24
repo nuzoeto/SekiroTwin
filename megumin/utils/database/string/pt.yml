@@ -26,3 +26,6 @@ STICKERS_KANGED: "<b>Sticker roubado com sucesso!</b>\n<a href='t.me/addstickers
 #YOUTUBE_DL 
 DOWNLOAD_YT: "📦 <i>Baixando...</i>"
 
+#reverse
+REVERSE_RESULTS: "<b>Resultados da pesquisa:</b>"
+REVERSING: "<code>Processando...</code>"
