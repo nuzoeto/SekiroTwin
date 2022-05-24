@@ -26,3 +26,8 @@ async def set_lang(_, m: Message):
     await add_lang(m.chat.id, lang.split()[0])
     await asyncio.sleep(2)
     await m.reply(await get_string(m.chat.id, "LANG_SET"))
+
+
+@megux.on_message(filters.command(["l"]))
+async def test_lang(_, m: Message):
+    await m.reply(await get_string(m.chat.id, "language"))
