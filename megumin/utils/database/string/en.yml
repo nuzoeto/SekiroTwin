@@ -1,2 +1,3 @@
 language: "en"
-language_flag: 🇱🇷 English
+language_flag: "🇱🇷 English"
+LANG_SET: "<i>The chat language has been set to 🇺🇸 English.</i>"
