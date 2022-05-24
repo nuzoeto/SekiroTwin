@@ -146,7 +146,7 @@ async def start_(c: megux, message: Message):
                     InlineKeyboardButton("Desativar", callback_data="disable_help_button"),
                 ],
                 [
-                    InlineKeyboardButton("⬅ Voltar", callback_data="start_back"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="start_back"),
                 ],
             ]
         )
@@ -186,7 +186,7 @@ Aqui está a ajuda para o módulo <b>Admin</b>:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
                 ]
             ]
         )
@@ -211,7 +211,7 @@ Aqui está a ajuda para o módulo <b>Anilist</b>:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
                 ]
             ]
         )
@@ -237,7 +237,7 @@ Aqui está a ajuda para o módulo <b>Android</b>:
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
                 ]
             ]
         )
@@ -263,7 +263,7 @@ Antes de tudo você deve estar registrado no lastfm
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅ Voltar", callback_data="help_menu"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
                 ]
             ]
         )
