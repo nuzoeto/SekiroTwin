@@ -8,6 +8,7 @@ from .utils.database.lang import load_language
 
 
 async def main():
+    load_language()
     await megux.start()
     await idle()
     await megux.stop()
