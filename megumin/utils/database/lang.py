@@ -5,7 +5,7 @@ from megumin.utils import get_collection
 CHAT_LANG = get_collection("CHAT_LANG")
 STRINGS = "megumin/utils/database/string/"
 
-language_string = {"LANG_SET"}
+language_string = {}
 
 
 async def add_lang(gid: int, lang: str):
