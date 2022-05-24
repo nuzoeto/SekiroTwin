@@ -48,7 +48,7 @@ async def start_(c: megux, message: Message):
     if message.chat.type == ChatType.PRIVATE:
         keyboard = InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton(text="❔Ajuda", callback_data="help_menu"),
+                [InlineKeyboardButton(text=await get_string(message.chat.id, "HELP_BNT"), callback_data="help_menu"),
                  InlineKeyboardButton(text="📦 Código Fonte", url="https://github.com/davitudoplugins1234/WhiterKang")
                 ],
                 [
