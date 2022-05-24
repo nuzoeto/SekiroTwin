@@ -109,7 +109,7 @@ async def kang_sticker(c: megux, m: Message):
     off = await DISABLED.find_one({"_cmd": query})
     if off:
         return
-    prog_msg = await m.reply_text(await get_string(m.chat.id "KANGING"))
+    prog_msg = await m.reply_text(await get_string(m.chat.id, "KANGING"))
     try:
         user = await c.get_me()
     except FloodWait as e:
