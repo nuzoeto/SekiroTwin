@@ -23,7 +23,6 @@ GROUPS = get_collection("GROUPS")
 USERS = get_collection("USERS")
 USERS_STARTED = get_collection("USERS_START")
 
-START_PRIVADO = await get_string(m.chat.id, "START")
 
 HELP_ADMIN = """
 Aqui está a ajuda para o módulo **Admin**:
