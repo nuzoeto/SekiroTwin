@@ -8,11 +8,8 @@ LANG_: "<i>Idioma inválido. os idiomas disponiveis atualmente são: PT, EN</i>"
 
 
 #bot
-START: "Olá! Meu nome é <b>WhiterKang</b> sou um bot útil e divertido para você :3
+START: "Olá! Meu nome é <b>WhiterKang</b> sou um bot útil e divertido para você :3\n\n<i>Se você gostar das minhas funções me adicione a seu grupo!</i>\n\n<b>WhiterKang's News 📬</b>: [Clique aqui](https://t.me/whiterkangnews)"
 
-<i>Se você gostar das minhas funções me adicione a seu grupo!</i>
-
-<b>WhiterKang's News 📬</b>: [Clique aqui](https://t.me/whiterkangnews)"
 BACK_BNT: "⬅️ Voltar"
 HELP_BNT: "❔ Ajuda"
 
