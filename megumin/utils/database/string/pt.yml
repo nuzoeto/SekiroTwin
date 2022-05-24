@@ -22,3 +22,7 @@ USE_EXISTING_PACK: "<code>Usando o pacote de stickers existente...</code>"
 CREATE_STICKER_PACK: "<b>Criando um novo pacote de stickers...</b>"
 STICKERS_NOT_FOUND_USER: "Parece que você nunca interagiu comigo no chat privado, é necessário que faça isso primeiro. ."
 STICKERS_KANGED: "<b>Sticker roubado com sucesso!</b>\n<a href='t.me/addstickers/{}'>Pack</a>.\n<b>Emoji:</b> {}"
+
+#YOUTUBE_DL 
+DOWNLOAD_YT: "📦 <i>Baixando...</i>"
+SEND_YT: "📦 <i>Enviando...</i>"
