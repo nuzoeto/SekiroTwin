@@ -322,8 +322,8 @@ async def kang_sticker(c: megux, m: Message):
         await prog_msg.edit_text(f"{all_e.__class__.__name__} : {all_e}")
     else:
         await prog_msg.edit_text(
-            await get_string(m.chat.id, "STICKERS_KANGED").format(packname, sticker_emoji)
-        )
+            await get_string(m.chat.id, "STICKERS_KANGED")).format(packname, sticker_emoji)
+        
         # Cleanup
         await c.delete_messages(chat_id=CHAT_LOGS, message_ids=msg_.id, revoke=True)
         try:
