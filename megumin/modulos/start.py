@@ -172,7 +172,7 @@ Todos os comandos podem ser usados com os seguintes caracteres: <code>/ !</code>
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
             message_id=cb.message.id,
-            caption=START_PRIVADO,
+            caption=await get_string(cb.chat.id, "START"),
             reply_markup=keyboard,
         )
 
