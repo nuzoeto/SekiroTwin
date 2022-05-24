@@ -117,17 +117,7 @@ async def start_(c: megux, message: Message):
 
     @megux.on_callback_query(filters.regex(pattern=r"^help_menu$") | filters.regex("/start help_"))
     async def infos(client: megux, cb: CallbackQuery):
-        info_text = f"""
-Olá! Me chamo **WhiterKang**. Sou um bot de gerenciamento de grupo modular com alguns extras divertidos! Dê uma olhada no seguinte para ter uma idéia de algumas das coisas em que posso ajudá-lo. 
-
-Comandos básicos:
-- /start: Comando Legal pra ver se eu estou Vivo ou Não:3
-- /help: envia esta mensagem de ajuda
-- /ping Ver o atraso para o bot retornar a mensagem.
-- /about Veja mais sobre os desenvolvedores. 
-
-Todos os comandos podem ser usados com os seguintes caracteres: <code>/ !</code>
-    """
+        info_text = await get_string(cb.message.chat.id, "HELP_MSG")
         button = InlineKeyboardMarkup(
             [
                 [
