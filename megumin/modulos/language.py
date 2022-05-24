@@ -20,14 +20,14 @@ async def set_lang(_, m: Message):
             return
     lang = input_str(m).lower()
     if not lang:
-        return await m.reply(await get_string(m.chat.id, "LANG"))
+        return await m.reply(await get_string(gid=m.chat.id, "LANG"))
     if not lang.split()[0] in LANGS:
-        return await m.reply(await get_string(m.chat.id, "LANG_"))
+        return await m.reply(await get_string(gid=m.chat.id, "LANG_"))
     await add_lang(m.chat.id, lang.split()[0])
     await asyncio.sleep(2)
-    await m.reply(await get_string(m.chat.id, "LANG_SET"))
+    await m.reply(await get_string(gid=m.chat.id, "LANG_SET"))
 
 
 @megux.on_message(filters.command(["l"]))
 async def test_lang(_, m: Message):
-    await m.reply(await get_string(m.chat.id, "language"))
+    await m.reply(await get_string(gid=m.chat.id, "language"))
