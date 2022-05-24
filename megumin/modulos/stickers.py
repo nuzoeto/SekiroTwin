@@ -165,7 +165,7 @@ async def kang_sticker(c: megux, m: Message):
                     resize = True
         else:
             return await prog_msg.edit_text(
-                "<code>Não suportado!</code>"
+                await get_string(m.chat.id, "NO_STICKER_SUPORTED")
             )
 
         pack_prefix = "anim" if animated else "vid" if videos else "a"
