@@ -60,7 +60,7 @@ async def reverse_search(_, message: Message):
                 text += f"[{reverse[1]}]({reverse[0]})"
             else:
                 text += "\n\tLink não encontrado."
-            await msg.edit(text,parse_mode="md", disable_web_page_preview=True)
+            await msg.edit(text, disable_web_page_preview=True)
         else:
             await msg.edit("`Formato não suportado.`")
         os.remove(media)
