@@ -49,7 +49,7 @@ http = httpx.AsyncClient()
 
 
 from megumin import megux, Config
-from megumin.utils import get_collection 
+from megumin.utils import get_collection, get_string 
 
 
 CHAT_LOGS = Config.GP_LOGS 
@@ -109,7 +109,7 @@ async def kang_sticker(c: megux, m: Message):
     off = await DISABLED.find_one({"_cmd": query})
     if off:
         return
-    prog_msg = await m.reply_text("Roubando sticker...")
+    prog_msg = await m.reply_text(await get_string(m.chat.id "KANGING"))
     try:
         user = await c.get_me()
     except FloodWait as e:
