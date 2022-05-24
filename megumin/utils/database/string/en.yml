@@ -4,6 +4,17 @@ LANG_SET: "<i>The chat language has been set to 🇺🇸 English.</i>"
 LANG: "<i>I need you to enter a value.</i>\n<code>Ex: /setlang en</code>"
 LANG_: "<i>Invalid language. Currently available languages are: PT, EN</i>"
 
+
+#bot
+BACK_BNT: "⬅️ Back"
+HELP_BNT: "❔ Help"
+
+
 #stickers
 KANGING: "Stealing the sticker..."
+STICKER_NO_REPLY: "Want me to guess the sticker?  Please tag a sticker."
+STICKER_NOT_NAME: "The sticker has no name."
+USE_EXISTING_PACK: "<code>Using existing sticker pack...</code>"
+CREATE_STICKER_PACK: "<b>Creating a new sticker pack...</b>"
+STICKERS_NOT_FOUND_USER: "It looks like you've never interacted with me in private chat, you need to do that first.  ."
 STICKERS_KANGED: "<b>Sticker successfully stolen!</b>\n<a href='t.me/addstickers/{}'>Pack</a>.\n<b>Emoji:</b> {}"
