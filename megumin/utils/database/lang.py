@@ -1,6 +1,6 @@
 import yaml
 import pathlib
-from .db import get_collection
+from megumin.utils import get_collection
 
 CHAT_LANG = get_collection("CHAT_LANG")
 STRINGS = "megumin/utils/database/string/"
