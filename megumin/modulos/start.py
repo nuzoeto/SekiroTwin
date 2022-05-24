@@ -16,20 +16,14 @@ from pyrogram.types import (
 
 from megumin import megux, version
 from megumin import START_TIME
-from megumin.utils import get_collection, time_formatter
+from megumin.utils import get_collection, time_formatter, get_string 
 
 CHAT_LOGS = -1001556292785
 GROUPS = get_collection("GROUPS")
 USERS = get_collection("USERS")
 USERS_STARTED = get_collection("USERS_START")
 
-START_PRIVADO = """
-Olá! Meu nome é **WhiterKang** sou um bot útil e divertido para você :3
-
-__Se você gostar das minhas funções me adicione a seu grupo!__
-
-<b>WhiterKang's News 📬</b>: [Clique aqui](https://t.me/whiterkangnews)
-"""
+START_PRIVADO = await get_string(m.chat.id, "START")
 
 HELP_ADMIN = """
 Aqui está a ajuda para o módulo **Admin**:
