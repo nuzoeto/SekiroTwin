@@ -17,7 +17,7 @@ from re import compile as comp_regex
 from pyrogram.types import Message
 from pyrogram import filters, enums
 from megumin import megux, Config
-from megumin.utils import get_collection 
+from megumin.utils import get_collection, get_string 
 
 
 BASE_YT_URL = ("https://www.youtube.com/watch?v=")
