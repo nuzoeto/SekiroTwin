@@ -29,3 +29,7 @@ NO_ARGS_YT: "<code>Will I lower the wind?!</code>"
 #reverse
 REVERSE_RESULTS: "<b>Search Results:</b> "
 REVERSING: "<code>Processing...</code>"
+
+#print
+
+TAKING_PRINT: "Taking screenshot..."
