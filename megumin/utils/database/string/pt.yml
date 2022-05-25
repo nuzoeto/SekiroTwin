@@ -55,3 +55,6 @@ PIN_SUCCESS: '<i>Eu fixei <a href="{}">esta mensagem</a>.</i>'
 UNPIN_ALL_SUCCESS: "<i>Eu desfixei todas mensagens do chat.</i>"
 UNPIN_SUCCESS: '<i>Eu desfixei <a href="{}">esta mensagem</a>.</i>'
 UNPIN_NO_REPLY: "<i>Você precisa responder uma mensagem para desafixar ou usar <code>/unpin all</code> para desfixar todas.<i>"
+
+#ddd
+DDD_RESULT: "📞 <b>DDD - {}</b> \n<b>- Estado:</b> {} - {}\n\n<b>Cidades:</b> <code>{}</code>"
