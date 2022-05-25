@@ -32,3 +32,7 @@ NO_ARGS_YT: "<code>Vou baixar o vento?!</code>"
 #reverse
 REVERSE_RESULTS: "<b>Resultados da pesquisa:</b> "
 REVERSING: "<code>Processando...</code>"
+
+#print 
+
+TAKING_PRINT: "Obtendo captura de tela..."
