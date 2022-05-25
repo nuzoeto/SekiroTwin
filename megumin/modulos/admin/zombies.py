@@ -28,7 +28,7 @@ async def cleanup(c: megux, m: Message):
     if await check_rights(chat_id, m.from_user.id, "can_restrict_members"): 
         deleted = []
         sent = await m.reply_text("Limpando...")
-        async for t in m.chat_get_members(chat_id=m.chat.id, filter="all"):
+        async for t in m.chat.get_member(chat_id=m.chat.id, filter="all"):
             if t.user.is_deleted:
                 try:
                     await c.ban_chat_member(m.chat.id, t.user.id)
