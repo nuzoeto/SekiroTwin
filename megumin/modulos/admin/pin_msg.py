@@ -38,13 +38,13 @@ async def pin_msg(c: megux, m: Message):
     reply = m.reply_to_message
     gid = m.chat.id
     if not await check_rights(gid, m.from_user.id, "can_pin_messages"):
-        return await m.reply("Você não tem direitos administrativos suficientes para fazer fixar/desafixar mensagens!")
+        return await m.reply(await get_string(m.chat.id, "NO_PIN_USER"))
     if not await check_rights(gid, c.me.id, "can_pin_messages"):
-        return await m.reply("Não consigo fixar mensagens aqui! Verifique se sou administrador e posso fixar mensagens." )
+        return await m.reply(await get_string(m.chat.id, "NO_PIN_BOT"))
     if input_:
         if "all" in input_:
             try:
-                await m.reply("<i>Eu desfixei todas mensagens do chat.<i>")
+                await m.reply(await get_string(m.chat.id, "UNPIN_ALL_SUCCESS"))
                 return await megux.unpin_all_chat_messages(gid)
             except Exception as e:
                 await megux.send_log(e)
@@ -54,10 +54,10 @@ async def pin_msg(c: megux, m: Message):
         try:
             chat = str(f"{gid}").replace("-100", "")
             link = f"https://t.me/c/{chat}/{reply.id}"
-            string = '<i>Eu desfixei <a href="{}">esta mensagem</a>.</i>'
+            string = await get_string(m.chat.id, "UNPIN_SUCCESS")
             await m.reply(string.format(link))
             return await megux.unpin_chat_message(gid, reply.id)
         except Exception as e:
             await megux.send_log(e)
     else:
-        return await m.reply("<i>Você precisa responder uma mensagem para desafixar ou usar <code>/unpin all</code> para desfixar todas.</i>")
+        return await m.reply(await get_string(m.chat.id, "UNPIN_NO_REPLY"))
