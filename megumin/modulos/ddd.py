@@ -7,7 +7,7 @@ from pyrogram.types import Message
 from pyrogram.errors import BadRequest
 
 from megumin import megux
-from megumin.utils import get_collection 
+from megumin.utils import get_collection, get_string 
 
 http = httpx.AsyncClient()
 
@@ -34,7 +34,7 @@ async def ddd(c: megux, m: Message):
     cities = res.json().get("cities")
     cidade = ", ".join(cities).lower().title() + "."
 
-    rep = "📞 <b>DDD - {}</b> \n<b>- Estado:</b> {} - {}\n\n<b>Cidades:</b> <code>{}</code>"
+    rep = await get_string(m.chat.id, "DDD_RESULT")
     
 
     await m.reply_text(rep.format(ddd, state_name, state, cidade))
