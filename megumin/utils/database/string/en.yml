@@ -34,3 +34,8 @@ REVERSING: "<code>Processing...</code>"
 
 TAKING_PRINT: "Taking screenshot..."
 NO_ARGS_PRINT: "Usage: <code>/print https://example.com</code> - Takes a screenshot of the specified website."
+
+#AFK
+AFK_IS_NOW: "{} is now AFK!"
+IS_AFK: "{} is AFK!"
+AFK_LOOGER: "{} is no longer AFK!"
