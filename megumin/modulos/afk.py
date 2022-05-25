@@ -16,7 +16,7 @@ async def afk_cmd(_, m: Message):
     AFK_STATUS = get_collection(f"_AFK {m.from_user.id}")
     await AFK_STATUS.drop()
     await AFK_STATUS.insert_one({"_afk": "on"}) 
-    await m.reply(f"{m.from_user.first_name} agora está AFK!")
+    await m.reply((await get_string(m.chat.id, "AFK_IS_NOW")).format(m.from_user.first_name))
     await m.stop_propagation()
 
 @megux.on_message(filters.group & ~filters.bot, group=2)
@@ -32,7 +32,7 @@ async def rem_afk(c: megux, m: Message):
 
     await AFK_STATUS.drop()
     await m.reply_text(
-        "{} não está mais AFK!".format(m.from_user.first_name)
+        (await get_string(m.chat.id, "AFK_LOOGER")).format(m.from_user.first_name)
     )
 
     
@@ -86,6 +86,6 @@ async def afk_mentioned(c: megux, m: Message):
     if not user_afk:
         return
     else:
-        afkmsg = "{} está AFK!".format(user_first_name)
+        afkmsg = (await get_string(m.chat.id, "IS_AFK")).format(user_first_name)
         await m.reply_text(afkmsg)
     await m.stop_propagation()
