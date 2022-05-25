@@ -34,7 +34,7 @@ async def prints(c: megux, message: Message):
         the_url = the_url[1]
 
     if wrong:
-        await message.reply_text("Uso:</b> <code>/print https://example.com</code> - Tira uma captura de tela do site especificado.")
+        await message.reply_text(await get_string(message.chat.id, "NO_ARGS_PRINT"))
         return
 
     try:
@@ -85,11 +85,11 @@ async def prints_google(c: megux, message: Message):
         the_url = the_url[1]
 
     if wrong:
-        await message.reply_text("Uso:</b> <code>/print https://example.com</code> - Tira uma captura de tela do site especificado.")
+        await message.reply_text("Uso:</b> <code>/search texto</code> - Tira uma captura de tela da pesquisa especificada.")
         return
 
     try:
-        sent = await message.reply_text("Obtendo captura de tela...")
+        sent = await message.reply_text(await get_string(message.chat.id, "TAKING_PRINT"))
         search_google = f"{the_url}".replace(" ", "+")
         res_json = await cssworker_url(target_url=f"https://www.google.com/search?q={search_google}&oq={search_google}")
     except BaseException as e:
