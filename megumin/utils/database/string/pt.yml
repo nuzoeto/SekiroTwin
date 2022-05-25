@@ -9,6 +9,7 @@ LANG_: "<i>Idioma inválido. os idiomas disponiveis atualmente são: PT, EN</i>"
 
 #bot
 START: "Olá! Meu nome é <b>WhiterKang</b> sou um bot útil e divertido para você :3\n\n<i>Se você gostar das minhas funções me adicione a seu grupo!</i>\n\n<b>WhiterKang's News 📬</b>: [Clique aqui](https://t.me/whiterkangnews)"
+START_NO_PRIVATE: "Oi meu nome é <b>WhiterKang</b>.
 HELP_MSG: "Olá! Me chamo <b>WhiterKang</b>. Sou um bot de gerenciamento de grupo modular com alguns extras divertidos! Dê uma olhada no seguinte para ter uma idéia de algumas das coisas em que posso ajudá-lo.\n\nComandos básicos:\n- /start: Comando Legal pra ver se eu estou Vivo ou Não :3\n- /help: envia esta mensagem de ajuda\n- /ping Ver o atraso para o bot retornar a mensagem.\n- /about Veja mais sobre os desenvolvedores.\n\nTodos os comandos podem ser usados com os seguintes caracteres: <code>/ !</code>"
 BACK_BNT: "⬅️ Voltar"
 HELP_BNT: "❔ Ajuda"
