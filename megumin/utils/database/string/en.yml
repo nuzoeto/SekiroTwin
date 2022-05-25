@@ -50,5 +50,5 @@ NO_PIN_USER: "You don't have sufficient administrative rights to pin/unpin messa
 PIN_NO_REPLY: "<i>You need to reply to a message to pin it.</i>"
 PIN_SUCCESS: '<i>I pinned <a href="{}">this message</a>.</i>'
 UNPIN_ALL_SUCCESS: "<i>I have unpinned all chat messages.</i>"
-UNPIN_SUCCESS: "<i>I have unpinned <a href="{}">this message</a>.</i>"
+UNPIN_SUCCESS: '<i>I have unpinned <a href="{}">this message</a>.</i>'
 UNPIN_NO_REPLY: "<i>You need to reply to a message to unpin or use <code>/unpin all</code> to unpin all.<i>"
