@@ -12,6 +12,8 @@ START: "Olá! Meu nome é <b>WhiterKang</b> sou um bot útil e divertido para vo
 HELP_MSG: "Olá! Me chamo <b>WhiterKang</b>. Sou um bot de gerenciamento de grupo modular com alguns extras divertidos! Dê uma olhada no seguinte para ter uma idéia de algumas das coisas em que posso ajudá-lo.\n\nComandos básicos:\n- /start: Comando Legal pra ver se eu estou Vivo ou Não :3\n- /help: envia esta mensagem de ajuda\n- /ping Ver o atraso para o bot retornar a mensagem.\n- /about Veja mais sobre os desenvolvedores.\n\nTodos os comandos podem ser usados com os seguintes caracteres: <code>/ !</code>"
 BACK_BNT: "⬅️ Voltar"
 HELP_BNT: "❔ Ajuda"
+HELP_STICKERS: "Aqui está a ajuda para o modulo <b>Stickers</b>:\n\n• /stickerid: responda a um adesivo para eu lhe dizer seu ID de arquivo.\n• /getsticker: responda a um adesivo para fazer o upload do arquivo PNG bruto.\n• /kang: responda a um sticker para adicioná-lo ao seu pacote."
+HELP_DISABLE: "Aqui está a ajuda para o módulo <b>Desativar</b>:\n\nNem todo mundo quer todos os recursos que o bot oferece. Alguns comandos são melhores quando não utilizados para evitar spam e abuso.\n\nIsso permite que você desative alguns comandos.\n\n• /disableable Veja quais comandos podem ser desativados.\n\n<b>Apenas administrador</b>:\n\n• /enable : habilita um comando.\n• /disable : Desativa um comando.
 
 
 #stickers 
