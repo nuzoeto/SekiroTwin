@@ -69,25 +69,25 @@ async def whois(client, message):
     bio = (await client.get_chat(chat_id=user.id)).bio
     
     if user.photo:
-        photos = await megux.get_chat_photos(user.id)
-        await message.reply_photo(
-            photo=photos[0].file_id,
-            caption=infotext.format(
-                full_name=FullName(user),
-                user_id=user.id,
-                user_dc=user.dc_id,
-                first_name=user.first_name,
-                last_name=user.last_name if user.last_name else "None",
-                username=user.username if user.username else "None",
-                last_online=LastOnline(user),
-                bio=bio if bio else "`No bio set up.`",
-                is_scam=user.is_scam,
-                is_verified=user.is_verified,
-                is_bot=user.is_bot,
-                language=user.language_code,
-            ),
-            disable_notification=True,
-        )
+        async for photo in megux.get_chat_photos(user.id, limit=1) 
+            await message.reply_photo(
+                photo=photos[0].file_id,
+                caption=infotext.format(
+                    full_name=FullName(user),
+                    user_id=user.id,
+                    user_dc=user.dc_id,
+                    first_name=user.first_name,
+                    last_name=user.last_name if user.last_name else "None",
+                    username=user.username if user.username else "None",
+                    last_online=LastOnline(user),
+                    bio=bio if bio else "`No bio set up.`",
+                    is_scam=user.is_scam,
+                    is_verified=user.is_verified,
+                    is_bot=user.is_bot,
+                    language=user.language_code,
+                ),
+                disable_notification=True,
+           )
     else:
         await message.reply_text(
             infotext.format(
