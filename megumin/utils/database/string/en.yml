@@ -33,3 +33,4 @@ REVERSING: "<code>Processing...</code>"
 #print
 
 TAKING_PRINT: "Taking screenshot..."
+NO_ARGS_PRINT: "Usage: <code>/print https://example.com</code> - Takes a screenshot of the specified website."
