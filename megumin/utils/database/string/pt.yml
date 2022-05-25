@@ -36,3 +36,4 @@ REVERSING: "<code>Processando...</code>"
 #print 
 
 TAKING_PRINT: "Obtendo captura de tela..."
+NO_ARGS_PRINT: "Uso: <code>/print https://example.com</code> - Tira uma captura de tela do site especificado.
