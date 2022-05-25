@@ -69,7 +69,7 @@ async def whois(client, message):
     bio = (await client.get_chat(chat_id=user.id)).bio
     
     if user.photo:
-        async for photo in megux.get_chat_photos(user.id, limit=1) 
+        async for photo in megux.get_chat_photos(user.id, limit=1):
             await message.reply_photo(
                 photo=photos[0].file_id,
                 caption=infotext.format(
