@@ -34,7 +34,7 @@ async def ddd(c: megux, m: Message):
     cities = res.json().get("cities")
     cidade = ", ".join(cities).lower().title() + "."
 
-    rep = f"📞 <b>DDD - {ddd}</b> \n<b>- Estado:</b> {state_name} - {state}\n\n<b>Cidades:</b> <code>{cidade}</code>"
+    rep = "📞 <b>DDD - {}</b> \n<b>- Estado:</b> {} - {}\n\n<b>Cidades:</b> <code>{}</code>"
     
 
-    await m.reply_text(rep)
+    await m.reply_text(rep.format(ddd, state_name, state, cidade))
