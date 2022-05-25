@@ -71,7 +71,7 @@ async def whois(client, message):
     if user.photo:
         async for photo in client.get_chat_photos(user.id, limit=1):
             await message.reply_photo(
-                photo=photos.file_id,
+                photo=photo.file_id,
                 caption=infotext.format(
                     full_name=FullName(user),
                     user_id=user.id,
