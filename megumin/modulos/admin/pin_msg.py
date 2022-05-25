@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux
-from megumin.utils import check_bot_rights, check_rights
+from megumin.utils import check_bot_rights, check_rights, get_string 
 from megumin.utils.decorators import input_str 
 
 
@@ -12,16 +12,16 @@ async def pin_msg(c: megux, m: Message):
     reply = m.reply_to_message
     gid = m.chat.id
     if not await check_rights(gid, m.from_user.id, "can_pin_messages"):
-        return await m.reply("Você não tem direitos administrativos suficientes para fazer fixar/desafixar mensagens!")
+        return await m.reply(await get_string(m.chat.id, "NO_PIN_USER"))
     if not await check_rights(gid, c.me.id, "can_pin_messages"):
-        return await m.reply("Não consigo fixar mensagens aqui! Verifique se sou administrador e posso fixar mensagens.")
+        return await m.reply(await get_string(m.chat.id, "NO_PIN_BOT"))
     if not reply:
-        return await m.reply("<i>Você precisa responder uma mensagem para fixa-la.</i>")
+        return await m.reply(await get_string(m.chat.id, "PIN_NO_REPLY"))
     silent = False
     msg_id = reply.id
     chat = str(f"{gid}").replace("-100", "")
     link = f"https://t.me/c/{chat}/{reply.id}"
-    string = '<i>Eu fixei <a href="{}">esta mensagem</a>.</i>'
+    string = await get_string(m.chat.id, "PIN_SUCCESS")
     if input_:
         if ("silent" or "s") in input_:
             silent = True
