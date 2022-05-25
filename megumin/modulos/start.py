@@ -169,20 +169,7 @@ async def start_(c: megux, message: Message):
 
     @megux.on_callback_query(filters.regex(pattern=r"^admin_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
-        info_text = f"""
-Aqui está a ajuda para o módulo <b>Admin</b>:
-
-**Todos usuarios:**
- • /admins - Lista todos administradores do chat
-
-**Apenas admin:**
- • /pin - Fixa a mensagem respondida
- • /unpin - Desfixa a mensagem atualmente fixada
- • /promote < username/reply msg > - promove um usuario a administrador do chat
- • /demote < username/reply msg > - remove os privilégios de administrador do usuario
- • /title < titulo aqui >: define uma custom tag de administrador de um usuario promovido pelo WhiterKang
- • /zombies - Procura e limpa contas excluidas no chat
-    """
+        info_text = await get_string(cb.message.chat.id, "HELP_ADMIN")
         button = InlineKeyboardMarkup(
             [
                 [
