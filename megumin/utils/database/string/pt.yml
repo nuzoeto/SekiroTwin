@@ -46,3 +46,9 @@ NO_ARGS_PRINT: "Uso: <code>/print https://example.com</code> - Tira uma captura 
 AFK_IS_NOW: "{} agora está AFK!"
 IS_AFK: "{} está AFK!"
 AFK_LOOGER: "{} não está mais AFK!"
+
+#pin
+NO_PIN_BOT: "Não consigo fixar mensagens aqui! Verifique se sou administrador e posso fixar mensagens."
+NO_PIN_USER: "Você não tem direitos administrativos suficientes para fazer fixar/desafixar mensagens!"
+PIN_NO_REPLY: "<i>Você precisa responder uma mensagem para fixa-la.</i>"
+PIN_SUCCESS: '<i>Eu fixei <a href="{}">esta mensagem</a>.</i>'
