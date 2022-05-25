@@ -5,7 +5,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux
-from megumin.utils import get_collection 
+from megumin.utils import get_collection, get_string  
 
 
 http = httpx.AsyncClient()
@@ -38,7 +38,7 @@ async def prints(c: megux, message: Message):
         return
 
     try:
-        sent = await message.reply_text("Obtendo captura de tela...")
+        sent = await message.reply_text(await get_string(message.chat.id, "TAKING_PRINT"))
         res_json = await cssworker_url(target_url=the_url)
     except BaseException as e:
         await message.reply(f"<b>Failed due to:</b> <code>{e}</code>")
