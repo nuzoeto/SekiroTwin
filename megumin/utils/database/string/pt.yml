@@ -52,3 +52,5 @@ NO_PIN_BOT: "Não consigo fixar mensagens aqui! Verifique se sou administrador e
 NO_PIN_USER: "Você não tem direitos administrativos suficientes para fazer fixar/desafixar mensagens!"
 PIN_NO_REPLY: "<i>Você precisa responder uma mensagem para fixa-la.</i>"
 PIN_SUCCESS: '<i>Eu fixei <a href="{}">esta mensagem</a>.</i>'
+UNPIN_ALL_SUCCESS: "<i>Eu desfixei todas mensagens do chat.</i>"
+UNPIN_SUCCESS: '<i>Eu desfixei <a href="{}">esta mensagem</a>.</i>'
