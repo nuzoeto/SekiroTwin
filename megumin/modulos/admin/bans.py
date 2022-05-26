@@ -59,13 +59,14 @@ async def _ban_user(_, message: Message):
         )
         return
     if await is_self(user_id):
+        await message.reply(await get_string(chat_id, "BAN_MY_SELF"))
         await sed_sticker(message)
-        return
+        return 
     if is_dev(user_id):
-        await message.reply("Porque eu iria banir meu desenvolvedor? Isso me parece uma idéia muito idiota.")
+        await message.reply(await get_string(chat_id, "BAN_IN_DEV"))
         return
     if is_admin(chat_id, user_id):
-        await message.reply("Porque eu iria banir um administrador? Isso me parece uma idéia idiota.")
+        await message.reply(await get_string(chat_id, "BAN_IN_ADMIN"))
         return
     if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
         await message.reply("Não posso restringir as pessoas aqui! Certifique-se de que sou administrador e de que posso adicionar novos administradores.")
