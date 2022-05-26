@@ -18,6 +18,7 @@ from megumin.utils import (
     is_self,
     sed_sticker,
     get_collection,
+    get_string,
 )
 
 
@@ -116,7 +117,7 @@ async def _unban_user(_, message: Message):
     sent = await message.reply("`Desbanindo Usuário...`")
     try:
         await megux.unban_chat_member(chat_id, user_id)
-        await sent.edit ("__Ok, este usuário não está mais banido,__\n**Ele pode entrar novamente.**")
+        await sent.edit(await get_string(chat_id, "UNBAN_SUCCESS"))
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
