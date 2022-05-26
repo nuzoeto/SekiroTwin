@@ -58,11 +58,11 @@ async def _promote_user(_, message: Message):
         await megux.promote_chat_member(
             chat_id,
             user_id,
-            ChatPrevileges.can_change_info=True,
-            ChatPrevileges.can_delete_messages=True,
-            ChatPrevileges.can_restrict_members=True,
-            ChatPrevileges.can_invite_users=True,
-            ChatPrevileges.can_pin_messages=True,
+            ChatPrevileges.can_change_info,
+            ChatPrevileges.can_delete_messages,
+            ChatPrevileges.can_restrict_members,
+            ChatPrevileges.can_invite_users,
+            ChatPrevileges.can_pin_messages,
         ) 
         if args:
             await asyncio.sleep(2)
