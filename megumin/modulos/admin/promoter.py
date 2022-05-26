@@ -4,6 +4,7 @@
 import asyncio
 
 from pyrogram import filters
+from pyrogram.enums import ChatPrevileges
 from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
 from pyrogram.types import Message
 
@@ -57,11 +58,11 @@ async def _promote_user(_, message: Message):
         await megux.promote_chat_member(
             chat_id,
             user_id,
-            can_change_info=True,
-            can_delete_messages=True,
-            can_restrict_members=True,
-            can_invite_users=True,
-            can_pin_messages=True,
+            ChatPrevileges.can_change_info=True,
+            ChatPrevileges.can_delete_messages=True,
+            ChatPrevileges.can_restrict_members=True,
+            ChatPrevileges.can_invite_users=True,
+            ChatPrevileges.can_pin_messages=True,
         ) 
         if args:
             await asyncio.sleep(2)
