@@ -4,9 +4,8 @@
 import asyncio
 
 from pyrogram import filters
-from pyrogram.enums import ChatPrevileges
 from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
-from pyrogram.types import Message
+from pyrogram.types import Message, ChatPrevileges 
 
 from megumin import megux
 from megumin.utils import (
