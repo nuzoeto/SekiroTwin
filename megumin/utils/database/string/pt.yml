@@ -58,3 +58,7 @@ UNPIN_NO_REPLY: "<i>Você precisa responder uma mensagem para desafixar ou usar 
 
 #ddd
 DDD_RESULT: "📞 <b>DDD - {}</b> \n<b>- Estado:</b> {} - {}\n\n<b>Cidades:</b> <code>{}</code>"
+
+
+#Bans
+UNBAN_SUCCESS: "Este usuário pode entrar novamente no grupo."
