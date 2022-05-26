@@ -62,3 +62,6 @@ DDD_RESULT: "📞 <b>DDD - {}</b> \n<b>- Estado:</b> {} - {}\n\n<b>Cidades:</b> 
 
 #Bans
 UNBAN_SUCCESS: "Este usuário pode entrar novamente no grupo."
+BAN_IN_ADMIN: "Por que eu baniria um(a) administrador(a)? Parece uma ideia bem idiota."
+BAN_IN_DEV: "Por que eu baniria meu(minha) desenvolvedor(a)? Parece uma ideia bem idiota."
+BAN_MY_SELF: "Eu não vou me banir, você está louco?"
