@@ -17,11 +17,12 @@ async def lock(c: megux, m: Message):
         if not in on:
             await LOCKS_.insert_one({"lock": "on"})
         else:
-            return 
+            return await m.reply("comando já ativo")
     else:
-        return 
+        return await m.reply("insira um argumento valido **on**")
 
 
 @megux.on_message(filters.command("locktype", Config.TRIGGER))
 async def lock_type(c: megux, m: Message):
     data = input_str(m)
+  
