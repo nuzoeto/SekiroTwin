@@ -64,7 +64,7 @@ async def app(c: megux, message: Message):
             + "'>View in Play Store</a>"
         )
         await msg.edit(
-            app_details, disable_web_page_preview=False, parse_mode="html"
+            app_details, disable_web_page_preview=False
         )
     except IndexError:
         await message.reply("Nenhum resultado encontrado na pesquisa. Digite **Nome do aplicativo válido**")
