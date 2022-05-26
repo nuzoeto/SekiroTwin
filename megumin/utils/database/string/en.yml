@@ -59,3 +59,6 @@ DDD_RESULT: "📞 <b>DDD - {}</b> \n<b>- State:</b> {} - {}\n\n<b>Cities:</b> <c
 
 #Bans
 UNBAN_SUCCESS: "This user can rejoin the group."
+BAN_IN_ADMIN: "Why would I ban an admin?  Sounds like a pretty stupid idea."
+BAN_IN_DEV: "Why would I ban my developer?  Sounds like a pretty stupid idea."
+BAN_MY_SELF: "I won't banish myself, are you crazy?"
