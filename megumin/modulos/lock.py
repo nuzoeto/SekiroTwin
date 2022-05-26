@@ -6,11 +6,20 @@ from megumin.utils import get_collection
 from megumin.utils.decorators import input_str 
 
 LOCK_TYPES = ["audio", "link", "video"]
+LOCK_MODE = ["on"]
 
 @megux.on_message(filters.command("lock", Config.TRIGGER))
 async def lock(c: megux, m: Message):
     LOCKS_ = get_collection(f"LOCKED {m.chat.id}")
-    await LOCKS_.insert_one({"lock": "on"})
+    on =  await LOCKS_.find_one({"lock": "on"})
+    x = input_str(m)
+    if x in LOCK_MODE:
+        if not in on:
+            await LOCKS_.insert_one({"lock": "on"})
+        else:
+            return 
+    else:
+        return 
 
 
 @megux.on_message(filters.command("locktype", Config.TRIGGER))
