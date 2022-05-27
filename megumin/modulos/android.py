@@ -68,7 +68,7 @@ async def device_(_, message: Message):
     getlist = requests.get(DEVICE_LIST).json()
     target_device = message.text.split()[1].lower()
     if not target_device:
-        await message.edit("Quer que eu adivinhe? Por favor digite um codename")
+        await msg.edit("Quer que eu adivinhe? Por favor digite um codename")
         return
     if target_device in list(getlist):
         device = getlist.get(target_device)
