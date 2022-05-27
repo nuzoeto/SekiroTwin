@@ -12,6 +12,6 @@ LOCK_TYPES = ["audio", "link", "video"]
 async def lock(c: megux, m: Message):
     LOCK = get_collection(f"LOCK {m.chat.id}")
     res = input_str(m)
-    await LOCK.insert_one({"lock" res})
+    await LOCK.insert_one({"lock": res})
 
 
