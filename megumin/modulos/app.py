@@ -2,7 +2,8 @@
 import bs4
 import requests
 
-from pyrogram import filters 
+from pyrogram import filters
+from pyrogram.enums import ParseMode
 from pyrogram.types import Message 
 
 from megumin import megux, Config
