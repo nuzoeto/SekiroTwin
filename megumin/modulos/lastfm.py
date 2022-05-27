@@ -42,7 +42,7 @@ async def last_(_, message: Message):
         await message.reply("__Algo deu errado__")
         return
     try:
-        first_track = resp.json().get("recenttracks").get("track")[0]
+        first_track = resp.json().get("recenttracks").get("track")
     except IndexError:
         await message.reply("Você não me parece ter scrobblado(escutado) nenhuma música...")
         return
