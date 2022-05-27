@@ -1,10 +1,13 @@
 #ported from https://github.com/ruizlenato/SmudgeLord/blob/rewrite/smudge/plugins/misc.py
 from bs4 import BeautifulSoup
+import httpx
 
 from pyrogram import filters 
 from pyrogram.types import Message 
 
 from megumin import megux 
+
+http = httpx.AsyncClient()
 
 
 dicio_link = "https://www.dicionarioinformal.com.br/"
