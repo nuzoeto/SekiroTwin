@@ -10,6 +10,9 @@ from megumin.utils import get_collection, get_string
 from megumin.utils.decorators import input_str
 
 
+REASON = get_collection("REASON")
+
+
 @megux.on_message(filters.command("afk"))
 @megux.on_message(filters.regex(r"^(?i)brb(\s(?P<args>.+))?"))
 async def afk_cmd(_, m: Message):
