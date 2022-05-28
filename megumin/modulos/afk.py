@@ -17,15 +17,17 @@ async def afk_cmd(_, m: Message):
     x = input_str(m)
     REASON = get_collection(f"REASON {m.from_user.id}")
     AFK_STATUS = get_collection(f"_AFK {m.from_user.id}")
-    await AFK_STATUS.drop()
-    await REASON.drop() 
     if input_str(m):
+        await AFK_STATUS.drop()
+        await REASON.drop() 
         await AFK_STATUS.insert_one({"_afk": "on"})
         await REASON.insert_one({"reason": x})
         res = await REASON.find_one()
         r = res["reason"]     
         await m.reply((await get_string(m.chat.id, "AFK_IS_NOW_REASON")).format(m.from_user.first_name, r))
     else:
+        await AFK_STATUS.drop()
+        await REASON.drop() 
         await AFK_STATUS.insert_one({"_afk": "on"})
         await m.reply((await get_string(m.chat.id, "AFK_IS_NOW")).format(m.from_user.first_name))
     await m.stop_propagation()
