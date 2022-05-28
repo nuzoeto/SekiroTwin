@@ -31,11 +31,11 @@ def LastOnline(user: User):
         return "bot"
     elif user.status == UserStatus.RECENTLY:
         return "Recentemente"
-    elif user.status == UserStatus.WITHIN_WEEK:
+    elif user.status == UserStatus.LAST_WEEK:
         return "Na última semana"
-    elif user.status == UserStatus.WITHIN_MONTH:
+    elif user.status == UserStatus.LAST_MONTH:
         return "No último mês"
-    elif user.status == UserStatus.LONG_TIME_AGO:
+    elif user.status == UserStatus.LONG_AGO:
         return "Há muito tempo :("
     elif user.status == UserStatus.ONLINE:
         return "Online"
