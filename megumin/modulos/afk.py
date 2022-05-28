@@ -35,12 +35,14 @@ async def rem_afk(c: megux, m: Message):
         return
  
     AFK_STATUS = get_collection(f"_AFK {m.from_user.id}")
+    REASON = get_collection(f"REASON {m.from_user.id}")
     user_afk = await AFK_STATUS.find_one({"_afk": "on"})
 
     if not user_afk:
         return
 
     await AFK_STATUS.drop()
+    await REASON.drop()
     await m.reply_text(
         (await get_string(m.chat.id, "AFK_LOOGER")).format(m.from_user.first_name)
     )
