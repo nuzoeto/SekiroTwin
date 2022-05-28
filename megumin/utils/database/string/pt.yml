@@ -46,6 +46,7 @@ NO_ARGS_PRINT: "Uso: <code>/print https://example.com</code> - Tira uma captura 
 AFK_IS_NOW_REASON: "{} agora está AFK!\nDisse que está: {}"
 AFK_IS_NOW: "{} agora está AFK!"
 IS_AFK: "{} está AFK!"
+IS_AFK_REASON: "{} está AFK!\nDisse que está: {}"
 AFK_LOOGER: "{} não está mais AFK!"
 
 #pin
