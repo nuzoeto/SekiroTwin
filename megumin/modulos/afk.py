@@ -21,7 +21,7 @@ async def afk_cmd(_, m: Message):
         await AFK_STATUS.drop()
         await REASON.drop() 
         await AFK_STATUS.insert_one({"_afk": "on"})
-        await REASON.insert_one({"reason": x})
+        await REASON.insert_one({"_reason": x})
         res = await REASON.find_one()
         r = res["reason"]     
         await m.reply((await get_string(m.chat.id, "AFK_IS_NOW_REASON")).format(m.from_user.first_name, r))
@@ -106,7 +106,7 @@ async def afk_mentioned(c: megux, m: Message):
         if not res:
             afkmsg = (await get_string(m.chat.id, "IS_AFK")).format(user_first_name)
         else:
-            r = res["reason"]
+            r = res["_reason"]
             afkmsg = (await get_string(m.chat.id, "IS_AFK_REASON")).format(user_first_name, r)
             await m.reply_text(afkmsg)
             await m.stop_propagation()
