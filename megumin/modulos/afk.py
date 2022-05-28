@@ -11,7 +11,7 @@ from megumin.utils.decorators import input_str
 
 
 
-@megux.on_message(filters.command("afk"))
+@megux.on_message(filters.command("afk", Config.TRIGGER))
 @megux.on_message(filters.regex(r"^(?i)brb(\s(?P<args>.+))?"))
 async def afk_cmd(_, m: Message):
     x = input_str(m)
