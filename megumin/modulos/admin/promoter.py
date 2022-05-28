@@ -45,7 +45,7 @@ async def _promote_user(_, message: Message):
         )
         return
     if await is_self(user_id):
-        await m.reply("Eu não posso me promover")
+        await message.reply("Eu não posso me promover")
         return
     if is_admin(chat_id, user_id):
         await message.reply("Como devo promover alguém que já é administrador?")
