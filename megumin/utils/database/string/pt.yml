@@ -43,7 +43,7 @@ TAKING_PRINT: "Obtendo captura de tela..."
 NO_ARGS_PRINT: "Uso: <code>/print https://example.com</code> - Tira uma captura de tela do site especificado."
 
 #AFK
-AFK_IS_NOW: "{} agora está AFK!"
+AFK_IS_NOW: "{} agora está AFK!\nDisse que está: {}"
 IS_AFK: "{} está AFK!"
 AFK_LOOGER: "{} não está mais AFK!"
 
