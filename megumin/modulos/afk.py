@@ -109,4 +109,4 @@ async def afk_mentioned(c: megux, m: Message):
             r = res["reason"]
             afkmsg = (await get_string(m.chat.id, "IS_AFK_REASON")).format(user_first_name, r)
             await m.reply_text(afkmsg)
-    await m.stop_propagation()
+            await m.stop_propagation()
