@@ -23,8 +23,9 @@ async def afk_cmd(_, m: Message):
         await AFK_STATUS.insert_one({"_afk": "on"})
         await REASON.insert_one({"_reason": x})
         res = await REASON.find_one()
-        r = res["reason"]     
+        r = res["_reason"]     
         await m.reply((await get_string(m.chat.id, "AFK_IS_NOW_REASON")).format(m.from_user.first_name, r))
+        await m.stop_propagation()
     else:
         await AFK_STATUS.drop()
         await REASON.drop() 
