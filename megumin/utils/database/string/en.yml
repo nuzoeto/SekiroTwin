@@ -42,6 +42,7 @@ NO_ARGS_PRINT: "Usage: <code>/print https://example.com</code> - Takes a screens
 #AFK
 AFK_IS_NOW_REASON: "{} is now AFK!\nSaid it is: {}"
 IS_AFK: "{} is AFK!"
+IS_AFK_REASON: "{} is AFK! Said it is: {}"
 AFK_IS_NOW: "{} is now AFK!"
 AFK_LOOGER: "{} is no longer AFK!"
 
