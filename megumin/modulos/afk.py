@@ -93,10 +93,9 @@ async def afk_mentioned(c: megux, m: Message):
         return
 
     AFK = get_collection(f"_AFK {user_id}") 
-    user_afk = await AFK.find_one({"_afk": "on"})
     REASON = get_collection(f"REASON {user_id}")
+    user_afk = await AFK.find_one({"_afk": "on"})
     res = await REASON.find_one()
-    r = res["reason"]
 
     if not user_afk:
         return
@@ -104,6 +103,7 @@ async def afk_mentioned(c: megux, m: Message):
         if not res:
             afkmsg = (await get_string(m.chat.id, "IS_AFK")).format(user_first_name)
         else:
+             r = res["reason"]
             afkmsg = (await get_string(m.chat.id, "IS_AFK_REASON")).format(user_first_name, r)
         await m.reply_text(afkmsg)
     await m.stop_propagation()
