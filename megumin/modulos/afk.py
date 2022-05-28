@@ -10,14 +10,15 @@ from megumin.utils import get_collection, get_string
 from megumin.utils.decorators import input_str
 
 
-REASON = get_collection("REASON")
-
 
 @megux.on_message(filters.command("afk"))
 @megux.on_message(filters.regex(r"^(?i)brb(\s(?P<args>.+))?"))
 async def afk_cmd(_, m: Message):
+    x = input_str(m)
+    REASON = get_collection(f"REASON {m.from_user.id}")
     AFK_STATUS = get_collection(f"_AFK {m.from_user.id}")
     await AFK_STATUS.drop()
+    await REASON.drop()
     await AFK_STATUS.insert_one({"_afk": "on"}) 
     await m.reply((await get_string(m.chat.id, "AFK_IS_NOW")).format(m.from_user.first_name))
     await m.stop_propagation()
