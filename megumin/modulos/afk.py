@@ -24,7 +24,7 @@ async def afk_cmd(_, m: Message):
     await REASON.insert_one({"reason": x})
     res = await REASON.find_one()
     r = res["reason"]
-    if input_str(m)
+    if input_str(m):
         await m.reply((await get_string(m.chat.id, "AFK_IS_NOW_REASON")).format(m.from_user.first_name, r))
     else: 
         await m.reply((await get_string(m.chat.id, "AFK_IS_NOW")).format(m.from_user.first_name))
