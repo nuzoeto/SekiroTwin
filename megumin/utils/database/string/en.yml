@@ -40,8 +40,9 @@ TAKING_PRINT: "Taking screenshot..."
 NO_ARGS_PRINT: "Usage: <code>/print https://example.com</code> - Takes a screenshot of the specified website."
 
 #AFK
-AFK_IS_NOW: "{} is now AFK!\nSaid it is: {}"
+AFK_IS_NOW_REASON: "{} is now AFK!\nSaid it is: {}"
 IS_AFK: "{} is AFK!"
+AFK_IS_NOW: "{} is now AFK!"
 AFK_LOOGER: "{} is no longer AFK!"
 
 #pin
