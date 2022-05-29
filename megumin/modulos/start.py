@@ -456,23 +456,7 @@ Aqui está a ajuda para o módulo **Memes**:
 
     @megux.on_callback_query(filters.regex(pattern=r"^misc_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
-        info_text = f"""
-Aqui está a ajuda para o módulo **Outros**:
-
-• /id Busca o ID de um usuário ou de um grupo.
-• /info ou /whois Obtem informações sobre um usuário.
-• /cota Mostra a cotação do Dólar, Euro, BTC, Peso Argentino, Ruplo Russo ETC...
-• /cep <b>(cep)</b>  Busque um CEP.
-• /ddd <b>(ddd)</b> Busque um DDD.
-• /removebg <reply/msg> Remova o fundo de uma imagem.
-• /clima ou /weather <b>(cidade)</b> Busque o clima para uma cidade.
-• /paste Envia texto/documento respondido para o nekobin.com.
-• /telegraph ou /tg Envie uma mídia para o telegra.ph.
-• /reverse Faz uma busca reversa de imagens(usando o google) basta responder uma imagem ou sticker com /reverse.
-• /short <b>(url)</b> Encurta o link especificado.
-• /afk ou brb - Adicionará você como [afk](https://bit.ly/3yaR9TL) e toda vez que alguém marcar você em um grupo eu irei responder falando que você está afk.
-
-    """
+        info_text = await get_string(cb.message.chat.id, "HELP_MISC")
         button = InlineKeyboardMarkup(
             [
                 [
