@@ -33,7 +33,7 @@ async def start_(c: megux, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton(text=await get_string(message.chat.id, "HELP_BNT"), callback_data="help_menu"),
-                 InlineKeyboardButton(text="📦 Código Fonte", url="https://github.com/davitudoplugins1234/WhiterKang")
+                 InlineKeyboardButton(text=await get_string(message.chat.id, "REPO_BNT"), url="https://github.com/davitudoplugins1234/WhiterKang")
                 ],
                 [
                     InlineKeyboardButton(text="Info", callback_data="infos"),
