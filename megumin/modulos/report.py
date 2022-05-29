@@ -16,7 +16,7 @@ admin_status = [ChatMemberStatus.ADMINISTRATOR or ChatMemberStatus.OWNER]
 )
 async def report_admins(c: megux, m: Message):
     chat_id = m.chat.id 
-    messages_id = message.reply_to_message.id
+    messages_id = m.reply_to_message.id
     DISABLED = get_collection(f"DISABLED {m.chat.id}")
     query = "report"
     off = await DISABLED.find_one({"_cmd": query})
