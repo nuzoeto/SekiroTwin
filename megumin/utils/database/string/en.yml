@@ -12,6 +12,7 @@ HELP_MSG: "Hi! My name is <b>WhiterKang</b>.  I'm a modular group management bot
 BACK_BNT: "⬅️ Back"
 HELP_BNT: "❔ Help"
 REPO_BNT: "📦 Source Code"
+ADD_BNT: "✨ Add me to a chat"
 HELP_STICKERS: "Here is the help for the <b>Stickers</b> module:\n\n• /stickerid: Reply to a sticker so I can tell you your file ID.\n• /getsticker: Reply to a sticker to upload the raw PNG file.\n• /kang: respond to a sticker to add it to your pack."
 HELP_DISABLE: "Here is help for the <b>Disable</b> module:\n\nNot everyone wants all the features the bot offers.  Some commands are better left unused to prevent spam and abuse.\n\nThis allows you to disable some commands.\n\n• /disableable See which commands can be disabled.\n\n<b>Admin only:</b>\n• /enable : enables a command.\n• /disable : Disables a command."
 HELP_ADMIN: "Here is help for the <b>Admin</b> module:\n\n<b>All users:</b>\n• /admins - Lists all chat admins\n\n<b>Admin only:</b>\n• /pin - Pin the replied message\n• /unpin - Unpin the currently pinned message\n• /promote < username/reply msg > - promote a user to chat admin\n• /demote < username/reply msg > - remove the user's admin privileges\n• /title < title here >: defines a custom admin tag of a user promoted by WhiterKang\n• /zombies - Search and clear deleted accounts in chat"
