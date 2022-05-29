@@ -15,6 +15,7 @@ HELP_STICKERS: "Here is the help for the <b>Stickers</b> module:\n\n• /sticker
 HELP_DISABLE: "Here is help for the <b>Disable</b> module:\n\nNot everyone wants all the features the bot offers.  Some commands are better left unused to prevent spam and abuse.\n\nThis allows you to disable some commands.\n\n• /disableable See which commands can be disabled.\n\n<b>Admin only:</b>\n• /enable : enables a command.\n• /disable : Disables a command."
 HELP_ADMIN: "Here is help for the <b>Admin</b> module:\n\n<b>All users:</b>\n• /admins - Lists all chat admins\n\n<b>Admin only:</b>\n• /pin - Pin the replied message\n• /unpin - Unpin the currently pinned message\n• /promote < username/reply msg > - promote a user to chat admin\n• /demote < username/reply msg > - remove the user's admin privileges\n• /title < title here >: defines a custom admin tag of a user promoted by WhiterKang\n• /zombies - Search and clear deleted accounts in chat"
 HELP_TR: "Here is the help for the <b>Translator</b> module:\n\n• /tr (language code) Replyed text or message."
+HELP_BANS: "Here is help for the <b>Bans</b> module:\n\n• /ban Ban a user in chat.\n• /banme Ban yourself.\n• /unban Unban a user.\n • /mute Mutes a user in chat.\n• /tmute (time) Temporarily mutes a user in chat.\n• /unmute Unmutes a user in chat.\n• /kick Kicks a user out of chat.\n• / kickme Leave the group.\n• /muteme Mute yourself.\n\nAn example of temporarily muting someone:\n/tmute @username 2h this mutes the user for 2 hours."
 
 
 #stickers
