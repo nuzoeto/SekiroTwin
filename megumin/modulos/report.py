@@ -15,6 +15,8 @@ admin_status = [ChatMemberStatus.ADMINISTRATOR or ChatMemberStatus.OWNER]
     & filters.reply
 )
 async def report_admins(c: megux, m: Message):
+    chat_id = m.chat.id 
+    messages_id = message.reply_to_message.id
     DISABLED = get_collection(f"DISABLED {m.chat.id}")
     query = "report"
     off = await DISABLED.find_one({"_cmd": query})
@@ -37,4 +39,5 @@ async def report_admins(c: megux, m: Message):
                     reported_user=m.reply_to_message.from_user.mention(),
                 ),
             )
-            await c.send_message(admins_, f"{user} está chamando os administradores no {chat}") 
+            await c.send_message(admins_, f"{user} está chamando os administradores no {chat}")
+            await c.forward_messages(admins_, chat_id, messages_id)
