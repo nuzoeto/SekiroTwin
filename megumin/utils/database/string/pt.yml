@@ -16,6 +16,7 @@ HELP_BNT: "❔ Ajuda"
 HELP_STICKERS: "Aqui está a ajuda para o modulo <b>Stickers</b>:\n\n• /stickerid: responda a um adesivo para eu lhe dizer seu ID de arquivo.\n• /getsticker: responda a um adesivo para fazer o upload do arquivo PNG bruto.\n• /kang: responda a um sticker para adicioná-lo ao seu pacote."
 HELP_DISABLE: "Aqui está a ajuda para o módulo <b>Desativar</b>:\n\nNem todo mundo quer todos os recursos que o bot oferece. Alguns comandos são melhores quando não utilizados para evitar spam e abuso.\n\nIsso permite que você desative alguns comandos.\n\n• /disableable Veja quais comandos podem ser desativados.\n\n<b>Apenas administrador</b>:\n\n• /enable : habilita um comando.\n• /disable : Desativa um comando."
 HELP_ADMIN: "Aqui está a ajuda para o módulo <b>Admin</b>:\n\n<b>Todos usuarios:</b>\n• /admins - Lista todos administradores do chat\n\n<b>Apenas admin:</b>\n • /pin - Fixa a mensagem respondida\n• /unpin - Desfixa a mensagem atualmente fixada\n• /promote < username/reply msg > - promove um usuario a administrador do chat\n• /demote < username/reply msg > - remove os privilégios de administrador do usuario\n• /title < titulo aqui >: define uma custom tag de administrador de um usuario promovido pelo WhiterKang\n• /zombies - Procura e limpa contas excluidas no chat"
+HELP_TR: "Aqui está a ajuda para o módulo <b>Tradutor</b>:\n• /tr (código de idioma) Texto ou mensagem respondida."
 
 
 #stickers 
