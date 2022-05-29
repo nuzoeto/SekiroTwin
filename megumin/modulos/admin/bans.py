@@ -75,7 +75,7 @@ async def _ban_user(_, message: Message):
     sent = await message.reply("`Banindo usuário...`")
     try:
         await megux.ban_chat_member(chat_id, user_id)
-        await sent.edit(f"Usuário {mention} foi banido por <a href='tg://user?id={message.from_user.id}'>{message.from_user.first_name}</a> no chat: **{message.chat.title}**\n" f"**Motivo**: `{reason or None}`")
+        await sent.edit("Usuário {} foi banido por {} no chat: **{}**\n" f"**Motivo**: `{}`".format(mention, message.from_user.mention(), message.chat.title, reason or None))
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
 
