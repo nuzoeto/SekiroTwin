@@ -269,11 +269,7 @@ Under development...
 
     @megux.on_callback_query(filters.regex(pattern=r"^tr_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
-        info_text = f"""
-Aqui está a ajuda para o módulo <b>Tradutor</b>:
-
-• /tr (código de idioma) <b>Texto</b> ou mensagem respondida.
-    """
+        info_text = await get_string(cb.message.chat.id, "HELP_TR")
         button = InlineKeyboardMarkup(
             [
                 [
