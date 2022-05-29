@@ -41,7 +41,7 @@ async def start_(c: megux, message: Message):
                 ],
                 [
                     InlineKeyboardButton(
-                        text="✨ Me adicione a um grupo",
+                        text=await get_string(message.chat.id, "ADD_BNT"),
                         url=f"https://t.me/whiterkangbot?startgroup=new",
                     ),
                 ],
