@@ -370,7 +370,7 @@ Aqui está a ajuda para o módulo **GitHub**:
 
     @megux.on_callback_query(filters.regex(pattern=r"^disable_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
-        info_text = await get_string(cb.message.id, "HELP_DISABLE")
+        info_text = await get_string(cb.message.chat.id, "HELP_DISABLE")
         button = InlineKeyboardMarkup(
             [
                 [
@@ -517,13 +517,7 @@ Aqui está a ajuda para o módulo <b>Purges</b>:
 
     @megux.on_callback_query(filters.regex(pattern=r"^stickers_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
-        info_text = f"""
-Aqui está a ajuda para o modulo <b>Stickers</b>:
-
-• /stickerid: responda a um adesivo para eu lhe dizer seu ID de arquivo.
-• /getsticker: responda a um adesivo para fazer o upload do arquivo PNG bruto.
-• /kang: responda a um sticker para adicioná-lo ao seu pacote.
-    """
+        info_text = await get_string(cb.message.chat.id, "HELP_STICKERS")
         button = InlineKeyboardMarkup(
             [
                 [
