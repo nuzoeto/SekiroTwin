@@ -2,6 +2,7 @@ from pyrogram import filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
 from megumin import megux
+from megumin.utils import get_string 
 
 HELP_TEXT = """
 Olá! Me chamo <b>WhiterKang</b>. Sou um bot de gerenciamento de grupo modular com alguns extras divertidos! Dê uma olhada no seguinte para ter uma idéia de algumas das coisas em que posso ajudá-lo. 
