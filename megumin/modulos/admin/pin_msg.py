@@ -1,12 +1,12 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from megumin import megux
+from megumin import megux, Config 
 from megumin.utils import check_bot_rights, check_rights, get_string 
 from megumin.utils.decorators import input_str 
 
 
-@megux.on_message(filters.command("pin"))
+@megux.on_message(filters.command("pin", Config.TRIGGER))
 async def pin_msg(c: megux, m: Message):
     input_ = input_str(m).split()
     reply = m.reply_to_message
@@ -32,7 +32,7 @@ async def pin_msg(c: megux, m: Message):
         await megux.send_log(e)
 
 
-@megux.on_message(filters.command("unpin"))
+@megux.on_message(filters.command("unpin", Config.TRIGGER))
 async def pin_msg(c: megux, m: Message):
     input_ = input_str(m).split()
     reply = m.reply_to_message
