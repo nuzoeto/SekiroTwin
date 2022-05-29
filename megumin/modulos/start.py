@@ -23,21 +23,6 @@ USERS = get_collection("USERS")
 USERS_STARTED = get_collection("USERS_START")
 
 
-HELP_ADMIN = """
-Aqui está a ajuda para o módulo **Admin**:
-
-**Todos usuarios:**
- • /admins - Lista todos administradores do chat
-
-**Apenas admin:**
- • /pin - Fixa a mensagem respondida
- • /unpin - Desfixa a mensagem atualmente fixada
- • /promote < username/reply msg > - promove um usuario a administrador do chat
- • /demote < username/reply msg > - remove os privilégios de administrador do usuario
- • /title < titulo aqui >: define uma custom tag de administrador de um usuario promovido pelo WhiterKang (ainda não disponível)
- • /zombies - Procura e limpa contas excluidas no chat (ainda não disponível)
-"""
-
 sm = psutil.swap_memory()
 uname = platform.uname() 
 
@@ -385,19 +370,7 @@ Aqui está a ajuda para o módulo **GitHub**:
 
     @megux.on_callback_query(filters.regex(pattern=r"^disable_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
-        info_text = f"""
-Aqui está a ajuda para o módulo **Desativar**:
-
-Nem todo mundo quer todos os recursos que o bot oferece. Alguns comandos são melhores quando não utilizados para evitar spam e abuso.
-
-Isso permite que você desative alguns comandos.
-
-• /disableable Veja quais comandos podem ser desativados.
-
-**Apenas administrador:**
-• /enable <nome do cmd>: habilita um comando.
-• /disable <nome do cmd>: Desativa um comando.
-    """
+        info_text = await get_string(cb.message.id, "HELP_DISABLE")
         button = InlineKeyboardMarkup(
             [
                 [
