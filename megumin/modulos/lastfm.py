@@ -13,6 +13,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, 
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 
 from megumin import megux, Config
+from .misc import *
 from megumin.utils import get_collection, get_response 
 from megumin.utils.decorators import input_str  
 
