@@ -20,14 +20,6 @@ LAST_KEY = Config.LASTFM_API_KEY
 REG = get_collection("USERS")
 
 
-async def _init():
-    global LAST_USERS  # pylint: disable=global-statement
-    lastdb = await REG.find_one({"_id": "LAST_USERS"})
-    if lastdb:
-        LAST_USERS = lastdb["last_data"]
-
-
-
 @megux.on_message(filters.command(["lt", "lastfm"], prefixes=["/", "!"]))
 async def last_(_, message: Message):
     query = input_str(message)
