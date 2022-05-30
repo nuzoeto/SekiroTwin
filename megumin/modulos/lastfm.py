@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
 from io import BytesIO
 
 from megumin import megux, Config
-from megumin.utils import input_str
+from megumin.utils.decorators import input_str
 from .misc import *
 from megumin.utils import get_collection, get_response
 
