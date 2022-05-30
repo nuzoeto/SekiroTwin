@@ -98,7 +98,7 @@ async def last_(_, message: Message):
             scrob =  get_scrob            
         listening = f"is listening for {scrob}th time"
     except KeyError:
-        listening = "is listening"
+        listening = "está ouvindo"
     if image_:
         img_ = download(image_, Config.DOWN_PATH)
     else:
@@ -109,9 +109,9 @@ async def last_(_, message: Message):
     # User Photo
     if user_.photo:
         photos = message.from_user.photo.big_file_id
-        pfp = await yuuna.download_media(photos)
+        pfp = await megux.download_media(photos)
     else:
-        pfp = 'yuuna/plugins/misc/pic.jpg'
+        pfp = 'megumin/plugins/misc/pic.jpg'
 
     # background object
     canvas = Image.new("RGB", (600, 250), (18, 18, 18))
