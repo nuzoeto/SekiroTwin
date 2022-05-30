@@ -79,7 +79,7 @@ async def check_bot_rights(chat_id: int, rights: str) -> bool:
         _BOT_ID = (await megux.get_me()).id
     bot_ = await megux.get_chat_member(chat_id, _BOT_ID)
     if bot_.status == ChatMemberStatus.ADMINISTRATOR:
-        if getattr(bot_, rights, None):
+        if getattr(bot_.privileges, rights, None):
             return True
         return False
     return False
