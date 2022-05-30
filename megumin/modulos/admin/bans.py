@@ -31,7 +31,7 @@ async def _ban_user(_, message: Message):
         return
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
-        await message.reply("Você não tem direitos administrativos suficientes para banir/desbanir usuários!")
+        await message.reply(await get_string(chat_id, "NO_BAN_USER"))
         return
     cmd = len(message.text)
     replied = message.reply_to_message
@@ -69,10 +69,10 @@ async def _ban_user(_, message: Message):
         await message.reply(await get_string(chat_id, "BAN_IN_ADMIN"))
         return
     if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
-        await message.reply("Não posso restringir as pessoas aqui! Certifique-se de que sou administrador e de que posso adicionar novos administradores.")
+        await message.reply(await get_string(chat_id, "NO_BAN_BOT"))
         await sed_sticker(message)
         return
-    sent = await message.reply("`Banindo usuário...`")
+    sent = await message.reply(await get_string(chat_id, "BAN_LOADING"))
     try:
         await megux.ban_chat_member(chat_id, user_id)
         await sent.edit((await get_string(chat_id, "BAN_SUCCESS")).format(mention, message.from_user.mention(), message.chat.title, reason or None))
