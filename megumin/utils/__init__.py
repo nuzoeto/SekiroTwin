@@ -14,3 +14,4 @@ from .tools import (
     sed_sticker,
     time_formatter,
 )
+from .aiohttp import AioHttp as get_response
