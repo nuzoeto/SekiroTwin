@@ -32,6 +32,7 @@ async def _init():
 @megux.on_message(filters.command(["lt", "lastfm"], prefixes=["/", "!"]))
 async def last_(_, message: Message):
     query = input_str(message)
+    user_ = message.from_user.id
     lastdb = await REG.find_one({"id_": user_})
     if not (lastdb or query):
         button = InlineKeyboardMarkup(
