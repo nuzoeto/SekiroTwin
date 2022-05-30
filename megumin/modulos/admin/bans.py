@@ -75,7 +75,7 @@ async def _ban_user(_, message: Message):
     sent = await message.reply("`Banindo usuário...`")
     try:
         await megux.ban_chat_member(chat_id, user_id)
-        await sent.edit((await get_string(chat_id, "BAN_SUCCESS").format(mention, message.from_user.mention(), message.chat.title, reason or None)))
+        await sent.edit((await get_string(chat_id, "BAN_SUCCESS")).format(mention, message.from_user.mention(), message.chat.title, reason or None))
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
 
