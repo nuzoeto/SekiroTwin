@@ -16,7 +16,7 @@ from megumin import megux, Config
 from megumin.utils import get_collection, get_response 
 from megumin.utils.decorators import input_str  
 
-BASE_LAST = "http://ws.audioscrobbler.com/2.0"
+API = "http://ws.audioscrobbler.com/2.0"
 LAST_KEY = Config.LASTFM_API_KEY
 REG = get_collection("USERS")
 
