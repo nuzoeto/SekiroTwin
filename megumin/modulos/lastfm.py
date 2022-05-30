@@ -28,9 +28,6 @@ async def _init():
         LAST_USERS = lastdb["last_data"]
 
 
-timeout = httpx.Timeout(20)
-http = httpx.AsyncClient(http2=True, timeout=timeout)
-
 
 @megux.on_message(filters.command(["lt", "lastfm"], prefixes=["/", "!"]))
 async def last_(_, message: Message):
