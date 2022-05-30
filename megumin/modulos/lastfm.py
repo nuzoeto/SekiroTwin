@@ -160,7 +160,7 @@ async def last_(_, message: Message):
 
     # draw heart
     if loved:
-        lov_ = Image.open("yuuna/plugins/misc/heart.png", 'r')
+        lov_ = Image.open("megumin/plugins/misc/heart.png", 'r')
         leve = lov_.resize((25, 25), Image.ANTIALIAS)
         canvas.paste(leve, (248, 190), mask=leve)
         draw.text((278, 187), truncate("loved", artistfont, 315),
