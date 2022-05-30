@@ -195,17 +195,44 @@ async def last_(_, message: Message):
 
 @megux.on_message(filters.command(["setuser", "reg"], prefixes=["/", "!"]))
 async def last_save_user(_, message: Message):
-    user_ = message.from_user.id
-    text = " ".join(message.text.split()[1:])
+    user_id = message.from_user.id
+    fname = message.from_user.first_name
+    uname = message.from_user.username
+    text = input_str(message)
     if not text:
-        await message.reply("__Você esqueceu username 🙃.__")
+        await message.reply("__Bruh.. use /set username.__")
         return
-    await REG.update_one({"_id": user_}, {"$set": {"last_data": text}}, upsert=True)
-    await message.reply("__Seu username foi definido com sucesso.__")
+    found = await REG.find_one({"id_": user_id})
+    user_start = f"#USER_REGISTER #LOGS\n\n**User:** {fname}\n**ID:** {user_id} <a href='tg://user?id={user_id}'>**Link**</a>"
+    if uname:
+        user_start += f"\n**Username:** @{uname}"
+    if found:
+        await asyncio.gather(
+                REG.update_one({"id_": user_id}, {
+                                "$set": {"last_data": text}}, upsert=True),
+                message.reply("__Your username has been successfully updated.__")
+            )
+    else:
+        await asyncio.gather(
+                REG.update_one({"id_": user_id}, {
+                                "$set": {"last_data": text}}, upsert=True),
+                c.send_log(
+                    user_start,
+                    disable_notification=False,
+                    disable_web_page_preview=True,
+                ),
+                message.reply("__Your username has been successfully set.__")
+            )
 
 
 @megux.on_message(filters.command(["deluser", "duser"], prefixes=["/", "!"]))
 async def last_save_user(_, message: Message):
-    user_ = message.from_user.id
-    await REG.delete_one({"_id": user_})
-    await message.reply("__Seu username foi removido do meu banco de dados.__")
+    user_id = message.from_user.id
+    found = await REG.find_one({"id_": user_id})
+    if found:
+        await asyncio.gather(
+                REG.delete_one(found),
+                message.reply("__Your username has been deleted.__")
+            )
+    else:
+        return await message.reply("__You don't have a registered username__")
