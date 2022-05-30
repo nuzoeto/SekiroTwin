@@ -5,17 +5,15 @@ import os
 
 from telegraph import upload_file
 from wget import download
-
-from io import BytesIO
-
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, InlineQuery, InlineQueryResultPhoto, InlineQueryResultArticle, InputTextMessageContent
 from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
+from io import BytesIO
 
 from megumin import megux, Config
+from megumin.utils import input_str
 from .misc import *
-from megumin.utils import get_collection, get_response 
-from megumin.utils.decorators import input_str  
+from megumin.utils import get_collection, get_response
 
 API = "http://ws.audioscrobbler.com/2.0"
 LAST_KEY = Config.LASTFM_API_KEY
