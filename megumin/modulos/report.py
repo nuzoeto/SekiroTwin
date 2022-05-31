@@ -40,4 +40,4 @@ async def report_admins(c: megux, m: Message):
                 ),
             )
             await c.send_message(admins_, f"{user} está chamando os administradores no {chat}")
-            await c.forward_messages(to_chat=admins_, from_chat=chat_id, message_ids=messages_id)
+            await c.forward_messages(admins_, chat_id, messages_id)
