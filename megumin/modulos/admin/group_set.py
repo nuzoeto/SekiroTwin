@@ -62,4 +62,6 @@ async def rules_set(_, m: Message):
 async def del_rules_(_, m: Message):
     if await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         RULES = get_collection(f"RULES {m.chat.id}")
-        await RULES.drop()
+        i = await RULES.find_one()
+        res = i["_rules"]
+        await RULES.delete_one({"_rules": res})
