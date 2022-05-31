@@ -18,65 +18,6 @@ from megumin.utils import get_collection, get_response
 API = "http://ws.audioscrobbler.com/2.0"
 LAST_KEY = Config.LASTFM_API_KEY
 REG = get_collection("USERS")
-
-
-@megux.on_message(filters.command(["lt", "lastfm"], prefixes=["/", "!"]))
-async def last_(_, message: Message):
-    query = input_str(message)
-    user_ = message.from_user
-    lastdb = await REG.find_one({"id_": user_.id})
-    if not (lastdb or query):
-        button = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "Create LastFM account", url="https://www.last.fm/join"
-                    )
-                ]
-            ]
-        )
-        reg_ = "__Enter some username or use /set (username) to set yours. If you don't already have a LastFM account, click the button below to register.__"
-        await message.reply(reg_, reply_markup=button)
-        return
-    if query:
-        user_lastfm = query
-    else:
-        user_lastfm = lastdb["last_data"]
-    
-    # request on lastfm
-    params = {
-        "method": "user.getrecenttracks",
-        "limit": 1,
-        "extended": 1,
-        "user": user_lastfm,
-        "api_key": Config.LASTFM_API_KEY,
-        "limit": 1,
-        "format": "json",
-    }
-   view_data = await get_response.json(link=API, params=params)
-   recent_song = view_data["recenttracks"]["track"]
-   if len(recent_song) == 0:
-       if query:
-           return
-      else:
-           return
-  song_ = recent_song[0]
-  song_name = song_["name"]
-  artist_name = song_["artist"]["name"]
-  image_ = song_["image"][3].get("#text")
-  params_ = {
-      "method": "track.getInfo",
-      "track": song_name,
-      "artist": artist_name,
-      "user": user_lastfm,
-      "api_key": Config.LASTFM_API_KEY,
-      "format": "json",
-  }
-  view_data_ = await get_response.json(link=API, params=params_)
-  get_track = view_data_["track"]
-  get_scrob = int(get_track["userplaycount"])
-  await message.reply(f"{message.from_user.first_name} está ouvindo\n{artist_name} - {song_name}")
-
           
 
 @megux.on_message(filters.command(["setuser", "reg"], prefixes=["/", "!"]))
