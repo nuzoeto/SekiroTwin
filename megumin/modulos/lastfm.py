@@ -84,8 +84,8 @@ async def last_(_, message: Message):
         if get_scrob == 0:
             scrob = get_scrob + 1
         else:
-            scrob =  get_scrob            
-        await message.reply(f"{message.from_user.first_name} está ouvindo pela {get_scrob}° Vez.\n<b>{artist_name}<b> - {song_name}")
+            scrob =  get_scrob          
+            await message.reply(f"{message.from_user.first_name} está ouvindo pela {get_scrob}° Vez.\n<b>{artist_name}<b> - {song_name}")
 
 
 @megux.on_message(filters.command(["setuser", "reg"], prefixes=["/", "!"]))
