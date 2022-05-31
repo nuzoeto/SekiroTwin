@@ -25,7 +25,7 @@ __Um Weeb Bot feito com carinho ❤️__.
 async def info(client, message):
     buttons = [
         [
-            InlineKeyboardButton("Criadores", url="https://t.me/whiterbotnews/16"),
+            InlineKeyboardButton("Criadores", url="https://t.me/whiterkangnews/16"),
             InlineKeyboardButton("Suporte", url="https://t.me/fnixsup"),
         ]
     ]
