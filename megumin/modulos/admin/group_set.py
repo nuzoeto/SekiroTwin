@@ -49,7 +49,7 @@ async def rules_set(_, m: Message):
         x = m.reply_to_message.text
     data = get_collection(f"RULES {m.chat.id}")
     if not x:
-        return await m.reply(await get_string(m.chat.id, "NO_SETRULES_ARGS"))
+        return await m.reply(await get_string(m.chat.id, "RULES_NO_ARGS"))
     else:
          if await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
              await data.drop()
