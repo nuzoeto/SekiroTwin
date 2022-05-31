@@ -7,7 +7,7 @@ from megumin.utils import get_collection, get_string
 
 @megux.on_message(filters.command("rules"))
 async def rules_(_, m: Message):
-    data = get_collection(f"RULES  {m.chat.id}")
+    data = get_collection(f"RULES {m.chat.id}")
     res = await data.find_one()
     if res:
         RULES = res["_rules"]
