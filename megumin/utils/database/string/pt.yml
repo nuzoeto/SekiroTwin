@@ -82,3 +82,5 @@ NO_BAN_USER: "Você não tem direitos administrativos suficientes para banir/des
 #rules
 RULES_UPDATED: "Novas regras do grupo foram definidas com sucesso!."
 RULES_NO_ARGS: "<b>Você não especificou um argumento para alterar as regras</b>"
+RULES: "As regras para *{}* estão:\n\n{}"
+NO_RULES: "Os administradores do grupo ainda não definiram nenhuma regra para este bate-papo."
