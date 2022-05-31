@@ -54,4 +54,4 @@ async def rules_set(_, m: Message):
          if await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
              await data.drop()
              await data.insert_one({"_rules": x})
-             await m.reply(await get_string(m.chat.id, "RULES_UPDATED")
+             await m.reply(await get_string(m.chat.id, "RULES_UPDATED"))
