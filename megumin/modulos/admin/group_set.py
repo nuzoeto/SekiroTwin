@@ -9,7 +9,10 @@ from megumin.utils import (
     is_dev,
     is_self,
     sed_sticker,
+    get_collection,
+    get_string
 )
+from megumin.utils.decorators import input_str 
 
 @megux.on_message(filters.command("setgrouppic", prefixes=["/", "!"]))
 async def set_chat_photo(_, message):
@@ -38,3 +41,17 @@ async def set_chat_photo(_, message):
     sucess = await message.chat.set_photo(photo)
     await message.reply_text(f"Foto alterada com sucesso no grupo <b>{message.chat.title}</b>")
 
+@megux.on_message(filters.command("setrules"))
+async def rules_set(_, m: Message):
+    if input_str(m):
+        x = input_str(m)
+    if m.reply_to_message:
+        x = m.reply_to_message.text
+    data = get_collection(f"RULES {m.chat.id}")
+    if not x:
+        return await m.reply(await get_string(m.chat.id, "NO_SETRULES_ARGS"))
+    else:
+         if await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
+             await data.drop()
+             await data.insert_one({"_rules": x})
+             await m.reply(await get_string(m.chat.id, "RULES_UPDATED")
