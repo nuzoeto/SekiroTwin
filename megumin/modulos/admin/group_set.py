@@ -44,8 +44,8 @@ async def set_chat_photo(_, message):
 @megux.on_message(filters.command("setrules"))
 async def rules_set(_, m: Message):
     x = ""
-    if input_str(m):
-        x += input_str(m)
+    if m.text:
+        x += m.text.split(None, 1)[1]
     if m.reply_to_message:
         x += m.reply_to_message.text
     data = get_collection(f"RULES {m.chat.id}")
