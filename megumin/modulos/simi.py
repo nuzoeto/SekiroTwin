@@ -13,7 +13,7 @@ async def chatbot_(c: megux, m: Message):
         API = f"https://api.simsimi.net/v2/?text={text_}&lc=pt&cf=false"
         r = requests.get(API).json()
         if r["success"] in "Eu não resposta. Por favor me ensine.":
-            await m.reply("Desconheço esse assunto, mas sei de outros: história, dicas..").
+            await m.reply("Desconheço esse assunto, mas sei de outros: história, dicas..")
         if r["success"]: 
             await m.reply(r["success"])
         else: 
