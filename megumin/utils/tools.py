@@ -61,7 +61,7 @@ async def is_self(user_id: int) -> bool:
 async def check_rights(chat_id: int, user_id: int, rights: str) -> bool:
     """Verifica os privilégios do usuário"""
     user = await megux.get_chat_member(chat_id, user_id)
-    if user_id in Config.DEV_USERS:
+    if user_id in Config.OWNER:
         return True
     elif user.status == ChatMemberStatus.OWNER:
         return True
