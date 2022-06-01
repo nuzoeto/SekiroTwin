@@ -1,7 +1,7 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from megumin import megux 
+from megumin import megux, Config  
 from megumin.utils import (
     check_bot_rights,
     check_rights,
@@ -41,7 +41,7 @@ async def set_chat_photo(_, message):
     sucess = await message.chat.set_photo(photo)
     await message.reply_text(f"Foto alterada com sucesso no grupo <b>{message.chat.title}</b>")
 
-@megux.on_message(filters.command("setrules"))
+@megux.on_message(filters.command("setrules", Config.TRIGGER))
 async def rules_set(_, m: Message):
     x = ""
     if input_str(m):
@@ -58,7 +58,7 @@ async def rules_set(_, m: Message):
              await m.reply(await get_string(m.chat.id, "RULES_UPDATED"))
 
 
-@megux.on_message(filters.command("clearrules"))
+@megux.on_message(filters.command("clearrules", Config.TRIGGER))
 async def del_rules_(_, m: Message):
     if await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         RULES = get_collection(f"RULES {m.chat.id}")
