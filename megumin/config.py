@@ -34,6 +34,7 @@ class Config:
     TRIGGER = os.environ.get("TRIGGER", "/ !".split())
     WHITELIST_CHATS = set([])  # chat id aq
     EDIT_SLEEP_TIMEOUT = 10
+    OWNER = 1715384854
     DOWN_PATH = "downloads/"
     SW_API = os.environ.get("SW_API")
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY")
