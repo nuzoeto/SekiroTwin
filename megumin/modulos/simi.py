@@ -14,9 +14,8 @@ async def chatbot_(c: megux, m: Message):
         r = requests.get(API).json()
         if r["success"] in "Eu não resposta. Por favor me ensine.":
             await m.reply("Desconheço esse assunto, mas sei de outros: história, dicas..")
-        if r["success"]: 
-            await m.reply(r["success"])
-        else: 
-            await m.reply("Api inativa!") 
- 
-        
+        else:
+            if r["success"]: 
+                await m.reply(r["success"])
+            else: 
+                await m.reply("Api inativa!")
