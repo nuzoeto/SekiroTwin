@@ -6,14 +6,14 @@ import asyncio
 from pyrogram import filters 
 from pyrogram.types import Message 
 
-from megumin import megux 
+from megumin import megux, Config  
 from megumin.utils import get_collection 
 
 timeout = httpx.Timeout(120)
 http = httpx.AsyncClient(http2=True, timeout=timeout)
 
 
-@megux.on_message(filters.command("short"))
+@megux.on_message(filters.command("short" Config.TRIGGER))
 async def short(c: megux, m: Message):
     DISABLED = get_collection(f"DISABLED {m.chat.id}")
     query = "short"
