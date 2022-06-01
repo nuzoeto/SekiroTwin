@@ -25,6 +25,7 @@ CMDS = [
     "vapor",
     "report",
     "ddd",
+    "dicio",
     "cep",
     "pypi",
     "slap",
@@ -94,6 +95,7 @@ async def disableable(_, m: Message):
 - __ban__
 - __banme__
 - __ddd__
+- __dicio__
 - __cep__
 - __clima__
 - __getsticker__
