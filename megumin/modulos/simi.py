@@ -17,5 +17,3 @@ async def chatbot_(c: megux, m: Message):
         else:
             if r["success"]: 
                 await m.reply(r["success"])
-            else: 
-                await m.reply("Api inativa!")
