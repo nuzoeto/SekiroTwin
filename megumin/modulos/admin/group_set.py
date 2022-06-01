@@ -65,3 +65,4 @@ async def del_rules_(_, m: Message):
         i = await RULES.find_one()
         res = i["_rules"]
         await RULES.delete_one({"_rules": res})
+        await m.reply(await get_string(m.chat.id, "CLEAR_RULES_SUCCESS"))
