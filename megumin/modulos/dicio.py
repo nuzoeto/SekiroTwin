@@ -6,6 +6,7 @@ from pyrogram import filters
 from pyrogram.types import Message 
 
 from megumin import megux 
+from megumin.utils import get_collection 
 
 
 http = httpx.AsyncClient()
@@ -70,6 +71,11 @@ async def dicio_def(query):
 
 @megux.on_message(filters.command("dicio"))
 async def dicio(c: megux, m: Message):
+    DISABLED = get_collection(f"DISABLED {m.chat.id}")
+    query = "dicio"
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     txt = m.text.split(" ", 1)[1]
     if a := await dicio_def(txt):
         frase = f'<b>{a[0]["title"]}:</b>\n{a[0]["tit"]}\n\n<i>{a[0]["desc"]}</i>'
