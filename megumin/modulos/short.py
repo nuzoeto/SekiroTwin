@@ -13,7 +13,7 @@ timeout = httpx.Timeout(120)
 http = httpx.AsyncClient(http2=True, timeout=timeout)
 
 
-@megux.on_message(filters.command("short" Config.TRIGGER))
+@megux.on_message(filters.command("short", Config.TRIGGER))
 async def short(c: megux, m: Message):
     DISABLED = get_collection(f"DISABLED {m.chat.id}")
     query = "short"
