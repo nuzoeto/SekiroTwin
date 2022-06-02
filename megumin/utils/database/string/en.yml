@@ -85,3 +85,9 @@ RULES_CLEAR_SUCCESS: "Successfully cleared rules!"
 #simi
 SIMI_NO_RESPONSE: "I don't know this subject, but I know about others: history, tips..."
 SIMI_API_OFF: "The api is showing unexpected errors!"
+
+
+#disable 
+COMMAND_NOW_DISABLED: "<i>Command {} Now Disabled!!!</i>"
+ALREADY_DISABLED_COMMAND: "<i>Command already disabled!</i>"
+NO_DISABLE_COMMAND: "<i>Which command do you want to disable?</i>"
