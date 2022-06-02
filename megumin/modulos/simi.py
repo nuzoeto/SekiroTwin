@@ -3,7 +3,7 @@ import requests
 from pyrogram import filters 
 from pyrogram.types import Message 
 
-from megumin import megux 
+from megumin import megux, Config
 from megumin.utils import get_collection 
 from megumin.utils.decorators import input_str 
 
