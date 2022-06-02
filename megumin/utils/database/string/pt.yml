@@ -85,3 +85,7 @@ RULES_NO_ARGS: "<b>Você não especificou um argumento para alterar as regras</b
 RULES: "As regras para <b>{}</b> estão:\n\n{}"
 NO_RULES: "Os administradores do grupo ainda não definiram nenhuma regra para este bate-papo."
 RULES_CLEAR_SUCCESS: "Regras apagadas com sucesso!"
+
+#simi
+SIMI_NO_RESPONSE: "Desconheço esse assunto, mas sei de outros: história, dicas..."
+SIMI_API_OFF: "A api está apresentado erros inesperados!"
