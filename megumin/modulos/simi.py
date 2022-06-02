@@ -14,4 +14,7 @@ async def simi_(_, m: Message):
     r = requests.get(API).json()  
     if r["success"] in "Eu não resposta. Por favor me ensine.":
         return await m.reply("Desconheço esse assunto, mas sei de outros: história, dicas...")
-    await m.reply(r["success"])
+    if r["success"]:
+        return await m.reply(r["success"])
+    else:
+        return await m.reply("A api está apresentado erros inesperados!")
