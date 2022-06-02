@@ -97,3 +97,7 @@ NO_DISABLE_COMMAND: "<i>Which command do you want to disable?</i>"
 COMMAND_NOW_ENABLED: "<i>Command {} Now enabled!!!</i>"
 NO_DISABLED_COMMAND: "<i>Command not disabled!</i>"
 NO_ENABLE_COMMAND: "<i>Which command do you want to enable?</i>"
+
+#weather 
+WEATHER_LANGUAGE: "en-US"
+WEATHER_UNIT: "e"
