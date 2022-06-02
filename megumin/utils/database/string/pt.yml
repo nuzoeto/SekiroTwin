@@ -98,5 +98,5 @@ NO_DISABLE_COMMAND: "<i>Qual comando você deseja desativar?</i>"
 
 #enable
 COMMAND_NOW_ENABLED: "<i>Comando {} Agora Ativado!!!</i>"
-NO_DISABLED_COMMAND: "<i>Comando já ativado!</i>"
+NO_DISABLED_COMMAND: "<i>Comando não desativado!</i>"
 NO_ENABLE_COMMAND: "<i>Qual comando você deseja ativar?</i>"
