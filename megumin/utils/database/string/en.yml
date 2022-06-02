@@ -94,6 +94,6 @@ NO_DISABLE_COMMAND: "<i>Which command do you want to disable?</i>"
 
 
 #enable
-COMMAND_NOW_DISABLED: "<i>Command {} Now enabled!!!</i>"
-ALREADY_DISABLED_COMMAND: "<i>Command already enabled!</i>"
-NO_DISABLE_COMMAND: "<i>Which command do you want to enable?</i>"
+COMMAND_NOW_ENABLED: "<i>Command {} Now enabled!!!</i>"
+ALREADY_ENABLED_COMMAND: "<i>Command already enabled!</i>"
+NO_ENABLE_COMMAND: "<i>Which command do you want to enable?</i>"
