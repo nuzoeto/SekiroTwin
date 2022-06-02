@@ -81,3 +81,7 @@ RULES_NO_ARGS: "<b>You did not specify an argument to change the rules</b>"
 RULES: "The rules for <b>{}</b> are:\n\n{}"
 NO_RULES: "Group admins haven't set any rules for this chat yet."
 RULES_CLEAR_SUCCESS: "Successfully cleared rules!"
+
+#simi
+SIMI_NO_RESPONSE: "I don't know this subject, but I know about others: history, tips..."
+SIMI_API_OFF: "The api is showing unexpected errors!"
