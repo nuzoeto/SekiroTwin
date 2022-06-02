@@ -89,3 +89,9 @@ RULES_CLEAR_SUCCESS: "Regras apagadas com sucesso!"
 #simi
 SIMI_NO_RESPONSE: "Desconheço esse assunto, mas sei de outros: história, dicas..."
 SIMI_API_OFF: "A api está apresentado erros inesperados!"
+
+
+#disable
+COMMAND_NOW_DISABLED: "<i>Comando {} Agora Desativado!!!</i>"
+ALREADY_DISABLED_COMMAND: "<i>Comando já desativado!</i>"
+NO_DISABLE_COMMAND: "<i>Qual comando você deseja desativar?</i>"
