@@ -28,7 +28,7 @@ async def weather(c: megux, m: Message):
     user_id = m.from_user.id
     if len(m.command) == 1:
         return await m.reply_text(
-            "<b>Uso:</b> <code>/clima localização ou cidade</code> - Obtém informações sobre o clima na <i>localização ou cidade</i>."
+            await get_string(m.chat.id, "WEATHER_NO_ARGS")
         )
     if user_id in Config.BLACK_LIST:
         return await message.reply(f"Você não pode me usar devido ao seu id estar na blacklist.\n\n<b>Seu ID é</b>: {user_id}.")
@@ -45,7 +45,7 @@ async def weather(c: megux, m: Message):
     )
     loc_json = r.json()
     if not loc_json.get("location"):
-        await m.reply_text("Localização não encontrada.")
+        await m.reply_text(await get_string(m.chat.id, "WEATHER_LOCATION_NOT_FOUND"))
     else:
         pos = f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
         r = await http.get(
