@@ -9,7 +9,8 @@ import subprocess
 import io
 
 
-from pyrogram import Client, filters 
+from pyrogram import Client, filters
+from pyrogram.enums import ParseMode  
 from pyrogram.errors import UserIsBlocked
 from pyrogram.types import Message
 from datetime import datetime 
@@ -194,7 +195,7 @@ async def terminal(client: megux, message: Message):
             )
             await message.reply_text(
                 """**Error:**\n```{}```""".format("".join(errors)),
-                parse_mode="markdown",
+                parse_mode=ParseMode.MARKDOWN",
             )
             return
         output = process.stdout.read()[:-1].decode("utf-8")
