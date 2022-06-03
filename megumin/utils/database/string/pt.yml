@@ -104,3 +104,4 @@ NO_ENABLE_COMMAND: "<i>Qual comando você deseja ativar?</i>"
 #weather
 WEATHER_LANGUAGE: "pt-BR"
 WEATHER_UNIT: "m"
+WEATHER_DETAILS: "<b>{location}</b>:\n\nTemperatura: <code>{temperature} °C</code>\nSensação térmica: <code>{feels_like} °C\n</code>Umidade do ar: <code>{air_humidity}%</code>\nVento: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>"
