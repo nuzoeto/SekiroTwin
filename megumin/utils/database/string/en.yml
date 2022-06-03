@@ -101,4 +101,4 @@ NO_ENABLE_COMMAND: "<i>Which command do you want to enable?</i>"
 #weather 
 WEATHER_LANGUAGE: "en-US"
 WEATHER_UNIT: "e"
-WEATHER_DETAILS: "<b>{location}</b>:\n\nTemperature: <code>{temperature} °F</code>\nTemperature feels like: <code>{feels_like} °F</code>\nAir  umidity<code>: {air_humidity}%</code>\nWind: <code>{wind_speed} mph</code>\n\n- <i>{overview}</i>"
+WEATHER_DETAILS: "<b>{location}</b>:\n\nTemperature: <code>{temperature} °F</code>\nThermal sensation: <code>{feels_like} °F</code>\nAir  umidity<code>: {air_humidity}%</code>\nWind: <code>{wind_speed} mph</code>\n\n- <i>{overview}</i>"
