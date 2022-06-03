@@ -63,7 +63,7 @@ async def weather(c: megux, m: Message):
 
         obs_dict = res_json["v3-wx-observations-current"]
 
-        res = await get_string(m.chat.id, "WEATHER_DETAILS").format(
+        res = (await get_string(m.chat.id, "WEATHER_DETAILS")).format(
             location=loc_json["location"]["address"][0],
             temperature=obs_dict["temperature"],
             feels_like=obs_dict["temperatureFeelsLike"],
