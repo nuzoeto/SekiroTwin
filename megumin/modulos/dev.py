@@ -214,7 +214,7 @@ async def terminal(client: megux, message: Message):
             )
             os.remove(filename)
             return
-        await message.reply_text(f"**Output:**\n```{output}```", parse_mode="markdown")
+        await message.reply_text(f"**Output:**\n```{output}```", parse_mode=ParseMode.MARKDOWN)
     else:
         await message.reply_text("**Output:**\n`No Output`")
     return await locals()["__aexec"](client, message)
