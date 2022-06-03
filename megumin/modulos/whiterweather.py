@@ -3,7 +3,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux, Config
-from megumin.utils import get_collection 
+from megumin.utils import get_collection, get_string 
 
 weather_apikey = "8de2d8b3a93542c9a2d8b3a935a2c909"
 
