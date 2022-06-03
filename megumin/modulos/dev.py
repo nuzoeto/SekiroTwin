@@ -195,7 +195,7 @@ async def terminal(client: megux, message: Message):
             )
             await message.reply_text(
                 """**Error:**\n```{}```""".format("".join(errors)),
-                parse_mode=ParseMode.MARKDOWN",
+                parse_mode=ParseMode.MARKDOWN,
             )
             return
         output = process.stdout.read()[:-1].decode("utf-8")
