@@ -39,7 +39,7 @@ async def weather(c: megux, m: Message):
         params=dict(
             apiKey=weather_apikey,
             format="json",
-            language="pt-BR",
+            language=await get_string(m.chat.id, "WEATHER_LANGUAGE"),
             query=m.text.split(maxsplit=1)[1],
         ),
     )
@@ -54,9 +54,9 @@ async def weather(c: megux, m: Message):
             params=dict(
                 apiKey=weather_apikey,
                 format="json",
-                language="pt-BR",
+                language=await get_string(m.chat.id, "WEATHER_LANGUAGE"),
                 geocode=pos,
-                units="m",
+                units=await get_string(m.chat.id, "WEATHER_UNIT"),
             ),
         )
         res_json = r.json()
