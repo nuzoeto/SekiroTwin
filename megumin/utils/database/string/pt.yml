@@ -107,3 +107,9 @@ WEATHER_UNIT: "m"
 WEATHER_DETAILS: "<b>{location}</b>:\n\nTemperatura: <code>{temperature} °C</code>\nSensação térmica: <code>{feels_like} °C\n</code>Umidade do ar: <code>{air_humidity}%</code>\nVento: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>"
 WEATHER_NO_ARGS: "<b>Uso:</b> <code>/clima localização ou cidade</code> - Obtém informações sobre o clima na <i>localização ou cidade</i>."
 WEATHER_LOCATION_NOT_FOUND: "Localização não encontrada."
+
+#telegra.ph
+TG_NO_REPLY_MEDIA: "<code>Responda a alguma mídia.</code>"
+TG_NOT_SUPORTED: "<code>Não suportado!</code>"
+TG_UPLOADING: "<code>Fazendo upload no telegraph...</code>"
+TG_UPLOADED: "<b>[Aqui, seu link telegraph!](https://telegra.ph{})</b>"
