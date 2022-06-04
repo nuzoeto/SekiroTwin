@@ -30,10 +30,9 @@ async def broadcasting_(_, message: Message):
     user_id = message.from_user.id
     if not is_dev(user_id):
         return
-    query = ""
-    query += message.text.split(None, 1)[1]
-    if query in "":
+    if not input_str(message):
         return await message.reply("__I need text to broadcasting.__")
+    query = message.text.split(None, 1)[1]
     msg = await message.reply("__Broadcasting ...__")
     web_preview = False
     sucess_br = 0
