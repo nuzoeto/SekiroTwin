@@ -78,6 +78,7 @@ async def set_log(_, m: Message):
             await data.drop()
             await data.insert_one({"log_id": chat_log})
             chat = await data.find_one()
-            await megux.send_message(chat["log_id"], "teste")
+            await m.reply(await get_string(m.chat.id, "LOGS_DEFINED_MESSAGE"))
+            await megux.send_message(chat["log_id"], (await get_string(m.chat.id, "LOGS_DEFINED")).format(m.chat.title)))
         else:
-            return await m.reply("ID Não especificado")  
+            return 
