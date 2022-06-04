@@ -42,7 +42,7 @@ async def telegraph_(megux, message: Message):
     except Exception as document:
         await msg.edit(document)
     else:
-        link = f"<b>[Aqui, seu link telegraph!](https://telegra.ph{response[0]})</b>"
-        await msg.edit(link, disable_web_page_preview=True)
+        link = "<b>[Aqui, seu link telegraph!](https://telegra.ph{})</b>"
+        await msg.edit(link.format(response[0]), disable_web_page_preview=True)
     finally:
         os.remove(download_location)
