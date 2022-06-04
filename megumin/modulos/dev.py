@@ -52,12 +52,25 @@ async def broadcasting_(_, message: Message):
             no_sucess += 1
         except Exception:
             no_sucess += 1
+    total_groups = await GROUPS.estimated_documecount
+    sucess_br_gp = 0
+    no_sucess_gp = 0
+    gplist = GROUPS.find()
+    async for groups in gplist:
+        try:
+            await megux.send_message(chat_id= groups["id_"], text=query_, disable_web_page_preview=web_preview)
+            sucess_br_gp += 1
+        except Exception:
+            no_sucess_gp += 1
     await asyncio.sleep(3)
     await msg.edit(f"""
 ╭─❑ 「 **Anúncio Completo** 」 ❑──
 │- __Total de Usuários:__ `{total_user}`
-│- __Com sucesso:__ `{sucess_br}`
-│- __Falhados :__ `{no_sucess}`
+│- __Total de Grupos:__ `{total_groups}`
+│- __Usuarios com sucesso:__ `{sucess_br}`
+│- __Usuarios Falhados :__ `{no_sucess}`
+│- __Grupos com sucesso:__ `{sucess_br_gp}`
+│- __Grupos Falhados:__ `{no_sucess_gp}`
 ╰❑
     """)
 
