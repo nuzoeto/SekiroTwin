@@ -52,7 +52,7 @@ async def broadcasting_(_, message: Message):
             no_sucess += 1
         except Exception:
             no_sucess += 1
-    total_groups = await GROUPS.estimated_documecount
+    total_groups = await GROUPS.estimated_document_count()
     sucess_br_gp = 0
     no_sucess_gp = 0
     gplist = GROUPS.find()
