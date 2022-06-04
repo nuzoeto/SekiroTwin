@@ -69,7 +69,7 @@ async def del_rules_(_, m: Message):
 
 
 @megux.on_message(filters.command("setlog", prefixes=["/", "!"]))
-async def set_log(_, m: message):
+async def set_log(_, m: Message):
     chat_log = ""
     chat_log += input_str(m)
     if await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
