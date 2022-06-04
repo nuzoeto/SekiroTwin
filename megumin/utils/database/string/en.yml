@@ -110,3 +110,8 @@ TG_NO_REPLY_MEDIA: "<code>Reply to some media.</code>"
 TG_NOT_SUPORTED: "<code>Not supported!</code>"
 TG_UPLOADING: "<code>Uploading to telegraph...</code>"
 TG_UPLOADED: "<b>[Here, your telegraph link!](https://telegra.ph{})</b>"
+
+
+#LOGS
+LOGS_DEFINED: "This channel has been established as the registration channel for {}."
+LOGS_DEFINED_MESSAGE: 'The registration channel has been successfully established!'
