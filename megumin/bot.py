@@ -19,6 +19,7 @@ class WhiterKang(Client):
             'api_id': os.environ.get("API_ID"),
             'api_hash': os.environ.get("API_HASH"),
             'bot_token': os.environ.get("BOT_TOKEN"),
+            'workers': 24,
             'in_memory': True,
             'plugins': dict(root="megumin.modulos")
         }
