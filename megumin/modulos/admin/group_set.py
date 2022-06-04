@@ -66,3 +66,16 @@ async def del_rules_(_, m: Message):
         res = i["_rules"]
         await RULES.delete_one({"_rules": res})
         await m.reply(await get_string(m.chat.id, "RULES_CLEAR_SUCCESS"))
+
+
+@megux.on_message(filters.command("setlog", prefixes=["/", "!"]))
+async def set_log(_, m: message):
+    chat_log = ""
+    chat_log += input_str(m)
+    if await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
+        if not chat_log in "":
+            data = get_collection(f"LOGS {m.chat.id}")
+            await data.drop()
+            await data.insert_one({"log_id": chat_log})
+        else:
+            return 
