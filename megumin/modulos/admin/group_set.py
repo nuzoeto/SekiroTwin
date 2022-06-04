@@ -73,10 +73,10 @@ async def set_log(_, m: Message):
     chat_log = ""
     chat_log += input_str(m)
     if await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
-        if not chat_log in "":
+        if input_str(m):
             data = get_collection(f"LOGS {m.chat.id}")
             await data.drop()
             await data.insert_one({"log_id": chat_log})
             await megux.send_message(data["log_id"], "teste")
         else:
-            return 
+            return await m.reply("ID Não especificado")  
