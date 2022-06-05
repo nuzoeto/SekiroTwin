@@ -31,8 +31,8 @@ async def cleanup(c: megux, m: Message):
         async for t in c.get_chat_members(chat_id=m.chat.id):
             if t.user.is_deleted:
                 try:
-                    await c.ban_chat_member(m.chat.id, t.user.id)
                     deleted.append(t)
+                    await c.ban_chat_member(m.chat.id, t.user.id)
                 except BadRequest:
                     pass
                 except Forbidden as e:
