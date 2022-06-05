@@ -77,7 +77,7 @@ async def _ban_user(_, message: Message):
     try:
         await megux.ban_chat_member(chat_id, user_id)
         await sent.edit((await get_string(chat_id, "BAN_SUCCESS")).format(mention, message.from_user.mention(), message.chat.title, reason or None))
-        data = await LOGS.find_one():
+        data = await LOGS.find_one()
         if data:
             id = data["log_id"]
             await megux.send_message(id, await get_string(chat_id, "BAN_LOGGER"))
