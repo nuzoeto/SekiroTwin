@@ -126,11 +126,11 @@ async def extract_time(msg, time_val):
             return
 
         if unit == "m":
-            bantime = int(datetime.now() + timedelta(minutes=int(time_num))
+            bantime = datetime.now() + timedelta(minutes=int(time_num))
         elif unit == "h":
-            bantime = int(datetime.now() + timedelta(hours=int(time_num))
+            bantime = datetime.now() + timedelta(hours=int(time_num))
         elif unit == "d":
-            bantime = int(datetime.now() + timedelta(days=int(time_num))  
+            bantime = datetime.now() + timedelta(days=int(time_num))  
         else:
             await msg.reply("`Existe outra unidade de tempo que você conhece ..?`")
             return
