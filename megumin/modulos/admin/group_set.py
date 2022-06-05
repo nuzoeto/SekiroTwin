@@ -72,8 +72,6 @@ async def del_rules_(_, m: Message):
 async def set_log(_, m: Message):
     chat_log = ""
     chat_log += input_str(m)
-    if not int(chat_log):
-        return await m.reply("Isso não é um id")
     if not "-100" in chat_log:
         return await m.reply("Isso não é um grupo!")
     if chat_log == f"{m.chat.id}":
