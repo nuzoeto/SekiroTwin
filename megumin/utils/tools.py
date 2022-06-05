@@ -125,9 +125,7 @@ async def extract_time(msg, time_val):
             await msg.reply("`Quantidade de tempo específicada é inválida.`")
             return
 
-        if unit == "s":
-            bantime = datetime.now() + timedelta(seconds=int(time_num))
-        elif unit == "m":
+        if unit == "m":
             bantime = datetime.now() + timedelta(minutes=int(time_num))
         elif unit == "h":
             bantime = datetime.now() + timedelta(hours=int(time_num))
