@@ -74,6 +74,7 @@ BAN_LOADING: "<code>Baning user...</code>"
 NO_BAN_BOT: "I can't restrict people here!  Make sure I'm an admin and I can add new admins."
 NO_BAN_USER: "You don't have sufficient administrative rights to ban/unban users!"
 BAN_LOGGER: "<b>{}:</b>\n#BAN\n<b>Administrator:</b> {}\n<b>User:</b> {} (<code>{}</code>)\n<b>Reason:</b> <code>{}</code>"
+TBAN_SUCCESS: "{} was temporarily banned for <b>{}</b> in <b>{}</b>\n<b>Reason</b>: {}"
 
 
 #rules
