@@ -1,5 +1,6 @@
 import base64
 import time
+from datetime import datetime, timedelta
 
 from pyrogram.enums import ChatMemberStatus 
 from pyrogram.types import Message
@@ -125,11 +126,11 @@ async def extract_time(msg, time_val):
             return
 
         if unit == "m":
-            bantime = int(time.time() + int(time_num) * 60)
+            bantime = int(datetime.now() + timedelta(minutes=int(time_num))
         elif unit == "h":
-            bantime = int(time.time() + int(time_num) * 60 * 60)
+            bantime = int(datetime.now() + timedelta(hours=int(time_num))
         elif unit == "d":
-            bantime = int(time.time() + int(time_num) * 24 * 60 * 60)  
+            bantime = int(datetime.now() + timedelta(days=int(time_num))  
         else:
             await msg.reply("`Existe outra unidade de tempo que você conhece ..?`")
             return
