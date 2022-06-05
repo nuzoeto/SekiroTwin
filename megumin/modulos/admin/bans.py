@@ -80,7 +80,7 @@ async def _ban_user(_, message: Message):
         data = await LOGS.find_one()
         if data:
             id = data["log_id"]
-            await megux.send_message(id, (await get_string(chat_id, "BAN_LOGGER")).format(message.chat.title, m.from_user.mention(), mention, user_id, reason or None))
+            await megux.send_message(id, (await get_string(chat_id, "BAN_LOGGER")).format(message.chat.title, message.from_user.mention(), mention, user_id, reason or None))
             return
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
