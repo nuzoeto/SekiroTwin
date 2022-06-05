@@ -127,7 +127,7 @@ async def extract_time(msg, time_val):
 
         if unit == "s":
             bantime = datetime.now() + timedelta(seconds=int(time_num))
-        if unit == "m":
+        elif unit == "m":
             bantime = datetime.now() + timedelta(minutes=int(time_num))
         elif unit == "h":
             bantime = datetime.now() + timedelta(hours=int(time_num))
