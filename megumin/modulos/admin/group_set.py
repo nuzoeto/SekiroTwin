@@ -79,10 +79,12 @@ async def set_log(_, m: Message):
     if await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         if input_str(m):
             data = get_collection(f"LOGS {m.chat.id}")
-            await data.drop()
-            await data.insert_one({"log_id": chat_log})
-            chat = await data.find_one()
-            await m.reply(await get_string(m.chat.id, "LOGS_DEFINED_MESSAGE"))
-            await megux.send_message(chat["log_id"], (await get_string(m.chat.id, "LOGS_DEFINED")).format(m.chat.title))
+            to_chat = int(chat_log)
+            if await check_rights(to_chat, m.from_user.id, "can_promote_members"):
+                await data.drop()
+                await data.insert_one({"log_id": chat_log})
+                chat = await data.find_one()
+                await m.reply(await get_string(m.chat.id, "LOGS_DEFINED_MESSAGE"))
+                await megux.send_message(chat["log_id"], (await get_string(m.chat.id, "LOGS_DEFINED")).format(m.chat.title))
         else:
             return 
