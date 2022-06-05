@@ -75,10 +75,10 @@ async def _tban_user(_, message: Message):
         return
     sent = await message.reply("`Banindo usuário temporariamente...`")
     try:
-        await megux.ban_chat_member(chat_id, user_id, time_)
+        await megux.ban_chat_member(chat_id, user_id, until_date=time_)
         await asyncio.sleep(1)
         await sent.edit(
-            f"{mention} foi banido por <b>{time_val}</b> em <b>{message.chat.title}</b>\n"
+            f"{mention} foi banido(a) temporariamente por <b>{time_val}</b> em <b>{message.chat.title}</b>\n"
             f"<b>Motivo</b>: `{reason or None}`"
         )
     except Exception as e_f:  # pylint: disable=broad-except
