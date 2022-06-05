@@ -12,7 +12,7 @@ async def purge_command(megux, message: Message):
     can_purge = await admin_check(message)
     if can_purge:
         try:
-            message_reply = int(message.reply_to_message.message_id)
+            message_reply = int(message.reply_to_message.id)
         except AttributeError:
             await message.reply(
                 "Responda a uma mensagem para selecionar por onde iniciar a limpeza."
