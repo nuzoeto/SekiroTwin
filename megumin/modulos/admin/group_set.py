@@ -74,6 +74,8 @@ async def set_log(_, m: Message):
     chat_log += input_str(m)
     if not "-100" in chat_log:
         return await m.reply("Isso não é um grupo!")
+    if chat_log == m.chat.id:
+        return await m.reply("Você não pode definir o grupo de registro nesse grupo!")
     if await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         if input_str(m):
             data = get_collection(f"LOGS {m.chat.id}")
