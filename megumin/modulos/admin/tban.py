@@ -14,6 +14,7 @@ from megumin.utils import (
     is_self,
     sed_sticker,
     get_collection,
+    get_string
 )
 
 
@@ -21,7 +22,7 @@ from megumin.utils import (
 async def _tban_user(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
-        await message.reply("Você não tem direitos suficientes para silenciar usuários")
+        await message.reply("Você não tem direitos suficientes para banir/desbanir usuários")
         return
     cmd = len(message.text)
     replied = message.reply_to_message
@@ -77,9 +78,6 @@ async def _tban_user(_, message: Message):
     try:
         await megux.ban_chat_member(chat_id, user_id, until_date=time_)
         await asyncio.sleep(1)
-        await sent.edit(
-            f"{mention} foi banido(a) temporariamente por <b>{time_val}</b> em <b>{message.chat.title}</b>\n"
-            f"<b>Motivo</b>: `{reason or None}`"
-        )
+        await sent.edit("{} foi banido(a) temporariamente por <b>{}</b> em <b>{}</b>\n<b>Motivo</b>: `{}`".format(mention, time_val, message.chat.title, reason or None))
     except Exception as e_f:  # pylint: disable=broad-except
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR**: `{e_f}`")
