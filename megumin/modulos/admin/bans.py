@@ -25,7 +25,7 @@ from megumin.utils import (
 @megux.on_message(filters.command("ban", prefixes=["/", "!"]))
 async def _ban_user(_, message: Message):
     DISABLED = get_collection(f"DISABLED {message.chat.id}")
-    LOGS = get_collection("LOGS {message.chat.id}")
+    LOGS = get_collection(f"LOGS {message.chat.id}")
     query = "ban"
     off = await DISABLED.find_one({"_cmd": query})
     if off:
@@ -77,6 +77,11 @@ async def _ban_user(_, message: Message):
     try:
         await megux.ban_chat_member(chat_id, user_id)
         await sent.edit((await get_string(chat_id, "BAN_SUCCESS")).format(mention, message.from_user.mention(), message.chat.title, reason or None))
+        data = await LOGS.find_one():
+        if data:
+            id = data["log_id"]
+            await megux.send_message(id, await get_string(chat_id, "BAN_LOGGER")
+            return
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
 
