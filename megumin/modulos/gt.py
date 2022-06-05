@@ -12,7 +12,9 @@ async def description_gt(c: megux, m: Message):
     if not input_str(m):
         return await m.reply("Você esqueceu dos argumentos!")
     title = m.text.split(None, 1)[1]
+    await m.stop_propagation()
     preco = m.text.split(None, 1)[1]
+    await m.stop_propagation()
     link = m.text.split(None, 1)[1]
 
     resultado = f"""
