@@ -78,6 +78,7 @@ BAN_LOADING: "<code>Banindo usuário...</code>"
 NO_BAN_BOT: "Não posso restringir as pessoas aqui! Certifique-se de que sou administrador e de que posso adicionar novos administradores."
 NO_BAN_USER: "Você não tem direitos administrativos suficientes para banir/desbanir usuários!"
 BAN_LOGGER: "<b>{}:</b>\n#BAN\n<b>Administrador:</b> {}\n<b>Usuário:</b> {} (<code>{}</code>)\n<b>Motivo:</b> <code>{}</code>" 
+TBAN_SUCCESS: "{} foi banido(a) temporariamente por <b>{}</b> em <b>{}</b>\n<b>Motivo</b>: <code>{}</code>"
 
 
 #rules
