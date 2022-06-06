@@ -9,6 +9,7 @@ from pyrogram import filters
 from pyrogram.enums import ParseMode
 from pyrogram.errors import BadRequest
 from pyrogram.types import InlineKeyboardMarkup, Message
+from typing import Callable, List, Optional, Union
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 
