@@ -89,7 +89,7 @@ async def warn_cmd(_, m: Message):
         x = input_str(m)
         ids = (await megux.get_users(x)).id
         name_user = (await megux.get_users(x)).mention
-    if m.reply_to_message:
+    else:
         ids = m.reply_to_message.from_user.id 
         name_user = (m.reply_to_message.from_user.mention())
     ids = m.reply_to_message.from_user.id 
