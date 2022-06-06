@@ -115,7 +115,7 @@ async def enable_welcome_message(c: megux, m: Message):
 
 
 @megux.on_message(filters.new_chat_members & filters.group)
-async def greet_new_members(c: Client, m: Message):
+async def greet_new_members(c: megux, m: Message):
     data = get_collection(f"WELCOME {m.chat.id}")
     data_args = get_collection(f"WELCOME_ARGS {m.chat.id}")
     members = m.new_chat_members
