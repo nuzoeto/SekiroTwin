@@ -20,6 +20,7 @@ from megumin.utils import (
 
 @megux.on_message(filters.command("tban", prefixes=["/", "!"]))
 async def _tban_user(_, message: Message):
+    LOGS = get_collection(f"LOGS {message.chat.id}")
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
         await message.reply("Você não tem direitos suficientes para banir/desbanir usuários")
