@@ -73,7 +73,7 @@ async def set_log(_, m: Message):
     chat_log = ""
     if m.reply_to_message:
         msg = m.reply_to_message 
-        chat_log += msg.forward_from_message_id
+        chat_log += msg.forward_from_chat_id
         return
     if input_str(m):
         chat_log += input_str(m)
