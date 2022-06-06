@@ -83,7 +83,7 @@ async def set_welcome_message(c: megux, m: Message):
             )
         except (KeyError, BadRequest) as e:
             await m.reply_text(
-                "Erro:".format(
+                "Erro: {error}".format(
                     error=e.__class__.__name__ + ": " + str(e)
                 )
             )
@@ -91,10 +91,10 @@ async def set_welcome_message(c: megux, m: Message):
             await WELCOME.drop()
             await WELCOME.insert_one({"id_": m.chat.id, "welcome": message})
             await sent.edit_text(
-                "Boas vindas alterada com sucesso no chat {}".format(chat_title=m.chat.title)
+                "Boas vindas alterada com sucesso no chat {chat_title}".format(chat_title=m.chat.title)
             )
     else:
         await m.reply_text(
-            "Defina uma mensagem exemplo: Olá  {}".format(bot_username=c.me.username),
+            "Defina uma mensagem exemplo: Olá  {bot_username}".format(bot_username=c.me.username),
             disable_web_page_preview=True,
         )
