@@ -100,14 +100,14 @@ async def set_welcome_message(c: megux, m: Message):
         )
 
 
-@megux.on_message(filters.command("welcome on", PREFIXES) & filters.group)
+@megux.on_message(filters.command("welcome on") & filters.group)
 async def enable_welcome_message(c: megux, m: Message):
     data = get_collection("WELCOME_ARGS")
     await data.insert_one({"id_": m.chat.id, "get": "True"})
     await m.reply_text("As boas vindas foram ativadas no chat {chat_title}".format(chat_title=m.chat.title))
 
 
-@megux.on_message(filters.command("welcome off", PREFIXES) & filters.group)
+@megux.on_message(filters.command("welcome off") & filters.group)
 async def enable_welcome_message(c: megux, m: Message):
     data = get_collection("WELCOME_ARGS")
     await data.insert_one({"id_": m.chat.id, "get": "False"})
