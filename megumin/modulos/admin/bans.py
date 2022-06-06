@@ -108,7 +108,6 @@ async def _unban_user(_, message: Message):
         return
     try:
         user_id = (await megux.get_users(id_)).id
-        mention =  (await megux.get_users(id_)).mention
     except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
         await message.reply(
             "`User_id ou nome de usuário inválido, tente novamente com informações válidas ⚠`"
