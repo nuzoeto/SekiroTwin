@@ -152,7 +152,15 @@ async def warn_cmd(_, m: Message):
       
 @megux.on_message(filters.command("unwarn", Config.TRIGGER))
 async def warn_cmd(_, m: Message):
-    ids = m.reply_to_message.from_user.id 
+    if input_str(m):
+        x = input_str(m)
+        ids = await megux.get_users(x).id
+        name_user = await megux.get_users(x).mention
+        return
+    if m.reply_to_message:
+        ids = m.reply_to_message.from_user.id 
+        name_user = (m.reply_to_message.from_user.mention())
+        return 
     WARN = get_collection(f"WARN {m.chat.id} {ids}")
     if await is_self(m.reply_to_message.from_user.id):
         return await m.reply("Eu não tenho advertências.")
@@ -162,7 +170,6 @@ async def warn_cmd(_, m: Message):
         return await m.reply("Eu não tenho permissão suficiente para advertir usuários")
     if await check_rights(m.chat.id, m.from_user.id, "can_restrict_members"): 
         if await WARN.find_one():        
-            name_user = (m.reply_to_message.from_user.mention())
             await WARN.delete_one({"id_": ids, "title": name_user})
             await m.reply(f"Advertência de {name_user} foi removida")
         else:
