@@ -71,7 +71,13 @@ async def del_rules_(_, m: Message):
 @megux.on_message(filters.command("setlog", prefixes=["/", "!"]))
 async def set_log(_, m: Message):
     chat_log = ""
-    chat_log += input_str(m)
+    if m.reply_to_message:
+        msg = m.reply_to_message 
+        chat_log += msg.forward_from_message_id
+        return
+    if input_str(m):
+        chat_log += input_str(m)
+        return
     if not "-100" in chat_log:
         return await m.reply("Isso não é um grupo!")
     if chat_log == f"{m.chat.id}":
