@@ -60,6 +60,7 @@ from megumin.utils import get_collection
 async def set_welcome_message(c: Client, m: Message, strings):
     if len(m.text.split()) > 1:
         message = m.text.html.split(None, 1)[1]
+        WELCOME = get_collection(f"WELCOME {m.chat.id}")
         try:
             # Try to send message with default parameters
             sent = await m.reply_text(
@@ -84,9 +85,10 @@ async def set_welcome_message(c: Client, m: Message, strings):
                 )
             )
         else:
-            await set_welcome(m.chat.id, message)
+            await WELCOME.drop()
+            await WELCOME.insert_one({"id_": m.chat.id, "welcome": message})
             await sent.edit_text(
-                "Boas vindas alterada com sucesso".format(chat_title=m.chat.title)
+                "Boas vindas alterada com sucesso no chat {}".format(chat_title=m.chat.title)
             )
     else:
         await m.reply_text(
