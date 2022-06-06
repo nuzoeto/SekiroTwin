@@ -58,7 +58,9 @@ def get_format_keys(string: str) -> List[str]:
 from megumin import megux 
 from megumin.utils import get_collection 
 
-async def set_welcome_message(c: Client, m: Message, strings):
+
+@megux.on_message(filters.command("setwelcome"))
+async def set_welcome_message(c: megux, m: Message, strings):
     if len(m.text.split()) > 1:
         message = m.text.html.split(None, 1)[1]
         WELCOME = get_collection(f"WELCOME {m.chat.id}")
