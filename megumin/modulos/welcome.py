@@ -103,14 +103,14 @@ async def set_welcome_message(c: megux, m: Message):
 @megux.on_message(filters.command("welcome on", PREFIXES) & filters.group)
 async def enable_welcome_message(c: megux, m: Message):
     data = get_collection("WELCOME_ARGS")
-    await data.insert_one({"id_": m.chat.id, True})
+    await data.insert_one({"id_": m.chat.id, "get": "True"})
     await m.reply_text("As boas vindas foram ativadas no chat {chat_title}".format(chat_title=m.chat.title))
 
 
-@megux.on_message(filters.command("welcome on", PREFIXES) & filters.group)
+@megux.on_message(filters.command("welcome off", PREFIXES) & filters.group)
 async def enable_welcome_message(c: megux, m: Message):
     data = get_collection("WELCOME_ARGS")
-    await data.insert_one({"id_": m.chat.id, False})
+    await data.insert_one({"id_": m.chat.id, "get": "False"})
     await m.reply_text("As boas vindas foram ativadas no chat {chat_title}".format(chat_title=m.chat.title))
 
 
@@ -132,9 +132,9 @@ async def greet_new_members(c: Client, m: Message):
     if not m.from_user.is_bot:
         HD = await data.find_one()
         welcome = HD["welcome"]
-        welcome_enabled = await data_args.find_one({"id_": m.chat.id, True})
+        welcome_enabled = await data_args.find_one({"id_": m.chat.id, "get": "True"})
         if welcome_enabled:
-            if welcome is None:
+            if not HD:
                 welcome = "Olá {mention} Seja bem vindo ao chat {chat_title} Sinta-se a vontade."
 
             if "count" in get_format_keys(welcome):
