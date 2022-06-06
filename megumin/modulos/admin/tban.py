@@ -79,11 +79,11 @@ async def _tban_user(_, message: Message):
     try:
         await megux.ban_chat_member(chat_id, user_id, until_date=time_)
         await asyncio.sleep(1)
-        await sent.edit("{} foi banido(a) temporariamente por <b>{}</b> em <b>{}</b>\n<b>Motivo</b>: `{}`".format(mention, time_val, message.chat.title, reason or None))
+        await sent.edit((await get_string(chat_id, "TBAN_SUCCESS")).format(mention, time_val, message.chat.title, reason or None))
         data = await LOGS.find_one()
         if data:
             id = data["log_id"]
-            await megux.send_message(id, (await get_string(chat_id, "TBAN_LOGGER")).format(message.chat.title, message.from_user.mention(), mention, user_id, time_val,reason or None))
+            await megux.send_message(id, (await get_string(chat_id, "TBAN_LOGGER")).format(message.chat.title, message.from_user.mention(), mention, user_id, time_val, reason or None))
             return
     except Exception as e_f:  # pylint: disable=broad-except
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR**: `{e_f}`")
