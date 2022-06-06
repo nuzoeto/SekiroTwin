@@ -60,7 +60,7 @@ from megumin.utils import get_collection
 
 
 @megux.on_message(filters.command("setwelcome"))
-async def set_welcome_message(c: megux, m: Message, strings):
+async def set_welcome_message(c: megux, m: Message):
     if len(m.text.split()) > 1:
         message = m.text.html.split(None, 1)[1]
         WELCOME = get_collection(f"WELCOME {m.chat.id}")
