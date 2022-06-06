@@ -116,6 +116,8 @@ async def enable_welcome_message(c: megux, m: Message):
 
 @megux.on_message(filters.new_chat_members & filters.group)
 async def greet_new_members(c: Client, m: Message):
+    data = get_collection(f"WELCOME {m.chat.id}")
+    data_args = get_collection(f"WELCOME_ARGS {m.chat.id}")
     members = m.new_chat_members
     chat_title = m.chat.title
     first_name = ", ".join(map(lambda a: a.first_name, members))
@@ -128,10 +130,12 @@ async def greet_new_members(c: Client, m: Message):
     )
     mention = ", ".join(map(lambda a: a.mention, members))
     if not m.from_user.is_bot:
-        welcome, welcome_enabled = await get_welcome(m.chat.id)
+        HD = await data.find_one()
+        welcome = HD["welcome"]
+        welcome_enabled = await data_args.find_one({"id_": m.chat.id, True})
         if welcome_enabled:
             if welcome is None:
-                welcome = strings("welcome_default")
+                welcome = "Olá {mention} Seja bem vindo ao chat {chat_title} Sinta-se a vontade."
 
             if "count" in get_format_keys(welcome):
                 count = await c.get_chat_members_count(m.chat.id)
