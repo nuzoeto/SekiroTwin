@@ -85,6 +85,15 @@ async def setwarnaction_cmd(_, m: Message):
 
 @megux.on_message(filters.command("warn", Config.TRIGGER))
 async def warn_cmd(_, m: Message):
+    if input_str(m):
+        x = input_str(m)
+        ids = await megux.get_users(x).id
+        name_user = await megux.get_users(x).mention
+        return
+    if m.reply_to_message:
+        ids = m.reply_to_message.from_user.id 
+        name_user = (m.reply_to_message.from_user.mention())
+        return 
     ids = m.reply_to_message.from_user.id 
     LIMIT = get_collection(f"WARNS_LIMIT {m.chat.id}")
     ACTION = get_collection(f"ACTION {m.chat.id}")
