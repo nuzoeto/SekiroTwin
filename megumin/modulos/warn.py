@@ -91,8 +91,7 @@ async def warn_cmd(_, m: Message):
         name_user = (await megux.get_users(x)).mention
     else:
         ids = m.reply_to_message.from_user.id 
-        name_user = (m.reply_to_message.from_user.mention())
-    ids = m.reply_to_message.from_user.id 
+        name_user = (m.reply_to_message.from_user.mention()) 
     LIMIT = get_collection(f"WARNS_LIMIT {m.chat.id}")
     ACTION = get_collection(f"ACTION {m.chat.id}")
     CHAT_LIMIT = await LIMIT.find_one()
