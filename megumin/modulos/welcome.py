@@ -131,8 +131,8 @@ async def greet_new_members(c: megux, m: Message):
     mention = ", ".join(map(lambda a: a.mention, members))
     if not m.from_user.is_bot:
         HD = await data.find_one()
-        welcome_enabled = await data_args.find_one({"id_": m.chat.id, "get": "True"})
-        welcome = HD["welcome"]
+        welcome_enabld = await data_args.find_one({"id_": m.chat.id, "get": "True"})
+        welcome, welcome_enabled = HD["welcome"]
         if welcome_enabled:
             if not HD:
                 welcome = "Olá {mention} Seja bem vindo ao chat {chat_title} Sinta-se a vontade."
