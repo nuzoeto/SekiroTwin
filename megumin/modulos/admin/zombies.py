@@ -47,6 +47,12 @@ async def cleanup(c: megux, m: Message):
             await sent.edit_text(
                 f"Eu removi todas as <b>{count}</b> contas excluídas do grupo **{m.chat.title}**!"
             )
+            data = await LOGS.find_one()
+            if data:
+                id = data["log_id"]
+                id_log = int(id)
+                await megux.send_message(id_log, (await get_string(chat_id, "ZOMBIES_LOGGER")).format(message.chat.title, message.from_user.mention(), count))
+                return
         else:
             await sent.edit_text("Não há contas excluídas no grupo!")
     else:
