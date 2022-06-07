@@ -16,11 +16,14 @@ from megumin.utils import (
     is_dev,
     is_self,
     sed_sticker,
+    get_collection,
+    get_string,
 )
 
 
 @megux.on_message(filters.command(["cleanup", "zombies"], prefixes=["/", "!"]))
 async def cleanup(c: megux, m: Message):
+    LOGS = get_collection(f"LOGS {message.chat.id}")
     chat_id = m.chat.id
     if m.chat.type == ChatType.PRIVATE:
         await m.reply_text("Este comando é para ser usado em grupos!")
