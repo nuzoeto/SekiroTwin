@@ -88,7 +88,6 @@ async def set_welcome_message(c: megux, m: Message):
                 )
             )
         else:
-            await WELCOME.drop()
             await WELCOME.insert_one({"id_": m.chat.id, "welcome": message})
             await sent.edit_text(
                 "Boas vindas alterada com sucesso no chat {chat_title}".format(chat_title=m.chat.title)
