@@ -57,6 +57,6 @@ async def cleanup(c: megux, m: Message):
                 await megux.send_message(id_log, (await get_string(chat_id, "ZOMBIES_LOGGER")).format(m.chat.title, m.from_user.mention(), count))
                 return
         else:
-            await sent.edit_text("Não há contas excluídas no grupo!")
+            await sent.edit_text(await get_string(chat_id, "NO_ZOMBIES"))
     else:
-        await m.reply_text("Balabacheia! Você não tem direitos administrativos suficientes para banir/desbanir usuários!")
+        await m.reply_text(await get_string(chat_id, "NO_RIGHTS_ZOMBIES"))
