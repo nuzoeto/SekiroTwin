@@ -6,8 +6,6 @@ import asyncio
 from pyrogram import filters
 from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
 from pyrogram.types import Message 
-from pyrogram.types.ChatPrevileges import can_manage_chat, can_delete_messages, can_restrict_members, can_invite_users, can_pin_messages
-
  
 
 from megumin import megux
