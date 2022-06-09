@@ -32,6 +32,8 @@ async def afk_cmd(_, m: Message):
     else:
         await AFK_STATUS.drop()
         await REASON.drop() 
+        await AFK_COUNT.delete_one({"mention_": m.from_user.mention()})
+        await AFK_COUNT.insert_one({"mention_": m.from_user.mention()})
         await AFK_STATUS.insert_one({"_afk": "on"})
         await m.reply((await get_string(m.chat.id, "AFK_IS_NOW")).format(m.from_user.first_name))
         await m.stop_propagation()
