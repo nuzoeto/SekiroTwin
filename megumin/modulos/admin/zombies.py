@@ -28,8 +28,9 @@ async def cleanup(c: megux, m: Message):
     if m.chat.type == ChatType.PRIVATE:
         await m.reply_text("Este comando é para ser usado em grupos!")
         return
-    if not check_bot_rights(chat_id, "can_restrict_members"):
-        return await m.reply(await get_string(chat_id, "NO_BAN_BOT"))
+    if not check_rights(megux.me.id, chat_id, "can_restrict_members"):
+        await m.reply(await get_string(chat_id, "NO_BAN_BOT"))
+        return 
     if await check_rights(chat_id, m.from_user.id, "can_restrict_members"): 
         count = 0
         sent = await m.reply_text("Limpando...")
