@@ -123,9 +123,6 @@ async def vid_(c: megux, message: Message):
     if int(duration_) > 3600:
         await asyncio.gather(c.send_log("#Down_Error #YOUTUBE_DL"))
         return await msg.edit("__Esse vídeo é muito longo, a duração máxima é de 1 hora__")
-    if int(fsize) > 500000000:
-        await asyncio.gather(c.send_log("#Down_Error #YOUTUBE_DL"))
-        return await msg.edit("__Esse vídeo é muito longo, o tamanho máximo é de 500MB__")
     if filename_ == 0:
         _fpath = ''
         for _path in glob.glob(os.path.join(path_, '*')):
@@ -169,7 +166,6 @@ def extract_inf(url, _opts):
         title_ = infoo["title"].replace("/", "_")
         channel_ = infoo["channel"]
         views_ = infoo["view_count"]
-        fsize = infoo["filesize"]
         capt_ = f"<a href={url}><b>{title_}</b></a>\n<b>❯ Duração:</b> {duration_}\n<b>❯ Views:</b> {views_}\n<b>❯ Canal:</b> {channel_}"
         dloader = x.download(url)
     except Exception as y_e:  # pylint: disable=broad-except
