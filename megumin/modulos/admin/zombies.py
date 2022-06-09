@@ -33,7 +33,7 @@ async def cleanup(c: megux, m: Message):
         return 
     if await check_rights(chat_id, m.from_user.id, "can_restrict_members"): 
         count = 0
-        sent = await m.reply_text("Limpando...")
+        sent = await m.reply_text(await get_string(chat_id, "COM_1"))
         async for t in c.get_chat_members(chat_id=m.chat.id):
             if t.user.is_deleted:
                 try:
@@ -48,7 +48,7 @@ async def cleanup(c: megux, m: Message):
                     return
         if count:
             await sent.edit_text(
-                f"Eu removi todas as <b>{count}</b> contas excluídas do grupo **{m.chat.title}**!"
+                (await get_string(chat_id, "ZOMBIES_BAN")).format(count, m.chat.title)
             )
             data = await LOGS.find_one()
             if data:
