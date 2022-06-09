@@ -21,7 +21,7 @@ async def afk_cmd(_, m: Message):
     if input_str(m):
         await AFK_STATUS.drop()
         await REASON.drop() 
-        await AFK_COUNT.insert_one({"id_": m.from_user.id})
+        await AFK_COUNT.insert_one({"id_": m.from_user.mention()})
         await AFK_STATUS.insert_one({"_afk": "on"})
         await REASON.insert_one({"_reason": x})
         res = await REASON.find_one()
@@ -49,7 +49,7 @@ async def rem_afk(c: megux, m: Message):
         return
 
     await AFK_STATUS.drop()
-    await AFK_COUNT.delete_one({"id_": m.from_user.id})
+    await AFK_COUNT.delete_one({"id_": m.from_user.mention()})
     await REASON.drop()
     await m.reply_text(
         (await get_string(m.chat.id, "AFK_LOOGER")).format(m.from_user.first_name)
