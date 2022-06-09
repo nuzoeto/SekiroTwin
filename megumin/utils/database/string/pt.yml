@@ -129,3 +129,4 @@ LOGS_DEFINED_MESSAGE: 'O canal de registro foi estabelecido com sucesso!'
 ZOMBIES_LOGGER: "<b>{}</b>:\n#ZOMBIES\n<b>Administrador:</b> {}\n<b>Número de contas apagadas:</b> {}"
 ZOMBIES_BAN: "Eu removi todas as <b>{}</b> contas excluídas do grupo <b>{}</b>!"
 NO_ZOMBIES: "Não há contas excluídas no grupo!"
+NO_RIGHTS_ZOMBIES: "Balabacheia! Você não tem direitos administrativos suficientes para banir/desbanir usuários!"
