@@ -14,7 +14,7 @@ url = "https://api.weather.com/v3/aggcommon/v3-wx-observations-current"
 http = httpx.AsyncClient()
 
 headers = {
-    "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 12; M2012K11AG Build/SQ1D.211205.017)"
+    "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 13; M2012K11AG Build/SQ1D.211205.017)"
 }
 
 
