@@ -126,4 +126,4 @@ LOGS_DEFINED_MESSAGE: 'The registration channel has been successfully establishe
 ZOMBIES_LOGGER: "<b>{}</b>:\n#ZOMBIES\n<b>Administrator:</b> {}\n<b>Number of accounts deleted:</b> {}"
 ZOMBIES_BAN: "I have removed all <b>{}</b> accounts deleted from the <b>{}</b> group!"
 NO_ZOMBIES: "There are no deleted accounts in the group!"
-NO_RIGHTS_ZOMBIES: "Balabachea!  You do not have sufficient administrative rights to ban/unban users!"
+NO_RIGHTS_ZOMBIES: "Balabachea! You do not have sufficient administrative rights to ban/unban users!"
