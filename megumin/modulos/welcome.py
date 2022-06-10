@@ -53,5 +53,7 @@ async def welcome(c: megux, m: Message):
         msg = data["_welcome"]
         welcome = msg.format(first=first_name, mention=mention, count=count)
         await m.reply(welcome)
+    else:
+        return await m.reply(f"Olá {mention} Seja bem vindo ao chat {chat_title}")
 
     
