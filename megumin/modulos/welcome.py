@@ -17,7 +17,7 @@ from megumin.utils.decorators import input_str
 
 @megux.on_message(filters.command("setwelcome", Config.TRIGGER))
 async def set_welcome(c: megux, m: Message):
-    data = get_collection("WELCOME {m.chat.id}")
+    data = get_collection(f"WELCOME {m.chat.id}")
     text_ = ""
     if input_str(m):
         text_ = m.text.split(None, 1)[1]
