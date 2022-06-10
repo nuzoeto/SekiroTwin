@@ -22,7 +22,7 @@ async def set_welcome(c: megux, m: Message):
     if input_str(m):
         text_ += m.text.split(None, 1)[1]
     if m.reply_to_message: 
-        text_ += message.reply_to_message.text
+        text_ += m.reply_to_message.text
     if text_ in "":
         return await m.reply("Responda uma mensagem ou de algum argumento após o comando!")
     else:
