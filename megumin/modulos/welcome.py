@@ -29,7 +29,29 @@ async def set_welcome(c: megux, m: Message):
         if await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
             await data.drop()
             await data.insert_one({"_welcome": text_})
-            await m.reply("Boas vidas definidas com sucesso")
+            await m.reply("<i>Boas vindas definidas com sucesso!!</i>")
 
+
+
+@megux.on_message(filters.new_chat_members & filters.group)
+async def welcome(c: megux, m: Message):
+    members = m.new_chat_members
+    first_name = ", ".join(map(lambda a: a.first_name, members))
+    chat_title = m.chat.title
+    full_name = ", ".join(
+        map(lambda a: a.first_name + " " + (a.last_name or ""), members)
+    )
+    user_id = ", ".join(map(lambda a: str(a.id), members))
+    username = ", ".join(
+        map(lambda a: "@" + a.username if a.username else a.mention, members)
+    )
+    count = await c.get_chat_members_count(m.chat.id)
+    mention = ", ".join(map(lambda a: a.mention, members))
+    data_msg = get_collection(f"WELCOME {m.chat.id}")
+    data = await data_msg.find_one()
+    if data:
+        msg = data["_welcome"]
+        welcome = msg.format(first=first_name, mention=mention, count=count)
+        await m.reply(welcome)
 
     
