@@ -55,7 +55,7 @@ async def start_(c: megux, message: Union[Message, CallbackQuery]):
     gif = "https://telegra.ph/file/576f9c3193a1dade06bce.gif"
     msg = await get_string(message.chat.id, "START")
     if isinstance(message, Message):
-        if not m.chat.type == ChatType.PRIVATE:
+        if not message.chat.type == ChatType.PRIVATE:
             return
         await message.reply_animation(gif, caption=msg, reply_markup=keyboard)
         user_id = message.from_user.id
@@ -69,8 +69,8 @@ async def start_(c: megux, message: Union[Message, CallbackQuery]):
                 c.send_log(user_start, disable_notification=False, disable_web_page_preview=True))
     if isinstance(message, CallbackQuery):
         await c.edit_message_caption(
-            chat_id=m.message.chat.id,
-            message_id=m.message.id,
+            chat_id=message.message.chat.id,
+            message_id=message.message.id,
             caption=msg,
             reply_markup=keyboard
         )
