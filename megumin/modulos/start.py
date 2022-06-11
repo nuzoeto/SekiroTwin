@@ -48,12 +48,15 @@ async def start_(c: megux, message: Union[Message, CallbackQuery]):
               InlineKeyboardButton(
                   text=await get_string(message.chat.id, "ADD_BNT"),
                   url=f"https://t.me/whiterkangbot?startgroup=new",
-              ),
-           ],
+               ),
+            ],
         ]
-     )
-        gif = "https://telegra.ph/file/576f9c3193a1dade06bce.gif"
-        msg = await get_string(message.chat.id, "START")
+    )
+    gif = "https://telegra.ph/file/576f9c3193a1dade06bce.gif"
+    msg = await get_string(message.chat.id, "START")
+    if isinstance(m, Message):
+        if not m.chat.type == ChatType.PRIVATE:
+            return
         await message.reply_animation(gif, caption=msg, reply_markup=keyboard)
         user_id = message.from_user.id
         fname = message.from_user.first_name
@@ -64,6 +67,13 @@ async def start_(c: megux, message: Union[Message, CallbackQuery]):
             return await asyncio.gather(
                 USERS_STARTED.insert_one({"id_": user_id, "user": fname}),
                 c.send_log(user_start, disable_notification=False, disable_web_page_preview=True))
+    if isinstance(m, CallbackQuery):
+        await c.edit_message_caption(
+            chat_id=m.message.chat.id,
+            message_id=m.message.id,
+            caption=msg,
+            reply_markup=keyboard
+        )
 
 
     @megux.on_callback_query(filters.regex(pattern=r"^infos$"))
