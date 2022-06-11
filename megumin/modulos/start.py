@@ -133,7 +133,7 @@ async def start_(c: megux, message: Message):
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("🇱🇷 English", callback_data="en_lang"),
+                    InlineKeyboardButton("🇺🇸 English", callback_data="en_lang"),
                     InlineKeyboardButton("🇧🇷 Português", callback_data="pt_lang"),
                 ],
                 [
