@@ -31,7 +31,7 @@ uname = platform.uname()
 @megux.on_callback_query(filters.regex(pattern=r"^start_back$"))
 @megux.on_message(filters.command("start", prefixes=["/", "!"]))
 async def start_(c: megux, message: Union[Message, CallbackQuery]): 
-    if message.chat.type or cb.message.chat.type == ChatType.PRIVATE 
+    if message.chat.type or cb.message.chat.type == ChatType.PRIVATE:
         keyboard = InlineKeyboardMarkup(
             [
                 [
