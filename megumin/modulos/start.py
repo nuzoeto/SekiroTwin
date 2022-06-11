@@ -61,7 +61,7 @@ async def start_(c: megux, message: Union[Message, CallbackQuery]):
         user_start = f"#NEW_USER #LOGS\n\n**User:** {fname}\n**ID:** {message.from_user.id} <a href='tg://user?id={user_id}'>**Link**</a>"
         found = await USERS_STARTED.find_one({"id_": user_id})
         if not found:
-            await asyncio.gather(
+            return await asyncio.gather(
                 USERS_STARTED.insert_one({"id_": user_id, "user": fname}),
                 c.send_log(user_start, disable_notification=False, disable_web_page_preview=True))
 
