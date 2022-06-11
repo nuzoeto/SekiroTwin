@@ -31,28 +31,27 @@ uname = platform.uname()
 @megux.on_callback_query(filters.regex(pattern=r"^start_back$"))
 @megux.on_message(filters.command("start", prefixes=["/", "!"]))
 async def start_(c: megux, message: Union[Message, CallbackQuery]): 
-    if message.chat.type or cb.message.chat.type == ChatType.PRIVATE:
-        keyboard = InlineKeyboardMarkup(
+    keyboard = InlineKeyboardMarkup(
+        [
             [
-                [
-                 InlineKeyboardButton(text=await get_string(message.chat.id, "button_lang"), callback_data="lang_menu"),
-                ],
-                [
-                 InlineKeyboardButton(text=await get_string(message.chat.id, "HELP_BNT"), callback_data="help_menu"),
-                 InlineKeyboardButton(text=await get_string(message.chat.id, "REPO_BNT"), url="https://github.com/davitudoplugins1234/WhiterKang")
-                ],
-                [
-                    InlineKeyboardButton(text="Info", callback_data="infos"),
-                    InlineKeyboardButton(text="Suporte", url="https://t.me/fnixsup"),
-                ],
-                [                
-                    InlineKeyboardButton(
-                        text=await get_string(message.chat.id, "ADD_BNT"),
-                        url=f"https://t.me/whiterkangbot?startgroup=new",
-                    ),
-                ],
-            ]
-        )
+              InlineKeyboardButton(text=await get_string(message.chat.id, "button_lang"), callback_data="lang_menu"),
+            ],
+            [
+              InlineKeyboardButton(text=await get_string(message.chat.id, "HELP_BNT"), callback_data="help_menu"),
+              InlineKeyboardButton(text=await get_string(message.chat.id, "REPO_BNT"), url="https://github.com/davitudoplugins1234/WhiterKang")
+            ],
+            [
+              InlineKeyboardButton(text="Info", callback_data="infos"),
+              InlineKeyboardButton(text="Suporte", url="https://t.me/fnixsup"),
+            ],
+            [                
+              InlineKeyboardButton(
+                  text=await get_string(message.chat.id, "ADD_BNT"),
+                  url=f"https://t.me/whiterkangbot?startgroup=new",
+              ),
+           ],
+        ]
+     )
         gif = "https://telegra.ph/file/576f9c3193a1dade06bce.gif"
         msg = await get_string(message.chat.id, "START")
         await message.reply_animation(gif, caption=msg, reply_markup=keyboard)
