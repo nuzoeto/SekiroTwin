@@ -147,6 +147,26 @@ async def start_(c: megux, message: Message):
         )
 
 
+    @megux.on_callback_query(filters.regex(pattern=r"^en_lang$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        await add_lang(cb.message.chat.id, "en")
+        await asyncio.sleep(1.5)
+        info_text = await get_string(cb.message.chat.id, "language_switch_success")
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="lang_menu"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.id,
+            caption=info_text.format(await get_string(message.chat.id, "language_flag")),
+            reply_markup=button,
+        )
+
+
     @megux.on_callback_query(filters.regex(pattern=r"^help_menu$") | filters.regex("/start help_"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = await get_string(cb.message.chat.id, "HELP_MSG")
