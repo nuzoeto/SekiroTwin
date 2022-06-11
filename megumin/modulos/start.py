@@ -73,8 +73,28 @@ async def start_(c: megux, message: Message):
             chat_id=cb.message.chat.id,
             message_id=cb.message.id,
             caption=await get_string(cb.message.chat.id, "START"),
-            reply_markup=keyboard,
-        )
+            reply_markup=InlineKeyboardMarkup(
+        [
+            [
+              InlineKeyboardButton(text=await get_string(message.chat.id, "button_lang"), callback_data="lang_menu"),
+            ],
+            [
+              InlineKeyboardButton(text=await get_string(message.chat.id, "HELP_BNT"), callback_data="help_menu"),
+              InlineKeyboardButton(text=await get_string(message.chat.id, "REPO_BNT"), url="https://github.com/davitudoplugins1234/WhiterKang")
+            ],
+            [
+              InlineKeyboardButton(text="Info", callback_data="infos"),
+              InlineKeyboardButton(text="Suporte", url="https://t.me/fnixsup"),
+            ],
+            [                
+              InlineKeyboardButton(
+                  text=await get_string(message.chat.id or message.message.chat.id, "ADD_BNT"),
+                  url=f"https://t.me/whiterkangbot?startgroup=new",
+               ),
+            ],
+        ]
+   ))
+        
 
 
     @megux.on_callback_query(filters.regex(pattern=r"^infos$"))
