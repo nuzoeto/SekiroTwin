@@ -144,7 +144,7 @@ async def start_(c: megux, message: Message):
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
             message_id=cb.message.id,
-            caption=info_text.format(await get_string(message.chat.id, "language_flag")),
+            caption=info_text.format(await get_string(cb.message.chat.id, "language_flag")),
             reply_markup=button,
         )
 
@@ -164,7 +164,7 @@ async def start_(c: megux, message: Message):
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
             message_id=cb.message.id,
-            caption=info_text.format(await get_string(message.chat.id, "language_flag")),
+            caption=info_text.format(await get_string(cb.message.chat.id, "language_flag")),
             reply_markup=button,
         )
 
