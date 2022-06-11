@@ -64,9 +64,7 @@ async def start_(c: megux, message: Union[Message, CallbackQuery]):
             await asyncio.gather(
                 USERS_STARTED.insert_one({"id_": user_id, "user": fname}),
                 c.send_log(user_start, disable_notification=False, disable_web_page_preview=True))
-    else:
-        return await message.reply(await get_string(message.chat.id, "START_NO_PRIVATE"))
-        
+
 
     @megux.on_callback_query(filters.regex(pattern=r"^infos$"))
     async def infos(client: megux, cb: CallbackQuery):
