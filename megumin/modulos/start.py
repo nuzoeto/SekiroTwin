@@ -15,7 +15,7 @@ from pyrogram.types import (
 
 from megumin import megux, version
 from megumin import START_TIME
-from megumin.utils import get_collection, time_formatter, get_string 
+from megumin.utils import get_collection, time_formatter, get_string, add_lang
 
 CHAT_LOGS = -1001556292785
 GROUPS = get_collection("GROUPS")
@@ -116,6 +116,26 @@ async def start_(c: megux, message: Message):
                 ],
                 [
                     InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="start_back"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.id,
+            caption=info_text.format(await get_string(message.chat.id, "language_flag")),
+            reply_markup=button,
+        )
+
+
+    @megux.on_callback_query(filters.regex(pattern=r"^pt_lang$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        await add_lang(cb.message.chat.id, "pt")
+        await asyncio.sleep(1.5)
+        info_text = await get_string(cb.message.chat.id, "language_switch_success")
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="lang_menu"),
                 ]
             ]
         )
