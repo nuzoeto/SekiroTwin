@@ -1,6 +1,6 @@
 language: "en"
-language_flag: "🇱🇷 English"
-button_lang: "🇱🇷 Language"
+language_flag: "🇺🇸 English"
+button_lang: "🇺🇸 Language"
 select_lang: "<b>Select Language.</b>\n<b>User Language:</b> <code>{}</code>"
 language_switch_success: "Switched to {} successfully!"
 LANG_SET: "<i>The chat language has been set to 🇺🇸 English.</i>"
