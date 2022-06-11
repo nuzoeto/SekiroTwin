@@ -3,7 +3,7 @@
 language: "pt"
 language_flag: "🇧🇷 Português Brasileiro."
 button_lang: "🇧🇷 Idioma"
-select_lang: "<b>Selecione o Idioma.\nIdioma do usuário: <code>{}</code>"
+select_lang: "<b>Selecione o Idioma.</b>\n<b>Idioma do usuário:</b> <code>{}</code>"
 language_switch_success: "Alterado para {} com sucesso!"
 LANG_SET: "<i>O idioma do chat foi definido para 🇧🇷 Português.</i>"
 LANG: "<i>Eu preciso que voce insira um valor.</i>\n<code>Ex: /setlang pt</code>"
