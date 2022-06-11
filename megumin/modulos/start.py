@@ -5,6 +5,7 @@ import platform
 import asyncio 
 
 from pyrogram import filters
+from typing import Union
 from pyrogram.enums import ChatType
 from pyrogram.types import (
     CallbackQuery,
@@ -27,8 +28,9 @@ sm = psutil.swap_memory()
 uname = platform.uname() 
 
 
+@megux.on_callback_query(filters.regex(pattern=r"^start_back$"))
 @megux.on_message(filters.command("start", prefixes=["/", "!"]))
-async def start_(c: megux, message: Message):
+async def start_(c: megux, message: Union[Message, CallbackQuery):
     if message.chat.type == ChatType.PRIVATE:
         keyboard = InlineKeyboardMarkup(
             [
@@ -93,15 +95,6 @@ async def start_(c: megux, message: Message):
             message_id=cb.message.id,
             caption=info_text,
             reply_markup=button,
-        )
-
-    @megux.on_callback_query(filters.regex(pattern=r"^start_back$"))
-    async def start_back(client: megux, cb: CallbackQuery):
-        await megux.edit_message_caption(
-            chat_id=cb.message.chat.id,
-            message_id=cb.message.id,
-            caption=await get_string(cb.message.chat.id, "START"),
-            reply_markup=keyboard,
         )
 
 
