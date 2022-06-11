@@ -34,11 +34,11 @@ async def start_(c: megux, message: Union[Message, CallbackQuery]):
     keyboard = InlineKeyboardMarkup(
         [
             [
-              InlineKeyboardButton(text=await get_string(message.chat.id, "button_lang"), callback_data="lang_menu"),
+              InlineKeyboardButton(text=await get_string(message.chat.id or message.message.chat.id, "button_lang"), callback_data="lang_menu"),
             ],
             [
-              InlineKeyboardButton(text=await get_string(message.chat.id, "HELP_BNT"), callback_data="help_menu"),
-              InlineKeyboardButton(text=await get_string(message.chat.id, "REPO_BNT"), url="https://github.com/davitudoplugins1234/WhiterKang")
+              InlineKeyboardButton(text=await get_string(message.chat.id or message.message.chat.id, "HELP_BNT"), callback_data="help_menu"),
+              InlineKeyboardButton(text=await get_string(message.chat.id or message.message.chat.id, "REPO_BNT"), url="https://github.com/davitudoplugins1234/WhiterKang")
             ],
             [
               InlineKeyboardButton(text="Info", callback_data="infos"),
@@ -46,7 +46,7 @@ async def start_(c: megux, message: Union[Message, CallbackQuery]):
             ],
             [                
               InlineKeyboardButton(
-                  text=await get_string(message.chat.id, "ADD_BNT"),
+                  text=await get_string(message.chat.id or message.message.chat.id, "ADD_BNT"),
                   url=f"https://t.me/whiterkangbot?startgroup=new",
                ),
             ],
