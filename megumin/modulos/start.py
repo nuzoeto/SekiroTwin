@@ -31,7 +31,7 @@ uname = platform.uname()
 @megux.on_message(filters.command("start", prefixes=["/", "!"]))
 async def start_(c: megux, message: Message): 
     if not message.chat.type == ChatType.PRIVATE:
-        return 
+        return await message.reply(await get_string(message.chat.id, "NO_START_PRIVATE"))
     keyboard = InlineKeyboardMarkup(
         [
             [
@@ -76,7 +76,7 @@ async def start_(c: megux, message: Message):
             reply_markup=InlineKeyboardMarkup(
         [
             [
-              InlineKeyboardButton(text=await get_string(message.chat.id, "button_lang"), callback_data="lang_menu"),
+              InlineKeyboardButton(text=await get_string(message.message.chat.id, "button_lang"), callback_data="lang_menu"),
             ],
             [
               InlineKeyboardButton(text=await get_string(message.chat.id, "HELP_BNT"), callback_data="help_menu"),
