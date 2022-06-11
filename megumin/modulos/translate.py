@@ -48,11 +48,11 @@ def get_tr_lang(text):
     if len(text.split()) > 0:
         lang = text.split()[0]
         if lang.split("-")[0] not in LANGUAGES:
-            lang = "pt"
+            lang = await get_string(m.chat.id, "language")
         if len(lang.split("-")) > 1 and lang.split("-")[1] not in LANGUAGES:
-            lang = "pt"
+            lang = await get_string(m.chat.id, "language")
     else:
-        lang = "pt"
+        lang = await get_string(m.chat.id, "language")
     return lang
 
 
