@@ -64,7 +64,7 @@ async def start_(c: megux, message: Message):
     if not found:
         return await asyncio.gather(
             USERS_STARTED.insert_one({"id_": user_id, "user": fname}),
-            c.send_log(user_start, disable_notification=False, disable_web_page_preview=True
+            c.send_log(user_start, disable_notification=False, disable_web_page_preview=True))
 
 
     @megux.on_callback_query(filters.regex(pattern=r"^infos$"))
