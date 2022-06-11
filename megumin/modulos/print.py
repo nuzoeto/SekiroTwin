@@ -19,8 +19,6 @@ async def prints(c: megux, message: Message):
         return 
     msg = message.text
     the_url = msg.split(" ", 1)
-    if "xvideos.com" in the_url:
-         return await m.reply((await get_string(m.chat.id, "ERROR_PRINT_DNS")).format(the_url))
     wrong = False
 
     if len(the_url) == 1:
@@ -38,6 +36,8 @@ async def prints(c: megux, message: Message):
     if wrong:
         await message.reply_text(await get_string(message.chat.id, "NO_ARGS_PRINT"))
         return
+    if "xvideos.com" in the_url:
+         return await m.reply((await get_string(m.chat.id, "ERROR_PRINT_DNS")).format(the_url))
 
     try:
         sent = await message.reply_text(await get_string(message.chat.id, "TAKING_PRINT"))
