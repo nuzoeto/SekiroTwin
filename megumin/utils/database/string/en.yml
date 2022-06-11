@@ -44,6 +44,7 @@ REVERSING: "<code>Processing...</code>"
 
 TAKING_PRINT: "Taking screenshot..."
 NO_ARGS_PRINT: "Usage: <code>/print https://example.com</code> - Takes a screenshot of the specified website."
+ERROR_PRINT_DNS: "<b>Cannot access this site</b>\n\n\n<i>Connection to {} was refused.</i>"
 
 #AFK
 AFK_IS_NOW_REASON: "{} is now AFK!\nSaid it is: {}"
