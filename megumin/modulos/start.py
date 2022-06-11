@@ -112,7 +112,7 @@ async def start_(c: megux, message: Message):
             [
                 [
                     InlineKeyboardButton("🇱🇷 English", callback_data="en_lang"),
-                    InlineKeyboardButton("🇧🇷 Português", callback_data="en_lang"),
+                    InlineKeyboardButton("🇧🇷 Português", callback_data="pt_lang"),
                 ],
                 [
                     InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="start_back"),
