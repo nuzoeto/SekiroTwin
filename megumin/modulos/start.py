@@ -105,7 +105,7 @@ async def start_(c: megux, message: Message):
         )
 
 
-@megux.on_callback_query(filters.regex(pattern=r"^lang_menu$"))
+    @megux.on_callback_query(filters.regex(pattern=r"^lang_menu$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = await get_string(cb.message.chat.id, "select_lang")
         button = InlineKeyboardMarkup(
