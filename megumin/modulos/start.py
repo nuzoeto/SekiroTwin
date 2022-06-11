@@ -111,14 +111,14 @@ async def start_(c: megux, message: Message):
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="start_back"),
                 ]
             ]
         )
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
             message_id=cb.message.id,
-            caption=info_text,
+            caption=info_text.format(await get_string(message.chat.id, "language_flag"))
             reply_markup=button,
         )
 
