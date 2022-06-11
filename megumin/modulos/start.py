@@ -28,17 +28,18 @@ sm = psutil.swap_memory()
 uname = platform.uname() 
 
 
-@megux.on_callback_query(filters.regex(pattern=r"^start_back$"))
 @megux.on_message(filters.command("start", prefixes=["/", "!"]))
-async def start_(c: megux, message: Union[Message, CallbackQuery]): 
+async def start_(c: megux, message: Message): 
+    if not message.chat.type == ChatType.PRIVATE:
+        return 
     keyboard = InlineKeyboardMarkup(
         [
             [
-              InlineKeyboardButton(text=await get_string(message.chat.id or message.message.chat.id, "button_lang"), callback_data="lang_menu"),
+              InlineKeyboardButton(text=await get_string(message.chat.id, "button_lang"), callback_data="lang_menu"),
             ],
             [
-              InlineKeyboardButton(text=await get_string(message.chat.id or message.message.chat.id, "HELP_BNT"), callback_data="help_menu"),
-              InlineKeyboardButton(text=await get_string(message.chat.id or message.message.chat.id, "REPO_BNT"), url="https://github.com/davitudoplugins1234/WhiterKang")
+              InlineKeyboardButton(text=await get_string(message.chat.id, "HELP_BNT"), callback_data="help_menu"),
+              InlineKeyboardButton(text=await get_string(message.chat.id, "REPO_BNT"), url="https://github.com/davitudoplugins1234/WhiterKang")
             ],
             [
               InlineKeyboardButton(text="Info", callback_data="infos"),
@@ -54,26 +55,16 @@ async def start_(c: megux, message: Union[Message, CallbackQuery]):
     )
     gif = "https://telegra.ph/file/576f9c3193a1dade06bce.gif"
     msg = await get_string(message.chat.id or message.message.chat.id, "START")
-    if isinstance(message, Message):
-        if not message.chat.type == ChatType.PRIVATE:
-            return
-        await message.reply_animation(gif, caption=msg, reply_markup=keyboard)
-        user_id = message.from_user.id
-        fname = message.from_user.first_name
-        uname = message.from_user.username
-        user_start = f"#NEW_USER #LOGS\n\n**User:** {fname}\n**ID:** {message.from_user.id} <a href='tg://user?id={user_id}'>**Link**</a>"
-        found = await USERS_STARTED.find_one({"id_": user_id})
-        if not found:
-            return await asyncio.gather(
-                USERS_STARTED.insert_one({"id_": user_id, "user": fname}),
-                c.send_log(user_start, disable_notification=False, disable_web_page_preview=True))
-    if isinstance(message, CallbackQuery):
-        await c.edit_message_caption(
-            chat_id=message.message.chat.id,
-            message_id=message.message.id,
-            caption=msg,
-            reply_markup=keyboard
-        )
+    await message.reply_animation(gif, caption=msg, reply_markup=keyboard)
+    user_id = message.from_user.id
+    fname = message.from_user.first_name
+    uname = message.from_user.username
+    user_start = f"#NEW_USER #LOGS\n\n**User:** {fname}\n**ID:** {message.from_user.id} <a href='tg://user?id={user_id}'>**Link**</a>"
+    found = await USERS_STARTED.find_one({"id_": user_id})
+    if not found:
+        return await asyncio.gather(
+            USERS_STARTED.insert_one({"id_": user_id, "user": fname}),
+            c.send_log(user_start, disable_notification=False, disable_web_page_preview=True
 
 
     @megux.on_callback_query(filters.regex(pattern=r"^infos$"))
