@@ -67,6 +67,16 @@ async def start_(c: megux, message: Message):
             c.send_log(user_start, disable_notification=False, disable_web_page_preview=True))
 
 
+    @megux.on_callback_query(filters.regex(pattern=r"^start_back$"))
+    async def start_back(client: megux, cb: CallbackQuery):
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.id,
+            caption=await get_string(cb.message.chat.id, "START"),
+            reply_markup=keyboard,
+        )
+
+
     @megux.on_callback_query(filters.regex(pattern=r"^infos$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = f"""
