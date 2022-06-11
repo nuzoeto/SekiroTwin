@@ -36,8 +36,6 @@ async def prints(c: megux, message: Message):
     if wrong:
         await message.reply_text(await get_string(message.chat.id, "NO_ARGS_PRINT"))
         return
-    if "xvideos.com" or "xvideos.com.br" == the_url:
-         return await message.reply((await get_string(message.chat.id, "ERROR_PRINT_DNS")).format(the_url))
 
     try:
         sent = await message.reply_text(await get_string(message.chat.id, "TAKING_PRINT"))
