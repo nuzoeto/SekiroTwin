@@ -33,9 +33,6 @@ async def start_(c: megux, message: Message):
         keyboard = InlineKeyboardMarkup(
             [
                 [
-                 InlineKeyboardButton(text=await get_string(message.chat.id, "button_lang"), callback_data="lang_menu"),
-                ],
-                [
                  InlineKeyboardButton(text=await get_string(message.chat.id, "HELP_BNT"), callback_data="help_menu"),
                  InlineKeyboardButton(text=await get_string(message.chat.id, "REPO_BNT"), url="https://github.com/davitudoplugins1234/WhiterKang")
                 ],
@@ -44,6 +41,7 @@ async def start_(c: megux, message: Message):
                     InlineKeyboardButton(text="Suporte", url="https://t.me/fnixsup"),
                 ],
                 [
+                    InlineKeyboardButton(text=await get_string(message.chat.id, "button_lang"), callback_data="lang_menu"),                
                     InlineKeyboardButton(
                         text=await get_string(message.chat.id, "ADD_BNT"),
                         url=f"https://t.me/whiterkangbot?startgroup=new",
