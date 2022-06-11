@@ -10,7 +10,7 @@ from pyrogram.types import (
 )
 
 from megumin import megux
-from megumin.utils import get_collection 
+from megumin.utils import get_collection, get_string  
 
 
 tr = Translator()
