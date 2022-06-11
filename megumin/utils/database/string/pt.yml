@@ -48,6 +48,8 @@ REVERSING: "<code>Processando...</code>"
 
 TAKING_PRINT: "Obtendo captura de tela..."
 NO_ARGS_PRINT: "Uso: <code>/print https://example.com</code> - Tira uma captura de tela do site especificado."
+ERROR_PRINT_DNS: "<b>Não é possível acessar esse site</b>\n\n\n<i>A conexão com {} foi recusada.</i>"
+
 
 #AFK
 AFK_IS_NOW_REASON: "{} agora está AFK!\nDisse que está: {}"
