@@ -10,7 +10,7 @@ from megumin import megux
 from megumin.utils.decorators import input_str 
 
 
-@megux.on_message(filters.command("stretch"))
+@megux.on_message(filters.command("stretch", Config.TRIGGER))
 async def stretch(c: megux, m: Message):
     if input_str(m):
         text = m.text.split(maxsplit=1)[1]
@@ -20,7 +20,7 @@ async def stretch(c: megux, m: Message):
         else:
             return await m.reply("`Vou esticar o Vento?!`")
     reply = re.sub(
-        r"([aeiouAEIOUａｅｉｏｕＡＥＩＯＵаеиоуюяыэё])",
+        r"([aeiouAEIOUａｅｉｏｕＡＥＩＯＵаеиоуюяыэёö])",
         (r"\1" * random.randint(3, 12)),
         f"{text}",
         )
