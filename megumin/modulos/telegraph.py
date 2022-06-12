@@ -24,7 +24,7 @@ async def telegraph(c: megux, m: Message):
     await tg.create_account(
         short_name="WhiterKang",
         author_name="WhiterKang",
-        author_url="https://t.me/WhiterKangBOT",
+        author_url="https://t.me/DaviTudo",
     )
 
     if (
