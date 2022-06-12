@@ -34,7 +34,7 @@ async def telegraph(c: megux, message: Message):
             and replied.document.file_size <= 5242880
         )
     ):
-        await message.reply(await get_string(message.chat.id, TG_NOT_SUPORTED"))
+        await message.reply((await get_string(message.chat.id, TG_NOT_SUPORTED")))
         return
     download_location = await megux.download_media(
         message=message.reply_to_message, file_name="megumin/xcache/"
