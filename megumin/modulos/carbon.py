@@ -28,7 +28,6 @@ async def carbon_func(_, message: Message):
     await megux.send_document(message.chat.id, carbon, caption="__Made by:__ @WhiterKangBOT")
     await m.delete()
     carbon.close()
-    return
 
 
 async def make_carbon(code):
