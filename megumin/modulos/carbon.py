@@ -30,6 +30,24 @@ async def carbon_func(_, message: Message):
     carbon.close()
 
 
+@megux.on_message(filters.command("carbon -img", prefixes=["/", "!"]))
+async def carbon_func(_, message: Message):
+    if not message.reply_to_message:
+        return await message.reply_text(
+            "__Responda uma mensagem para carbonizar o texto.__"
+        )
+    if not message.reply_to_message.text:
+        return await message.reply_text(
+            "__Você precisa responder a um texto para carbonizar.__"
+        )
+    m = await message.reply_text("`Preparando carbon`")
+    carbon = await make_carbon(message.reply_to_message.text)
+    await m.edit("__Uploading...__")
+    await message.reply_photo(carbon, caption="__Made by:__ @WhiterKangBOT")
+    await m.delete()
+    carbon.close()
+
+
 async def make_carbon(code):
     url = "https://carbonara.vercel.app/api/cook"
     async with aiohttpsession.post(url, json={"code": code}) as resp:
