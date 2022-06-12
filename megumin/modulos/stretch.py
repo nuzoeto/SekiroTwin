@@ -22,6 +22,3 @@ async def stretch(c: megux, m: Message):
         f"{text}",
         )
     await m.reply_text(f"{html.escape(reply)}")
-    else:
-        return await m.reply("`Vou esticar o vento?!`")
-        
