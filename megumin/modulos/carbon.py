@@ -14,7 +14,6 @@ aiohttpsession = ClientSession()
 
 @megux.on_message(filters.command("carbon", prefixes=["/", "!"]))
 async def carbon_func(_, message: Message):
-    args = input_str(message)
     if not message.reply_to_message:
         return await message.reply_text(
             "__Responda uma mensagem para carbonizar o texto.__"
@@ -26,16 +25,10 @@ async def carbon_func(_, message: Message):
     m = await message.reply_text("`Preparando carbon`")
     carbon = await make_carbon(message.reply_to_message.text)
     await m.edit("__Uploading...__")
-    if "-img" in args:
-        await m.reply(carbon, caption="__Made by:__ @WhiterKangBOT")
-        await m.delete()
-        carbon.close()
-        return 
-    else:
-        await megux.send_document(message.chat.id, carbon, caption="__Made by:__ @WhiterKangBOT")
-        await m.delete()
-        carbon.close()
-        return
+    await megux.send_document(message.chat.id, carbon, caption="__Made by:__ @WhiterKangBOT")
+    await m.delete()
+    carbon.close()
+    return
 
 
 async def make_carbon(code):
