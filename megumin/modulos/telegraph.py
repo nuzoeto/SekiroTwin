@@ -45,7 +45,7 @@ async def telegraph(c: megux, message: Message):
     except Exception as document:
         await msg.edit(document)
     else:
-        link = (await get_string(message.chat.id, "TG_UPLOADED")).format(response[0])
-        await msg.edit(link, disable_web_page_preview=True)
+        link = await get_string(message.chat.id, "TG_UPLOADED")
+        await msg.edit((link.format(response[0])), disable_web_page_preview=True)
     finally:
         os.remove(download_location)
