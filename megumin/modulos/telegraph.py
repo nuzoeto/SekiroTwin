@@ -1,8 +1,6 @@
 ##
 #
 import os
-import html
-import httpx
 
 from pyrogram import filters
 from pyrogram.types import Message
@@ -39,7 +37,7 @@ async def telegraph(c: megux, message: Message):
     download_location = await megux.download_media(
         message=message.reply_to_message, file_name="megumin/xcache/"
     )
-    msg = await message.reply("`Fazendo upload no telegraph...`")
+    msg = await message.reply(await get_string(message.chat.id, "TG_UPLOADING"))
     try:
         response = upload_file(download_location)
     except Exception as document:
