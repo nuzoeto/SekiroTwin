@@ -12,12 +12,14 @@ from megumin.utils.decorators import input_str
 
 @megux.on_message(filters.command("stretch"))
 async def stretch(c: megux, m: Message):
-    text = input_str(m)
-
+    if input_str(m):
+        text = input_str(m)
+    if (m.reply_to_message.text or m.reply_to_message.caption):
+        text = message.reply_to_message.text or message.reply_to_message.caption
     reply = re.sub(
         r"([aeiouAEIOUａｅｉｏｕＡＥＩＯＵаеиоуюяыэё])",
         (r"\1" * random.randint(3, 10)),
         f"{text}",
         )
-    await m.reply_text(reply)
+    await m.reply_text(f"{html.escape(reply)}")
         
