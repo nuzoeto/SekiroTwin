@@ -10,7 +10,7 @@ from megumin.utils import admin_check
 
 @megux.on_message(filters.command("purge"))
 async def purge_command(megux, message: Message):
-    if m.chat.type == ChatType.SUPERGROUP or ChatType.GROUP:
+    if message.chat.type == ChatType.SUPERGROUP or ChatType.GROUP:
         can_purge = await admin_check(message)
     else:
         can_purge = True
