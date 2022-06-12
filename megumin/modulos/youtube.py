@@ -82,7 +82,7 @@ async def song_(c: megux, message: Message):
             await msg.edit("nada encontrado !")
             return
         await c.send_chat_action(message.chat.id, enums.ChatAction.UPLOAD_AUDIO)
-        await message.reply_audio(audio=Path(_fpath), caption=(await get_string(message.chat.id, "YTDL_CAPTION")).format(url, title_, duration_, views_, channel_), duration=duration_)
+        await message.reply_audio(audio=Path(_fpath), caption=capt_, duration=duration_)
         await asyncio.gather(c.send_log("#Send #YOUTUBE_DL"))
         await msg.delete()
         os.remove(Path(_fpath))
@@ -175,4 +175,4 @@ def extract_inf(url, _opts):
         c.send_log("#Down_Error #YOUTUBE_DL")
         return y_e
     else:
-        return dloader, capt_, duration_, views_, channel_, title_
+        return dloader, capt_, duration_
