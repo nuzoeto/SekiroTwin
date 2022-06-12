@@ -6,7 +6,7 @@ from pyrogram import filters
 from pyrogram.errors import BadRequest
 from pyrogram.types import Message
 
-from megumin import megux
+from megumin import megux, Config 
 from megumin.utils.decorators import input_str 
 
 
