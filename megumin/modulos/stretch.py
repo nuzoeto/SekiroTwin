@@ -12,12 +12,13 @@ from megumin.utils.decorators import input_str
 
 @megux.on_message(filters.command("stretch"))
 async def stretch(c: megux, m: Message):
-    if not input_str(m) or m.reply_to_message:
-        return await m.reply("`Vou esticar o vento?!`")
     if input_str(m):
         text = input_str(m)
     else:
-        text = m.reply_to_message.text or m.reply_to_message.caption
+        if m.reply_to_message:
+            text = m.reply_to_message.text or m.reply_to_message.caption
+        else:
+            return await m.reply("`Vou esticar o Vento?!`")
     reply = re.sub(
         r"([aeiouAEIOUａｅｉｏｕＡＥＩＯＵаеиоуюяыэё])",
         (r"\1" * random.randint(3, 10)),
