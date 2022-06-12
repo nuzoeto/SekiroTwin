@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 
 from pyrogram.enums import ChatMemberStatus 
 from pyrogram.types import Message
+from pyrogram.enums import ChatType
 
 from megumin import megux, Config 
 
@@ -25,6 +26,8 @@ def time_formatter(seconds: float) -> str:
 
 
 async def admin_check(message: Message) -> bool:
+    if message.chat.type == ChatType.PRIVATE:
+        return True
     client = message._client
     chat_id = message.chat.id
     user_id = message.from_user.id
