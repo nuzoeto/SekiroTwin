@@ -32,8 +32,8 @@ async def stretch(c: megux, m: Message):
     
         try:
             if m.reply_to_message:
-                await m.reply_to_message.reply_text(f"{html.escape(reply)}")
+                await m.reply_to_message.reply_text(reply)
             else:
-                await m.reply_text(f"{html.escape(reply)}")
+                await m.reply_text(reply)
         except BadRequest:
             return await m.reply("Erro")
