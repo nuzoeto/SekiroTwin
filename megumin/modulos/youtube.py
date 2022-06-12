@@ -157,7 +157,7 @@ async def get_link(query):
         return link
 
 
-def extract_inf(url, _opts):
+async def extract_inf(url, _opts):
     try:
         x = YoutubeDL(_opts)
         infoo = x.extract_info(url, False)
