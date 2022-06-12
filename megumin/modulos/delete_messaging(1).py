@@ -1,18 +1,19 @@
 from pyrogram import filters
 from pyrogram.errors import Forbidden
 from pyrogram.types import Message
+from pyrogram.enums import ChatType,  ChatMemberStatus
 
 from megumin import megux 
 
 
 @megux.on_message(filters.command("del", prefixes=["/", "!"]))
 async def del_message(c: megux, m: Message):
-    if m.chat.type != "private":
+    if m.chat.type != ChatType.PRIVATE:
         member = await c.get_chat_member(chat_id=m.chat.id, user_id=m.from_user.id)
 
-    if m.chat.type == "private" or member.status in [
-        "administrator",
-        "creator",
+    if m.chat.type == ChatType.PRIVATE or member.status in [
+        ChatMemberStatus.ADMINISTRATOR,
+        ChatMemberStatus.OWNER,
     ]:
         try:
             if m.reply_to_message:
