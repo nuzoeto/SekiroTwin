@@ -1,6 +1,7 @@
 ##
 #
 import os
+import html
 
 from pyrogram import filters
 from pyrogram.types import Message
@@ -16,7 +17,6 @@ tg = Telegraph()
 
 @megux.on_message(filters.command(["telegraph", "tg"], Config.TRIGGER))
 async def telegraph(c: megux, m: Message):
-
     if not m.reply_to_message:
         await m.reply_text("Por favor, responda a uma foto, vídeo, gif ou texto.")
         return
