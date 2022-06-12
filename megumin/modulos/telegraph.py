@@ -12,7 +12,7 @@ from megumin.utils import get_string
 
 
 @megux.on_message(filters.command(["telegraph", "tg"], Config.TRIGGER))
-async def telegraph(c: Korone, m: Message):
+async def telegraph(c: megux, m: Message):
 
     if not m.reply_to_message:
         await m.reply_text("Por favor, responda a uma foto, vídeo, gif ou texto.")
