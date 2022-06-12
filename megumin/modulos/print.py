@@ -8,7 +8,8 @@ from megumin import megux
 from megumin.utils import get_collection, get_string  
 
 
-http = httpx.AsyncClient()
+timeout = httpx.timeout(6)
+http = httpx.AsyncClient(timeout=timeout)
 
 @megux.on_message(filters.command("print", prefixes=["/","!"]))
 async def prints(c: megux, message: Message):
