@@ -2,6 +2,7 @@ import asyncio
 from pyrogram import filters
 from pyrogram.errors import MessageDeleteForbidden
 from pyrogram.types import Message
+from pyrogram.enums import ChatType
 
 from megumin import megux
 from megumin.utils import admin_check
