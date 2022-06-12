@@ -11,7 +11,7 @@ from megumin.utils.decorators import input_str
 
 
 @megux.on_message(filters.command("stretch"))
-async def vapor(c: megux, m: Message):
+async def stretch(c: megux, m: Message):
     text = input_str(m)
     if not text and m.reply_to_message:
         if (m.reply_to_message.text or m.reply_to_message.caption) is not None:
@@ -35,5 +35,5 @@ async def vapor(c: megux, m: Message):
                 await m.reply_to_message.reply_text(f"{html.escape(reply)}")
             else:
                 await m.reply_text(f"{html.escape(reply)}")
-        except BadRequest:
-            return
+        except BadRequest as err:
+            return await m.reply(err)
