@@ -261,14 +261,7 @@ async def start_(c: megux, message: Message):
 
     @megux.on_callback_query(filters.regex(pattern=r"^anilist_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
-        info_text = f"""
-Aqui está a ajuda para o módulo <b>Anilist</b>:
-
-• /anime - Use este comando para obter informações sobre um anime específico usando nome do anime ou ID do anilist
-• /char ou /character - Use este comando para obter informações sobre algum personagem
-• /manga - Use este comando para obter informações sobre algum mangá
-• /airing - Ainda será adicionado
-    """
+        info_text = await get_string(cb.message.chat.id, "HELP_ANILIST")
         button = InlineKeyboardMarkup(
             [
                 [
