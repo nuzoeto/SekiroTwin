@@ -14,7 +14,7 @@ from megumin.utils.decorators import input_str
 async def stretch(c: megux, m: Message):
     if input_str(m):
         text = input_str(m)
-    if (m.reply_to_message.text or m.reply_to_message.caption):
+    else:
         text = message.reply_to_message.text or message.reply_to_message.caption
     reply = re.sub(
         r"([aeiouAEIOUａｅｉｏｕＡＥＩＯＵаеиоуюяыэё])",
