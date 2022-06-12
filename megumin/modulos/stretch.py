@@ -21,7 +21,7 @@ async def stretch(c: megux, m: Message):
             return await m.reply("`Vou esticar o Vento?!`")
     reply = re.sub(
         r"([aeiouAEIOUａｅｉｏｕＡＥＩＯＵаеиоуюяыэё])",
-        (r"\1" * random.randint(3, 10)),
+        (r"\1" * random.randint(3, 12)),
         f"{text}",
         )
     try:
