@@ -166,7 +166,7 @@ def extract_inf(url, _opts):
         title_ = infoo["title"].replace("/", "_")
         channel_ = infoo["channel"]
         views_ = infoo["view_count"]
-        capt_ = (await get_string(message.chat.id, "YTDL_CAPTION")).format(url, title_, duration_, views_, channel_)
+        capt_ = (get_string(message.chat.id, "YTDL_CAPTION")).format(url, title_, duration_, views_, channel_)
         dloader = x.download(url)
     except Exception as y_e:  # pylint: disable=broad-except
         shutil.rmtree(tempdir, ignore_errors=True)
