@@ -9,7 +9,10 @@ from megumin.utils import admin_check
 
 @megux.on_message(filters.command("purge"))
 async def purge_command(megux, message: Message):
-    can_purge = await admin_check(message)
+    if m.chat.type == ChatType.SUPERGROUP or ChatType.GROUP:
+        can_purge = await admin_check(message)
+    else:
+        can_purge = True
     if can_purge:
         try:
             message_reply = int(message.reply_to_message.id)
