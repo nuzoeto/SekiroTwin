@@ -11,6 +11,9 @@ from megumin import megux, Config
 from megumin.utils import get_string
 
 
+tg = Telegraph()
+
+
 @megux.on_message(filters.command(["telegraph", "tg"], Config.TRIGGER))
 async def telegraph(c: megux, m: Message):
 
