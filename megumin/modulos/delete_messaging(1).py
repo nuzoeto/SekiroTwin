@@ -19,7 +19,7 @@ async def del_message(c: megux, m: Message):
             if m.reply_to_message:
                 await c.delete_messages(
                     chat_id=m.chat.id,
-                    message_ids=[m.reply_to_message.message_id, m.message_id],
+                    message_ids=[m.reply_to_message.id, m.message.id],
                     revoke=True,
                 )
         except Forbidden as e:
