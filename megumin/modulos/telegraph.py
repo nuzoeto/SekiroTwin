@@ -2,6 +2,7 @@
 #
 import os
 import html
+import httpx
 
 from pyrogram import filters
 from pyrogram.types import Message
@@ -13,6 +14,7 @@ from megumin.utils import get_string
 
 
 tg = Telegraph()
+http = httpx.AsyncClient()
 
 
 @megux.on_message(filters.command(["telegraph", "tg"], Config.TRIGGER))
@@ -24,7 +26,7 @@ async def telegraph(c: megux, m: Message):
     await tg.create_account(
         short_name="WhiterKang",
         author_name="WhiterKang",
-        author_url="https://t.me/DaviTudo",
+        author_url="https://t.me/WhiterKangBOT",
     )
 
     if (
