@@ -2,6 +2,7 @@ import rapidjson
 import httpx
 import asyncio 
 import requests
+import math
 
 from bs4 import BeautifulSoup
 
@@ -9,11 +10,24 @@ from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 
 
-from megumin import megux
+from megumin import megux, Config
 from megumin.utils import get_string as tld
+from megumin.utils.decorators import input_str 
 
 
 http = httpx.AsyncClient()
+
+
+def convert_size(size_bytes):
+    if size_bytes == 0:
+        return "0B"
+    size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
+    i = int(math.floor(math.log(size_bytes, 1024)))
+    p = math.pow(1024, i)
+    s = round(size_bytes / p, 2)
+    return "%s %s" % (s, size_name[i])
+
+
 DEVICE_LIST = "https://raw.githubusercontent.com/androidtrackers/certified-android-devices/master/by_device.json"
 
 
@@ -85,3 +99,28 @@ async def device_(_, message: Message):
         await msg.edit((await tld(message.chat.id, "DEVICE_NOT_FOUND")).format(target_device))
         await asyncio.sleep(5)
         await msg.delete()
+
+
+@megux.on_message(filters.command("los", Config.TRIGGER))
+async def los(c: megux, m: Message):
+    device = input_str(m)
+    if not device:
+        return await m.reply("Por favor digite um codename.\nPor exemplo: /los herolte")
+    fetch = await http.get(f"https://download.lineageos.org/api/v1/{device}/nightly/*")
+    if fetch.status_code == 200 and len(fetch.json()["response"]) != 0:
+        usr = json.loads(fetch.content)
+        response = usr["response"][-1]
+        filename = response["filename"]
+        url = response["url"]
+        buildsize_a = response["size"]
+        buildsize_b = convert_size(int(buildsize_a))
+        version = response["version"]
+        build_time = response["datetime"]
+        romtype = response["romtype"]
+
+        text = "<b>Baixar</b>: [{}]({})".format(filename, url)
+        text += "<b>Tipo</b>: {}".format(romtype)
+        text += "<b>Tamanho da compilação</b> {}".format(buildsize_b)
+        text += "<b>Versão</b>: {}".format(version)
+        text += "<b>Data</b>: {}"
+        await m.reply(text)
