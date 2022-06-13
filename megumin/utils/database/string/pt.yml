@@ -138,3 +138,8 @@ ZOMBIES_LOGGER: "<b>{}</b>:\n#ZOMBIES\n<b>Administrador:</b> {}\n<b>Número de c
 ZOMBIES_BAN: "Eu removi todas as <b>{}</b> contas excluídas do grupo <b>{}</b>!"
 NO_ZOMBIES: "Não há contas excluídas no grupo!"
 NO_RIGHTS_ZOMBIES: "Balabacheia! Você não tem direitos administrativos suficientes para banir/desbanir usuários!"
+
+
+#android
+MAGISK_STRING: "<b>Últimos lançamentos do magisk</b>\n\n"
+DEVICE_SUCCESS: "<b>Marca:</b> <code>{}</code>\n<b>Nome:</b> <code>{}</code>\n<b>Dispositivo:</b> <code>{}</code>\n<b>Codename:</b> <code>{}</code>"
