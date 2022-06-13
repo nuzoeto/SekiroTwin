@@ -78,7 +78,7 @@ async def device_(_, message: Message):
             brand = x['brand']
             name = x['name']
             model = x['model']
-            text += "**Marca:** ```{}```\n**Nome:** ```{}```\n**Dispositivo:** ```{}```\n**Codename:** ```{}```".format(brand, name, model, target_device)
+            text += (await tld(message.chat.id, "DEVICE_SUCCESS")).format(brand, name, model, target_device)
             text += "\n\n"
         await msg.edit(text)
     else:
