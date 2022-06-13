@@ -2,6 +2,7 @@ import html
 import random
 import io
 import re
+import httpx
 
 from pyrogram import filters
 from pyrogram.errors import BadRequest
@@ -9,6 +10,9 @@ from pyrogram.types import Message
 
 from megumin import megux, Config 
 from megumin.utils.decorators import input_str 
+
+
+http = httpx.AsyncClient()
 
 
 @megux.on_message(filters.command("stretch", Config.TRIGGER))
@@ -30,6 +34,9 @@ async def stretch(c: megux, m: Message):
         else:
             stretch = io.BytesIO(reply.encode())
             stretch.name = "stretch.txt"
-            await m.reply_document(stretch)
+            url = "https://nekobin.com/api/documents"
+            r = await http.post(url, json={"content": stretch})
+            url = f"https://nekobin.com/{r.json()['result']['key']}"
+            await m.reply_document(stretch, caption=f"<b>Nekobin [URL]({url})")
     except BadRequest:
         return 
