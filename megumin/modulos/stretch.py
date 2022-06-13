@@ -30,6 +30,6 @@ async def stretch(c: megux, m: Message):
         else:
             stretch = io.BytesIO(reply.encode())
             stretch.name = "stretch.txt"
-            await m.reply(stretch)
+            await m.reply_document(stretch)
     except BadRequest:
         return 
