@@ -65,7 +65,7 @@ async def magisk(c: megux, m: Message):
 @megux.on_message(filters.command(["device", "whatis"], prefixes=["/", "!"]))
 async def device_(_, message: Message):
     if not len(message.command) == 2:
-        await message.reply("<code>Quer que eu adivinhe? Por favor digite um codename</code>")
+        await message.reply("<i>Quer que eu adivinhe? Por favor digite um codename</i>")
         return
     msg = await message.reply("__Procurando...__")
     getlist = requests.get(DEVICE_LIST).json()
