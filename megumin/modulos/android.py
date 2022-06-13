@@ -82,6 +82,6 @@ async def device_(_, message: Message):
             text += "\n\n"
         await msg.edit(text)
     else:
-        await msg.edit(f"`Device` **{target_device}** `não foi encontrado!`")
+        await msg.edit((await tld(message.chat.id, "DEVICE_NOT_FOUND")).format(target_device))
         await asyncio.sleep(5)
         await msg.delete()
