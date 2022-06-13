@@ -5,9 +5,11 @@ import requests
 import math
 
 from bs4 import BeautifulSoup
+from babel.dates import format_datetime
 
 from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
+
 
 
 from megumin import megux, Config
@@ -122,5 +124,5 @@ async def los(c: megux, m: Message):
         text += "<b>Tipo</b>: {}\n".format(romtype)
         text += "<b>Tamanho da compilação</b> {}\n".format(buildsize_b)
         text += "<b>Versão</b>: {}\n".format(version)
-        text += "<b>Data</b>: {}"
+        text += "<b>Data</b>: {}".format(format_datetime(build_time))
         await m.reply(text)
