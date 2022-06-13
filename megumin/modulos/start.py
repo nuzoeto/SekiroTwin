@@ -279,15 +279,7 @@ async def start_(c: megux, message: Message):
 
     @megux.on_callback_query(filters.regex(pattern=r"^android_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
-        info_text = f"""
-Aqui está a ajuda para o módulo <b>Android</b>:
-
-• /device ou /whatis < codename > Obtenha um dispositivo pelo codename.
-• /app < nome do app > - Use para pesquisar aplicativos na Google Play Store.
-• /magisk - Obtenha a última versão do magisk.
-• /twrp < codename > - Busca o último TWRP disponível para um determinado codinome de dispositivo.
-• /ofox < codename > - Busca a última versão do OrangeFox disponível para um determinado dispositivo ( não disponível )
-    """
+        info_text = await get_string(cb.message.chat.id, "HELP_ANDROID")
         button = InlineKeyboardMarkup(
             [
                 [
