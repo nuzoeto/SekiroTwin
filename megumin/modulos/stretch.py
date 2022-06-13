@@ -35,7 +35,8 @@ async def stretch(c: megux, m: Message):
             stretch = io.BytesIO(reply.encode())
             stretch.name = "stretch.txt"
             url = "https://nekobin.com/api/documents"
-            r = await http.post(url, json={"content": stretch})
+            mean = stretch.read().decode("UTF-8")
+            r = await http.post(url, json={"content": mean})
             url = f"https://nekobin.com/{r.json()['result']['key']}"
             await m.reply_document(stretch, caption=f"<b>Nekobin [URL]({url})")
     except BadRequest:
