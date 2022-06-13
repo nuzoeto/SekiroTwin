@@ -120,11 +120,11 @@ async def los(c: megux, m: Message):
         build_time = response["datetime"]
         romtype = response["romtype"]
 
-        text = "<b>Baixar</b>: [{}]({})\n".format(filename, url)
-        text += "<b>Tipo</b>: {}\n".format(romtype)
-        text += "<b>Tamanho da compilação</b> <code>{}</code>\n".format(buildsize_b)
-        text += "<b>Versão</b>: <code>{}</code>\n".format(version)
-        text += "<b>Data</b>: <code>{}</code>".format(format_datetime(build_time))
+        text = (await tld(m.chat.id, "ANDROID_DOWNLOAD")).format(filename, url)
+        text += (await tld(m.chat.id, "ANDROID_TYPE")).format(romtype)
+        text += (await tld(m.chat.id, "ANDROID_SIZE")).format(buildsize_b)
+        text += (await tld(m.chat.id, "ANDROID_VERSION")).format(version)
+        text += (await tld(m.chat.id, "ANDROID_DATE")).format(format_datetime(build_time))
         keyboard = [[InlineKeyboardButton(text="Download", url=url)]]
         await m.reply(text, reply_markup=InlineKeyboardMarkup(keyboard))
     else:
