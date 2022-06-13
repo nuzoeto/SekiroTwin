@@ -149,7 +149,7 @@ async def pixelexperience(c: megux, m: Message):
         f"https://download.pixelexperience.org/ota_v5/{device}/{atype}"
     ) 
     if fetch.status_code == 200:
-        response = json.loads(fetch.content)
+        response = rapidjson.loads(fetch.content)
         if response["error"]:
             return await m.reply("Não foi possível encontrar nenhum resultado correspondente à sua consulta.")
         filename = response["filename"]
