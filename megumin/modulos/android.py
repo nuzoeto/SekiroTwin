@@ -40,7 +40,7 @@ async def twrp(c: megux, m: Message):
             dl_file = download.text
             size = trs[i].find("span", {"class": "filesize"}).text
         message += "<b>Tamanho:</b> <code>{}</code>\n".format(size)
-        message += "<b>Arquivo:</b> <code>{dl_file.upper()}</code>".format(dl_file.upper())
+        message += "<b>Arquivo:</b> <code>{}</code>".format(dl_file.upper())
         keyboard = [[InlineKeyboardButton(text="Download", url=dl_link)]]
         await m.reply_text(
             message,
