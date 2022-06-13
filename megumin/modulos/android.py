@@ -159,10 +159,10 @@ async def pixelexperience(c: megux, m: Message):
         version = response["version"]
         build_time = response["datetime"]
 
-        text = "<b>Baixar</b>: [{}]({})\n".format(filename, url)
-        text += "<b>Tamanho da compilação</b>: <code>{}</code>\n".format(buildsize_b)
-        text += "<b>Versão</b>: <code>{}</code>\n".format(version)
-        text += "<b>Data</b>: <code>{}</code>\n".format(format_datetime(build_time))
+        text = (await tld(m.chat.id, "ANDROID_DOWNLOAD")).format(filename, url)
+        text += (await tld(m.chat.id, "ANDROID_SIZE")).format(buildsize_b)
+        text += (await tld(m.chat.id, "ANDROID_VERSION")).format(version)
+        text += (await tld(m.chat.id, "ANDROID_DATE")).format(format_datetime(build_time))
         keyboard = [[InlineKeyboardButton(text="Download", url=url)]]
         await m.reply(text, reply_markup=InlineKeyboardMarkup(keyboard))
     else:
