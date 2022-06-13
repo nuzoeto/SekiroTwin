@@ -134,7 +134,7 @@ async def los(c: megux, m: Message):
 @megux.on_message(filters.command("pe", Config.TRIGGER))
 async def pixelexperience(c: megux, m: Message):
     try:
-        args = message.text.split()
+        args = m.text.split()
         device = args[1]
     except IndexError:
         device = ""
