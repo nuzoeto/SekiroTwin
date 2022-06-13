@@ -10,6 +10,7 @@ from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 
 
 from megumin import megux
+from megumin.utils import get_string as tld
 
 
 http = httpx.AsyncClient()
