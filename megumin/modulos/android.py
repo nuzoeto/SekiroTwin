@@ -129,3 +129,39 @@ async def los(c: megux, m: Message):
         await m.reply(text, reply_markup=InlineKeyboardMarkup(keyboard))
     else:
         return await m.reply("Não foi possível encontrar nenhum resultado correspondente à sua consulta.")
+
+
+@megux.on_message(filters.command("pe", Config.TRIGGER))
+async def pixelexperience(c: megux, m: Message):
+    try:
+        args = message.text.split()
+        device = args[1]
+    except IndexError:
+        device = ""
+    try:
+        atype = args[2].lower()
+    except IndexError:
+        atype = "twelve"  
+    if device == "":
+        return await m.reply("Por favor digite um codename.\nPor exemplo: /pe whyred")
+
+    fetch = await http.get(
+        f"https://download.pixelexperience.org/ota_v5/{device}/{atype}"
+    ) 
+    if fetch.status_code == 200:
+        response = json.loads(fetch.content)
+        if response["error"]:
+            return await m.reply("Não foi possível encontrar nenhum resultado correspondente à sua consulta.")
+        filename = response["filename"]
+        url = response["url"]
+        buildsize_a = response["size"]
+        buildsize_b = convert_size(int(buildsize_a))
+        version = response["version"]
+        build_time = response["datetime"]
+
+        text = "<b>Baixar</b>: [{}]({})\n".format(filename, url)
+        text += "<b>Tamanho da compilação</b>: {}".format(buildsize_b)
+        text += "<b>Versão</b>: {}".format(version)
+        text += "<b>Data</b>: {}.format(format_datetime(build_time))
+        keyboard = [[InlineKeyboardButton(text="Download", url=url)]]
+        await m.reply(text, reply_markup=InlineKeyboardMarkup(keyboard))
