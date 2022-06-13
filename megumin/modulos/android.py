@@ -162,7 +162,7 @@ async def pixelexperience(c: megux, m: Message):
         text = "<b>Baixar</b>: [{}]({})\n".format(filename, url)
         text += "<b>Tamanho da compilação</b>: {}".format(buildsize_b)
         text += "<b>Versão</b>: {}".format(version)
-        text += "<b>Data</b>: {}.format(format_datetime(build_time))
+        text += "<b>Data</b>: {}".format(format_datetime(build_time))
         keyboard = [[InlineKeyboardButton(text="Download", url=url)]]
         await m.reply(text, reply_markup=InlineKeyboardMarkup(keyboard))
     else:
