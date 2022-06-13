@@ -17,7 +17,7 @@ async def stretch(c: megux, m: Message):
     elif m.reply_to_message:
         text = m.reply_to_message.text or m.reply_to_message.caption
     else:
-        return await m.reply("`Vou esticar o Vento?!`")
+        return await m.reply("`Vou esticar o vento?!`")
     reply = re.sub(
         r"([aeiouAEIOUａｅｉｏｕＡＥＩＯＵаеиоуюяыэёö])",
         (r"\1" * random.randint(3, 12)),
