@@ -76,7 +76,10 @@ async def device_(_, message: Message):
         for x in device:
             text += f"**Marca:** ```{x['brand']}```\n**Nome:** ```{x['name']}```\n**Dispositivo:** ```{x['model']}```\n**Codename:** ```{target_device}```"
             text += "\n\n"
-        await msg.edit(text)
+            try:
+                await msg.edit(text)
+            except IndexError:
+                return await msg.edit("Digite Algo!")
     else:
         await msg.edit(f"`Device` **{target_device}** `não foi encontrado!`")
         await asyncio.sleep(5)
