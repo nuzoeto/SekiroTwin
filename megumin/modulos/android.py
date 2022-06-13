@@ -9,7 +9,8 @@ from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 
 
-from megumin import megux 
+from megumin import megux
+from megumin.utils.decorators import input_str 
 
 
 http = httpx.AsyncClient()
