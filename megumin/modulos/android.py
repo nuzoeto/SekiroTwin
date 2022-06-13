@@ -151,7 +151,7 @@ async def pixelexperience(c: megux, m: Message):
     if fetch.status_code == 200:
         response = rapidjson.loads(fetch.content)
         if response["error"]:
-            return await m.reply("Não foi possível encontrar nenhum resultado correspondente à sua consulta.")
+            return await m.reply(await tld(m.chat.id, "ANDROID_NOT_FOUND"))
         filename = response["filename"]
         url = response["url"]
         buildsize_a = response["size"]
