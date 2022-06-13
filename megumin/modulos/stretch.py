@@ -14,11 +14,10 @@ from megumin.utils.decorators import input_str
 async def stretch(c: megux, m: Message):
     if input_str(m):
         text = m.text.split(maxsplit=1)[1]
+    elif m.reply_to_message:
+        text = m.reply_to_message.text or m.reply_to_message.caption
     else:
-        if m.reply_to_message:
-            text = m.reply_to_message.text or m.reply_to_message.caption
-        else:
-            return await m.reply("`Vou esticar o Vento?!`")
+        return await m.reply("`Vou esticar o Vento?!`")
     reply = re.sub(
         r"([aeiouAEIOUａｅｉｏｕＡＥＩＯＵаеиоуюяыэёö])",
         (r"\1" * random.randint(3, 12)),
