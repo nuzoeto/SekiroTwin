@@ -68,7 +68,7 @@ async def device_(_, message: Message):
     if not len(message.command) == 2:
         await message.reply("<i>Quer que eu adivinhe? Por favor digite um codename</i>")
         return
-    msg = await message.reply("__Procurando...__")
+    msg = await message.reply(await tld(message.chat.id, "COM_2"))
     getlist = requests.get(DEVICE_LIST).json()
     target_device = message.text.split()[1].lower()
     if target_device in list(getlist):
