@@ -66,7 +66,7 @@ async def magisk(c: megux, m: Message):
 async def device_(_, message: Message):
     msg = await message.reply("__Procurando...__")
     getlist = requests.get(DEVICE_LIST).json()
-    target_device = message.text.split()[1].lower()
+    target_device = input_str(message).lower()
     if not target_device:
         await msg.edit("Quer que eu adivinhe? Por favor digite um codename")
         return
@@ -76,10 +76,7 @@ async def device_(_, message: Message):
         for x in device:
             text += f"**Marca:** ```{x['brand']}```\n**Nome:** ```{x['name']}```\n**Dispositivo:** ```{x['model']}```\n**Codename:** ```{target_device}```"
             text += "\n\n"
-            try:
-                await msg.edit(text)
-            except IndexError:
-                return await msg.edit("Digite Algo!")
+        await msg.edit(text)
     else:
         await msg.edit(f"`Device` **{target_device}** `não foi encontrado!`")
         await asyncio.sleep(5)
