@@ -122,8 +122,8 @@ async def los(c: megux, m: Message):
 
         text = "<b>Baixar</b>: [{}]({})\n".format(filename, url)
         text += "<b>Tipo</b>: {}\n".format(romtype)
-        text += "<b>Tamanho da compilação</b> {}\n".format(buildsize_b)
-        text += "<b>Versão</b>: {}\n".format(version)
-        text += "<b>Data</b>: {}".format(format_datetime(build_time))
+        text += "<b>Tamanho da compilação</b> <code>{}</code>\n".format(buildsize_b)
+        text += "<b>Versão</b>: <code>{}</code>\n".format(version)
+        text += "<b>Data</b>: <code>{}</code>".format(format_datetime(build_time))
         keyboard = [[InlineKeyboardButton(text="Download", url=url)]]
         await m.reply(text, reply_markup=InlineKeyboardMarkup(keyboard))
