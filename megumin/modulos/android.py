@@ -26,12 +26,12 @@ async def twrp(c: megux, m: Message):
     device = m.command[1]
     url = await http.get(f"https://eu.dl.twrp.me/{device}/")
     if url.status_code == 404:
-        await m.reply_text(f"TWRP atualmente não está disponível para <code>{device}</code>")
+        await m.reply_text("TWRP atualmente não está disponível para <code>{}</code>".format(device))
     else:
-        message = f"<b>Último recovery TWRP para {device}</b>\n"
+        message = "<b>Último recovery TWRP para {}</b>\n".format(device)
         page = BeautifulSoup(url.content, "lxml")
         date = page.find("em").text.strip()
-        message += f"<b>Atualizado em:</b> <code>{date}</code>\n"
+        message += "<b>Atualizado em:</b> <code>{}</code>\n".format(date)
         trs = page.find("table").find_all("tr")
         row = 2 if trs[0].find("a").text.endswith("tar") else 1
         for i in range(row):
@@ -39,8 +39,8 @@ async def twrp(c: megux, m: Message):
             dl_link = f"https://eu.dl.twrp.me{download['href']}"
             dl_file = download.text
             size = trs[i].find("span", {"class": "filesize"}).text
-        message += f"<b>Tamanho:</b> <code>{size}</code>\n"
-        message += f"<b>Arquivo:</b> <code>{dl_file.upper()}</code>"
+        message += "<b>Tamanho:</b> <code>{}</code>\n".format(size)
+        message += "<b>Arquivo:</b> <code>{dl_file.upper()}</code>".format(dl_file.upper())
         keyboard = [[InlineKeyboardButton(text="Download", url=dl_link)]]
         await m.reply_text(
             message,
