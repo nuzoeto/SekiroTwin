@@ -1,5 +1,6 @@
 import html
 import random
+import io
 import re
 
 from pyrogram import filters
@@ -24,6 +25,11 @@ async def stretch(c: megux, m: Message):
         f"{text}",
         )
     try:
-        await m.reply_text(f"{html.escape(reply)}")
+        if len(reply) < 2950:
+            await m.reply_text(f"{html.escape(reply)}")
+        else:
+            stretch = io.BytesIO(reply.encode())
+            stretch.name = "stretch.txt"
+            await m.reply(stretch)
     except BadRequest:
         return 
