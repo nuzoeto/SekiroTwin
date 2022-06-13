@@ -51,7 +51,7 @@ async def twrp(c: megux, m: Message):
 @megux.on_message(filters.command(["magisk"], prefixes=["/", "!"]))
 async def magisk(c: megux, m: Message):
     repo_url = "https://raw.githubusercontent.com/topjohnwu/magisk-files/master/"
-    text = "<b>Últimos lançamentos do magisk</b>\n\n"
+    text = await tld(m.chat.id, "MAGISK_STRING")
     for magisk_type in ["stable", "beta", "canary"]:
         fetch = await http.get(repo_url + magisk_type + ".json")
         data = rapidjson.loads(fetch.content)
