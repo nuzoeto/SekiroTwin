@@ -76,7 +76,7 @@ async def device_(_, message: Message):
         for x in device:
             text += "**Marca:** ```{}```\n**Nome:** ```{}```\n**Dispositivo:** ```{}```\n**Codename:** ```{}```"
             text += "\n\n"
-        await msg.edit(text.format(x['brand'], x['name'], x['model'], target_device))
+        await msg.edit((text).format(x['brand'], x['name'], x['model'], target_device))
     else:
         await msg.edit(f"`Device` **{target_device}** `não foi encontrado!`")
         await asyncio.sleep(5)
