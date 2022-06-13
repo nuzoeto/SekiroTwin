@@ -141,3 +141,4 @@ NO_RIGHTS_ZOMBIES: "Balabachea! You do not have sufficient administrative rights
 MAGISK_STRING: "<b>Latest magisk releases</b>\n\n"
 DEVICE_SUCCESS: "<b>Brand:</b> <code>{}</code>\n<b>Name:</b> <code>{}</code>\n<b>Device:</b> <code>{}</code>\n<b>Codename:</b> <code>{}</code>"
 DEVICE_NO_CODENAME: "<i>Want me to guess?  Please enter a codename.</i>"
+DEVICE_NOT_FOUND: "<code>Device</code> <b>{}</b> <code>not found!</code>"
