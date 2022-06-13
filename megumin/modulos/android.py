@@ -125,10 +125,10 @@ async def los(c: megux, m: Message):
         text += (await tld(m.chat.id, "ANDROID_SIZE")).format(buildsize_b)
         text += (await tld(m.chat.id, "ANDROID_VERSION")).format(version)
         text += (await tld(m.chat.id, "ANDROID_DATE")).format(format_datetime(build_time))
-        keyboard = [[InlineKeyboardButton(text="Download", url=url)]]
+        keyboard = [[InlineKeyboardButton(text=await tld(m.chat.id, "ANDROID_BNT_DOWNLOAD"), url=url)]]
         await m.reply(text, reply_markup=InlineKeyboardMarkup(keyboard))
     else:
-        return await m.reply("Não foi possível encontrar nenhum resultado correspondente à sua consulta.")
+        return await m.reply(await tld(m.chat.id, "ANDROID_NOT_FOUND"))
 
 
 @megux.on_message(filters.command("pe", Config.TRIGGER))
@@ -163,7 +163,7 @@ async def pixelexperience(c: megux, m: Message):
         text += (await tld(m.chat.id, "ANDROID_SIZE")).format(buildsize_b)
         text += (await tld(m.chat.id, "ANDROID_VERSION")).format(version)
         text += (await tld(m.chat.id, "ANDROID_DATE")).format(format_datetime(build_time))
-        keyboard = [[InlineKeyboardButton(text="Download", url=url)]]
+        keyboard = [[InlineKeyboardButton(text=await tld(m.chat.id, "ANDROID_BNT_DOWNLOAD"), url=url)]]
         await m.reply(text, reply_markup=InlineKeyboardMarkup(keyboard))
     else:
-        return await m.reply("Não foi possível encontrar nenhum resultado correspondente à sua consulta.")
+        return await m.reply(await tld(m.chat.id, "ANDROID_NOT_FOUND"))
