@@ -144,3 +144,4 @@ NO_RIGHTS_ZOMBIES: "Balabacheia! Você não tem direitos administrativos suficie
 #android
 MAGISK_STRING: "<b>Últimos lançamentos do magisk</b>\n\n"
 DEVICE_SUCCESS: "<b>Marca:</b> <code>{}</code>\n<b>Nome:</b> <code>{}</code>\n<b>Dispositivo:</b> <code>{}</code>\n<b>Codename:</b> <code>{}</code>"
+DEVICE_NO_CODENAME: "<i>Quer que eu adivinhe? Por favor digite um codename.</i>"
