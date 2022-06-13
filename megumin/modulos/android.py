@@ -118,9 +118,9 @@ async def los(c: megux, m: Message):
         build_time = response["datetime"]
         romtype = response["romtype"]
 
-        text = "<b>Baixar</b>: [{}]({})".format(filename, url)
-        text += "<b>Tipo</b>: {}".format(romtype)
-        text += "<b>Tamanho da compilação</b> {}".format(buildsize_b)
-        text += "<b>Versão</b>: {}".format(version)
+        text = "<b>Baixar</b>: [{}]({})\n".format(filename, url)
+        text += "<b>Tipo</b>: {}\n".format(romtype)
+        text += "<b>Tamanho da compilação</b> {}\n".format(buildsize_b)
+        text += "<b>Versão</b>: {}\n".format(version)
         text += "<b>Data</b>: {}"
         await m.reply(text)
