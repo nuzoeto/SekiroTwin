@@ -74,9 +74,9 @@ async def device_(_, message: Message):
         device = getlist.get(target_device)
         text = ""
         for x in device:
-            text += f"**Marca:** ```{x['brand']}```\n**Nome:** ```{x['name']}```\n**Dispositivo:** ```{x['model']}```\n**Codename:** ```{target_device}```"
+            text += "**Marca:** ```{}```\n**Nome:** ```{}```\n**Dispositivo:** ```{}```\n**Codename:** ```{}```"
             text += "\n\n"
-        await msg.edit(text)
+        await msg.edit(text.format(x['brand'], x['name'], x['model'], target_device))
     else:
         await msg.edit(f"`Device` **{target_device}** `não foi encontrado!`")
         await asyncio.sleep(5)
