@@ -275,9 +275,9 @@ async def phh(_, m: Message):
 
     usr = rapidjson.loads(fetch.content)
     text = await tld(m.chat.id, "ANDROID_PHH")
-    text += (await tld(m.chat.id, "ANDROID_PHH_NAME")).format(name=usr["name"])
-    text += (await tld(m.chat.id, "ANDROID_PHH_VERSION")).format(tag_name=usr["tag_name"])
-    text += (await tld(m.chat.id, "ANDROID_PHH_DATE")).format(date=usr["published_at"])
+    text += (await tld(m.chat.id, "ANDROID_PHH_NAME")).format(usr["name"])
+    text += (await tld(m.chat.id, "ANDROID_PHH_VERSION")).format(usr["tag_name"])
+    text += (await tld(m.chat.id, "ANDROID_PHH_DATE")).format(usr["published_at"])
     for i in range(len(usr)):
         try:
             name = usr["assets"][i]["name"]
