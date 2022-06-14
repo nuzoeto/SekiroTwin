@@ -21,8 +21,8 @@ async def app(c: megux, message: Message):
                 parse_only=bs4.SoupStrainer("div", class_="ipRz4"),
             )
 
-        query_app = result.find("div", class_="vWM94c")
-        app_dev = result.find("div", class_="LbQbAe")
+        query_app = result.find("div", class_="vWM94c").text
+        app_dev = result.find("div", class_="LbQbAe").text
         app_dev_link = (
             "https://play.google.com/store/apps/developer?id="
             + app_dev.replace(" ", "+")
