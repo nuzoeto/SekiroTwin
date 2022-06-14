@@ -47,6 +47,6 @@ async def app(c: megux, message: Message):
         await message.reply_photo(photo=app_icon, caption=app_details, reply_markup=InlineKeyboardMarkup(keyboard))
         await msg.delete()
     except IndexError:
-        await message.edit("No result found in search. Please enter **Valid app name**")
+        await msg.edit("No result found in search. Please enter **Valid app name**")
     except Exception as err:
-        await message.err(err)
+        await msg.edit(err)
