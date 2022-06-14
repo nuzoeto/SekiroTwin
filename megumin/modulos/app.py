@@ -12,7 +12,7 @@ from megumin.utils.decorators import input_str
 async def app(c: megux, message: Message):
     try:
         msg = await message.reply("`Procurando...`")
-        app_name = " ".join(message.text.split()[1:])
+        app_name = "+".join(input_str(message).split(" "))
         async with aiohttp.ClientSession() as ses, ses.get(
             f"https://play.google.com/store/search?q={app_name}&c=apps"
         ) as res:
