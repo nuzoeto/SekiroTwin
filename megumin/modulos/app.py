@@ -10,7 +10,7 @@ from megumin.utils.decorators import input_str
 @megux.on_message(filters.command(["app"], Config.TRIGGER))
 async def app(c: megux, message: Message):
     try:
-        msg = await message.reply("`Searching...`")
+        msg = await message.reply("`Procurando...`")
         query_app = input_str(message)
         async with aiohttp.ClientSession() as ses, ses.get(
             f"https://play.google.com/store/search?q={query_app}&c=apps"
@@ -21,8 +21,8 @@ async def app(c: megux, message: Message):
                 parse_only=bs4.SoupStrainer("div", class_="ipRz4"),
             )
 
-        query_app = result.find("div", class_="vWM94c").text
-        app_dev = result.find("div", class_="LbQbAe").text
+        query_app = result.find("div", class_="vWM94c")
+        app_dev = result.find("div", class_="LbQbAe")
         app_dev_link = (
             "https://play.google.com/store/apps/developer?id="
             + app_dev.replace(" ", "+")
