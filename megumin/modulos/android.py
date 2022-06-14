@@ -261,3 +261,29 @@ async def evo(c: megux, m: Message):
         text = await tld(m.chat.id, "ANDROID_NOT_FOUND")
         await m.reply(text)
         return
+
+
+@megux.on_message(filters.command("phh", Config.TRIGGER))
+async def phh(_, m: Message):
+    fetch = await http.get(
+        "https://api.github.com/repos/phhusson/treble_experimentations/releases/latest"
+    )
+
+    if fetch.status_code in [500, 504, 505]:
+        await message.reply(await tld(m.chat.id, "ANDROID_GIT_ERROR"))
+        return
+
+    usr = json.loads(fetch.content)
+    text = await tld(m.chat.id, "ANDROID_PHH")
+    text += (await tld(m.chat.id, "ANDROID_PHH_NAME")).format(name=usr["name"])
+    text += (await tld(m.chat.id, "ANDROID_PHH_VERSION")).format(tag_name=usr["tag_name"])
+    text += (await tld(m.chat.id, "ANDROID_PHH_DATE")).format(date=usr["published_at"])
+    for i in range(len(usr)):
+        try:
+            name = usr["assets"][i]["name"]
+            url = usr["assets"][i]["browser_download_url"]
+            text += f"<a href='{url}'>{name}</a>\n"
+        except IndexError:
+            continue
+
+    await message.reply(text, disable_web_page_preview=True)
