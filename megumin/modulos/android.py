@@ -103,7 +103,7 @@ async def device_(_, message: Message):
         await msg.delete()
 
 
-@megux.on_message(filters.command("los", Config.TRIGGER))
+@megux.on_message(filters.command(["los", "lineageos"], Config.TRIGGER))
 async def los(c: megux, m: Message):
     device = input_str(m)
     if not device:
@@ -167,3 +167,42 @@ async def pixelexperience(c: megux, m: Message):
         await m.reply(text, reply_markup=InlineKeyboardMarkup(keyboard))
     else:
         return await m.reply(await tld(m.chat.id, "ANDROID_NOT_FOUND"))
+
+
+@megux.on_message(filters.command(["crdroid, "crd"], Config.TRIGGER))
+async def crdroid(c: megux, m: Message):
+    device = input_str(m)
+    if not device:
+        return await m.reply("Por favor digite um codename.\nPor exemplo: /crdroid whyred")
+
+    if device == "x00t":
+        device = "X00T"
+
+    if device == "x01bd":
+        device = "X01BD"
+
+    fetch = await http.get(
+        f"https://raw.githubusercontent.com/crdroidandroid/android_vendor_crDroidOTA/11.0/{device}.json"
+    )
+    if fetch.status_code in [500, 504, 505]:
+        return await m.reply("Erro ao conectar ao github")
+    if fetch.status_code == 200:
+        try:
+            usr = json.loads(fetch.content)
+            response = usr["response"]
+            filename = response[0]["filename"]
+            url = response[0]["download"]
+            version = response[0]["version"]
+            maintainer = response[0]["maintainer"]
+            size_a = response[0]["size"]
+            size_b = convert_size(int(size_a))
+            build_time = response[0]["timestamp"]
+            romtype = response[0]["buildtype"]
+
+            text = (await tld(m.chat.id, "ANDROID_DOWNLOAD")).format(filename, url)
+            text += (await tld(m.chat.id, "ANDROID_TYPE")).format(romtype)
+            text += (await tld(m.chat.id, "ANDROID_SIZE")).format(size_b)
+            text += (await tld(m.chat.id, "ANDROID_VERSION")).format(version)
+            text += (await tld(m.chat.id, "ANDROID_DATE")).format(format_datetime(build_time))
+            text += (await tld(m.chat.id, "ANDROID_MAINTAINER")).format(maintaner)
+            await m.reply(text)
