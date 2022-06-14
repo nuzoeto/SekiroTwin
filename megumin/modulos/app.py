@@ -2,7 +2,6 @@ import bs4
 import aiohttp
 
 from pyrogram import filters
-from pyrogram.enums import ParseMode
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton 
 
 from megumin import megux, Config
@@ -11,8 +10,8 @@ from megumin.utils.decorators import input_str
 @megux.on_message(filters.command(["app"], Config.TRIGGER))
 async def app(c: megux, message: Message):
     try:
-        msg = await message.reply("`Procurando...`")
-        app_name = "+".join(input_str(message).split(" "))
+        msg = await message.reply("`Searching...`")
+        app_name = "+".join(message.text.split(" "))
         async with aiohttp.ClientSession() as ses, ses.get(
             f"https://play.google.com/store/search?q={app_name}&c=apps"
         ) as res:
@@ -43,8 +42,8 @@ async def app(c: megux, message: Message):
         app_details += f"`Developer :` [{app_dev}]({app_dev_link})\n"
         app_details += f"`Rating :` {app_rating}\n"
         app_details += f"`Features :` [View in Play Store]({app_link})"
-        await msg.edit(app_details, disable_web_page_preview=False)
+        await message.edit(app_details, disable_web_page_preview=False)
     except IndexError:
-        await msg.edit("No result found in search. Please enter **Valid app name**")
+        await message.edit("No result found in search. Please enter **Valid app name**")
     except Exception as err:
-        await msg.edit(err)
+        await message.err(err)
