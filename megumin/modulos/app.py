@@ -39,12 +39,11 @@ async def app(c: megux, message: Message):
         app_link = "https://play.google.com" + result.find("a", class_="Qfxief")["href"]
         app_icon = result.find("img", class_="T75of bzqKMd")["src"]
 
-        app_details = f"**{app_name}**\n\n"
-        app_details += f"<i>Desenvolvedor:</i> [{app_dev}]({app_dev_link})\n"
-        app_details += f"<i>Classificação:</i> {app_rating}\n"
+        app_details = f"[📲]({app_icon}) **{app_name}**\n\n"
+        app_details += f"`Developer :` [{app_dev}]({app_dev_link})\n"
+        app_details += f"`Rating :` {app_rating}\n"
         app_details += f"`Features :` [View in Play Store]({app_link})"
-        await message.reply_photo(photo=app_icon, caption=app_details)
-        await msg.delete()
+        await message.edit(app_details, disable_web_page_preview=False)
     except IndexError:
         await msg.edit("No result found in search. Please enter **Valid app name**")
     except Exception as err:
