@@ -254,10 +254,10 @@ async def evo(c: megux, m: Message):
             return 
         except ValueError:
             text = await tld(m.chat.id, "ANDROID_ERR_OTA")
-            await message.reply(text)
+            await m.reply(text)
             return
 
     elif fetch.status_code in [404, 400]:
         text = await tld(m.chat.id, "ANDROID_NOT_FOUND")
-        await message.reply(text)
+        await m.reply(text)
         return
