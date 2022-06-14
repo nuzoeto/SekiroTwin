@@ -44,6 +44,6 @@ async def app(c: megux, message: Message):
         app_details += f"`Features :` [View in Play Store]({app_link})"
         await message.reply(app_details, disable_web_page_preview=False)
     except IndexError:
-        await message.edit("No result found in search. Please enter **Valid app name**")
+        await msg.edit("No result found in search. Please enter **Valid app name**")
     except Exception as err:
-        await message.err(err)
+        await msg.edit(err)
