@@ -236,7 +236,7 @@ async def evo(c: megux, m: Message):
 
     if fetch.status_code == 200:
         try:
-            usr = json.loads(fetch.content)
+            usr = rapidjson.loads(fetch.content)
             filename = usr["filename"]
             url = usr["url"]
             version = usr["version"]
@@ -257,7 +257,7 @@ async def evo(c: megux, m: Message):
             await message.reply(text)
             return
 
-    elif fetch.status_code == 404:
+    elif fetch.status_code in [404, 400]:
         text = await tld(m.chat.id, "ANDROID_NOT_FOUND")
         await message.reply(text)
         return
