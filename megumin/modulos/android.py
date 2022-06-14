@@ -205,8 +205,11 @@ async def crdroid(c: megux, m: Message):
             text += (await tld(m.chat.id, "ANDROID_VERSION")).format(version)
             text += (await tld(m.chat.id, "ANDROID_DATE")).format(format_datetime(build_time))
             text += (await tld(m.chat.id, "ANDROID_MAINTAINER")).format(maintainer)
-            await m.reply(text)
+            keyboard = [[InlineKeyboardButton(text=await tld(m.chat.id, "ANDROID_BNT_DOWNLOAD"), url=url)]]
+            await m.reply(text, reply_markup=InlineKeyboardMarkup(keyboard), disable_web_page_preview=True)
             return 
+    else:
+         return await m.reply(await tld(m.chat.id, "ANDROID_NOT_FOUND"))
         except ValueError:
             text = await tld(m.chat.id, "ANDROID_ERR_OTA")
             await m.reply(text)
