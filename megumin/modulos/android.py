@@ -286,4 +286,4 @@ async def phh(_, m: Message):
         except IndexError:
             continue
 
-    await message.reply(text, disable_web_page_preview=True)
+    await m.reply(text, disable_web_page_preview=True)
