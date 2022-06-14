@@ -273,7 +273,7 @@ async def phh(_, m: Message):
         await message.reply(await tld(m.chat.id, "ANDROID_GIT_ERROR"))
         return
 
-    usr = json.loads(fetch.content)
+    usr = rapidjson.loads(fetch.content)
     text = await tld(m.chat.id, "ANDROID_PHH")
     text += (await tld(m.chat.id, "ANDROID_PHH_NAME")).format(name=usr["name"])
     text += (await tld(m.chat.id, "ANDROID_PHH_VERSION")).format(tag_name=usr["tag_name"])
