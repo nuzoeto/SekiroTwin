@@ -21,7 +21,7 @@ async def app(c: megux, message: Message):
                 parse_only=bs4.SoupStrainer("div", class_="ipRz4"),
             )
 
-        query_app = result.find("div", class_="vWM94c").text
+        name_app = result.find("div", class_="vWM94c").text
         app_dev = result.find("div", class_="LbQbAe").text
         app_dev_link = (
             "https://play.google.com/store/apps/developer?id="
@@ -38,7 +38,7 @@ async def app(c: megux, message: Message):
         app_link = "https://play.google.com" + result.find("a", class_="Qfxief")["href"]
         app_icon = result.find("img", class_="T75of bzqKMd")["src"]
 
-        app_details = f"[📲]({app_icon}) **{query_app}**\n\n"
+        app_details = f"[📲]({app_icon}) **{name_app}**\n\n"
         app_details += f"`Developer :` [{app_dev}]({app_dev_link})\n"
         app_details += f"`Rating :` {app_rating}\n"
         app_details += f"`Features :` [View in Play Store]({app_link})"
