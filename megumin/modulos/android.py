@@ -204,7 +204,7 @@ async def crdroid(c: megux, m: Message):
             text += (await tld(m.chat.id, "ANDROID_SIZE")).format(size_b)
             text += (await tld(m.chat.id, "ANDROID_VERSION")).format(version)
             text += (await tld(m.chat.id, "ANDROID_DATE")).format(format_datetime(build_time))
-            text += (await tld(m.chat.id, "ANDROID_MAINTAINER")).format(maintaner)
+            text += (await tld(m.chat.id, "ANDROID_MAINTAINER")).format(maintainer)
             await m.reply(text)
             return 
         except ValueError:
