@@ -169,7 +169,7 @@ async def pixelexperience(c: megux, m: Message):
         return await m.reply(await tld(m.chat.id, "ANDROID_NOT_FOUND"))
 
 
-@megux.on_message(filters.command(["crdroid, "crd"], Config.TRIGGER))
+@megux.on_message(filters.command(["crdroid", "crd"], Config.TRIGGER))
 async def crdroid(c: megux, m: Message):
     device = input_str(m)
     if not device:
