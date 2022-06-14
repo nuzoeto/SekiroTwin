@@ -3,7 +3,7 @@ import aiohttp
 
 from pyrogram import filters
 from pyrogram.enums import ParseMode
-from pyrogram.types import Message 
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton 
 
 from megumin import megux, Config
 from megumin.utils.decorators import input_str
@@ -39,11 +39,13 @@ async def app(c: megux, message: Message):
         app_link = "https://play.google.com" + result.find("a", class_="Qfxief")["href"]
         app_icon = result.find("img", class_="T75of bzqKMd")["src"]
 
-        app_details = f"[📲]({app_icon}) **{app_name}**\n\n"
-        app_details += f"<b>Desenvolvedor:</b> [{app_dev}]({app_dev_link})\n"
-        app_details += f"<b>Avaliação:</b> {app_rating}\n"
+        app_details = f"**{app_name}**\n\n"
+        app_details += f"<i>Desenvolvedor:</i> [{app_dev}]({app_dev_link})\n"
+        app_details += f"<i>Classificação:</i> {app_rating}\n"
         app_details += f"`Features :` [View in Play Store]({app_link})"
-        await message.edit(app_details, disable_web_page_preview=False)
+        keyboard = [[InlineKeyboardButton(text="Ver na PlayStore", url=app_link)]]
+        await message.reply_photo(photo=app_icon, caption=app_details, reply_markup=InlineKeyboardMarkup(keyboard))
+        await msg.delete()
     except IndexError:
         await message.edit("No result found in search. Please enter **Valid app name**")
     except Exception as err:
