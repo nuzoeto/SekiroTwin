@@ -213,3 +213,51 @@ async def crdroid(c: megux, m: Message):
         except ValueError:
             text = await tld(m.chat.id, "ANDROID_ERR_OTA")
             await m.reply(text)
+
+
+@megux.on_message(filters.command(["evo", "evox"], Config.TRIGGER))
+async def evo(c: megux, m: Message):
+    device = input_str(m)
+    if not device:
+        return await m.reply("Por favor digite um codename.\nPor exemplo: /evo whyred")
+    if device == "x00t":
+        device = "X00T"
+
+    if device == "x01bd":
+        device = "X01BD"
+
+    fetch = await http.get(
+        f"https://raw.githubusercontent.com/Evolution-X-Devices/official_devices/master/builds/{device}.json"
+    )
+
+    if fetch.status_code in [500, 504, 505]:
+        await message.reply(await tld(m.chat.id, "ANDROID_GIT_ERROR"))
+        return
+
+    if fetch.status_code == 200:
+        try:
+            usr = json.loads(fetch.content)
+            filename = usr["filename"]
+            url = usr["url"]
+            version = usr["version"]
+            maintainer = usr["maintainer"]
+            maintainer_url = usr["telegram_username"]
+            size_a = usr["size"]
+            size_b = convert_size(int(size_a))
+  
+            text = (await tld(m.chat.id, "ANDROID_DOWNLOAD")).format(filename, url)
+            text += (await tld(m.chat.id, "ANDROID_SIZE")).format(size_b)
+            text += (await tld(m.chat.id, "ANDROID_VERSION")).format(version)
+            text += (await tld(m.chat.id, "ANDROID_MAINTAINER")).format(f"<a href='{maintainer_url}'>{maintainer}</a>")
+            keyboard = [[InlineKeyboardButton(text=await tld(m.chat.id, "ANDROID_BNT_DOWNLOAD"), url=url)]]
+            await m.reply(text, reply_markup=InlineKeyboardMarkup(keyboard), disable_web_page_preview=True)
+            return 
+        except ValueError:
+            text = await tld(m.chat.id, "ANDROID_ERR_OTA")
+            await message.reply(text)
+            return
+
+    elif fetch.status_code == 404:
+        text = await tld(m.chat.id, "ANDROID_NOT_FOUND")
+        await message.reply(text)
+        return
