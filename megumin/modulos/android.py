@@ -206,4 +206,5 @@ async def crdroid(c: megux, m: Message):
             text += (await tld(m.chat.id, "ANDROID_DATE")).format(format_datetime(build_time))
             text += (await tld(m.chat.id, "ANDROID_MAINTAINER")).format(maintaner)
             await m.reply(text)
+        else:
             return
