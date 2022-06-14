@@ -186,6 +186,8 @@ async def crdroid(c: megux, m: Message):
     )
     if fetch.status_code in [500, 504, 505]:
         return await m.reply(await tld(m.chat.id, "ANDROID_GIT_ERROR"))
+    if fetch.status_code in [400, 404]:
+        return await m.reply(await tld(m.chat.id, "ANDROID_NOT_FOUND"))
     if fetch.status_code == 200:
         try:
             usr = rapidjson.loads(fetch.content)
