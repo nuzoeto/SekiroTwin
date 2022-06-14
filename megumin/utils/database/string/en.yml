@@ -152,3 +152,7 @@ ANDROID_GIT_ERROR: "WhiterKang has been trying to connect to GitHub, it looks li
 ANDROID_ERR_OTA: "Tell the ROM maintainer to fix your OTA json. I'm pretty sure this doesn't work with OTA and it won't work with this bot either :P"
 ANDROID_NOT_FOUND: "We couldn't was possible find any results matching your query."
 ANDROID_BNT_DOWNLOAD: "Click here to download!" 
+LOS_NO_QUERY: "Please enter a codename.\nFor example: /los herolte"
+PE_NO_QUERY: "Please enter a codename.\nFor example: /pe whyred"
+CRD_NO_QUERY: "Please enter a codename.\nFor example: /crdroid whyred"
+EVO_NO_QUERY: "Please enter a codename.\nFor example: /evo whyred"
