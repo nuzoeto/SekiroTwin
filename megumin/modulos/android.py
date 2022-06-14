@@ -188,7 +188,7 @@ async def crdroid(c: megux, m: Message):
         return await m.reply("Erro ao conectar ao github")
     if fetch.status_code == 200:
         try:
-            usr = json.loads(fetch.content)
+            usr = rapidjson.loads(fetch.content)
             response = usr["response"]
             filename = response[0]["filename"]
             url = response[0]["download"]
