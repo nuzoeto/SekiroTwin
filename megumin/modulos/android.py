@@ -107,7 +107,7 @@ async def device_(_, message: Message):
 async def los(c: megux, m: Message):
     device = input_str(m)
     if not device:
-        return await m.reply("Por favor digite um codename.\nPor exemplo: /los herolte")
+        return await m.reply(await tld(m.chat.id, "LOS_NO_QUERY"))
     fetch = await http.get(f"https://download.lineageos.org/api/v1/{device}/nightly/*")
     if fetch.status_code == 200 and len(fetch.json()["response"]) != 0:
         usr = rapidjson.loads(fetch.content)
@@ -143,7 +143,7 @@ async def pixelexperience(c: megux, m: Message):
     except IndexError:
         atype = "twelve"  
     if device == "":
-        return await m.reply("Por favor digite um codename.\nPor exemplo: /pe whyred")
+        return await m.reply(await tld(m.chat.id, "PE_NO_QUERY"))
 
     fetch = await http.get(
         f"https://download.pixelexperience.org/ota_v5/{device}/{atype}"
@@ -173,7 +173,7 @@ async def pixelexperience(c: megux, m: Message):
 async def crdroid(c: megux, m: Message):
     device = input_str(m)
     if not device:
-        return await m.reply("Por favor digite um codename.\nPor exemplo: /crdroid whyred")
+        return await m.reply(await tld(m.chat.id, "CRD_NO_QUERY"))
 
     if device == "x00t":
         device = "X00T"
@@ -219,7 +219,7 @@ async def crdroid(c: megux, m: Message):
 async def evo(c: megux, m: Message):
     device = input_str(m)
     if not device:
-        return await m.reply("Por favor digite um codename.\nPor exemplo: /evo whyred")
+        return await m.reply(await tld(m.chat.id, "EVO_NO_QUERY"))
     if device == "x00t":
         device = "X00T"
 
