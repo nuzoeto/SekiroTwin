@@ -45,5 +45,4 @@ async def app(c: megux, message: Message):
         await message.reply(app_details, disable_web_page_preview=False)
     except IndexError:
         await msg.edit("No result found in search. Please enter **Valid app name**")
-    except Exception as err:
-        await msg.edit(err)
+
