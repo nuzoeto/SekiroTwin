@@ -185,7 +185,7 @@ async def crdroid(c: megux, m: Message):
         f"https://raw.githubusercontent.com/crdroidandroid/android_vendor_crDroidOTA/11.0/{device}.json"
     )
     if fetch.status_code in [500, 504, 505]:
-        return await m.reply("Erro ao conectar ao github")
+        return await m.reply(await tld(m.chat.id, "ANDROID_GIT_ERROR"))
     if fetch.status_code == 200:
         try:
             usr = rapidjson.loads(fetch.content)
@@ -208,5 +208,5 @@ async def crdroid(c: megux, m: Message):
             await m.reply(text)
             return 
         except ValueError:
-            text = "erro"
+            text = await tld(m.chat.id, "ANDROID_ERR_OTA")
             await m.reply(text)
