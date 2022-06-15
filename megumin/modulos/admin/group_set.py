@@ -15,7 +15,7 @@ from megumin.utils import (
 from megumin.utils.decorators import input_str 
 
 @megux.on_message(filters.command("setgrouppic", prefixes=["/", "!"]))
-async def set_chat_photo(_, message):
+async def set_chat_photo(_, message: Message):
     chat_id = message.chat.id
     user_id = message.from_user.id
     reply = message.reply_to_message
