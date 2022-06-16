@@ -13,7 +13,7 @@ from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 
 
 from megumin import megux, Config
-from megumin.utils import get_string as tld
+from megumin.utils import tld
 from megumin.utils.decorators import input_str 
 
 
