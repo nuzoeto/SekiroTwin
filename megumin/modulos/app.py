@@ -11,7 +11,7 @@ from megumin.utils.decorators import input_str
 async def app(c: megux, message: Message):
     try:
         msg = await message.reply("`Procurando...`")
-        query_app = input_str(message)
+        query_app = input_str(message).split(" ")
         text_app = query_app.replace("+", "")
         async with aiohttp.ClientSession() as ses, ses.get(
             f"https://play.google.com/store/search?q={text_app}&c=apps"
