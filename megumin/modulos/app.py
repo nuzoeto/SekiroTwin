@@ -42,8 +42,7 @@ async def app(c: megux, message: Message):
         app_details += f"<i>Developer :</i> [{app_dev}]({app_dev_link})\n"
         app_details += f"<i>Rating :</i> {app_rating}\n"
         keyboard = [[InlineKeyboardButton("View in Play Store", url=app_link)]] 
-        await message.edit(app_details, reply_markup=InlineKeyboardMarkup(keyboard), disable_web_page_preview=False)
-        await msg.delete()
+        await msg.edit(app_details, reply_markup=InlineKeyboardMarkup(keyboard), disable_web_page_preview=False)
     except IndexError:
         await msg.edit("No result found in search. Please enter **Valid app name**")
     except Exception as err:
