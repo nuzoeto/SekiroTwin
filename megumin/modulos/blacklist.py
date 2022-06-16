@@ -19,7 +19,7 @@ async def addblacklist(c: megux, m: Message):
         await m.reply("success")
         return
     elif m.reply_to_message.photo:
-       photo = m.reply_to_message.photo
+       photo = m.reply_to_message
        await BLACKLIST.insert_one({"m": photo})
        msg = await m.reply(photo)
        return await msg.edit("success")
