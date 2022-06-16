@@ -189,7 +189,7 @@ async def start_(c: megux, message: Message):
         )
 
 
-    @megux.on_callback_query(filters.regex(pattern=r"^help_menu$") | filters.regex("/start help_"))
+    @megux.on_callback_query(filters.regex(pattern=r"^help_menu$"))
     async def infos(client: megux, cb: CallbackQuery):
         info_text = await get_string(cb.message.chat.id, "HELP_MSG")
         button = InlineKeyboardMarkup(
