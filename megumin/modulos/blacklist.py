@@ -3,6 +3,7 @@ from pyrogram.types import Message
 
 from megumin import megux, Config
 from megumin.utils import get_collection, get_string, check_rights, check_bot_rights
+from megumin.utils.decorators import input_str 
 
 
 @megux.on_message(filters.command("addblacklist", Config.TRIGGER))
