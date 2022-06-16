@@ -42,7 +42,7 @@ async def app(c: megux, message: Message):
         app_details += f"<i>Developer :</i> [{app_dev}]({app_dev_link})\n"
         app_details += f"<i>Rating :</i> {app_rating}\n"
         app_details += f"`Features :` [View in Play Store]({app_link})"
-        await message.reply_photo(photo=app_icon, caption=app_details, disable_web_page_preview=True)
+        await message.reply_photo(photo=app_icon, caption=app_details)
     except IndexError:
         await msg.edit("No result found in search. Please enter **Valid app name**")
     except Exception as err:
