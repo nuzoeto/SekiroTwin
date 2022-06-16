@@ -18,3 +18,9 @@ async def addblacklist(c: megux, m: Message):
         await BLACKLIST.insert_one({"m": text_})
         await m.reply("success")
         return
+    await m.stop_propagation()
+
+
+@megux.on_message(filters.group & ~filters.bot, group=2)
+async def blacklist_txt(c: megux, m: Message):
+    BLACKLIST = get_collection(f"BLACKLIST {m.chat.id}")
