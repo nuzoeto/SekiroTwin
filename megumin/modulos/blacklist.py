@@ -9,7 +9,7 @@ from megumin.utils.decorators import input_str
 @megux.on_message(filters.command("addblacklist", Config.TRIGGER))
 async def addblacklist(c: megux, m: Message):
     BLACKLIST = get_collection(f"BLACKLIST {m.chat.id}")
-    text_ = input_str(m).split
+    text_ = input_str(m).split()
     if text_:
         await BLACKLIST.insert_one({"m": text_})
         return await m.reply("success")
