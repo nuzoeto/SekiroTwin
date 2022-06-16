@@ -1,4 +1,4 @@
-aiohttp>=3.7.4
+aiohttp
 anyio==3.3.1
 aiosqlite>=0.16.0,<0.18.0
 async-lru==1.0.2
