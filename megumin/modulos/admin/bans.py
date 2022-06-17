@@ -48,7 +48,7 @@ async def _ban_user(_, message: Message):
         else:
             id_ = args
     else:
-        await message.reply("`Nenhum user_id válido ou mensagem especificada.`")
+        await message.reply(await get_string(message.chat.id, "BANS_NOT_ESPECIFIED_USER"))
         return
     try:
         user = await megux.get_users(id_)
@@ -56,7 +56,7 @@ async def _ban_user(_, message: Message):
         mention = user.mention
     except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
         await message.reply(
-            "`Nome de usuário ou ID de usuário inválido, tente novamente com informações válidas ⚠`"
+            await get_string(message.chat.id, "BANS_ID_INVALID")
         )
         return
     if await is_self(user_id):
