@@ -86,6 +86,8 @@ NO_BAN_USER: "You don't have sufficient administrative rights to ban/unban users
 BAN_LOGGER: "<b>{}:</b>\n#BAN\n<b>Administrator:</b> {}\n<b>User:</b> {} (<code>{}</code>)\n<b>Reason:</b> <code>{}</code>"
 TBAN_LOGGER: "<b>{}:</b>\n#TEMP_BANNED\n<b>Admin:</b> {}\n<b>User:</b> {} (<code>{}</code>)\n<b>Time:</b> {}\n<b>Reason:</b> <code>{}</code>"
 TBAN_SUCCESS: "{} was temporarily banned for <b>{}</b> in <b>{}</b>\n<b>Reason</b>: <code>{}</code>"
+BANS_NOT_ESPECIFIED_USER: "<code>No valid user_id or message specified.</code>"
+BANS_USER_INVALID: "<code>Invalid username or userid, please try again with valid information ⚠</code>"
 
 
 #rules
