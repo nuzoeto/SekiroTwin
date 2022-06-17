@@ -91,6 +91,8 @@ NO_BAN_USER: "Você não tem direitos administrativos suficientes para banir/des
 BAN_LOGGER: "<b>{}:</b>\n#BAN\n<b>Administrador:</b> {}\n<b>Usuário:</b> {} (<code>{}</code>)\n<b>Motivo:</b> <code>{}</code>" 
 TBAN_LOGGER: "<b>{}:</b>\n#TEMP_BANNED\n<b>Admin:</b> {}\n<b>Usuario:</b> {} (<code>{}</code>)\n<b>Tempo:</b> {}\n<b>Motivo:</b> <code>{}</code>"
 TBAN_SUCCESS: "{} foi banido(a) temporariamente por <b>{}</b> em <b>{}</b>\n<b>Motivo</b>: <code>{}</code>"
+BANS_NOT_ESPECIFIED_USER: "<code>Nenhum user_id válido ou mensagem especificada.</code>"
+BANS_ID_INVALID: "<code>Nome de usuário ou ID de usuário inválido, tente novamente com informações válidas ⚠</code>"
 
 
 #rules
