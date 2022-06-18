@@ -203,7 +203,6 @@ async def vid_upload(
     message: Message,
     path,
     del_path: bool = False,
-    callback: CallbackQuery = None,
     extra: str = "",
     with_thumb: bool = True,
     custom_thumb: str = "",
@@ -218,7 +217,7 @@ async def vid_upload(
             except Exception as e_r:
                 await CHANNEL.log(str(e_r))
         if not thumb:
-            thumb = await get_thumb(str_path)
+            return 
     duration = 0
     metadata = extractMetadata(createParser(str_path))
     if metadata and metadata.has("duration"):
@@ -227,7 +226,6 @@ async def vid_upload(
         message.chat.id, f"`Uploading {str_path} as a video ... {extra}`"
     )
     start_t = datetime.now()
-    await message.client.send_chat_action(message.chat.id, "upload_video")
     width = 0
     height = 0
     if thumb:
@@ -265,7 +263,6 @@ async def audio_upload(
     message: Message,
     path,
     del_path: bool = False,
-    callback: CallbackQuery = None,
     extra: str = "",
     with_thumb: bool = True,
     log: bool = True,
@@ -288,7 +285,7 @@ async def audio_upload(
         except stagger.errors.NoTagError:
             pass
         if not thumb:
-            thumb = await get_thumb(str_path)
+            return
     metadata = extractMetadata(createParser(str_path))
     if metadata and metadata.has("title"):
         title = metadata.get("title")
@@ -341,8 +338,6 @@ async def photo_upload(message: Message, path, del_path: bool = False, extra: st
             caption=path.name,
             parse_mode="html",
             disable_notification=True,
-            progress=progress,
-            progress_args=(message, f"uploading {extra}", str_path),
         )
     except ValueError as e_e:
         await sent.edit(f"Skipping `{str_path}` due to {e_e}")
