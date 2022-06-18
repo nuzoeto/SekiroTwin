@@ -115,8 +115,6 @@ async def upload_path(message: Message, path: Path, del_path: bool):
             )
         except FloodWait as f_e:
             time.sleep(f_e.x)  # asyncio sleep ?
-        if message.process_is_canceled:
-            break
 
 
 async def upload(
