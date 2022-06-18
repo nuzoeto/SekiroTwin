@@ -177,8 +177,7 @@ async def doc_upload(
     start_t = datetime.now()
     thumb = None
     if with_thumb:
-        thumb = await get_thumb(str_path)
-    await message.client.send_chat_action(message.chat.id, "upload_document")
+        return
     try:
         msg = await megux.send_document(
             chat_id=message.chat.id,
