@@ -52,7 +52,7 @@ REVERSING: "<code>Procesando...</code>"
    
 #print
 TAKING_PRINT: "Tomando captura de pantalla..."
-NO_ARGS_PRINT: "Uso: <code>/print https://example.com</code> - Toma una captura de pantalla del sitio web especificado".
+NO_ARGS_PRINT: "Uso: <code>/print https://example.com</code> - Toma una captura de pantalla del sitio web especificado."
 ERROR_PRINT_DNS: "<b>No se puede acceder a este sitio</b>\n\n\n<i>Se rechazó la conexión a {}.</i>"
   
   
