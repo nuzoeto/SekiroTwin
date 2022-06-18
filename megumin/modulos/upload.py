@@ -38,7 +38,7 @@ async def upload_(_, m: Message):
             await msg.edit("`Process Canceled!`")
             return
         except Exception as e_e:  # pylint: disable=broad-except
-            await message.err(str(e_e))
+            await msg.reply(str(e_e))
             return
     if "|" in path_:
         url, file_name = path_.split("|")
