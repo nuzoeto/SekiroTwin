@@ -123,7 +123,7 @@ async def upload_path(message: Message, path: Path, del_path: bool):
 async def upload(
     message: Message,
     path: Path,
-    m_text = input_str(m),
+    m_text = input_str(message),
     del_path = False,
     extra: str = "",
     with_thumb = True,
