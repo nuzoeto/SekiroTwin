@@ -203,7 +203,7 @@ async def vid_upload(
     path,
     del_path: boll = False,
     extra = "",
-    with_thumb boll = True,
+    with_thumb: boll = True,
     custom_thumb = "",
     log: boll = "True",
 ):
