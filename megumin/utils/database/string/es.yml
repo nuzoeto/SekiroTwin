@@ -123,7 +123,7 @@ WEATHER_DETAILS: "<b>{location}</b>:\n\nTemperatura: <code>{temperature} °C</co
 WEATHER_NO_ARGS: "<b>Uso:</b> <code>/weather location or city</code> - Obtiene información sobre el clima en la <i>ubicación o ciudad</i>."
 WEATHER_LOCATION_NOT_FOUND: "Ubicación no encontrada."
 
-  #telegraph
+#telegraph
 TG_NO_REPLY_MEDIA: "<code>Responder a algunos medios.</code>"
 TG_NOT_SUPORTED: "¡<code>No compatible!</code>"
 TG_UPLOADING: "<code>Subiendo a Telegraph...</code>"
