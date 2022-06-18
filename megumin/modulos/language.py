@@ -10,7 +10,7 @@ from megumin.utils.decorators import input_str
 
 
 CHAT_LANG = get_collection("CHAT_LANG")
-LANGS = ["en", "pt"]
+LANGS = ["en", "pt", "es"]
 
 
 @megux.on_message(filters.command(["setlang", "lang"]))
