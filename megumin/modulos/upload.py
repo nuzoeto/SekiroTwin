@@ -35,7 +35,7 @@ async def upload_(_, m: Message):
         try:
             path_, _ = await url_download(message, path_)
         except ProcessCanceled:
-            await msg.edit("`Process Canceled!`", del_in=5)
+            await msg.edit("`Process Canceled!`")
             return
         except Exception as e_e:  # pylint: disable=broad-except
             await message.err(str(e_e))
