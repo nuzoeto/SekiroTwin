@@ -56,7 +56,6 @@ async def upload_(_, m: Message):
     except IndexError:
         await msg.edit("wrong syntax\n`.upload [path]`")
     else:
-        await msg.delete()
         await upload_path(message=message, path=string, del_path=del_path)
 
 
