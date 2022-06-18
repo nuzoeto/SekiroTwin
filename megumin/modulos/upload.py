@@ -123,11 +123,11 @@ async def upload_path(message: Message, path: Path, del_path: bool):
 async def upload(
     message: Message,
     path: Path,
-    del_path: boll = False,
+    del_path: bool = False,
     extra: str = "",
-    with_thumb: boll = True,
-    custom_thumb = "",
-    log: boll = True,
+    with_thumb: bool = True,
+    custom_thumb: str = "",
+    log: bool = True,
 ):
     m_text = input_str(message)
     if "-wt" in m_text:
@@ -166,9 +166,9 @@ async def upload(
 async def doc_upload(
     message: Message,
     path,
-    del_path: boll = False,
+    del_path: bool = False,
     extra: str = "",
-    with_thumb: boll = True,
+    with_thumb: bool = True,
 ):
     str_path = str(path)
     sent: Message = await megux.send_message(
@@ -201,20 +201,15 @@ async def doc_upload(
 async def vid_upload(
     message: Message,
     path,
-    del_path: boll = False,
+    del_path: bool = False,
     extra = "",
-    with_thumb: boll = True,
+    with_thumb: bool = True,
     custom_thumb = "",
-    log: boll = "True",
+    log: bool = "True",
 ):
     str_path = str(path)
     thumb = None
     if with_thumb:
-        if custom_thumb:
-            try:
-                thumb = await check_thumb(custom_thumb)
-            except Exception as e_r:
-                await CHANNEL.log(str(e_r))
         if not thumb:
             return 
     duration = 0
