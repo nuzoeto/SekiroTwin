@@ -28,12 +28,12 @@ async def upload_(_, m: Message):
     url = input_str(m)
     if not url:
         return await m.reply("Vou enviar o Vento?")
-    is_url = re.search(r"(?:https?|ftp)://[^|\s]+\.[^|\s]+", path_)
+    is_url = re.search(r"(?:https?|ftp)://[^|\s]+\.[^|\s]+", url)
     del_path = False
     if is_url:
         del_path = True
         try:
-            path_, _ = await url_download(message, path_)
+            path_, _ = await url_download(message, url)
         except ProcessCanceled:
             await msg.edit("`Process Canceled!`")
             return
