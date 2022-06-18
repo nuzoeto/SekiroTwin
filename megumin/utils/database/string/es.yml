@@ -1,0 +1,167 @@
+#langs
+
+
+language: "es"
+language_flag: "🇪🇸 Español" 
+button_lang: "🇪🇸 Idioma"
+select_lang: "<b>Seleccionar idioma.</b>\n<b>Idioma del usuario:</b> <code>{}</code>"
+language_switch_success: "¡Cambiado a {} con éxito!"
+LANG_SET: "<i>El idioma del chat se ha configurado en 🇪🇸 Español.</i>"
+LANG: "<i>Necesito que ingreses un valor.</i>\n<code>Ej: /setlang en</code>"
+LANG_: "<i>Idioma no válido. Los idiomas actualmente disponibles son: PT, EN, ES</i>"
+
+
+#bot
+START: "¡Hola! Mi nombre es <b>WhiterKang</b>, soy un bot útil y divertido para ti :3\n\n<i>¡Si te gustan mis funciones, agrégame a tu grupo!</i>\n\n<b>Noticias de WhiterKang 📬</b>: [Haga clic aquí](t.me/WhiterKangNews)"
+START_NO_PRIVATE: "Hola, mi nombre es <b>WhiterKang</b>."
+HELP_MSG: "¡Hola! Mi nombre es <b>WhiterKang</b>. ¡Soy un bot de administración de grupos modular con algunos extras divertidos! Echa un vistazo a lo siguiente para tener una idea de algunas de las cosas en las que puedo ayudar usted con.\n\nComandos básicos:\n- /start: Comando genial para ver si estoy vivo o no :3\n- /help: envíe este mensaje de ayuda\n- /ping Vea la demora para que el bot devolver el mensaje.\ n- /about Ver más sobre los desarrolladores.\n\nTodos los comandos se pueden usar con los siguientes caracteres: <code>/ !</code>"
+BACK_BNT: "⬅️ Atrás"
+HELP_BNT: "❔ Ayuda"
+REPO_BNT: "📦 Código Fuente"
+ADD_BNT: "✨ Agrégame a un chat"
+HELP_STICKERS: "Aquí hay ayuda para el módulo <b>Pegatinas</b>:\n\n• /stickerid: responde a una pegatina para que pueda decirte tu ID de archivo.\n• /getsticker: responde a una pegatina para cargar el archivo PNG sin formato.\n• /kang: responde a una pegatina para agregarla a tu paquete."
+HELP_DISABLE: "Aquí hay ayuda para el módulo <b>Deshabilitar</b>:\n\nNo todos quieren todas las características que ofrece el bot. Es mejor no usar algunos comandos para evitar el spam y el abuso.\n\ nEsto le permite deshabilitar algunos comandos.\n\n• /disableable Vea qué comandos se pueden deshabilitar.\n\n<b>Solo administrador</b>:\n\n• /enable : habilita un comando.\n • /disable : deshabilita un comando."
+HELP_ADMIN: "Aquí hay ayuda para el módulo <b>Administrador</b>:\n\n<b>Todos los usuarios:</b>\n• /admins - Lista todos los administradores de chat\n\n<b >Administrador solo:</b>\n • /pin: anclar el mensaje respondido\n• /unpin: anular el mensaje actualmente anclado\n• /promover < nombre de usuario/mensaje de respuesta >: promover a un usuario a administrador de chat\n • /demote <nombre de usuario/mensaje de respuesta>: elimina los privilegios de administrador del usuario\n• /título <título aquí>: establece una etiqueta de administrador personalizada para un usuario promocionado por WhiterKang\n• /zombies: busca y borra las cuentas eliminadas en el chat"
+HELP_ANDROID: "Aquí hay ayuda para el módulo <b>Android</b>:\n\n• /device o /whatis < nombre en clave > Obtener un dispositivo por nombre en clave.\n• /app < nombre de la aplicación > - Usar para buscar aplicaciones en Google Play Store (Desactivado)\n• /magisk: obtenga la última versión de magisk.\n• /twrp <nombre en clave>: busque el último TWRP disponible para un nombre en clave de dispositivo determinado.\n• /ofox <nombre en clave>: busque el último versión de OrangeFox disponible para un dispositivo determinado (no disponible)"
+HELP_TR: "Aquí está la ayuda para el módulo <b>Traductor</b>:\n\n• /tr (código de idioma) Mensaje de texto o respuesta."
+HELP_BANS: "Aquí hay ayuda para el módulo <b>Prohibiciones</b>:\n\n• /ban Prohibir a un usuario en el chat.\n• /banme Prohibirte a ti mismo.\n• /unban Desbanear a un usuario.\n • /mute Silencia a un usuario en el chat.\n• /tmute (tiempo) Silencia temporalmente a un usuario en el chat.\n• /unmute Activa el silencio de un usuario en el chat.\n• /kick Expulsa a un usuario del chat.\ n• /kickme Deja el grupo.\n• /muteme Silénciate a ti mismo.\n\nUn ejemplo de silenciar temporalmente a alguien:\n/tmute @username 2h esto silencia al usuario durante 2 horas."
+HELP_MISC: "Aquí hay ayuda para el módulo <b>Otros</b>:\n\n• /id Busca un ID de usuario o grupo.\n• /info o /whois Obtiene información sobre un usuario.\n• /cuota Muestra el tipo de cambio del dólar, euro, BTC, peso argentino, ruplo ruso, ETC...\n• /zip <b>(zip)</b> Busca un código postal.\n• /ddd < b >(ddd)</b> Busca un código de área.\n• /removebg Elimina el fondo de una imagen.\n• /weather o /weather <b>(city)</b> Busca el clima de una ciudad .\n• /pegar Envía texto/documento respondido a nekobin.com.\n• /telegraph o /tg Envía medios a telegra.ph.\n• /reverse Realiza una búsqueda inversa de imágenes (usando google) simplemente responde a una imagen o pegatina con /reverse.\n• /short <b>(url)</b> Acorta el enlace especificado.\n• /afk o brb: lo agregará como [afk](https://bit.ly/3yaR9TL) y cada vez que alguien te etiquete en un grupo, responderé diciendo que estás afk\nEste comando también se puede usar con algún argumento, Ejemplo: <code>/afk Dormido</code> o <code>brb Dormido</code>."
+HELP_ANILIST: "Aquí hay ayuda para el módulo <b>Anilist</b>:\n\n• /anime - Usa este comando para obtener información sobre un anime específico usando el nombre de anime o ID de anilist.\n• / char o / personaje: use este comando para obtener información sobre algún personaje.\n• /manga: use este comando para obtener información sobre algún manga.\n• /airing: aún se agregará."
+COM_1: "Limpiando..."
+COM_2: "<i>Buscando...</i>"
+ 
+ #stickers 
+ 
+KANGING: "Robando la pegatina..."
+STICKER_NO_REPLY: "¿Quieres que adivine la pegatina? Por favor, etiqueta una pegatina."
+STICKER_NOT_NAME: "La pegatina no tiene nombre".
+NO_STICKER_SUPORTED: "¡<code>No compatible!</code>"
+USE_EXISTING_PACK: "<code>Usando el paquete de pegatinas existente...</code>"
+CREATE_STICKER_PACK: "<b>Creando un nuevo paquete de stickers...</b>"
+STICKERS_NOT_FOUND_USER: "Parece que nunca has interactuado conmigo en un chat privado, primero debes hacerlo".
+STICKERS_KANGED: "<b>¡Calcomanía robada con éxito!</b>\n<a href='t.me/addstickers/{}'>Pack</a>.\n<b>Emoji:</b> {}"
+  
+#YOUTUBE_DL 
+DOWNLOAD_YT: "📦 <i>Descargando...</i>"
+NO_ARGS_YT: "<code>¿Voy a bajar el viento?!</code>"
+YTDL_CAPTION: "<a href={}><b>{}</b></a>\n<b>❯ Duración:</b> {}\n<b>❯ Vistas:</b> {}\n<b>❯ Canal:</b> {}"
+  
+#reverse 
+REVERSE_RESULTS: "<b>Resultados de la investigación:</b> "
+REVERSING: "<code>Procesando...</code>"
+   
+#print
+TAKING_PRINT: "Tomando captura de pantalla..."
+NO_ARGS_PRINT: "Uso: <code>/print https://example.com</code> - Toma una captura de pantalla del sitio web especificado".
+ERROR_PRINT_DNS: "<b>No se puede acceder a este sitio</b>\n\n\n<i>Se rechazó la conexión a {}.</i>"
+  
+  
+#AFK
+AFK_IS_NOW_REASON: "¡{} ahora está AFK!\nDijo que es: {}"
+AFK_IS_NOW: "¡{} ahora está AFK!"
+IS_AFK: "¡{} está AFK!"
+IS_AFK_REASON: "¡{} está AFK! Dijo que es: {}"
+AFK_LOOGER: "¡{} ya no está AFK!"
+  
+  
+#pin
+NO_PIN_BOT: "¡No puedo anclar mensajes aquí! Asegúrate de que soy administrador y puedo anclar mensajes".
+NO_PIN_USER: "¡No tiene suficientes derechos administrativos para anclar/desanclar mensajes!"
+PIN_NO_REPLY: "<i>Necesitas responder a un mensaje para fijarlo.</i>"
+PIN_SUCCESS: '<i>Fijéi <a href="{}">este mensaje</a>.</i>'
+UNPIN_ALL_SUCCESS: "<i>He desanclado todos los mensajes de chat.</i>"
+UNPIN_SUCCESS: '<i>He desanclado <a href="{}">este mensaje</a>.</i>'
+UNPIN_NO_REPLY: "<i>Necesitas responder a un mensaje para desanclar o usar <code>/unpin all</code> para desanclar todo.<i>"
+  
+  
+#ddd
+DDD_RESULT: "📞 <b>DDD - {}</b> \n<b>- Estado:</b> {} - {}\n\n<b>Ciudades:</b> <code>{} </code>"
+    
+    
+#bans
+UNBAN_SUCCESS: "Este usuario puede volver a unirse al grupo".
+UNBAN_LOGGER: "<b>{}:</b>\n#UNBAN\n<b>Administrador:</b> {}\n<b>Usuario:</b> {} (<código>{}< /código>)"
+BAN_IN_ADMIN: "¿Por qué prohibiría a un administrador? Suena como una idea bastante tonta."
+BAN_IN_DEV: "¿Por qué prohibiría a mi desarrollador? Suena como una idea bastante tonta."
+BAN_MY_SELF: "No me desterraré, ¿estás loco?"
+BAN_SUCCESS: "El usuario {} fue prohibido por {} en el chat: <b>{}</b>\n<b>Motivo</b>: <code>{}</code>"
+BAN_LOADING: "<code>Prohibir usuario...</code>"
+NO_BAN_BOT: "¡No puedo restringir personas aquí! Asegúrate de que soy un administrador y puedo agregar nuevos administradores".
+NO_BAN_USER: "¡No tiene suficientes derechos administrativos para prohibir/desbanear usuarios!"
+BAN_LOGGER: "<b>{}:</b>\n#BAN\n<b>Administrador:</b> {}\n<b>Usuario:</b> {} (<code>{}< /code>)\n<b>Motivo:</b> <código>{}</código>"
+TBAN_LOGGER: "<b>{}:</b>\n#TEMP_BANNED\n<b>Administrador:</b> {}\n<b>Usuario:</b> {} (<código>{}< /código>)\n<b>Hora:</b> {}\n<b>Motivo:</b> <code>{}</code>"
+TBAN_SUCCESS: "{} fue suspendido temporalmente por <b>{}</b> en <b>{}</b>\n<b>Razón</b>: <code>{}</code>"
+BANS_NOT_SPECIFIED_USER: "<code>No se especificó un ID de usuario o mensaje válido.</code>"
+BANS_ID_INVALID: "<code>Nombre de usuario o ID de usuario no válido, intente nuevamente con información válida ⚠</code>"
+  
+#rules
+RULES_UPDATED: "¡Las nuevas reglas del grupo se establecieron con éxito!"
+RULES_NO_ARGS: "<b>No especificaste un argumento para cambiar las reglas</b>"
+RULES: "Las reglas para <b>{}</b> son:\n\n{}"
+NO_RULES: "Los administradores del grupo aún no han establecido ninguna regla para este chat".
+RULES_CLEAR_SUCCESS: "¡Reglas eliminadas con éxito!"
+
+#simi
+SIMI_NO_RESPONSE: "No sé de este tema, pero sé de otros: historia, consejos..."
+SIMI_API_OFF: "¡La API muestra errores inesperados!"
+
+
+#disable
+COMMAND_NOW_DISABLED: "¡¡¡<i>Comando {} ahora deshabilitado!!!</i>"
+ALREADY_DISABLED_COMMAND: "¡<i>Comando ya deshabilitado!</i>"
+NO_DISABLE_COMMAND: "<i>¿Qué comando desea deshabilitar?</i>"
+
+#enable
+COMMAND_NOW_ENABLED: "¡¡¡<i>Comando {} ahora habilitado!!!</i>"
+NO_DISABLED_COMMAND: "¡<i>Comando no deshabilitado!</i>"
+NO_ENABLE_COMMAND: "<i>¿Qué comando desea habilitar?</i>"
+
+#clima
+WEATHER_LANGUAGE: "es-ES"
+WEATHER_UNIT: "m"
+WEATHER_DETAILS: "<b>{location}</b>:\n\nTemperatura: <code>{temperature} °C</code>\nSensación térmica: <code>{feels_like} °C\n</code>Humedad desde el aire: <code>{air_humidity}%</code>\nViento: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>"
+WEATHER_NO_ARGS: "<b>Uso:</b> <code>/weather location or city</code> - Obtiene información sobre el clima en la <i>ubicación o ciudad</i>."
+WEATHER_LOCATION_NOT_FOUND: "Ubicación no encontrada".
+
+  #telegraph
+TG_NO_REPLY_MEDIA: "<code>Responder a algunos medios.</code>"
+TG_NOT_SUPORTED: "¡<code>No compatible!</code>"
+TG_UPLOADING: "<code>Subiendo a Telegraph...</code>"
+TG_UPLOADED: "<b>[¡Aquí, su enlace de telegraph!](https://telegra.ph{})</b>"
+
+
+#registros
+LOGS_DEFINED: "Este canal se ha establecido como el canal de registro para {}".
+LOGS_DEFINED_MESSAGE: '¡El canal de registro se ha establecido correctamente!'
+
+
+#zombies
+ZOMBIES_LOGGER: "<b>{}</b>:\n#ZOMBIES\n<b>Administrador:</b> {}\n<b>Número de cuentas eliminadas:</b> {}"
+ZOMBIES_BAN: "¡Eliminé todas las cuentas <b>{}</b> eliminadas del grupo <b>{}</b>!"
+NO_ZOMBIES: "¡No hay cuentas eliminadas en el grupo!"
+NO_RIGHTS_ZOMBIES: "¡Balabacheia! ¡No tienes suficientes derechos administrativos para prohibir/desbanear usuarios!"
+
+
+#android
+MAGISK_STRING: "<b>Últimos lanzamientos de magisk</b>\n\n"
+DEVICE_SUCCESS: "<b>Marca:</b> <code>{}</code>\n<b>Nombre:</b> <code>{}</code>\n<b>Dispositivo:</b> <code>{}</code>\n<b>Nombre en clave:</b> <code>{}</code>"
+DEVICE_NO_CODENAME: "<i>¿Quieres que lo adivine? Introduce un nombre en clave.</i>"
+DEVICE_NOT_FOUND: "<code>Dispositivo</code> <b>{}</b> <code>¡no encontrado!</code>"
+ANDROID_DOWNLOAD: "<b>Descargar</b>: {}\n"
+ANDROID_TYPE: "<b>Tipo</b>: {}\n"
+ANDROID_SIZE: "<b>Tamaño de compilación</b> <code>{}</code>\n"
+ANDROID_VERSION: "<b>Versión</b>: <code>{}</code>\n"
+ANDROID_DATE: "<b>Fecha</b>: <code>{}</code>\n"
+ANDROID_MAINTAINER: "<b>Mantenedor:</b> {}\n"
+ANDROID_GIT_ERROR: "WhiterKang ha estado intentando conectarse a GitHub, parece que GitHub está desconectado".
+ANDROID_ERR_OTA: "Dígale al mantenedor de ROM que arregle su OTA json. Estoy bastante seguro de que esto no funciona con OTA y tampoco funcionará con este bot: P"
+ANDROID_NOT_FOUND: "No pudimos encontrar ningún resultado que coincida con su consulta".
+ANDROID_BNT_DOWNLOAD: "¡Haga clic aquí para descargar!"
+LOS_NO_QUERY: "Por favor ingrese un nombre en clave.\nPor ejemplo: /los herolte"
+PE_NO_QUERY: "Por favor ingrese un nombre en clave.\nPor ejemplo: /pe por qué rojo"
+CRD_NO_QUERY: "Ingrese un nombre en clave.\nPor ejemplo: /crdroid whyred"
+EVO_NO_QUERY: "Por favor ingrese un nombre en clave.\nPor ejemplo: /evo por qué rojo"
+ANDROID_PHH: "<b>Última versión de Phh GSI</b>\n"
+ANDROID_PHH_NAME: "<b>Nombre:</b> <code>{}</code>\n"
+ANDROID_PHH_VERSION: "<b>Versión:</b> <code>{}</code>\n"
+ANDROID_PHH_DATE: "<b>Fecha:</b> <code>{}</code>\n\n"
