@@ -33,12 +33,12 @@ async def upload_(_, m: Message):
     if is_url:
         del_path = True
         try:
-            path_, _ = await url_download(message, url)
+            path_, _ = await url_download(m, url)
         except ProcessCanceled:
             await msg.edit("`Process Canceled!`")
             return
         except Exception as e_e:  # pylint: disable=broad-except
-            await msg.reply(str(e_e))
+            await m.reply(str(e_e))
             return
     if "|" in path_:
         url, file_name = path_.split("|")
