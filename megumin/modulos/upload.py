@@ -124,11 +124,11 @@ async def upload(
     message: Message,
     path: Path,
     m_text = input_str(m)
-    del_path: bool = False,
+    del_path = False,
     extra: str = "",
-    with_thumb: bool = True,
+    with_thumb = True,
     custom_thumb: str = "",
-    log: bool = True,
+    log = True,
 ):
     if "-wt" in m_text:
         with_thumb = False
