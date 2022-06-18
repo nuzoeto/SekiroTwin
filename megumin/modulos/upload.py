@@ -166,7 +166,7 @@ async def upload(
 async def doc_upload(
     message: Message,
     path,
-    del_path: bool = False,
+    del_path = False,
     extra: str = "",
     with_thumb: bool = True,
 ):
@@ -201,11 +201,11 @@ async def doc_upload(
 async def vid_upload(
     message: Message,
     path,
-    del_path: bool = False,
-    extra: str = "",
-    with_thumb: bool = True,
-    custom_thumb: str = "",
-    log: bool = True,
+    del_path = False,
+    extra = "",
+    with_thumb = True,
+    custom_thumb = "",
+    log = True,
 ):
     str_path = str(path)
     thumb = None
@@ -261,10 +261,10 @@ async def vid_upload(
 async def audio_upload(
     message: Message,
     path,
-    del_path: bool = False,
+    del_path = False,
     extra: str = "",
-    with_thumb: bool = True,
-    log: bool = True,
+    with_thumb = True,
+    log = True,
 ):
     title = None
     artist = None
