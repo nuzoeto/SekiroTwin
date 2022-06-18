@@ -123,12 +123,12 @@ async def upload_path(message: Message, path: Path, del_path: bool):
 async def upload(
     message: Message,
     path: Path,
-    m_text = input_str(m)
-    del_path = "False",
+    m_text = input_str(m),
+    del_path = False,
     extra: str = "",
-    with_thumb = "True",
+    with_thumb = True,
     custom_thumb = "",
-    log = "True",
+    log = True,
 ):
     if "-wt" in m_text:
         with_thumb = False
