@@ -34,11 +34,11 @@ COM_2: "<i>Buscando...</i>"
  
 KANGING: "Robando la pegatina..."
 STICKER_NO_REPLY: "¿Quieres que adivine la pegatina? Por favor, etiqueta una pegatina."
-STICKER_NOT_NAME: "La pegatina no tiene nombre".
+STICKER_NOT_NAME: "La pegatina no tiene nombre."
 NO_STICKER_SUPORTED: "¡<code>No compatible!</code>"
 USE_EXISTING_PACK: "<code>Usando el paquete de pegatinas existente...</code>"
 CREATE_STICKER_PACK: "<b>Creando un nuevo paquete de stickers...</b>"
-STICKERS_NOT_FOUND_USER: "Parece que nunca has interactuado conmigo en un chat privado, primero debes hacerlo".
+STICKERS_NOT_FOUND_USER: "Parece que nunca has interactuado conmigo en un chat privado, primero debes hacerlo."
 STICKERS_KANGED: "<b>¡Calcomanía robada con éxito!</b>\n<a href='t.me/addstickers/{}'>Pack</a>.\n<b>Emoji:</b> {}"
   
 #YOUTUBE_DL 
@@ -65,7 +65,7 @@ AFK_LOOGER: "¡{} ya no está AFK!"
   
   
 #pin
-NO_PIN_BOT: "¡No puedo anclar mensajes aquí! Asegúrate de que soy administrador y puedo anclar mensajes".
+NO_PIN_BOT: "¡No puedo anclar mensajes aquí! Asegúrate de que soy administrador y puedo anclar mensajes."
 NO_PIN_USER: "¡No tiene suficientes derechos administrativos para anclar/desanclar mensajes!"
 PIN_NO_REPLY: "<i>Necesitas responder a un mensaje para fijarlo.</i>"
 PIN_SUCCESS: '<i>Fijéi <a href="{}">este mensaje</a>.</i>'
@@ -80,7 +80,7 @@ DDD_RESULT: "📞 <b>DDD - {}</b> \n<b>- Estado:</b> {} - {}\n\n<b>Ciudades:</b>
     
 #bans
 UNBAN_SUCCESS: "Este usuario puede volver a unirse al grupo".
-UNBAN_LOGGER: "<b>{}:</b>\n#UNBAN\n<b>Administrador:</b> {}\n<b>Usuario:</b> {} (<código>{}< /código>)"
+UNBAN_LOGGER: "<b>{}:</b>\n#UNBAN\n<b>Administrador:</b> {}\n<b>Usuario:</b> {} (<code>{}< /code>)"
 BAN_IN_ADMIN: "¿Por qué prohibiría a un administrador? Suena como una idea bastante tonta."
 BAN_IN_DEV: "¿Por qué prohibiría a mi desarrollador? Suena como una idea bastante tonta."
 BAN_MY_SELF: "No me desterraré, ¿estás loco?"
@@ -98,7 +98,7 @@ BANS_ID_INVALID: "<code>Nombre de usuario o ID de usuario no válido, intente nu
 RULES_UPDATED: "¡Las nuevas reglas del grupo se establecieron con éxito!"
 RULES_NO_ARGS: "<b>No especificaste un argumento para cambiar las reglas</b>"
 RULES: "Las reglas para <b>{}</b> son:\n\n{}"
-NO_RULES: "Los administradores del grupo aún no han establecido ninguna regla para este chat".
+NO_RULES: "Los administradores del grupo aún no han establecido ninguna regla para este chat."
 RULES_CLEAR_SUCCESS: "¡Reglas eliminadas con éxito!"
 
 #simi
@@ -121,7 +121,7 @@ WEATHER_LANGUAGE: "es-ES"
 WEATHER_UNIT: "m"
 WEATHER_DETAILS: "<b>{location}</b>:\n\nTemperatura: <code>{temperature} °C</code>\nSensación térmica: <code>{feels_like} °C\n</code>Humedad desde el aire: <code>{air_humidity}%</code>\nViento: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>"
 WEATHER_NO_ARGS: "<b>Uso:</b> <code>/weather location or city</code> - Obtiene información sobre el clima en la <i>ubicación o ciudad</i>."
-WEATHER_LOCATION_NOT_FOUND: "Ubicación no encontrada".
+WEATHER_LOCATION_NOT_FOUND: "Ubicación no encontrada."
 
   #telegraph
 TG_NO_REPLY_MEDIA: "<code>Responder a algunos medios.</code>"
@@ -131,7 +131,7 @@ TG_UPLOADED: "<b>[¡Aquí, su enlace de telegraph!](https://telegra.ph{})</b>"
 
 
 #registros
-LOGS_DEFINED: "Este canal se ha establecido como el canal de registro para {}".
+LOGS_DEFINED: "Este canal se ha establecido como el canal de registro para {}."
 LOGS_DEFINED_MESSAGE: '¡El canal de registro se ha establecido correctamente!'
 
 
@@ -153,9 +153,9 @@ ANDROID_SIZE: "<b>Tamaño de compilación</b> <code>{}</code>\n"
 ANDROID_VERSION: "<b>Versión</b>: <code>{}</code>\n"
 ANDROID_DATE: "<b>Fecha</b>: <code>{}</code>\n"
 ANDROID_MAINTAINER: "<b>Mantenedor:</b> {}\n"
-ANDROID_GIT_ERROR: "WhiterKang ha estado intentando conectarse a GitHub, parece que GitHub está desconectado".
+ANDROID_GIT_ERROR: "WhiterKang ha estado intentando conectarse a GitHub, parece que GitHub está desconectado."
 ANDROID_ERR_OTA: "Dígale al mantenedor de ROM que arregle su OTA json. Estoy bastante seguro de que esto no funciona con OTA y tampoco funcionará con este bot: P"
-ANDROID_NOT_FOUND: "No pudimos encontrar ningún resultado que coincida con su consulta".
+ANDROID_NOT_FOUND: "No pudimos encontrar ningún resultado que coincida con su consulta."
 ANDROID_BNT_DOWNLOAD: "¡Haga clic aquí para descargar!"
 LOS_NO_QUERY: "Por favor ingrese un nombre en clave.\nPor ejemplo: /los herolte"
 PE_NO_QUERY: "Por favor ingrese un nombre en clave.\nPor ejemplo: /pe por qué rojo"
