@@ -124,11 +124,11 @@ async def upload(
     message: Message,
     path: Path,
     m_text = input_str(m)
-    del_path = False,
+    del_path = "False",
     extra: str = "",
-    with_thumb = True,
-    custom_thumb: str = "",
-    log = True,
+    with_thumb = "True",
+    custom_thumb = "",
+    log = "True",
 ):
     if "-wt" in m_text:
         with_thumb = False
@@ -166,9 +166,9 @@ async def upload(
 async def doc_upload(
     message: Message,
     path,
-    del_path = False,
+    del_path = "False",
     extra: str = "",
-    with_thumb: bool = True,
+    with_thumb = "True",
 ):
     str_path = str(path)
     sent: Message = await megux.send_message(
@@ -201,11 +201,11 @@ async def doc_upload(
 async def vid_upload(
     message: Message,
     path,
-    del_path = False,
+    del_path = "False",
     extra = "",
-    with_thumb = True,
+    with_thumb = "True",
     custom_thumb = "",
-    log = True,
+    log = "True",
 ):
     str_path = str(path)
     thumb = None
@@ -261,14 +261,14 @@ async def vid_upload(
 async def audio_upload(
     message: Message,
     path,
-    del_path = False,
+    del_path = "False",
     extra: str = "",
-    with_thumb = True,
-    log = True,
+    with_thumb = "True",
+    log = "True",
 ):
-    title = None
-    artist = None
-    thumb = None
+    title = "None"
+    artist = "None"
+    thumb = "None"
     duration = 0
     str_path = str(path)
     file_size = humanbytes(os.stat(str_path).st_size)
