@@ -79,16 +79,16 @@ DDD_RESULT: "📞 <b>DDD - {}</b> \n<b>- Estado:</b> {} - {}\n\n<b>Ciudades:</b>
     
     
 #bans
-UNBAN_SUCCESS: "Este usuario puede volver a unirse al grupo".
+UNBAN_SUCCESS: "Este usuario puede volver a unirse al grupo."
 UNBAN_LOGGER: "<b>{}:</b>\n#UNBAN\n<b>Administrador:</b> {}\n<b>Usuario:</b> {} (<code>{}< /code>)"
 BAN_IN_ADMIN: "¿Por qué prohibiría a un administrador? Suena como una idea bastante tonta."
 BAN_IN_DEV: "¿Por qué prohibiría a mi desarrollador? Suena como una idea bastante tonta."
 BAN_MY_SELF: "No me desterraré, ¿estás loco?"
 BAN_SUCCESS: "El usuario {} fue prohibido por {} en el chat: <b>{}</b>\n<b>Motivo</b>: <code>{}</code>"
 BAN_LOADING: "<code>Prohibir usuario...</code>"
-NO_BAN_BOT: "¡No puedo restringir personas aquí! Asegúrate de que soy un administrador y puedo agregar nuevos administradores".
+NO_BAN_BOT: "¡No puedo restringir personas aquí! Asegúrate de que soy un administrador y puedo agregar nuevos administradores."
 NO_BAN_USER: "¡No tiene suficientes derechos administrativos para prohibir/desbanear usuarios!"
-BAN_LOGGER: "<b>{}:</b>\n#BAN\n<b>Administrador:</b> {}\n<b>Usuario:</b> {} (<code>{}< /code>)\n<b>Motivo:</b> <código>{}</código>"
+BAN_LOGGER: "<b>{}:</b>\n#BAN\n<b>Administrador:</b> {}\n<b>Usuario:</b> {} (<code>{}< /code>)\n<b>Motivo:</b> <code>{}</code>"
 TBAN_LOGGER: "<b>{}:</b>\n#TEMP_BANNED\n<b>Administrador:</b> {}\n<b>Usuario:</b> {} (<código>{}< /código>)\n<b>Hora:</b> {}\n<b>Motivo:</b> <code>{}</code>"
 TBAN_SUCCESS: "{} fue suspendido temporalmente por <b>{}</b> en <b>{}</b>\n<b>Razón</b>: <code>{}</code>"
 BANS_NOT_SPECIFIED_USER: "<code>No se especificó un ID de usuario o mensaje válido.</code>"
