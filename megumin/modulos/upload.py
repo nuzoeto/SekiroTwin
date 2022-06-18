@@ -56,7 +56,7 @@ async def upload_(_, m: Message):
     except IndexError:
         await msg.edit("wrong syntax\n`.upload [path]`")
     else:
-        await upload_path(message=message, path=string, del_path=del_path)
+        await upload_path(message=m, path=string, del_path=del_path)
 
 
 async def url_download(message: Message, url: str) -> Tuple[str, int]:
