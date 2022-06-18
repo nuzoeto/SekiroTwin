@@ -123,13 +123,13 @@ async def upload_path(message: Message, path: Path, del_path: bool):
 async def upload(
     message: Message,
     path: Path,
-    m_text = input_str(message),
     del_path: boll = False,
     extra: str = "",
     with_thumb: boll = True,
     custom_thumb = "",
     log: boll = True,
 ):
+    m_text = input_str(message)
     if "-wt" in m_text:
         with_thumb = False
     if path.name.lower().endswith((".mkv", ".mp4", ".webm")) and (
