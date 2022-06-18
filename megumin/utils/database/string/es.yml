@@ -39,7 +39,7 @@ NO_STICKER_SUPORTED: "¡<code>No compatible!</code>"
 USE_EXISTING_PACK: "<code>Usando el paquete de pegatinas existente...</code>"
 CREATE_STICKER_PACK: "<b>Creando un nuevo paquete de stickers...</b>"
 STICKERS_NOT_FOUND_USER: "Parece que nunca has interactuado conmigo en un chat privado, primero debes hacerlo."
-STICKERS_KANGED: "<b>¡Calcomanía robada con éxito!</b>\n<a href='t.me/addstickers/{}'>Pack</a>.\n<b>Emoji:</b> {}"
+STICKERS_KANGED: "<b>¡Pegatina robada con éxito!</b>\n<a href='t.me/addstickers/{}'>Pack</a>.\n<b>Emoji:</b> {}"
   
 #YOUTUBE_DL 
 DOWNLOAD_YT: "📦 <i>Descargando...</i>"
