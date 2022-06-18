@@ -41,14 +41,14 @@ async def upload_(_, m: Message):
             await message.err(str(e_e))
             return
     if "|" in path_:
-        path_, file_name = path_.split("|")
-        path_ = path_.strip()
-        if os.path.isfile(path_):
+        url, file_name = path_.split("|")
+        url = path_.strip()
+        if os.path.isfile(url):
             new_path = os.path.join(Config.DOWN_PATH, file_name.strip())
             os.rename(path_, new_path)
             path_ = new_path
     try:
-        string = Path(path_)
+        string = Path(url)
     except IndexError:
         await msg.edit("wrong syntax\n`.upload [path]`")
     else:
