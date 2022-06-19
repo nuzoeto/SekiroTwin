@@ -63,7 +63,7 @@ async def upload_(_, m: Message):
         await msg.edit("wrong syntax\n`.upload [path]`")
     else:
         await upload_path(message=m, path=string, del_path=del_path)
-        await m.delete()
+        await msg.delete()
 
 
 async def url_download(message: Message, url: str) -> Tuple[str, int]:
