@@ -22,7 +22,8 @@ from megumin.utils.decorators import input_str
 
 FINISHED_PROGRESS_STR = os.environ.get("FINISHED_PROGRESS_STR")
 UNFINISHED_PROGRESS_STR = os.environ.get("UNFINISHED_PROGRESS_STR")
-LOGO_PATH = "resources/logo_x.png"
+LOGO_PATH = "resources/blackground.jpeg"
+THUMB_PATH = Config.DOWN_PATH + "thumb_image.jpg"
 
 
 class ProcessCanceled(Exception):
