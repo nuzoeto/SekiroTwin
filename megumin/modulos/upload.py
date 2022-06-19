@@ -14,6 +14,7 @@ from urllib.parse import unquote_plus
 from pySmartDL import SmartDL
 
 from pyrogram import filters 
+from pyrogram.errors import FloodWait
 from pyrogram.types import Message, CallbackQuery  
 from megumin import megux, Config 
 from megumin.utils import humanbytes
