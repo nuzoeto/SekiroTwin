@@ -63,7 +63,6 @@ async def upload_(_, m: Message):
         await msg.edit("wrong syntax\n`.upload [path]`")
     else:
         await upload_path(message=m, path=string, del_path=del_path)
-        await msg.delete()
 
 
 async def url_download(message: Message, url: str) -> Tuple[str, int]:
@@ -91,6 +90,7 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
             count = 0
             await msg.edit(f"<b>Downloaded:</b> <i>{percentage}%</i> <b>|</b> <i>{humanbytes(downloaded)}</i>\n<b>ETA:</b> <i>{estimated_total_time}</i>\n<b>Speed:</b> <i>{speed}</i>\n<b>Size:</b> <i>{humanbytes(total_length)}</i>\n<b>Url:</b> <i>{url}</i>", disable_web_page_preview=True)
         await asyncio.sleep(1)
+        await msg.delete()
     return dl_loc, (datetime.now() - start_t).seconds
 
 
