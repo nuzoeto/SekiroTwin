@@ -402,4 +402,4 @@ async def remove_thumb(thumb: str) -> None:
 async def finalize(message: Message, msg: Message, start_t):
         end_t = datetime.now()
         m_s = (end_t - start_t).seconds
-        await msg.edit(f"Uploaded in {m_s} seconds"
+        await msg.edit(f"Uploaded in {m_s} seconds")
