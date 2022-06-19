@@ -80,8 +80,7 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
     downloader.start(blocking=False)
     count = 0
     while not downloader.isFinished():
-        total_length = downloader.filesize or 0
-        finished_str = "".join((Config.FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 5))   
+        total_length = downloader.filesize or 0   
         downloaded = downloader.get_dl_size()
         percentage = downloader.get_progress() * 100
         speed = downloader.get_speed(human=True)
@@ -89,7 +88,7 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
         count += 1
         if count >= 10:
             count = 0
-            await msg.edit(f"[{finished_str}]\n\nDownloaded: {percentage}% | {humanbytes(downloaded)}\n\nETA: {estimated_total_time}\n\nSpeed: {speed}", disable_web_page_preview=True)
+            await msg.edit(f"Downloaded: {percentage}% | {humanbytes(downloaded)}\n\nETA: {estimated_total_time}\n\nSpeed: {speed}\n\nSize: {total_length}", disable_web_page_preview=True)
             await asyncio.sleep(4)
             await msg.delete()
         await asyncio.sleep(1)
