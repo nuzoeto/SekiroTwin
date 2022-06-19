@@ -6,6 +6,8 @@ import stagger
 import time
 import io
 
+from hachoir.metadata import extractMetadata
+from hachoir.parser import createParser
 from datetime import datetime
 from pathlib import Path
 from typing import Tuple, Union
