@@ -370,8 +370,8 @@ async def photo_upload(message: Message, path, del_path: bool = False, extra: st
 
 
 async def get_thumb(path: str = ""):
-    if os.path.exists(Config.THUMB_PATH):
-        return Config.THUMB_PATH
+    if os.path.exists(THUMB_PATH):
+        return THUMB_PATH
     if path:
         types = (".jpg", ".webp", ".png")
         if path.endswith(types):
