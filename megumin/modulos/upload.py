@@ -15,7 +15,8 @@ from urllib.parse import unquote_plus
 
 from pySmartDL import SmartDL
 
-from pyrogram import filters 
+from pyrogram import filters
+from pyrogram.enums import ParseMode 
 from pyrogram.errors import FloodWait
 from pyrogram.types import Message, CallbackQuery  
 from megumin import megux, Config 
@@ -190,7 +191,7 @@ async def doc_upload(
             document=str_path,
             thumb=thumb,
             caption=path.name,
-            parse_mode="html",
+            parse_mode=ParseMode.HTML,
             disable_notification=True,
         )
     except ValueError as e_e:
