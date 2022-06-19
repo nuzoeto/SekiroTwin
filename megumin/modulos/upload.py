@@ -164,7 +164,7 @@ async def upload(
             log=log,
         )
     elif path.name.lower().endswith((".jpg", ".jpeg", ".png", ".bmp")) and (
-        "d" not in m_text 
+        "-d" not in m_text 
     ):
         await photo_upload(message, path, del_path, extra)
     else:
@@ -252,7 +252,7 @@ async def vid_upload(
             width=width,
             height=height,
             caption=path.name,
-            parse_mode="html",
+            parse_mode=ParseMode.HTML,
             disable_notification=True,
         )
     except ValueError as e_e:
@@ -328,7 +328,7 @@ async def audio_upload(
             title=title,
             performer=artist,
             duration=duration,
-            parse_mode="html",
+            parse_mode=ParseMode.HTML,
             disable_notification=True,
         )
     except ValueError as e_e:
@@ -358,7 +358,7 @@ async def photo_upload(message: Message, path, del_path: bool = False, extra: st
             chat_id=message.chat.id,
             photo=str_path,
             caption=path.name,
-            parse_mode="html",
+            parse_mode=ParseMode.HTML,
             disable_notification=True,
         )
     except ValueError as e_e:
