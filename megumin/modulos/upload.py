@@ -88,7 +88,7 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
         count += 1
         if count >= 10:
             count = 0
-            await msg.edit(f"Downloaded: {percentage}% | {humanbytes(downloaded)}\n\nETA: {estimated_total_time}\n\nSpeed: {speed}\n\nSize: {total_length}", disable_web_page_preview=True)
+            await msg.edit(f"<b>Downloaded:</b> <i>{percentage}%</i> <b>|</b> <i>{humanbytes(downloaded)}</i>\n<b>ETA:</b> <i>{estimated_total_time}</i>\n<b>Speed:</b> <i>{speed}</i>\n<b>Size:</b> <i>{humanbytes(total_length)}</i>\n<b>Url:</b> <i>{url}</i>", disable_web_page_preview=True)
             await asyncio.sleep(4)
             await msg.delete()
         await asyncio.sleep(1)
