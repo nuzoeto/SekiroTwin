@@ -88,7 +88,8 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
         count += 1
         if count >= 10:
             count = 0
-            await msg.edit(f"Downloaded: {percentage}% | {downloaded}\n\nETA: {estimated_total_time}\n\nSpeed: {speed}", disable_web_page_preview=True)
+            await msg.edit(f"Downloaded: {percentage}% | {humanbytes(downloaded)}\n\nETA: {estimated_total_time}\n\nSpeed: {speed}", disable_web_page_preview=True)
+            await asyncio.sleep(4)
             await msg.delete()
         await asyncio.sleep(1)
     return dl_loc, (datetime.now() - start_t).seconds
