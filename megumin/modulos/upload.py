@@ -225,14 +225,14 @@ async def vid_upload(
             try:
                 thumb = await check_thumb(custom_thumb)
             except Exception as e_r:
-                await CHANNEL.log(str(e_r))
+                await message.reply(str(e_r))
         if not thumb:
             thumb = await get_thumb(str_path)
     duration = 0
     metadata = extractMetadata(createParser(str_path))
     if metadata and metadata.has("duration"):
         duration = metadata.get("duration").seconds
-    sent: Message = await message.client.send_message(
+    sent: Message = await megux.send_message(
         message.chat.id, f"`Uploading {str_path} as a video ... {extra}`"
     )
     start_t = datetime.now()
@@ -316,7 +316,7 @@ async def audio_upload(
         artist = metadata.get("artist")
     if metadata and metadata.has("duration"):
         duration = metadata.get("duration").seconds
-    sent: Message = await message.client.send_message(
+    sent: Message = await megux.send_message(
         message.chat.id, f"`Uploading {str_path} as audio ... {extra}`"
     )
     start_t = datetime.now()
