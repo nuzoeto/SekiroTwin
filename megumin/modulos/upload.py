@@ -129,10 +129,11 @@ async def upload(
     custom_thumb: str = "",
     log: bool = True,
 ):
-    if "wt" in message.flags:
+    m_text = input_str(message)
+    if "-wt" in m_text:
         with_thumb = False
     if path.name.lower().endswith((".mkv", ".mp4", ".webm")) and (
-        "d" not in message.flags
+        "-d" not in m_text
     ):
         return await vid_upload(
             message=message,
@@ -145,7 +146,7 @@ async def upload(
             log=log,
         )
     elif path.name.lower().endswith((".mp3", ".flac", ".wav", ".m4a")) and (
-        "d" not in message.flags
+        "-d" not in m_text
     ):
         return await audio_upload(
             message=message,
@@ -157,7 +158,7 @@ async def upload(
             log=log,
         )
     elif path.name.lower().endswith((".jpg", ".jpeg", ".png", ".bmp")) and (
-        "d" not in message.flags
+        "d" not in m_text 
     ):
         await photo_upload(message, path, del_path, extra)
     else:
