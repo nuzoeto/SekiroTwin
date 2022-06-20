@@ -39,7 +39,7 @@ async def upload_(_, m: Message):
     url = input_str(m)
     if not url:
         return await m.reply("Vou enviar o Vento?")
-    msg = await message.reply("`Uploading...`")
+    msg = await m.reply("`Uploading...`")
     is_url = re.search(r"(?:https?|ftp)://[^|\s]+\.[^|\s]+", url)
     del_path = False
     if is_url:
