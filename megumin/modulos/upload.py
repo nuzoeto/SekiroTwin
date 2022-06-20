@@ -68,7 +68,7 @@ async def upload_(_, m: Message):
         await msg.delete()
 
 
-async def url_download(message: Message, url: str, msg: msg) -> Tuple[str, int]:
+async def url_download(message: Message, url: str) -> Tuple[str, int]:
     """download from link"""
     start_t = datetime.now()
     custom_file_name = unquote_plus(os.path.basename(url))
