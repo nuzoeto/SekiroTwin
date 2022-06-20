@@ -1,6 +1,7 @@
 import asyncio
 import math
 import os
+import glob
 import re
 import stagger
 import time
@@ -81,10 +82,10 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
     count = 0
     while not downloader.isFinished():
         total_length = downloader.filesize or 0   
-        downloaded = downloader.get_dl_size()
-        percentage = downloader.get_progress() * 100
-        speed = downloader.get_speed(human=True)
-        estimated_total_time = downloader.get_eta(human=True)
+        downloaded = downloader.get_dl_size() or None
+        percentage = downloader.get_progress() * 100 or None 
+        speed = downloader.get_speed(human=True) or 0
+        estimated_total_time = downloader.get_eta(human=True) or None
         count += 1
         if count >= 10:
             count = 0
