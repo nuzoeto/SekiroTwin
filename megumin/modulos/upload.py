@@ -45,7 +45,7 @@ async def upload_(_, m: Message):
     if is_url:
         del_path = True
         try:
-            url, _ = await url_download(m, url, msg)
+            url, _ = await url_download(m, url)
         except ProcessCanceled:
             await msg.edit("`Process Canceled!`")
             return
@@ -65,11 +65,11 @@ async def upload_(_, m: Message):
         await msg.edit("wrong syntax\n`.upload [path]`")
     else:
         await upload_path(message=m, path=string, del_path=del_path)
-        await msg.delete()
 
 
-async def url_download(message: Message, url: str, msg: str) -> Tuple[str, int]:
+async def url_download(message: Message, url: str) -> Tuple[str, int]:
     """download from link"""
+    msg = await message.reply("`Uploading...`")
     start_t = datetime.now()
     custom_file_name = unquote_plus(os.path.basename(url))
     if "|" in url:
@@ -77,6 +77,7 @@ async def url_download(message: Message, url: str, msg: str) -> Tuple[str, int]:
         url = url.strip()
         if c_file_name:
             custom_file_name = c_file_name.strip()
+    await msg.delete()
     dl_loc = os.path.join(Config.DOWN_PATH, custom_file_name)
     downloader = SmartDL(url, dl_loc, progress_bar=False)
     downloader.start(blocking=False)
@@ -90,7 +91,9 @@ async def url_download(message: Message, url: str, msg: str) -> Tuple[str, int]:
         count += 1
         if count >= 10:
             count = 0
-            await msg.edit(f"<b>Downloaded:</b> <i>{percentage}%</i> <b>|</b> <i>{humanbytes(downloaded)}</i>\n<b>ETA:</b> <i>{estimated_total_time}</i>\n<b>Speed:</b> <i>{speed}</i>\n<b>Size:</b> <i>{humanbytes(total_length)}</i>\n<b>Url:</b> <i>{url}</i>", disable_web_page_preview=True)
+            info = await message.reply(f"<b>Downloaded:</b> <i>{percentage}%</i> <b>|</b> <i>{humanbytes(downloaded)}</i>\n<b>ETA:</b> <i>{estimated_total_time}</i>\n<b>Speed:</b> <i>{speed}</i>\n<b>Size:</b> <i>{humanbytes(total_length)}</i>\n<b>Url:</b> <i>{url}</i>", disable_web_page_preview=True)
+            await asyncio.sleep(4.6)
+            await info.delete()
         await asyncio.sleep(1)
     return dl_loc, (datetime.now() - start_t).seconds
 
