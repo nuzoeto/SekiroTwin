@@ -76,7 +76,6 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
         url = url.strip()
         if c_file_name:
             custom_file_name = c_file_name.strip()
-    await msg.delete()
     dl_loc = os.path.join(Config.DOWN_PATH, custom_file_name)
     downloader = SmartDL(url, dl_loc, progress_bar=False)
     downloader.start(blocking=False)
@@ -90,9 +89,9 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
         count += 1
         if count >= 10:
             count = 0
-            info = await message.reply(f"<b>Downloaded:</b> <i>{percentage}%</i> <b>|</b> <i>{humanbytes(downloaded)}</i>\n<b>ETA:</b> <i>{estimated_total_time}</i>\n<b>Speed:</b> <i>{speed}</i>\n<b>Size:</b> <i>{humanbytes(total_length)}</i>\n<b>Url:</b> <i>{url}</i>", disable_web_page_preview=True)
-            await asyncio.sleep(4.6)
-            await info.delete()
+            info = await msg.edit(f"<b>Downloaded:</b> <i>{percentage}%</i> <b>|</b> <i>{humanbytes(downloaded)}</i>\n<b>ETA:</b> <i>{estimated_total_time}</i>\n<b>Speed:</b> <i>{speed}</i>\n<b>Size:</b> <i>{humanbytes(total_length)}</i>\n<b>Url:</b> <i>{url}</i>", disable_web_page_preview=True)
+            await asyncio.sleep(7)
+            await msg.delete()
         await asyncio.sleep(1)
     return dl_loc, (datetime.now() - start_t).seconds
 
