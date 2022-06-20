@@ -135,7 +135,7 @@ async def los(c: megux, m: Message):
 async def pixelexperience(c: megux, m: Message):
     try:
         args = m.text.split()
-        device = args[1]
+        device = args[1].lower()
     except IndexError:
         device = ""
     try:
