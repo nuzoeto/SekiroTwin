@@ -11,11 +11,10 @@ SUDOS = Config.SUDOS_GT_OFERTAS
 async def description_gt(c: megux, m: Message):
     if not input_str(m):
         return await m.reply("Você esqueceu dos argumentos!")
-    title = m.text.split(None, 1)[1]
-    await m.stop_propagation()
-    preco = m.text.split(None, 1)[1]
-    await m.stop_propagation()
-    link = m.text.split(None, 1)[1]
+    str_args = m.text.split()
+    title = str_args[1]
+    preco = str_args[2]
+    link = str_args[3]
 
     resultado = f"""
 {title}\n\n💥 Preço de oferta: {preco}\nFrete grátis para prime💥\n\n📦{link}\n⚠ Sujeito a alteração de preço sem prévio aviso."""
