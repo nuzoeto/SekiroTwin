@@ -17,6 +17,6 @@ async def description_gt(c: megux, m: Message):
     link = str_args[3]
 
     resultado = f"""
-{title}\n\n💥 Preço de oferta: {preco}\nFrete grátis para prime💥\n\n📦{link}\n⚠ Sujeito a alteração de preço sem prévio aviso."""
+<b>{title}</b>\n\n💥 Preço de oferta: R$ {preco}\nFrete grátis para prime💥\n\n📦{link}\n⚠ Sujeito a alteração de preço sem prévio aviso."""
 
     await m.reply(resultado)
