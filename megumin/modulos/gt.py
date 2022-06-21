@@ -16,7 +16,7 @@ async def description_gt(c: megux, m: Message):
     link = str_args[2]
     title = input_str(m)
 
-    text = title.replace(preco)
+    sub_text = title.replace(preco)
     sub_text += text.replace(link)
 
     resultado = f"""
