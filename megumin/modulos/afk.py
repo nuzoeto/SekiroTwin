@@ -42,6 +42,9 @@ async def afk_cmd(_, m: Message):
 async def rem_afk(c: megux, m: Message):
     if not m.from_user:
         return
+
+    if m.chat.id == Config.GP_LOGS:
+        return 
  
     AFK_STATUS = get_collection(f"_AFK {m.from_user.id}")
     AFK_COUNT = get_collection("AFK_COUNT")
