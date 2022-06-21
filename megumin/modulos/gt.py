@@ -12,9 +12,9 @@ async def description_gt(c: megux, m: Message):
     if not input_str(m):
         return await m.reply("Você esqueceu dos argumentos!")
     str_args = m.text.split()
-    title = str_args[1]
-    preco = str_args[2]
-    link = str_args[3]
+    title = str_args[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    preco = str_args[15]
+    link = str_args[16]
 
     resultado = f"""
 <b>{title}</b>\n\n💥 Preço de oferta: R$ {preco}\nFrete grátis para prime💥\n\n📦{link}\n⚠ Sujeito a alteração de preço sem prévio aviso."""
