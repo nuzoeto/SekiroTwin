@@ -14,7 +14,7 @@ async def description_gt(c: megux, m: Message):
     str_args = m.text.split(" ")
     preco = str_args[1]
     link = str_args[2]
-    title = str_args[3 and 4 and 5 and 6 and 7 and 8 and 9 and 10]
+    title = str_args[3]
 
     resultado = f"""
 <b>{title}</b>\n\n💥 Preço de oferta: R$ {preco}\nFrete grátis para prime💥\n\n📦{link}\n⚠ Sujeito a alteração de preço sem prévio aviso."""
