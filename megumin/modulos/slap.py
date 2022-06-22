@@ -5,7 +5,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux
-from megumin.utils import get_collection 
+from megumin.utils import get_collection, tld
 
 @megux.on_message(filters.command(["slap"], prefixes=["/", "!"]))
 async def printer(_, m: Message):
@@ -25,7 +25,7 @@ async def printer(_, m: Message):
             user2 = f"<a href='tg://user?id={m.reply_to_message.from_user.id}'>{m.reply_to_message.from_user.first_name}</a>"
         except:
             user2 = m.chat.title
-        temp = random.choice(TEMPLATE)
+        temp = random.choice(await tld(m.chat.id, "slap_templates"))
         item = random.choice(ITENS)
         hit = random.choice(HIT)
         throw = random.choice(THROW)
