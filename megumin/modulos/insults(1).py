@@ -7,6 +7,11 @@ from megumin import megux
 
 @megux.on_message(filters.command(["insults"], prefixes=["/", "!"]))
 async def printer(_, m: Message):
+    DISABLED = get_collection(f"DISABLED {m.chat.id}")
+    query = "insults"
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     insult = random.choice(INSULTS)
     await m.reply(f"__{insult}__")
 
