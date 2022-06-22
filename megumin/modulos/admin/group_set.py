@@ -38,8 +38,9 @@ async def set_chat_photo(_, message: Message):
         return await message.reply("__Esse arquivo é muito grande__")
 
     photo = await reply.download()
-    sucess = await message.chat.set_photo(photo)
+    sucess = await app.set_chat_photo(chat_id, photo.file_id)
     await message.reply_text(f"Foto alterada com sucesso no grupo <b>{message.chat.title}</b>")
+
 
 @megux.on_message(filters.command("setrules", Config.TRIGGER))
 async def rules_set(_, m: Message):
