@@ -165,3 +165,17 @@ ANDROID_PHH: "<b>Última versión de Phh GSI</b>\n"
 ANDROID_PHH_NAME: "<b>Nombre:</b> <code>{}</code>\n"
 ANDROID_PHH_VERSION: "<b>Versión:</b> <code>{}</code>\n"
 ANDROID_PHH_DATE: "<b>Fecha:</b> <code>{}</code>\n\n"
+
+
+#slaps
+slaps_templates:
+  - "<i>{user1} {hits} {user2} con un {item}.</i>"
+  - "<i>{user1} {hits} a {user2} en la cara con un {item}.</i>"
+  - "<i>{user1} {hits} {user2} un poco con un {item}.</i>"
+  - "{user1} {throws} {item} sobre {user2}".
+  - "{usuario1} arroja {item} en la cara de {user2}".
+  - "{user1} arroja un {item} a la cabeza de {user2}".
+  - "{user1} piensa en golpear a {user2} con {item}".   - "{user1} suelta {user2} y golpea repetidamente {hits} con {item}".
+  - "{user1} obtiene {item} y {hits} en {user2}".
+  - "{user1} ata a {user2} a una silla y {throws} {item}".
+  - "{user1} le dio a {user2} un empujón amistoso para aprender a nadar en la lava"
