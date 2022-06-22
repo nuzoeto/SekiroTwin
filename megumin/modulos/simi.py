@@ -9,6 +9,11 @@ from megumin.utils import get_collection, get_string
 
 @megux.on_message(filters.command("simi", Config.TRIGGER))
 async def simi_(_, m: Message):
+    DISABLED = get_collection(f"DISABLED {m.chat.id}")
+    query = "simi"
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
+        return
     text_ = m.text.split(maxsplit=1)[1]
     API = f"https://api.simsimi.net/v2/?text={text_}&lc=pt&cf=false"
     r = requests.get(API).json()  
