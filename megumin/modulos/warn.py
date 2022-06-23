@@ -153,19 +153,19 @@ async def warn_cmd(_, m: Message):
             await m.reply(f"{name_user} <b>foi advertido!</b>\nEle(a) tem {WARNS}/{max_count} advertências.") 
     else:
         return await m.reply("Você não tem permissão suficiente para advertir usuários!")
-    elif m.reply_to_message:
-        ids = m.reply_to_message.from_user.id 
-        name_user = (m.reply_to_message.from_user.mention()) 
-    LIMIT = get_collection(f"WARNS_LIMIT {m.chat.id}")
-    ACTION = get_collection(f"ACTION {m.chat.id}")
-    CHAT_LIMIT = await LIMIT.find_one()
-    ACTION_CHAT = await ACTION.find_one()
-    if not CHAT_LIMIT:
-        return await LIMIT.insert_one({"_warnslimit": "3"})
-    if not ACTION_CHAT:
-        return await ACTION.insert_one({"_action": "ban"})
-    GET1 = await LIMIT.find_one({"_warnslimit": "1"})
-    GET2 = await LIMIT.find_one({"_warnslimit": "2"})
+        elif m.reply_to_message:
+             ids = m.reply_to_message.from_user.id 
+             name_user = (m.reply_to_message.from_user.mention()) 
+             LIMIT = get_collection(f"WARNS_LIMIT {m.chat.id}")
+             ACTION = get_collection(f"ACTION {m.chat.id}")
+             CHAT_LIMIT = await LIMIT.find_one()
+             ACTION_CHAT = await ACTION.find_one()
+             if not CHAT_LIMIT:
+                 return await LIMIT.insert_one({"_warnslimit": "3"})
+            if not ACTION_CHAT:
+                return await ACTION.insert_one({"_action": "ban"})
+            GET1 = await LIMIT.find_one({"_warnslimit": "1"})
+      GET2 = await LIMIT.find_one({"_warnslimit": "2"})
     GET3 = await LIMIT.find_one({"_warnslimit": "3"})
     GET4 = await LIMIT.find_one({"_warnslimit": "4"})
     GET5 = await LIMIT.find_one({"_warnslimit": "5"})
