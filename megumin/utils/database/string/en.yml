@@ -44,6 +44,7 @@ UPLOADING_YT: "📦 <i>Sending...</i>"
 VID_BNT: "📹 Video"
 SONG_BNT: "💿 Audio"
 YOUTUBE_CAPTION: "<b>[{}]({})</b>\n<b>❯ Duration:</b> <i>{}</i>\n<b>❯ Channel:</b> <i>{}</i>\n<b>❯ Views:</b> <i>{}</i>\n<b>❯ Likes:</b> <i>{}</i>"
+YOUTUBE_FILE_BIG: "Sorry!  The video you want to download exceeds the size of 1GB.\nUnable to download and upload, Sorry."
 NO_ARGS_YT: "<code>Will I lower the wind?!</code>"
 YTDL_CAPTION: "<a href={}><b>{}</b></a>\n<b>❯ Duration:</b> {}\n<b>❯ Views:</b> {}\n<b>❯ Channel:</b> {}"
 
