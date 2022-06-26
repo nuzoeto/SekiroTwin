@@ -42,7 +42,7 @@ STICKERS_KANGED: "<b>Sticker successfully stolen!</b>\n<a href='t.me/addstickers
 DOWNLOAD_YT: "📦 <i>Downloading...</i>"
 UPLOADING_YT: "📦 <i>Sending...</i>"
 VID_BNT: "📹 Video"
- SONG_BNT: "💿 Audio"
+SONG_BNT: "💿 Audio"
 NO_ARGS_YT: "<code>Will I lower the wind?!</code>"
 YTDL_CAPTION: "<a href={}><b>{}</b></a>\n<b>❯ Duration:</b> {}\n<b>❯ Views:</b> {}\n<b>❯ Channel:</b> {}"
 
