@@ -153,8 +153,8 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
     try:
         yt = await extract_info(ydl, url, download=True)
     except BaseException as e:
-        await send_logs(cq, e)
-        await cq.message.edit("Misc.ytdl_send_error {}".format(e))
+        await c.send_log(e)
+        await cq.message.edit("<b>Error:</b> <i>{}</i>".format(e))
         return
     await cq.message.edit(await tld(cq.message.chat.id, "UPLOADING_YT"))
     await c.send_chat_action(cq.message.chat.id, enums.ChatAction.UPLOAD_VIDEO)
@@ -176,10 +176,10 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
             )
             await cq.message.delete()
         except BadRequest as e:
-            await c.send_log(cq.message.chat.id, e)
+            await c.send_log(e)
             await c.send_message(
                 chat_id=cq.message.chat.id,
-                text="Misc.ytdl_send_error {}".format(errmsg=e),
+                text="<b>Error:</b> {errmsg}".format(errmsg=e),
                 reply_to_message_id=int(mid),
             )
     else:
@@ -201,7 +201,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
             )
         except BadRequest as e:
             await cq.message.edit_text(
-                "ytdl_send_error {}".format(errmsg=e)
+                "<b>Error:</b> <i>{errmsg}</i>".format(errmsg=e)
             )
         else:
             await cq.message.delete()
