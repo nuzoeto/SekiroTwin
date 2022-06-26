@@ -20,7 +20,7 @@ from pyrogram import filters, enums
 from pyrogram.errors import BadRequest, FloodWait, Forbidden, MediaEmpty
 from pyrogram.types import Message, CallbackQuery, InputMediaVideo, InputMediaPhoto
 
-from megumin import megux 
+from megumin import megux, Config 
 from megumin.utils import humanbytes, tld
 
 
@@ -50,7 +50,7 @@ def extract_info(instance: YoutubeDL, url: str, download=True):
     return instance.extract_info(url, download)
 
 
-@megux.on_message(filters.command("ytdl"))
+@megux.on_message(filters.command("ytdl", Config.TRIGGER))
 async def ytdlcmd(c: megux, m: Message):
     user = m.from_user.id
 
