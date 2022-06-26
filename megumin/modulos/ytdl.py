@@ -127,7 +127,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
         )
     vid = re.sub(r"^\_(vid|aud)\.", "", data)
     url = f"https://www.youtube.com/watch?v={vid}"
-    await cq.message.edit(await tld(cq.message.chat.id, "YOUTUBE_DL_DOWN"))
+    await cq.message.edit(await tld(cq.message.chat.id, "DOWNLOAD_YT"))
     with tempfile.TemporaryDirectory() as tempdir:
         path = os.path.join(tempdir, "ytdl")
 
