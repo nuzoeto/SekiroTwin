@@ -169,7 +169,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
                 video=filename,
                 width=1920,
                 height=1080,
-                caption=f"{ttemp + yt["title"]}\nDuração: {yt["duration"}",
+                caption=ttemp + yt["title"]},
                 duration=yt["duration"],
                 thumb=thumb,
                 reply_to_message_id=int(mid),
