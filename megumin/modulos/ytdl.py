@@ -32,7 +32,7 @@ YOUTUBE_REGEX = re.compile(
 )
 TIME_REGEX = re.compile(r"[?&]t=([0-9]+)")
 
-MAX_FILESIZE = 500000000
+MAX_FILESIZE = 1000000000
 
 
 def aiowrap(func: Callable) -> Callable:
@@ -88,11 +88,11 @@ async def ytdlcmd(c: megux, m: Message):
     keyboard = [
         [
             (
-                "💿 Áudio",
+                await tld(m.chat.id, "SONG_BNT"),
                 f'_aud.{yt["id"]}|{afsize}|{vformat}|{temp}|{user}|{m.id}',
             ),
             (
-                "📹 Vídeo",
+                await tld(m.chat.id, "VID_BNT"),
                 f'_vid.{yt["id"]}|{vfsize}|{vformat}|{temp}|{user}|{m.id}',
             ),
         ]
@@ -169,7 +169,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
                 video=filename,
                 width=1920,
                 height=1080,
-                caption="<b>{}</b>\n<b>❯ Duração:</b> <i>{}</i>".format(ttemp + yt["title"], yt["duration"]),
+                caption="<b>{}</b>\n<b>❯ Duração:</b> <i>{}</i>".format(ttemp + yt["title"], datetime.timedelta(seconds=yt["duration"])),
                 duration=yt["duration"],
                 thumb=thumb,
                 reply_to_message_id=int(mid),
