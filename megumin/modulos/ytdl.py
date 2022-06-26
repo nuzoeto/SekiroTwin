@@ -59,7 +59,7 @@ async def ytdlcmd(c: megux, m: Message):
     elif len(m.command) > 1:
         url = m.text.split(None, 1)[1]
     else:
-        await m.reply_text("`Vou baixar o vento?!`")
+        await m.reply_text(await tld(message.chat.id, "NO_ARGS_YT"))
         return
 
     ydl = YoutubeDL({"noplaylist": True})
@@ -169,7 +169,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
                 video=filename,
                 width=1920,
                 height=1080,
-                caption=ttemp + yt["title"],
+                caption="{}".format(ttemp + yt["title"]),
                 duration=yt["duration"],
                 thumb=thumb,
                 reply_to_message_id=int(mid),
