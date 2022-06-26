@@ -59,7 +59,7 @@ async def ytdlcmd(c: megux, m: Message):
     elif len(m.command) > 1:
         url = m.text.split(None, 1)[1]
     else:
-        await m.reply_text(await tld(message.chat.id, "NO_ARGS_YT"))
+        await m.reply_text(await tld(m.chat.id, "NO_ARGS_YT"))
         return
 
     ydl = YoutubeDL({"noplaylist": True})
