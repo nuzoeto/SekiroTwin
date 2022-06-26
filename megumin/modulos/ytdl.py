@@ -17,7 +17,7 @@ from functools import wraps, partial
 
 from pyrogram.helpers import ikb
 from pyrogram import filters, enums
-from pyrogram.errors import BadRequest, FloodWait, Forbidden, MediaEmpty
+from pyrogram.errors import BadRequest, FloodWait, Forbidden, MediaEmpty, MessageNotModified
 from pyrogram.types import Message, CallbackQuery, InputMediaVideo, InputMediaPhoto
 
 from megumin import megux, Config 
@@ -127,7 +127,10 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
         )
     vid = re.sub(r"^\_(vid|aud)\.", "", data)
     url = f"https://www.youtube.com/watch?v={vid}"
-    await cq.message.edit(await tld(cq.message.chat.id, "DOWNLOAD_YT"))
+    try:
+        await cq.message.edit(await tld(cq.message.chat.id, "DOWNLOAD_YT"))
+    except MessageNotModified:
+        await cq.message.reply(await tld(cq.message.chat.id, "DOWNLOAD_YT"))
     with tempfile.TemporaryDirectory() as tempdir:
         path = os.path.join(tempdir, "ytdl")
 
