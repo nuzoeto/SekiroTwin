@@ -24,7 +24,7 @@ from megumin import megux
 from megumin.utils import humanbytes 
 
 
-http = http.AsyncClient()
+http = httpx.AsyncClient()
 
 
 YOUTUBE_REGEX = re.compile(
