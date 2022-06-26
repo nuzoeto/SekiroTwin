@@ -46,7 +46,7 @@ DOWNLOAD_YT: "📦 <i>Descargando...</i>"
 NO_ARGS_YT: "<code>¿Voy a bajar el viento?!</code>"
 VID_BNT: "📹 Video"
 SONG_BNT: "💿 Audio"
-YOUTUBE_CAPTION: ""<b>[{}]({})</b>\n<b>❯ Duración:</b> <i>{}</i>\n<b>❯ Canal:</b> <i>{}</i>\n<b>❯ Vistas:</b> <i>{}</i>\n<b>❯ Gustos:</b> <i>{}</i>"
+YOUTUBE_CAPTION: "<b>[{}]({})</b>\n<b>❯ Duración:</b> <i>{}</i>\n<b>❯ Canal:</b> <i>{}</i>\n<b>❯ Vistas:</b> <i>{}</i>\n<b>❯ Gustos:</b> <i>{}</i>"
 UPLOADING_YT: "📦 <i>Enviando...</i>"
 YTDL_CAPTION: "<a href={}><b>{}</b></a>\n<b>❯ Duración:</b> {}\n<b>❯ Vistas:</b> {}\n<b>❯ Canal:</b> {}"
   
