@@ -105,7 +105,7 @@ async def ytdlcmd(c: megux, m: Message):
         title = yt["title"]
 
     text = f"🎧 <b>{performer}</b> - <i>{title}</i>\n"
-    text += f"💾 <code>{humanbytes(afsize)}</code> (audio) / <code>{pretty_size(int(vfsize))}</code> (video)\n"
+    text += f"💾 <code>{humanbytes(afsize)}</code> (audio) / <code>{humanbytes(int(vfsize))}</code> (video)\n"
     text += f"⏳ <code>{datetime.timedelta(seconds=yt.get('duration'))}</code>"
 
     await m.reply_text(text, reply_markup=ikb(keyboard))
