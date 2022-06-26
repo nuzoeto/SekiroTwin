@@ -176,7 +176,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
             )
             await cq.message.delete()
         except BadRequest as e:
-            await send_logs(cq, e)
+            await c.send_log(cq.message.chat.id, e)
             await c.send_message(
                 chat_id=cq.message.chat.id,
                 text="Misc.ytdl_send_error {}".format(errmsg=e),
@@ -194,7 +194,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
                 audio=filename,
                 title=title,
                 performer=performer,
-                caption=ttemp[:-2],
+                caption=(await tld(cq.message.chat.id, "YOUTUBE_CAPTION")).format(ttemp + yt["title"], url, datetime.timedelta(seconds=yt["duration"]), yt["channel"], yt["view_count"] or 0, yt["like_count"] or 0),
                 duration=yt["duration"],
                 thumb=thumb,
                 reply_to_message_id=int(mid),
