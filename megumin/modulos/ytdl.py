@@ -121,7 +121,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
         return await cq.answer("Isso não é para você...", show_alert=True)
     if int(fsize) > MAX_FILESIZE:
         return await cq.answer(
-            "Misc.ytdl_file_too_big",
+            await tld(cq.message.chat.id, "YOUTUBE_FILE_BIG"),
             show_alert=True,
             cache_time=60,
         )
