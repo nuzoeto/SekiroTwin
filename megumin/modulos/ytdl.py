@@ -169,7 +169,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
                 video=filename,
                 width=1920,
                 height=1080,
-                caption="<b>[{}]({})</b>\n<b>❯ Duração:</b> <i>{}</i>\n<b>❯ Canal:</b> <i>{}</i>\n<b>❯ Views:</b> <i>{}</i>\n<b>❯ Likes:</b> <i>{}</i>".format(ttemp + yt["title"], url, datetime.timedelta(seconds=yt["duration"]), yt["channel"], yt["view_count"] or 0, yt["like_count"] or 0),
+                caption=(await tld(m.chat.id, "YOUTUBE_CAPTION")).format(ttemp + yt["title"], url, datetime.timedelta(seconds=yt["duration"]), yt["channel"], yt["view_count"] or 0, yt["like_count"] or 0),
                 duration=yt["duration"],
                 thumb=thumb,
                 reply_to_message_id=int(mid),
