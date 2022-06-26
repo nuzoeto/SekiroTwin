@@ -46,6 +46,7 @@ STICKERS_KANGED: "<b>Sticker roubado com sucesso!</b>\n<a href='t.me/addstickers
 DOWNLOAD_YT: "📦 <i>Baixando...</i>"
 VID_BNT: "📹 Vídeo"
 SONG_BNT: "💿 Áudio"
+YOUTUBE_CAPTION: "<b>[{}]({})</b>\n<b>❯ Duração:</b> <i>{}</i>\n<b>❯ Canal:</b> <i>{}</i>\n<b>❯ Views:</b> <i>{}</i>\n<b>❯ Likes:</b> <i>{}</i>"
 NO_ARGS_YT: "<code>Vou baixar o vento?!</code>"
 UPLOADING_YT: "📦 <i>Enviando...</i>"
 YTDL_CAPTION: "<a href={}><b>{}</b></a>\n<b>❯ Duração:</b> {}\n<b>❯ Views:</b> {}\n<b>❯ Canal:</b> {}"
