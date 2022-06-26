@@ -62,7 +62,7 @@ async def ytdlcmd(c: megux, m: Message):
         await m.reply_text("Misc.noargs_ytdl")
         return
 
-    ydl = YoutubeDL({"noplaylist": True, "logger": MyLogger()})
+    ydl = YoutubeDL({"noplaylist": True})
 
     rege = YOUTUBE_REGEX.match(url)
 
@@ -139,7 +139,6 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
                 "format": f"{vformat}+140",
                 "max_filesize": MAX_FILESIZE,
                 "noplaylist": True,
-                "logger": MyLogger(),
             }
         )
     else:
@@ -149,7 +148,6 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
                 "format": "bestaudio[ext=m4a]",
                 "max_filesize": MAX_FILESIZE,
                 "noplaylist": True,
-                "logger": MyLogger(),
             }
         )
     try:
