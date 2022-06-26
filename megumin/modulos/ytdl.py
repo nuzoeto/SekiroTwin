@@ -21,7 +21,7 @@ from pyrogram.errors import BadRequest, FloodWait, Forbidden, MediaEmpty
 from pyrogram.types import Message, CallbackQuery, InputMediaVideo, InputMediaPhoto
 
 from megumin import megux 
-from megumin.utils import humanbytes 
+from megumin.utils import humanbytes, tld
 
 
 http = httpx.AsyncClient()
@@ -59,7 +59,7 @@ async def ytdlcmd(c: megux, m: Message):
     elif len(m.command) > 1:
         url = m.text.split(None, 1)[1]
     else:
-        await m.reply_text("Misc.noargs_ytdl")
+        await m.reply_text("`Vou baixar o vento?!`")
         return
 
     ydl = YoutubeDL({"noplaylist": True})
@@ -88,11 +88,11 @@ async def ytdlcmd(c: megux, m: Message):
     keyboard = [
         [
             (
-                "Misc.ytdl_audio_button",
+                "💿 Áudio",
                 f'_aud.{yt["id"]}|{afsize}|{vformat}|{temp}|{user}|{m.id}',
             ),
             (
-                "Misc.ytdl_video_button",
+                "📹 Vídeo",
                 f'_vid.{yt["id"]}|{vfsize}|{vformat}|{temp}|{user}|{m.id}',
             ),
         ]
@@ -118,16 +118,16 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
     except ValueError:
         return print(cq.data)
     if cq.from_user.id != int(userid):
-        return await cq.answer("Misc.ytdl_button_denied", cache_time=60)
+        return await cq.answer("Isso não é para você...", show_alert=True, cache_time=60)
     if int(fsize) > MAX_FILESIZE:
         return await cq.answer(
-            await tld(cq, "Misc.ytdl_file_too_big"),
+            "Misc.ytdl_file_too_big"),
             show_alert=True,
             cache_time=60,
         )
     vid = re.sub(r"^\_(vid|aud)\.", "", data)
     url = f"https://www.youtube.com/watch?v={vid}"
-    await cq.message.edit("Main.downloading")
+    await cq.message.edit(await tld(cq.message.chat.id, "YOUTUBE_DL_DOWN"))
     with tempfile.TemporaryDirectory() as tempdir:
         path = os.path.join(tempdir, "ytdl")
 
