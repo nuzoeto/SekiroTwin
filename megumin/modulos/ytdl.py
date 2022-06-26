@@ -156,7 +156,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
         await send_logs(cq, e)
         await cq.message.edit("Misc.ytdl_send_error {}".format(e))
         return
-    await cq.message.edit(await tld(message.chat.id, "UPLOADING_YT"))
+    await cq.message.edit(await tld(cq.message.chat.id, "UPLOADING_YT"))
     await c.send_chat_action(cq.message.chat.id, enums.ChatAction.UPLOAD_VIDEO)
 
     filename = ydl.prepare_filename(yt)
