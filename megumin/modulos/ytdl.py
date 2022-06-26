@@ -130,7 +130,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
     try:
         await cq.message.edit(await tld(cq.message.chat.id, "DOWNLOAD_YT"))
     except MessageNotModified:
-        await cq.message.reply(await tld(cq.message.chat.id, "DOWNLOAD_YT"))
+        await cq.message.reply_text(await tld(cq.message.chat.id, "DOWNLOAD_YT"))
     with tempfile.TemporaryDirectory() as tempdir:
         path = os.path.join(tempdir, "ytdl")
 
