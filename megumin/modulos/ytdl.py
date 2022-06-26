@@ -118,10 +118,10 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
     except ValueError:
         return print(cq.data)
     if cq.from_user.id != int(userid):
-        return await cq.answer("Isso não é para você...", show_alert=True, cache_time=60)
+        return await cq.answer("Isso não é para você...", show_alert=True)
     if int(fsize) > MAX_FILESIZE:
         return await cq.answer(
-            "Misc.ytdl_file_too_big"),
+            "Misc.ytdl_file_too_big",
             show_alert=True,
             cache_time=60,
         )
