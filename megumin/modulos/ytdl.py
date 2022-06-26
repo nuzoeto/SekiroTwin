@@ -1,3 +1,4 @@
+#CREDITS https://github.com/ruizlenato/SmudgeLord/blob/rewrite/smudge/plugins/videos.py
 import io
 import os
 import re
@@ -49,8 +50,8 @@ def extract_info(instance: YoutubeDL, url: str, download=True):
     return instance.extract_info(url, download)
 
 
-@Smudge.on_message(filters.command("ytdl"))
-async def ytdlcmd(c: Smudge, m: Message):
+@megux.on_message(filters.command("ytdl"))
+async def ytdlcmd(c: megux, m: Message):
     user = m.from_user.id
 
     if m.reply_to_message and m.reply_to_message.text:
@@ -58,7 +59,7 @@ async def ytdlcmd(c: Smudge, m: Message):
     elif len(m.command) > 1:
         url = m.text.split(None, 1)[1]
     else:
-        await m.reply_text(await tld(m, "Misc.noargs_ytdl"))
+        await m.reply_text("Misc.noargs_ytdl")
         return
 
     ydl = YoutubeDL({"noplaylist": True, "logger": MyLogger()})
@@ -87,11 +88,11 @@ async def ytdlcmd(c: Smudge, m: Message):
     keyboard = [
         [
             (
-                await tld(m, "Misc.ytdl_audio_button"),
+                "Misc.ytdl_audio_button",
                 f'_aud.{yt["id"]}|{afsize}|{vformat}|{temp}|{user}|{m.id}',
             ),
             (
-                await tld(m, "Misc.ytdl_video_button"),
+                "Misc.ytdl_video_button",
                 f'_vid.{yt["id"]}|{vfsize}|{vformat}|{temp}|{user}|{m.id}',
             ),
         ]
@@ -111,7 +112,7 @@ async def ytdlcmd(c: Smudge, m: Message):
 
 
 @megux.on_callback_query(filters.regex("^(_(vid|aud))"))
-async def cli_ytdl(c: Smudge, cq: CallbackQuery):
+async def cli_ytdl(c: megux, cq: CallbackQuery):
     try:
         data, fsize, vformat, temp, userid, mid = cq.data.split("|")
     except ValueError:
