@@ -47,7 +47,7 @@ DOWNLOAD_YT: "📦 <i>Baixando...</i>"
 VID_BNT: "📹 Vídeo"
 SONG_BNT: "💿 Áudio"
 YOUTUBE_CAPTION: "<b>[{}]({})</b>\n<b>❯ Duração:</b> <i>{}</i>\n<b>❯ Canal:</b> <i>{}</i>\n<b>❯ Views:</b> <i>{}</i>\n<b>❯ Likes:</b> <i>{}</i>"
-YOUTUBE_FILE_BIG: Desculpe! O vídeo o qual você deseja baixar excede o tamanho de 1GB.\nNão foi possível baixar e enviar, Descupe.
+YOUTUBE_FILE_BIG: "Desculpe! O vídeo o qual você deseja baixar excede o tamanho de 1GB.\nNão foi possível baixar e enviar, Descupe."
 NO_ARGS_YT: "<code>Vou baixar o vento?!</code>"
 UPLOADING_YT: "📦 <i>Enviando...</i>"
 YTDL_CAPTION: "<a href={}><b>{}</b></a>\n<b>❯ Duração:</b> {}\n<b>❯ Views:</b> {}\n<b>❯ Canal:</b> {}"
