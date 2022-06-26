@@ -156,7 +156,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
         await send_logs(cq, e)
         await cq.message.edit("Misc.ytdl_send_error {}".format(e))
         return
-    await cq.message.edit("Main.sending")
+    await cq.message.edit("📦 <i>Enviando...</i>")
     await c.send_chat_action(cq.message.chat.id, enums.ChatAction.UPLOAD_VIDEO)
 
     filename = ydl.prepare_filename(yt)
@@ -169,7 +169,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
                 video=filename,
                 width=1920,
                 height=1080,
-                caption=ttemp + yt["title"],
+                caption=f"{ttemp + yt["title"]}\nDuração: {yt["duration"}",
                 duration=yt["duration"],
                 thumb=thumb,
                 reply_to_message_id=int(mid),
