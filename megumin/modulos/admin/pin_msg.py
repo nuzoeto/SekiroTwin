@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux, Config 
-from megumin.utils import check_bot_rights, check_rights, get_string 
+from megumin.utils import check_bot_rights, check_rights, get_string, get_collection 
 from megumin.utils.decorators import input_str 
 
 
