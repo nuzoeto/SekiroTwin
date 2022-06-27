@@ -382,7 +382,7 @@ Under development...
 
     @megux.on_callback_query(filters.regex(pattern=r"^yt_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
-        info_text = await get_string(cb.message.chat.id, "HELP_YOUTUBE)
+        info_text = await get_string(cb.message.chat.id, "HELP_YOUTUBE")
         button = InlineKeyboardMarkup(
             [
                 [
