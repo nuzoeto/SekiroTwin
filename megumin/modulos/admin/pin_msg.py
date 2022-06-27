@@ -61,3 +61,30 @@ async def pin_msg(c: megux, m: Message):
             await megux.send_log(e)
     else:
         return await m.reply(await get_string(m.chat.id, "UNPIN_NO_REPLY"))
+
+
+@megux.on_message(filters.command("antichannelpin", Config.TRIGGER))
+async def setantichannelpin(c: megux, m: Message):
+    gid = m.chat.id
+    DATA = get_collection(f"ANTICHANNELPIN {gid}")
+    if not await check_rights(gid, m.from_user.id, "can_pin_messages"):
+        return await m.reply(await get_string(m.chat.id, "NO_PIN_USER"))
+    if not await check_rights(gid, c.me.id, "can_pin_messages"):
+        return await m.reply(await get_string(m.chat.id, "NO_PIN_BOT"))
+    if len(m.text.split()) > 1
+        if m.command[1] == "on":
+            await DATA.drop()
+            await DATA.insert_one({"status": "on"})
+            await m.reply(await get_string(m.chat.id, "ANTICHANNELPIN_ENABLED"))
+        elif m.command[1] == "off":
+            await DATA.drop()
+            await DATA.insert_one({"status": "off"})
+            await m.reply(await get_string(m.chat.id, "ANTICHANNELPIN_DISABLED"))
+        else:
+            await m.reply(await get_string(m.chat.id, "ANTICHANNELPIN_ERROR"))
+    else: 
+         if not await DATA.find_one("status": "on")
+             await m.reply(await get_string(m.chat.id, "CHANNELPIN_DISABLED")) 
+         else: 
+             await m.reply(await get_string(m.chat.id, "CHANNELPIN_ENABLED")) 
+         
