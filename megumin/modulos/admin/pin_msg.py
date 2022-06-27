@@ -71,7 +71,7 @@ async def setantichannelpin(c: megux, m: Message):
         return await m.reply(await get_string(m.chat.id, "NO_PIN_USER"))
     if not await check_rights(gid, c.me.id, "can_pin_messages"):
         return await m.reply(await get_string(m.chat.id, "NO_PIN_BOT"))
-    if len(m.text.split()) > 1
+    if len(m.text.split()) > 1:
         if m.command[1] == "on":
             await DATA.drop()
             await DATA.insert_one({"status": "on"})
@@ -83,7 +83,7 @@ async def setantichannelpin(c: megux, m: Message):
         else:
             await m.reply(await get_string(m.chat.id, "ANTICHANNELPIN_ERROR"))
     else: 
-         if not await DATA.find_one("status": "on")
+         if not await DATA.find_one("status": "on"):
              await m.reply(await get_string(m.chat.id, "CHANNELPIN_DISABLED")) 
          else: 
              await m.reply(await get_string(m.chat.id, "CHANNELPIN_ENABLED")) 
