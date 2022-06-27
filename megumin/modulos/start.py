@@ -382,13 +382,7 @@ Under development...
 
     @megux.on_callback_query(filters.regex(pattern=r"^yt_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
-        info_text = f"""
-Aqui está a ajuda para o módulo **YouTube**:
-
-• /song [titulo] ou [link] Baixe músicas.
-• /video [titulo] ou [link] Baixe videos.
-• /yt <b>[Palavra]</b> Faz uma busca no YouTube vídeos com a palavra que você escreveu e retorna uma lista com vídeos.
-    """
+        info_text = await get_string(cb.message.chat.id, "HELP_YOUTUBE)
         button = InlineKeyboardMarkup(
             [
                 [
