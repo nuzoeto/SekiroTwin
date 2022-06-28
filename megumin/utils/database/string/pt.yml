@@ -199,5 +199,5 @@ slap_templates:
 CLEANSERVICE_ENABLED: "A partir de agora, todas mensagens de serviços desse grupo serão apagadas."
 CLEANSERVICE_DISABLED: "A partir de agora, todas mensagens de serviços desse grupo não serão mais apagadas."
 CLEANSERVICE_ERROR: "Ei, Insira o argumento  <b>on/off</b>."
-CLEANSERVICE_STATUS_ON: "Atualmente a limpeza de mensagens de serviços no grupo estão <b>Ativadas.</b>"
-CLEANSERVICE_STATUS_OFF: "Atualmente a limpeza de mensagens de serviços no grupo estão <b>Desativadas.</b>"
+CLEANSERVICE_STATUS_ON: "Atualmente a limpeza de mensagens de serviços nesse grupo estão <b>Ativadas.</b>"
+CLEANSERVICE_STATUS_OFF: "Atualmente a limpeza de mensagens de serviços nesse grupo estão <b>Desativadas.</b>"
