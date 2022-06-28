@@ -53,7 +53,10 @@ async def delservice(c: megux, m: Message):
             else:
                 await m.reply(await get_string(m.chat.id, "CLEANSERVICE_ERROR"))
         else:
-             return
+             if await DATA.find_one({"status": "on"}):
+                 await m.reply(await get_string(m.chat.id, "CLEANSERVICE_STATUS_ON"))
+             else:
+                 await m.reply(await get_string(m.chat.id, "CLEANSERVICE_STATUS_ON"))
     else:
          await m.reply(await get_string(m.chat.id, "NO_CHANGEINFO_PERM"))
 
