@@ -192,3 +192,9 @@ slap_templates:
   - "__{user1} pega {item} e {hits} no(a) {user2}.__"
   - "__{user1} amarra {user2} em uma cadeira e {throws} {item}.__"
   - "__{user1} deu um empurrão amigável no(a) {user2} para que ele aprenda a nadar na lava__"
+
+
+#cleanservice
+CLEANSERVICE_ENABLED: "A partir de agora, todas mensagens de serviços desse grupo será apagada."
+CLEANSERVICE_DISABLED: "A partir de agora, todas mensagens de serviços desse grupo não serão mais apagadas."
+CLEANSERVICE_ERROR: "Ei, Insira o argumento  <b>on/off</b>."
