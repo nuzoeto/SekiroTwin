@@ -195,6 +195,6 @@ slap_templates:
 
 
 #cleanservice
-CLEANSERVICE_ENABLED: "A partir de agora, todas mensagens de serviços desse grupo será apagada."
+CLEANSERVICE_ENABLED: "A partir de agora, todas mensagens de serviços desse grupo serão apagadas."
 CLEANSERVICE_DISABLED: "A partir de agora, todas mensagens de serviços desse grupo não serão mais apagadas."
 CLEANSERVICE_ERROR: "Ei, Insira o argumento  <b>on/off</b>."
