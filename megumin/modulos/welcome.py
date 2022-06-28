@@ -76,7 +76,7 @@ async def getwelcomemsg(c: Client, m: Message):
         await m.reply_text("None")
 
 
-@Client.on_message(filters.command("welcome on", PREFIXES) & filters.group)
+@Client.on_message(filters.command("welcome on", Config.TRIGGER) & filters.group)
 async def enable_welcome_message(c: Client, m: Message):
     DATA = get_collection(f"WELCOME_STATUS chat {m.chat.id}")
     await DATA.drop()
