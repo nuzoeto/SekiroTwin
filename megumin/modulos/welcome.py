@@ -65,11 +65,10 @@ from megumin.utils import get_collection, get_string
 @Client.on_message(filters.command("getwelcome", Config.TRIGGER) & filters.group)
 async def getwelcomemsg(c: Client, m: Message):
     DATA = get_collection("WELCOME chat {m.chat.id}")
-    FETCHONE = await DATA.find_one()
-    welcome, welcome_enabled = FETCHONE["welcome"]
+    welcome, welcome_enabled = await DATA.find_one()
     if welcome_enabled:
         await m.reply_text(
-            "Bem vindo!" if welcome is None else welcome,
+            welcome["welcome"],
             parse_mode=ParseMode.DISABLED,
         )
     else:
