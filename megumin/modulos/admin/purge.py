@@ -40,7 +40,7 @@ async def purge_command(megux, message: Message):
 @megux.on_message(filters.command("cleanservice", Config.TRIGGER))
 async def delservice(c: megux, m: Message):
     DATA = get_collection(f"CLEANSERVICE {m.chat.id}")
-    if await check_rights(m.chat.id, "can_delete_messages"):
+    if await check_rights(m.chat.id, m.from_user.id, "can_delete_messages"):
         if len(m.text.split()) > 1:
             if m.command[1] == "on":
                 await DATA.drop()
