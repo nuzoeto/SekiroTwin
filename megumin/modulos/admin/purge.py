@@ -5,7 +5,7 @@ from pyrogram.types import Message
 from pyrogram.enums import ChatType
 
 from megumin import megux, Config
-from megumin.utils import admin_check, check_bot_rights, check_rights, get_collection  
+from megumin.utils import admin_check, check_bot_rights, check_rights, get_collection, get_string  
 
 
 @megux.on_message(filters.command("purge"))
