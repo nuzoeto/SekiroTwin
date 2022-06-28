@@ -54,6 +54,8 @@ async def delservice(c: megux, m: Message):
                 await m.reply(await get_string(m.chat.id, "CLEANSERVICE_ERROR"))
         else:
              return
+    else:
+         await m.reply(await get_string(m.chat.id, "NO_CHANGEINFO_PERM"))
 
 @megux.on_message(filters.service, group=-1)
 async def delservice_action(c: megux, m: Message):
