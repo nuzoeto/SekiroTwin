@@ -74,6 +74,12 @@ PIN_SUCCESS: '<i>I pinned <a href="{}">this message</a>.</i>'
 UNPIN_ALL_SUCCESS: "<i>I have unpinned all chat messages.</i>"
 UNPIN_SUCCESS: '<i>I have unpinned <a href="{}">this message</a>.</i>'
 UNPIN_NO_REPLY: "<i>You need to reply to a message to unpin or use <code>/unpin all</code> to unpin all.<i>"
+ANTICHANNELPIN_ENABLED: "Unpinning messages from channels linked to this group has been <b>Enabled.</b>"
+ANTICHANNELPIN_DISABLED: "Unpinning messages from channels linked to this group has been <b>Disabled.</b>"
+ANTICHANNELPIN_ERROR: "Please give me a valid argument <b>on/off</b>."
+CHANNELPIN_DISABLED: "Currently unpinning channel messages is: <b>Disabled</b>."
+CHANNELPIN_ENABLED: "Currently unpinning channel messages is: <b>Enabled</b>."
+
 
 #ddd
 DDD_RESULT: "📞 <b>DDD - {}</b> \n<b>- State:</b> {} - {}\n\n<b>Cities:</b> <code>{}</code>"
