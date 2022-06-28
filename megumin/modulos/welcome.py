@@ -1,101 +1,160 @@
 import asyncio
-import inspect
-import math
-import os.path
-import re
-from datetime import datetime, timedelta
-from functools import partial, wraps
-from string import Formatter
-from typing import Callable, List, Optional, Union
 
-from pyrogram import Client, emoji, filters
-from pyrogram.enums import ChatMemberStatus, MessageEntityType
-from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message, User
+from pyrogram import filters
+from pyrogram.types import (
+    Message, ChatPermissions, CallbackQuery,
+    InlineKeyboardMarkup, InlineKeyboardButton)
+from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 
-BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
+from megumin import megux, cus_filters
+from megumin.utils import check_bot_rights
 
-SMART_OPEN = "“"
-SMART_CLOSE = "”"
-START_CHAR = ("'", '"', SMART_OPEN)
 
-def get_format_keys(string: str) -> List[str]:
-    """Return a list of formatting keys present in string."""
-    return [i[1] for i in Formatter().parse(string) if i[1] is not None]
-
-def button_parser(markdown_note):
-    note_data = ""
-    buttons = []
-    if markdown_note is None:
-        return note_data, buttons
-    if markdown_note.startswith("/") or markdown_note.startswith("!"):
-        args = markdown_note.split(None, 2)
-        markdown_note = args[2]
-    prev = 0
-    for match in BTN_URL_REGEX.finditer(markdown_note):
-        n_escapes = 0
-        to_check = match.start(1) - 1
-        while to_check > 0 and markdown_note[to_check] == "\\":
-            n_escapes += 1
-            to_check -= 1
-
-        if n_escapes % 2 == 0:
-            if bool(match.group(4)) and buttons:
-                buttons[-1].append(
-                    InlineKeyboardButton(text=match.group(2), url=match.group(3))
-                )
-            else:
-                buttons.append(
-                    [InlineKeyboardButton(text=match.group(2), url=match.group(3))]
-                )
-            note_data += markdown_note[prev : match.start(1)]
-            prev = match.end(1)
-
+@bot.on_message(
+    filters.group & filters.new_chat_members & cus_filters.auth_chats)
+async def _verify_msg_(_, msg: Message):
+    """ Verify Msg for New chat Members """
+    chat_id = msg.chat.id
+    for member in msg.new_chat_members:
+        try:
+            user_status = (await msg.chat.get_member(member.id)).status
+            if user_status in ("restricted", "kicked"):
+                continue
+        except Exception:
+            pass
+        if member.is_bot or not await check_bot_rights(chat_id, "can_restrict_members"):
+            file_id, text, buttons = await wc_msg(member)
+            reply = await msg.reply_animation(
+                animation=file_id,
+                caption=text,
+                reply_markup=buttons
+            )
+            await asyncio.sleep(120)
+            await reply.delete()
         else:
-            note_data += markdown_note[prev:to_check]
-            prev = match.start(1) - 1
+            await bot.restrict_chat_member(chat_id, member.id, ChatPermissions())
+            try:
+                await megux.get_chat_member("WhiterKangNews", member.id)
+            except UserNotParticipant:
+                await force_sub(msg, member)
+            else:
+                await verify_keyboard(msg, member)
+    msg.continue_propagation()
 
-    note_data += markdown_note[prev:]
 
-    return note_data, buttons
+async def verify_keyboard(msg: Message, user):
+    """ keyboard for verifying """
+    _msg = f""" Hi {user.mention}, Welcome to {msg.chat.title}.
+To Chat here, Please click on the button below. """
+    button = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    text="Captcha",
+                    callback_data=f"verify_cq({user.id} {msg.message_id})")
+            ]
+        ]
+    )
+    await msg.reply_text(_msg, reply_markup=button)
 
-from megumin import megux, Config 
-from megumin.utils import get_collection, get_string 
+
+async def force_sub(msg: Message, user):
+    """ keyboard for force user to join channel """
+    _msg = f""" Hi {user.mention}, Welcome to {msg.chat.title}.
+Seems that you haven't join our Updates Channel.
+__Click on Join Now and Unmute yourself.__ """
+    button = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    text="Join Now",
+                    url="https://t.me/TheUserGe"),
+                InlineKeyboardButton(
+                    text="Unmute Me",
+                    callback_data=f"joined_unmute({user.id} {msg.message_id})")
+            ]
+        ]
+    )
+    await msg.reply_text(_msg, reply_markup=button)
 
 
-@Client.on_message(filters.command("getwelcome", Config.TRIGGER) & filters.group)
-async def getwelcomemsg(c: Client, m: Message):
-    DATA = get_collection("WELCOME chat {m.chat.id}")
-    welcome, welcome_enabled = await DATA.find_one()
-    if welcome_enabled:
-        await m.reply_text(
-            welcome["welcome"],
-            parse_mode=ParseMode.DISABLED,
+async def wc_msg(user):
+    """ arguments and reply_markup for sending after verify """
+    gif = await bot.get_messages("UserGeOt", 510608)
+    file_id = gif.animation.file_id
+    text = f""" **Welcome** {user.mention},
+__Check out the Button below. and feel free to ask here.__ 🤘 """
+    buttons = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    text="More info.",
+                    url="https://t.me/usergeot/637843"
+                )
+            ]
+        ]
+    )
+    return file_id, text, buttons
+
+
+@bot.on_callback_query(filters.regex(pattern=r"verify_cq\((.+?)\)"))
+async def _verify_user_(_, c_q: CallbackQuery):
+    _a, _b = c_q.matches[0].group(1).split(' ', maxsplit=1)
+    user_id = int(_a)
+    msg_id = int(_b)
+    if c_q.from_user.id == user_id:
+        await c_q.message.delete()
+        await bot.unban_chat_member(c_q.message.chat.id, user_id)
+        file_id, text, buttons = await wc_msg(await bot.get_users(user_id))
+        msg = await bot.send_animation(
+            c_q.message.chat.id,
+            animation=file_id,
+            caption=text, reply_markup=buttons,
+            reply_to_message_id=msg_id
         )
+        await asyncio.sleep(120)
+        await msg.delete()
     else:
-        await m.reply_text("None")
+        await c_q.answer("This message is not for you. 😐", show_alert=True)
 
 
-@Client.on_message(filters.command("welcome on", Config.TRIGGER) & filters.group)
-async def enable_welcome_message(c: Client, m: Message):
-    DATA = get_collection(f"WELCOME_STATUS chat {m.chat.id}")
-    await DATA.drop()
-    await DATA.insert_one({"status": "on"})
-    await m.reply_text(f"Boas Vindas Desativadas em {m.chat.title}")
+@bot.on_callback_query(filters.regex(pattern=r"joined_unmute\((.+?)\)"))
+async def _on_joined_unmute_(_, c_q: CallbackQuery):
+    if not c_q.message.chat:
+        return
+    _a, _b = c_q.matches[0].group(1).split(' ', maxsplit=1)
+    user_id = int(_a)
+    msg_id = int(_b)
+    bot_id = (await bot.get_me()).id
+    chat_id = c_q.message.chat.id
 
+    user = await bot.get_users(user_id)
 
-@Client.on_message(filters.command("welcome off", Config.TRIGGER) & filters.group)
-async def disable_welcome_message(c: Client, m: Message):
-    DATA = get_collection(f"WELCOME_STATUS chat {m.chat.id}")
-    await DATA.drop()
-    await DATA.insert_one({"status": "off"})
-    await m.reply_text(f"Boas Vindas Desativadas em {m.chat.title}")
-
-
-@Client.on_message(
-    filters.command(["resetwelcome", "clearwelcome"], Config.TRIGGER) & filters.group
-)
-async def reset_welcome_message(c: Client, m: Message):
-    DATA = get_collection(f"WELCOME chat {m.chat.id}")
-    await DATA.drop()
-    await DATA.insert_one({"welcome": "None"})
-    await m.reply_text(f"Boas Vindas resetadas em {m.chat.title}")
+    if c_q.from_user.id == user_id:
+        get_user = await bot.get_chat_member(chat_id, user_id)
+        if get_user.restricted_by and get_user.restricted_by.id == bot_id:
+            try:
+                await bot.get_chat_member("TheUserGe", user_id)
+            except UserNotParticipant:
+                await c_q.answer(
+                    "Click on Join Now button to Join our Updates Channel"
+                    " and click on Unmute me Button again.", show_alert=True)
+            else:
+                await c_q.message.delete()
+                await bot.unban_chat_member(c_q.message.chat.id, user_id)
+                f_d, txt, btns = await wc_msg(user)
+                msg = await bot.send_animation(
+                    c_q.message.chat.id,
+                    animation=f_d,
+                    caption=txt, reply_markup=btns,
+                    reply_to_message_id=msg_id
+                )
+                await asyncio.sleep(120)
+                await msg.delete()
+        else:
+            await c_q.answer(
+                "Admins Muted you for another reason, I Can't unmute you.",
+                show_alert=True)
+    else:
+        await c_q.answer(
+            f"This Message is Only for {user.first_name}", show_alert=True)
