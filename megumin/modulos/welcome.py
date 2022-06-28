@@ -97,7 +97,7 @@ __Check out the Button below. and feel free to ask here.__ 🤘 """
     return file_id, text, buttons
 
 
-@bot.on_callback_query(filters.regex(pattern=r"verify_cq\((.+?)\)"))
+@megux.on_callback_query(filters.regex(pattern=r"verify_cq\((.+?)\)"))
 async def _verify_user_(_, c_q: CallbackQuery):
     _a, _b = c_q.matches[0].group(1).split(' ', maxsplit=1)
     user_id = int(_a)
@@ -118,7 +118,7 @@ async def _verify_user_(_, c_q: CallbackQuery):
         await c_q.answer("This message is not for you. 😐", show_alert=True)
 
 
-@bot.on_callback_query(filters.regex(pattern=r"joined_unmute\((.+?)\)"))
+@megux.on_callback_query(filters.regex(pattern=r"joined_unmute\((.+?)\)"))
 async def _on_joined_unmute_(_, c_q: CallbackQuery):
     if not c_q.message.chat:
         return
