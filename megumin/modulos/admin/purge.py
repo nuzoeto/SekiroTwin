@@ -56,7 +56,7 @@ async def delservice(c: Client, m: Message):
 
 @Client.on_message(filters.service, group=-1)
 async def delservice_action(c: Client, m: Message):
-    DATA = get_collection(f"CLEANSERVICE {m.chat.id")
+    DATA = get_collection(f"CLEANSERVICE {m.chat.id}")
     get_delservice = await DATA.find_one({"status": "on"})
     if not get_delservice:
         return
