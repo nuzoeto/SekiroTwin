@@ -45,9 +45,11 @@ async def delservice(c: megux, m: Message):
             if m.command[1] == "on":
                 await DATA.drop()
                 await DATA.insert_one({"status": "on"})
+                await m.reply(await get_string(m.chat.id, "CLEANSERVICE_ENABLED"))
             elif m.command[1] == "off":
                 await DATA.drop()
                 await DATA.insert_one({"status": "off"})
+                await m.reply(await get_string(m.chat.id , "CLEANSERVICE_DISABLED"))
             else:
                 return
         else:
