@@ -30,6 +30,7 @@ HELP_MISC: "Aquí hay ayuda para el módulo <b>Otros</b>:\n\n• /id Busca un ID
 HELP_ANILIST: "Aquí hay ayuda para el módulo <b>Anilist</b>:\n\n• /anime - Usa este comando para obtener información sobre un anime específico usando el nombre de anime o ID de anilist.\n• / char o / personaje: use este comando para obtener información sobre algún personaje.\n• /manga: use este comando para obtener información sobre algún manga.\n• /airing: aún se agregará."
 COM_1: "Limpiando..."
 COM_2: "<i>Buscando...</i>"
+NO_CHANGEINFO_PERM: "¡No tienes suficientes derechos administrativos para cambiar la información de este grupo!"
  
  #stickers 
  
