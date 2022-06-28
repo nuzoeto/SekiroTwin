@@ -62,11 +62,11 @@ from megumin import megux, Config
 from megumin.utils import get_collection, get_string 
 
 
-@Client.on_message(filters.command("getwelcome", PREFIXES) & filters.group)
-@require_admin(permissions=["can_change_info"])
-@use_chat_lang()
-async def getwelcomemsg(c: Client, m: Message, strings):
-    welcome, welcome_enabled = await get_welcome(m.chat.id)
+@Client.on_message(filters.command("getwelcome", Config.TRIGGER) & filters.group)
+async def getwelcomemsg(c: Client, m: Message):
+    DATA = get_collection("WELCOME chat {m.chat.id}")
+    FETCHONE = await DATA.find_one()
+    welcome, welcome_enabled = FETCHONE["welcome"]
     if welcome_enabled:
         await m.reply_text(
             strings("welcome_default") if welcome is None else welcome,
