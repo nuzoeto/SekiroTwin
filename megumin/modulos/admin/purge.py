@@ -51,7 +51,7 @@ async def delservice(c: megux, m: Message):
                 await DATA.insert_one({"status": "off"})
                 await m.reply(await get_string(m.chat.id , "CLEANSERVICE_DISABLED"))
             else:
-                return
+                await m.reply(await get_string(m.chat.id, "CLEANSERVICE_ERROR"))
         else:
              return
 
