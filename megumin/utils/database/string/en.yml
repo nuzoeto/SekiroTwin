@@ -27,6 +27,7 @@ HELP_MISC: "Here is help for the <b>Others</b> module:\n\n• /id Searches for t
 HELP_ANILIST: "Here is help for the <b>Anilist</b> module:\n\n• /anime - Use this command to get information about a specific anime using anime name or anilist ID.\n• /char or / character - Use this command to get information about some character.\n• /manga - Use this command to get information about some manga.\n• /airing - Will still be added."
 COM_1: "Cleaning up..."
 COM_2: "<i>Looking for...</i>"
+NO_CHANGEINFO_PERM: "You do not have sufficient administrative rights to change this group's information!"
 
 
 #stickers
