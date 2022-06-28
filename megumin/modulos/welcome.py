@@ -80,7 +80,7 @@ __Click on Join Now and Unmute yourself.__ """
 
 async def wc_msg(user):
     """ arguments and reply_markup for sending after verify """
-    gif = await bot.get_messages("UserGeOt", 510608)
+    gif = await megux.get_messages("UserGeOt", 510608)
     file_id = gif.animation.file_id
     text = f""" **Welcome** {user.mention},
 __Check out the Button below. and feel free to ask here.__ 🤘 """
@@ -106,7 +106,7 @@ async def _verify_user_(_, c_q: CallbackQuery):
         await c_q.message.delete()
         await bot.unban_chat_member(c_q.message.chat.id, user_id)
         file_id, text, buttons = await wc_msg(await bot.get_users(user_id))
-        msg = await bot.send_animation(
+        msg = await megux.send_animation(
             c_q.message.chat.id,
             animation=file_id,
             caption=text, reply_markup=buttons,
@@ -134,16 +134,16 @@ async def _on_joined_unmute_(_, c_q: CallbackQuery):
         get_user = await bot.get_chat_member(chat_id, user_id)
         if get_user.restricted_by and get_user.restricted_by.id == bot_id:
             try:
-                await bot.get_chat_member("TheUserGe", user_id)
+                await megux.get_chat_member("TheUserGe", user_id)
             except UserNotParticipant:
                 await c_q.answer(
                     "Click on Join Now button to Join our Updates Channel"
                     " and click on Unmute me Button again.", show_alert=True)
             else:
                 await c_q.message.delete()
-                await bot.unban_chat_member(c_q.message.chat.id, user_id)
+                await megux.unban_chat_member(c_q.message.chat.id, user_id)
                 f_d, txt, btns = await wc_msg(user)
-                msg = await bot.send_animation(
+                msg = await megux.send_animation(
                     c_q.message.chat.id,
                     animation=f_d,
                     caption=txt, reply_markup=btns,
