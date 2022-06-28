@@ -191,3 +191,9 @@ slap_templates:
   - "{user1} obtiene {item} y {hits} en {user2}."
   - "{user1} ata a {user2} a una silla y {throws} {item}."
   - "{user1} le dio a {user2} un empujón amistoso para aprender a nadar en la lava"
+
+
+#cleanservice 
+CLEANSERVICE_ENABLED: "De ahora en adelante, todos los mensajes de servicio en este grupo serán eliminados."
+CLEANSERVICE_DISABLED: "De ahora en adelante, todos los mensajes de servicio en este grupo ya no se eliminarán."
+CLEANSERVICE_ERROR: "Oye, inserta el argumento <b>on/off</b>."
