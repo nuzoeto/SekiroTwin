@@ -69,7 +69,7 @@ async def getwelcomemsg(c: Client, m: Message):
     welcome, welcome_enabled = FETCHONE["welcome"]
     if welcome_enabled:
         await m.reply_text(
-            strings("welcome_default") if welcome is None else welcome,
+            "Bem vindo!" if welcome is None else welcome,
             parse_mode=ParseMode.DISABLED,
         )
     else:
