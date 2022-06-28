@@ -79,6 +79,11 @@ PIN_SUCCESS: '<i>Eu fixei <a href="{}">esta mensagem</a>.</i>'
 UNPIN_ALL_SUCCESS: "<i>Eu desfixei todas mensagens do chat.</i>"
 UNPIN_SUCCESS: '<i>Eu desfixei <a href="{}">esta mensagem</a>.</i>'
 UNPIN_NO_REPLY: "<i>Você precisa responder uma mensagem para desafixar ou usar <code>/unpin all</code> para desfixar todas.<i>"
+ANTICHANNELPIN_ENABLED: "A Desfixação de mensagens de canais vinculados a este grupo foi <b>Ativada.</b>"
+ANTICHANNELPIN_DISABLED: "A Desfixação de mensagens de canais vinculados a este grupo foi <b>Desativada.</b>"
+ANTICHANNELPIN_ERROR: "Por Favor, Me de um argumento valido <b>on/off</b>."
+CHANNELPIN_DISABLED: "Atualmente a desfixação de mensagens de canais está: <b>Desativada</b>."
+CHANNELPIN_ENABLED: "Atualmente a desfixação de mensagens de canais está: <b>Ativada</b>."
 
 #ddd
 DDD_RESULT: "📞 <b>DDD - {}</b> \n<b>- Estado:</b> {} - {}\n\n<b>Cidades:</b> <code>{}</code>"
