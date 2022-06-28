@@ -69,7 +69,7 @@ async def setantichannelpin(c: megux, m: Message):
     DATA = get_collection(f"ANTICHANNELPIN {gid}")
     if not await check_rights(gid, m.from_user.id, "can_pin_messages"):
         return await m.reply(await get_string(m.chat.id, "NO_PIN_USER"))
-    if not await check_rights(gid, c.me.id, "can_pin_messages"):
+    if not await check_rights(gid, c.me.id, "can_change_info"):
         return await m.reply(await get_string(m.chat.id, "NO_PIN_BOT"))
     if len(m.text.split()) > 1:
         if m.command[1] == "on":
