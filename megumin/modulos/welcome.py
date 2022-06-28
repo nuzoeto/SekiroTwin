@@ -32,7 +32,7 @@ async def _verify_msg_(_, msg: Message):
             await asyncio.sleep(120)
             await reply.delete()
         else:
-            await bot.restrict_chat_member(chat_id, member.id, ChatPermissions())
+            await megux.restrict_chat_member(chat_id, member.id, ChatPermissions())
             try:
                 await megux.get_chat_member("WhiterKangNews", member.id)
             except UserNotParticipant:
