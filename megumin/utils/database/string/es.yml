@@ -78,6 +78,11 @@ PIN_SUCCESS: '<i>Fijéi <a href="{}">este mensaje</a>.</i>'
 UNPIN_ALL_SUCCESS: "<i>He desanclado todos los mensajes de chat.</i>"
 UNPIN_SUCCESS: '<i>He desanclado <a href="{}">este mensaje</a>.</i>'
 UNPIN_NO_REPLY: "<i>Necesitas responder a un mensaje para desanclar o usar <code>/unpin all</code> para desanclar todo.<i>"
+ANTICHANNELPIN_ENABLED: "Se ha <b>habilitado</b> la eliminación de mensajes de canales vinculados a este grupo."
+ANTICHANNELPIN_DISABLED: "Se ha <b>deshabilitado</b> la eliminación de mensajes de canales vinculados a este grupo."
+ANTICHANNELPIN_ERROR: "Dame un argumento válido <b>on/off</b>."
+CHANNELPIN_DISABLED: "Actualmente, los mensajes del canal desanclar son: <b>Deshabilitado</b>."
+CHANNELPIN_ENABLED: "Actualmente, el desanclar mensajes del canal está: <b>Habilitado</b>."
   
   
 #ddd
