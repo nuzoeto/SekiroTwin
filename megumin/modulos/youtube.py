@@ -44,6 +44,7 @@ async def song_(c: megux, message: Message):
     off = await DISABLED.find_one({"_cmd": query})
     if off:
         return
+    await m.stop_propagation()
     query = " ".join(message.text.split()[1:])
     if not query:
         return await message.reply(await get_string(message.chat.id, "NO_ARGS_YT"))
@@ -100,6 +101,7 @@ async def vid_(c: megux, message: Message):
     off = await DISABLED.find_one({"_cmd": query})
     if off:
         return
+    await m.stop_propagation()
     query = " ".join(message.text.split()[1:])
     if not query:
         return await message.reply(await get_string(message.chat.id, "NO_ARGS_YT"))
