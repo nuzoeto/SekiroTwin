@@ -34,10 +34,8 @@ CMDS = [
     "simi",
     "stickerid",
     "reverse",
-    "song",
     "unban",
     "unmute",
-    "video",
 ]
 
 
@@ -119,11 +117,11 @@ async def disableable(_, m: Message):
 - __simi__
 - __stickerid__
 - __tmute__
-- __song__
+- __song(já desativado)__
 - __unban__
 - __unmute__
 - __vapor__
-- __video__
+- __video(já desativado)__
 """
 
     await m.reply(DISENABLE)
