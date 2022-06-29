@@ -11,7 +11,7 @@ if os.path.isfile("config.env"):
 
 class Config:
     AUTH_CHATS = set(
-        [-1001569084822, -1001252486871, -1001412694056, -1001475334171, 1715384854, -1001517679518]
+        [-1001569084822, -1001252486871, -1001412694056, -1001475334171, 1715384854, -1001517679518, -1001664402228]
     )  # chat permitidos
     if os.environ.get("AUTH_CHATS"):
         AUTH_CHATS.update(map(int, os.environ.get("AUTH_CHATS").split()))
