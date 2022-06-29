@@ -104,7 +104,7 @@ async def _verify_user_(_, c_q: CallbackQuery):
     msg_id = int(_b)
     if c_q.from_user.id == user_id:
         await c_q.message.delete()
-        await bot.unban_chat_member(c_q.message.chat.id, user_id)
+        await megux.unban_chat_member(c_q.message.chat.id, user_id)
         file_id, text, buttons = await wc_msg(await bot.get_users(user_id))
         msg = await megux.send_animation(
             c_q.message.chat.id,
@@ -128,10 +128,10 @@ async def _on_joined_unmute_(_, c_q: CallbackQuery):
     bot_id = (await bot.get_me()).id
     chat_id = c_q.message.chat.id
 
-    user = await bot.get_users(user_id)
+    user = await megux.get_users(user_id)
 
     if c_q.from_user.id == user_id:
-        get_user = await bot.get_chat_member(chat_id, user_id)
+        get_user = await megux.get_chat_member(chat_id, user_id)
         if get_user.restricted_by and get_user.restricted_by.id == bot_id:
             try:
                 await megux.get_chat_member("TheUserGe", user_id)
