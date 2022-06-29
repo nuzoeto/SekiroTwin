@@ -1,5 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import Message
+from pyrogram.enums import ChatType
 
 from megumin import megux, Config 
 from megumin.utils import check_bot_rights, check_rights, get_string, get_collection 
@@ -11,6 +12,8 @@ async def pin_msg(c: megux, m: Message):
     input_ = input_str(m).split()
     reply = m.reply_to_message
     gid = m.chat.id
+    if m.chat.type == ChatType.PRIVATE:
+        pass
     if not await check_rights(gid, m.from_user.id, "can_pin_messages"):
         return await m.reply(await get_string(m.chat.id, "NO_PIN_USER"))
     if not await check_rights(gid, c.me.id, "can_pin_messages"):
