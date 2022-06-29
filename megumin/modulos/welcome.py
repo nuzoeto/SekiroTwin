@@ -11,7 +11,7 @@ from megumin.utils import check_bot_rights
 
 
 @megux.on_message(
-    filters.group & filters.new_chat_members)
+    filters.group & filters.new_chat_members & cus_filters.auth_chats)
 async def _verify_msg_(_, msg: Message):
     """ Verify Msg for New chat Members """
     chat_id = msg.chat.id
