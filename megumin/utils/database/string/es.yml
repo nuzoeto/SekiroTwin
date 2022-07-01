@@ -86,6 +86,8 @@ CHANNELPIN_DISABLED: "Actualmente, los mensajes del canal desanclar son: <b>Desh
 CHANNELPIN_ENABLED: "Actualmente, el desanclar mensajes del canal está: <b>Habilitado</b>."
 PIN_SILENT_ON: "Silencio."
 PIN_SILENT_OFF: "Notificar a los miembros del grupo."
+UNPIN_LOGGER: "<b>{}:</b>\n#UNPIN\n<b>Administrador:</b> {} ({})\n<b>Mensaje:</b> [Enlace]({})
+PIN_LOGGER: "<b>{}:</b>\n#PIN\n<b>Administrador:</b> {} ({})\n<b>Mensaje:</b> [Enlace]({})\n<b>Modo:</b> {}"
   
   
 #ddd
