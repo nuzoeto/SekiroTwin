@@ -81,8 +81,10 @@ async def _ban_user(_, message: Message):
         if data:
             id = data["log_id"]
             id_log = int(id)
-            await megux.send_message(id_log, (await get_string(chat_id, "BAN_LOGGER")).format(message.chat.title, message.from_user.mention(), mention, user_id, reason or None))
-            return
+            try:
+                return await megux.send_message(id_log, (await get_string(chat_id, "BAN_LOGGER")).format(message.chat.title, message.from_user.mention(), mention, user_id, reason or None))
+            except PeerIdInvalid:
+                return 
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
 
