@@ -32,6 +32,7 @@ async def purge_command(megux, message: Message):
             except Exception as exc:
                 await message.reply(f"<b>ERRO:</b> {exc}")
                 return
+        await message.reply("Purge completo.")
     else:
         await message.reply("Você precisa ser admin para dar purge.")
         ignore_errors=True
