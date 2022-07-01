@@ -84,8 +84,8 @@ ANTICHANNELPIN_DISABLED: "Se ha <b>deshabilitado</b> la eliminación de mensajes
 ANTICHANNELPIN_ERROR: "Dame un argumento válido <b>on/off</b>."
 CHANNELPIN_DISABLED: "Actualmente, los mensajes del canal desanclar son: <b>Deshabilitado</b>."
 CHANNELPIN_ENABLED: "Actualmente, el desanclar mensajes del canal está: <b>Habilitado</b>."
-PIN_SILENT_ON: "Silencio".
-PIN_SILENT_OFF: "Notificar a los miembros del grupo".
+PIN_SILENT_ON: "Silencio."
+PIN_SILENT_OFF: "Notificar a los miembros del grupo."
   
   
 #ddd
