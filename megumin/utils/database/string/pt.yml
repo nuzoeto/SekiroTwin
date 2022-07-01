@@ -87,7 +87,7 @@ CHANNELPIN_DISABLED: "Atualmente a desfixação de mensagens de canais está: <b
 CHANNELPIN_ENABLED: "Atualmente a desfixação de mensagens de canais está: <b>Ativada</b>."
 PIN_SILENT_ON: "Silencio."
 PIN_SILENT_OFF: "Notificar os membros do grupo."
-UNPIN_LOGGER: "<b>{}:</b>\n#UNPIN\n<b>Administrador:</b> {} ({})\n<b>Mensagem:</b> [Link]({})
+UNPIN_LOGGER: "<b>{}:</b>\n#UNPIN\n<b>Administrador:</b> {} ({})\n<b>Mensagem:</b> [Link]({})"
 PIN_LOGGER: "<b>{}:</b>\n#PIN\n<b>Administrador:</b> {} ({})\n<b>Mensagem:</b> [Link]({})\n<b>Modo:</b> {}"
 
 #ddd
