@@ -85,6 +85,8 @@ ANTICHANNELPIN_DISABLED: "A Desfixação de mensagens de canais vinculados a est
 ANTICHANNELPIN_ERROR: "Por Favor, Me de um argumento valido <b>on/off</b>."
 CHANNELPIN_DISABLED: "Atualmente a desfixação de mensagens de canais está: <b>Desativada</b>."
 CHANNELPIN_ENABLED: "Atualmente a desfixação de mensagens de canais está: <b>Ativada</b>."
+PIN_SILENT_ON: "Silencio."
+PIN_SILENT_OFF: "Notificar os membros do grupo."
 
 #ddd
 DDD_RESULT: "📞 <b>DDD - {}</b> \n<b>- Estado:</b> {} - {}\n\n<b>Cidades:</b> <code>{}</code>"
