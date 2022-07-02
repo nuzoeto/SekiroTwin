@@ -59,8 +59,10 @@ async def baka_(_, message: Message):
         msg = await message.reply(f"<i>Searching wallpapers...</i> <b>{qu}</b>")
         results = requests.get(f"https://kuuhaku-api-production.up.railway.app/api/wallpaper?query={qu}")
         _json = results.json()['url']
-        await megux.send_document(message.chat.id, document=_json)
+        await megux.send_document(message.chat.id, document=_json, caption="<i>Send by: @WhiterKang</i>")
         await msg.delete()
+    else:
+        await m.reply(await get_string(message.chat.id, "NO_ARGS_YT"))
     
 
 @megux.on_message(filters.command(["bird", "passaro"], prefixes=["/", "!"]))
