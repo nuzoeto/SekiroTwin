@@ -159,7 +159,10 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
         await c.send_log(e)
         await cq.message.edit("<b>Error:</b> <i>{}</i>".format(e))
         return
-    await cq.message.edit(await tld(cq.message.chat.id, "UPLOADING_YT"))
+    try:
+        await cq.message.edit(await tld(cq.message.chat.id, "UPLOADING_YT"))
+    except MessageNotModified:
+        await cq.message.reply_text(await tld(cq.message.chat.id, "UPLOADING_YT"))
     await c.send_chat_action(cq.message.chat.id, enums.ChatAction.UPLOAD_VIDEO)
 
     filename = ydl.prepare_filename(yt)
@@ -172,7 +175,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
                 video=filename,
                 width=1920,
                 height=1080,
-                caption=(await tld(cq.message.chat.id, "YOUTUBE_CAPTION")).format(ttemp + yt["title"], url, datetime.timedelta(seconds=yt["duration"]), yt["channel"], yt["view_count"] or 0, yt["like_count"] or 0),
+                caption=(await tld(cq.message.chat.id, "YOUTUBE_CAPTION")).format(ttemp + yt["title"], url or "", datetime.timedelta(seconds=yt["duration"]) or 0, yt["channel"] or None, yt["view_count"] or 0, yt["like_count"] or 0),
                 duration=yt["duration"],
                 thumb=thumb,
                 reply_to_message_id=int(mid),
@@ -197,7 +200,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
                 audio=filename,
                 title=title,
                 performer=performer,
-                caption=(await tld(cq.message.chat.id, "YOUTUBE_CAPTION")).format(ttemp + yt["title"], url, datetime.timedelta(seconds=yt["duration"]), yt["channel"], yt["view_count"] or 0, yt["like_count"] or 0),
+                caption=(await tld(cq.message.chat.id, "YOUTUBE_CAPTION")).format(ttemp + yt["title"], url or "", datetime.timedelta(seconds=yt["duration"]) or 0, yt["channel"] or None, yt["view_count"] or 0, yt["like_count"] or 0),
                 duration=yt["duration"],
                 thumb=thumb,
                 reply_to_message_id=int(mid),
