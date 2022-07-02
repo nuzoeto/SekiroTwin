@@ -62,8 +62,8 @@ async def baka_(_, message: Message):
         await megux.send_document(message.chat.id, document=_json, caption="<i>Send by: @WhiterKang</i>")
         await msg.delete()
     else:
-        await m.reply(await get_string(message.chat.id, "NO_ARGS_YT"))
-    
+        return
+
 
 @megux.on_message(filters.command(["bird", "passaro"], prefixes=["/", "!"]))
 async def bird_photo(c: megux, m: Message):
