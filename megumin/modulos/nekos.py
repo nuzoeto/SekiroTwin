@@ -56,7 +56,7 @@ async def baka_(_, message: Message):
 async def baka_(_, message: Message):
     qu = input_str(message)
     if qu:
-        msg = await m.reply(f"<i>Searching wallpapers...</i> <b>{qu}</b>")
+        msg = await message.reply(f"<i>Searching wallpapers...</i> <b>{qu}</b>")
         results = requests.get(f"https://kuuhaku-api-production.up.railway.app/api/wallpaper?query={qu}")
         _json = results.json()['url']
         await megux.send_document(message.chat.id, document=_json)
