@@ -6,6 +6,7 @@ from pyrogram import Client, filters, types
 from pyrogram.types import Message
 
 from megumin import megux
+from megumin.utils.decorators import input_str
 
 
 @Client.on_message(filters.command("cat", prefixes=["/", "!"]))
@@ -53,10 +54,13 @@ async def baka_(_, message: Message):
 
 @megux.on_message(filters.command(["wall", "wallpaper"], prefixes=["/", "!"]))
 async def baka_(_, message: Message):
-    r = requests.get("https://nekos.life/api/v2/img/wallpaper")
-    g = r.json().get("url")
-    await megux.send_document(message.chat.id, g, caption="__Send by:__ @WhiterKangBOT")
-
+    qu = input_str(message)
+    if qu:
+        await m.reply(f"<i>Searching wallpapers...</i> <b>{qu}</b>")
+        results = requests.get(f"https://kuuhaku-api-production.up.railway.app/api/wallpaper?query={qu}")
+        _json = results.json()['url']
+        await msg.client.send_document(msg.chat.id, document=_json)
+    
 
 @megux.on_message(filters.command(["bird", "passaro"], prefixes=["/", "!"]))
 async def bird_photo(c: megux, m: Message):
