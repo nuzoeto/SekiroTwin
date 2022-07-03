@@ -168,6 +168,10 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
     filename = ydl.prepare_filename(yt)
     thumb = io.BytesIO((await http.get(yt["thumbnail"])).content)
     thumb.name = "thumbnail.png"
+    if yt.get("view_count"):
+        views = yt["view_count"]
+    if yt.get("like_count"):
+        likes = yt["like_count"]
     if "vid" in data:
         try:
             await c.send_video(
@@ -175,7 +179,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
                 video=filename,
                 width=1920,
                 height=1080,
-                caption=(await tld(cq.message.chat.id, "YOUTUBE_CAPTION")).format(ttemp + yt["title"], url or "", datetime.timedelta(seconds=yt["duration"]) or 0, yt["channel"] or None, yt["view_count"] or 0, yt["like_count"] or 0),
+                caption=(await tld(cq.message.chat.id, "YOUTUBE_CAPTION")).format(ttemp + yt["title"], url or "", datetime.timedelta(seconds=yt["duration"]) or 0, yt["channel"] or None, views or 0, likes or 0),
                 duration=yt["duration"],
                 thumb=thumb,
                 reply_to_message_id=int(mid),
@@ -200,7 +204,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
                 audio=filename,
                 title=title,
                 performer=performer,
-                caption=(await tld(cq.message.chat.id, "YOUTUBE_CAPTION")).format(ttemp + yt["title"], url or "", datetime.timedelta(seconds=yt["duration"]) or 0, yt["channel"] or None, yt["view_count"] or 0, yt["like_count"] or 0),
+                caption=(await tld(cq.message.chat.id, "YOUTUBE_CAPTION")).format(ttemp + yt["title"], url or "", datetime.timedelta(seconds=yt["duration"]) or 0, yt["channel"] or None, views or 0, likes or 0),
                 duration=yt["duration"],
                 thumb=thumb,
                 reply_to_message_id=int(mid),
