@@ -1,10 +1,10 @@
 from pyrogram import filters
 from pyrogram.types import Message
 from pyrogram.enums import ChatType
+from pyrogram.errors import PeerIdInvalid
 
 from megumin import megux, Config 
-from megumin.utils import check_bot_rights, check_rights, get_string, get_collection 
-from pyrogram.errors import PeerIdInvalid 
+from megumin.utils import check_bot_rights, check_rights, get_string, get_collection  
 from megumin.utils.decorators import input_str 
 
 
@@ -38,7 +38,7 @@ async def pin_msg(c: megux, m: Message):
             id = data["log_id"]
             id_log = int(id)
             try:
-                return await megux.send_message(id_log, (await get_string(gid, "PIN_LOGGER")).format(message.chat.title, message.from_user.mention(), message.from_user.id, link, mode))
+                return await megux.send_message(id_log, (await get_string(gid, "PIN_LOGGER")).format(m.chat.title, m.from_user.mention(), m.from_user.id, link, mode))
             except PeerIdInvalid:
                 return
     except Exception as e:
