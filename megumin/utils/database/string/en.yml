@@ -147,7 +147,7 @@ TG_UPLOADED: "<b>[Here, your telegraph link!](https://telegra.ph{})</b>"
 
 #LOGS
 LOGS_DEFINED: "This group has been established as the registration channel for {}."
-LOGS_DEFINED_MESSAGE: 'The registration group has been successfully established!'
+LOGS_DEFINED_MESSAGE: 'The registration channel has been successfully established!'
 
 
 #zombies
