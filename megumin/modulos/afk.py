@@ -30,12 +30,15 @@ async def afk_cmd(_, m: Message):
         await m.reply((await get_string(m.chat.id, "AFK_IS_NOW_REASON")).format(m.from_user.first_name, r))
         await m.stop_propagation()
     else:
-        await AFK_STATUS.drop()
-        await REASON.drop() 
-        await AFK_COUNT.delete_one({"mention_": m.from_user.mention()})
-        await AFK_COUNT.insert_one({"mention_": m.from_user.mention()})
-        await AFK_STATUS.insert_one({"_afk": "on"})
-        await m.reply((await get_string(m.chat.id, "AFK_IS_NOW")).format(m.from_user.first_name))
+        try:
+            await AFK_STATUS.drop()
+            await REASON.drop() 
+            await AFK_COUNT.delete_one({"mention_": m.from_user.mention()})
+            await AFK_COUNT.insert_one({"mention_": m.from_user.mention()})
+            await AFK_STATUS.insert_one({"_afk": "on"})
+            await m.reply((await get_string(m.chat.id, "AFK_IS_NOW")).format(m.from_user.first_name))
+        except AttributeError: 
+            return 
         await m.stop_propagation()
 
 @megux.on_message(filters.group & ~filters.bot, group=2)
