@@ -147,8 +147,8 @@ TG_UPLOADED: "<b>[¡Aquí, su enlace de telegraph!](https://telegra.ph{})</b>"
 
 
 #registros
-LOGS_DEFINED: "Este canal se ha establecido como el canal de registro para {}."
-LOGS_DEFINED_MESSAGE: '¡El canal de registro se ha establecido correctamente!'
+LOGS_DEFINED: "Este grupo se ha establecido como el canal de registro para {}."
+LOGS_DEFINED_MESSAGE: '¡El grupo de registro se ha establecido correctamente!'
 
 
 #zombies
