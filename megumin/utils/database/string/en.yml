@@ -83,8 +83,8 @@ CHANNELPIN_DISABLED: "Currently unpinning channel messages is: <b>Disabled</b>."
 CHANNELPIN_ENABLED: "Currently unpinning channel messages is: <b>Enabled</b>."
 PIN_SILENT_ON: "Silence."
 PIN_SILENT_OFF: "Notify group members."
-UNPIN_LOGGER: "<b>{}:</b>\n#UNPIN\n<b>Administrator:</b> {} ({})\n<b>Message:</b> Link"
-PIN_LOGGER: "<b>{}:</b>\n#PIN\n<b>Administrator:</b> {} ({})\n<b>Message:</b> Link\n<b>Mode:</b> {}"
+UNPIN_LOGGER: "<b>{}:</b>\n#UNPIN\n<b>Administrator:</b> {}<code>({})\n<b>Message:</b> [Link]({})"
+PIN_LOGGER: "<b>{}:</b>\n#PIN\n<b>Administrator:</b> {}<code>({})</code>\n<b>Message:</b> [Link]({})\n<b>Mode:</b> {}"
 
 
 #ddd
@@ -146,8 +146,8 @@ TG_UPLOADED: "<b>[Here, your telegraph link!](https://telegra.ph{})</b>"
 
 
 #LOGS
-LOGS_DEFINED: "This channel has been established as the registration channel for {}."
-LOGS_DEFINED_MESSAGE: 'The registration channel has been successfully established!'
+LOGS_DEFINED: "This group has been established as the registration channel for {}."
+LOGS_DEFINED_MESSAGE: 'The registration group has been successfully established!'
 
 
 #zombies
