@@ -4,6 +4,7 @@ from pyrogram.enums import ChatType
 
 from megumin import megux, Config 
 from megumin.utils import check_bot_rights, check_rights, get_string, get_collection 
+from pyrogram.errors import PeerIdInvalid 
 from megumin.utils.decorators import input_str 
 
 
