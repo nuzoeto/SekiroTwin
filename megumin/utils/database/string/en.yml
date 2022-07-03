@@ -81,10 +81,10 @@ ANTICHANNELPIN_DISABLED: "Unpinning messages from channels linked to this group 
 ANTICHANNELPIN_ERROR: "Please give me a valid argument <b>on/off</b>."
 CHANNELPIN_DISABLED: "Currently unpinning channel messages is: <b>Disabled</b>."
 CHANNELPIN_ENABLED: "Currently unpinning channel messages is: <b>Enabled</b>."
-UNPIN_LOGGER: "<b>{}:</b>\n#UNPIN\n<b>Administrator:</b> {} ({})\n<b>Message:</b> Link
-PIN_LOGGER: "<b>{}:</b>\n#PIN\n<b>Administrator:</b> {} ({})\n<b>Message:</b> Link\n<b>Mode:</b> {}"
 PIN_SILENT_ON: "Silence."
 PIN_SILENT_OFF: "Notify group members."
+UNPIN_LOGGER: "<b>{}:</b>\n#UNPIN\n<b>Administrator:</b> {} ({})\n<b>Message:</b> Link
+PIN_LOGGER: "<b>{}:</b>\n#PIN\n<b>Administrator:</b> {} ({})\n<b>Message:</b> Link\n<b>Mode:</b> {}"
 
 
 #ddd
