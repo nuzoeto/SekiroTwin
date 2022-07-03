@@ -9,6 +9,7 @@ from megumin.utils.decorators import input_str
 
 @megux.on_message(filters.command("pin", Config.TRIGGER))
 async def pin_msg(c: megux, m: Message):
+    LOGS = get_collection()
     input_ = input_str(m).split()
     reply = m.reply_to_message
     gid = m.chat.id
@@ -18,7 +19,7 @@ async def pin_msg(c: megux, m: Message):
         return await m.reply(await get_string(m.chat.id, "NO_PIN_BOT"))
     if not reply:
         return await m.reply(await get_string(m.chat.id, "PIN_NO_REPLY"))
-    silent = False
+    silent = False 
     msg_id = reply.id
     chat = str(f"{gid}").replace("-100", "")
     link = f"https://t.me/c/{chat}/{reply.id}"
@@ -29,6 +30,14 @@ async def pin_msg(c: megux, m: Message):
     try:
         await megux.pin_chat_message(gid, msg_id, disable_notification=silent)
         await m.reply(string.format(link))
+        data = await LOGS.find_one()
+        if data:
+            id = data["log_id"]
+            id_log = int(id)
+            try:
+                return await megux.send_message(id_log, (await get_string(chat_id, "PIN_LOGGER")).format(message.chat.title, message.from_user.mention(), link))
+            except PeerIdInvalid:
+                return
     except Exception as e:
         await megux.send_log(e)
 
