@@ -9,7 +9,7 @@ from megumin.utils.decorators import input_str
 
 @megux.on_message(filters.command("pin", Config.TRIGGER))
 async def pin_msg(c: megux, m: Message):
-    LOGS = get_collection(f"LOGS {message.chat.id}")
+    LOGS = get_collection(f"LOGS {m.chat.id}")
     input_ = input_str(m).split()
     reply = m.reply_to_message
     gid = m.chat.id
@@ -20,7 +20,7 @@ async def pin_msg(c: megux, m: Message):
     if not reply:
         return await m.reply(await get_string(m.chat.id, "PIN_NO_REPLY"))
     silent = False 
-    mode = await get_string(message.chat.id, "PIN_SILENT_ON")
+    mode = await get_string(m.chat.id, "PIN_SILENT_ON")
     msg_id = reply.id
     chat = str(f"{gid}").replace("-100", "")
     link = f"https://t.me/c/{chat}/{reply.id}"
@@ -28,7 +28,7 @@ async def pin_msg(c: megux, m: Message):
     if input_:
         if ("silent" or "s") in input_:
             silent = True
-            mode = await get_string(message.chat.id, "PIN_SILENT_OFF")
+            mode = await get_string(m.chat.id, "PIN_SILENT_OFF")
     try:
         await megux.pin_chat_message(gid, msg_id, disable_notification=silent)
         await m.reply(string.format(link))
@@ -37,7 +37,7 @@ async def pin_msg(c: megux, m: Message):
             id = data["log_id"]
             id_log = int(id)
             try:
-                return await megux.send_message(id_log, (await get_string(chat_id, "PIN_LOGGER")).format(message.chat.title, message.from_user.mention(), message.from_user.id, link, mode))
+                return await megux.send_message(id_log, (await get_string(gid, "PIN_LOGGER")).format(message.chat.title, message.from_user.mention(), message.from_user.id, link, mode))
             except PeerIdInvalid:
                 return
     except Exception as e:
