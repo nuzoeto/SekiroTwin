@@ -75,10 +75,11 @@ async def pin_msg(c: megux, m: Message):
             if data:
                 id = data["log_id"]
                 id_log = int(id)
+                await m.reply(id_log)
                 try:
                     return await megux.send_message(id_log, (await get_string(gid, "UNPIN_LOGGER")).format(m.chat.title, m.from_user.mention(), m.from_user.id, link))
                 except PeerIdInvalid:
-                    return await m.reply (".")
+                    return 
                 except Exception as e:
                     await megux.send_log(e)
         except Exception as e:
