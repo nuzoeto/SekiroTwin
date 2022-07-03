@@ -83,7 +83,7 @@ CHANNELPIN_DISABLED: "Currently unpinning channel messages is: <b>Disabled</b>."
 CHANNELPIN_ENABLED: "Currently unpinning channel messages is: <b>Enabled</b>."
 PIN_SILENT_ON: "Silence."
 PIN_SILENT_OFF: "Notify group members."
-UNPIN_LOGGER: "<b>{}:</b>\n#UNPIN\n<b>Administrator:</b> {} ({})\n<b>Message:</b> Link
+UNPIN_LOGGER: "<b>{}:</b>\n#UNPIN\n<b>Administrator:</b> {} ({})\n<b>Message:</b> Link"
 PIN_LOGGER: "<b>{}:</b>\n#PIN\n<b>Administrator:</b> {} ({})\n<b>Message:</b> Link\n<b>Mode:</b> {}"
 
 
