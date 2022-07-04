@@ -42,8 +42,7 @@ async def afk_cmd(_, m: Message):
             return
         except Exception as e:
             await megux.send_log(e)
-            return
-       
+            return     
         await m.stop_propagation()
 
 @megux.on_message(filters.group & ~filters.bot, group=2)
@@ -85,8 +84,8 @@ async def afk_mentioned(c: megux, m: Message):
                 try:
                     user_id = user.id
                     user_first_name = user.first_name
-                except UnboundLocalError:
-                    return
+                except UnboundLocalError as local:
+                    return await megux.send_log(local)
                 except FloodWait as e:  # Avoid FloodWait
                     await asyncio.sleep(e.value)
             else:
@@ -95,8 +94,8 @@ async def afk_mentioned(c: megux, m: Message):
         try:
             user_id = m.reply_to_message.from_user.id
             user_first_name = m.reply_to_message.from_user.first_name
-        except AttributeError:
-            return
+        except AttributeError as err:
+            return await megux.send_log(err)
     else:
         return
 
