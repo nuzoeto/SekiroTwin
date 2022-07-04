@@ -79,8 +79,8 @@ async def afk_mentioned(c: megux, m: Message):
                     user = await c.get_users(x.group(1))
                 except FloodWait as e:  # Avoid FloodWait
                     await asyncio.sleep(e.value)
-                except (IndexError, BadRequest, KeyError):
-                    return
+                except (IndexError, BadRequest, KeyError) as res:
+                    return await megux.send_log(res)
                 try:
                     user_id = user.id
                     user_first_name = user.first_name
@@ -102,8 +102,8 @@ async def afk_mentioned(c: megux, m: Message):
     try:
         if user_id == m.from_user.id:
             return
-    except AttributeError:
-        return
+    except AttributeError as i:
+        return await megux.send_log(i)
     except FloodWait as e:  # Avoid FloodWait
         await asyncio.sleep(e.value)
 
