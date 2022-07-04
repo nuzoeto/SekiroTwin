@@ -37,8 +37,13 @@ async def afk_cmd(_, m: Message):
             await AFK_COUNT.insert_one({"mention_": m.from_user.mention()})
             await AFK_STATUS.insert_one({"_afk": "on"})
             await m.reply((await get_string(m.chat.id, "AFK_IS_NOW")).format(m.from_user.first_name))
-        except AttributeError: 
-            return 
+        except AttributeError as err: 
+            await megux.send_log(err)
+            return
+        except Exception as e:
+            await megux.send_log(e)
+            return
+       
         await m.stop_propagation()
 
 @megux.on_message(filters.group & ~filters.bot, group=2)
