@@ -206,5 +206,5 @@ CLEANSERVICE_STATUS_ON: "Actualmente, los mensajes de limpieza de los servicios 
 CLEANSERVICE_STATUS_OFF: "Actualmente, los mensajes de limpieza de los servicios en esto grupo están <b>Deshabilitados.</b>"
 
 #promote
-PROMOTE_LOGGER: "<b>{}</b>\n#PROMOTE\n<b>Administrador:</b> {}\n<b>Administrador ascendido</b> {}"
-DEMOTE_LOGGER: "<b>{}</b>\n#DEMOTE\n<b>Administrador:</b> {}\n<b>Administrador degradado</b> {}"
+PROMOTE_LOGGER: "<b>{}</b>\n#PROMOTE\n<b>Administrador:</b> {}\n<b>Administrador ascendido:</b> {}"
+DEMOTE_LOGGER: "<b>{}</b>\n#DEMOTE\n<b>Administrador:</b> {}\n<b>Administrador degradado:</b> {}"
