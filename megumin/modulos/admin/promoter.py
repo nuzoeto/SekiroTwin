@@ -77,7 +77,7 @@ async def _promote_user(_, message: Message):
             id = data["log_id"]
             id_log = int(id)
             try:
-                await megux.send_message(id_log, await tld(chat_id, "PROMOTE_LOGGER")).format(m.chat.title, m.from_user.id, mention)
+                await megux.send_message(id_log, (await tld(chat_id, "PROMOTE_LOGGER")).format(m.chat.title, m.from_user.id, mention))
             except PeerIdInvalid:
                 return
     except Exception as e_f:
