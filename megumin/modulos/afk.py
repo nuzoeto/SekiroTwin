@@ -79,13 +79,13 @@ async def afk_mentioned(c: megux, m: Message):
                     user = await c.get_users(x.group(1))
                 except FloodWait as e:  # Avoid FloodWait
                     await asyncio.sleep(e.value)
-                except (IndexError, BadRequest, KeyError) as res:
-                    return await megux.send_log(res)
+                except (IndexError, BadRequest, KeyError):
+                    return 
                 try:
                     user_id = user.id
                     user_first_name = user.first_name
-                except UnboundLocalError as local:
-                    return await megux.send_log(local)
+                except UnboundLocalError:
+                    return 
                 except FloodWait as e:  # Avoid FloodWait
                     await asyncio.sleep(e.value)
             else:
@@ -94,16 +94,16 @@ async def afk_mentioned(c: megux, m: Message):
         try:
             user_id = m.reply_to_message.from_user.id
             user_first_name = m.reply_to_message.from_user.first_name
-        except AttributeError as err:
-            return await megux.send_log(err)
+        except AttributeError:
+            return
     else:
         return
 
     try:
         if user_id == m.from_user.id:
             return
-    except AttributeError as i:
-        return await megux.send_log(i)
+    except AttributeError:
+        return 
     except FloodWait as e:  # Avoid FloodWait
         await asyncio.sleep(e.value)
 
