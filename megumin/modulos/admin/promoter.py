@@ -5,7 +5,7 @@ import asyncio
 
 from pyrogram import filters
 from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
-from pyrogram.types import Message 
+from pyrogram.types import Message, ChatPrevileges 
  
 
 from megumin import megux
@@ -58,11 +58,13 @@ async def _promote_user(_, message: Message):
         await megux.promote_chat_member(
             chat_id,
             user_id,
+            ChatPrevileges(
             can_change_info=True,
             can_delete_messages=True,
             can_restrict_members=True,
             can_invite_users=True,
             can_pin_messages=True,
+            )
         ) 
         if args:
             await asyncio.sleep(2)
@@ -109,12 +111,14 @@ async def _demote_user(_, message: Message):
         await megux.promote_chat_member(
             chat_id,
             user_id,
+            ChatPrevileges(
             can_change_info=False,
             can_delete_messages=False,
             can_restrict_members=False,
             can_invite_users=False,
             can_pin_messages=False,
             can_manage_chat=False,
+            )
         )
         await sent.edit(f"{mention} Foi rebaixado com sucesso! ")
     except Exception as e_f:
