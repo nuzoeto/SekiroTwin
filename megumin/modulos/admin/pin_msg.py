@@ -70,7 +70,7 @@ async def pin_msg(c: megux, m: Message):
             link = f"https://t.me/c/{chat}/{reply.id}"
             string = await get_string(m.chat.id, "UNPIN_SUCCESS")
             await m.reply(string.format(link))
-            return await megux.unpin_chat_message(gid, reply.id)
+            await megux.unpin_chat_message(gid, reply.id)
             data = await LOGS.find_one()
             if data:
                 id = data["log_id"]
@@ -81,6 +81,7 @@ async def pin_msg(c: megux, m: Message):
                     return 
                 except Exception as e:
                     await megux.send_log(e)
+                    return
         except Exception as e:
             await megux.send_log(e)
     else:
