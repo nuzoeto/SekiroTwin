@@ -86,6 +86,7 @@ async def _promote_user(_, message: Message):
 
 @megux.on_message(filters.command("demote", prefixes=["/", "!"]))
 async def _demote_user(_, message: Message):
+    LOGS = get_collection(f"LOGS {message.chat.id}")
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
         await message.reply("Você não tem direitos administrativos suficientes para promover/rebaixar alguém!")
@@ -132,6 +133,14 @@ async def _demote_user(_, message: Message):
             )
         )
         await sent.edit(f"{mention} Foi rebaixado com sucesso! ")
+        data = await LOGS.find_one()
+        if data:
+            id = data["log_id"]
+            log_id = int(id)
+            try:
+                await megux.send_message(log_id, (await tld(chat_id, "DEMOTE_LOGGER")).format(message.chat.title, message.from_user.mention, mention))
+            except PeerIdInvalid:
+                return
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
