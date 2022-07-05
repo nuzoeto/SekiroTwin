@@ -74,8 +74,12 @@ async def _promote_user(_, message: Message):
         await sent.edit(f"{mention} Foi promovido com sucesso!")
         data = await LOGS.find_one()
         if data:
-            log = data["id_"]
-            id_log = int(log)
+            id = data["log_id"]
+            id_log = int(id)
+            try:
+                await megux.send_message(id_log, await tld(chat_id, "PROMOTE_LOGGER").format(m.chat.title, m.from.user.id, mention))
+            except PeerIdInvalid:
+                return
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
