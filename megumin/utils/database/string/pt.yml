@@ -205,3 +205,8 @@ CLEANSERVICE_DISABLED: "A partir de agora, todas mensagens de serviços desse gr
 CLEANSERVICE_ERROR: "Ei, Insira o argumento  <b>on/off</b>."
 CLEANSERVICE_STATUS_ON: "Atualmente a limpeza de mensagens de serviços nesse grupo estão <b>Ativadas.</b>"
 CLEANSERVICE_STATUS_OFF: "Atualmente a limpeza de mensagens de serviços nesse grupo estão <b>Desativadas.</b>"
+
+
+#promote
+PROMOTE_LOGGER:  "<b>{}</b>\n#PROMOTE\n<b>Administrador:</b> {}\n<b>Administrador Promovido</b> {}"
+DEMOTE_LOGGER:  "<b>{}</b>\n#DEMOTE\n<b>Administrador:</b> {}\n<b>Administrador Rebaixado</b> {}"
