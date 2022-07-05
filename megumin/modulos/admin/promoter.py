@@ -16,11 +16,14 @@ from megumin.utils import (
     is_dev,
     is_self,
     sed_sticker,
+    get_collection,
+    tld,
 )
 
 
 @megux.on_message(filters.command("promote", prefixes=["/", "!"]))
 async def _promote_user(_, message: Message):
+    LOGS = get_collection(f"LOGS {message.chat.id}")
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_promote_members"):
         await message.reply("Você não tem direitos administrativos suficientes para promover/rebaixar alguém!")
@@ -69,6 +72,10 @@ async def _promote_user(_, message: Message):
         if args:
             await asyncio.sleep(2)
         await sent.edit(f"{mention} Foi promovido com sucesso!")
+        data = await LOGS.find_one()
+        if data:
+            log = data["id_"]
+            id_log = int(log)
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado! 🤔`\n\n**ERROR:** `{e_f}`")
 
