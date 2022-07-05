@@ -208,5 +208,5 @@ CLEANSERVICE_STATUS_OFF: "Atualmente a limpeza de mensagens de serviços nesse g
 
 
 #promote
-PROMOTE_LOGGER:  "<b>{}</b>\n#PROMOTE\n<b>Administrador:</b> {}\n<b>Administrador Promovido</b> {}"
-DEMOTE_LOGGER:  "<b>{}</b>\n#DEMOTE\n<b>Administrador:</b> {}\n<b>Administrador Rebaixado</b> {}"
+PROMOTE_LOGGER:  "<b>{}</b>\n#PROMOTE\n<b>Administrador:</b> {}\n<b>Administrador Promovido:</b> {}"
+DEMOTE_LOGGER:  "<b>{}</b>\n#DEMOTE\n<b>Administrador:</b> {}\n<b>Administrador Rebaixado:</b> {}"
