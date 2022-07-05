@@ -205,5 +205,5 @@ CLEANSERVICE_STATUS_OFF: "Currently cleaning messages from services in this grou
 
 
 #promote
-PROMOTE_LOGGER: "<b>{}</b>\n#PROMOTE\n<b>Administrator:</b> {}\n<b>Administrator Promoted</b> {}"
-DEMOTE_LOGGER: "<b>{}</b>\n#DEMOTE\n<b>Administrator:</b> {}\n<b>Demoted Administrator</b> {}"
+PROMOTE_LOGGER: "<b>{}</b>\n#PROMOTE\n<b>Administrator:</b> {}\n<b>Administrator Promoted:</b> {}"
+DEMOTE_LOGGER: "<b>{}</b>\n#DEMOTE\n<b>Administrator:</b> {}\n<b>Demoted Administrator:</b> {}"
