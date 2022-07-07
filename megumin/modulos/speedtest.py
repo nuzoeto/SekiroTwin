@@ -1,8 +1,4 @@
 import speedtest
-import os
-import wget
-import sys
-import asyncio 
 
 from pyrogram import filters
 from pyrogram.types import Message
@@ -27,7 +23,7 @@ async def test_speed(c: megux, m: Message):
         isp = result["client"]["isp"]   
         country = result["server"]["country"] 
         cc = result["server"]["cc"]
-        path = wget.download(result["share"]) 
+        path = (result["share"]) 
         response = await m.reply_photo(
             photo=path, caption=f"🌀 <b>Nome:</b> <code>{name}</code>\n🌐 <b>Host:</b> <code>{host}</code>\n🏁 <b>País:</b> <code>{country}, {cc}</code>\n\n🏓 <b>Latência:</b> <code>{ping} ms</code>\n🔽 <b>Download:</b> <code>{dl} Mbps</code>\n🔼 <b>Upload:</b> <code>{ul} Mbps</code>\n🖥  <b>ISP:</b> <code>{isp}</code>"
         )
