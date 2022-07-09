@@ -14,7 +14,7 @@ from megumin.utils.decorators import input_str
 
 @megux.on_message(filters.command("wikipt", Config.TRIGGER))
 async def wikipt(c: megux, m: Message):
-    query = m.text
+    query = m.text or ""
     if m.reply_to_message:
         query = m.reply_to_message.text 
     kueri = re.split(pattern="wikipt", string=query)
