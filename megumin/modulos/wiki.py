@@ -17,13 +17,15 @@ async def wikipt(c: megux, m: Message):
     query = m.text
     if m.reply_to_message:
         query = m.reply_to_message.text 
-    if not query:
+    kueri = re.split(pattern="wikipt", string=query)
+    if len(kueri) == 0:
         await m.reply("Ei! Você parado cade os argumentos? Você esqueceu.")
         return
     try:
-        kueri = re.split(pattern="wikipt", string=query)
         wikipedia.set_lang("pt")
         await m.reply("<b>Resultados da pesquisa no wikipedia:\n\n{}".format(wikipedia.summary(kueri, sentences=2)))
     except wikipedia.PageError as e:
         return await m.reply("error: {}".format(e))
+    except BadRequest as et:
+        return await m.reply("error: {}".format(et))
         
