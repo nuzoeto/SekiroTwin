@@ -11,7 +11,7 @@ from pyrogram.types import Message
 from megumin import megux, Config
 from megumin.utils.decorators import input_str
 
-@megux.on_command(filters.command("wikipt", Config.TRIGGER))
+@megux.on_message(filters.command("wikipt", Config.TRIGGER))
 async def wikipt(c: megux, m: Message):
     query = input_str(m)
     if message.reply_to_message:
