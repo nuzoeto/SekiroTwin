@@ -21,5 +21,5 @@ async def wikipt(c: megux, m: Message):
         return
     try:
         wikipedia.set_lang("pt")
-        await m.reply("<b>Resultados da pesquisa no wikipedia:\n\n{}".format(wikipedia.summary))
+        await m.reply("<b>Resultados da pesquisa no wikipedia:\n\n{}".format(wikipedia.summary(query, sentences=2)))
         
