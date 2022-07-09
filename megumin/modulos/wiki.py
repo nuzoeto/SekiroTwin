@@ -22,4 +22,6 @@ async def wikipt(c: megux, m: Message):
     try:
         wikipedia.set_lang("pt")
         await m.reply("<b>Resultados da pesquisa no wikipedia:\n\n{}".format(wikipedia.summary(query, sentences=2)))
+    except wikipedia.PageError as e:
+        return await m.reply("error: {}".format(e))
         
