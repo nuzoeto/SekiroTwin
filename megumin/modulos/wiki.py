@@ -14,8 +14,8 @@ from megumin.utils.decorators import input_str
 @megux.on_message(filters.command("wikipt", Config.TRIGGER))
 async def wikipt(c: megux, m: Message):
     query = input_str(m)
-    if message.reply_to_message:
-        query = message.reply_to_message.text 
+    if m.reply_to_message:
+        query = m.reply_to_message.text 
     if not query:
         await m.reply("Ei! Você parado cade os argumentos? Você esqueceu.")
         return
