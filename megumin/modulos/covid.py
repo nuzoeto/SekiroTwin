@@ -1,4 +1,4 @@
-from gpytranlate import Translator
+from gpytranslate import Translator
 from covid import Covid
 
 from pyrogram import filters
