@@ -62,7 +62,7 @@ async def wikipt(c: megux, m: Message):
     try:
         wikipedia.set_lang("es")
         keyboard = [[InlineKeyboardButton(text=await tld(m.chat.id, "MOREINFO_BNT"), url=wikipedia.page(kueri).url)]]
-        await m.reply((await tld(m.chat.id, "WIKI_RESULT")).format(wikipedia.summary(kueri, sentences=3)), reply_markup=InlineKeyboardMarkup(keyboard))
+        await m.reply((await tld(m.chat.id, "WIKI_RESULT")).format(wikipedia.summary(kueri, sentences=4)), reply_markup=InlineKeyboardMarkup(keyboard))
     except wikipedia.PageError as e:
         return await m.reply("error: {}".format(e))
     except BadRequest as et:
