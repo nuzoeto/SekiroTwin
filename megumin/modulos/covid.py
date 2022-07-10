@@ -7,7 +7,7 @@ from pyrogram.types import Message
 from megumin import megux, Config
 from megumin.utils.decorators import input_str
 
-cvid = Covid(source="worldmeters")
+cvid = Covid(source="worldometers")
 
 
 @megux.on_message(filters.command("covid", Config.TRIGGER))
