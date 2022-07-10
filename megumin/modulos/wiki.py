@@ -10,11 +10,12 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux, Config
+from megumin.utils.decorators import input_str 
 
 
 @megux.on_message(filters.command("wikipt", Config.TRIGGER))
 async def wikipt(c: megux, m: Message):
-    if len(m.command) == 0:
+    if not input_str:
         await m.reply("Ei! Você parado cade os argumentos? Você esqueceu.")
         return
     query = m.text
