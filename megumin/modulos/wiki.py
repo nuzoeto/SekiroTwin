@@ -30,4 +30,6 @@ async def wikipt(c: megux, m: Message):
         return await m.reply("error: {}".format(e))
     except BadRequest as et:
         return await m.reply("error: {}".format(et))
+    except wikipedia.exceptions.DesambiguationError as eet
+        return await m.reply("⚠ Error\n Há muitas coisa! Expresse melhor para achar o resultado!\nPossíveis resultados da consulta:\n{}".format(eet))
         
