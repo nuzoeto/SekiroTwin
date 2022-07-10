@@ -1,4 +1,4 @@
-
+from gpytranlate import Translator
 from covid import Covid
 
 from pyrogram import filters
@@ -8,6 +8,7 @@ from megumin import megux, Config
 from megumin.utils.decorators import input_str
 
 cvid = Covid(source="worldometers")
+tr = Translator()
 
 
 @megux.on_message(filters.command("covid", Config.TRIGGER))
@@ -18,7 +19,8 @@ async def covid_command(c: megux, m: Message):
     if country in ["south korea", "korea"]:
         country = "s. korea"
     try:
-        c_case = cvid.get_status_by_country_name(country)
+        tr_ = await tr.translate(country, targetlang="en")
+        c_case = cvid.get_status_by_country_name(tr_.text)
     except Exception:
         return await m.reply("An error have occured!, Are you sure the country name is correct?")
     active = c_case["active"]
