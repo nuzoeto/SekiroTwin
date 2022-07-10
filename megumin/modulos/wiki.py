@@ -24,7 +24,7 @@ async def wikipt(c: megux, m: Message):
     kueri = re.split(pattern="wikipt", string=query)
     try:
         wikipedia.set_lang("pt")
-        await m.reply("<b>Resultados da pesquisa no wikipedia:\n\n{}".format(wikipedia.summary(kueri, sentences=2)))
+        await m.reply("<b>Resultados da pesquisa no wikipedia:</b>\n\n{}".format(wikipedia.summary(kueri, sentences=2)))
     except wikipedia.PageError as e:
         return await m.reply("error: {}".format(e))
     except BadRequest as et:
