@@ -19,6 +19,7 @@ BACK_BNT: "⬅️ Atrás"
 HELP_BNT: "❔ Ayuda"
 REPO_BNT: "📦 Código Fuente"
 ADD_BNT: "✨ Agrégame a un chat"
+MOREINFO_BNT: "🔧 Más información..."
 HELP_STICKERS: "Aquí hay ayuda para el módulo <b>Pegatinas</b>:\n\n• /stickerid: responde a una pegatina para que pueda decirte tu ID de archivo.\n• /getsticker: responde a una pegatina para cargar el archivo PNG sin formato.\n• /kang: responde a una pegatina para agregarla a tu paquete."
 HELP_DISABLE: "Aquí hay ayuda para el módulo <b>Deshabilitar</b>:\n\nNo todos quieren todas las características que ofrece el bot. Es mejor no usar algunos comandos para evitar el spam y el abuso.\n\ nEsto le permite deshabilitar algunos comandos.\n\n• /disableable Vea qué comandos se pueden deshabilitar.\n\n<b>Solo administrador</b>:\n\n• /enable : habilita un comando.\n • /disable : deshabilita un comando."
 HELP_ADMIN: "Aquí hay ayuda para el módulo <b>Administrador</b>:\n\n<b>Todos los usuarios:</b>\n• /admins - Lista todos los administradores de chat\n\n<b>Administrador solo:</b>\n• /antichannelpin [on/off] Desancla automáticamente los mensajes de un canal vinculado.\n• /cleanservice [on/off] Limpia automáticamente los mensajes <b>(ejemplo: cuando un usuario se une al chat.\n• /pin: anclar el mensaje respondido\n• /unpin: anular el mensaje actualmente anclado\n• /promover < nombre de usuario/mensaje de respuesta >: promover a un usuario a administrador de chat\n • /demote <nombre de usuario/mensaje de respuesta>: elimina los privilegios de administrador del usuario\n• /título <título aquí>: establece una etiqueta de administrador personalizada para un usuario promocionado por WhiterKang\n• /zombies: busca y borra las cuentas eliminadas en el chat"
@@ -208,3 +209,6 @@ CLEANSERVICE_STATUS_OFF: "Actualmente, los mensajes de limpieza de los servicios
 #promote
 PROMOTE_LOGGER: "<b>{}</b>\n#PROMOTE\n<b>Administrador:</b> {}\n<b>Administrador ascendido:</b> {}"
 DEMOTE_LOGGER: "<b>{}</b>\n#DEMOTE\n<b>Administrador:</b> {}\n<b>Administrador degradado:</b> {}"
+
+#wikipédia 
+WIKI_RESULT: "<b>Resultados de su búsqueda en wikipedia:</b>\n\n{}"
