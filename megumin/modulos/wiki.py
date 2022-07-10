@@ -18,9 +18,7 @@ async def wikipt(c: megux, m: Message):
     if not input_str(m):
         await m.reply("Ei! Você parado cade os argumentos? Você esqueceu.")
         return
-    query = m.text
-    if m.reply_to_message:
-        query = m.reply_to_message.text 
+    query = m.text 
     kueri = re.split(pattern="wikipt", string=query)
     try:
         wikipedia.set_lang("pt")
