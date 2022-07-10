@@ -10,6 +10,7 @@ from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from megumin import megux, Config
+from megumin.utils import tld 
 from megumin.utils.decorators import input_str 
 
 
@@ -22,8 +23,8 @@ async def wikipt(c: megux, m: Message):
     kueri = re.split(pattern="wikipt", string=query)
     try:
         wikipedia.set_lang("pt")
-        keyboard = [[InlineKeyboardButton(text="🔧 Mais Informações...", url=wikipedia.page(kueri).url)]]
-        await m.reply("<b>Resultados da pesquisa no wikipedia:</b>\n\n{}".format(wikipedia.summary(kueri, sentences=2)), reply_markup=InlineKeyboardMarkup(keyboard))
+        keyboard = [[InlineKeyboardButton(text=await tld(m.chat.id, "MOREINFO_BNT"), url=wikipedia.page(kueri).url)]]
+        await m.reply((await tld(m.chat.id, "WIKI_RESULT")).format(wikipedia.summary(kueri, sentences=2)), reply_markup=InlineKeyboardMarkup(keyboard))
     except wikipedia.PageError as e:
         return await m.reply("error: {}".format(e))
     except BadRequest as et:
