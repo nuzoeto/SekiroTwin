@@ -38,8 +38,8 @@ async def app(c: megux, message: Message):
         app_link = "https://play.google.com" + _app_link
 
         app_details = f"[📲]({app_icon}) **{app_name}**\n\n"
-        app_details += f"`Desenvolvedor :` [{app_dev}]({app_dev_link})\n"
-        app_details += f"`Avaliação :` {app_rating} ⭐️\n"
+        app_details += f"<b>Desenvolvedor :</b> <i>[{app_dev}]({app_dev_link})</i>\n"
+        app_details += f"<b>Avaliação :</b> <i>{app_rating} ⭐️</i>\n"
         keyboard = [[InlineKeyboardButton("Ver na Play Store", url=app_link)]]
         await i.edit(app_details, reply_markup=InlineKeyboardMarkup(keyboard), disable_web_page_preview=False)
     except IndexError:
