@@ -182,6 +182,7 @@ ANDROID_PHH: "<b>Última versión de Phh GSI</b>\n"
 ANDROID_PHH_NAME: "<b>Nombre:</b> <code>{}</code>\n"
 ANDROID_PHH_VERSION: "<b>Versión:</b> <code>{}</code>\n"
 ANDROID_PHH_DATE: "<b>Fecha:</b> <code>{}</code>\n\n"
+VIEW_IN_PLAYSTORE_BNT: "Ver la tienda de juegos"
 
 
 #slaps
