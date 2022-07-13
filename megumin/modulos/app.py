@@ -5,6 +5,7 @@ from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton 
 
 from megumin import megux, Config
+from megumin.utils import tld
 from megumin.utils.decorators import input_str
 
 @megux.on_message(filters.command(["app"], Config.TRIGGER))
@@ -12,6 +13,8 @@ async def app(c: megux, message: Message):
     try:
         i = await message.reply("`Procurando...`")
         app_name = "+".join(message.text.split(" "))
+        if not input_str(message):
+            return await i.edit("<i>Eu preciso que você digite algo.</i>")
         async with aiohttp.ClientSession() as ses, ses.get(
                 f"https://play.google.com/store/search?q={app_name}&c=apps") as res:
             result = bs4.BeautifulSoup(await res.text(), "lxml")
@@ -40,7 +43,7 @@ async def app(c: megux, message: Message):
         app_details = f"📲**{app_name}**\n\n"
         app_details += f"<b>Desenvolvedor :</b> <i>[{app_dev}]({app_dev_link})</i>\n"
         app_details += f"<b>Avaliação :</b> <i>{app_rating} ⭐️</i>\n"
-        keyboard = [[InlineKeyboardButton("Ver na Play Store", url=app_link)]]
+        keyboard = [[InlineKeyboardButton(await tld(message.chat.id, "VIEW_IN_PLAYSTORE_BNT"), url=app_link)]]
         await message.reply_photo(app_icon, caption=app_details, reply_markup=InlineKeyboardMarkup(keyboard))
         await i.delete()
     except IndexError:
