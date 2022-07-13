@@ -37,11 +37,12 @@ async def app(c: megux, message: Message):
         )
         app_link = "https://play.google.com" + _app_link
 
-        app_details = f"[📲]({app_icon}) **{app_name}**\n\n"
+        app_details = f"📲**{app_name}**\n\n"
         app_details += f"<b>Desenvolvedor :</b> <i>[{app_dev}]({app_dev_link})</i>\n"
         app_details += f"<b>Avaliação :</b> <i>{app_rating} ⭐️</i>\n"
         keyboard = [[InlineKeyboardButton("Ver na Play Store", url=app_link)]]
-        await i.edit(app_details, reply_markup=InlineKeyboardMarkup(keyboard), disable_web_page_preview=False)
+        await message.reply_photo(app_icon, caption=app_details, reply_markup=InlineKeyboardMarkup(keyboard))
+        await i.delete()
     except IndexError:
         await i.edit("No result found in search. Please enter **Valid app name**")
     except Exception as err:
