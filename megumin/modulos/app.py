@@ -41,8 +41,8 @@ async def app(c: megux, message: Message):
         app_link = "https://play.google.com" + _app_link
 
         app_details = f"📲<b>{app_name}</b>\n\n"
-        app_details += "<b>Desenvolvedor :</b> <i>[{}]({})</i>\n".format(app_dev, app_dev_link)
-        app_details += "<b>Avaliação :</b> <i>{} ⭐️</i>\n".format(app_rating)
+        app_details += (await tld(message.chat.id, "APP_DEVELOPER")).format(app_dev, app_dev_link)
+        app_details += (await tld(message.chat.id, "APP_RATING")).format(app_rating)
         keyboard = [[InlineKeyboardButton(await tld(message.chat.id, "VIEW_IN_PLAYSTORE_BNT"), url=app_link)]]
         await message.reply_photo(app_icon, caption=app_details, reply_markup=InlineKeyboardMarkup(keyboard))
         await i.delete()
