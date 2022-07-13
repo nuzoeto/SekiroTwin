@@ -117,12 +117,12 @@ async def setantichannelpin(c: megux, m: Message):
 @megux.on_message(filters.linked_channel, group=-1)
 async def acp_action(c: megux, m: Message):
     gid = m.chat.id 
-    if not await check_rights(gid, c.me.id, "can_pin_messages"):
-        return await m.reply(await get_string(m.chat.id, "NO_PIN_BOT"))
     DATA = get_collection(f"ANTICHANNELPIN {m.chat.id}")
     get_acp = await DATA.find_one({"status": "on"})
     getmychatmember = await m.chat.get_member("me")
     if get_acp:
+        if not await check_rights(gid, c.me.id, "can_pin_messages"):
+            return await m.reply(await get_string(m.chat.id, "NO_PIN_BOT"))
         await m.unpin()
     else:
         pass
