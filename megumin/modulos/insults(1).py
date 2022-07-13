@@ -12,10 +12,12 @@ async def printer(_, m: Message):
     off = await DISABLED.find_one({"_cmd": query})
     if off:
         return
-    insult = random.choice(INSULTS)
-    await m.reply(f"__{insult}__")
+    else:
+        insult = random.choice(INSULTS)
+        await m.reply(f"__{insult}__")
 
-INSULTS = ["Por que você é tão idiota assim?",
+INSULTS = [
+     "Por que você é tão idiota assim?",
      "Infelizmente sua mãe não conseguiu abortar você a tempo.",
      "Acho melhor você sair da minha frente, não gosto de poluição visual.",
      "Comando não encontrado. Como seu pai.",
