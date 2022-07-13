@@ -18,9 +18,8 @@ async def description_gt(c: megux, m: Message):
 
     text = title.replace(preco, "")
     sub_text = text.replace(link, "")
-    final_text = sub_text.replace("", "")
+    final_text = sub_text.replace(" ", "")
 
-    resultado = f"""
-<b>{final_text}</b>\n\n💥 Preço de oferta: R$ {preco}\nFrete grátis para prime💥\n\n📦{link}\n⚠ Sujeito a alteração de preço sem prévio aviso."""
+    resultado = f"""<b>{final_text}</b>\n\n💥 Preço de oferta: R$ {preco}\nFrete grátis para prime💥\n\n📦{link}\n⚠ Sujeito a alteração de preço sem prévio aviso."""
 
     await m.reply(resultado)
