@@ -184,6 +184,8 @@ ANDROID_PHH_NAME: "<b>Nome:</b> <code>{}</code>\n"
 ANDROID_PHH_VERSION:  "<b>Versão:</b> <code>{}</code>\n"
 ANDROID_PHH_DATE: "<b>Data:</b> <code>{}</code>\n\n"
 VIEW_IN_PLAYSTORE_BNT: "Ver na Play Store"
+APP_DEVELOPER: "<b>Desenvolvedor :</b> <i>[{}]({})</i>\n"
+APP_RATING: "<b>Avaliação :</b> <i>{} ⭐️</i>\n"
 
 
 #slaps
