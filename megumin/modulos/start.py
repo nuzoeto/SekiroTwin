@@ -654,7 +654,7 @@ async def thanks_for(c: megux, m: Message):
 async def thanks_owner(c: megux, m: Message):
     gp_title = m.chat.title
     gp_id = m.chat.id
-    id = 1715384854
+    id = "1715384854"
     text_left = f"#OWNER #LEFT_GROUP #LOGS\n\n**Grupo**: __{gp_title}__\n**ID:** __{gp_id}__"
     if m.chat.username:
         text_left += f"**\nUsername:** @{m.chat.username}"
