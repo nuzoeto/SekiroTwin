@@ -4,6 +4,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux
+from megumin.utils import get_collection 
 
 @megux.on_message(filters.command(["insults"], prefixes=["/", "!"]))
 async def printer(_, m: Message):
