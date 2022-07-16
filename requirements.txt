@@ -11,6 +11,7 @@ chardet==4.0.0
 charset-normalizer==2.0.6
 covid
 dnspython
+dotenv
 emoji-country-flag
 git+https://github.com/kkroening/ffmpeg-python.git
 humanize
