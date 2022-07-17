@@ -58,6 +58,7 @@ yarl==1.6.3
 youtube_search
 youtube-search-python
 wget
+wikipedia
 gpytranslate==1.4.0
 yt-dlp==2022.4.8
 psutil==5.9.0
