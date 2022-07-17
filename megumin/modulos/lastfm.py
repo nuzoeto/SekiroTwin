@@ -1,6 +1,7 @@
 # lastfm module by @fnix
 
 import asyncio
+import requests 
 import os
 
 from telegraph import upload_file
