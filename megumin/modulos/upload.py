@@ -15,7 +15,7 @@ from pyrogram.enums import ParseMode
 from pyrogram import filters 
 from pyrogram.types import Message 
 
-from megumin import megux
+from megumin import megux, Config
 from megumin.utils import humanbytes 
 
 class ProcessCanceled(Exception):
