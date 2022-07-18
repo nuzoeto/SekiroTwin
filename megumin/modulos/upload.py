@@ -100,7 +100,7 @@ async def vid_upload(message: Message, path, del_path: bool = False, extra: str 
         if t_m and t_m.has("height"):
             height = t_m.get("height")
     try:
-        msg = await message.client.send_video(
+        msg = await megux.send_video(
             chat_id=message.chat.id,
             video=str_path,
             duration=duration,
