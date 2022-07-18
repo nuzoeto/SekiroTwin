@@ -96,18 +96,6 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
         )
         progress_str = progress_str.format(
             "trying to download",
-            "".join(
-                (
-                    FINISHED_PROGRESS_STR
-                    for i in range(math.floor(percentage / 5))
-                )
-            ),
-            "".join(
-                (
-                    UNFINISHED_PROGRESS_STR
-                    for i in range(20 - math.floor(percentage / 5))
-                )
-            ),
             round(percentage, 2),
             url,
             custom_file_name,
