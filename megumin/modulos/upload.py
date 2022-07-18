@@ -17,6 +17,7 @@ from pyrogram.types import Message
 
 from megumin import megux, Config
 from megumin.utils import humanbytes 
+from megumin.utils.decorators import input_str
 
 class ProcessCanceled(Exception):
     """raise if thread has terminated"""
@@ -27,6 +28,7 @@ async def upload_(_, m: Message):
     url = input_str(m)
     if not url:
         return await m.reply("Vou enviar o Vento?")
+    msg = await m.reply("<i>Downloading...</i>")
     is_url = re.search(r"(?:https?|ftp)://[^|\s]+\.[^|\s]+", path_)
     del_path = False
     if is_url:
@@ -34,7 +36,7 @@ async def upload_(_, m: Message):
         try:
             path_, _ = await url_download(message, path_)
         except ProcessCanceled:
-            await msg.edit("`Process Canceled!`", del_in=5)
+            await msg.edit("`Process Canceled!`")
             return
         except Exception as e_e:  # pylint: disable=broad-except
             await message.err(str(e_e))
@@ -51,7 +53,7 @@ async def upload_(_, m: Message):
     except IndexError:
         await msg.edit("wrong syntax\n`.upload [path]`")
     else:
-        await message.delete()
+        await msg.delete()
         await upload_path(message=message, path=string, del_path=del_path)
 
 async def url_download(message: Message, url: str) -> Tuple[str, int]:
