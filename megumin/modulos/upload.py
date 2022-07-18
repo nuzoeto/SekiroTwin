@@ -29,17 +29,17 @@ async def upload_(_, m: Message):
     url = input_str(m)
     if not url:
         return await m.reply("Vou enviar o Vento?")
-    is_url = re.search(r"(?:https?|ftp)://[^|\s]+\.[^|\s]+", path_)
+    is_url = re.search(r"(?:https?|ftp)://[^|\s]+\.[^|\s]+", url)
     del_path = False
     if is_url:
         del_path = True
         try:
-            path_, _ = await url_download(message, path_)
+            path_, _ = await url_download(message, url)
         except ProcessCanceled:
             await m.reply("`Process Canceled!`")
             return
         except Exception as e_e:  # pylint: disable=broad-except
-            await message.reply(str(e_e))
+            await m.reply(str(e_e))
             return
     if "|" in path_:
         path_, file_name = path_.split("|")
@@ -51,9 +51,9 @@ async def upload_(_, m: Message):
     try:
         string = Path(path_)
     except IndexError:
-        await message.reply("wrong syntax\n`.upload [path]`")
+        await m.reply("wrong syntax\n`.upload [path]`")
     else:
-        await upload_path(message=message, path=string, del_path=del_path)
+        await upload_path(message=m, path=string, del_path=del_path)
 
         
 async def url_download(message: Message, url: str) -> Tuple[str, int]:
