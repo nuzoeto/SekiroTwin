@@ -21,6 +21,7 @@ heroku3
 hpack==4.0.0
 httpcore==0.13.7
 httpx[http2]>=0.18.1,<1.0.0
+hachoir
 humanize==4.0.0
 hyperframe==6.0.1
 idna==3.2
