@@ -34,7 +34,7 @@ async def upload_(_, m: Message):
     if is_url:
         del_path = True
         try:
-            path_, _ = await url_download(message, url)
+            path_, _ = await url_download(m, url)
         except ProcessCanceled:
             await m.reply("`Process Canceled!`")
             return
@@ -58,7 +58,7 @@ async def upload_(_, m: Message):
         
 async def url_download(message: Message, url: str) -> Tuple[str, int]:
     """download from link"""
-    msg = await message.reply("`Uploading...`")
+    msg = await message.reply("<i>Downloading...</i>")
     start_t = datetime.now()
     custom_file_name = unquote_plus(os.path.basename(url))
     if "|" in url:
