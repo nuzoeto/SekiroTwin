@@ -41,13 +41,13 @@ async def upload_path(message: Message, path: Path, del_path: bool):
 
 async def upload(message: Message, path: Path, del_path: bool = False, extra: str = '', with_thumb: bool = True):
     if path.name.lower().endswith(
-            (".mkv", ".mp4", ".webm", ".m4v")) and ('d' not in message.flags):
+            (".mkv", ".mp4", ".webm", ".m4v")):
         await vid_upload(message, path, del_path, extra, with_thumb)
     elif path.name.lower().endswith(
-            (".mp3", ".flac", ".wav", ".m4a")) and ('d' not in message.flags):
+            (".mp3", ".flac", ".wav", ".m4a")):
         await audio_upload(message, path, del_path, extra, with_thumb)
     elif path.name.lower().endswith(
-            (".jpg", ".jpeg", ".png", ".bmp")) and ('d' not in message.flags):
+            (".jpg", ".jpeg", ".png", ".bmp")):
         await photo_upload(message, path, del_path, extra)
     else:
         await doc_upload(message, path, del_path, extra, with_thumb)
@@ -120,3 +120,37 @@ async def vid_upload(message: Message, path, del_path: bool = False, extra: str 
         await finalize(message, msg, start_t)
         if os.path.exists(str_path) and del_path:
             os.remove(str_path)
+
+
+async def audio_upload(message: Message, path, del_path: bool = False, extra: str = '', with_thumb: bool = True):
+    title = None
+    artist = None
+    thumb = None
+    duration = 0
+    str_path = str(path)
+    file_size = humanbytes(os.stat(str_path).st_size)
+    metadata = extractMetadata(createParser(str_path))
+    if metadata and metadata.has("title"):
+        title = metadata.get("title")
+    if metadata and metadata.has("artist"):
+        artist = metadata.get("artist")
+    if metadata and metadata.has("duration"):
+        duration = metadata.get("duration").seconds
+    sent: Message = await message.client.send_message(
+        message.chat.id, f"`Uploading {str_path} as audio ... {extra}`")
+    start_t = datetime.now()
+    await message.client.send_chat_action(message.chat.id, enums.ChatAction.UPLOAD_AUDIO)
+    try:
+        msg = await message.client.send_audio(
+            chat_id=message.chat.id,
+            audio=str_path,
+            thumb=thumb,
+            caption=f"{path.name}\n[ {file_size} ]",
+            title=title,
+            performer=artist,
+            duration=duration,
+            parse_mode=enums.ParseMode.HTML,
+            disable_notification=True,
+            progress=progress,
+            progress_args=(message, f"uploading {extra}", str_path)
+        )
