@@ -93,7 +93,6 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
             "**ETA** : `{}`"
         )
         progress_str_ = progress_str.format(
-            "trying to download",
             round(percentage, 2),
             url,
             custom_file_name,
