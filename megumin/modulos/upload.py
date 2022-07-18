@@ -13,7 +13,7 @@ from urllib.parse import unquote_plus
 
 from hachoir.parser import createParser
 from pyrogram.errors import FloodWait
-from pyrogram.enums import ParseMode 
+from pyrogram.enums import ParseMode, ChatAction 
 from pyrogram import filters 
 from pyrogram.types import Message 
 
@@ -119,7 +119,7 @@ async def doc_upload(message: Message, path, del_path: bool = False, extra: str 
     sent: Message = await megux.send_message(
         message.chat.id, f"`Uploading {str_path} as a doc ... {extra}`")
     start_t = datetime.now()
-    await megux.send_chat_action(message.chat.id, enums.ChatAction.UPLOAD_DOCUMENT)
+    await megux.send_chat_action(message.chat.id, ChatAction.UPLOAD_DOCUMENT)
     try:
         msg = await megux.send_document(
             chat_id=message.chat.id,
@@ -150,7 +150,7 @@ async def vid_upload(message: Message, path, del_path: bool = False, extra: str 
     sent: Message = await megux.send_message(
         message.chat.id, f"`Uploading {str_path} as a video ... {extra}`")
     start_t = datetime.now()
-    await megux.send_chat_action(message.chat.id, enums.ChatAction.UPLOAD_VIDEO)
+    await megux.send_chat_action(message.chat.id, ChatAction.UPLOAD_VIDEO)
     width = 0
     height = 0
     if thumb:
@@ -200,7 +200,7 @@ async def audio_upload(message: Message, path, del_path: bool = False, extra: st
     sent: Message = await megux.send_message(
         message.chat.id, f"`Uploading {str_path} as audio ... {extra}`")
     start_t = datetime.now()
-    await megux.send_chat_action(message.chat.id, enums.ChatAction.UPLOAD_AUDIO)
+    await megux.send_chat_action(message.chat.id, ChatAction.UPLOAD_AUDIO)
     try:
         msg = await megux.send_audio(
             chat_id=message.chat.id,
@@ -228,7 +228,7 @@ async def photo_upload(message: Message, path, del_path: bool = False, extra: st
     sent: Message = await megux.send_message(
         message.chat.id, f"`Uploading {path.name} as photo ... {extra}`")
     start_t = datetime.now()
-    await megux.send_chat_action(message.chat.id, enums.ChatAction.UPLOAD_PHOTO)
+    await megux.send_chat_action(message.chat.id, ChatAction.UPLOAD_PHOTO)
     try:
         msg = await megux.send_photo(
             chat_id=message.chat.id,
