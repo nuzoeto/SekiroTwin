@@ -1,5 +1,6 @@
 import io
 import os
+import math
 import re
 import time
 import asyncio
@@ -23,6 +24,11 @@ from megumin.utils.decorators import input_str
 
 class ProcessCanceled(Exception):
     """raise if thread has terminated"""
+    
+    
+FINISHED_PROGRESS_STR = os.environ.get("FINISHED_PROGRESS_STR")
+UNFINISHED_PROGRESS_STR = os.environ.get("UNFINISHED_PROGRESS_STR")
+
 
 
 @megux.on_message(filters.command("upload", Config.TRIGGER))
@@ -77,6 +83,39 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
         percentage = downloader.get_progress() * 100
         speed = downloader.get_speed(human=True)
         estimated_total_time = downloader.get_eta(human=True)
+        progress_str = (
+            "__{}__\n"
+            "```[{}{}]```\n"
+            "**Progress** : `{}%`\n"
+            "**URL** : `{}`\n"
+            "**FILENAME** : `{}`\n"
+            "**Completed** : `{}`\n"
+            "**Total** : `{}`\n"
+            "**Speed** : `{}`\n"
+            "**ETA** : `{}`"
+        )
+        progress_str = progress_str.format(
+            "trying to download",
+            "".join(
+                (
+                    FINISHED_PROGRESS_STR
+                    for i in range(math.floor(percentage / 5))
+                )
+            ),
+            "".join(
+                (
+                    UNFINISHED_PROGRESS_STR
+                    for i in range(20 - math.floor(percentage / 5))
+                )
+            ),
+            round(percentage, 2),
+            url,
+            custom_file_name,
+            humanbytes(downloaded),
+            humanbytes(total_length),
+            speed,
+            estimated_total_time,
+        )
         count += 1
         if count >= 10:
             count = 0
