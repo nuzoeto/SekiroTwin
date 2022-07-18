@@ -83,25 +83,6 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
         percentage = downloader.get_progress() * 100
         speed = downloader.get_speed(human=True)
         estimated_total_time = downloader.get_eta(human=True)
-        progress_str = (
-            "**Progress** : `{}%`\n"
-            "**URL** : `{}`\n"
-            "**FILENAME** : `{}`\n"
-            "**Completed** : `{}`\n"
-            "**Total** : `{}`\n"
-            "**Speed** : `{}`\n"
-            "**ETA** : `{}`"
-        )
-        progress_str_ = progress_str.format(
-            round(percentage, 2),
-            url,
-            custom_file_name,
-            humanbytes(downloaded),
-            humanbytes(total_length),
-            speed,
-            estimated_total_time,
-        )
-        await msg.edit(progress_str_)
         count += 1
         if count >= 10:
             count = 0
