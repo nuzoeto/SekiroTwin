@@ -64,7 +64,7 @@ async def doc_upload(message: Message, path, del_path: bool = False, extra: str 
             chat_id=message.chat.id,
             document=str_path,
             caption=path.name,
-            parse_mode=enums.ParseMode.HTML,
+            parse_mode=ParseMode.HTML,
             force_document=True,
             disable_notification=True,
         )
@@ -106,7 +106,7 @@ async def vid_upload(message: Message, path, del_path: bool = False, extra: str 
             width=width,
             height=height,
             caption=path.name,
-            parse_mode=enums.ParseMode.HTML,
+            parse_mode=ParseMode.HTML,
             disable_notification=True,
         )
     except ValueError as e_e:
