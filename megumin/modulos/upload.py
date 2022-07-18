@@ -79,3 +79,44 @@ async def doc_upload(message: Message, path, del_path: bool = False, extra: str 
         if os.path.exists(str_path) and del_path:
             os.remove(str_path)
 
+
+async def vid_upload(message: Message, path, del_path: bool = False, extra: str = '', with_thumb: bool = True):
+    str_path = str(path)
+    duration = 0
+    metadata = extractMetadata(createParser(str_path))
+    if metadata and metadata.has("duration"):
+        duration = metadata.get("duration").seconds
+    sent: Message = await megux.send_message(
+        message.chat.id, f"`Uploading {str_path} as a video ... {extra}`")
+    start_t = datetime.now()
+    await megux.send_chat_action(message.chat.id, enums.ChatAction.UPLOAD_VIDEO)
+    width = 0
+    height = 0
+    if thumb:
+        t_m = extractMetadata(createParser(thumb))
+        if t_m and t_m.has("width"):
+            width = t_m.get("width")
+        if t_m and t_m.has("height"):
+            height = t_m.get("height")
+    try:
+        msg = await message.client.send_video(
+            chat_id=message.chat.id,
+            video=str_path,
+            duration=duration,
+            width=width,
+            height=height,
+            caption=path.name,
+            parse_mode=enums.ParseMode.HTML,
+            disable_notification=True,
+        )
+    except ValueError as e_e:
+        await sent.edit(f"Skipping `{str_path}` due to {e_e}")
+    except Exception as u_e:
+        await sent.edit(str(u_e))
+        raise u_e
+    else:
+        await sent.delete()
+        await remove_thumb(thumb)
+        await finalize(message, msg, start_t)
+        if os.path.exists(str_path) and del_path:
+            os.remove(str_path)
