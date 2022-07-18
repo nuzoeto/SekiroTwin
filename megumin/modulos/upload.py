@@ -13,6 +13,7 @@ from pyrogram import filters
 from pyrogram.types import Message 
 
 from megumin import megux
+from megumin.utils import humanbytes 
 
 
 async def upload_path(message: Message, path: Path, del_path: bool):
@@ -136,21 +137,62 @@ async def audio_upload(message: Message, path, del_path: bool = False, extra: st
         artist = metadata.get("artist")
     if metadata and metadata.has("duration"):
         duration = metadata.get("duration").seconds
-    sent: Message = await message.client.send_message(
+    sent: Message = await megux.send_message(
         message.chat.id, f"`Uploading {str_path} as audio ... {extra}`")
     start_t = datetime.now()
-    await message.client.send_chat_action(message.chat.id, enums.ChatAction.UPLOAD_AUDIO)
+    await megux.send_chat_action(message.chat.id, enums.ChatAction.UPLOAD_AUDIO)
     try:
-        msg = await message.client.send_audio(
+        msg = await megux.send_audio(
             chat_id=message.chat.id,
             audio=str_path,
-            thumb=thumb,
             caption=f"{path.name}\n[ {file_size} ]",
             title=title,
             performer=artist,
             duration=duration,
-            parse_mode=enums.ParseMode.HTML,
+            parse_mode=ParseMode.HTML,
+            disable_notification=True,
+        )
+    except ValueError as e_e:
+        await sent.edit(f"Skipping `{str_path}` due to {e_e}")
+    except Exception as u_e:
+        await sent.edit(str(u_e))
+        raise u_e
+    else:
+        await sent.delete()
+        await finalize(message, msg, start_t)
+        if os.path.exists(str_path) and del_path:
+            os.remove(str_path)
+
+async def photo_upload(message: Message, path, del_path: bool = False, extra: str = ''):
+    str_path = str(path)
+    sent: Message = await megux.send_message(
+        message.chat.id, f"`Uploading {path.name} as photo ... {extra}`")
+    start_t = datetime.now()
+    await megux.send_chat_action(message.chat.id, enums.ChatAction.UPLOAD_PHOTO)
+    try:
+        msg = await megux.send_photo(
+            chat_id=message.chat.id,
+            photo=str_path,
+            caption=path.name,
+            parse_mode=ParseMode.HTML,
             disable_notification=True,
             progress=progress,
             progress_args=(message, f"uploading {extra}", str_path)
         )
+    except ValueError as e_e:
+        await sent.edit(f"Skipping `{str_path}` due to {e_e}")
+    except Exception as u_e:
+        await sent.edit(str(u_e))
+        raise u_e
+    else:
+        await sent.delete()
+        await finalize(message, msg, start_t)
+        if os.path.exists(str_path) and del_path:
+            os.remove(str_path)
+
+
+async def finalize(message: Message, msg: Message, start_t):
+    end_t = datetime.now()
+    m_s = (end_t - start_t).seconds
+    await msg.edit(f"Uploaded in {m_s} seconds")
+    
