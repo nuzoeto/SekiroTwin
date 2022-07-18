@@ -176,8 +176,6 @@ async def photo_upload(message: Message, path, del_path: bool = False, extra: st
             caption=path.name,
             parse_mode=ParseMode.HTML,
             disable_notification=True,
-            progress=progress,
-            progress_args=(message, f"uploading {extra}", str_path)
         )
     except ValueError as e_e:
         await sent.edit(f"Skipping `{str_path}` due to {e_e}")
