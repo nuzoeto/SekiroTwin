@@ -37,3 +37,46 @@ async def upload_path(message: Message, path: Path, del_path: bool):
             await upload(message, p_t, del_path, f"{current}/{len(file_paths)}")
         except FloodWait as f_e:
             time.sleep(f_e.value)  
+
+
+async def upload(message: Message, path: Path, del_path: bool = False, extra: str = '', with_thumb: bool = True):
+    if path.name.lower().endswith(
+            (".mkv", ".mp4", ".webm", ".m4v")) and ('d' not in message.flags):
+        await vid_upload(message, path, del_path, extra, with_thumb)
+    elif path.name.lower().endswith(
+            (".mp3", ".flac", ".wav", ".m4a")) and ('d' not in message.flags):
+        await audio_upload(message, path, del_path, extra, with_thumb)
+    elif path.name.lower().endswith(
+            (".jpg", ".jpeg", ".png", ".bmp")) and ('d' not in message.flags):
+        await photo_upload(message, path, del_path, extra)
+    else:
+        await doc_upload(message, path, del_path, extra, with_thumb)
+
+
+async def doc_upload(message: Message, path, del_path: bool = False, extra: str = '', with_thumb: bool = True):
+    str_path = str(path)
+    sent: Message = await megux.send_message(
+        message.chat.id, f"`Uploading {str_path} as a doc ... {extra}`")
+    start_t = datetime.now()
+    await megux.send_chat_action(message.chat.id, enums.ChatAction.UPLOAD_DOCUMENT)
+    try:
+        msg = await message.client.send_document(
+            chat_id=message.chat.id,
+            document=str_path,
+            caption=path.name,
+            parse_mode=enums.ParseMode.HTML,
+            force_document=True,
+            disable_notification=True,
+            progress=progress,
+            progress_args=(message, f"uploading {extra}", str_path)
+        )
+    except ValueError as e_e:
+        await sent.edit(f"Skipping `{str_path}` due to {e_e}")
+    except Exception as u_e:
+        await sent.edit(str(u_e))
+        raise u_e
+    else:
+        await sent.delete()
+        await finalize(message, msg, start_t)
+        if os.path.exists(str_path) and del_path:
+            os.remove(str_path)
