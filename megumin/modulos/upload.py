@@ -71,6 +71,16 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
     downloader = SmartDL(url, dl_loc, progress_bar=False)
     downloader.start(blocking=False)
     count = 0
+    while not downloader.isFinished():
+        total_length = downloader.filesize or 0
+        downloaded = downloader.get_dl_size()
+        percentage = downloader.get_progress() * 100
+        speed = downloader.get_speed(human=True)
+        estimated_total_time = downloader.get_eta(human=True)
+        count += 1
+        if count >= 10:
+            count = 0
+        await asyncio.sleep(1)
     await msg.edit("<i>Download Finished, Uploading...</i>")
     await asyncio.sleep(5)
     await msg.delete()
