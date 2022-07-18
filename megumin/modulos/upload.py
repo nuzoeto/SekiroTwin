@@ -60,15 +60,13 @@ async def doc_upload(message: Message, path, del_path: bool = False, extra: str 
     start_t = datetime.now()
     await megux.send_chat_action(message.chat.id, enums.ChatAction.UPLOAD_DOCUMENT)
     try:
-        msg = await message.client.send_document(
+        msg = await megux.send_document(
             chat_id=message.chat.id,
             document=str_path,
             caption=path.name,
             parse_mode=enums.ParseMode.HTML,
             force_document=True,
             disable_notification=True,
-            progress=progress,
-            progress_args=(message, f"uploading {extra}", str_path)
         )
     except ValueError as e_e:
         await sent.edit(f"Skipping `{str_path}` due to {e_e}")
@@ -80,3 +78,4 @@ async def doc_upload(message: Message, path, del_path: bool = False, extra: str 
         await finalize(message, msg, start_t)
         if os.path.exists(str_path) and del_path:
             os.remove(str_path)
+
