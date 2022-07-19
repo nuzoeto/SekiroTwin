@@ -42,24 +42,24 @@ async def upload_(_, m: Message):
     if is_url:
         del_path = True
         try:
-            path_, _ = await url_download(m, url)
+            url, _ = await url_download(m, url)
         except ProcessCanceled:
             await m.reply("`Process Canceled!`")
             return
         except Exception as e_e:  # pylint: disable=broad-except
             await m.reply(str(e_e))
             return
-    if "|" in path_:
-        path_, file_name = path_.split("|")
-        path_ = path_.strip()
-        if os.path.isfile(path_):
+    if "|" in url:
+        url, file_name = url.split("|")
+        path_ = url.strip()
+        if os.path.isfile(url):
             new_path = os.path.join(Config.DOWN_PATH, file_name.strip())
-            os.rename(path_, new_path)
+            os.rename(url, new_path)
             path_ = new_path
     try:
-        string = Path(path_)
+        string = Path(url)
     except IndexError:
-        await m.reply("wrong syntax\n`.upload [path]`")
+        await m.reply("wrong syntax\n`.upload [path] or [direct link]`")
     else:
         await upload_path(message=m, path=string, del_path=del_path)
         
