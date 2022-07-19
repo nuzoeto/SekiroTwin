@@ -57,7 +57,7 @@ async def upload_(_, m: Message):
             os.rename(path_, new_path)
             path_ = new_path
     try:
-        string = Path(path_)
+        string = Path(url)
     except IndexError:
         await m.reply("wrong syntax\n`.upload [path]`")
     else:
