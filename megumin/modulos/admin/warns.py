@@ -48,7 +48,7 @@ async def warn_(c: megux, message: Message):
     if is_admin(chat_id, user_id):
         await message.reply("Eu não vou avisar um administrador!")
         return
-    if await check_bot_rights:
+    if not await check_bot_rights():
         await message.reply("Eu não tenho permissões para advertir usuarios.")
         return
     db = get_collection("WARNS")
