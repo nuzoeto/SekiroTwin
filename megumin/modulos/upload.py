@@ -19,7 +19,7 @@ from pyrogram import filters
 from pyrogram.types import Message 
 
 from megumin import megux, Config
-from megumin.utils import humanbytes 
+from megumin.utils import humanbytes, tld 
 from megumin.utils.decorators import input_str
 
 class ProcessCanceled(Exception):
@@ -65,7 +65,7 @@ async def upload_(_, m: Message):
         
 async def url_download(message: Message, url: str) -> Tuple[str, int]:
     """download from link"""
-    msg = await message.reply("<i>Downloading...</i>")
+    msg = await message.reply(await tld(message.chat.id, "DOWNLOAD_YT"))
     start_t = datetime.now()
     custom_file_name = unquote_plus(os.path.basename(url))
     if "|" in url:
@@ -87,7 +87,7 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
         if count >= 10:
             count = 0
         await asyncio.sleep(1)
-    await msg.edit("<i>Download Finished, Uploading...</i>")
+    await msg.edit(await tld(message.chat.id, "UPLOAD_DOWNLOAD_FINISHED"))
     await asyncio.sleep(5)
     await msg.delete()
     return dl_loc, (datetime.now() - start_t).seconds
