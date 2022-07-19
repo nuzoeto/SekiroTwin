@@ -28,6 +28,7 @@ class ProcessCanceled(Exception):
     
 FINISHED_PROGRESS_STR = os.environ.get("FINISHED_PROGRESS_STR")
 UNFINISHED_PROGRESS_STR = os.environ.get("UNFINISHED_PROGRESS_STR")
+PTN_SPLIT = re.compile(r'(\.\d+|\.|\d+)')
 
 
 
@@ -62,6 +63,15 @@ async def upload_(_, m: Message):
     else:
         await upload_path(message=m, path=string, del_path=del_path)
 
+     
+    
+def sort_file_name_key(file_name: str) -> tuple:
+    """ sort key for file names """
+    if not isinstance(file_name, str):
+        file_name = str(file_name)
+    return tuple(_sort_algo(_PTN_SPLIT.split(file_name.lower())))
+        
+        
         
 async def url_download(message: Message, url: str) -> Tuple[str, int]:
     """download from link"""
