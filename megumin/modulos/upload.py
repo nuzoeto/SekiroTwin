@@ -62,15 +62,6 @@ async def upload_(_, m: Message):
         await m.reply("wrong syntax\n`.upload [path]`")
     else:
         await upload_path(message=m, path=string, del_path=del_path)
-
-     
-    
-def sort_file_name_key(file_name: str) -> tuple:
-    """ sort key for file names """
-    if not isinstance(file_name, str):
-        file_name = str(file_name)
-    return tuple(_sort_algo(_PTN_SPLIT.split(file_name.lower())))
-        
         
         
 async def url_download(message: Message, url: str) -> Tuple[str, int]:
