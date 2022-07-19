@@ -217,4 +217,4 @@ WIKI_RESULT: "<b>Results of your wikipedia search:</b>\n\n{}"
 
 
 #upload
-UPLOAD_DOWNLOAD_FINISHED: "<i>Download concluído, Enviando...</i>"
+UPLOAD_DOWNLOAD_FINISHED: "<i>Download Finished, Uploading...</i>"
