@@ -49,7 +49,7 @@ async def upload_(_, m: Message):
         except Exception as e_e:  # pylint: disable=broad-except
             await m.reply(str(e_e))
             return
-    if "|" in path_:
+    if "|" in url:
         path_, file_name = path_.split("|")
         path_ = path_.strip()
         if os.path.isfile(path_):
