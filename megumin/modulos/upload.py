@@ -100,7 +100,7 @@ async def upload_path(message: Message, path: Path, del_path: bool):
             if _path.is_file() and _path.stat().st_size:
                 file_paths.append(_path)
             elif _path.is_dir():
-                for i in sorted(_path.iterdir(), key=lambda a: sort_file_name_key(a.name)):
+                for i in sorted(_path.iterdir(), key=lambda a: (a.name)):
                     explorer(i)
         explorer(path)
     else:
