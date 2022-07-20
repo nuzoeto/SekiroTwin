@@ -331,4 +331,4 @@ async def miui_(c: megux, m: Message):
     text += f"\n**Date:** `{date}`"
     text += f"\n**MD5:** `{md5}`"
 
-    await m.reply_text(text, reply_markup=InlineKeybordButton(keyboard))
+    await m.reply_text(text, reply_markup=InlineKeyboardMarkup(keyboard))
