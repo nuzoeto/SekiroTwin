@@ -19,6 +19,9 @@ from megumin.utils.decorators import input_str
 
 http = httpx.AsyncClient()
 
+MIUI_FIRM = "https://raw.githubusercontent.com/XiaomiFirmwareUpdater/miui-updates-tracker/master/data/latest.yml"
+REALME_FIRM = "https://raw.githubusercontent.com/RealmeUpdater/realme-updates-tracker/master/data/latest.yml"
+
 
 def convert_size(size_bytes):
     if size_bytes == 0:
@@ -287,3 +290,44 @@ async def phh(_, m: Message):
             continue
 
     await m.reply(text, disable_web_page_preview=True)
+
+    
+    
+@megux.on_message(filters.command("miui", Config.TRIGGER))
+async def miui_(c: megux, m: Message):
+    if len(m.command) != 2:
+        return await m.reply("Por Favor Especifique um codename, exemplo: /miui Whyred")
+    codename = m.command[1]
+    
+    yaml_data = load(requests.get(MIUI_FIRM).content, Loader=Loader)
+    
+    r = [i for i in yaml_data if codename in i["codename"]]
+    
+    if len(r) < 1:
+        return await m.reply("Especifique um codename valido.")
+    
+    
+    for list in r:
+        av = list["android"]
+        branch = list["branch"]
+        method = list["method"]
+        link = list["link"]
+        fname = list["name"]
+        version = list["version"]
+        size = list["size"]
+        date = list["date"]
+        md5 = list["md5"]
+        codename = list['codename']
+
+        btn = branch + ' | ' + method + ' | ' + version
+
+        keyboard = [[InlineKeyboardButton(text=btn, url=link)]]
+
+    text = f"**MIUI - Last build for {codename}:**"
+    text += f"\n\n**Name:** `{fname}`"
+    text += f"\n**Android:** `{av}`"
+    text += f"\n**Size:** `{size}`"
+    text += f"\n**Date:** `{date}`"
+    text += f"\n**MD5:** `{md5}`"
+
+    await m.reply_text(text, reply_markup=InlineKeybordButton(keyboard))
