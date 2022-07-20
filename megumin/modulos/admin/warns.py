@@ -86,7 +86,7 @@ async def warn_(c: megux, message: Message):
                 await message.reply("{}/{} Advertências!\n{} Removido.")
                 return
             else:
-                await mode.insert_one({"action": "ban"})
+                await mode.insert_one({"chat_id": chat_id, "action": "ban"})
     else:
          text = "<b>{} foi advertido!</b>\nEle(a) têm {}/{} Advertências.\n".format(mention, warn_count, max_warns)
 
