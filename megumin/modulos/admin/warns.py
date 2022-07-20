@@ -90,8 +90,8 @@ async def warn_(c: megux, message: Message):
     else:
          text = "<b>{} foi advertido!</b>\nEle(a) têm {}/{} Advertências.\n".format(mention, warn_count, max_warns)
 
-        if reason in "":
-            pass
-        else:
-            text += "<b>Motivo.</b>: {}".format(reason)
-            await message.reply(text)
+         if reason in "":
+             pass
+         else:
+             text += "<b>Motivo.</b>: {}".format(reason)
+             await message.reply(text)
