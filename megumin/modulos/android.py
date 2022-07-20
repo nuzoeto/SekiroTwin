@@ -298,14 +298,15 @@ async def phh(_, m: Message):
 async def miui_(c: megux, m: Message):
     if len(m.command) != 2:
         return await m.reply("Por Favor Especifique um codename, exemplo: /miui Whyred")
-    codename = m.command[1]
+    codename = m.command[1].lower()
     
     yaml_data = load(requests.get(MIUI_FIRM).content, Loader=Loader)
     
     r = [i for i in yaml_data if codename in i["codename"]]
+    message = await m.reply_text("<i>Carregando...</i>")
     
     if len(r) < 1:
-        return await m.reply("Especifique um codename valido.")
+        return await message.edit("Especifique um codename valido.")
     
     
     for list in r:
@@ -325,10 +326,10 @@ async def miui_(c: megux, m: Message):
         keyboard = [[InlineKeyboardButton(text=btn, url=link)]]
 
     text = f"**MIUI - Last build for {codename}:**"
-    text += f"\n\n**Name:** `{fname}`"
+    text += f"\n\n**Nome:** `{fname}`"
     text += f"\n**Android:** `{av}`"
-    text += f"\n**Size:** `{size}`"
-    text += f"\n**Date:** `{date}`"
+    text += f"\n**Tamanho:** `{size}`"
+    text += f"\n**Data:** `{date}`"
     text += f"\n**MD5:** `{md5}`"
 
-    await m.reply_text(text, reply_markup=InlineKeyboardMarkup(keyboard))
+    await message.edit(text, reply_markup=InlineKeyboardMarkup(keyboard))
