@@ -46,5 +46,13 @@ class WhiterKang(Client):
             *args,
             **kwargs,
         )
+        
+    async def send_err(self, err: str, *args, **kwargs):
+        await self.send_message(
+            chat_id=GP_LOGS,
+            text=f"#TRACEBACK\n\n{err}",
+            *args,
+            **kwargs
+        )
 
 megux = WhiterKang()
