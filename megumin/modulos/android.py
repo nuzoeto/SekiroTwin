@@ -296,7 +296,7 @@ async def phh(_, m: Message):
     
 @megux.on_message(filters.command("miui", Config.TRIGGER))
 async def miui_(c: megux, m: Message):
-    message = await messsage.reply_text("<i>Carregando...</i>")
+    message = await m.reply_text("<i>Carregando...</i>")
     if len(m.command) != 2:
         return await message.edit("Por Favor Especifique um codename, exemplo: /miui whyred")
     codename = m.command[1].lower()
