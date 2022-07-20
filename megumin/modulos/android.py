@@ -6,6 +6,7 @@ import math
 
 from bs4 import BeautifulSoup
 from babel.dates import format_datetime
+from yaml import load, Loader
 
 from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
