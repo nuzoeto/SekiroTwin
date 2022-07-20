@@ -296,14 +296,14 @@ async def phh(_, m: Message):
     
 @megux.on_message(filters.command("miui", Config.TRIGGER))
 async def miui_(c: megux, m: Message):
+    message = await messsage.reply_text("<i>Carregando...</i>")
     if len(m.command) != 2:
-        return await m.reply("Por Favor Especifique um codename, exemplo: /miui Whyred")
+        return await message.edit("Por Favor Especifique um codename, exemplo: /miui whyred")
     codename = m.command[1].lower()
     
     yaml_data = load(requests.get(MIUI_FIRM).content, Loader=Loader)
     
     r = [i for i in yaml_data if codename in i["codename"]]
-    message = await m.reply_text("<i>Carregando...</i>")
     
     if len(r) < 1:
         return await message.edit("Especifique um codename valido.")
