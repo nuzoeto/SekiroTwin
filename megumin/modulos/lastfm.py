@@ -5,6 +5,7 @@ import requests
 import os
 
 from telegraph import upload_file
+from bs4 import BeautifulSoup as bs
 from wget import download
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, InlineQuery, InlineQueryResultPhoto, InlineQueryResultArticle, InputTextMessageContent
