@@ -140,3 +140,32 @@ async def now_play(c: megux, message: Message):
     if scr_:
         text_ += f"\n**Latest scrobbles :**\n{kek}"
     await message.reply(text_, disable_web_page_preview=True)
+          
+          
+@megux.on_message(filters.command(["lt", "lastfm"]))
+async def last_user(c: megux, message: Message):
+    query = input_str(message)
+    user_ = message.from_user
+    lastdb = await REG.find_one({"id_": user_.id})
+    if not (last_db or query):
+        await message.reply("Me consta no meu banco de dados que você não é cadastrado, para se cadastrar digite /reg [username], se você não tem uma conta no last.fm entre em https://www.last.fm/join")
+        return
+    if query:
+        user_lastfm = query
+    else:
+        user_lastfm = lastdb["last_data"]
+    params = {
+        "method": "user.getrecenttracks",
+        "limit": 1,
+        "extended": 1,
+        "user": user_lastfm,
+        "api_key": Config.LASTFM_API_KEY,
+        "limit": 1,
+        "format": "json",
+    }
+    try:
+        view_data = await get_response.json(link=API, params=params)
+    except ValueError:
+        return await message.reply("__Error. Make sure you entered the correct username__")
+                    
+            
