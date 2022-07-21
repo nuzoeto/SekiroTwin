@@ -147,7 +147,7 @@ async def last_user(c: megux, message: Message):
     query = input_str(message)
     user_ = message.from_user
     lastdb = await REG.find_one({"id_": user_.id})
-    if not (last_db or query):
+    if not (lastdb or query):
         await message.reply("Me consta no meu banco de dados que você não é cadastrado, para se cadastrar digite /reg [username], se você não tem uma conta no last.fm entre em https://www.last.fm/join")
         return
     if query:
