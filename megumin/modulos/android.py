@@ -333,3 +333,45 @@ async def miui_(c: megux, m: Message):
     text += f"\n**MD5:** `{md5}`"
 
     await message.edit(text, reply_markup=InlineKeyboardMarkup(keyboard))
+
+    
+@megux.on_message(filters.command("realmeui", Config.TRIGGER))
+async def realmeui(c: Client, message: Message):
+    m = await m.reply_text("__Carregando...__")
+    if len(update.command) != 2:
+        out_str = "Please write a codename, example: `/realmeui RMX2061`"
+        await m.edit(out_str)
+        return
+
+    codename = update.command[1]
+
+    yaml_data = load(get(REALME_FIRM).content, Loader=Loader)
+    data = [i for i in yaml_data if codename in i['codename']]
+
+    if len(data) < 1:
+        await m.edit("Provide a valid codename!")
+        return
+
+    for fw in data:
+        reg = fw['region']
+        link = fw['download']
+        device = fw['device']
+        version = fw['version']
+        cdn = fw['codename']
+        sys = fw['system']
+        size = fw['size']
+        date = fw['date']
+        md5 = fw['md5']
+
+        btn = reg + ' | ' + version
+
+        keyboard = [[InlineKeyboardButton(text=btn, url=link)]]
+
+    text = f"**RealmeUI - Last build for {codename}:**"
+    text += f"\n\n**Device:** `{device}`"
+    text += f"\n**System:** `{sys}`"
+    text += f"\n**Size:** `{size}`"
+    text += f"\n**Date:** `{date}`"
+    text += f"\n**MD5:** `{md5}`"
+
+    await m.edit(text, reply_markup=InlineKeyboardMarkup(keyboard))
