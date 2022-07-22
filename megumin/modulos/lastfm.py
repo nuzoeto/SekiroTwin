@@ -9,8 +9,6 @@ from bs4 import BeautifulSoup as bs
 from wget import download
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, InlineQuery, InlineQueryResultPhoto, InlineQueryResultArticle, InputTextMessageContent
-from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
-from io import BytesIO
 
 from megumin import megux, Config
 from megumin.utils.decorators import input_str
@@ -198,7 +196,11 @@ async def last_user(c: megux, message: Message):
         listering = f"Está ouvindo {scrob}ª vez"
     except KeyError:
         listering = "Está ouvindo"
-    kek = f"{user_.first_name} {listering}\n<b>{artist_name}</b> [-]({image_}) {song_name}"
+    if image_:
+        img = image_
+    else:
+        img = "https://telegra.ph/file/3ad207681d56059a7d90d.jpg"
+    kek = f"{user_.first_name} {listering}\n<b>{artist_name}</b> [-]({img}) {song_name}"
     await message.reply(kek)
                     
             
