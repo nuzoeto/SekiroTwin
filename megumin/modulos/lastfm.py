@@ -205,7 +205,7 @@ async def last_user(c: megux, message: Message):
         img = image_
     else:
         img = "https://telegra.ph/file/3ad207681d56059a7d90d.jpg"
-    if view_data_.get("@attr"):
+    if song_.get("@attr"):
         listering = (
             ("Está ouvindo:")
             if scrob == "none"
