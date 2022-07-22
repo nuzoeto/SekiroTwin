@@ -44,7 +44,7 @@ async def last_save_user(_, message: Message):
         await asyncio.gather(
                 REG.update_one({"id_": user_id}, {
                                 "$set": {"last_data": text}}, upsert=True),
-                c.send_log(
+                megux.send_log(
                     user_start,
                     disable_notification=False,
                     disable_web_page_preview=True,
