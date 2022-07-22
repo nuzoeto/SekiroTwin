@@ -140,8 +140,9 @@ async def now_play(c: megux, message: Message):
         text_ += f"\n**Latest scrobbles :**\n{kek}"
     await message.reply(text_, disable_web_page_preview=True)
           
-          
-@megux.on_message(filters.command(["lt", "lastfm", "lmu"]))
+
+@megux.on_message(filters.command("status", prefixes=""))
+@megux.on_message(filters.command(["lt", "lastfm", "lmu"], Config.TRIGGER))
 async def last_user(c: megux, message: Message):
     query = input_str(message)
     user_ = message.from_user
