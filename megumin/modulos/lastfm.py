@@ -141,7 +141,7 @@ async def now_play(c: megux, message: Message):
     await message.reply(text_, disable_web_page_preview=True)
           
           
-@megux.on_message(filters.command(["lt", "lastfm"]))
+@megux.on_message(filters.command(["lt", "lastfm", "lmu"]))
 async def last_user(c: megux, message: Message):
     query = input_str(message)
     user_ = message.from_user
@@ -174,18 +174,22 @@ async def last_user(c: megux, message: Message):
             return await message.reply(f"__{user_lastfm} Não scrobbou nenhuma música__")
         else:
             return await message.reply("__Você não scrobbou nenhuma música__")
-    song_ = recent_song[0]
-    song_name = song_["name"]
-    artist_name = song_["artist"]["name"]
-    image_ = song_["image"][3].get("#text")
-    params_ = {
-        "method": "track.getInfo",
-        "track": song_name,
-        "artist": artist_name,
-        "user": user_lastfm,
-        "api_key": Config.LASTFM_API_KEY,
-        "format": "json",
-    }
+    try:
+        song_ = recent_song[0]
+        song_name = song_["name"]
+        artist_name = song_["artist"]["name"]
+        image_ = song_["image"][3].get("#text")
+        params_ = {
+            "method": "track.getInfo",
+            "track": song_name,
+            "artist": artist_name,
+            "user": user_lastfm,
+            "api_key": Config.LASTFM_API_KEY,
+            "format": "json",
+        }
+    except KeyError:
+        await message.reply("__Algo deu errado com essa conta do last.fm__")
+        return
     try:
         view_data_ = await get_response.json(link=API, params=params_)
         get_track = view_data_["track"]
