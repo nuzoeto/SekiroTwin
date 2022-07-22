@@ -200,7 +200,7 @@ async def last_user(c: megux, message: Message):
         img = image_
     else:
         img = "https://telegra.ph/file/3ad207681d56059a7d90d.jpg"
-    kek = f"{user_.first_name} {listering}\n<b>{artist_name}</b> [-]({img}) {song_name}"
-    await message.reply(kek)
+    kek = f"{user_.mention} {listering}\n<b>{artist_name}</b> [-]({img}) {song_name}"
+    await message.reply(kek, disable_web_page_preview=False)
                     
             
