@@ -198,7 +198,7 @@ async def last_user(c: megux, message: Message):
         listering = f"Está ouvindo {scrob}ª vez"
     except KeyError:
         listering = "Está ouvindo"
-    kek = f"{user_.first_name} {listering}\n{artist_name} - {song_name}"
+    kek = f"{user_.first_name} {listering}\n<b>{artist_name}</b> [-]({image_}) {song_name}"
     await message.reply(kek)
                     
             
