@@ -167,5 +167,38 @@ async def last_user(c: megux, message: Message):
         view_data = await get_response.json(link=API, params=params)
     except ValueError:
         return await message.reply("__Error. Make sure you entered the correct username__")
+    if "error" in view_data:
+        return await message.reply(view_data["error"])
+    recent_song = view_data["recenttracks"]["track"]
+    if len(recent_song) == 0:
+        if query:
+            return await message.reply(f"__{user_lastfm} don't scrobble any music__")
+        else:
+            return await message.reply("__You don't scrobble any music__")
+    song_ = recent_song[0]
+    song_name = song_["name"]
+    artist_name = song_["artist"]["name"]
+    image_ = song_["image"][3].get("#text")
+    params_ = {
+        "method": "track.getInfo",
+        "track": song_name,
+        "artist": artist_name,
+        "user": user_lastfm,
+        "api_key": Config.LASTFM_API_KEY,
+        "format": "json",
+    }
+    try:
+        view_data_ = await get_response.json(link=API, params=params_)
+        get_track = view_data_["track"]
+        get_scrob = int(get_track["userplaycount"])
+        if get_scrob == 0:
+            scrob = get_scrob + 1
+        else:
+            scrob =  get_scrob            
+        listering = f"Está ouvindo {scrob}ª vez"
+    except KeyError:
+        listering = "Está ouvindo"
+    kek = f"{user_.first_name} {listering}\n{artist_name} - {song_name}"
+    await message.reply(kek)
                     
             
