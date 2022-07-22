@@ -194,7 +194,7 @@ async def last_user(c: megux, message: Message):
             scrob = get_scrob + 1
         else:
             scrob =  get_scrob            
-        listering = f"Está ouvindo {scrob}ª vez"
+        listering = f"Está ouvindo pela {scrob}ª vez"
     except KeyError:
         listering = "Está ouvindo"
     if image_:
