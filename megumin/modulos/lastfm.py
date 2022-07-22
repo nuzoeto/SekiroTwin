@@ -21,14 +21,14 @@ LAST_KEY = Config.LASTFM_API_KEY
 REG = get_collection("USERS")
           
 
-@megux.on_message(filters.command(["setuser", "reg"], prefixes=["/", "!"]))
+@megux.on_message(filters.command(["setuser", "reg", "set"], prefixes=["/", "!"]))
 async def last_save_user(_, message: Message):
     user_id = message.from_user.id
     fname = message.from_user.first_name
     uname = message.from_user.username
     text = input_str(message)
     if not text:
-        await message.reply("__Bruh.. use /set username.__")
+        await message.reply("__Bruh.. use /set lastfm username.__")
         return
     found = await REG.find_one({"id_": user_id})
     user_start = f"#USER_REGISTER #LOGS\n\n**User:** {fname}\n**ID:** {user_id} <a href='tg://user?id={user_id}'>**Link**</a>"
