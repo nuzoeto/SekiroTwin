@@ -194,13 +194,22 @@ async def last_user(c: megux, message: Message):
             scrob = get_scrob + 1
         else:
             scrob =  get_scrob            
-        listering = f"Está ouvindo pela {scrob}ª vez"
     except KeyError:
-        listering = "Está ouvindo"
+        scrob = "none"
     if image_:
         img = image_
     else:
         img = "https://telegra.ph/file/3ad207681d56059a7d90d.jpg"
+    if view_data_.get("@attr"):
+        listering = (
+            ("Está ouvindo")
+            if scrob == "none"
+            else (f"Está ouvindo pela {scrob}ª vez")
+        )
+    elif scrob == "none":
+        listering = "Estava ouvindo"
+    else:
+        listering = f"Estava ouvindo pela {scrob}ª vez"
     kek = f"<b>{user_.mention}</b> {listering}\n<b>{artist_name}</b> [-]({img}) {song_name}"
     await message.reply(kek, disable_web_page_preview=False)
                     
