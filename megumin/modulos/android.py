@@ -345,7 +345,7 @@ async def realmeui(c: megux, message: Message):
 
     codename = message.command[1]
 
-    yaml_data = load(get(REALME_FIRM).content, Loader=Loader)
+    yaml_data = load(requests.get(REALME_FIRM).content, Loader=Loader)
     data = [i for i in yaml_data if codename in i['codename']]
 
     if len(data) < 1:
