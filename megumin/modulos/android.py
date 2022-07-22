@@ -338,12 +338,12 @@ async def miui_(c: megux, m: Message):
 @megux.on_message(filters.command("realmeui", Config.TRIGGER))
 async def realmeui(c: megux, message: Message):
     m = await message.reply_text("__Carregando...__")
-    if len(update.command) != 2:
+    if len(message.command) != 2:
         out_str = "Please write a codename, example: `/realmeui RMX2061`"
         await m.edit(out_str)
         return
 
-    codename = update.command[1]
+    codename = message.command[1]
 
     yaml_data = load(get(REALME_FIRM).content, Loader=Loader)
     data = [i for i in yaml_data if codename in i['codename']]
