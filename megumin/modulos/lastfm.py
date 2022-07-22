@@ -8,6 +8,7 @@ from telegraph import upload_file
 from bs4 import BeautifulSoup as bs
 from wget import download
 from pyrogram import filters
+from pyrogram.enums import ParseMode
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, InlineQuery, InlineQueryResultPhoto, InlineQueryResultArticle, InputTextMessageContent
 
 from megumin import megux, Config
@@ -170,9 +171,9 @@ async def last_user(c: megux, message: Message):
     recent_song = view_data["recenttracks"]["track"]
     if len(recent_song) == 0:
         if query:
-            return await message.reply(f"__{user_lastfm} don't scrobble any music__")
+            return await message.reply(f"__{user_lastfm} Não scrobbou nenhuma música__")
         else:
-            return await message.reply("__You don't scrobble any music__")
+            return await message.reply("__Você não scrobbou nenhuma música__")
     song_ = recent_song[0]
     song_name = song_["name"]
     artist_name = song_["artist"]["name"]
@@ -200,7 +201,7 @@ async def last_user(c: megux, message: Message):
         img = image_
     else:
         img = "https://telegra.ph/file/3ad207681d56059a7d90d.jpg"
-    kek = f"{user_.mention} {listering}\n<b>{artist_name}</b> [-]({img}) {song_name}"
-    await message.reply(kek, disable_web_page_preview=False)
+    kek = f"<b>{user_.mention}</b> {listering}\n<b>{artist_name}</b> [-]({img}) {song_name}"
+    await message.reply(kek, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=False)
                     
             
