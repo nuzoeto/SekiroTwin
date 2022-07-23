@@ -182,7 +182,7 @@ async def save_notes(m: Message, c: megux):
 
 
 @megux.on_message(filters.command("notes", Config.TRIGGER))
-async def get_all_chat_note(c: Client, m: Message):
+async def get_all_chat_note(c: megux, m: Message):
     chat_id = m.chat.id
     reply_text = "Notas desse chat\n\n"
     all_notes = await db.find({"chat_id": chat_id})
