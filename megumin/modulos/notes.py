@@ -110,7 +110,7 @@ async def check_for_notes(chat_id, trigger):
 
 
 @megux.on_message(filters.command(["save", "savenote"], Config.TRIGGER))
-async def save_notes(m: Message, c: megux):
+async def save_notes(c: megux, m: Message):
     chat_id = m.chat.id
     user_id = m.from_user.id
     if not await check_rights(chat_id, user_id, "can_change_info"):
