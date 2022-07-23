@@ -8,7 +8,7 @@ from megumin import megux, Config
 
 @megux.on_message(filters.command("speedtest", Config.TRIGGER))
 async def test_speed(c: megux, m: Message):
-    if Config.DEV_USERS not in m.chat.id:
+    if not Config.DEV_USERS in m.chat.id:
         return
     try:
         running = await m.reply("`Rodando Speedtest. . .`") 
