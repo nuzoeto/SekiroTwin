@@ -115,7 +115,7 @@ async def save_notes(c: megux, m: Message):
     user_id = m.from_user.id
     if not await check_rights(chat_id, user_id, "can_change_info"):
         return await m.reply("Você não tem permissões suficientes para alterar as notas do grupo.")
-    rgs = m.text.html.split(maxsplit=1)
+    args = m.text.html.split(maxsplit=1)
     split_text = split_quotes(args[1])
     trigger = split_text[0].lower()
 
