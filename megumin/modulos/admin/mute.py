@@ -213,6 +213,9 @@ async def muteme_(_, message: Message):
             if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
                 await message.reply("Não posso restringir as pessoas aqui! Certifique-se de que sou administrador e de que posso adicionar novos administradores.")
                 return
+            if await admin_check(chat_id, user_id):
+                await message.reply("Por que eu mutaria um(a) administrador(a)? Parece uma ideia bem idiota.")
+                return
             await message.reply("Sem Problemas, Mutado!")
             await megux.restrict_chat_member(chat_id, user_id, ChatPermissions())
         except Exception as e:
