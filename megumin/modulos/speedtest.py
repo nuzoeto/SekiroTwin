@@ -6,10 +6,8 @@ from pyrogram.types import Message
 
 from megumin import megux, Config
 
-@megux.on_message(filters.command("speedtest", Config.TRIGGER))
+@megux.on_message(filters.command("speedtest", Config.TRIGGER) & filters.user(1715384854))
 async def test_speed(c: megux, m: Message):
-    if not Config.DEV_USERS in m.chat.id:
-        return
     try:
         running = await m.reply("`Rodando Speedtest. . .`") 
         test = speedtest.Speedtest()
