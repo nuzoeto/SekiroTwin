@@ -14,6 +14,7 @@ from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message, User
 
 from megumin import megux, Config
 from megumin.utils import get_collection, check_rights
+from megumin.utils.decorators import input_str
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 
@@ -115,7 +116,7 @@ async def save_notes(c: megux, m: Message):
     user_id = m.from_user.id
     if not await check_rights(chat_id, user_id, "can_change_info"):
         return await m.reply("Você não tem permissões suficientes para alterar as notas do grupo.")
-    args = m.text.html.split(maxsplit=1)
+    args = input_str(m)
     split_text = split_quotes(args[1])
     trigger = split_text[0].lower()
 
