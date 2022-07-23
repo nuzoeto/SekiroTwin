@@ -4,6 +4,7 @@ from datetime import datetime
 from removebg import RemoveBg
 
 from pyrogram import filters 
+from pyrogram.enums import ParseMode
 from pyrogram.types import Message 
 
 from megumin import megux, Config 
@@ -20,7 +21,7 @@ async def remove_background(_, message: Message):
             "Obtenha a API <a href='https://www.remove.bg/b/background-removal-api'>AQUI"
             "</a> e adicione-a a Heroku Config Vars <code>REMOVE_BG_API_KEY</code> ou Na <code>config.env</code> da sua vps",
             disable_web_page_preview=True,
-            parse_mode="html",
+            parse_mode=ParseMode.HTML,
         )
         return
     replied = message.reply_to_message
