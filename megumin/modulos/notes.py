@@ -190,7 +190,26 @@ async def get_all_chat_note(c: megux, m: Message):
     else:
         reply_text += "\n\n<i>Você pode obter essas notas digitando <code>/get nomedanota</code>, ou</i> <code>#nomedanota</code>"
         await m.reply_text(reply_text, quote=True)
+        
+        
+@megux.on_message(filters.command(["rmnote", "delnote"]))
+async def rmnote(c: megux, m: Message):
+    args = m.text.html.split(maxsplit=1)
+    trigger = args[1].lower()
+    chat_id = m.chat.id
+    db = get_collection(f"CHAT_NOTES {chat_id}")
+    check_note = await db.find_one({"chat_id": chat_id, "name": trigger})
+    if check_note:
+        await db.delete_one({"chat_id": chat_id, "name": trigger})
+        await m.reply_text(
+            "A nota {trigger} foi removida com sucesso.".format(trigger=trigger), quote=True
+        )
+    else:
+        await m.reply_text(
+            "A nota {trigger} não existe.".format(trigger=trigger), quote=True
+        )
 
+        
 
 async def serve_note(c: megux, m: Message, txt):
     chat_id = m.chat.id
