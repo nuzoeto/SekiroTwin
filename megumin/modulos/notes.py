@@ -112,7 +112,7 @@ async def save_notes(c: megux, m: Message):
     db = get_collection(f"CHAT_NOTES {m.chat.id}")
     args = m.text.html.split(maxsplit=1)
     split_text = f"{args[1]}"
-    trigger = split_text[0].lower()
+    trigger = split_text.lower()
 
     
     if m.reply_to_message and m.reply_to_message.photo:
@@ -178,7 +178,7 @@ async def get_all_chat_note(c: megux, m: Message):
     db = get_collection(f"CHAT_NOTES {m.chat.id}")
     chat_id = m.chat.id
     reply_text = "Notas desse chat\n\n"
-    all_notes = await db.find()
+    all_notes = await db.find_one()
     if not all_notes:
         await m.reply_text("Notas não encontradas para esse chat.", quote=True)
     else:       
