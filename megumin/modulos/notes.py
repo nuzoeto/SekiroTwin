@@ -22,6 +22,9 @@ SMART_OPEN = "“"
 SMART_CLOSE = "”"
 START_CHAR = ("'", '"', SMART_OPEN)
 
+RESTRICTED_SYMBOLS_IN_NOTENAMES = [
+    ':', '**', '__', '`', '#', '"', '[', ']', "'", '$', '||']
+
 
 def remove_escapes(text: str) -> str:
     counter = 0
@@ -113,6 +116,9 @@ async def save_notes(c: megux, m: Message):
     args = m.text.html.split(maxsplit=1)
     split_text = f"{args[1]}"
     trigger = split_text.lower()
+
+    if RESTRICTED_SYMBOLS_IN_NOTENAMES in trigger:
+        await m.reply(f"Você não pode por no nome da nota : , ** , __ , ` , # , " , [ , ], ' , $ , ||", parse_mode=ParseMode.HTML)
 
     
     if m.reply_to_message and m.reply_to_message.photo:
