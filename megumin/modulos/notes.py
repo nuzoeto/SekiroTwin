@@ -239,7 +239,7 @@ async def serve_note(c: megux, m: Message, txt):
                     if len(button) != 0
                     else None,
                 )
-          elif note_s["type"] == "audio":
+            elif note_s["type"] == "audio":
                 await m.reply_audio(
                     note_s["raw_data"],
                     quote=True,
