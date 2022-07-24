@@ -178,7 +178,7 @@ async def get_all_chat_note(c: megux, m: Message):
     db = get_collection(f"CHAT_NOTES {m.chat.id}")
     chat_id = m.chat.id
     reply_text = "Notas desse chat\n\n"
-    all_notes = await db.find_one()
+    all_notes = db.find()
     if not all_notes:
         await m.reply_text("Notas não encontradas para esse chat.", quote=True)
     else:       
