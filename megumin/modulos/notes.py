@@ -196,10 +196,10 @@ async def serve_note(c: megux, m: Message, txt):
 
     all_notes = db.find()
     async for note_s in all_notes:
-        keyword = "{}".format(note_s["chat_id"])
+        keyword = note_s["name"]
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
         if re.search(pattern, text, flags=re.IGNORECASE):
-            data, button = button_parser(note_s["name"])
+            data, button = button_parser(note_s["raw_data"])
             if note_s["type"] == "text":
                 await m.reply_text(
                     data,
@@ -211,7 +211,7 @@ async def serve_note(c: megux, m: Message, txt):
                 )
             elif note_s["type"] == "photo":
                 await m.reply_photo(
-                    note_s["raw_data"],
+                    note_s["file_id"],
                     quote=True,
                     caption=data if not None else None,
                     parse_mode=ParseMode.MARKDOWN,
@@ -221,7 +221,7 @@ async def serve_note(c: megux, m: Message, txt):
                 )
             elif note_s["type"] == "document":
                 await m.reply_document(
-                    note_s["raw_data"],
+                    note_s["file_id"],
                     quote=True,
                     caption=data if not None else None,
                     parse_mode=ParseMode.MARKDOWN,
@@ -231,7 +231,7 @@ async def serve_note(c: megux, m: Message, txt):
                 )
             elif note_s["type"] == "video":
                 await m.reply_video(
-                    note_s["raw_data"],
+                    note_s["file_id"],
                     quote=True,
                     caption=data if not None else None,
                     parse_mode=ParseMode.MARKDOWN,
@@ -241,7 +241,7 @@ async def serve_note(c: megux, m: Message, txt):
                 )
             elif note_s["type"] == "audio":
                 await m.reply_audio(
-                    note_s["raw_data"],
+                    note_s["file_id"],
                     quote=True,
                     caption=data if not None else None,
                     parse_mode=ParseMode.MARKDOWN,
@@ -261,7 +261,7 @@ async def serve_note(c: megux, m: Message, txt):
                 )
             elif note_s["type"] == "sticker":
                 await m.reply_sticker(
-                    note_s["raw_data"],
+                    note_s["file_id"],
                     quote=True,
                     reply_markup=InlineKeyboardMarkup(button)
                     if len(button) != 0
