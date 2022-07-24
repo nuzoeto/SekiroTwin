@@ -160,9 +160,12 @@ async def save_notes(c: megux, m: Message):
         raw_data = split_text[1] if len(split_text) > 1 else None
         note_type = "sticker"
     else:
-        file_id = None
-        raw_data = m.reply_to_message.text
-        note_type = "text"
+        if m.reply_to_message and m.reply_to_message.text:
+            file_id = None
+            raw_data = m.reply_to_message.text
+            note_type = "text"
+        else:
+            await m.reply("Responda a um texto")
 
     check_note = await db.find_one({"name": trigger})
     if check_note:
