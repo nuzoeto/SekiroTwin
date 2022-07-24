@@ -196,7 +196,7 @@ async def serve_note(c: megux, m: Message, txt):
 
     all_notes = db.find()
     async for note_s in all_notes:
-        keyword = f"{note_s["chat_id"]}"
+        keyword = "{}".format(note_s["chat_id"])
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
         if re.search(pattern, text, flags=re.IGNORECASE):
             data, button = button_parser(note_s["name"])
