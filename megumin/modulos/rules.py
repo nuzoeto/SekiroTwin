@@ -11,7 +11,7 @@ async def rules_(_, m: Message):
     res = await data.find_one()
     if res:
         RULES = res["_rules"]
-        await m.reply((await get_string(m.chat.id, "RULES")).format(m.chat.title, RULES))
+        await m.reply((await get_string(m.chat.id, "RULES")).format(m.chat.title, RULES), disable_web_page_preview=True)
     else:
          await m.reply(await get_string(m.chat.id, "NO_RULES"))
   
