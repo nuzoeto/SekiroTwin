@@ -164,7 +164,7 @@ async def save_notes(c: megux, m: Message):
         raw_data = split_text[1]
         note_type = "text"
 
-    check_note = await db.find_one("name": trigger)
+    check_note = await db.find_one({"name": trigger})
     if check_note:
         await db.delete_one({"chat_id": chat_id, "name": trigger})
         await db.insert_one({"chat_id": chat_id, "name": trigger, "raw_data": raw_data, "file_id": file_id, "type": note_type})
