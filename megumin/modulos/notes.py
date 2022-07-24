@@ -23,9 +23,6 @@ SMART_CLOSE = "”"
 START_CHAR = ("'", '"', SMART_OPEN)
 
 
-db = get_collection("CHAT_NOTES_WhiterKang")
-
-
 def remove_escapes(text: str) -> str:
     counter = 0
     res = ""
@@ -101,14 +98,6 @@ def button_parser(markdown_note):
     return note_data, buttons
 
 
-async def check_for_notes(chat_id, trigger):
-    if await db.find_one({"chat_id": chat_id}):
-        all_notes = await db.find_one({"chat_id": chat_id})
-    for keywords in all_notes:
-        keyword = keywords[1]
-        if trigger == keyword:
-            return True
-    return False
 
 
 @megux.on_message(filters.command(["save", "savenote"], Config.TRIGGER))
@@ -120,6 +109,7 @@ async def save_notes(c: megux, m: Message):
     user_id = m.from_user.id
     if not await check_rights(chat_id, user_id, "can_change_info"):
         return await m.reply("Você não tem permissões suficientes para alterar as notas do grupo.")
+    db = get_collection(f"CHAT_NOTES {m.chat.id}")
     args = m.text.html.split(maxsplit=1)
     split_text = f"{args[1]}"
     trigger = split_text[0].lower()
@@ -174,7 +164,7 @@ async def save_notes(c: megux, m: Message):
         raw_data = split_text[1]
         note_type = "text"
 
-    check_note = await db.find_one({"chat_id": chat_id})
+    check_note = await db.find_one("name": trigger)
     if check_note:
         await db.delete_one({"chat_id": chat_id, "name": trigger})
         await db.insert_one({"chat_id": chat_id, "name": trigger, "raw_data": raw_data, "file_id": file_id, "type": note_type})
@@ -185,16 +175,15 @@ async def save_notes(c: megux, m: Message):
 
 @megux.on_message(filters.command("notes", Config.TRIGGER))
 async def get_all_chat_note(c: megux, m: Message):
+    db = get_collection(f"CHAT_NOTES {m.chat.id}")
     chat_id = m.chat.id
     reply_text = "Notas desse chat\n\n"
-    db = await db.find_one({"chat_id": chat_id})
-    all_notes = db["name"]
+    all_notes = await db.find()
     if not all_notes:
         await m.reply_text("Notas não encontradas para esse chat.", quote=True)
-    else:
-        
+    else:       
         for note_s in all_notes:
-            keyword = note_s
+            keyword = note_s["name"]
             reply_text += f" - {keyword} \n"
 
         await m.reply_text(reply_text, quote=True)
