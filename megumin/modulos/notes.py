@@ -112,18 +112,18 @@ async def check_for_notes(chat_id, trigger):
 
 @megux.on_message(filters.command(["save", "savenote"], Config.TRIGGER))
 async def save_notes(c: megux, m: Message):
+    if m.reply_to_message is None and len(input_str(m)) < 2:
+        await m.reply_text("Você precisa escrever o nome da nota.", quote=True)
+        return
     chat_id = m.chat.id
     user_id = m.from_user.id
     if not await check_rights(chat_id, user_id, "can_change_info"):
         return await m.reply("Você não tem permissões suficientes para alterar as notas do grupo.")
-    args = input_str(m)
+    args = m.text.html.split(maxsplit=1)
     split_text = split_quotes(args[1])
     trigger = split_text[0].lower()
 
-    if m.reply_to_message is None and len(split_text) < 2:
-        await m.reply_text("Você precisa escrever o nome da nota.", quote=True)
-        return
-
+    
     if m.reply_to_message and m.reply_to_message.photo:
         file_id = m.reply_to_message.photo.file_id
         raw_data = (
