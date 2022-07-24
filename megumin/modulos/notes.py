@@ -194,7 +194,7 @@ async def serve_note(c: megux, m: Message, txt):
     db = get_collection(f"CHAT_NOTES {m.chat.id}")
     text = txt
 
-    all_notes = db.find()
+    all_notes = await db.find_one()
     async for note_s in all_notes:
         keyword = note_s["name"]
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
