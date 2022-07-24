@@ -182,9 +182,9 @@ async def get_all_chat_note(c: megux, m: Message):
     async for note_s in all_notes:
         keyword = note_s["name"]
         reply_text += f" - <code>#{keyword}</code> \n"
-    text += "\n\nVocê pode obter essas notas digitando <code>/get nomedanota</code>(não ativo)"
     if not await db.find_one():
         await m.reply_text("Notas não encontradas para esse chat.", quote=True)
     else:
+        text += "\n\nVocê pode obter essas notas digitando <code>/get nomedanota</code>(não ativo)"
         await m.reply_text(reply_text, quote=True)
 
