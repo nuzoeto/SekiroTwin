@@ -182,7 +182,7 @@ async def get_all_chat_note(c: megux, m: Message):
     if not all_notes:
         await m.reply_text("Notas não encontradas para esse chat.", quote=True)
     else:       
-        for note_s in all_notes:
+        async for note_s in all_notes:
             keyword = note_s["name"]
             reply_text += f" - {keyword} \n"
 
