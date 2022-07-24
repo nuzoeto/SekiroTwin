@@ -188,3 +188,95 @@ async def get_all_chat_note(c: megux, m: Message):
         reply_text += "\n\nVocê pode obter essas notas digitando <code>/get nomedanota</code>(não ativo)"
         await m.reply_text(reply_text, quote=True)
 
+
+async def serve_note(c: megux, m: Message, txt):
+    chat_id = m.chat.id
+    db = get_collection(f"CHAT_NOTES {m.chat.id}")
+    text = txt
+
+    all_notes = db.find()
+    async for note_s in all_notes:
+        keyword = note_s["name"]
+        pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
+        if re.search(pattern, text, flags=re.IGNORECASE):
+            data, button = button_parser(note_s["raw_data"])
+            if note_s["type"] == "text":
+                await m.reply_text(
+                    data,
+                    quote=True,
+                    parse_mode=ParseMode.MARKDOWN,
+                    reply_markup=InlineKeyboardMarkup(button)
+                    if len(button) != 0
+                    else None,
+                )
+            elif note_s["type"] == "photo":
+                await m.reply_photo(
+                    note_s["raw_data"],
+                    quote=True,
+                    caption=data if not None else None,
+                    parse_mode=ParseMode.MARKDOWN,
+                    reply_markup=InlineKeyboardMarkup(button)
+                    if len(button) != 0
+                    else None,
+                )
+            elif note_s["type"] == "document":
+                await m.reply_document(
+                    note_s["raw_data"],
+                    quote=True,
+                    caption=data if not None else None,
+                    parse_mode=ParseMode.MARKDOWN,
+                    reply_markup=InlineKeyboardMarkup(button)
+                    if len(button) != 0
+                    else None,
+                )
+            elif note_s["type"] == "video":
+                await m.reply_video(
+                    note_s["raw_data"],
+                    quote=True,
+                    caption=data if not None else None,
+                    parse_mode=ParseMode.MARKDOWN,
+                    reply_markup=InlineKeyboardMarkup(button)
+                    if len(button) != 0
+                    else None,
+                )
+          elif note_s["type"] == "audio":
+                await m.reply_audio(
+                    note_s["raw_data"],
+                    quote=True,
+                    caption=data if not None else None,
+                    parse_mode=ParseMode.MARKDOWN,
+                    reply_markup=InlineKeyboardMarkup(button)
+                    if len(button) != 0
+                    else None,
+                )
+            elif note_s["type"] == "animation":
+                await m.reply_animation(
+                    note_s["raw_data"],
+                    quote=True,
+                    caption=data if not None else None,
+                    parse_mode=ParseMode.MARKDOWN,
+                    reply_markup=InlineKeyboardMarkup(button)
+                    if len(button) != 0
+                    else None,
+                )
+            elif note_s["type"] == "sticker":
+                await m.reply_sticker(
+                    note_s["raw_data"],
+                    quote=True,
+                    reply_markup=InlineKeyboardMarkup(button)
+                    if len(button) != 0
+                    else None,
+                )
+                
+                
+@megux.on_message(
+    (filters.group | filters.private)
+    & filters.text
+    & filters.incoming
+    & filters.command("get"),
+    group=2,
+)
+async def note_by_get_command(c: megux, m: Message):
+    note_data = " ".join(m.command[1:])
+    targeted_message = m.reply_to_message or m
+    await serve_note(c, targeted_message, txt=note_data)
