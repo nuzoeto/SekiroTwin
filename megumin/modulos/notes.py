@@ -210,6 +210,20 @@ async def rmnote(c: megux, m: Message):
         )
 
         
+@megux.on_message(filters.command(["resetnotes", "clearnotes"]))
+async def rmnote(c: megux, m: Message):
+    chat_id = m.chat.id
+    db = get_collection(f"CHAT_NOTES {chat_id}")
+    check_note = await db.find_one()
+    if check_note:
+        await db.drop()
+        await m.reply_text(
+            "Todas as notas desse chat foram apagadas.", quote=True
+        )
+    else:
+        await m.reply_text(
+            "O grupo não tem notas.", quote=True
+        )        
 
 async def serve_note(c: megux, m: Message, txt):
     chat_id = m.chat.id
