@@ -272,6 +272,5 @@ async def serve_note(c: megux, m: Message, txt):
 @megux.on_message(filters.command("get"))
 async def note_by_get_command(c: megux, m: Message):
     note_data = " ".join(m.command[1:])
-    await m.reply(note_data)
     targeted_message = m.reply_to_message or m
     await serve_note(c, targeted_message, txt=note_data)
