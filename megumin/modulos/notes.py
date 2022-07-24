@@ -241,6 +241,7 @@ async def serve_note(c: megux, m: Message, txt):
                     data,
                     quote=True,
                     parse_mode=ParseMode.MARKDOWN,
+                    disable_web_page_preview=True,
                     reply_markup=InlineKeyboardMarkup(button)
                     if len(button) != 0
                     else None,
