@@ -165,7 +165,7 @@ async def save_notes(c: megux, m: Message):
             raw_data = m.reply_to_message.text
             note_type = "text"
         else:
-            await m.reply("Responda a um texto")
+            await m.reply("Dê reply em alguma coisa para salvar.")
 
     check_note = await db.find_one({"name": trigger})
     if check_note:
