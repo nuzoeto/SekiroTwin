@@ -176,7 +176,7 @@ async def save_notes(c: megux, m: Message):
     await m.reply(f"A nota <code>{trigger}</code> foi salva com sucesso!")
 
 
-@megux.on_message(filters.command("notes", Config.TRIGGER))
+@megux.on_message(filters.command("notes", Config.TRIGGER) & filters.group)
 async def get_all_chat_note(c: megux, m: Message):
     db = get_collection(f"CHAT_NOTES {m.chat.id}")
     chat_id = m.chat.id
@@ -272,8 +272,15 @@ async def serve_note(c: megux, m: Message, txt):
                 )
                 
                 
-@megux.on_message(filters.command("get"))
+@megux.on_message(filters.command("get") & filters.group)
 async def note_by_get_command(c: megux, m: Message):
     note_data = " ".join(m.command[1:])
+    targeted_message = m.reply_to_message or m
+    await serve_note(c, targeted_message, txt=note_data)
+
+    
+@megux.on_message(filters.regex(r"^#[^\s]+") & filters.group)
+async def note_by_hashtag(c: megux, m: Message):
+    note_data = m.text[1:]
     targeted_message = m.reply_to_message or m
     await serve_note(c, targeted_message, txt=note_data)
