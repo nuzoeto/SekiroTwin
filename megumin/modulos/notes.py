@@ -119,7 +119,7 @@ async def save_notes(c: megux, m: Message):
 
     if RESTRICTED_SYMBOLS_IN_NOTENAMES in trigger:
         await m.reply(f"Você não pode por no nome da nota : , ** , __ , ` , # , " , [ , ], ' , $ , ||", parse_mode=ParseMode.HTML)
-
+        return
     
     if m.reply_to_message and m.reply_to_message.photo:
         file_id = m.reply_to_message.photo.file_id
