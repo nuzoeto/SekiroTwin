@@ -102,7 +102,8 @@ def button_parser(markdown_note):
 
 
 async def check_for_notes(chat_id, trigger):
-    all_notes = await db.find_one({"chat_id": chat_id})
+    if await db.find_one({"chat_id": chat_id})
+        all_notes = await db.find_one({"chat_id": chat_id})
     for keywords in all_notes:
         keyword = keywords[1]
         if trigger == keyword:
