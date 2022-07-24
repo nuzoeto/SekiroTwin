@@ -10,7 +10,7 @@ from pyrogram.enums import ParseMode
 from typing import Callable, List, Optional, Union
 
 from pyrogram import filters
-from pyrogram.types import CallbackQuery, InlineKeyboardButton, Message, User
+from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Message, User
 
 from megumin import megux, Config
 from megumin.utils import get_collection, check_rights
