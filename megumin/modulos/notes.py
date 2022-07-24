@@ -161,7 +161,7 @@ async def save_notes(c: megux, m: Message):
         note_type = "sticker"
     else:
         file_id = None
-        raw_data = m.reply_to_message
+        raw_data = split_text[1]
         note_type = "text"
 
     check_note = await db.find_one({"name": trigger})
