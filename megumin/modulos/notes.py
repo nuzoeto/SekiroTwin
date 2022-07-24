@@ -161,7 +161,7 @@ async def save_notes(c: megux, m: Message):
         note_type = "sticker"
     else:
         file_id = None
-        raw_data = split_text[1]
+        raw_data = m.reply_to_message
         note_type = "text"
 
     check_note = await db.find_one({"name": trigger})
@@ -194,7 +194,7 @@ async def serve_note(c: megux, m: Message, txt):
     db = get_collection(f"CHAT_NOTES {m.chat.id}")
     text = txt
 
-    all_notes = await db.find_one()
+    all_notes = db.find()
     async for note_s in all_notes:
         keyword = note_s["name"]
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
