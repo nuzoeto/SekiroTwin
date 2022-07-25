@@ -26,44 +26,6 @@ RESTRICTED_SYMBOLS_IN_NOTENAMES = [
     ':', '**', '__', '`', '#', '"', '[', ']', "'", '$', '||']
 
 
-def remove_escapes(text: str) -> str:
-    counter = 0
-    res = ""
-    is_escaped = False
-    while counter < len(text):
-        if is_escaped:
-            res += text[counter]
-            is_escaped = False
-        elif text[counter] == "\\":
-            is_escaped = True
-        else:
-            res += text[counter]
-        counter += 1
-    return res
-
-
-def split_quotes(text: str) -> List:
-    if any(text.startswith(char) for char in START_CHAR):
-        counter = 1  # ignore first char -> is some kind of quote
-        while counter < len(text):
-            if text[counter] == "\\":
-                counter += 1
-            elif text[counter] == text[0] or (
-                text[0] == SMART_OPEN and text[counter] == SMART_CLOSE
-            ):
-                break
-            counter += 1
-        else:
-            return text.split(None, 1)
-
-        key = remove_escapes(text[1:counter].strip())
-        rest = text[counter + 1 :].strip()
-        if not key:
-            key = text[0] + text[0]
-        return list(filter(None, [key, rest]))
-    return text.split(None, 1)
-
-
 def button_parser(markdown_note):
     note_data = ""
     buttons = []
@@ -103,7 +65,7 @@ def button_parser(markdown_note):
 
 
 
-@megux.on_message(filters.command(["save", "savenote"], Config.TRIGGER))
+@megux.on_message(filters.command(["save", "savenote", "note"], Config.TRIGGER))
 async def save_notes(c: megux, m: Message):
     if m.reply_to_message is None and len(input_str(m)) < 2:
         await m.reply_text("Você precisa escrever o nome da nota.", quote=True)
