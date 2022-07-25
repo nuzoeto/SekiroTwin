@@ -176,7 +176,7 @@ async def save_notes(c: megux, m: Message):
         await db.insert_one({"chat_id": chat_id, "name": trigger, "raw_data": raw_data, "file_id": file_id, "type": note_type})
     else:
         await db.insert_one({"chat_id": chat_id, "name": trigger, "raw_data": raw_data, "file_id": file_id, "type": note_type})
-    await m.reply(f"A nota <code>{trigger}</code> foi salva com sucesso!")
+    await m.reply(f"🗒 <b>A nota</b> <code>{trigger}</code> <b>foi salva com sucesso!</b>")
 
 
 @megux.on_message(filters.command("notes", Config.TRIGGER) & filters.group)
@@ -243,7 +243,6 @@ async def serve_note(c: megux, m: Message, txt):
                 await m.reply_text(
                     data,
                     quote=True,
-                    parse_mode=ParseMode.MARKDOWN,
                     disable_web_page_preview=True,
                     reply_markup=InlineKeyboardMarkup(button)
                     if len(button) != 0
@@ -254,7 +253,6 @@ async def serve_note(c: megux, m: Message, txt):
                     note_s["file_id"],
                     quote=True,
                     caption=data if not None else None,
-                    parse_mode=ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(button)
                     if len(button) != 0
                     else None,
@@ -264,7 +262,6 @@ async def serve_note(c: megux, m: Message, txt):
                     note_s["file_id"],
                     quote=True,
                     caption=data if not None else None,
-                    parse_mode=ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(button)
                     if len(button) != 0
                     else None,
@@ -274,7 +271,6 @@ async def serve_note(c: megux, m: Message, txt):
                     note_s["file_id"],
                     quote=True,
                     caption=data if not None else None,
-                    parse_mode=ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(button)
                     if len(button) != 0
                     else None,
@@ -284,7 +280,6 @@ async def serve_note(c: megux, m: Message, txt):
                     note_s["file_id"],
                     quote=True,
                     caption=data if not None else None,
-                    parse_mode=ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(button)
                     if len(button) != 0
                     else None,
@@ -294,7 +289,6 @@ async def serve_note(c: megux, m: Message, txt):
                     note_s["raw_data"],
                     quote=True,
                     caption=data if not None else None,
-                    parse_mode=ParseMode.MARKDOWN,
                     reply_markup=InlineKeyboardMarkup(button)
                     if len(button) != 0
                     else None,
