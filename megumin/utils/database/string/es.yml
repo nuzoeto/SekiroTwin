@@ -32,7 +32,8 @@ HELP_ANILIST: "Aquí hay ayuda para el módulo <b>Anilist</b>:\n\n• /anime - U
 COM_1: "Limpiando..."
 COM_2: "<i>Buscando...</i>"
 NO_CHANGEINFO_PERM: "¡No tienes suficientes derechos administrativos para cambiar la información de este grupo!"
- 
+
+
 #stickers 
  
 KANGING: "Robando la pegatina..."
@@ -218,3 +219,14 @@ WIKI_RESULT: "<b>Resultados de su búsqueda en wikipedia:</b>\n\n{}"
 
 #upload
 UPLOAD_DOWNLOAD_FINISHED: "<i>Descarga finalizada, Enviando...</i>"
+
+
+NOTES_SAVED: "🗒 <b>La nota</b> <code>{}</code> <b>¡se ha guardado correctamente!</b>"
+NOTES_NO_REPLY: "Responde algo para guardar."
+NOTES_NOT_NAME: "Necesitas escribir el nombre de la nota."
+NOTES_NO_PERM: "No tiene suficientes permisos para cambiar las notas del grupo."
+NOTES_LIST: "<b>Lista de notas para el chat {}:</b>\n\n"
+NOTES_NOT_FOUND: "Notas no encontradas para este chat"
+NOTES_SUB_LIST: "\n\n<i>Puede obtener estas notas escribiendo <code>/get notename</code>, o</i> <code>#notename</code>"
+NOTES_REMOVED: "🗒 <b>La nota</b> <code>{}</code> <b>¡ha sido eliminada con éxito!</b>"
+NOTES_REMOVE_NOT_FOUND: "🗒 <b>La nota</b> <code>{}</code> <b>no existe.</b>" 
