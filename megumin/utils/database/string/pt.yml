@@ -220,3 +220,15 @@ WIKI_RESULT: "<b>Resultados da sua pesquisa no wikipédia:</b>\n\n{}"
 
 #upload
 UPLOAD_DOWNLOAD_FINISHED: "<i>Download concluído, Enviando...</i>"
+
+
+#notes
+NOTES_SAVED: "🗒 <b>A nota</b> <code>{}</code> <b>foi salva com sucesso!</b>"
+NOTES_NO_REPLY: "Dê reply em alguma coisa para salvar."
+NOTES_NOT_NAME: "Você precisa escrever o nome da nota."
+NOTES_NO_PERM: "Você não tem permissões suficientes para alterar as notas do grupo."
+NOTES_LIST: "<b>Lista das notas para o chat {}:</b>\n\n"
+NOTES_NOT_FOUND: "Notas não encontradas para esse chat."
+NOTES_SUB_LIST: "\n\n<i>Você pode obter essas notas digitando <code>/get nomedanota</code>, ou</i> <code>#nomedanota</code>"
+NOTES_REMOVED: "🗒 <b>A nota</b> <code>{}</code> <b>foi removida com sucesso!</b>"
+NOTES_REMOVE_NOT_FOUND: "🗒 <b>A nota</b> <code>{}</code> <b>não existe.</b>"
