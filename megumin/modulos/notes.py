@@ -183,7 +183,7 @@ async def save_notes(c: megux, m: Message):
 async def get_all_chat_note(c: megux, m: Message):
     db = get_collection(f"CHAT_NOTES {m.chat.id}")
     chat_id = m.chat.id
-    reply_text = f"<b>Lista notas para o chat {m.chat.title}:</b>\n\n"
+    reply_text = f"<b>Lista das notas para o chat {m.chat.title}:</b>\n\n"
     all_notes = db.find()          
     async for note_s in all_notes:
         keyword = note_s["name"]
