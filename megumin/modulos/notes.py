@@ -152,15 +152,15 @@ async def save_notes(c: megux, m: Message):
 async def get_all_chat_note(c: megux, m: Message):
     db = get_collection(f"CHAT_NOTES {m.chat.id}")
     chat_id = m.chat.id
-    reply_text = f"<b>Lista das notas para o chat {m.chat.title}:</b>\n\n"
+    reply_text = (await tld(m.chat.id, "NOTES_LIST")).format(m.chat.title)
     all_notes = db.find()          
     async for note_s in all_notes:
         keyword = note_s["name"]
         reply_text += f" - <code>#{keyword}</code> \n"
     if not await db.find_one():
-        await m.reply_text("Notas não encontradas para esse chat.", quote=True)
+        await m.reply_text(await tld(m.chat.id, "NOTES_NOT_FOUND"), quote=True)
     else:
-        reply_text += "\n\n<i>Você pode obter essas notas digitando <code>/get nomedanota</code>, ou</i> <code>#nomedanota</code>"
+        reply_text += await tld(m.chat.id, "NOTES_SUB_LIST")
         await m.reply_text(reply_text, quote=True)
         
         
