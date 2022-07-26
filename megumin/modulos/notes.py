@@ -174,11 +174,11 @@ async def rmnote(c: megux, m: Message):
     if check_note:
         await db.delete_one({"chat_id": chat_id, "name": trigger})
         await m.reply_text(
-            "🗒 <b>A nota</b> <code>{trigger}</code> <b>foi removida com sucesso!</b>".format(trigger=trigger), quote=True
+            (await tld(m.chat.id(m.chat.id, "NOTES_REMOVED")).format(trigger), quote=True
         )
     else:
         await m.reply_text(
-            "🗒 <b>A nota</b> <code>{trigger}</code> <b>não existe.</b>".format(trigger=trigger), quote=True
+            (await tld(m.chat.id, "NOTES_REMOVED_NOT_FOUND")).format(trigger), quote=True
         )
 
         
