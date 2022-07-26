@@ -4,17 +4,6 @@ from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMa
 from megumin import megux
 from megumin.utils import get_string 
 
-HELP_TEXT = """
-Olá! Me chamo <b>WhiterKang</b>. Sou um bot de gerenciamento de grupo modular com alguns extras divertidos! Dê uma olhada no seguinte para ter uma idéia de algumas das coisas em que posso ajudá-lo. 
-
-Comandos básicos:
-- /start: Comando Legal pra ver se eu estou Vivo ou Não:3
-- /help: envia esta mensagem de ajuda
-- /ping Ver o atraso para o bot retornar a mensagem.
-- /about Veja mais sobre os desenvolvedores. 
-
-Todos os comandos podem ser usados com os seguintes caracteres: <code>/ !</code>
-"""
 
 ABOUT_TEXT = """
 __Um Weeb Bot feito com carinho ❤️__.
@@ -70,7 +59,7 @@ async def help(client, message):
         ]
     )
     await megux.send_message(
-        chat_id=message.chat.id, text=await get_string(cb.message.chat.id, "HELP_MSG"), reply_markup=button
+        chat_id=message.chat.id, text=await get_string(message.chat.id, "HELP_MSG"), reply_markup=button
     )
 
     @megux.on_callback_query(filters.regex(pattern=r"^help_back$"))
