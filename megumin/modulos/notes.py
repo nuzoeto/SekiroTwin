@@ -79,7 +79,7 @@ async def save_notes(c: megux, m: Message):
     split_text = f"{args[1]}"
     trigger = split_text.lower()
     if trigger[0] == '#':
-        trigger = trigger[:1]
+        trigger = trigger[1:]
         
     sym = None
     if any((sym := s) in trigger for s in RESTRICTED_SYMBOLS_IN_NOTENAMES):
