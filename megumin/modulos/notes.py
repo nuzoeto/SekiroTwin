@@ -178,7 +178,7 @@ async def rmnote(c: megux, m: Message):
         )
     else:
         await m.reply_text(
-            (await tld(m.chat.id, "NOTES_REMOVED_NOT_FOUND")).format(trigger), quote=True
+            (await tld(m.chat.id, "NOTES_REMOVE_NOT_FOUND")).format(trigger), quote=True
         )
 
         
