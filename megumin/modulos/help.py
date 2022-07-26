@@ -70,12 +70,12 @@ async def help(client, message):
         ]
     )
     await megux.send_message(
-        chat_id=message.chat.id, text=HELP_TEXT, reply_markup=button
+        chat_id=message.chat.id, text=await get_string(cb.message.chat.id, "HELP_MSG"), reply_markup=button
     )
 
     @megux.on_callback_query(filters.regex(pattern=r"^help_back$"))
     async def help_back_(client: megux, cb: CallbackQuery):
-        await cb.edit_message_text(text=HELP_TEXT, reply_markup=button)
+        await cb.edit_message_text(text=await get_string(cb.message.chat.id, "HELP_MSG"), reply_markup=button)
 
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_admin$"))
@@ -169,7 +169,11 @@ async def help_github(client: megux, cb: CallbackQuery):
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_notes$"))
 async def help_notes_(client: megux, cb: CallbackQuery):
-    await cb.answer(f"""Under development.""", show_alert=True)
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=await get_string(cb.message.chat.id, "HELP_NOTES"), reply_markup=button)
+
 
 
 
