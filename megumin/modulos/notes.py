@@ -67,13 +67,13 @@ def button_parser(markdown_note):
 
 @megux.on_message(filters.command(["save", "savenote", "note"], Config.TRIGGER))
 async def save_notes(c: megux, m: Message):
+    chat_id = m.chat.id
+    user_id = m.from_user.id
     if not await check_rights(chat_id, user_id, "can_change_info"):
         return await m.reply(await tld(m.chat.id, "NOTES_NO_PERM"), quote=True)
     if m.reply_to_message is None and len(input_str(m)) < 2:
         await m.reply_text(await tld(m.chat.id, "NOTES_NOT_NAME"), quote=True)
         return
-    chat_id = m.chat.id
-    user_id = m.from_user.id
     db = get_collection(f"CHAT_NOTES {m.chat.id}")
     args = m.text.html.split(maxsplit=1)
     split_text = f"{args[1]}"
