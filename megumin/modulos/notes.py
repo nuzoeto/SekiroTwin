@@ -83,7 +83,7 @@ async def save_notes(c: megux, m: Message):
         
     sym = None
     if any((sym := s) in trigger for s in RESTRICTED_SYMBOLS_IN_NOTENAMES):
-        await m.reply("O nome da nota não deve ter o caractere {}".format(sym)
+        await m.reply("O nome da nota não deve ter o caractere {}".format(sym))
         return
 
     
