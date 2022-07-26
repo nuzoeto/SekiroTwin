@@ -138,7 +138,7 @@ async def save_notes(c: megux, m: Message):
         await db.insert_one({"chat_id": chat_id, "name": trigger, "raw_data": raw_data, "file_id": file_id, "type": note_type})
     else:
         await db.insert_one({"chat_id": chat_id, "name": trigger, "raw_data": raw_data, "file_id": file_id, "type": note_type})
-    await m.reply(await tld(m.chat.id, "NOTES_SAVED"))
+    await m.reply((await tld(m.chat.id, "NOTES_SAVED")).format(trigger))
 
 
 @megux.on_message(filters.command("notes", Config.TRIGGER) & filters.group)
