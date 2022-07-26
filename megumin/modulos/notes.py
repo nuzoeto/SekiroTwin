@@ -78,6 +78,13 @@ async def save_notes(c: megux, m: Message):
     args = m.text.html.split(maxsplit=1)
     split_text = f"{args[1]}"
     trigger = split_text.lower()
+    if trigger[0] == '#':
+        trigger = trigger[:1]
+        
+    sym = None
+    if any((sym := s) in trigger for s in RESTRICTED_SYMBOLS_IN_NOTENAMES):
+        await m.reply("O nome da nota não deve ter o caractere {}".format(sym)
+        return
 
     
     if m.reply_to_message and m.reply_to_message.photo:
