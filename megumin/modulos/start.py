@@ -344,9 +344,7 @@ Antes de tudo você deve estar registrado no lastfm
 
     @megux.on_callback_query(filters.regex(pattern=r"^notes_help_button$"))
     async def infos(client: megux, cb: CallbackQuery):
-        info_text = f"""
-Under development...
-    """
+        info_text = await get_string(cb.message.chat.id, "HELP_NOTES")
         button = InlineKeyboardMarkup(
             [
                 [
