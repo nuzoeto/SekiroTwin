@@ -216,7 +216,10 @@ async def last_user(c: megux, message: Message):
     else:
         listering = f"Estava ouvindo pela <b>{scrob}ª vez:</b>"
     kek = f"<a href='{img}'>\u200c</a>"
-    kek += f"<b>{user_.mention}</b> {listering}\n<b>{artist_name}</b> - {song_name}"
+    kek += f"<b>{user_.mention}</b> {listering}\n<b>{artist_name}</b> - {song_name}\n"
+    loved = int(song_["loved"])
+    if loved:
+        kek += "❤️<i>Loved</i>"
     await message.reply(kek, disable_web_page_preview=False)
                     
             
