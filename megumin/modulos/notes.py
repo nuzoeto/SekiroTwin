@@ -134,7 +134,7 @@ async def save_notes(c: megux, m: Message):
     else:
         if m.reply_to_message and m.reply_to_message.text:
             file_id = None
-            raw_data = m.reply_to_message.text.split()
+            raw_data = m.reply_to_message.text
             note_type = "text"
         else:
             await m.reply(await tld(m.chat.id, "NOTES_NO_REPLY"))
