@@ -271,5 +271,5 @@ async def serve_filter(c: megux, m: Message):
                     if len(button) != 0
                     else None,
                 )
-                
+    await m.stop_propagation()                
                 
