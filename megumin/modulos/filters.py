@@ -146,13 +146,13 @@ async def save_notes(c: megux, m: Message):
 async def get_all_chat_note(c: megux, m: Message):
     db = get_collection(f"CHAT_FILTERS {m.chat.id}")
     chat_id = m.chat.id
-    reply_text = "<b>Lista de filtros em {}:</b>".format(m.chat.title)
+    reply_text = "<b>Lista de filtros em {}:</b>\n\n".format(m.chat.title)
     all_filters = db.find()          
     async for filter_s in all_filters:
         keyword = filter_s["name"]
         reply_text += f" • <code>{keyword}</code> \n"
     if not await db.find_one():
-        await m.reply_text("Esse chat não tem filtros.", quote=True)
+        await m.reply_text("<i>Esse chat não tem filtros.</i>", quote=True)
     else:
         await m.reply_text(reply_text, quote=True)
     await m.stop_propagation()
