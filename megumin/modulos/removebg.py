@@ -30,7 +30,7 @@ async def remove_background(_, message: Message):
         and replied.media
         and (
             replied.photo
-            or (replied.document and "image" in replied.document.mime_type)
+            or (replied.document and "image" in replied.document.mime_type and replied.sticker)
         )
     ):
         msg = await message.reply("Analisando...")
