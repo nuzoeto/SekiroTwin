@@ -139,6 +139,7 @@ async def save_notes(c: megux, m: Message):
     else:
         await db.insert_one({"chat_id": chat_id, "name": trigger, "raw_data": raw_data, "file_id": file_id, "type": filter_type})
     await m.reply("Filtro {} foi adicionado em <b>{}</b>".format(trigger, m.chat.title))
+    await m.stop_propagation()
 
 
 @megux.on_message(filters.command("filters", Config.TRIGGER) & filters.group)
@@ -151,9 +152,10 @@ async def get_all_chat_note(c: megux, m: Message):
         keyword = note_s["name"]
         reply_text += f" • <code>{keyword}</code> \n"
     if not await db.find_one():
-        await m.reply_text("Esse não é um filtro ativo - use o comando /filters para todos os filtros ativos.", quote=True)
+        await m.reply_text("Esse chat não tem filtros.", quote=True)
     else:
         await m.reply_text(reply_text, quote=True)
+    await m.stop_propagation()
         
         
 @megux.on_message(filters.command(["rmfilter", "delfilter", "stop"]))
@@ -172,6 +174,7 @@ async def rmnote(c: megux, m: Message):
         await m.reply_text(
             "Esse não é um filtro ativo - use o comando /filters para todos os filtros ativos.".format(trigger), quote=True
         )
+    await m.stop_propagation()
 
         
 @megux.on_message(filters.command(["resetfilters", "clearfilters"]))
@@ -188,6 +191,7 @@ async def clear_notes(c: megux, m: Message):
         await m.reply_text(
             "O grupo não tem filtros.", quote=True
         )  
+    await m.stop_propagation()
 
 
 @megux.on_message(
