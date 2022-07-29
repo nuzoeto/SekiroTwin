@@ -22,9 +22,6 @@ SMART_OPEN = "“"
 SMART_CLOSE = "”"
 START_CHAR = ("'", '"', SMART_OPEN)
 
-RESTRICTED_SYMBOLS_IN_NOTENAMES = [
-    ':', '**', '__', '`', '#', '"', '[', ']', "'", '$', '||']
-
 
 def button_parser(markdown_note):
     note_data = ""
