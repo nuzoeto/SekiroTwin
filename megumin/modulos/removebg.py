@@ -30,7 +30,6 @@ async def remove_background(_, message: Message):
         and replied.media
         and (
             replied.photo
-            and replied.sticker
             or (replied.document and "image" in replied.document.mime_type)
         )
     ):
