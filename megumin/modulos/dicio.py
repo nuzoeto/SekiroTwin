@@ -16,7 +16,7 @@ dicio_link = "https://www.dicionarioinformal.com.br/"
 
 
 async def dicio_def(query):
-    r = await http.get(dicio_link + query)
+    r = await http.get(dicio_link + query, follow_redirects=True)
     soup = BeautifulSoup(r.text, "html.parser")
     tit = soup.find_all("h3", "di-blue")
     if tit is None:
