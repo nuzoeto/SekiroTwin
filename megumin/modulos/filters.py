@@ -253,7 +253,7 @@ async def serve_filter(c: megux, m: Message):
                 )
             elif filter_s["type"] == "animation":
                 await target_msg.reply_animation(
-                    filter_s["raw_data"],
+                    filter_s["file_id"],
                     quote=True,
                     caption=data if not None else None,
                     reply_markup=InlineKeyboardMarkup(button)
