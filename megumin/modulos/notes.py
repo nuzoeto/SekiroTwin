@@ -255,7 +255,7 @@ async def serve_note(c: megux, m: Message, txt):
                 )
             elif note_s["type"] == "animation":
                 await m.reply_animation(
-                    note_s["raw_data"],
+                    note_s["file_id"],
                     quote=True,
                     caption=data if not None else None,
                     reply_markup=InlineKeyboardMarkup(button)
