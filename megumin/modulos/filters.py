@@ -127,7 +127,7 @@ async def save_notes(c: megux, m: Message):
             raw_data = m.reply_to_message.text
             filter_type = "text"
         else:
-            await m.reply("Responda algo para salvar o filtro.")
+            await m.reply("<i>Responda algo para salvar o filtro.</i>")
 
     check_note = await db.find_one({"name": trigger})
     if check_note:
@@ -135,12 +135,14 @@ async def save_notes(c: megux, m: Message):
         await db.insert_one({"chat_id": chat_id, "name": trigger, "raw_data": raw_data, "file_id": file_id, "type": filter_type})
     else:
         await db.insert_one({"chat_id": chat_id, "name": trigger, "raw_data": raw_data, "file_id": file_id, "type": filter_type})
-    await m.reply("Filtro {} foi adicionado em <b>{}</b>".format(trigger, m.chat.title))
+    await m.reply("Filtro {} foi adicionado em <b>{}.</b>".format(trigger, m.chat.title))
     await m.stop_propagation()
 
 
 @megux.on_message(filters.command("filters", Config.TRIGGER) & filters.group)
 async def get_all_chat_note(c: megux, m: Message):
+    if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
+        return
     db = get_collection(f"CHAT_FILTERS {m.chat.id}")
     chat_id = m.chat.id
     reply_text = "<b>Lista de filtros em {}:</b>\n\n".format(m.chat.title)
@@ -157,6 +159,8 @@ async def get_all_chat_note(c: megux, m: Message):
         
 @megux.on_message(filters.command(["rmfilter", "delfilter", "stop"]))
 async def rmnote(c: megux, m: Message):
+    if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
+        return
     args = m.text.html.split(maxsplit=1)
     trigger = args[1].lower()
     chat_id = m.chat.id
@@ -177,6 +181,8 @@ async def rmnote(c: megux, m: Message):
 @megux.on_message(filters.command(["resetfilters", "clearfilters"]))
 async def clear_notes(c: megux, m: Message):
     chat_id = m.chat.id
+    if not await check_rights(chat_id, m.from_user.id, "can_change_info"):
+        return
     db = get_collection(f"CHAT_FILTERS {chat_id}")
     check_note = await db.find_one()
     if check_note:
