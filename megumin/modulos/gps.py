@@ -1,7 +1,7 @@
 from geopy.geocoders import Nominatim
 
 from pyrogram import filters
-from pyrogram.types import Message
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from megumin import megux, Config
 from megumin.utils.decorators import input_str
@@ -17,7 +17,8 @@ async def gps_(c: megux, m: Message):
     if geoloc:
         lon = geoloc.longitude
         lat = geoloc.latitude
-        await megux.send_location(m.chat.id, lat, lon)
+        keyboard = [[InlineKeyboardButton(text="🌎 Abrir no Google Maps", url=f"https://www.google.com/maps/search/{lat},{lon}")]]
+        await megux.send_location(m.chat.id, lat, lon, reply_markup=InlineKeyboardMarkup(keyboard))
         await msg.delete()
     else:
         await msg.edit("Localização não encontrada!")
