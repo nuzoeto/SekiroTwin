@@ -16,5 +16,6 @@ from .tools import (
     time_formatter,
     http,
     cssworker_url,
+    weather_apikey,
 )
 from .aiohttp import AioHttp as get_response
