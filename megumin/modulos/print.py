@@ -1,6 +1,3 @@
-import httpx
-
-from httpx import HTTPError
 from pyrogram import filters
 from pyrogram.types import Message
 
