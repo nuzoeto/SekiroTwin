@@ -13,6 +13,7 @@ async def prints(c: megux, message: Message):
     if off:
         return 
     msg = message.text
+    user_id = f"{message.from_user.id}"
     the_url = msg.split(" ", 1)
     wrong = False
 
@@ -34,7 +35,7 @@ async def prints(c: megux, message: Message):
 
     try:
         sent = await message.reply_text(await get_string(message.chat.id, "TAKING_PRINT"))
-        res_json = await cssworker_url(target_url=the_url)
+        res_json = await cssworker_url(target_url=the_url, pc_id=user_id)
     except BaseException as e:
         await message.reply(f"<b>Failed due to:</b> <code>{e}</code>")
         return
@@ -64,6 +65,7 @@ async def prints(c: megux, message: Message):
 @megux.on_message(filters.command(["google", "search"], prefixes=["/","!"]))
 async def prints_google(c: megux, message: Message):
     msg = message.text
+    user_id = f"{message.from_user.id}"
     the_url = msg.split(" ", 1)
     wrong = False
 
@@ -86,7 +88,7 @@ async def prints_google(c: megux, message: Message):
     try:
         sent = await message.reply_text(await get_string(message.chat.id, "TAKING_PRINT"))
         search_google = f"{the_url}".replace(" ", "+")
-        res_json = await cssworker_url(target_url=f"https://www.google.com/search?q={search_google}&oq={search_google}")
+        res_json = await cssworker_url(target_url=f"https://www.google.com/search?q={search_google}&oq={search_google}", pc_id=user_id)
     except BaseException as e:
         await message.reply(f"<b>Failed due to:</b> <code>{e}</code>")
         return
