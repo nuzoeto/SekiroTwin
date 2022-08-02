@@ -5,10 +5,8 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux
-from megumin.utils import get_collection, get_string, cssworker_url  
+from megumin.utils import get_collection, get_string, cssworker_url, http  
 
-
-http = httpx.AsyncClient()
 
 @megux.on_message(filters.command("print", prefixes=["/","!"]))
 async def prints(c: megux, message: Message):
