@@ -3,6 +3,7 @@ import time
 import httpx
 import requests
 from datetime import datetime, timedelta
+from httpx import HTTPError
 
 from pyrogram.enums import ChatMemberStatus 
 from pyrogram.types import Message
