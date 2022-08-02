@@ -154,10 +154,10 @@ async def extract_time(msg, time_val):
         return
 
 
-async def cssworker_url(target_url: str):
+async def cssworker_url(target_url: str, m: Message):
     url = "https://htmlcsstoimage.com/demo_run"
     my_headers = {
-        "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:95.0) Gecko/20100101 Firefox/95.0",
+        "User-Agent": f"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:95.0) Gecko/20100101 Firefox/95.0 [PC-ID({m.from_user.id})]",
     }
 
     data = {
