@@ -1,5 +1,7 @@
 import base64
 import time
+import httpx
+import requests
 from datetime import datetime, timedelta
 
 from pyrogram.enums import ChatMemberStatus 
@@ -9,6 +11,10 @@ from pyrogram.enums import ChatType
 from megumin import megux, Config 
 
 _BOT_ID = 0
+
+
+timeout = httpx.Timeout(30, pool=None)
+http = httpx.AsyncClient(http2=True, timeout=timeout)
 
 
 def time_formatter(seconds: float) -> str:
