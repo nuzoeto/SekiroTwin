@@ -18,6 +18,9 @@ timeout = httpx.Timeout(30, pool=None)
 http = httpx.AsyncClient(http2=True, timeout=timeout)
 
 
+weather_apikey = "8de2d8b3a93542c9a2d8b3a935a2c909"
+
+
 def time_formatter(seconds: float) -> str:
     """tempo"""
     minutes, seconds = divmod(int(seconds), 60)
