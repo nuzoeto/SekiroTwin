@@ -17,5 +17,7 @@ from .tools import (
     http,
     cssworker_url,
     weather_apikey,
+    cleanhtml,
+    escape_definition,
 )
 from .aiohttp import AioHttp as get_response
