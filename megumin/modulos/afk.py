@@ -45,7 +45,7 @@ async def afk_cmd(_, m: Message):
             return     
         await m.stop_propagation()
 
-@megux.on_message(filters.group & ~filters.bot, group=1)
+@megux.on_message(filters.group & ~filters.bot, group=4)
 async def rem_afk(c: megux, m: Message):
     if not m.from_user:
         return
