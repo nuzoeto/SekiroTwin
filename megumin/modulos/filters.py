@@ -198,7 +198,7 @@ async def clear_notes(c: megux, m: Message):
 
 
 @megux.on_message(
-    (filters.group | filters.private) & filters.text & filters.incoming, group=1
+    (filters.group | filters.private) & filters.text & filters.incoming, group=5
 )
 async def serve_filter(c: megux, m: Message):
     chat_id = m.chat.id
