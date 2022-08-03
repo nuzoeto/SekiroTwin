@@ -1,5 +1,7 @@
 import base64
 import uuid
+import html
+import re
 import time
 import httpx
 import requests
@@ -175,3 +177,16 @@ async def cssworker_url(target_url: str, pc_id: str):
         return resp.json()
     except HTTPError:
         return None
+
+
+def cleanhtml(raw_html):
+    cleanr = re.compile("<.*?>")
+    cleantext = re.sub(cleanr, "", raw_html)
+    return cleantext
+
+
+def escape_definition(definition):
+    for key, value in definition.items():
+        if isinstance(value, str):
+            definition[key] = html.escape(cleanhtml(value))
+    return definition
