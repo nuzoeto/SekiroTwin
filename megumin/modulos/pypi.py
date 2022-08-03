@@ -21,10 +21,7 @@ def escape_definition(definition):
     
     
 from megumin import megux
-from megumin.utils import get_collection  
-
-
-http = httpx.AsyncClient()
+from megumin.utils import get_collection, http  
 
 
 
