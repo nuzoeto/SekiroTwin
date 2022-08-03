@@ -6,22 +6,9 @@ import httpx
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
-
-def cleanhtml(raw_html):
-    cleanr = re.compile("<.*?>")
-    cleantext = re.sub(cleanr, "", raw_html)
-    return cleantext
-
-
-def escape_definition(definition):
-    for key, value in definition.items():
-        if isinstance(value, str):
-            definition[key] = html.escape(cleanhtml(value))
-    return definition
-    
-    
+ 
 from megumin import megux
-from megumin.utils import get_collection, http  
+from megumin.utils import get_collection, http, cleanhtml, escape_definition  
 
 
 
