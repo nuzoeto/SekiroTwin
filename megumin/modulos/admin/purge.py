@@ -28,7 +28,12 @@ async def purge_commmand(c: megux, message: Message):
             if len(message_ids) > 0:
                 await c.delete_messages(chat_id=message.chat.id, message_ids=message_ids)
         except MessageDeleteForbidden:
-            return await message.reply("Não é possível excluir todas as mensagens. As mensagens podem ser muito antigas, talvez eu não tenha direitos de exclusão ou isso pode não ser um supergrupo.")
+            await message.reply("Não é possível excluir todas as mensagens. As mensagens podem ser muito antigas, talvez eu não tenha direitos de exclusão ou isso pode não ser um supergrupo.")
+            await message.stop_propagation()
+            return
+        except Exception as exc:
+            await message.reply(f"<b>ERRO:</b> {exc}")
+            return
     await message.reply("Purge completo.")
 
 
