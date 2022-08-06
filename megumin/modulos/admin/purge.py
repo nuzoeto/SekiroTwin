@@ -9,7 +9,7 @@ from megumin.utils import admin_check, check_bot_rights, check_rights, get_colle
 
 
 @megux.on_message(filters.command("purge", Config.TRIGGER))
-async def purge_commmand(megux, message: Message):
+async def purge_commmand(c: megux, message: Message):
     if not await check_bot_rights(message.chat.id, "can_delete_messages"):
         return await message.reply("Não consigo excluir mensagens aqui! Verifique se eu sou um(a) administrador(a) e posso excluir mensagens de outros usuários.")
     if not await check_rights(message.chat.id, message.from_user.id, "can_delete_messages"):
