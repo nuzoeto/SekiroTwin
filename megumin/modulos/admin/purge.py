@@ -8,8 +8,33 @@ from megumin import megux, Config
 from megumin.utils import admin_check, check_bot_rights, check_rights, get_collection, get_string  
 
 
-@megux.on_message(filters.command("spurge"))
-async def purge_command(megux, message: Message):
+@megux.on_message(filters.command("purge", Config.TRIGGER))
+async def purge_commmand(megux, message: Message):
+    if not await check_bot_rights(message.chat.id, "can_delete_messages"):
+        return await message.reply("Não consigo excluir mensagens aqui! Verifique se eu sou um(a) administrador(a) e posso excluir mensagens de outros usuários.")
+    if not await check_rights(message.chat.id, message.from_user.id, "can_delete_messages"):
+        return await message.reply("Você não tem direitos suficientes para apagar mensagens")
+    if not message.reply_to_message:
+        return await message.reply("Responda a uma mensagem para selecionar por onde iniciar a limpeza.")
+    await message.delete()
+    message_ids = []
+    if message.reply_to_message:
+        try:
+            for a_s_message_id in range(message.reply_to_message.id, message.id):
+                message_ids.append(a_s_message_id)
+                if len(message_ids) == 100:
+                    await c.delete_messages(chat_id=message.chat.id, message_ids=message_ids)
+                    count_del_etion_s += len(message_ids)
+                    message_ids = []
+            if len(message_ids) > 0:
+                await c.delete_messages(chat_id=message.chat.id, message_ids=message_ids)
+        except MessageDeleteForbidden:
+            return await message.reply("Não é possível excluir todas as mensagens. As mensagens podem ser muito antigas, talvez eu não tenha direitos de exclusão ou isso pode não ser um supergrupo.")
+    await message.reply("Purge completo.")
+
+
+@megux.on_message(filters.command("spurge", Config.TRIGGER))
+async def spurge_command(megux, message: Message):
     can_purge = await admin_check(message)
     if can_purge:
         try:
