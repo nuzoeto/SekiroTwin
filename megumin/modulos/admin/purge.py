@@ -24,7 +24,6 @@ async def purge_commmand(c: megux, message: Message):
                 message_ids.append(a_s_message_id)
                 if len(message_ids) == 100:
                     await c.delete_messages(chat_id=message.chat.id, message_ids=message_ids)
-                    count_del_etion_s += len(message_ids)
                     message_ids = []
             if len(message_ids) > 0:
                 await c.delete_messages(chat_id=message.chat.id, message_ids=message_ids)
