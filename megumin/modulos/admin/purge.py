@@ -8,7 +8,7 @@ from megumin import megux, Config
 from megumin.utils import admin_check, check_bot_rights, check_rights, get_collection, get_string  
 
 
-@megux.on_message(filters.command("purge"))
+@megux.on_message(filters.command("spurge"))
 async def purge_command(megux, message: Message):
     can_purge = await admin_check(message)
     if can_purge:
@@ -32,7 +32,6 @@ async def purge_command(megux, message: Message):
             except Exception as exc:
                 await message.reply(f"<b>ERRO:</b> {exc}")
                 return
-        await message.reply("Purge completo.")
     else:
         await message.reply("Você precisa ser admin para dar purge.")
         ignore_errors=True
