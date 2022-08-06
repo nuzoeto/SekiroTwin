@@ -25,6 +25,6 @@ async def addblacklist(c: megux, m: Message):
 async def blacklist_txt(c: megux, m: Message):
     BLACKLIST = get_collection(f"BLACKLIST {m.chat.id}")
     text = m.text.split()
-    text_1 = await BLACKLIST.find_one({"m": text_1})
+    text_1 = await BLACKLIST.find_one({"m": text})
     if text_1:
         await text.delete() 
