@@ -8,7 +8,7 @@ from megumin.utils import get_collection, check_rights, check_bot_rights, is_adm
 
 
 @megux.on_message(filters.command("warn", Config.TRIGGER))
-async def warn_users(c: megux, message: Message):
+async def warn_users(_, message: Message):
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
         await message.reply(await get_string(chat_id, "NO_BAN_USER"))
         return
