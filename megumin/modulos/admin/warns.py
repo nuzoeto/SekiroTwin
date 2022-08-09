@@ -4,7 +4,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux, Config
-from megumin.utils import get_collection
+from megumin.utils import get_collection, check_rights, check_bot_rights, is_admin, sed_sticker, is_dev, is_self
 
 
 @megux.on_message(filters.command("warn", Config.TRIGGER))
