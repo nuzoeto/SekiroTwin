@@ -85,16 +85,16 @@ async def warn_users(_, message: Message):
     if user_warns >= warns_limit:
         if warn_action == "ban":
             await message.chat.ban_member(user_id)
-            await message.reply(f"{user_warns}/{warns_limit}, {mention} Foi banido!")
+            await message.reply(f"{user_warns}/{warns_limit} Advertências, {mention} Foi banido!")
         elif warn_action == "mute":
             await message.chat.restrict_member(user_id, ChatPermissions())
-            await message.reply(f"{user_warns}/{warns_limit}, {mention} Foi mutado até que um admin remova o mute!")
+            await message.reply(f"{user_warns}/{warns_limit} Advertências, {mention} Foi mutado até que um admin remova o mute!")
         elif warn_action == "kick":
             await message.chat.ban_member(user_id)
             await message.chat.unban_member(user_id)
-            await message.reply(f"{user_warns}/{warns_limit}, {mention} Foi kickado!")
+            await message.reply(f"{user_warns}/{warns_limit} Advertências, {mention} Foi kickado!")
         else:
             return
-        await warn.delete_one({"user_id": user_id})
+        await DB_WARNS.delete_many({"user_id": user_id})
     else:
-        await message.reply(f"{mention} <b>foi advertido!</b>\nEle(a) têm {user_warns}/{warns_limit}\n<b>Motivo:</b> {reason or None}")
+        await message.reply(f"{mention} <b>foi advertido!</b>\nEle(a) têm {user_warns}/{warns_limit} Advertências.\n<b>Motivo:</b> {reason or None}")
