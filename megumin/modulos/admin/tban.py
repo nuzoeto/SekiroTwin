@@ -68,7 +68,7 @@ async def _tban_user(_, message: Message):
     if is_dev(user_id):
         await message.reply("Porque eu iria banir meu desenvolvedor? Isso me parece uma idéia muito idiota.")
         return
-    if is_admin(chat_id, user_id):
+    if await is_admin(chat_id, user_id):
         await message.reply("Porque eu iria banir um(a) administrador(a)? Isso me parece uma idéia bem idiota.")
         return
     if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
