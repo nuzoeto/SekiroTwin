@@ -1,7 +1,7 @@
 import uuid
 
 from pyrogram import filters
-from pyrogram.enums import ChatMemberStatus
+from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
 from pyrogram.types import Message
 
 from megumin import megux, Config
