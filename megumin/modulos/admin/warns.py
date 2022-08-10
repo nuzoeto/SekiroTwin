@@ -57,7 +57,8 @@ async def warn_users(_, message: Message):
     if is_dev(user_id):
         await message.reply(await get_string(chat_id, "BAN_IN_DEV"))
         return
-    if user.status == ChatMemberStatus.ADMINISTRATOR or ChatMemberStatus.OWNER:
+    check = await chat.get_member(user_id)
+    if check.status in ChatMemberStatus.ADMINISTRATOR or ChatMemberStatus.OWNER:
         await message.reply(await get_string(chat_id, "BAN_IN_ADMIN"))
         return
     if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
