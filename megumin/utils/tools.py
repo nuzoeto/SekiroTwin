@@ -53,13 +53,17 @@ async def admin_check(message: Message) -> bool:
         return True
 
 
-def is_admin(chat_id: int, user_id: int, check_devs: bool = False) -> bool:
+async def is_admin(chat_id: int, user_id: int, check_devs: bool = False) -> bool:
     """checa admin no chat"""
     if check_devs and is_dev(user_id):
         return True
-    if chat_id not in Config.ADMINS:
+    check_status = await client.get_chat_member(chat_id=chat_id, user_id=user_id)
+    admin_strings = [ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER]
+    if check_status.status not in admin_strings:
         return False
-    return user_id in Config.ADMINS[chat_id]
+    else:
+        return True
+
 
 
 def is_dev(user_id: int) -> bool:
