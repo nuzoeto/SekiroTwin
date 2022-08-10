@@ -59,7 +59,7 @@ async def _mute_user(_, message: Message):
     if is_dev(user_id):
         await message.reply("Porque eu iria mutar meu desenvolvedor? Isso me parece uma idéia muito idiota.")
         return
-    if is_admin(chat_id, user_id):
+    if await is_admin(chat_id, user_id):
         await message.reply("Porque eu iria mutar um(a) administrador(a)? Isso me parece uma idéia bem idiota.")
         return
     if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
@@ -132,7 +132,7 @@ async def _tmute_user(_, message: Message):
     if is_dev(user_id):
         await message.reply("Porque eu iria mutar meu desenvolvedor? Isso me parece uma idéia muito idiota.")
         return
-    if is_admin(chat_id, user_id):
+    if await is_admin(chat_id, user_id):
         await message.reply("Porque eu iria mutar um(a) administrador(a)? Isso me parece uma idéia bem idiota.")
         return
     if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
@@ -181,7 +181,7 @@ async def _unmute_user(_, message: Message):
         return
     if await is_self(user_id):
         return
-    if is_admin(chat_id, user_id):
+    if await is_admin(chat_id, user_id):
         await message.reply("Este usuario é administrador(a), ele não precisa ser desmutado(a).")
         return
     if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
