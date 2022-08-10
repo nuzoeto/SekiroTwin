@@ -57,7 +57,7 @@ async def warn_users(_, message: Message):
     if is_dev(user_id):
         await message.reply(await get_string(chat_id, "BAN_IN_DEV"))
         return
-    if is_admin(chat_id, user_id):
+    if await is_admin(chat_id, user_id):
         await message.reply(await get_string(chat_id, "BAN_IN_ADMIN"))
         return
     if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
