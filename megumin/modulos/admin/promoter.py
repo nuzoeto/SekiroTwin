@@ -49,7 +49,7 @@ async def _promote_user(_, message: Message):
     if await is_self(user_id):
         await message.reply("Eu não posso me promover")
         return
-    if is_admin(chat_id, user_id):
+    if await is_admin(chat_id, user_id):
         await message.reply("Como devo promover alguém que já é administrador?")
         return
     if not await check_rights(chat_id, megux.me.id, "can_promote_members"):
