@@ -1,6 +1,7 @@
 import uuid
 
 from pyrogram import filters
+from pyrogram.enums import ChatMemberStatus
 from pyrogram.types import Message
 
 from megumin import megux, Config
@@ -56,7 +57,7 @@ async def warn_users(_, message: Message):
     if is_dev(user_id):
         await message.reply(await get_string(chat_id, "BAN_IN_DEV"))
         return
-    if is_admin(chat_id, user_id):
+    if user.status == ChatMemberStatus.ADMINISTRATOR or ChatMemberStatus.OWNER:
         await message.reply(await get_string(chat_id, "BAN_IN_ADMIN"))
         return
     if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
