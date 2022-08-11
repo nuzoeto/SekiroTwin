@@ -182,7 +182,7 @@ async def set_warns_limit(_, message: Message):
         if not message.command[1] in ("ban", "mute", "kick"):
             return await message.reply_text("Esse argumento não é valido.")
 
-        warn_action_txt = m.command[1]
+        warn_action_txt = message.command[1]
         
         DB = get_collection(f"WARN_ACTION {message.chat.id}")       
         await DB.drop()
