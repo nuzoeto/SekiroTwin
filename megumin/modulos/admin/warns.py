@@ -250,7 +250,7 @@ async def warns_from_users(_, message: Message):
     DB_WARNS = get_collection(f"WARNS {message.chat.id}")
     DB_LIMIT = get_collection(f"WARN_LIMIT {message.chat.id}")
     
-    if not DB_WARNS.find_one({"user_id": user_id})
+    if not await DB_WARNS.find_one({"user_id": user_id}):
         return await message.reply(f"{mention} não possui advertências.")
     
     if await DB_LIMIT.find_one():
