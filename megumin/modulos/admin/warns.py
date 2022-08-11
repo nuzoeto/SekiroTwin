@@ -247,7 +247,7 @@ async def warns_from_users(_, message: Message):
     DB_WARNS = get_collection(f"WARNS {message.chat.id}")
     DB_LIMIT = get_collection(f"WARN_LIMIT {message.chat.id}")
     
-    if await DB_LIMIT.find_one()
+    if await DB_LIMIT.find_one():
         res = await DB_LIMIT.find_one()
         warns_limit = res["limit"]
     else:
