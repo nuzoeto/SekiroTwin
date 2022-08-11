@@ -167,7 +167,7 @@ async def set_warns_limit(_, message: Message):
             else:
                 DB = get_collection(f"WARN_LIMIT {message.chat.id}")
                 await DB.insert_one({"limit": int(args[0])})
-                await message.reply("Limite de advertências foi alterado para {}".format(args[0])
+                await message.reply("Limite de advertências foi alterado para {}".format(args[0]))
         else:
             await message.reply("Esse limite é invalido!")
     else:
