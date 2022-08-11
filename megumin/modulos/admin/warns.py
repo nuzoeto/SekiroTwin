@@ -169,6 +169,7 @@ async def set_warns_limit(_, message: Message):
     except ValueError:
         return await message.reply("Esse limite não é valido.")
     DB = get_collection(f"WARN_LIMIT {message.chat.id}")
+    await DB.drop()
     await DB.insert_one({"limit": warns_limit})
     await message.reply(f"<i>O limite de advertências foi alterado para {warns_limit}</i>")
 
@@ -178,7 +179,7 @@ async def set_warns_limit(_, message: Message):
     if not await check_rights(message.chat.id, message.from_user.id, "can_change_info"):
         return
     if len(message.text.split()) > 1:
-        if not m.command[1] in ("ban", "mute", "kick"):
+        if not message.command[1] in ("ban", "mute", "kick"):
             return await message.reply_text("Esse argumento não é valido.")
 
         warn_action_txt = m.command[1]
