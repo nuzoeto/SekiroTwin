@@ -148,5 +148,8 @@ async def unwarn_users(_, message: Message):
         return
     DB_WARNS = get_collection(f"WARNS {message.chat.id}")
     #delete one warn--user
-    await DB_WARNS.delete_one({"user_id": user_id})
-    await message.reply("A última advertencia foi removida!")
+    if await DB_WARNS.find_one({"user_id": user_id}):
+        await DB_WARNS.delete_one({"user_id": user_id})
+        await message.reply("A última advertencia foi removida!")
+    else:
+        await message.reply("Este usuário não tem nenhuma advertencia!")
