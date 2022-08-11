@@ -195,9 +195,9 @@ async def set_warns_limit(_, message: Message):
     else:
         if await DB.find_one():
             r = await DB.find_one()
-            action_act = r["action"]
+            warn_act = r["action"]
         else:
-            action_act = "ban"
+            warn_act = "ban"
         await message.reply_text("A ação atual de advertências é: {action}".format(action=warn_act))
         
 
@@ -232,16 +232,7 @@ async def warns_from_users(_, message: Message):
             await get_string(message.chat.id, "BANS_ID_INVALID")
         )
         return
-    if await is_self(user_id):
-        await message.reply(await get_string(chat_id, "BAN_MY_SELF"))
-        await sed_sticker(message)
-        return 
-    if is_dev(user_id):
-        await message.reply(await get_string(chat_id, "BAN_IN_DEV"))
-        return
-    if await is_admin(chat_id, user_id):
-        await message.reply(await get_string(chat_id, "BAN_IN_ADMIN"))
-        return
+    
     if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
         await message.reply(await get_string(chat_id, "NO_BAN_BOT"))
         await sed_sticker(message)
