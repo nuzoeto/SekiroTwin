@@ -171,3 +171,21 @@ async def set_warns_limit(_, message: Message):
     DB = get_collection(f"WARN_LIMIT {message.chat.id}")
     await DB.insert_one({"limit": warns_limit})
     await message.reply(f"<i>O limite de advertências foi alterado para {warns_limit}</i>")
+
+    
+@megux.on_message(filters.command(["setwarnmode", "setwarnaction"], Config.TRIGGER))
+async def set_warns_limit(_, message: Message):
+    if not await check_rights(message.chat.id, message.from_user.id, "can_change_info"):
+        return
+    if len(message.command) == 1:
+        await message.reply("Você precisa dar um argumento.")
+        return
+    try:
+        warns_action = str({message.command}lower())
+    except ValueError:
+        return await message.reply("Esse limite não é valido.")
+    if not warn_action in ["ban", "kick", "mute"]:
+        return await message.reply("Isso não é algo valido.")
+    DB = get_collection(f"WARN_ACTION {message.chat.id}")
+    await DB.insert_one({"limit": warns_action})
+    await message.reply(f"<i>A ação de advertências foi alterada para {warns_action}</i>")
