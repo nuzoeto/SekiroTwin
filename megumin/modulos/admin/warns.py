@@ -163,7 +163,7 @@ async def set_warns_limit(_, message: Message):
         await message.reply("Você precisa dar um argumento.")
         return
     try:
-        warns_limit = int(m.command[1])
+        warns_limit = int(message.command[1])
     except ValueError:
         return await message.reply("Esse limite não é valido.")
     DB = get_collection(f"WARN_LIMIT {message.chat.id}")
