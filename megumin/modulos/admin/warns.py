@@ -183,12 +183,10 @@ async def set_warns_limit(_, message: Message):
 
         warn_action_txt = m.command[1]
         
-        DB = get_collection(f"WARN_ACTION {message.chat.id}")
-        if await DB.find_one():
-            await DB.drop()
-            await DB.insert_one({"action": warn_action_txt})
-        else:
-            await DB.insert_one({"action": warn_action_txt})
+        DB = get_collection(f"WARN_ACTION {message.chat.id}")       
+        await DB.drop()
+        await DB.insert_one({"action": warn_action_txt})
+       
         await message.reply_text(
         f"A ação de advertências do chat foi alterado para: {warn_action_txt}"
     )
