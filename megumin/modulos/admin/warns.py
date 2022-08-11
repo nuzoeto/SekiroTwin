@@ -255,4 +255,4 @@ async def warn_users(_, message: Message):
         
     user_warns = await DB_WARNS.count_documents({"user_id": user_id})
     
-    await message.reply(f"Atualmente, {mention} têm {user_warns}/{warns_limit} Advertências")
+    await message.reply(f"Atualmente, {mention} têm {user_warns}/{warns_limit} Advertências!")
