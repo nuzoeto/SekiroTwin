@@ -177,15 +177,24 @@ async def set_warns_limit(_, message: Message):
 async def set_warns_limit(_, message: Message):
     if not await check_rights(message.chat.id, message.from_user.id, "can_change_info"):
         return
-    if len(message.command) == 1:
-        await message.reply("Você precisa dar um argumento.")
-        return
-    try:
-        warns_action = str(message.command.lower())
-    except ValueError:
-        return await message.reply("Esse limite não é valido.")
-    if not warn_action in ["ban", "kick", "mute"]:
-        return await message.reply("Isso não é algo valido.")
-    DB = get_collection(f"WARN_ACTION {message.chat.id}")
-    await DB.insert_one({"limit": warns_action})
-    await message.reply(f"<i>A ação de advertências foi alterada para {warns_action}</i>")
+    if len(message.text.split()) > 1:
+        if not m.command[1] in ("ban", "mute", "kick"):
+            return await message.reply_text("Esse argumento não é valido.")
+
+        warn_action_txt = m.command[1]
+        
+        DB = get_collection(f"WARN_ACTION {message.chat.id}")
+        if await DB.find_one():
+            await DB.drop()
+            await DB.insert_one({"action": warn_action_txt})
+        else:
+            await DB.insert_one({"action": warn_action_txt})
+        await message.reply_text(
+            f"A ação de advertências do chat foi alterado para: {warn_action_txt}"
+        )
+    else:
+        if await DB.find_one():
+            r = await DB.find_one()
+            txt = r["action"]
+        await message.reply_text("A ação atual de advertências é: {action}".format(action=warn_act))
+        
