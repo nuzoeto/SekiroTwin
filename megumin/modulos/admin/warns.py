@@ -178,13 +178,14 @@ async def set_warns_limit(_, message: Message):
 async def set_warns_limit(_, message: Message):
     if not await check_rights(message.chat.id, message.from_user.id, "can_change_info"):
         return
+    DB = get_collection(f"WARN_ACTION {message.chat.id}")   
     if len(message.text.split()) > 1:
         if not message.command[1] in ("ban", "mute", "kick"):
             return await message.reply_text("Esse argumento não é valido.")
 
         warn_action_txt = message.command[1]
         
-        DB = get_collection(f"WARN_ACTION {message.chat.id}")       
+            
         await DB.drop()
         await DB.insert_one({"action": warn_action_txt})
        
@@ -209,9 +210,9 @@ async def warns_from_users(_, message: Message):
     reason = ""
     if replied:
         id_ = replied.from_user.id
-        if cmd > 5:
+        if cmd > 6:
             _, reason = message.text.split(maxsplit=1)
-    elif cmd > 5:
+    elif cmd > 6:
         _, args = message.text.split(maxsplit=1)
         if " " in args:
             id_, reason = args.split(" ", maxsplit=1)
@@ -246,6 +247,9 @@ async def warns_from_users(_, message: Message):
       
     DB_WARNS = get_collection(f"WARNS {message.chat.id}")
     DB_LIMIT = get_collection(f"WARN_LIMIT {message.chat.id}")
+    
+    if not DB_WARNS.find_one({"user_id": user_id})
+        return await message.reply(f"{mention} não possui advertências.")
     
     if await DB_LIMIT.find_one():
         res = await DB_LIMIT.find_one()
