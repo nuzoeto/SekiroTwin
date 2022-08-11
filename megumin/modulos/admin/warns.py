@@ -197,3 +197,62 @@ async def set_warns_limit(_, message: Message):
             txt = r["action"]
         await message.reply_text("A ação atual de advertências é: {action}".format(action=warn_act))
         
+
+        @megux.on_message(filters.command("warn", Config.TRIGGER))
+async def warn_users(_, message: Message):
+    chat_id = message.chat.id
+    if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
+        await message.reply(await get_string(chat_id, "NO_BAN_USER"))
+        return
+    cmd = len(message.text)
+    replied = message.reply_to_message
+    reason = ""
+    if replied:
+        id_ = replied.from_user.id
+        if cmd > 5:
+            _, reason = message.text.split(maxsplit=1)
+    elif cmd > 5:
+        _, args = message.text.split(maxsplit=1)
+        if " " in args:
+            id_, reason = args.split(" ", maxsplit=1)
+        else:
+            id_ = args
+    else:
+        await message.reply(await get_string(message.chat.id, "BANS_NOT_ESPECIFIED_USER"))
+        return
+    try:
+        user = await megux.get_users(id_)
+        user_id = user.id
+        mention = user.mention
+    except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
+        await message.reply(
+            await get_string(message.chat.id, "BANS_ID_INVALID")
+        )
+        return
+    if await is_self(user_id):
+        await message.reply(await get_string(chat_id, "BAN_MY_SELF"))
+        await sed_sticker(message)
+        return 
+    if is_dev(user_id):
+        await message.reply(await get_string(chat_id, "BAN_IN_DEV"))
+        return
+    if await is_admin(chat_id, user_id):
+        await message.reply(await get_string(chat_id, "BAN_IN_ADMIN"))
+        return
+    if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
+        await message.reply(await get_string(chat_id, "NO_BAN_BOT"))
+        await sed_sticker(message)
+        return
+      
+    DB_WARNS = get_collection(f"WARNS {message.chat.id}")
+    DB_LIMIT = get_collection(f"WARN_LIMIT {message.chat.id}")
+    
+    if await DB_LIMIT.find_one()
+        res = await DB_LIMIT.find_one()
+        warns_limit = res["limit"]
+    else:
+        warns_limit = 3
+        
+    user_warns = await DB_WARNS.count_documents({"user_id": user_id})
+    
+    await message.reply(f"Atualmente, {mention} têm {user_warns}/{warns_limit} Advertências")
