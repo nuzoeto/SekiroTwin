@@ -153,3 +153,22 @@ async def unwarn_users(_, message: Message):
         await message.reply("A última advertencia foi removida!")
     else:
         await message.reply("Este usuário não tem nenhuma advertencia!")
+        
+        
+@megux.on_message(filters.command("setwarnslimit", Config.TRIGGER))
+async def set_warns_limit(_, message: Message):
+    args = message.text
+    if args:
+        if args[0].isdigit():
+            if int(args[0]) < 3:
+                await message.reply("<i>O limite minimo de advertências é 3</i>")
+            elif int(args[0]) > 10:
+                await message.reply("<i>O limite maximo de advertências é 10</b>")
+            else:
+                DB = get_collection(f"WARN_LIMIT {message.chat.id}")
+                await DB.insert_one({"limit": int(args[0])})
+                await message.reply("Limite de advertências foi alterado para {}".format(args[0])
+        else:
+            await message.reply("Esse limite é invalido!")
+    else:
+        await message.reply("Eu preciso de um argumento!")
