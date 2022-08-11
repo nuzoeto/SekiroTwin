@@ -195,7 +195,9 @@ async def set_warns_limit(_, message: Message):
     else:
         if await DB.find_one():
             r = await DB.find_one()
-            txt = r["action"]
+            action_act = r["action"]
+        else:
+            action_act = "ban"
         await message.reply_text("A ação atual de advertências é: {action}".format(action=warn_act))
         
 
