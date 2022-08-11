@@ -198,8 +198,8 @@ async def set_warns_limit(_, message: Message):
         await message.reply_text("A ação atual de advertências é: {action}".format(action=warn_act))
         
 
-        @megux.on_message(filters.command("warn", Config.TRIGGER))
-async def warn_users(_, message: Message):
+@megux.on_message(filters.command("warns", Config.TRIGGER))
+async def warns_from_users(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
         await message.reply(await get_string(chat_id, "NO_BAN_USER"))
