@@ -181,7 +181,7 @@ async def set_warns_limit(_, message: Message):
         await message.reply("Você precisa dar um argumento.")
         return
     try:
-        warns_action = str({message.command}lower())
+        warns_action = str({message.command}.lower())
     except ValueError:
         return await message.reply("Esse limite não é valido.")
     if not warn_action in ["ban", "kick", "mute"]:
