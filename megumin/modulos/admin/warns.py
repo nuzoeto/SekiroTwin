@@ -100,7 +100,7 @@ async def warn_users(_, message: Message):
             return
         await DB_WARNS.delete_many({"user_id": user_id})
     else:
-        keyboard = [[InlineKeyboardButton("📝 Regras", callback_data="rules")]]
+        keyboard = [[InlineKeyboardButton("📝 Regras", callback_data="rules"), InlineKeyboardButton("Remover Advertência", callback_data=f"remove_warn ({user_id})"]]
         await message.reply(f"{mention} <b>foi advertido!</b>\nEle(a) têm {user_warns}/{warns_limit} Advertências.\n<b>Motivo:</b> {reason or None}", reply_markup=InlineKeyboardMarkup(keyboard))
         
         
