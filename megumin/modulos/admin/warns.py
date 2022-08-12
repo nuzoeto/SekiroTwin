@@ -101,7 +101,7 @@ async def warn_users(_, message: Message):
         await DB_WARNS.delete_many({"user_id": user_id})
     else:
         keyboard = [[InlineKeyboardButton("📝 Regras", callback_data="rules")]]
-        await message.reply(f"{mention} <b>foi advertido!</b>\nEle(a) têm {user_warns}/{warns_limit} Advertências.\n<b>Motivo:</b> {reason or None}", reply_markup= InlineKeyboardMarkup(keyboard))
+        await message.reply(f"{mention} <b>foi advertido!</b>\nEle(a) têm {user_warns}/{warns_limit} Advertências.\n<b>Motivo:</b> {reason or None}", reply_markup=InlineKeyboardMarkup(keyboard))
         
         
 @megux.on_message(filters.command("unwarn", Config.TRIGGER))
