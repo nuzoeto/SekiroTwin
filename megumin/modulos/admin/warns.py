@@ -100,7 +100,7 @@ async def warn_users(_, message: Message):
             return
         await DB_WARNS.delete_many({"user_id": user_id})
     else:
-        keyboard = [[InlineKeyboardButton("📝 Regras", callback_data="rules"), InlineKeyboardButton("Remover Advertência", callback_data=f"remove_warn {user_id}")]]
+        keyboard = [[InlineKeyboardButton("📝 Regras", callback_data="rules"), InlineKeyboardButton("Remover Advertência", callback_data=f"remove_warn|{user_id}")]]
         await message.reply(f"{mention} <b>foi advertido!</b>\nEle(a) têm {user_warns}/{warns_limit} Advertências.\n<b>Motivo:</b> {reason or None}", reply_markup=InlineKeyboardMarkup(keyboard))
         
         
@@ -267,3 +267,18 @@ async def help_admin(client: megux, cb: CallbackQuery):
     else:
         text = "Nenhuma regra foi definida no chat."
     await cb.edit_message_text(text=text, disable_web_page_preview=True)
+
+    
+@megux.on_callback_query(filters.regex(pattern=r"^remove_warn\|(.*)"))
+async def help_admin(client: megux, cb: CallbackQuery):
+    data, user_id = cb.data.split("|")
+    chat_id = cb.message.chat.id
+    uid = cb.message.chat.id
+    first_adm = cb.message.from_user.first_name
+    DB = get_collection(f"WARNS {chat_id}")
+    if not await check_rights(chat_id, uid, "can_restrict_members"):
+        return await cb.answer(await get_string(chat_id, "NO_BAN_USER"), show_alert=True)
+    await DB.delete_one({"user_id": user_id})
+    #send as message
+    await cb.edit_message_text(text=f"A advertência foi removida por {first_adm}", disable_web_page_preview=True)
+    
