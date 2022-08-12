@@ -2,7 +2,7 @@ import uuid
 
 from pyrogram import filters
 from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
-from pyrogram.types import ChatPermissions, Message
+from pyrogram.types import ChatPermissions, Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
 from megumin import megux, Config
 from megumin.utils import (
@@ -100,7 +100,8 @@ async def warn_users(_, message: Message):
             return
         await DB_WARNS.delete_many({"user_id": user_id})
     else:
-        await message.reply(f"{mention} <b>foi advertido!</b>\nEle(a) têm {user_warns}/{warns_limit} Advertências.\n<b>Motivo:</b> {reason or None}")
+        keyboard = [[InlineKeyboardButton("📝 Regras", callback_data="rules")]]
+        await message.reply(f"{mention} <b>foi advertido!</b>\nEle(a) têm {user_warns}/{warns_limit} Advertências.\n<b>Motivo:</b> {reason or None}", reply_markup(keyboard))
         
         
 @megux.on_message(filters.command("unwarn", Config.TRIGGER))
@@ -253,3 +254,16 @@ async def warns_from_users(_, message: Message):
     user_warns = await DB_WARNS.count_documents({"user_id": user_id})
     
     await message.reply(f"Atualmente, {mention} têm {user_warns}/{warns_limit} Advertências!")
+
+    
+@megux.on_callback_query(filters.regex(pattern=r"^rules$"))
+async def help_admin(client: megux, cb: CallbackQuery):
+    chat_id = cb.message.chat.id
+    DB = get_collection(f"RULES {chat_id}")
+    resp = await DB.find_one()
+    if resp:
+        i = resp["_rules"]
+        text = f"{i}"
+    else:
+        text = "Nenhuma regra foi definida no chat."
+    await cb.edit_message_text(text=text, reply_markup=button)
