@@ -279,5 +279,5 @@ async def unwarn(client: megux, cb: CallbackQuery):
         return await cb.answer(await get_string(chat_id, "NO_BAN_USER"), show_alert=True)
     await DB.delete_one({"user_id": user_id})
     #send as message
-    await cb.edit_message_text(text=f"{mention} A advertência foi removida por {first_adm}", disable_web_page_preview=True)
+    await cb.edit_message_text(text=f"A advertência foi removida.", disable_web_page_preview=True)
     
