@@ -266,4 +266,4 @@ async def help_admin(client: megux, cb: CallbackQuery):
         text = f"{i}"
     else:
         text = "Nenhuma regra foi definida no chat."
-    await cb.edit_message_text(text=text)
+    await cb.edit_message_text(text=text, disable_web_page_preview=True)
