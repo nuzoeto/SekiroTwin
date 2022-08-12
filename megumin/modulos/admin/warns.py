@@ -257,7 +257,7 @@ async def warns_from_users(_, message: Message):
 
     
 @megux.on_callback_query(filters.regex(pattern=r"^rules$"))
-async def help_admin(client: megux, cb: CallbackQuery):
+async def warn_rules(client: megux, cb: CallbackQuery):
     chat_id = cb.message.chat.id
     DB = get_collection(f"RULES {chat_id}")
     resp = await DB.find_one()
@@ -270,7 +270,7 @@ async def help_admin(client: megux, cb: CallbackQuery):
 
     
 @megux.on_callback_query(filters.regex(pattern=r"^remove_warn\|(.*)"))
-async def help_admin(client: megux, cb: CallbackQuery):
+async def unwarn(client: megux, cb: CallbackQuery):
     data, user_id = cb.data.split("|")
     chat_id = cb.message.chat.id
     uid = cb.message.chat.id
