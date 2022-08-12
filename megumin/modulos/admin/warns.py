@@ -100,9 +100,8 @@ async def warn_users(_, message: Message):
             return
         await DB_WARNS.delete_many({"user_id": user_id})
     else:
-        first_adm = message.from_user.mention
         uid = message.from_user.id
-        keyboard = [[InlineKeyboardButton("📝 Regras", callback_data="rules"), InlineKeyboardButton("Remover Advertência", callback_data=f"remove_warn|{user_id}|{mention}|{uid}")]]
+        keyboard = [[InlineKeyboardButton("📝 Regras", callback_data="rules"), InlineKeyboardButton("Remover Advertência", callback_data=f"remove_warn|{user_id}|{uid}")]]
         await message.reply(f"{mention} <b>foi advertido!</b>\nEle(a) têm {user_warns}/{warns_limit} Advertências.\n<b>Motivo:</b> {reason or None}", reply_markup=InlineKeyboardMarkup(keyboard))
         
         
@@ -273,7 +272,7 @@ async def warn_rules(client: megux, cb: CallbackQuery):
     
 @megux.on_callback_query(filters.regex(pattern=r"^remove_warn\|(.*)"))
 async def unwarn(client: megux, cb: CallbackQuery):
-    data, user_id, mention, uid = cb.data.split("|")
+    data, user_id, uid = cb.data.split("|")
     chat_id = cb.message.chat.id
     DB = get_collection(f"WARNS {chat_id}")
     if not await check_rights(chat_id, uid, "can_restrict_members"):
