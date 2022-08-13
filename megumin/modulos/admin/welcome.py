@@ -106,7 +106,7 @@ async def set_welcome_message(c: megux, m: Message):
             disable_web_page_preview=True,
         )
 
-@megux.on_message(filters.command("welcome", PREFIXES) & filters.group)
+@megux.on_message(filters.command("welcome", Config.TRIGGER) & filters.group)
 async def enable_welcome_message(c: Client, m: Message):
     db = get_collection(f"WELCOME_STATUS {m.chat.id}")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
