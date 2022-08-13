@@ -217,5 +217,5 @@ async def get_welcome(c: megux, m: Message):
             InlineKeyboardMarkup(buttons)
             if len(buttons) != 0
             else None
-       ),
+        ),
     )
