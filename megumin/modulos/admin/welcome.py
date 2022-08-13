@@ -106,3 +106,20 @@ async def set_welcome_message(c: megux, m: Message):
             disable_web_page_preview=True,
         )
 
+@megux.on_message(filters.command("welcome", PREFIXES) & filters.group)
+async def enable_welcome_message(c: Client, m: Message):
+    db = get_collection(f"WELCOME_STATUS {m.chat.id}")
+    if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
+        return
+    if not m.text:
+        return await m.reply("Digite /welcome com um dos argumentos on/off/yes/no")
+    if m.text.lower() == "on" or "yes":
+        await db.drop()
+        await db.insert_one({"status": True})
+        await m.reply_text("Boas Vindas agora está Ativadas.")
+        return
+    elif m.text.lower() == "off" or "no":
+        await db.drop()
+        await db.insert_one({"status": False})
+        await m.reply("Boas vindas agora está Desativadas.")
+        return
