@@ -196,19 +196,19 @@ async def get_welcome(c: megux, m: Message):
         welcome = "Hey there, {mention}, and welcome to {chat_title}! How are you?"
         
     sent = welcome.format(
-                    id=m.from_user.id,
-                    username=m.from_user.username,
-                    mention=m.from_user.mention,
-                    first_name=m.from_user.first_name,
-                    # full_name and name are the same
-                    full_name=m.from_user.first_name,
-                    name=m.from_user.first_name,
-                    # title and chat_title are the same
-                    title=m.chat.title,
-                    chat_title=m.chat.title,
-                    count=(await c.get_chat_members_count(m.chat.id)),
-                )
-            )
+        id=m.from_user.id,
+        username=m.from_user.username,
+        mention=m.from_user.mention,
+        first_name=m.from_user.first_name,
+        # full_name and name are the same
+        full_name=m.from_user.first_name,
+        name=m.from_user.first_name,
+        # title and chat_title are the same
+        title=m.chat.title,
+        chat_title=m.chat.title,
+        count=(await c.get_chat_members_count(m.chat.id)),
+        )
+    )
     sent, buttons = button_parser(welcome)
     await m.reply_text(
         sent,
