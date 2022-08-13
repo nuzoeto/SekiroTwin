@@ -12,7 +12,8 @@ from pyrogram.enums import ChatMemberStatus
 from pyrogram.types import Message
 from pyrogram.enums import ChatType
 
-from megumin import megux, Config 
+from megumin import megux, Config
+from megumin.utils import get_collection
 
 _BOT_ID = 0
 
@@ -194,3 +195,7 @@ def escape_definition(definition):
         if isinstance(value, str):
             definition[key] = html.escape(cleanhtml(value))
     return definition
+
+async def unwarn_bnt(gid: int, user_id: int):
+    DB = get_collection(f"WARNS {gid}")
+    await DB.delete_one({"user_id": user_id})
