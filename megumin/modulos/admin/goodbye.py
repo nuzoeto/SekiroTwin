@@ -113,7 +113,7 @@ async def enable_welcome_message(c: megux, m: Message):
         return
     await db.drop()
     await db.insert_one({"status": True})
-    await m.reply_text("Mensagem de Despedida agora está Ativadas.")
+    await m.reply_text("Mensagem de Despedida agora está Ativada.")
     
     
 @megux.on_message(filters.command("goodbye off", Config.TRIGGER) & filters.group)
@@ -123,7 +123,7 @@ async def enable_welcome_message(c: megux, m: Message):
         return
     await db.drop()
     await db.insert_one({"status": False})
-    await m.reply_text("Mensagem de Despedida agora está Desativadas.")
+    await m.reply_text("Mensagem de Despedida agora está Desativada.")
     
     
 @megux.on_message(filters.command("goodbye", Config.TRIGGER) & filters.group)
