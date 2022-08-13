@@ -19,5 +19,6 @@ from .tools import (
     weather_apikey,
     cleanhtml,
     escape_definition,
+    unwarn_bnt,
 )
 from .aiohttp import AioHttp as get_response
