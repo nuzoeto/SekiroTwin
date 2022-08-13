@@ -264,7 +264,7 @@ async def warn_rules(client: megux, cb: CallbackQuery):
     except ValueError:
         return print(cb.data)
     if cb.from_user.id != int(userid):
-        await cb.answer("Isso não é para você! Caso queira ver as regras digite /rules", cache_data=120)
+        await cb.answer("Isso não é para você! Caso queira ver as regras digite /rules", show_alert=True)
         return
     chat_id = cb.message.chat.id
     DB = get_collection(f"RULES {chat_id}")
