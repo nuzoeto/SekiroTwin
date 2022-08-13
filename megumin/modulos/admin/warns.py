@@ -272,13 +272,21 @@ async def warn_rules(client: megux, cb: CallbackQuery):
     
 @megux.on_callback_query(filters.regex(pattern=r"^rm_warn\|(.*)"))
 async def unwarn(client: megux, cb: CallbackQuery):
-    data, user_id = cb.data.split("|")
+    data, id_ = cb.data.split("|")
     chat_id = cb.message.chat.id
     mention_ = cb.from_user.mention
     uid = cb.from_user.id
     if not await check_rights(chat_id, uid, "can_restrict_members"):
         return await cb.answer(await get_string(chat_id, "NO_BAN_USER"), show_alert=True)
+    try:
+        user = await megux.get_users(id_)
+        user_id = user.id
+        mention = user.mention
+    except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
+        await message.reply(
+            await get_string(message.chat.id, "BANS_ID_INVALID")
+        )
     await unwarn_bnt(chat_id, user_id)
     #send as message
-    await cb.edit_message_text(text=f"A advertência foi removida por {mention_}.", disable_web_page_preview=True)
+    await cb.edit_message_text(text=f"A advertência de {mention} foi removida por {mention_}.", disable_web_page_preview=True)
     
