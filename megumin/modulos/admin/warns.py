@@ -101,7 +101,7 @@ async def warn_users(_, message: Message):
             return
         await DB_WARNS.delete_many({"user_id": user_id})
     else:
-        keyboard = [[InlineKeyboardButton("📝 Regras", callback_data="rules"), InlineKeyboardButton("Remover Advertência", callback_data=f"rm_warn|{user_id}")]]
+        keyboard = [[InlineKeyboardButton("📝 Regras", callback_data=f"rules|{user_id}"), InlineKeyboardButton("Remover Advertência", callback_data=f"rm_warn|{user_id}")]]
         await message.reply(f"{mention} <b>foi advertido!</b>\nEle(a) têm {user_warns}/{warns_limit} Advertências.\n<b>Motivo:</b> {reason or None}", reply_markup=InlineKeyboardMarkup(keyboard))
         
         
@@ -257,8 +257,15 @@ async def warns_from_users(_, message: Message):
     await message.reply(f"Atualmente, {mention} têm {user_warns}/{warns_limit} Advertências!")
 
     
-@megux.on_callback_query(filters.regex(pattern=r"^rules$"))
+@megux.on_callback_query(filters.regex(pattern=r"^rules\|(.*)"))
 async def warn_rules(client: megux, cb: CallbackQuery):
+    try:
+        data, userid = cb.data.split("|")
+    except ValueError:
+        return print(cb.data)
+    if cb.from_user.id != int(userid):
+        await cb.answer("Isso não é para você! Caso queira ver as regras digite /rules")
+        return
     chat_id = cb.message.chat.id
     DB = get_collection(f"RULES {chat_id}")
     resp = await DB.find_one()
