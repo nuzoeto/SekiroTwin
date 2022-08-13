@@ -64,7 +64,7 @@ def button_parser(markdown_note):
 
 
 @megux.on_message(filters.command("setwelcome", Config.TRIGGER))
-async def set_welcome_message(c: Client, m: Message):
+async def set_welcome_message(c: megux, m: Message):
     db = get_collection(f"WELCOME {m.chat.id}")
     if len(m.text.split()) > 1:
         message = m.text.html.split(None, 1)[1]
