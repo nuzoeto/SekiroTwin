@@ -64,7 +64,7 @@ def button_parser(markdown_note):
 
 
 @megux.on_message(filters.command("setgoodbye", Config.TRIGGER))
-async def set_welcome_message(c: megux, m: Message):
+async def set_goodbye_message(c: megux, m: Message):
     db = get_collection(f"GOODBYE {m.chat.id}")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
@@ -117,7 +117,7 @@ async def enable_welcome_message(c: megux, m: Message):
     
     
 @megux.on_message(filters.command("goodbye off", Config.TRIGGER) & filters.group)
-async def enable_welcome_message(c: megux, m: Message):
+async def enable_goodbye_message(c: megux, m: Message):
     db = get_collection(f"GOODBYE_STATUS {m.chat.id}")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
@@ -127,14 +127,14 @@ async def enable_welcome_message(c: megux, m: Message):
     
     
 @megux.on_message(filters.command("goodbye", Config.TRIGGER) & filters.group)
-async def enable_welcome_message(c: megux, m: Message):
+async def enable_goodbye_message(c: megux, m: Message):
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
     await m.reply_text("Dê um argumento exemplo: /goodbye on/off")
  
 
 @megux.on_message(filters.left_chat_member & filters.group)
-async def greet_new_members(c: megux, m: Message):
+async def greet_left_members(c: megux, m: Message):
     db = get_collection(f"GOODBYE {m.chat.id}")
     db_ = get_collection(f"GOODBYE_STATUS {m.chat.id}")
     members = m.left_chat_member
