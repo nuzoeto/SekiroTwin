@@ -137,7 +137,7 @@ async def enable_welcome_message(c: megux, m: Message):
 async def greet_new_members(c: megux, m: Message):
     db = get_collection(f"GOODBYE {m.chat.id}")
     db_ = get_collection(f"GOODBYE_STATUS {m.chat.id}")
-    members = m.left_chat_members
+    members = m.left_chat_member
     chat_title = m.chat.title
     first_name = ", ".join(map(lambda a: a.first_name, members))
     full_name = ", ".join(
@@ -149,13 +149,13 @@ async def greet_new_members(c: megux, m: Message):
     )
     mention = ", ".join(map(lambda a: a.mention, members))
     if not m.from_user.is_bot:
-        welcome_enabled = await db_.find_one({"status": True})
-        welcome_pack = await db.find_one()
-        if welcome_enabled:
-            if not welcome_pack:
+        goodbye_enabled = await db_.find_one({"status": True})
+        goodbye_pack = await db.find_one()
+        if goodbye_enabled:
+            if not goodbye_pack:
                 welcome = "Nice knowing ya!"
             else:
-                welcome = welcome_pack["msg"]
+                welcome = goodbye_pack["msg"]
             if "count" in get_format_keys(welcome):
                 count = await c.get_chat_members_count(m.chat.id)
             else:
