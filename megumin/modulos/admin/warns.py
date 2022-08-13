@@ -274,6 +274,7 @@ async def unwarn(client: megux, cb: CallbackQuery):
     data, user_id = cb.data.split("|")
     chat_id = cb.message.chat.id
     mention_ = cb.from_user.mention
+    uid = cb.from_user.id
     DB = get_collection(f"WARNS {chat_id}")
     if not await check_rights(chat_id, uid, "can_restrict_members"):
         return await cb.answer(await get_string(chat_id, "NO_BAN_USER"), show_alert=True)
