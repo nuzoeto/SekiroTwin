@@ -154,7 +154,7 @@ async def greet_new_members(c: megux, m: Message):
         welcome_pack = await db.find_one()
         if welcome_enabled:
             if not welcome_pack:
-                welcome = "Hey there, {mention}, and welcome to {chat_title}! How are you?
+                welcome = "Hey there, {mention}, and welcome to {chat_title}! How are you?"
             else:
                 welcome = welcome_pack["msg"]
             if "count" in get_format_keys(welcome):
