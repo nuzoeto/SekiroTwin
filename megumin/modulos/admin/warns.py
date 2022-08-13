@@ -16,6 +16,7 @@ from megumin.utils import (
     sed_sticker,
     get_collection,
     get_string,
+    unwarn_bnt,
 )
 
 
@@ -275,10 +276,9 @@ async def unwarn(client: megux, cb: CallbackQuery):
     chat_id = cb.message.chat.id
     mention_ = cb.from_user.mention
     uid = cb.from_user.id
-    DB = get_collection(f"WARNS {chat_id}")
     if not await check_rights(chat_id, uid, "can_restrict_members"):
         return await cb.answer(await get_string(chat_id, "NO_BAN_USER"), show_alert=True)
-    await DB.delete_one({"user_id": user_id})
+    await unwarn_bnt(chat_id, user_id)
     #send as message
     await cb.edit_message_text(text=f"A advertência foi removida por {mention_}.", disable_web_page_preview=True)
     
