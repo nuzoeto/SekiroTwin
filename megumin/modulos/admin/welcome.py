@@ -126,9 +126,8 @@ async def enable_welcome_message(c: megux, m: Message):
     await m.reply_text("Boas Vindas agora está Desativadas.")
     
     
-@megux.on_message(filters.command("welcome on", Config.TRIGGER) & filters.group)
+@megux.on_message(filters.command("welcome", Config.TRIGGER) & filters.group)
 async def enable_welcome_message(c: megux, m: Message):
-    db = get_collection(f"WELCOME_STATUS {m.chat.id}")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
     await m.reply_text("Dê um argumento exemplo: /welcome on/off")
