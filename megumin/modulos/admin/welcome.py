@@ -15,7 +15,7 @@ from typing import Callable, List, Optional, Union
 
 
 from megumin import megux, Config
-from megumin.utils import get_collection
+from megumin.utils import get_collection, check_rights
 
 
 
@@ -66,6 +66,8 @@ def button_parser(markdown_note):
 @megux.on_message(filters.command("setwelcome", Config.TRIGGER))
 async def set_welcome_message(c: megux, m: Message):
     db = get_collection(f"WELCOME {m.chat.id}")
+    if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
+        return
     if len(m.text.split()) > 1:
         message = m.text.html.split(None, 1)[1]
         try:
