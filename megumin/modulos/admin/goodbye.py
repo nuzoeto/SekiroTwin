@@ -133,7 +133,7 @@ async def enable_welcome_message(c: megux, m: Message):
     await m.reply_text("Dê um argumento exemplo: /goodbye on/off")
  
 
-@megux.on_message(filters.left_chat_members & filters.group)
+@megux.on_message(filters.left_chat_member & filters.group)
 async def greet_new_members(c: megux, m: Message):
     db = get_collection(f"GOODBYE {m.chat.id}")
     db_ = get_collection(f"GOODBYE_STATUS {m.chat.id}")
