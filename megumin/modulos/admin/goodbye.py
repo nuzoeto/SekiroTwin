@@ -79,7 +79,7 @@ async def set_goodbye_message(c: megux, m: Message):
                     username=m.from_user.username,
                     mention=m.from_user.mention,
                     first_name=m.from_user.first_name,
-                    first=m.from_user.first_name
+                    first=m.from_user.first_name,
                     # full_name and name are the same
                     full_name=m.from_user.first_name,
                     name=m.from_user.first_name,
