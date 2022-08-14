@@ -62,7 +62,7 @@ async def help(client, message):
                 InlineKeyboardButton("Desativar", callback_data="help_disable"),
             ],
             [
-                InlineKeyboardButton("Boas vindas", callback_data="help_welcome"),
+                InlineKeyboardButton("Boas Vindas", callback_data="help_welcome"),
             ],
         ]
     )
