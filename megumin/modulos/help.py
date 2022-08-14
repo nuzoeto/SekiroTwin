@@ -1,5 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.enums import ChatType
 
 from megumin import megux
 from megumin.utils import get_string 
