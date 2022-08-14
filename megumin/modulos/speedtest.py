@@ -1,13 +1,18 @@
 import speedtest
 import os
+import asyncio
 
 from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux, Config
+from megumin.utils import is_dev
 
-@megux.on_message(filters.command("speedtest", Config.TRIGGER) & filters.user(1715384854))
+@megux.on_message(filters.command("speedtest", Config.TRIGGER))
 async def test_speed(c: megux, m: Message):
+    user = m.from_user.id
+    if not is_dev(user):
+        return
     try:
         running = await m.reply("`Rodando Speedtest. . .`") 
         test = speedtest.Speedtest()
