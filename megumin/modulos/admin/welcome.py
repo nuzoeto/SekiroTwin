@@ -194,6 +194,6 @@ async def get_welcome(c: megux, m: Message):
     if resp:
         welcome = resp["msg"]
     else:
-        welcome = "Hey there, {mention}, and welcome to {chat_title}! How are you?"
+        welcome = "Hey {first}, how are you?"
         
     await m.reply(welcome)
