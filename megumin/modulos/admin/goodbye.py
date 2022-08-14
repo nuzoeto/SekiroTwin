@@ -140,7 +140,7 @@ async def greet_left_members(c: megux, m: Message):
     members = m.left_chat_member
     chat_title = m.chat.title
     first_name = ", ".join(members.first_name)
-    full_name = ", ".join(members.first_name + " " + members.last_name)
+    full_name = ", ".join(members.full_name)
     
     user_id = ", ".join(members.id)
     username = ", ".join("@" + members.username if members.username else members.mention)
