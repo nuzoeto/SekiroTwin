@@ -6,6 +6,7 @@ import os.path
 
 from pyrogram import filters
 from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.errors import BadRequest
 from pyrogram.enums import ParseMode
 
 from datetime import datetime, timedelta
