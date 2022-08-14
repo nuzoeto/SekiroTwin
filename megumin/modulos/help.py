@@ -72,7 +72,7 @@ async def help(client, message):
 
     @megux.on_callback_query(filters.regex(pattern=r"^help_back$"))
     async def help_back_(client: megux, cb: CallbackQuery):
-        await cb.edit_message_text(text=await get_string(cb.message.chat.id, "HELP_MSG"), reply_markup=button = InlineKeyboardMarkup(
+        await cb.edit_message_text(text=await get_string(cb.message.chat.id, "HELP_MSG"), reply_markup=InlineKeyboardMarkup(
         [
             [
                 InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_1"), callback_data="help_admin"),
