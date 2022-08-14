@@ -37,32 +37,32 @@ async def help(client, message):
     button = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_1"), callback_data="help_admin"),
-                InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_2"), callback_data="help_ani"),
-                InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_3"), callback_data="help_andr"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_1"), callback_data="help_admin"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_2"), callback_data="help_ani"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_3"), callback_data="help_andr"),
             ],
             [
-                InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_4"), callback_data="help_misc"),
-                InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_5"), callback_data="help_geral"),
-                InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_6"), callback_data="help_last"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_4"), callback_data="help_misc"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_5"), callback_data="help_geral"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_6"), callback_data="help_last"),
             ],
             [
-                InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_7"), callback_data="help_notes"),
-                InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_8"), callback_data="help_purges"),
-                InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_9"), callback_data="help_yt"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_7"), callback_data="help_notes"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_8"), callback_data="help_purges"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_9"), callback_data="help_yt"),
             ],
             [
-                InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_10"), callback_data="help_bans"),
-                InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_11"), callback_data="help_git"),
-                InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_12"), callback_data="help_memes"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_10"), callback_data="help_bans"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_11"), callback_data="help_git"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_12"), callback_data="help_memes"),
             ],
             [
-                InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_13"), callback_data="help_tr"),
-                InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_14"), callback_data="help_stickers"),
-                InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_15"), callback_data="help_disable"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_13"), callback_data="help_tr"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_14"), callback_data="help_stickers"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_15"), callback_data="help_disable"),
             ],
             [
-                InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_16"), callback_data="help_welcome"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_16"), callback_data="help_welcome"),
             ],
         ]
     )
