@@ -29,6 +29,9 @@ async def info(client, message):
 
 @megux.on_message(filters.command("help", prefixes=["/", "!"]) | filters.regex("/start help_") & filters.private)
 async def help(client, message):
+    if not message.chat.type == ChatType.PRIVATE:
+        text = "Entre em contato comigo no PM para obter a lista de possíveis comandos."
+        keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("Ir para o PM", url="https://t.me/whiterkangbot?start=help_")]])
     button = InlineKeyboardMarkup(
         [
             [
@@ -55,6 +58,9 @@ async def help(client, message):
                 InlineKeyboardButton("Tradutor", callback_data="help_tr"),
                 InlineKeyboardButton("Stickers", callback_data="help_stickers"),
                 InlineKeyboardButton("Desativar", callback_data="help_disable"),
+            ],
+            [
+                InlineKeyboardButton("Boas vindas", callback_data="help_welcome"),
             ],
         ]
     )
@@ -209,6 +215,14 @@ async def help_github(client: megux, cb: CallbackQuery):
     await cb.edit_message_text(text=H_STICKERS, reply_markup=button)
 
 
+@megux.on_callback_query(filters.regex(pattern=r"^help_admin$"))
+async def help_admin(client: megux, cb: CallbackQuery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=await get_string(cb.message.chat.id, "HELP_WELCOME"), reply_markup=button)
+    
+    
 H_ANILIST = """
 Aqui está a ajuda para o módulo **Anilist**:
 
