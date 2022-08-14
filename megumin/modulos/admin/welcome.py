@@ -197,3 +197,13 @@ async def get_welcome(c: megux, m: Message):
         welcome = "Hey {first}, how are you?"
         
     await m.reply(welcome)
+
+    
+@megux.on_message(filters.command("resetwelcome", Config.TRIGGER))
+async def rm_welcome(c: megux, m: Message):
+    db = get_collection(f"WELCOME {m.chat.id}")
+    r = await db.find_one()
+    if r:
+        await db.drop()
+    else:
+        return await message.reply("Nenhuma mensagem de boas vindas foi definida.")
