@@ -216,32 +216,32 @@ async def start_(c: megux, message: Message):
         button = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("Admin", callback_data="admin_help_button"),
-                    InlineKeyboardButton("Anilist", callback_data="anilist_help_button"),
-                    InlineKeyboardButton("Android", callback_data="android_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_1"), callback_data="admin_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_2"), callback_data="anilist_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_3"), callback_data="android_help_button"),
                 ],
                 [
-                    InlineKeyboardButton("Outros", callback_data="misc_help_button"),
-                    InlineKeyboardButton("Geral", callback_data="geral_help_button"),
-                    InlineKeyboardButton("LastFm", callback_data="last_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_4"), callback_data="misc_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_5"), callback_data="geral_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_6"), callback_data="last_help_button"),
                 ],
                 [
-                    InlineKeyboardButton("Notas", callback_data="notes_help_button"),
-                    InlineKeyboardButton("Purges", callback_data="purges_help_button"), 
-                    InlineKeyboardButton("YouTube", callback_data="yt_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_7"), callback_data="notes_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_8"), callback_data="purges_help_button"), 
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_9"), callback_data="yt_help_button"),
                 ],
                 [
-                    InlineKeyboardButton("Bans", callback_data="bans_help_button"),
-                    InlineKeyboardButton("GitHub", callback_data="git_help_button"),
-                    InlineKeyboardButton("Memes", callback_data="memes_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_10"), callback_data="bans_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_11"), callback_data="git_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_12"), callback_data="memes_help_button"),
                 ],
                 [
-                    InlineKeyboardButton("Tradutor", callback_data="tr_help_button"),
-                    InlineKeyboardButton("Stickers", callback_data="stickers_help_button"),
-                    InlineKeyboardButton("Desativar", callback_data="disable_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_13"), callback_data="tr_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_14"), callback_data="stickers_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_15"), callback_data="disable_help_button"),
                 ],
                 [
-                    InlineKeyboardButton("Boas Vindas", callback_data="welcome_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_16"), callback_data="welcome_help_button"),
                 ],
                 [
                     InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="start_back"),
