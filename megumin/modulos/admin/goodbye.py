@@ -140,14 +140,13 @@ async def greet_left_members(c: megux, m: Message):
     db_ = get_collection(f"GOODBYE_STATUS {m.chat.id}")
     members = m.left_chat_member
     chat_title = m.chat.title
-    first_name = ", ".join(members.first_name)
-    full_name = ", ".join(members.first_name + " " + members.last_name if members.last_name else members.first_name
-)
+    first_name = members.first_name
+    full_name = members.first_name + " " + members.last_name if members.last_name else members.first_name
     
     user_id = members.id
-    username = ", ".join("@" + members.username if members.username else members.mention)
+    username = "@" + members.username if members.username else members.mention
     
-    mention = ", ".join(members.mention)
+    mention = members.mention
     if not m.from_user.is_bot:
         goodbye_enabled = await db_.find_one({"status": True})
         goodbye_pack = await db.find_one()
