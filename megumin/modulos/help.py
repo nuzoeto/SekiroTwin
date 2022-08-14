@@ -32,6 +32,7 @@ async def help(client, message):
     if not message.chat.type == ChatType.PRIVATE:
         text = "Entre em contato comigo no PM para obter a lista de possíveis comandos."
         keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("Ir para o PM", url="https://t.me/whiterkangbot?start=help_")]])
+        return await message.reply(text, reply_markup=keyboard)
     button = InlineKeyboardMarkup(
         [
             [
