@@ -205,5 +205,6 @@ async def rm_welcome(c: megux, m: Message):
     r = await db.find_one()
     if r:
         await db.drop()
+        await m.reply("A mensagem de boas vindas foi resetada!") 
     else:
-        return await message.reply("Nenhuma mensagem de boas vindas foi definida.")
+        return await m.reply("Nenhuma mensagem de boas vindas foi definida.")
