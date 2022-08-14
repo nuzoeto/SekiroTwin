@@ -161,7 +161,7 @@ async def greet_left_members(c: megux, m: Message):
             else:
                 count = 0
 
-            welcome = welcome.format(
+            goodbye = welcome.format(
                 id=user_id,
                 username=username,
                 mention=mention,
@@ -175,13 +175,36 @@ async def greet_left_members(c: megux, m: Message):
                 chat_title=chat_title,
                 count=count,
             )
-            welcome, welcome_buttons = button_parser(welcome)
+            goodbye, buttons = button_parser(welcome)
             await m.reply_text(
-                welcome,
+                goodbye,
                 disable_web_page_preview=True,
                 reply_markup=(
-                    InlineKeyboardMarkup(welcome_buttons)
-                    if len(welcome_buttons) != 0
+                    InlineKeyboardMarkup(buttons)
+                    if len(buttons) != 0
                     else None
                 ),
             )
+
+            
+@megux.on_message(filters.command("getgoodbye", Config.TRIGGER))
+async def get_welcome(c: megux, m: Message):
+    db = get_collection(f"GOODBYE {m.chat.id}")
+    resp = await db.find_one()
+    if resp:
+        goodbye = resp["msg"]
+    else:
+        goodbye = "Nice knowing ya!"
+        
+    await m.reply(goodbye)
+
+    
+@megux.on_message(filters.command("resetwelcome", Config.TRIGGER))
+async def rm_welcome(c: megux, m: Message):
+    db = get_collection(f"GOODBYE {m.chat.id}")
+    r = await db.find_one()
+    if r:
+        await db.drop()
+        await m.reply("A mensagem despedida foi resetada!") 
+    else:
+        return await m.reply("Nenhuma mensagem de despedida foi definida.")
