@@ -79,6 +79,7 @@ async def set_goodbye_message(c: megux, m: Message):
                     username=m.from_user.username,
                     mention=m.from_user.mention,
                     first_name=m.from_user.first_name,
+                    first=m.from_user.first_name
                     # full_name and name are the same
                     full_name=m.from_user.first_name,
                     name=m.from_user.first_name,
@@ -165,6 +166,7 @@ async def greet_left_members(c: megux, m: Message):
                 username=username,
                 mention=mention,
                 first_name=first_name,
+                first=first_name
                 # full_name and name are the same
                 full_name=full_name,
                 name=full_name,
