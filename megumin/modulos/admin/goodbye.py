@@ -166,7 +166,7 @@ async def greet_left_members(c: megux, m: Message):
                 username=username,
                 mention=mention,
                 first_name=first_name,
-                first=first_name
+                first=first_name,
                 # full_name and name are the same
                 full_name=full_name,
                 name=full_name,
