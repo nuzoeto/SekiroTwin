@@ -141,10 +141,10 @@ async def greet_left_members(c: megux, m: Message):
     chat_title = m.chat.title
     first_name = ", ".join(members.first_name)
     full_name = ", ".join(members.first_name + " " + members.last_name)
-    )
+    
     user_id = ", ".join(members.id)
     username = ", ".join("@" + members.username if members.username else members.mention)
-    )
+    
     mention = ", ".join(members.mention)
     if not m.from_user.is_bot:
         goodbye_enabled = await db_.find_one({"status": True})
