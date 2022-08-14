@@ -96,7 +96,7 @@ async def help_ani_(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
         [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
-    await cb.edit_message_text(text=H_ANILIST, reply_markup=button)
+    await cb.edit_message_text(text=await get_string(cb.message.chat.id, "HELP_ANILIST"), reply_markup=button)
 
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_andr$"))
@@ -104,7 +104,7 @@ async def help_andro(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
         [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
-    await cb.edit_message_text(text=H_ANDR, reply_markup=button)
+    await cb.edit_message_text(text=await get_string(cb.message.chat.id, "HELP_ANDROID"), reply_markup=button)
 
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_last$"))
@@ -127,7 +127,7 @@ async def help_youtube(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
         [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
-    await cb.edit_message_text(text=H_YOUTUBE, reply_markup=button)
+    await cb.edit_message_text(text=await get_string(cb.message.chat.id, "HELP_YOUTUBE"), reply_markup=button)
 
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_geral$"))
@@ -160,7 +160,7 @@ async def help_github(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
         [[InlineKeyboardButton("⬅️ Voltar", callback_data="help_back")]]
     )
-    await cb.edit_message_text(text=H_DISABLE, reply_markup=button)
+    await cb.edit_message_text(text=await get_string(cb.message.chat.id, "HELP_DISABLE"), reply_markup=button)
 
 
 
