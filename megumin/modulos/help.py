@@ -217,7 +217,7 @@ async def help_github(client: megux, cb: CallbackQuery):
     await cb.edit_message_text(text=H_STICKERS, reply_markup=button)
 
 
-@megux.on_callback_query(filters.regex(pattern=r"^help_admin$"))
+@megux.on_callback_query(filters.regex(pattern=r"^help_welcome$"))
 async def help_admin(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
         [[InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_back")]]
