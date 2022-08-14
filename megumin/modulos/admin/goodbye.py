@@ -199,7 +199,7 @@ async def get_welcome(c: megux, m: Message):
     await m.reply(goodbye)
 
     
-@megux.on_message(filters.command("resetwelcome", Config.TRIGGER))
+@megux.on_message(filters.command("resetgoodbye", Config.TRIGGER))
 async def rm_welcome(c: megux, m: Message):
     db = get_collection(f"GOODBYE {m.chat.id}")
     r = await db.find_one()
