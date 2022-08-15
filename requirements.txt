@@ -65,3 +65,4 @@ wikipedia
 gpytranslate==1.4.0
 yt-dlp==2022.8.8
 psutil==5.9.0
+zalgo
