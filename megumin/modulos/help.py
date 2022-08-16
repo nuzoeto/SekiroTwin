@@ -64,6 +64,7 @@ async def help(client, message):
             [
                 InlineKeyboardButton(await get_string(message.chat.id, "BNT_16"), callback_data="help_welcome"),
                 InlineKeyboardButton(await get_string(message.chat.id, "BNT_17"), callback_data="help_warnings"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_18"), callback_data="help_filters"),
             ],
         ]
     )
@@ -103,6 +104,7 @@ async def help(client, message):
             [
                 InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_16"), callback_data="help_welcome"),
                 InlineKeyboardButton(await get_string(message.chat.id, "BNT_17"), callback_data="help_warnings"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_18"), callback_data="help_filters"),
             ],
         ]
     )
@@ -265,6 +267,14 @@ async def help_andro(client: megux, cb: CallbackQuery):
         [[InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_back")]]
     )
     await cb.edit_message_text(text=await get_string(cb.message.chat.id, "HELP_WARNS"), reply_markup=button)
+ 
+    
+@megux.on_callback_query(filters.regex(pattern=r"^help_filters$"))
+async def help_ani_(client: megux, cb: CallbackQuery):
+    button = InlineKeyboardMarkup(
+        [[InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_back")]]
+    )
+    await cb.edit_message_text(text=await get_string(cb.message.chat.id, "HELP_FILTERS"), reply_markup=button)
 
     
     
