@@ -243,6 +243,7 @@ async def start_(c: megux, message: Message):
                 [
                     InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_16"), callback_data="welcome_help_button"),
                     InlineKeyboardButton(await get_string(message.chat.id, "BNT_17"), callback_data="warnings_help_button"),
+                    InlineKeyboardButton(await get_string(message.chat.id, "BNT_18"), callback_data="filters_help_button"),
                 ],
                 [
                     InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="start_back"),
@@ -636,7 +637,24 @@ Aqui está a ajuda para o módulo <b>Purges</b>:
             caption=info_text,
             reply_markup=button,
         )            
-        
+   
+
+    @megux.on_callback_query(filters.regex(pattern=r"^filters_help_button$"))
+    async def infos(client: megux, cb: CallbackQuery):
+        info_text = await get_string(cb.message.chat.id, "HELP_FILTERS")
+        button = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_menu"),
+                ]
+            ]
+        )
+        await megux.edit_message_caption(
+            chat_id=cb.message.chat.id,
+            message_id=cb.message.id,
+            caption=info_text,
+            reply_markup=button,
+        )
         
         
 @megux.on_message(filters.new_chat_members)
