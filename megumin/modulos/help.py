@@ -63,6 +63,7 @@ async def help(client, message):
             ],
             [
                 InlineKeyboardButton(await get_string(message.chat.id, "BNT_16"), callback_data="help_welcome"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_17"), callback_data="help_warnings"),
             ],
         ]
     )
@@ -101,6 +102,7 @@ async def help(client, message):
             ],
             [
                 InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_16"), callback_data="help_welcome"),
+                InlineKeyboardButton(await get_string(message.chat.id, "BNT_16"), callback_data="help_warnings"),
             ],
         ]
     )
