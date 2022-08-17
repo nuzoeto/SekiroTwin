@@ -180,7 +180,7 @@ async def greet_new_members(c: megux, m: Message):
             )
             welcome, welcome_buttons = button_parser(welcome)
             if await captcha.find_one({"status": True}):
-                welcome_buttons += [[InlineKeyboardButton("Clique aqui pare ser desmutado", callback_data=f"cptcha|{user_id}")]]
+                welcome_buttons += [[InlineKeyboardButton("Clique aqui para ser desmutado", callback_data=f"cptcha|{user_id}")]]
             await m.reply_text(
                 welcome,
                 disable_web_page_preview=True,
