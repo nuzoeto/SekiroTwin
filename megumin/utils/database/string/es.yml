@@ -252,3 +252,15 @@ NOTES_NOT_FOUND: "Notas no encontradas para este chat"
 NOTES_SUB_LIST: "\n\n<i>Puede obtener estas notas escribiendo <code>/get notename</code>, o</i> <code>#notename</code>"
 NOTES_REMOVED: "🗒 <b>La nota</b> <code>{}</code> <b>¡ha sido eliminada con éxito!</b>"
 NOTES_REMOVE_NOT_FOUND: "🗒 <b>La nota</b> <code>{}</code> <b>no existe.</b>" 
+
+
+#warns
+WARNS_BANNED: "{}/{} Advertencias, {} ¡Ha sido prohibido!"
+WARNS_MUTED: "{}/{} Advertencias, {} ¡se ha silenciado hasta que un administrador lo reactive!"
+WARNS_KICKED: "{}/{} Advertencias, {} ¡ha sido expulsado!"
+RULES_WARN_BNT: "📝 Reglas"
+UNWARN_BNT: "Eliminar advertencia"
+USER_WARNED: "¡{} <b>ha sido advertido!</b>\nÉl/ella tiene {}/{} Advertencias.\n<b>Motivo:</b> {}"
+UNWARNED: "¡Se eliminó la última advertencia!"
+USER_NOT_WARNS: "¡Este usuario no tiene advertencias!"
+ 
