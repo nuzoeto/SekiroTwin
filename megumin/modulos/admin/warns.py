@@ -89,20 +89,20 @@ async def warn_users(_, message: Message):
     if user_warns >= warns_limit:
         if warn_action == "ban":
             await message.chat.ban_member(user_id)
-            await message.reply(f"{user_warns}/{warns_limit} Advertências, {mention} Foi banido!")
+            await message.reply("{}/{} Advertências, {} Foi banido!".format(user_warns, warns_limit, mention))
         elif warn_action == "mute":
             await message.chat.restrict_member(user_id, ChatPermissions())
-            await message.reply(f"{user_warns}/{warns_limit} Advertências, {mention} Foi mutado até que um admin remova o mute!")
+            await message.reply("{}/{} Advertências, {} Foi mutado até que um admin remova o mute!".format(user_warns, warns_limit, mention))
         elif warn_action == "kick":
             await message.chat.ban_member(user_id)
             await message.chat.unban_member(user_id)
-            await message.reply(f"{user_warns}/{warns_limit} Advertências, {mention} Foi kickado!")
+            await message.reply("{}/{} Advertências, {} Foi kickado!".format(user_warns, warns_limit, mention))
         else:
             return
         await DB_WARNS.delete_many({"user_id": user_id})
     else:
         keyboard = [[InlineKeyboardButton("📝 Regras", callback_data=f"rules|{user_id}"), InlineKeyboardButton("Remover Advertência", callback_data=f"rm_warn|{user_id}")]]
-        await message.reply(f"{mention} <b>foi advertido!</b>\nEle(a) têm {user_warns}/{warns_limit} Advertências.\n<b>Motivo:</b> {reason or None}", reply_markup=InlineKeyboardMarkup(keyboard))
+        await message.reply("{} <b>foi advertido!</b>\nEle(a) têm {}/{} Advertências.\n<b>Motivo:</b> {}".format(mention, user_warns, warns_limit, reason or None), reply_markup=InlineKeyboardMarkup(keyboard))
         
         
 @megux.on_message(filters.command("unwarn", Config.TRIGGER))
