@@ -138,6 +138,7 @@ async def enable_welcome_message(c: megux, m: Message):
 async def greet_new_members(c: megux, m: Message):
     db = get_collection(f"WELCOME {m.chat.id}")
     db_ = get_collection(f"WELCOME_STATUS {m.chat.id}")
+    captcha = get_collection(f"CAPTCHA {m.chat.id}")
     members = m.new_chat_members
     chat_title = m.chat.title
     first_name = ", ".join(map(lambda a: a.first_name, members))
@@ -152,6 +153,7 @@ async def greet_new_members(c: megux, m: Message):
     if not m.from_user.is_bot:
         welcome_enabled = await db_.find_one({"status": True})
         welcome_pack = await db.find_one()
+        captcha_pack = await captcha.find_one()
         if welcome_enabled:
             if not welcome_pack:
                 welcome = "Hey {first_name}, how are you?"
@@ -177,6 +179,8 @@ async def greet_new_members(c: megux, m: Message):
                 count=count,
             )
             welcome, welcome_buttons = button_parser(welcome)
+            if await captcha.find_one({"status": True}):
+                welcome_buttons += [[InlineKeyboardButton("Clique aqui pare ser desmutado", callback_data=f"cptcha|{user_id}")]]
             await m.reply_text(
                 welcome,
                 disable_web_page_preview=True,
