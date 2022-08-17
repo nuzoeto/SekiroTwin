@@ -89,20 +89,20 @@ async def warn_users(_, message: Message):
     if user_warns >= warns_limit:
         if warn_action == "ban":
             await message.chat.ban_member(user_id)
-            await message.reply("{}/{} Advertências, {} Foi banido!".format(user_warns, warns_limit, mention))
+            await message.reply((await get_string(chat_id, "WARNS_BANNED")).format(user_warns, warns_limit, mention))
         elif warn_action == "mute":
             await message.chat.restrict_member(user_id, ChatPermissions())
-            await message.reply("{}/{} Advertências, {} Foi mutado até que um admin remova o mute!".format(user_warns, warns_limit, mention))
+            await message.reply((await get_string(chat_id, "WARNS_MUTED")).format(user_warns, warns_limit, mention))
         elif warn_action == "kick":
             await message.chat.ban_member(user_id)
             await message.chat.unban_member(user_id)
-            await message.reply("{}/{} Advertências, {} Foi kickado!".format(user_warns, warns_limit, mention))
+            await message.reply((await get_string(chat_id, "WARNS_KICKED")).format(user_warns, warns_limit, mention))
         else:
             return
         await DB_WARNS.delete_many({"user_id": user_id})
     else:
-        keyboard = [[InlineKeyboardButton("📝 Regras", callback_data=f"rules|{user_id}"), InlineKeyboardButton("Remover Advertência", callback_data=f"rm_warn|{user_id}")]]
-        await message.reply("{} <b>foi advertido!</b>\nEle(a) têm {}/{} Advertências.\n<b>Motivo:</b> {}".format(mention, user_warns, warns_limit, reason or None), reply_markup=InlineKeyboardMarkup(keyboard))
+        keyboard = [[InlineKeyboardButton(await get_string(chat_id, "RULES_WARN_BNT"), callback_data=f"rules|{user_id}"), InlineKeyboardButton(await get_string(chat_id, "UNWARN_BNT", callback_data=f"rm_warn|{user_id}")]]
+        await message.reply((await get_string(chat_id, "USER_WARNED")).format(mention, user_warns, warns_limit, reason or None), reply_markup=InlineKeyboardMarkup(keyboard))
         
         
 @megux.on_message(filters.command("unwarn", Config.TRIGGER))
@@ -154,9 +154,9 @@ async def unwarn_users(_, message: Message):
     #delete one warn--user
     if await DB_WARNS.find_one({"user_id": user_id}):
         await DB_WARNS.delete_one({"user_id": user_id})
-        await message.reply("A última advertencia foi removida!")
+        await message.reply(await get_string(chat_id, "UNWARNED"))
     else:
-        await message.reply("Este usuário não tem nenhuma advertencia!")
+        await message.reply(await get_string(chat_id, "USER_NOT_WARNS"))
         
         
 @megux.on_message(filters.command("setwarnslimit", Config.TRIGGER))
