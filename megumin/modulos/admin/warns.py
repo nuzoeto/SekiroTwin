@@ -101,7 +101,7 @@ async def warn_users(_, message: Message):
             return
         await DB_WARNS.delete_many({"user_id": user_id})
     else:
-        keyboard = [[InlineKeyboardButton(await get_string(chat_id, "RULES_WARN_BNT"), callback_data=f"rules|{user_id}"), InlineKeyboardButton(await get_string(chat_id, "UNWARN_BNT", callback_data=f"rm_warn|{user_id}")]]
+        keyboard = [[InlineKeyboardButton(await get_string(chat_id, "RULES_WARN_BNT"), callback_data=f"rules|{user_id}"), InlineKeyboardButton(await get_string(chat_id, "UNWARN_BNT"), callback_data=f"rm_warn|{user_id}")]]
         await message.reply((await get_string(chat_id, "USER_WARNED")).format(mention, user_warns, warns_limit, reason or None), reply_markup=InlineKeyboardMarkup(keyboard))
         
         
