@@ -270,10 +270,10 @@ async def warn_rules(client: megux, cb: CallbackQuery):
     DB = get_collection(f"RULES {chat_id}")
     resp = await DB.find_one()
     if resp:
-        i = resp["_rules"]
-        text = f"{i}"
+        RULES = resp["_rules"]
+        text = (await get_string(chat_id, "RULES")).format(m.chat.title, RULES)
     else:
-        text = "Nenhuma regra foi definida no chat."
+        text = await get_string(chat_id, "NO_RULES")
     await cb.edit_message_text(text=text, disable_web_page_preview=True)
 
     
