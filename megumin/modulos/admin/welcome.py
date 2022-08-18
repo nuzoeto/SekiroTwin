@@ -183,16 +183,7 @@ async def greet_new_members(c: megux, m: Message):
                 if not await check_bot_rights(m.chat.id, "can_restrict_members"):
                     pass
                 if await is_admin(m.chat.id, user_id):
-                    await m.reply_text(
-                        welcome,
-                        disable_web_page_preview=True,
-                        reply_markup=(
-                            InlineKeyboardMarkup(welcome_buttons)
-                            if len(welcome_buttons) != 0
-                            else None
-                    ),
-                )
-                    return
+                    pass
                 welcome_buttons += [[InlineKeyboardButton("Clique aqui para ser desmutado", callback_data=f"cptcha|{user_id}")]]
                 try:
                      await megux.restrict_chat_member(m.chat.id, user_id, ChatPermissions())
