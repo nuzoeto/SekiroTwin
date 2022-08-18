@@ -230,15 +230,63 @@ async def warn_rules(client: megux, cb: CallbackQuery):
         data, userid = cb.data.split("|")
     except ValueError:
         return print(cb.data)
+    db = get_collection(f"WELCOME {cb.message.chat.id}")
     if cb.from_user.id != int(userid):
         await cb.answer("Isso não é para você!")
         return
     if await is_admin(cb.message.chat.id, userid):
         await cb.answer("Você não precisa mais compretar o captcha já que és administrador.")
         return
+    response = await db.find_one()
+    if response:
+        msg = response["msg"]
+    else:
+        msg = "Hey {first}, How are you?"
+    if "count" in get_format_keys(msg):
+        count = await client.get_chat_members_count(cb.message.chat.id)
+    else:
+        count = 0
+
+    first = cb.from_user.first_name
+    mention = cb.from_user.mention
+    user_id = cb.from_user.id
+    chat_title = cb.message.chat.title
+    full_name = cb.from_user.first_name + " " + cb.from_user.last_name if cb.from_user.last_name else cb.from_user..first_name
+    username = "@" + cb.from_user.username if cb.from_user.username else cb.from_user.mention
+    try:
+        msg = msg.format(
+            id=user_id,
+            username=username,
+            mention=mention,
+            first_name=first,
+            first=first,
+            # full_name and name are the same
+            full_name=full_name,
+            name=full_name,
+            # title and chat_title are the same
+            title=chat_title,
+            chat_title=chat_title,
+            count=count,
+        )
+    except (KeyError, BadRequest) as e:
+        await m.reply_text(
+            "<b>Erro:</b> {error}".format(
+                error=e.__class__.__name__ + ": " + str(e)
+            )
+        )
+    captcha_welcome, buttons = button_parser(msg)
     try:
         await client.unban_chat_member(cb.message.chat.id, userid)
         await cb.answer("Parabéns você completou o captcha, Agora você pode falar no chat!", show_alert=True)
+        await cb.message.edit_text(
+            goodbye,
+            disable_web_page_preview=True,
+            reply_markup=(
+                InlineKeyboardMarkup(buttons)
+                if len(buttons) != 0
+                else None
+            ),
+        )
     except Exception as e:
         return await cb.answer("Não foi possivel completar o captcha devido a: {}".format(e))
 
