@@ -269,7 +269,7 @@ async def warn_rules(client: megux, cb: CallbackQuery):
             count=count,
         )
     except (KeyError, BadRequest) as e:
-        await m.reply_text(
+        await cb.message.edit_text(
             "<b>Erro:</b> {error}".format(
                 error=e.__class__.__name__ + ": " + str(e)
             )
