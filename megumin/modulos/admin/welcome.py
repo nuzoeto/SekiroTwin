@@ -241,3 +241,34 @@ async def warn_rules(client: megux, cb: CallbackQuery):
         await cb.answer("Parabéns você completou o captcha, Agora você pode falar no chat!", show_alert=True)
     except Exception as e:
         return await cb.answer("Não foi possivel completar o captcha devido a: {}".format(e))
+
+    
+@megux.on_message(filters.command("captcha on", Config.TRIGGER) & filters.group)
+async def enable_welcome_message(c: megux, m: Message):
+    db = get_collection(f"WELCOME_STATUS {m.chat.id}")
+    if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
+        return
+    r = await db.find_one()
+    if r:
+        db_ = r["status"]
+        await db.delete_one({"status": db_})
+        await db.insert_one({"status": True})
+    else: 
+        await db.insert_one({"status": True})
+    await m.reply_text("Captcha agora está Ativado.")
+
+    
+@megux.on_message(filters.command("captcha off", Config.TRIGGER) & filters.group)
+async def enable_welcome_message(c: megux, m: Message):
+    db = get_collection(f"WELCOME_STATUS {m.chat.id}")
+    if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
+        return
+    r = await db.find_one()
+    if r:
+        db_ = r["status"]
+        await db.delete_one({"status": db_})
+        await db.insert_one({"status": False})
+    else: 
+        await db.insert_one({"status": False})
+    await m.reply_text("Captcha agora está Desativado.")
+    
