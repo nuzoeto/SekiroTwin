@@ -180,7 +180,14 @@ async def greet_new_members(c: megux, m: Message):
             )
             welcome, welcome_buttons = button_parser(welcome)
             if await captcha.find_one({"status": True}):
+                if not await check_bot_rights(chat_id, "can_restrict_members"):
+                    pass
                 welcome_buttons += [[InlineKeyboardButton("Clique aqui para ser desmutado", callback_data=f"cptcha|{user_id}")]]
+                try:
+                     await megux.restrict_chat_member(chat_id, user_id, ChatPermissions())
+                except Exception as e:
+                    await m.reply("Não foi possivel mutar o usúario devido a: {}".format(e))
+
             await m.reply_text(
                 welcome,
                 disable_web_page_preview=True,
@@ -213,3 +220,22 @@ async def rm_welcome(c: megux, m: Message):
         await m.reply("A mensagem de boas vindas foi resetada!") 
     else:
         return await m.reply("Nenhuma mensagem de boas vindas foi definida.")
+
+    
+@megux.on_callback_query(filters.regex(pattern=r"^cptcha\|(.*)"))
+async def warn_rules(client: megux, cb: CallbackQuery):
+    try:
+        data, userid = cb.data.split("|")
+    except ValueError:
+        return print(cb.data)
+    if cb.from_user.id != int(userid):
+        await cb.answer("Isso não é para você!")
+        return
+    if await is_admin(cb.message.chat.id, userid):
+        await cb.answer("Você não precisa mais compretar o captcha já que és administrador.")
+        return
+    try:
+        await client.unban_chat_member(cb.message.chat.id, userid)
+        await cb.answer("Parabéns você completou o captcha, Agora você pode falar no chat!", show_alert=True)
+    except Exception as e:
+        return await cb.answer("Não foi possivel completar o captcha devido a: {}".format(e))
