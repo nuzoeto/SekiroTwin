@@ -251,7 +251,7 @@ async def warn_rules(client: megux, cb: CallbackQuery):
     mention = cb.from_user.mention
     user_id = cb.from_user.id
     chat_title = cb.message.chat.title
-    full_name = cb.from_user.first_name + " " + cb.from_user.last_name if cb.from_user.last_name else cb.from_user..first_name
+    full_name = cb.from_user.first_name + " " + cb.from_user.last_name if cb.from_user.last_name else cb.from_user.first_name
     username = "@" + cb.from_user.username if cb.from_user.username else cb.from_user.mention
     try:
         msg = msg.format(
@@ -279,7 +279,7 @@ async def warn_rules(client: megux, cb: CallbackQuery):
         await client.unban_chat_member(cb.message.chat.id, userid)
         await cb.answer("Parabéns você completou o captcha, Agora você pode falar no chat!", show_alert=True)
         await cb.message.edit_text(
-            goodbye,
+            captcha_welcome,
             disable_web_page_preview=True,
             reply_markup=(
                 InlineKeyboardMarkup(buttons)
