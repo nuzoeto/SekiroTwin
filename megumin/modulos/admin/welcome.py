@@ -5,7 +5,7 @@ import inspect
 import os.path
 
 from pyrogram import filters
-from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import Message, CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, ChatPermissions
 from pyrogram.enums import ParseMode
 
 from datetime import datetime, timedelta
