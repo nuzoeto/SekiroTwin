@@ -245,7 +245,7 @@ async def warn_rules(client: megux, cb: CallbackQuery):
     
 @megux.on_message(filters.command("captcha on", Config.TRIGGER) & filters.group)
 async def enable_welcome_message(c: megux, m: Message):
-    db = get_collection(f"WELCOME_STATUS {m.chat.id}")
+    db = get_collection(f"CAPTCHA {m.chat.id}")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
     r = await db.find_one()
@@ -260,7 +260,7 @@ async def enable_welcome_message(c: megux, m: Message):
     
 @megux.on_message(filters.command("captcha off", Config.TRIGGER) & filters.group)
 async def enable_welcome_message(c: megux, m: Message):
-    db = get_collection(f"WELCOME_STATUS {m.chat.id}")
+    db = get_collection(f"CAPTCHA {m.chat.id}")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
     r = await db.find_one()
