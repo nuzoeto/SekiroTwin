@@ -192,6 +192,7 @@ async def greet_new_members(c: megux, m: Message):
                             else None
                     ),
                 )
+                    return
                 welcome_buttons += [[InlineKeyboardButton("Clique aqui para ser desmutado", callback_data=f"cptcha|{user_id}")]]
                 try:
                      await megux.restrict_chat_member(m.chat.id, user_id, ChatPermissions())
