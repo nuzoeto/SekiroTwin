@@ -320,3 +320,10 @@ async def enable_welcome_message(c: megux, m: Message):
         await db.insert_one({"status": False})
     await m.reply_text("Captcha agora está Desativado.")
     
+
+@megux.on_message(filters.command("captcha", Config.TRIGGER) & filters.group)
+async def enable_welcome_message(c: megux, m: Message):
+    if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
+        return
+    await m.reply_text("Dê um argumento exemplo: /captcha on/off")
+ 
