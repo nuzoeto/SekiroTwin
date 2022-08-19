@@ -263,7 +263,7 @@ UNWARN_BNT: "Eliminar advertencia"
 USER_WARNED: "¡{} <b>ha sido advertido!</b>\nÉl/ella tiene {}/{} Advertencias.\n<b>Motivo:</b> {}"
 UNWARNED: "¡Se eliminó la última advertencia!"
 USER_NOT_WARNS: "¡Este usuario no tiene advertencias!"
-ATT_USER_NO_WARNS: "{} no tiene advertencias".
+ATT_USER_NO_WARNS: "{} no tiene advertencias."
 ATT_USER_WARNS: "¡Actualmente, {} tiene {}/{} advertencias!"
 NO_RULES_WARN_YOU: "¡Esto no es para ti! Si quieres ver las reglas escribe /rules"
 UNWARNED_CALLBACKQUERY: "La advertencia para {} ha sido eliminada por {}."
