@@ -244,7 +244,7 @@ async def warns_from_users(_, message: Message):
     DB_LIMIT = get_collection(f"WARN_LIMIT {message.chat.id}")
     
     if not await DB_WARNS.find_one({"user_id": user_id}):
-        return await message.reply("{} não possui advertências.".format(mention))
+        return await message.reply((await get_string(chat_id, "ATT_USER_NO_WARNS")).format(mention))
     
     if await DB_LIMIT.find_one():
         res = await DB_LIMIT.find_one()
@@ -254,7 +254,7 @@ async def warns_from_users(_, message: Message):
         
     user_warns = await DB_WARNS.count_documents({"user_id": user_id})
     
-    await message.reply(f"Atualmente, {mention} têm {user_warns}/{warns_limit} Advertências!")
+    await message.reply((await get_string(chat_id, "ATT_USER_WARNS")).format(mention, user_warns, warns_limit))
 
     
 @megux.on_callback_query(filters.regex(pattern=r"^rules\|(.*)"))
@@ -264,7 +264,7 @@ async def warn_rules(client: megux, cb: CallbackQuery):
     except ValueError:
         return print(cb.data)
     if cb.from_user.id != int(userid):
-        await cb.answer("Isso não é para você! Caso queira ver as regras digite /rules", show_alert=True)
+        await cb.answer(await get_string(cb.message.chat.id, "NO_RULES_WARN_YOU"), show_alert=True)
         return
     chat_id = cb.message.chat.id
     DB = get_collection(f"RULES {chat_id}")
@@ -295,5 +295,5 @@ async def unwarn(client: megux, cb: CallbackQuery):
         )
     await unwarn_bnt(chat_id, user_id)
     #send as message
-    await cb.edit_message_text(text=f"A advertência de {mention} foi removida por {mention_}.", disable_web_page_preview=True)
+    await cb.edit_message_text(text=(await get_string(chat_id, "UNWARNED_CALLBACKQUERY")).format(mention, mention_), disable_web_page_preview=True)
     
