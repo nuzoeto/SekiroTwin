@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux, Config
-from megumin.utils import get_collection, check_rights, get_string 
+from megumin.utils import get_collection, check_rights, get_string, DISABLEABLE_CMDS 
 from megumin.utils.decorators import input_str 
 
 
@@ -87,42 +87,8 @@ async def enable_cmd(_, m: Message):
 
 @megux.on_message(filters.command("disableable", Config.TRIGGER))
 async def disableable(_, m: Message):
-    chat_id = m.chat.id 
-    check_admin = m.from_user.id 
-    DISENABLE = """
-**Comandos disponíveis para ser desativados**:
-
-- __ban__
-- __banme__
-- __ddd__
-- __dicio__
-- __cep__
-- __clima__
-- __getsticker__
-- __ip__
-- __insults__
-- __kang__
-- __kick__
-- __kickme__ 
-- __mute__
-- __muteme__
-- __ping__
-- __pypi__
-- __print__
-- __tr__
-- __report__
-- __reverse__
-- __slap__
-- __short__
-- __simi__
-- __stickerid__
-- __tmute__
-- __song(já desativado)__
-- __unban__
-- __unmute__
-- __vapor__
-- __video(já desativado)__
-"""
-
-    await m.reply(DISENABLE)
+    text = "<b>Comandos Disponiveis para ser desativados</b>:
+    for command in sorted(DISABLABLE_CMDS):
+        text += f"* <code>/{command}</code>\n"
+    await message.reply(text)
 
