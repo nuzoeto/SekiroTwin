@@ -27,7 +27,8 @@ from megumin.utils import (
 async def _ban_user(_, message: Message):
     LOGS = get_collection(f"LOGS {message.chat.id}")
     chat_id = message.chat.id
-    await is_disabled(chat_id, "ban")
+    if await is_disabled(chat_id, "ban"):
+        return
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
         await message.reply(await get_string(chat_id, "NO_BAN_USER"))
         return
