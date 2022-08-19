@@ -25,9 +25,12 @@ from megumin.utils import (
 
 @megux.on_message(filters.command("ban", prefixes=["/", "!"]))
 async def _ban_user(_, message: Message):
+    DISABLED = get_collection(f"DISABLED {message.chat.id}")
     LOGS = get_collection(f"LOGS {message.chat.id}")
     chat_id = message.chat.id
-    if await is_disabled(chat_id, "ban"):
+    query = "ban"
+    off = await DISABLED.find_one({"_cmd": query})
+    if off:
         return
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
         await message.reply(await get_string(chat_id, "NO_BAN_USER"))
