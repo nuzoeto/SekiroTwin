@@ -5,6 +5,7 @@ from .database.disabled import is_disabled # nao_meche
 from .functions import rand_array  # nao_meche
 from .logger import logging
 from .tools import extract_time  # nao_meche
+from .decorators import disableable_dec
 from .tools import (
     admin_check,
     check_bot_rights,
