@@ -90,5 +90,5 @@ async def disableable(_, m: Message):
     text = "<b>Comandos Disponiveis para ser desativados</b>:"
     for command in sorted(DISABLABLE_CMDS):
         text += f"* <code>/{command}</code>\n"
-    await message.reply(text)
+    await m.reply(text)
 
