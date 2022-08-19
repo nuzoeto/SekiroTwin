@@ -5,7 +5,7 @@ from pyrogram.types import Message, InlineQuery, InlineQueryResultArticle, Input
 
 from yarl import URL
 from megumin import megux, Config
-from megumin.utils import get_collection 
+from megumin.utils import get_collection, is_disabled 
 
 
 
@@ -15,10 +15,8 @@ http = httpx.AsyncClient()
 
 @megux.on_message(filters.command("ip", Config.TRIGGER))
 async def ip_cmd_(c: megux, m: Message):
-    DISABLED = get_collection(f"DISABLED {m.chat.id}")
     query = "ip"
-    off = await DISABLED.find_one({"_cmd": query})
-    if off:
+    if await is_disabled(m.chat.id, query):
         return
     if len(m.text.split()) > 1:
         text = m.text.split(maxsplit=1)[1]
