@@ -1,6 +1,7 @@
 from .database import get_collection
-from .database.lang import get_string, add_lang
-from .database.lang import get_string as tld
+from .database.lang import get_string, add_lang # nao_meche
+from .database.lang import get_string as tld # nao_meche
+from .database.disabled import is_disabled # nao_meche
 from .functions import rand_array  # nao_meche
 from .logger import logging
 from .tools import extract_time  # nao_meche
