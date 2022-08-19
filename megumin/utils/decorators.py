@@ -9,11 +9,12 @@
 
 from typing import List
 
+DISABLABLE_CMDS: List[str] = []
+
 def input_str(message) -> str:
     return " ".join(message.text.split()[1:])
 
 def disableable_dec(command):
-    DISABLABLE_CMDS: List[str] = []
 
     print("Loading commands...")
     if command not in DISABLABLE_CMDS:
