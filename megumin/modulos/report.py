@@ -29,7 +29,7 @@ async def report_admins(c: megux, m: Message):
         if check_admin.status not in admin_status:
             mention = ""
             admins_ = ""
-            for i in m.chat.get_members(filter=ChatMembersFilter.ADMINISTRATORS):
+            async for i in m.chat.get_members(filter=ChatMembersFilter.ADMINISTRATORS):
                 if not (i.user.is_deleted, i.privileges.is_anonymous, i.user.is_bot):
                     mention += f"<a href='tg://user?id={i.user.id}'>\u2063</a>"
                     id = i.user.id
