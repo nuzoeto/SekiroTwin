@@ -309,7 +309,6 @@ async def sdl(c: megux, m: Message):
                     "outtmpl": f"{path}/%(extractor)s-%(id)s.%(ext)s",
                     "wait-for-video": "1",
                     "noplaylist": True,
-                    "logger": MyLogger(),
                 }
 
                 if re.match(
