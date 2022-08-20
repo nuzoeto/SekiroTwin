@@ -34,6 +34,7 @@ async def report_admins(c: megux, m: Message):
                     mention += f"<a href='tg://user?id={i.user.id}'>\u2063</a>"
                     id = i.user.id
                     await megux.send_message(id, f"{user} está chamando os administradores no chat {chat}")
+                    continue
             await m.reply_to_message.reply_text(
                 "{admins_list}{reported_user} reportado para os administradores.".format(
                     admins_list=mention,
