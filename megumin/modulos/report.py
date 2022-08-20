@@ -29,13 +29,11 @@ async def report_admins(c: megux, m: Message):
         if check_admin.status not in admin_status:
             mention = ""
             admins_ = ""
-            async for i in m.chat.get_members(filter=ChatMembersFilter.ADMINISTRATORS):
+            for i in m.chat.get_members(filter=ChatMembersFilter.ADMINISTRATORS):
                 if not (i.user.is_deleted, i.privileges.is_anonymous, i.user.is_bot):
                     mention += f"<a href='tg://user?id={i.user.id}'>\u2063</a>"
                     id = i.user.id
-                    while True:
-                        await megux.send_message(id, f"{user} está chamando os administradores em {chat}")
-                        pass
+                    await megux.send_message(id, f"{user} está chamando os administradores no chat {chat}")
             await m.reply_to_message.reply_text(
                 "{admins_list}{reported_user} reportado para os administradores.".format(
                     admins_list=mention,
