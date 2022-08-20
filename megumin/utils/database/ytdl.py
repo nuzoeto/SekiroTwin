@@ -3,7 +3,7 @@ from megumin.utils import get_collection
 from typing import Optional
 
 
-async def csdl(id: int) -> bool:
+async def csdl(id: int):
     CSDL = get_collection(f"CSDL {id}")
     resp = await CSDL.find_one({"status": True})
     if resp:
