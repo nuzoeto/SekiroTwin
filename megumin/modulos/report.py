@@ -15,29 +15,14 @@ admin_status = [ChatMemberStatus.ADMINISTRATOR or ChatMemberStatus.OWNER]
     & filters.reply
 )
 async def report_admins(c: megux, m: Message):
-    chat_id = m.chat.id 
-    messages_id = m.reply_to_message.id
-    DISABLED = get_collection(f"DISABLED {m.chat.id}")
-    query = "report"
-    off = await DISABLED.find_one({"_cmd": query})
-    if off:
-        return
-    if m.reply_to_message.from_user:
-        check_admin = await m.chat.get_member(m.reply_to_message.from_user.id)
-        user = m.from_user.mention() 
-        chat = m.chat.title
-        if check_admin.status not in admin_status:
-            mention = ""
-            admins_ = ""
-            async for i in m.chat.get_members(filter=ChatMembersFilter.ADMINISTRATORS):
-                if not (i.user.is_deleted, i.privileges.is_anonymous, i.user.is_bot):
-                    mention += f"<a href='tg://user?id={i.user.id}'>\u2063</a>"
-                    id = i.user.id
-                    await megux.send_message(id, f"{user} está chamando os administradores no chat {chat}")
-                    continue
-            await m.reply_to_message.reply_text(
-                "{admins_list}{reported_user} reportado para os administradores.".format(
-                    admins_list=mention,
-                    reported_user=m.reply_to_message.from_user.mention(),
-                ),
-            )
+    chat_id = m.chat.id
+    user = m.from_user.id
+    chat_title = m.chat.title
+    admins_list = await megux.get_chat_members(chat_id=chat_id, filter=ChatMembersFilter.ADMINSTRATOR)
+    # send notification to administrator
+    for admin in admins_list:
+        #avoid bots in chat
+        if admin.user.is_bot or admin.user.is_deleted:
+            continue
+        await megux.send_message(admin.user.id, f"{user} está chamando os administradores em {chat_title}")
+    await m.reply(f"{message.reply_to_message.first_name} Reportado para os administradores.")
