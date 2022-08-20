@@ -18,7 +18,7 @@ async def report_admins(c: megux, m: Message):
     chat_id = m.chat.id
     user = m.from_user.id
     chat_title = m.chat.title
-    admins_list = await megux.get_chat_members(chat_id=chat_id, filter=ChatMembersFilter.ADMINSTRATORS)
+    admins_list = await megux.get_chat_members(chat_id=chat_id, filter=ChatMembersFilter.ADMINISTRATORS)
     # send notification to administrator
     for admin in admins_list:
         #avoid bots in chat
