@@ -20,6 +20,7 @@ async def report_admins(c: megux, m: Message):
     user = m.from_user.mention
     chat_title = m.chat.title
     reported_user = m.reply_to_message.from_user.mention
+    msg = m.reply_to_message.id
     admins_list = megux.get_chat_members(chat_id=chat_id, filter=ChatMembersFilter.ADMINISTRATORS)
     # send notification to administrator
     async for admin in admins_list:
@@ -28,6 +29,7 @@ async def report_admins(c: megux, m: Message):
             continue
         try:    
             await megux.send_message(admin.user.id, f"{user} está chamando os administradores em {chat_title}")
+            await megux.forward_messages(admin.user.id, chat_id, msg)
         except PeerIdInvalid:
             continue
     await m.reply(f"{reported_user} Reportado para os administradores.")
