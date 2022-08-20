@@ -6,7 +6,11 @@ from typing import Optional
 async def csdl(id: int) -> bool:
     CSDL = get_collection(f"CSDL {id}")
     resp = await CSDL.find_one({"status": True})
-    return resp[0]
+    if resp:
+        row = True
+    else:
+        row = False
+    return row[0]
 
 async def tsdl(id: int, mode: Optional[bool]) -> None:
     CSDL = get_collection(f"CSDL {id}") 
