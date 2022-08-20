@@ -1,5 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import Message
+from pyrogram.errors import PeerIdInvalid
 from pyrogram.enums import ChatMemberStatus, ChatMembersFilter
 
 
@@ -24,5 +25,8 @@ async def report_admins(c: megux, m: Message):
         #avoid bots in chat
         if admin.user.is_bot or admin.user.is_deleted:
             continue
-        await megux.send_message(admin.user.id, f"{user} está chamando os administradores em {chat_title}")
+        try:    
+            await megux.send_message(admin.user.id, f"{user} está chamando os administradores em {chat_title}")
+        except PeerIdInvalid:
+            continue
     await m.reply(f"{message.reply_to_message.first_name} Reportado para os administradores.")
