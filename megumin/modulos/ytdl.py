@@ -22,7 +22,7 @@ from pyrogram.errors import BadRequest, FloodWait, Forbidden, MediaEmpty, Messag
 from pyrogram.types import Message, CallbackQuery, InputMediaVideo, InputMediaPhoto
 
 from megumin import megux, Config 
-from megumin.utils import humanbytes, tld
+from megumin.utils import humanbytes, tld, csdl, cisdl
 
 
 http = httpx.AsyncClient()
