@@ -9,6 +9,7 @@ import asyncio
 import tempfile
 import datetime
 import httpx
+import gallery_dl
 
 
 from yt_dlp import YoutubeDL
@@ -30,6 +31,9 @@ http = httpx.AsyncClient()
 YOUTUBE_REGEX = re.compile(
     r"(?m)http(?:s?):\/\/(?:www\.)?(?:music\.)?youtu(?:be\.com\/(watch\?v=|shorts/|embed/)|\.be\/|)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?"
 )
+
+SDL_REGEX_LINKS = r"^http(?:s)?:\/\/(?:www\.)?(?:v\.)?(?:mobile.|m.)?(?:instagram.com|twitter.com|vm.tiktok.com|tiktok.com|facebook.com)\/(?:\S*)"
+
 TIME_REGEX = re.compile(r"[?&]t=([0-9]+)")
 
 MAX_FILESIZE = 1000000000
@@ -48,6 +52,19 @@ def aiowrap(func: Callable) -> Callable:
 @aiowrap
 def extract_info(instance: YoutubeDL, url: str, download=True):
     return instance.extract_info(url, download)
+
+
+@aiowrap
+def gallery_down(path, url: str):
+    gallery_dl.config.set(("output",), "mode", "null")
+    gallery_dl.config.set((), "directory", [])
+    gallery_dl.config.set((), "base-directory", [path])
+    gallery_dl.config.set(
+        (),
+        "cookies",
+        "~/instagram.com_cookies.txt",
+    )
+    return gallery_dl.job.DownloadJob(url).run()
 
 
 @megux.on_message(filters.command("ytdl", Config.TRIGGER))
@@ -219,3 +236,109 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
             await cq.message.delete()
 
     shutil.rmtree(tempdir, ignore_errors=True)
+
+    
+@Client.on_message(filters.command(["sdl", "mdl"]), group=1)
+@Client.on_message(filters.regex(SDL_REGEX_LINKS))
+async def sdl(c: Client, m: Message):
+    if m.matches:
+        if m.chat.type == enums.ChatType.PRIVATE or await csdl(m.chat.id) == True:
+            url = m.matches[0].group(0)
+        else:
+            return
+    elif len(m.command) > 1:
+        url = m.text.split(None, 1)[1]
+    elif m.reply_to_message and m.reply_to_message.text:
+        url = m.reply_to_message.text
+    else:
+        await m.reply_text(
+            (await tld(m.chat.id, "NO_ARGS_YT"))
+        )
+        return
+
+    if re.match(
+        SDL_REGEX_LINKS,
+        url,
+        re.M,
+    ):
+        with tempfile.TemporaryDirectory() as tempdir:
+            path = os.path.join(tempdir, f"sdl|{random.randint(0, 300)}")
+            try:
+                await gallery_down(path, url)
+                files = []
+                try:
+                    files += [
+                        InputMediaVideo(os.path.join(path, video))
+                        for video in os.listdir(path)
+                        if video.endswith(".mp4")
+                    ]
+                except FileNotFoundError:
+                    pass
+                if not re.match(
+                    r"(http(s)?:\/\/(?:www\.)?(?:v\.)?(?:mobile.)?(?:twitter.com)\/(?:.*?))(?:\s|$)",
+                    url,
+                    re.M,
+                ) and (
+                    (
+                        m.chat.type == enums.ChatType.PRIVATE
+                        or await cisdl(m.chat.id) == True
+                    )
+                ):
+                    try:
+                        files += [
+                            InputMediaPhoto(os.path.join(path, photo))
+                            for photo in os.listdir(path)
+                            if photo.endswith((".jpg", ".png", ".jpeg"))
+                        ]
+                    except FileNotFoundError:
+                        pass
+                try:
+                    if files:
+                        await c.send_chat_action(
+                            m.chat.id, enums.ChatAction.UPLOAD_DOCUMENT
+                        )
+                        await m.reply_media_group(media=files)
+                except FloodWait as e:
+                    await asyncio.sleep(e.value)
+                except MediaEmpty:
+                    return
+                except Forbidden:
+                    return shutil.rmtree(tempdir, ignore_errors=True)
+            except gallery_dl.exception.GalleryDLException:
+                ydl_opts = {
+                    "outtmpl": f"{path}/%(extractor)s-%(id)s.%(ext)s",
+                    "wait-for-video": "1",
+                    "noplaylist": True,
+                    "logger": MyLogger(),
+                }
+
+                if re.match(
+                    r"https?://(?:vm|vt)\.tiktok\.com/(?P<id>\w+)",
+                    url,
+                    re.M,
+                ):
+                    r = await http.head(url, follow_redirects=True)
+                    url = r.url
+
+                try:
+                    await extract_info(YoutubeDL(ydl_opts), str(url), download=True)
+                except BaseException:
+                    return
+                if videos := [
+                    InputMediaVideo(os.path.join(path, video))
+                    for video in os.listdir(path)
+                ]:
+                    await c.send_chat_action(m.chat.id, enums.ChatAction.UPLOAD_VIDEO)
+                    try:
+                        await m.reply_media_group(media=videos)
+                    except FloodWait as e:
+                        await asyncio.sleep(e.value)
+                    except MediaEmpty:
+                        return
+                    except Forbidden:
+                        return shutil.rmtree(tempdir, ignore_errors=True)
+        await asyncio.sleep(2)
+        shutil.rmtree(tempdir, ignore_errors=True)
+    else:
+        return await m.reply_text("This is not a valid sdl link")
+
