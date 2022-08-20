@@ -3,14 +3,10 @@ from megumin.utils import get_collection
 from typing import Optional
 
 
-async def csdl(id: int):
+async def csdl(id: int) -> bool:
     CSDL = get_collection(f"CSDL {id}")
     resp = await CSDL.find_one({"status": True})
-    if resp:
-        row = True
-    else:
-        row = False
-    return row[0]
+    return bool(row)
 
 async def tsdl(id: int, mode: Optional[bool]) -> None:
     CSDL = get_collection(f"CSDL {id}") 
@@ -21,7 +17,7 @@ async def tsdl(id: int, mode: Optional[bool]) -> None:
 async def cisdl(id: int) -> bool:
     CISDL = get_collection(f"CISDL {id}")
     row = await CISDL.find_one({"status": True})
-    return row[0]
+    return bool(row)
 
 async def tisdl(id: int, mode: Optional[bool]) -> None:
     CISDL = get_collection(f"CISDL {id}")
