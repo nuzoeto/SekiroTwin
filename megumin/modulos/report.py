@@ -75,8 +75,6 @@ async def delete_report(client: megux, cb: CallbackQuery):
     except PeerIdInvalid:
         await cb.answer(f"Nenhum user_id valido. {chat_id}///{uid}", show_alert=True)
         return
-    if not await check_rights(chat_id, user_id, "can_restrict_members"):
-        return await cb.answer(await get_string(chat_id, "NO_BAN_USER"), show_alert=True)
     try:
         await client.delete_messages(
             chat_id=chat_id,
