@@ -24,14 +24,14 @@ async def report_admins(c: megux, m: Message):
     reported_user = m.reply_to_message.from_user.mention
     reported_user_id = m.reply_to_message.from_user.id
     msg = m.reply_to_message.id
-    chat = str(f"{gid}").replace("-100", "")
+    chat_ab_id = str(f"{chat_id}").replace("-100", "")
     admins_list = megux.get_chat_members(chat_id=chat_id, filter=ChatMembersFilter.ADMINISTRATORS)
     
     keyboard = [[
         InlineKeyboardButton(
             u"➡ Message",
             url="https://t.me/c/{}/{}".format(
-                chat,
+                chat_ab_id,
                 str(msg)))
         ],
         [
