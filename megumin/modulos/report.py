@@ -48,7 +48,7 @@ async def report_admins(c: megux, m: Message):
         InlineKeyboardButton(
             u"❎ Delete Message",
             callback_data="del|{}".format(
-                msg))
+                msg, chat_id))
         ]]
             
     # send notification to administrator
@@ -66,8 +66,7 @@ async def report_admins(c: megux, m: Message):
     
 @megux.on_callback_query(filters.regex(pattern=r"^del\|(.*)"))
 async def delete_report(client: megux, cb: CallbackQuery):
-    data, mid = cb.data.split("|")
-    chat_id = cb.message.chat.id
+    data, mid, chat_id = cb.data.split("|")
     mention_ = cb.from_user.mention
     uid = cb.from_user.id
     if not await check_rights(chat_id, uid, "can_restrict_members"):
