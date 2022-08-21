@@ -74,7 +74,7 @@ async def delete_report(client: megux, cb: CallbackQuery):
     try:
         await client.delete_messages(
             chat_id=chat_id,
-            message_ids=mid,
+            message_ids=int(mid),
             revoke=True
         )
         await cb.awswer("A mensagem foi apagada com sucesso!", show_alert=True)
