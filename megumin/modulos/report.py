@@ -37,12 +37,12 @@ async def report_admins(c: megux, m: Message):
         [
         InlineKeyboardButton(
             u"⚠ Kick",
-            callback_data="kick|{}".format(
-                reported_user_id)),
+            callback_data="kick|{}|{}".format(
+                chat_id, reported_user_id)),
         InlineKeyboardButton(
             u"⛔️ Ban",
-            callback_data="ban|{}".format(
-                reported_user_id)),
+            callback_data="ban|{}|{}".format(
+                chat_id, reported_user_id)),
         ],       
         [
         InlineKeyboardButton(
@@ -74,7 +74,38 @@ async def delete_report(client: megux, cb: CallbackQuery):
             message_ids=int(mid),
             revoke=True
         )
-        await cb.answer("A mensagem foi apagada com sucesso!", show_alert=True)
+        await cb.answer("✅ Message Deleted", show_alert=True)
     except Exception:
         await cb.answer("🛑 Failed to delete message!", show_alert=True)
+  
+
+@megux.on_callback_query(filters.regex(pattern=r"^kick\|(.*)"))
+async def delete_report(client: megux, cb: CallbackQuery):
+    data, chat_id, user_id = cb.data.split("|")
+    uid = cb.from_user.id
+    try:
+        await client.ban_chat_member(
+            chat_id,
+            user_id,
+        )
+        await client.unban_chat_member(
+            chat_id,
+            user_id.
+        )
+        await cb.answer("✅ Succesfully kicked", show_alert=True)
+    except Exception:
+        await cb.answer("🛑 Failed to kick!", show_alert=True)
     
+@megux.on_callback_query(filters.regex(pattern=r"^ban\|(.*)"))
+async def delete_report(client: megux, cb: CallbackQuery):
+    data, chat_id, user_id = cb.data.split("|")
+    uid = cb.from_user.id
+    try:
+        await client.ban_chat_member(
+            chat_id,
+            user_id,
+        )
+        await cb.answer("✅ Succesfully Banned", show_alert=True)
+    except Exception:
+        await cb.answer("🛑 Failed to ban!", show_alert=True)
+        
