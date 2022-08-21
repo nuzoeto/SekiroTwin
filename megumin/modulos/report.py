@@ -65,27 +65,20 @@ async def report_admins(c: megux, m: Message):
 
     
 @megux.on_callback_query(filters.regex(pattern=r"^del\|(.*)"))
-async def report_del(client: megux, cb: CallbackQuery):
-    try:
-        data, mid = cb.data.split("|")
-    except ValueError:
-        return print(cb.data)
+async def delete_report(client: megux, cb: CallbackQuery):
+    data, mid = cb.data.split("|")
     chat_id = cb.message.chat.id
     mention_ = cb.from_user.mention
     uid = cb.from_user.id
     if not await check_rights(chat_id, uid, "can_restrict_members"):
-        await cb.answer("Você não tem permissões suficientes para apagar mensagens.", show_alert=True)
-        return
-    if not await check_bot_rights(chat_id, "can_delete_messages"):
-        await cb.answer("Não tenho permissões suficientes para apagar mensagens", show_alert=True)
-        return
+        return await cb.answer(await get_string(chat_id, "NO_BAN_USER"), show_alert=True)
     try:
         await client.delete_messages(
-            chat_id=cb.message.chat.id,
+            chat_id=chat_id,
             message_ids=mid,
             revoke=True
         )
-        await cb.awswer("A mensagem foi apagada!", show_alert=True)
+        await cb.awswer("A mensagem foi apagada com sucesso!", show_alert=True)
     except Forbidden:
-        await cb.awswer("A mensagem provavelmente já foi apagada", show_alert=True)
+        await cb.awswer("Provavelmente a mensage já foi apagada.", show_alert=True)
     
