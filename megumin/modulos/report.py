@@ -5,7 +5,7 @@ from pyrogram.enums import ChatMemberStatus, ChatMembersFilter
 
 
 from megumin import megux 
-from megumin.utils import get_collection, is_admin, check_bot_rights, check_rights, tld
+from megumin.utils import get_collection, is_dev, is_admin, check_bot_rights, check_rights, tld
 from megumin.utils.decorators import input_str
 
 
