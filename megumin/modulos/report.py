@@ -13,14 +13,17 @@ admin_status = [ChatMemberStatus.ADMINISTRATOR or ChatMemberStatus.OWNER]
 @megux.on_message(
     (filters.command("report", prefixes=["/", "!"]) | filters.regex("^@admin"))
     & filters.group
-    & filters.reply
 )
 async def report_admins(c: megux, m: Message):
     chat_id = m.chat.id
     user = m.from_user.mention
     chat_title = m.chat.title
-    reported_user = m.reply_to_message.from_user.mention
-    msg = m.reply_to_message.id
+    if m.reply_to_message:
+        reported_user = m.reply_to_message.from_user.mention
+        shoud_rpt = True
+    else:
+        reported_user = m.from_user.mention
+        shoud_rpt = False
     admins_list = megux.get_chat_members(chat_id=chat_id, filter=ChatMembersFilter.ADMINISTRATORS)
     # send notification to administrator
     async for admin in admins_list:
@@ -29,7 +32,13 @@ async def report_admins(c: megux, m: Message):
             continue
         try:    
             await megux.send_message(admin.user.id, f"{user} está chamando os administradores em {chat_title}")
-            await megux.forward_messages(admin.user.id, chat_id, msg)
+            if shoud_rpt == True:
+                msg = message.reply_to_message.mention
+                await megux.forward_messages(admin.user.id, chat_id, msg)
+            elif input_str(m):
+                await megux.send_message(admin.user.id, input_str(m))
+            else: 
+                return await m.reply("Você precisa marcar alguem para reportar")
         except PeerIdInvalid:
             continue
     await m.reply(f"{reported_user} Reportado para os administradores.")
