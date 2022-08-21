@@ -95,6 +95,15 @@ async def delete_report(client: megux, cb: CallbackQuery):
     if not await check_bot_rights(chat_id, "can_restrict_members"):
         await cb.answer(await tld(chat_id, "NO_BAN_BOT"))
         return
+    if await is_admin(chat_id, user_id):
+        await cb.answer(await tld(chat_id, "BAN_IN_ADMIN"))
+        return
+    if is_dev(user_id):
+        await cb.answer(await tld(chat_id, "BAN_IN_DEV"))
+        return
+    if await is_self(user_id):
+        await cb.awswer(await get_string(chat_id, "BAN_MY_SELF"))
+        return
     try:
         await client.ban_chat_member(
             chat_id,
@@ -117,6 +126,15 @@ async def delete_report(client: megux, cb: CallbackQuery):
         return
     if not await check_bot_rights(chat_id, "can_restrict_members"):
         await cb.answer(await tld(chat_id, "NO_BAN_BOT"))
+        return
+    if await is_admin(chat_id, user_id):
+        await cb.answer(await tld(chat_id, "BAN_IN_ADMIN"))
+        return
+    if is_dev(user_id):
+        await cb.answer(await tld(chat_id, "BAN_IN_DEV"))
+        return
+    if await is_self(user_id):
+        await cb.answer(await get_string(chat_id, "BAN_MY_SELF"))
         return
     try:
         await client.ban_chat_member(
