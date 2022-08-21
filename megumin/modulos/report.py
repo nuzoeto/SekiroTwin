@@ -90,7 +90,7 @@ async def delete_report(client: megux, cb: CallbackQuery):
         )
         await client.unban_chat_member(
             chat_id,
-            user_id.
+            user_id,
         )
         await cb.answer("✅ Succesfully kicked", show_alert=True)
     except Exception:
