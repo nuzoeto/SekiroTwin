@@ -67,9 +67,15 @@ async def report_admins(c: megux, m: Message):
 @megux.on_callback_query(filters.regex(pattern=r"^del\|(.*)"))
 async def delete_report(client: megux, cb: CallbackQuery):
     data, mid, chat_id = cb.data.split("|")
-    mention_ = cb.from_user.mention
     uid = cb.from_user.id
-    if not await check_rights(chat_id, uid, "can_restrict_members"):
+    try:
+        user = await megux.get_chat_member(chat_id, uid)
+        user_id = user.id
+        mention_ = user.mention
+    except PeerIdInvalid:
+        await cb.answer("Nenhum user_id valido.", show_alert=True)
+        return
+    if not await check_rights(chat_id, user_id, "can_restrict_members"):
         return await cb.answer(await get_string(chat_id, "NO_BAN_USER"), show_alert=True)
     try:
         await client.delete_messages(
