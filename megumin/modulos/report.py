@@ -69,25 +69,12 @@ async def delete_report(client: megux, cb: CallbackQuery):
     data, chat_id, mid = cb.data.split("|")
     uid = cb.from_user.id
     try:
-        user = await megux.get_users(uid)
-        user_id = user.id
-        mention_ = user.mention
-    except PeerIdInvalid:
-        await cb.answer(f"Nenhum user_id valido. {chat_id}///{uid}", show_alert=True)
-        return
-    if not await check_rights(chat_id, user_id, "can_delete_messages"):
-        await cb.answer("Você não pode apagar mensagens.")
-        return
-    if not await check_bot_rights(chat_id, "can_delete_messages"):
-        await cb.answer("Me conceda permissão para deletar mensagens.")
-        return
-    try:
         await client.delete_messages(
             chat_id=chat_id,
             message_ids=int(mid),
             revoke=True
         )
         await cb.answer("A mensagem foi apagada com sucesso!", show_alert=True)
-    except Forbidden:
-        await cb.answer("Provavelmente a mensage já foi apagada.", show_alert=True)
+    except Exception:
+        await cb.answer("🛑 Failed to delete message!", show_alert=True)
     
