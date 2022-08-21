@@ -1,6 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
-from pyrogram.errors import PeerIdInvalid, Forbidden
+from pyrogram.errors import PeerIdInvalid, Forbidden, UsernameInvalid, PeerIdInvalid, UserIdInvalid
 from pyrogram.enums import ChatMemberStatus, ChatMembersFilter
 
 
@@ -70,8 +70,14 @@ async def report_del(client: megux, cb: CallbackQuery):
         data, mid = cb.data.split("|")
     except ValueError:
         return print(cb.data)
-    user = cb.from_user
-    if not await check_rights(cb.message.chat.id, user.id, "can_delete_messages"):
+    id_ = cb.from_user.id
+    try:
+        user = await megux.get_users(id_)
+        user_id = user.id
+    except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
+        await cb.awswer("Não foi possivel você apagar a mensagem.")
+        return
+    if not await check_rights(cb.message.chat.id, user_id, "can_delete_messages"):
         await cb.answer("Você não tem permissões suficientes para apagar mensagens.", show_alert=True)
         return
     if not await check_bot_rights(cb.message.chat.id, "can_delete_messages"):
