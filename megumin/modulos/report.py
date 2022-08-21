@@ -89,6 +89,12 @@ async def delete_report(client: megux, cb: CallbackQuery):
 async def delete_report(client: megux, cb: CallbackQuery):
     data, chat_id, user_id = cb.data.split("|")
     uid = cb.from_user.id
+    if not await check_rights(chat_id, uid, "can_delete_messages"):
+        await cb.answer("Você não tem permissões suficientes para apagar mensagens.")
+        return
+    if not await check_bot_rights(chat_id, "can_delete_messages"):
+        await cb.answer("Não consigo excluir mensagens aqui! Verifique se eu sou um(a) administrador(a) e posso excluir mensagens de outros usuários.")
+        return
     try:
         await client.ban_chat_member(
             chat_id,
@@ -106,6 +112,12 @@ async def delete_report(client: megux, cb: CallbackQuery):
 async def delete_report(client: megux, cb: CallbackQuery):
     data, chat_id, user_id = cb.data.split("|")
     uid = cb.from_user.id
+    if not await check_rights(chat_id, uid, "can_delete_messages"):
+        await cb.answer("Você não tem permissões suficientes para apagar mensagens.")
+        return
+    if not await check_bot_rights(chat_id, "can_delete_messages"):
+        await cb.answer("Não consigo excluir mensagens aqui! Verifique se eu sou um(a) administrador(a) e posso excluir mensagens de outros usuários.")
+        return
     try:
         await client.ban_chat_member(
             chat_id,
