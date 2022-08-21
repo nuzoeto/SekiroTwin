@@ -78,8 +78,8 @@ async def delete_report(client: megux, cb: CallbackQuery):
     if not await check_rights(chat_id, user_id, "can_delete_messages"):
         await cb.answer("Você não pode apagar mensagens.")
         return
-    if not await check_bot_rights(chat_id, "can_delete messages"):
-        await cb.answer("Me conceda permissâo para deletar mensagens.")
+    if not await check_bot_rights(chat_id, "can_delete_messages"):
+        await cb.answer("Me conceda permissão para deletar mensagens.")
         return
     try:
         await client.delete_messages(
