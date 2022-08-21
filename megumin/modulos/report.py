@@ -47,7 +47,7 @@ async def report_admins(c: megux, m: Message):
         [
         InlineKeyboardButton(
             u"❎ Delete Message",
-            callback_data="del|{}".format(
+            callback_data="del|{}|{}".format(
                 msg, chat_id))
         ]]
             
