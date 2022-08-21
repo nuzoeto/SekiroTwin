@@ -57,7 +57,7 @@ async def report_admins(c: megux, m: Message):
         if admin.user.is_bot or admin.user.is_deleted:
             continue
         try:    
-            await megux.send_message(admin.user.id, f"{user} está chamando os administradores em {chat_title}", reply_markup=InlineKeyboardMarkup(keybord))
+            await megux.send_message(admin.user.id, f"{user} está chamando os administradores em {chat_title}", reply_markup=InlineKeyboardMarkup(keyboard))
             await megux.forward_messages(admin.user.id, chat_id, msg)
         except PeerIdInvalid:
             continue
