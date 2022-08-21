@@ -69,7 +69,7 @@ async def delete_report(client: megux, cb: CallbackQuery):
     data, mid, chat_id = cb.data.split("|")
     uid = cb.from_user.id
     try:
-        user = await megux.get_chat_member(chat_id, uid)
+        user = await megux.get_users(uid)
         user_id = user.id
         mention_ = user.mention
     except PeerIdInvalid:
