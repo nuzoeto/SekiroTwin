@@ -1,5 +1,5 @@
 from pyrogram import filters
-from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallBackQuery
+from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from pyrogram.errors import PeerIdInvalid, Forbidden
 from pyrogram.enums import ChatMemberStatus, ChatMembersFilter
 
