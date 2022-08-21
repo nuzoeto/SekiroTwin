@@ -1,12 +1,12 @@
 from pyrogram import filters
-from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
-from pyrogram.errors import PeerIdInvalid
+from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallBackQuery
+from pyrogram.errors import PeerIdInvalid, Forbidden
 from pyrogram.enums import ChatMemberStatus, ChatMembersFilter
 
 
 from megumin import megux 
 from megumin.utils import get_collection
-from megumin.utils.decorators import input_str
+from megumin.utils.decorators import input_str, is_admin, check_bot_rights, check_rights
 
 
 admin_status = [ChatMemberStatus.ADMINISTRATOR or ChatMemberStatus.OWNER]
@@ -62,3 +62,27 @@ async def report_admins(c: megux, m: Message):
         except PeerIdInvalid:
             continue
     await m.reply(f"{reported_user} Reportado para os administradores.")
+
+    
+@megux.on_callback_query(filters.regex(pattern=r"^del\|(.*)"))
+async def report_del(client: megux, cb: CallbackQuery):
+    try:
+        data, mid = cb.data.split("|")
+    except ValueError:
+        return print(cb.data)
+    user = cb.from_user
+    if not await check_rights(chat_id, user.id, "can_delete_messages"):
+        await cb.answer("Você não tem permissões suficientes para apagar mensagens.", show_alert=True)
+        return
+    if not await check_bot_rights(chat_id, "can_delete_messages"):
+        await cb.answer("Não tenho permissões suficientes para apagar mensagens", show_alert=True)
+    try:
+        await megux.delete_messages(
+            chat_id=cb.message.chat.id,
+            message_ids=mid,
+            revoke=True
+        )
+        await cb.awswer("A mensagem foi apagada!", show_alert=True)
+    except Forbidden:
+        await cb.awswer("A mensagem provavelmente já foi apagada", show_alert=True)
+    
