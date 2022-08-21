@@ -5,7 +5,7 @@ from pyrogram.enums import ChatMemberStatus, ChatMembersFilter
 
 
 from megumin import megux 
-from megumin.utils import get_collection, is_admin, check_bot_rights, check_rights
+from megumin.utils import get_collection, is_admin, check_bot_rights, check_rights, tld
 from megumin.utils.decorators import input_str
 
 
@@ -17,7 +17,7 @@ admin_status = [ChatMemberStatus.ADMINISTRATOR or ChatMemberStatus.OWNER]
 )
 async def report_admins(c: megux, m: Message):
     if not m.reply_to_message:
-        return await m.reply("Responda a mensagem que deseja reportar")
+        return await m.reply("Responda a mensagem que deseja reportar.")
     chat_id = m.chat.id
     user = m.from_user.mention
     chat_title = m.chat.title
@@ -89,11 +89,11 @@ async def delete_report(client: megux, cb: CallbackQuery):
 async def delete_report(client: megux, cb: CallbackQuery):
     data, chat_id, user_id = cb.data.split("|")
     uid = cb.from_user.id
-    if not await check_rights(chat_id, uid, "can_delete_messages"):
-        await cb.answer("Você não tem permissões suficientes para apagar mensagens.")
+    if not await check_rights(chat_id, uid, "can_restrict_members"):
+        await cb.answer(await tld(chat_id, "NO_BAN_USER"))
         return
-    if not await check_bot_rights(chat_id, "can_delete_messages"):
-        await cb.answer("Não consigo excluir mensagens aqui! Verifique se eu sou um(a) administrador(a) e posso excluir mensagens de outros usuários.")
+    if not await check_bot_rights(chat_id, "can_restrict_members"):
+        await cb.answer(await tld(chat_id, "NO_BAN_BOT"))
         return
     try:
         await client.ban_chat_member(
@@ -112,11 +112,11 @@ async def delete_report(client: megux, cb: CallbackQuery):
 async def delete_report(client: megux, cb: CallbackQuery):
     data, chat_id, user_id = cb.data.split("|")
     uid = cb.from_user.id
-    if not await check_rights(chat_id, uid, "can_delete_messages"):
-        await cb.answer("Você não tem permissões suficientes para apagar mensagens.")
+    if not await check_rights(chat_id, uid, "can_restrict_members"):
+        await cb.answer(await tld(chat_id, "NO_BAN_USER"))
         return
-    if not await check_bot_rights(chat_id, "can_delete_messages"):
-        await cb.answer("Não consigo excluir mensagens aqui! Verifique se eu sou um(a) administrador(a) e posso excluir mensagens de outros usuários.")
+    if not await check_bot_rights(chat_id, "can_restrict_members"):
+        await cb.answer(await tld(chat_id, "NO_BAN_BOT"))
         return
     try:
         await client.ban_chat_member(
