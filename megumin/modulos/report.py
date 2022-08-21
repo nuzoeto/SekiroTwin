@@ -71,7 +71,7 @@ async def report_del(client: megux, cb: CallbackQuery):
     except ValueError:
         return print(cb.data)
     id_ = cb.from_user.id
-    chat_id = cb.message.chat.id
+    chat_id = cb.chat.id
     try:
         user = await megux.get_users(id_)
         user_id = user.id
@@ -84,7 +84,7 @@ async def report_del(client: megux, cb: CallbackQuery):
     if not await check_bot_rights(chat_id, "can_delete_messages"):
         await cb.answer("Não tenho permissões suficientes para apagar mensagens", show_alert=True)
     try:
-        await megux.delete_messages(
+        await client.delete_messages(
             chat_id=cb.message.chat.id,
             message_ids=mid,
             revoke=True
