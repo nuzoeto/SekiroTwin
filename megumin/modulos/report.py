@@ -71,7 +71,7 @@ async def report_del(client: megux, cb: CallbackQuery):
     except ValueError:
         return print(cb.data)
     id_ = cb.from_user.id
-    chat_id = cb.chat.id
+    chat_id = cb.message.chat.id
     try:
         user = await megux.get_users(id_)
         user_id = user.id
