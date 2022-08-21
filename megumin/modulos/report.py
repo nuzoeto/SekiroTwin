@@ -16,6 +16,8 @@ admin_status = [ChatMemberStatus.ADMINISTRATOR or ChatMemberStatus.OWNER]
     & filters.group
 )
 async def report_admins(c: megux, m: Message):
+    if not m.reply_to_message:
+        return await m.reply("Responda a mensagem que deseja reportar")
     chat_id = m.chat.id
     user = m.from_user.mention
     chat_title = m.chat.title
