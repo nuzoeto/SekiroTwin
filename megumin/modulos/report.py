@@ -92,7 +92,7 @@ async def delete_report(client: megux, cb: CallbackQuery):
   
 
 @megux.on_callback_query(filters.regex(pattern=r"^kick\|(.*)"))
-async def delete_report(client: megux, cb: CallbackQuery):
+async def kick_report(client: megux, cb: CallbackQuery):
     data, chat_id, user_id = cb.data.split("|")
     uid = cb.from_user.id
     try:
@@ -131,7 +131,7 @@ async def delete_report(client: megux, cb: CallbackQuery):
         await cb.answer("🛑 Failed to kick!", show_alert=True)
     
 @megux.on_callback_query(filters.regex(pattern=r"^ban\|(.*)"))
-async def delete_report(client: megux, cb: CallbackQuery):
+async def ban_report(client: megux, cb: CallbackQuery):
     data, chat_id, user_id = cb.data.split("|")
     uid = cb.from_user.id
     try:
