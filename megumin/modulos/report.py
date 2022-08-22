@@ -147,7 +147,7 @@ async def delete_report(client: megux, cb: CallbackQuery):
     if not check_bot_rights_:
         await cb.answer(await tld(chat_id, "NO_BAN_BOT"))
         return
-    if await is_admin_:
+    if is_admin_:
         await cb.answer(await tld(chat_id, "BAN_IN_ADMIN"))
         return
     if is_dev(user_id):
