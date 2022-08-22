@@ -68,10 +68,16 @@ async def report_admins(c: megux, m: Message):
 async def delete_report(client: megux, cb: CallbackQuery):
     data, chat_id, mid = cb.data.split("|")
     uid = cb.from_user.id
-    if not await check_rights(chat_id, uid, "can_delete_messages"):
+    try:
+        check_rights_ = await check_rights(chat_id, uid, "can_delete_messages")
+        check_bot_rights_ = await check_bot_rights(chat_id, "can_delete_messages")
+    except Exception:
+        return await cb.answer("🛑 Failed to delete message!", show_alert=True)
+    #check verification
+    if not check_rights_:
         await cb.answer("Você não tem permissões suficientes para apagar mensagens.")
         return
-    if not await check_bot_rights(chat_id, "can_delete_messages"):
+    if not check_bot_rights_:
         await cb.answer("Não consigo excluir mensagens aqui! Verifique se eu sou um(a) administrador(a) e posso excluir mensagens de outros usuários.")
         return
     try:
@@ -89,10 +95,16 @@ async def delete_report(client: megux, cb: CallbackQuery):
 async def delete_report(client: megux, cb: CallbackQuery):
     data, chat_id, user_id = cb.data.split("|")
     uid = cb.from_user.id
-    if not await check_rights(chat_id, uid, "can_restrict_members"):
+    try:
+        check_rights_ = await check_rights(chat_id, uid, "can_restrict_members")
+        check_bot_rights_ = await check_bot_rights(chat_id, "can_restrict_members")
+    except Exception:
+        return await cb.answer("🛑 Failed to kick!", show_alert=True)
+    #check verification
+    if not check_rights_:
         await cb.answer(await tld(chat_id, "NO_BAN_USER"))
         return
-    if not await check_bot_rights(chat_id, "can_restrict_members"):
+    if not check_bot_rights_:
         await cb.answer(await tld(chat_id, "NO_BAN_BOT"))
         return
     if await is_admin(chat_id, user_id):
@@ -121,10 +133,16 @@ async def delete_report(client: megux, cb: CallbackQuery):
 async def delete_report(client: megux, cb: CallbackQuery):
     data, chat_id, user_id = cb.data.split("|")
     uid = cb.from_user.id
-    if not await check_rights(chat_id, uid, "can_restrict_members"):
+    try:
+        check_rights_ = await check_rights(chat_id, uid, "can_restrict_members")
+        check_bot_rights_ = await check_bot_rights(chat_id, "can_restrict_members")
+    except Exception:
+        return await cb.answer("🛑 Failed to ban!", show_alert=True)
+    #check verification
+    if not check_rights_:
         await cb.answer(await tld(chat_id, "NO_BAN_USER"))
         return
-    if not await check_bot_rights(chat_id, "can_restrict_members"):
+    if not check_bot_rights_:
         await cb.answer(await tld(chat_id, "NO_BAN_BOT"))
         return
     if await is_admin(chat_id, user_id):
