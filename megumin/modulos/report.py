@@ -95,12 +95,14 @@ async def delete_report(client: megux, cb: CallbackQuery):
 async def kick_report(client: megux, cb: CallbackQuery):
     data, chat_id, user_id = cb.data.split("|")
     uid = cb.from_user.id
+    mention = cb.from_user.mention
     try:
         check_rights_ = await check_rights(chat_id, uid, "can_restrict_members")
         check_bot_rights_ = await check_bot_rights(chat_id, "can_restrict_members")
         is_admin_ = await is_admin(chat_id, user_id)
     except Exception:
         return await cb.answer("🛑 Failed to kick!", show_alert=True)
+    
     #check verification
     if not check_rights_:
         await cb.answer(await tld(cb.message.chat.id, "NO_BAN_USER"))
@@ -127,6 +129,7 @@ async def kick_report(client: megux, cb: CallbackQuery):
             user_id,
         )
         await cb.answer("✅ Succesfully kicked", show_alert=True)
+        await megux.send_message(chat_id, f"{mention} Removeu...")
     except Exception:
         await cb.answer("🛑 Failed to kick!", show_alert=True)
     
