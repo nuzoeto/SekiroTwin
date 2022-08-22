@@ -103,19 +103,19 @@ async def delete_report(client: megux, cb: CallbackQuery):
         return await cb.answer("🛑 Failed to kick!", show_alert=True)
     #check verification
     if not check_rights_:
-        await cb.answer(await tld(chat_id, "NO_BAN_USER"))
+        await cb.answer(await tld(cb.message.chat.id, "NO_BAN_USER"))
         return
     if not check_bot_rights_:
-        await cb.answer(await tld(chat_id, "NO_BAN_BOT"))
+        await cb.answer(await tld(cb.message.chat.id, "NO_BAN_BOT"))
         return
     if is_admin_:
-        await cb.answer(await tld(chat_id, "BAN_IN_ADMIN"))
+        await cb.answer(await tld(cb.message.chat.id, "BAN_IN_ADMIN"))
         return
     if is_dev(user_id):
-        await cb.answer(await tld(chat_id, "BAN_IN_DEV"))
+        await cb.answer(await tld(cb.message.chat.id, "BAN_IN_DEV"))
         return
     if await is_self(user_id):
-        await cb.awswer(await get_string(chat_id, "BAN_MY_SELF"))
+        await cb.awswer(await tld(cb.message.chat.id, "BAN_MY_SELF"))
         return
     try:
         await client.ban_chat_member(
@@ -142,19 +142,19 @@ async def delete_report(client: megux, cb: CallbackQuery):
         return await cb.answer("🛑 Failed to ban!", show_alert=True)
     #check verification
     if not check_rights_:
-        await cb.answer(await tld(chat_id, "NO_BAN_USER"))
+        await cb.answer(await tld(cb.message.chat.id, "NO_BAN_USER"))
         return
     if not check_bot_rights_:
-        await cb.answer(await tld(chat_id, "NO_BAN_BOT"))
+        await cb.answer(await tld(cb.message.chat.id, "NO_BAN_BOT"))
         return
     if is_admin_:
-        await cb.answer(await tld(chat_id, "BAN_IN_ADMIN"))
+        await cb.answer(await tld(cb.message.chat.id, "BAN_IN_ADMIN"))
         return
     if is_dev(user_id):
-        await cb.answer(await tld(chat_id, "BAN_IN_DEV"))
+        await cb.answer(await tld(cb.message.chat.id, "BAN_IN_DEV"))
         return
     if await is_self(user_id):
-        await cb.answer(await get_string(chat_id, "BAN_MY_SELF"))
+        await cb.answer(await get_string(cb.message.chat.id, "BAN_MY_SELF"))
         return
     try:
         await client.ban_chat_member(
