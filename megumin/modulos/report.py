@@ -98,6 +98,7 @@ async def delete_report(client: megux, cb: CallbackQuery):
     try:
         check_rights_ = await check_rights(chat_id, uid, "can_restrict_members")
         check_bot_rights_ = await check_bot_rights(chat_id, "can_restrict_members")
+        is_admin_ = await is_admin(chat_id, user_id)
     except Exception:
         return await cb.answer("🛑 Failed to kick!", show_alert=True)
     #check verification
@@ -107,7 +108,7 @@ async def delete_report(client: megux, cb: CallbackQuery):
     if not check_bot_rights_:
         await cb.answer(await tld(chat_id, "NO_BAN_BOT"))
         return
-    if await is_admin(chat_id, user_id):
+    if is_admin_:
         await cb.answer(await tld(chat_id, "BAN_IN_ADMIN"))
         return
     if is_dev(user_id):
@@ -136,6 +137,7 @@ async def delete_report(client: megux, cb: CallbackQuery):
     try:
         check_rights_ = await check_rights(chat_id, uid, "can_restrict_members")
         check_bot_rights_ = await check_bot_rights(chat_id, "can_restrict_members")
+        is_admin_ = await is_admin(chat_id, user_id)
     except Exception:
         return await cb.answer("🛑 Failed to ban!", show_alert=True)
     #check verification
@@ -145,7 +147,7 @@ async def delete_report(client: megux, cb: CallbackQuery):
     if not check_bot_rights_:
         await cb.answer(await tld(chat_id, "NO_BAN_BOT"))
         return
-    if await is_admin(chat_id, user_id):
+    if await is_admin_:
         await cb.answer(await tld(chat_id, "BAN_IN_ADMIN"))
         return
     if is_dev(user_id):
