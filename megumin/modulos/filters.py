@@ -128,6 +128,7 @@ async def save_notes(c: megux, m: Message):
             filter_type = "text"
         else:
             await m.reply("<i>Responda algo para salvar o filtro.</i>")
+            return
 
     check_note = await db.find_one({"name": trigger})
     if check_note:
