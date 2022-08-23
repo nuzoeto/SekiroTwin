@@ -27,6 +27,9 @@ async def report_admins(c: megux, m: Message):
     chat_ab_id = str(f"{chat_id}").replace("-100", "")
     admins_list = megux.get_chat_members(chat_id=chat_id, filter=ChatMembersFilter.ADMINISTRATORS)
     
+    try:
+        user = await megux.get_users(
+    
     keyboard = [[
         InlineKeyboardButton(
             u"➡ Message",
