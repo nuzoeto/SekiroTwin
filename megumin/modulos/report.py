@@ -103,6 +103,15 @@ async def kick_report(client: megux, cb: CallbackQuery):
     except Exception:
         return await cb.answer("🛑 Failed to kick!", show_alert=True)
     
+    try:
+        user = await megux.get_users(user_id)
+        mention_user = user.mention
+    except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
+        await message.reply(
+            await tld(message.chat.id, "BANS_ID_INVALID")
+        )
+        return
+    
     #check verification
     if not check_rights_:
         await cb.answer(await tld(cb.message.chat.id, "NO_BAN_USER"))
@@ -129,7 +138,7 @@ async def kick_report(client: megux, cb: CallbackQuery):
             user_id,
         )
         await cb.answer("✅ Succesfully kicked", show_alert=True)
-        await client.send_message(chat_id, f"{mention} Removeu...")
+        await client.send_message(chat_id, f"{mention_user} foi banido por {mention}")
     except Exception:
         await cb.answer("🛑 Failed to kick!", show_alert=True)
     
@@ -144,6 +153,16 @@ async def ban_report(client: megux, cb: CallbackQuery):
         is_admin_ = await is_admin(chat_id, user_id)
     except Exception:
         return await cb.answer("🛑 Failed to ban!", show_alert=True)
+    
+    try:
+        user = await megux.get_users(user_id)
+        mention_user = user.mention
+    except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
+        await message.reply(
+            await tld(message.chat.id, "BANS_ID_INVALID")
+        )
+        return
+    
     #check verification
     if not check_rights_:
         await cb.answer(await tld(cb.message.chat.id, "NO_BAN_USER"))
@@ -166,7 +185,7 @@ async def ban_report(client: megux, cb: CallbackQuery):
             user_id,
         )
         await cb.answer("✅ Succesfully Banned", show_alert=True)
-        await client.send_message(chat_id, f"{mention} Removeu...")
+        await client.send_message(chat_id, f"{mention_user} foi banido por {mention}")
     except Exception:
         await cb.answer("🛑 Failed to ban!", show_alert=True)
         
