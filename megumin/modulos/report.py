@@ -138,7 +138,7 @@ async def kick_report(client: megux, cb: CallbackQuery):
             user_id,
         )
         await cb.answer("✅ Succesfully kicked", show_alert=True)
-        await client.send_message(chat_id, f"{mention_user} foi banido por {mention}")
+        await client.send_message(chat_id, f"{mention_user} foi removido(a) por {mention}")
     except Exception:
         await cb.answer("🛑 Failed to kick!", show_alert=True)
     
@@ -185,7 +185,7 @@ async def ban_report(client: megux, cb: CallbackQuery):
             user_id,
         )
         await cb.answer("✅ Succesfully Banned", show_alert=True)
-        await client.send_message(chat_id, f"{mention_user} foi banido por {mention}")
+        await client.send_message(chat_id, f"{mention_user} foi banido(a) por {mention}")
     except Exception:
         await cb.answer("🛑 Failed to ban!", show_alert=True)
         
