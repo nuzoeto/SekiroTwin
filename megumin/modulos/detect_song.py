@@ -26,7 +26,7 @@ async def which_song(c: megux, message: Message):
         await sent.edit("<i>Detecting song...</i>")
         res = await shazam.recognize_song(file)
     except Exception as e:
-        await message.reply(e)
+        await sent.edit(e)
         os.remove(file)
         return await sent.edit("<i>Failed to get sound data.</i>")
     try:
