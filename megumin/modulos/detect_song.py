@@ -14,7 +14,7 @@ shazam = Shazam()
 async def which_song(c: megux, message: Message):
     """ discover song using shazam"""
     replied = message.reply_to_message
-    if not replied or not replied.audio:
+    if not replied or not replied.audio or replied.voice:
         await message.reply("<code>Reply audio needed.</code>")
         return
     sent = await message.reply("<i>Downloading audio..</i>")
@@ -29,7 +29,11 @@ async def which_song(c: megux, message: Message):
         await message.reply(e)
         os.remove(file)
         return await sent.edit("<i>Failed to get sound data.</i>")
-    song = res["track"]
+    try:
+        song = res["track"]
+    except KeyError:
+        await message.reply("<i>Failed to get sound data.</i>")
+        return
     out = f"<b>Song Detected!\n\n{song['title']}</b>\n<i>- {song['subtitle']}</i>"
     try:
         await sent.delete()
