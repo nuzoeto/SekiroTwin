@@ -45,6 +45,7 @@ rfc3986==1.5.0
 removebg>=0.4
 rich==12.2.0
 sniffio==1.2.0
+shazamio
 search_engine_parser
 speedtest-cli
 pySmartDL 
