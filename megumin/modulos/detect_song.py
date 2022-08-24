@@ -4,6 +4,7 @@ from shazamio import Shazam
 
 from megumin import megux, Config
 
+shazam = Shazam()
 
 @megux.on_message(filters.command(["whichsong"], Config.TRIGGER))
 async def which_song(c: megux, message: Message):
