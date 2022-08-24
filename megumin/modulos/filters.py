@@ -267,7 +267,7 @@ async def serve_filter(c: megux, m: Message):
                     else None,
                 )
             elif filter_s["type"] == "voice":
-                await target_msg.reply_audio(
+                await target_msg.reply_voice(
                     filter_s["file_id"],
                     quote=True,
                     caption=data if not None else None,
