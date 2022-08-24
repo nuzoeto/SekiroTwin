@@ -32,7 +32,7 @@ async def which_song(c: megux, message: Message):
     try:
         song = res["track"]
     except KeyError:
-        await message.reply("<i>Failed to get sound data.</i>")
+        await sent.edit("<i>Failed to get sound data.</i>")
         return
     out = f"<b>Song Detected!\n\n{song['title']}</b>\n<i>- {song['subtitle']}</i>"
     try:
