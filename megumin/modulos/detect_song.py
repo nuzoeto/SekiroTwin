@@ -10,7 +10,7 @@ from megumin import megux, Config
 
 shazam = Shazam()
 
-@megux.on_message(filters.command(["whichsong"], Config.TRIGGER))
+@megux.on_message(filters.command(["whichsong", "detectsong"], Config.TRIGGER))
 async def which_song(c: megux, message: Message):
     """ discover song using shazam"""
     replied = message.reply_to_message
