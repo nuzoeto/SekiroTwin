@@ -119,6 +119,14 @@ async def save_notes(c: megux, m: Message):
             else None
         )
         note_type = "audio"
+    elif m.reply_to_message and m.reply_to_message.voice:
+        file_id = m.reply_to_message.voice.file_id
+        raw_data = (
+            m.reply_to_message.caption.html
+            if m.reply_to_message.caption is not None
+            else None
+        )
+        note_type = "voice"
     elif m.reply_to_message and m.reply_to_message.animation:
         file_id = m.reply_to_message.animation.file_id
         raw_data = (
@@ -138,6 +146,7 @@ async def save_notes(c: megux, m: Message):
             note_type = "text"
         else:
             await m.reply(await tld(m.chat.id, "NOTES_NO_REPLY"))
+            return
 
     check_note = await db.find_one({"name": trigger})
     if check_note:
@@ -246,6 +255,15 @@ async def serve_note(c: megux, m: Message, txt):
                 )
             elif note_s["type"] == "audio":
                 await m.reply_audio(
+                    note_s["file_id"],
+                    quote=True,
+                    caption=data if not None else None,
+                    reply_markup=InlineKeyboardMarkup(button)
+                    if len(button) != 0
+                    else None,
+                )
+            elif note_s["type"] == "voice":
+                await m.reply_voice(
                     note_s["file_id"],
                     quote=True,
                     caption=data if not None else None,
