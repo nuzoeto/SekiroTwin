@@ -109,6 +109,14 @@ async def save_notes(c: megux, m: Message):
             else None
         )
         filter_type = "audio"
+    elif m.reply_to_message and m.reply_to_message.voice:
+        file_id = m.reply_to_message.voice.file_id
+        raw_data = (
+            m.reply_to_message.caption.html
+            if m.reply_to_message.caption is not None
+            else None
+        )
+        filter_type = "voice"
     elif m.reply_to_message and m.reply_to_message.animation:
         file_id = m.reply_to_message.animation.file_id
         raw_data = (
@@ -250,6 +258,15 @@ async def serve_filter(c: megux, m: Message):
                     else None,
                 )
             elif filter_s["type"] == "audio":
+                await target_msg.reply_audio(
+                    filter_s["file_id"],
+                    quote=True,
+                    caption=data if not None else None,
+                    reply_markup=InlineKeyboardMarkup(button)
+                    if len(button) != 0
+                    else None,
+                )
+            elif filter_s["type"] == "voice":
                 await target_msg.reply_audio(
                     filter_s["file_id"],
                     quote=True,
