@@ -2,7 +2,11 @@ import os
 
 from shazamio import Shazam
 
+from pyrogram import filters
+from pyrogram.types import Message
+
 from megumin import megux, Config
+
 
 shazam = Shazam()
 
