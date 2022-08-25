@@ -1,7 +1,8 @@
 import re
 import asyncio 
 
-from pyrogram import filters, enums
+from pyrogram import filters
+from pyrogram.enums import MessageEntinyType
 from pyrogram.errors import FloodWait, UserNotParticipant, BadRequest, ChatWriteForbidden
 from pyrogram.types import Message 
 
