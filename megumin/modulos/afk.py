@@ -69,7 +69,7 @@ async def rem_afk(c: megux, m: Message):
     )
 
     
-@megux.on_message(filters.group & ~filters.bot, group=2)
+@megux.on_message(filters.group & ~filters.bot, group=6)
 async def afk_mentioned(c: megux, m: Message):
     if m.entities:
         for y in m.entities:
