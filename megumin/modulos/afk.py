@@ -63,7 +63,7 @@ async def rem_afk(c: megux, m: Message):
         await AFK_STATUS.drop()
         try:
             return await m.reply_text(
-                (await get_string(m.chat.id, "AFK_LOGGER")).format(user.first_name)
+                (await get_string(m.chat.id, "AFK_LOOGER")).format(user.first_name)
             )
         except ChatWriteForbidden:
             return
