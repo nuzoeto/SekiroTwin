@@ -18,9 +18,9 @@ async def check_afk(m, user_id, user_fn, user):
         if await REASON.find_one():
             db = await REASON.find_one()
             r = db["reason"]
-            afkmsg = (await tld(m.chat.id, "AFK_IS_NOW_REASON")).format(user_fn, r)
+            afkmsg = (await tld(m.chat.id, "IS_AFK_REASON")).format(user_fn, r)
         else:
-            afkmsg = (await tld(m.chat.id, "AFK_IS_NOW")).format(user_fn)
+            afkmsg = (await tld(m.chat.id, "IS_AFK")).format(user_fn)
         try:
             return await m.reply_text(afkmsg)
         except ChatWriteForbidden:
