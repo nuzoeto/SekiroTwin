@@ -47,86 +47,50 @@ async def afk_cmd(_, m: Message):
 
 @megux.on_message(filters.group & ~filters.bot, group=1)
 async def rem_afk(c: megux, m: Message):
-    if not m.from_user:
-        return
-
-    if m.chat.id == Config.GP_LOGS:
-        return 
- 
-    AFK_STATUS = get_collection(f"_AFK {m.from_user.id}")
-    AFK_COUNT = get_collection("AFK_COUNT")
-    REASON = get_collection(f"REASON {m.from_user.id}")
-    user_afk = await AFK_STATUS.find_one({"_afk": "on"})
-
-    if not user_afk:
-        return
-
-    await AFK_STATUS.drop()
-    await AFK_COUNT.delete_one({"mention_": m.from_user.mention()})
-    await REASON.drop()
-    await m.reply_text(
-        (await get_string(m.chat.id, "AFK_LOOGER")).format(m.from_user.first_name)
-    )
-
-    
-@megux.on_message(filters.group & ~filters.bot, group=6)
-async def afk_mentioned(c: megux, m: Message):
-    if m.entities:
-        for y in m.entities:
-            if y.type == enums.MessageEntityType.MENTION:
-                x = re.search("@(\w+)", m.text)  # Regex to get @username
-                try:
-                    user = await c.get_users(x.group(1))
-                except FloodWait as e:  # Avoid FloodWait
-                    await asyncio.sleep(e.value)
-                except (IndexError, BadRequest, KeyError):
-                    return 
-                try:
-                    user_id = user.id
-                    user_first_name = user.first_name
-                except UnboundLocalError:
-                    return 
-                except FloodWait as e:  # Avoid FloodWait
-                    await asyncio.sleep(e.value)
-            else:
-                return
-    elif m.reply_to_message and m.reply_to_message.from_user:
-        try:
-            user_id = m.reply_to_message.from_user.id
-            user_first_name = m.reply_to_message.from_user.first_name
-        except AttributeError:
-            return
-    else:
+    user = m.from_user
+    AFK_STATUS = get_collection(f"_AFK {user.id}")
+    if m.sender_chat:
         return
 
     try:
-        if user_id == m.from_user.id:
+        if m.text.startswith(("brb", "/afk")):
             return
     except AttributeError:
-        return 
-    except FloodWait as e:  # Avoid FloodWait
-        await asyncio.sleep(e.value)
-
-    try:
-        await m.chat.get_member(user_id)  # Check if the user is in the group
-        pass
-    except UserNotParticipant:
         return
 
-    AFK = get_collection(f"_AFK {user_id}") 
-    REASON = get_collection(f"REASON {user_id}")
-    user_afk = await AFK.find_one({"_afk": "on"})
-    res = await REASON.find_one()
+    if user and await AFK_STATUS.find_one({"_afk": "on"}):
+        await AFK_STATUS.drop()
+        try:
+            return await m.reply_text(
+                (await tld(m.chat.id, "AFK_LOGGER")).format(user.first_name)
+            )
+        except ChatWriteForbidden:
+            return
 
-    if not user_afk:
-        return
-    else:
-        if not res:
-            afkmsg = (await get_string(m.chat.id, "IS_AFK")).format(user_first_name)
-            await m.reply_text(afkmsg)
-            await m.stop_propagation()
-        else:
-            r = res["_reason"]
-            afkmsg = (await get_string(m.chat.id, "IS_AFK_REASON")).format(user_first_name, r)
-            await m.reply_text(afkmsg)
-            await m.stop_propagation()
+    elif m.reply_to_message:
+        await check_afk(
+            m,
+            m.reply_to_message.from_user.id,
+            m.reply_to_message.from_user.first_name,
+            user,
+        )
+
+    elif m.entities:
+        for y in m.entities:
+            if y.type == MessageEntityType.MENTION:
+                try:
+                    ent = await c.get_users(m.text[y.offset : y.offset + y.length])
+                except (IndexError, KeyError, BadRequest):
+                    return
+                except FloodWait as e:
+                    await asyncio.sleep(e.value)
+
+            elif y.type == MessageEntityType.TEXT_MENTION:
+                try:
+                    ent = y.user
+                except UnboundLocalError:
+                    return
+            else:
+                return
+
+            return await check_afk(m, ent.id, ent.first_name, user)
