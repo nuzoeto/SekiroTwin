@@ -2,7 +2,7 @@ import re
 import asyncio 
 
 from pyrogram import filters, enums
-from pyrogram.errors import FloodWait, UserNotParticipant, BadRequest
+from pyrogram.errors import FloodWait, UserNotParticipant, BadRequest, ChatWriteForbidden
 from pyrogram.types import Message 
 
 from megumin import megux, Config
