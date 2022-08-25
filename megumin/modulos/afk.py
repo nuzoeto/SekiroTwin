@@ -6,7 +6,7 @@ from pyrogram.errors import FloodWait, UserNotParticipant, BadRequest
 from pyrogram.types import Message 
 
 from megumin import megux, Config
-from megumin.utils import get_collection, get_string  
+from megumin.utils import get_collection, get_string, check_afk  
 from megumin.utils.decorators import input_str
 
 
