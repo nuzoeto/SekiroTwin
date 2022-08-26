@@ -46,7 +46,7 @@ async def afk_cmd(_, m: Message):
             return     
         await m.stop_propagation()
 
-@megux.on_message(filters.group & ~filters.bot, group=1)
+@megux.on_message(filters.group & ~filters.bot, group=5)
 async def rem_afk(c: megux, m: Message):
     user = m.from_user
     AFK_STATUS = get_collection(f"_AFK {user.id}")
