@@ -57,9 +57,12 @@ async def baka_(_, message: Message):
     qu = input_str(message)
     if qu:
         msg = await message.reply(f"<i>Searching wallpapers...</i> <b>{qu}</b>")
-        results = requests.get(f"https://kuuhaku-api-production.up.railway.app/api/wallpaper?query={qu}")
-        _json = results.json()['url']
-        await megux.send_document(message.chat.id, document=_json, caption="<i>Send by: @WhiterKang</i>")
+        try:
+            results = requests.get(f"https://kuuhaku-api.ddns/api/wallpaper?query={qu}")
+            _json = results.json()['url']
+        except Exception:
+            return await msg.edit("<i>Não foi possivel fazer a busca, tente novamente.</i>")
+        await megux.send_photo(message.chat.id, document=_json, caption="<i>Send by: @WhiterKang</i>")
         await msg.delete()
     else:
         return
