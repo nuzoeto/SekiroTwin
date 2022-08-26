@@ -62,7 +62,7 @@ async def baka_(_, message: Message):
             _json = results.json()['url']
         except Exception:
             return await msg.edit("<i>Não foi possivel fazer a busca, tente novamente.</i>")
-        await megux.send_photo(message.chat.id, document=_json, caption="<i>Send by: @WhiterKang</i>")
+        await message.reply_photo(_json, caption="<i>Send by: @WhiterKang</i>")
         await msg.delete()
     else:
         return
