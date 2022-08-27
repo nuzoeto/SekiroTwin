@@ -48,11 +48,11 @@ async def afk_cmd(_, m: Message):
 
 @megux.on_message(~filters.private & ~filters.bot & filters.all, group=1)
 async def rem_afk(c: megux, m: Message):
-    user = m.from_user
-    AFK_STATUS = get_collection(f"_AFK {user.id}")
     if m.sender_chat:
         return
-
+    user = m.from_user
+    AFK_STATUS = get_collection(f"_AFK {user.id}")
+    
     try:
         if m.text.startswith(("brb", "/afk")):
             return
