@@ -58,7 +58,7 @@ async def baka_(_, message: Message):
     if qu:
         msg = await message.reply(f"<i>Searching wallpapers...</i> <b>{qu}</b>")
         try:
-            results = requests.get(f"https://kuuhaku-api.ddns.net/api/mobilewall?query={qu}")
+            results = requests.get(f"http://kuuhaku-api.ddns.net/api/wallpaper?query={qu}")
             _json = results.json()['url']
         except Exception:
             return await msg.edit("<i>Não foi possivel fazer a busca, tente novamente.</i>")
