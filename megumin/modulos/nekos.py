@@ -65,7 +65,7 @@ async def baka_(_, message: Message):
         await message.reply_photo(_json, caption="<i>Send by: @WhiterKang</i>")
         await msg.delete()
     else:
-        return
+        return await message.reply("I dont nedded args")
 
 
 @megux.on_message(filters.command(["bird", "passaro"], prefixes=["/", "!"]))
