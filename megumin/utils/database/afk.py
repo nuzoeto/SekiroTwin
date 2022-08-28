@@ -17,7 +17,7 @@ async def check_afk(m, user_id, user_fn, user):
         
         if await REASON.find_one():
             db = await REASON.find_one()
-            r = db["reason"]
+            r = db["_reason"]
             afkmsg = (await tld(m.chat.id, "IS_AFK_REASON")).format(user_fn, r)
         else:
             afkmsg = (await tld(m.chat.id, "IS_AFK")).format(user_fn)
