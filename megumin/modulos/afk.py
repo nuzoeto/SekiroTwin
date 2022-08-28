@@ -68,7 +68,7 @@ async def rem_afk(c: megux, m: Message):
         except ChatWriteForbidden:
             return
 
-    elif m.reply_to_message:
+    if m.reply_to_message:
         await check_afk(
             m,
             m.reply_to_message.from_user.id,
