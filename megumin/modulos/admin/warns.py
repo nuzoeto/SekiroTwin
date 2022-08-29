@@ -223,8 +223,8 @@ async def warns_from_users(_, message: Message):
         else:
             id_ = args
     else:
-        await message.reply(await get_string(message.chat.id, "BANS_NOT_ESPECIFIED_USER"))
-        return
+        id_ = m.from_user.id
+       
     try:
         user = await megux.get_users(id_)
         user_id = user.id
