@@ -223,7 +223,7 @@ async def warns_from_users(_, message: Message):
         else:
             id_ = args
     else:
-        id_ = m.from_user.id
+        id_ = message.from_user.id
        
     try:
         user = await megux.get_users(id_)
