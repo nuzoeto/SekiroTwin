@@ -54,8 +54,9 @@ async def rem_afk(c: megux, m: Message):
     AFK_STATUS = get_collection(f"_AFK {user.id}")
     
     try:
-        if m.text.startswith(("brb", "/afk")):
-            return
+        if m.text:
+            if m.text.startswith(("brb", "/afk")):
+                return
     except AttributeError:
         return
 
