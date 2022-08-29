@@ -36,7 +36,7 @@ SDL_REGEX_LINKS = r"^http(?:s)?:\/\/(?:www\.)?(?:v\.)?(?:mobile.|m.)?(?:instagra
 
 TIME_REGEX = re.compile(r"[?&]t=([0-9]+)")
 
-MAX_FILESIZE = 1000000000
+MAX_FILESIZE = 2000000000
 
 
 def aiowrap(func: Callable) -> Callable:
