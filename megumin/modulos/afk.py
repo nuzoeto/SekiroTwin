@@ -52,6 +52,7 @@ async def rem_afk(c: megux, m: Message):
         return
     user = m.from_user
     AFK_STATUS = get_collection(f"_AFK {user.id}")
+    AFK_COUNT = get_collection("AFK_COUNT")
     
     try:
         if m.text:
@@ -62,6 +63,7 @@ async def rem_afk(c: megux, m: Message):
 
     if user and await AFK_STATUS.find_one({"_afk": "on"}):
         await AFK_STATUS.drop()
+        await AFK_COUNT.delete_one({"mention_": m.from_user.mention()})
         try:
             return await m.reply_text(
                 (await get_string(m.chat.id, "AFK_LOOGER")).format(user.first_name)
