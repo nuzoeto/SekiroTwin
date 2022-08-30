@@ -9,7 +9,10 @@ async def new_fed(m: Message, fed_name, fed_id, owner_id):
     if GETFED:
         await m.reply("Ei você já tem uma federação. Não é possivel criar outra renomeie a federação ou exclua a atual para criar outra.")
         return
-    await feds.insert_one({"fed_name": fed_name, "fed_id": fed_id, "owner_id": owner_id})
+    x = await feds.insert_one({"fed_name": fed_name, "fed_id": fed_id, "owner_id": owner_id})
+    if not x:
+        await m.reply("Can't federate! Report in @DaviTudo if the problem persists.")
+        return
     await m.reply(
         "*You have successfully created a new federation!*"
         "\nName: `{}`"
