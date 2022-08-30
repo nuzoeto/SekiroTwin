@@ -1,3 +1,4 @@
+from megumin import megux
 from megumin.utils import get_collection
 from pyrogram.types import Message
 
@@ -16,3 +17,7 @@ async def new_fed(m: Message, fed_name, fed_id, owner_id):
         "\n\nUse the command below to join the federation:"
         "\n`/joinfed {}`".format(fed_name, fed_id, fed_id)
         )
+    await megux.send_log(f"Federation <b>{}</b> has been created with ID: <pre>{}</pre>".format(
+                    fed_name, fed_id
+        ),
+    )
