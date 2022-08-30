@@ -4,6 +4,7 @@ from .database.lang import get_string as tld # nao_meche
 from .database.disabled import is_disabled # nao_meche
 from .database.ytdl import csdl, cisdl, tsdl, tisdl #nao_meche
 from .database.afk import check_afk
+from .database.fed import new_fed
 from .functions import rand_array  # nao_meche
 from .logger import logging
 from .tools import extract_time  # nao_meche
