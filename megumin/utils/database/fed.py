@@ -136,3 +136,15 @@ def get_fed_from_chat(chat_id):
             return fed_id
         else:
             return None
+
+async def get_fed_from_ownerid(owner_id):
+    fedData = await federation.find_one(
+        {
+            'owner_id': owner_id
+        }
+    )   
+    if not fedData == None:
+        fed_id = fedData['fed_id']
+        return fed_id
+    else:
+        return None
