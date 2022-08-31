@@ -46,8 +46,8 @@ async def join_fed(chat_id, chat_title, fed_id):
         }
     )
     
-def leave_fed(chat_id, chat_title, fed_id):
-    federation.update(
+async def leave_fed(chat_id, chat_title, fed_id):
+    await federation.update_one(
         {
             'fed_id': fed_id
         },
@@ -65,8 +65,8 @@ def leave_fed(chat_id, chat_title, fed_id):
         }
     )
    
-def user_fban(fed_id, user_id, reason):
-    feds.update(
+async def user_fban(fed_id, user_id, reason):
+    await feds.update_one(
         {
             'fed_id': fed_id
         },
