@@ -106,7 +106,7 @@ async def is_user_fban(fed_id, user_id) -> bool:
         return False 
     
 async def update_reason(fed_id, user_id, new_reason):
-    await federation.update_one(
+    await feds.update_one(
         {
             'fed_id': fed_id,
             'banned_users.user_id': user_id
@@ -138,7 +138,7 @@ def get_fed_from_chat(chat_id):
             return None
 
 async def get_fed_from_ownerid(owner_id):
-    fedData = await federation.find_one(
+    fedData = await feds.find_one(
         {
             'owner_id': owner_id
         }
