@@ -81,3 +81,58 @@ async def user_fban(fed_id, user_id, reason):
             }
         }
     )
+
+    
+async def is_user_fban(fed_id, user_id) -> bool:
+    GetFed = await feds.find_one(
+        {
+            'fed_id': fed_id
+        }
+    )
+
+    user_ids_list = []
+    if not GetFed == GetFed:
+        if 'banned_users' in GetFed:
+            for users in GetFed['banned_users']:
+                banned_user = users['user_id']
+                user_ids_list.append(banned_user)
+            if user_id in user_ids_list:
+                return True 
+            else:
+                return False 
+        else:
+            return False 
+    else:
+        return False 
+    
+async def update_reason(fed_id, user_id, new_reason):
+    await federation.update_one(
+        {
+            'fed_id': fed_id,
+            'banned_users.user_id': user_id
+        },
+        {
+            "$set": {
+                'banned_users.$.reason': new_reason
+            }
+        },
+        False,
+        True
+    )
+
+    
+def get_fed_from_chat(chat_id):
+    for fedData in federation.find(
+        {
+            'chats': {
+                "$elemMatch": {
+                    'chat_id': chat_id
+                }
+            }
+        }
+    ):  
+        if 'fed_id' in fedData:
+            fed_id = fedData['fed_id']
+            return fed_id
+        else:
+            return None
