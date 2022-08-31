@@ -15,7 +15,7 @@ from pyrogram.enums import ChatType
 
 @megux.on_message(filters.command(["newfed", "fednew", "fnew"], Config.TRIGGER))
 async def create_new_fed(c: megux, m: Message):
-    if m.chat.type == (ChatType.SUPERGROUP, ChatType.GROUP):
+    if m.chat.type != ChatType.PRIVATE:
         return await m.reply("You can your federation in my PM, not in a group.")
     if not (len(m.command) >= 2):
         return await m.reply("Give your federation a name!")
