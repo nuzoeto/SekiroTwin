@@ -33,7 +33,7 @@ async def join_fed(chat_id, chat_title, fed_id):
         {"$addToSet": {'chats': {'$each': chat_id}}}
     )                    
 async def leave_fed(chat_id, chat_title, fed_id):
-    await db.feds.update_one(
+    await federation.update_one(
         {'_id': fed_id},
         {'$pull': {'chats': chat_id}}
     )
