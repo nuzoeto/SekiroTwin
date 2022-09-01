@@ -30,7 +30,7 @@ async def new_fed(m: Message, fed_name, fed_id, owner_id):
 async def join_fed(chat_id, chat_title, fed_id):
     await federation.update_one(
         {'_id': fed_id},
-        {"$addToSet": {'chats': {'$each': chat_id}}}
+        {"$addToSet": {'chats': {'$each': [chat_id]}}}
     )                    
 async def leave_fed(chat_id, chat_title, fed_id):
     await federation.update_one(
