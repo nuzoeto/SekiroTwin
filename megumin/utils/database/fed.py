@@ -121,3 +121,19 @@ async def get_fed_from_ownerid(owner_id):
         return fed_id
     else:
         return None
+
+    
+async def user_unfban(fed_id, user_id):
+    await feds.update_one(
+        {
+            'fed_id': fed_id,
+            'banned_users.user_id': user_id
+        },
+        {
+            "$pull": {
+                'banned_users': {
+                    'user_id': user_id
+                }
+            }
+        }
+    )
