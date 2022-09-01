@@ -94,8 +94,8 @@ async def update_reason(fed_id, user_id, new_reason):
     )
 
     
-def get_fed_from_chat(chat_id):
-    for fedData in federation.find(
+async def get_fed_from_chat(chat_id):
+    async for fedData in federation.find(
         {
             'chats': {
                 "$elemMatch": {
