@@ -99,7 +99,7 @@ async def get_fed_from_chat(chat_id):
         {
             'chats': {
                 "$elemMatch": {
-                    'chat_id': chat_id
+                    chat_id
                 }
             }
         }
