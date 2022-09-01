@@ -29,42 +29,15 @@ async def new_fed(m: Message, fed_name, fed_id, owner_id):
     
 async def join_fed(chat_id, chat_title, fed_id):
     await federation.update_one(
-        {
-            'fed_id': fed_id
-        },
-        {
-            "$addToSet": {
-                'chats': {
-                    "$each": [
-                        {
-                            'chat_id': chat_id,
-                            'chat_title': chat_title
-                        }
-                    ]
-                }
-            }
-        }
+        {'_id': fed_id},
+        {"$addToSet": {'chats': {'$each': chat_id}}}
+    )                    
+async def leave_fed(chat_id, chat_title, fed_id):
+    await db.feds.update_one(
+        {'_id': fed_id},
+        {'$pull': {'chats': chat_id}}
     )
     
-async def leave_fed(chat_id, chat_title, fed_id):
-    await federation.update_one(
-        {
-            'fed_id': fed_id
-        },
-        {
-             "$remove": {
-                'chats': {
-                    "$pull": [
-                        {
-                            'chat_id': chat_id  ,
-                            'chat_title': chat_title
-                        }
-                    ]
-                }
-            }
-        }
-    )
-   
 async def user_fban(fed_id, user_id, reason):
     await feds.update_one(
         {
