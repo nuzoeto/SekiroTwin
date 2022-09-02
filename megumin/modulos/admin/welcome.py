@@ -189,7 +189,7 @@ async def greet_new_members(c: megux, m: Message):
                     except Exception as e:
                         await m.reply("Não foi possivel mutar o usúario devido a: {}".format(e))
                 else: 
-                    pass
+                    continue
 
             await m.reply_text(
                 welcome,
