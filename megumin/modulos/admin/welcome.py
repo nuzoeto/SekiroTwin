@@ -180,15 +180,16 @@ async def greet_new_members(c: megux, m: Message):
             )
             welcome, welcome_buttons = button_parser(welcome)
             if await captcha.find_one({"status": True}):
-                if not await check_bot_rights(m.chat.id, "can_restrict_members"):
-                    pass
                 if await is_admin(m.chat.id, user_id):
                     pass
-                welcome_buttons += [[InlineKeyboardButton("Clique aqui para ser desmutado", callback_data=f"cptcha|{user_id}")]]
-                try:
-                     await megux.restrict_chat_member(m.chat.id, user_id, ChatPermissions())
-                except Exception as e:
-                    await m.reply("Não foi possivel mutar o usúario devido a: {}".format(e))
+                if await check_bot_rights(m.chat.id, "can_restrict_members"):
+                    welcome_buttons += [[InlineKeyboardButton("Clique aqui para ser desmutado", callback_data=f"cptcha|{user_id}")]]
+                    try:
+                        await megux.restrict_chat_member(m.chat.id, user_id, ChatPermissions())
+                    except Exception as e:
+                        await m.reply("Não foi possivel mutar o usúario devido a: {}".format(e))
+                else: 
+                    continue
 
             await m.reply_text(
                 welcome,
