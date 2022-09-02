@@ -181,7 +181,7 @@ async def greet_new_members(c: megux, m: Message):
             welcome, welcome_buttons = button_parser(welcome)
             if await captcha.find_one({"status": True}):
                 if await is_admin(m.chat.id, user_id):
-                    pass
+                    return
                 if await check_bot_rights(m.chat.id, "can_restrict_members"):
                     welcome_buttons += [[InlineKeyboardButton("Clique aqui para ser desmutado", callback_data=f"cptcha|{user_id}")]]
                     try:
