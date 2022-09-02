@@ -188,8 +188,6 @@ async def greet_new_members(c: megux, m: Message):
                         await megux.restrict_chat_member(m.chat.id, user_id, ChatPermissions())
                     except Exception as e:
                         await m.reply("Não foi possivel mutar o usúario devido a: {}".format(e))
-                else: 
-                    continue
 
             await m.reply_text(
                 welcome,
