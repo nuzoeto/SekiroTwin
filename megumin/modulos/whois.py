@@ -114,6 +114,7 @@ async def whois(client, message):
                 is_verified=user.is_verified,
                 is_bot=user.is_bot,
                 language=user.language_code,
+                total=total_groups,
             ),
             disable_web_page_preview=True,
         )
