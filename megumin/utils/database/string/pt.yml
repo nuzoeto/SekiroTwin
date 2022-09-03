@@ -134,7 +134,7 @@ BANS_NOT_ESPECIFIED_USER: "<code>Nenhum user_id válido ou mensagem especificada
 BANS_ID_INVALID: "<code>Nome de usuário ou ID de usuário inválido, tente novamente com informações válidas ⚠</code>"
 MUTE_IN_ADMIN: "Porque eu iria mutar um(a) administrador(a)? Isso me parece uma idéia bem idiota."
 MUTE_IN_MYSELF: "Eu não vou mutar!"
-MUTE_SUCESS: "{} está silenciado(mutado) em <b>{}</b>\n<b>Motivo:</b> {}"
+MUTE_SUCESS: "{} está silenciado(mutado) em <b>{}</b>\n<b>Motivo:</b> <code>{}</code>"
 MUTING: "<code>Mutando Usuário...</code>"
 MUTE_IN_DEV: "Porque eu iria mutar meu desenvolvedor? Isso me parece uma idéia muito idiota."
 NO_MUTE_USER: "Você não tem direitos suficientes para silenciar usuários"
