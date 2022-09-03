@@ -23,7 +23,7 @@ from megumin.utils.decorators import input_str
 async def save_blackfilter(c: megux, message: Message):
     chat_id = message.chat.id
     cmd = len(message.text)
-    if cmd > 10:
+    if cmd > 11:
         _, args = message.text.split(maxsplit=1)
         if " " in args:
             name, reason = args.split(" ", maxsplit=1)
