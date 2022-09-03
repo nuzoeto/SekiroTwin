@@ -212,7 +212,7 @@ async def clear_notes(c: megux, m: Message):
 async def serve_filter(c: megux, m: Message):
     chat_id = m.chat.id
     db = get_collection(f"CHAT_FILTERS {m.chat.id}")
-    await add_user_count(chat_id, user_id)
+    await add_user_count(chat_id, m.from_user.id)
     text = m.text
     target_msg = m.reply_to_message or m
 
