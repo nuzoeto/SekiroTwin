@@ -22,7 +22,8 @@ infotext = (
     " 📝 **Bio**: {bio}\n"
     " 🛇 **É Restrito**: `{is_scam}`\n"
     " ✅ **É Verificado**: `{is_verified}`\n"
-    " 🇧🇷 **Idioma**: `{language}`"
+    " 🇧🇷 **Idioma**: `{language}`\n\n"
+    "Eu os vi em `{total}` grupo(s)"
 )
 
 
@@ -68,6 +69,8 @@ async def whois(client, message):
 
     bio = (await client.get_chat(chat_id=user.id)).bio
     
+    DB_GROUPS = get_collection(f"TOTAL_GROUPS")
+    
     if user.photo:
         async for photo in client.get_chat_photos(user.id, limit=1):
             await message.reply_photo(
@@ -85,6 +88,7 @@ async def whois(client, message):
                     is_verified=user.is_verified,
                     is_bot=user.is_bot,
                     language=user.language_code,
+                    total=await DB_GROUPS.count_documents({"user_id": user.id})
                 ),
                 disable_notification=True,
            )
