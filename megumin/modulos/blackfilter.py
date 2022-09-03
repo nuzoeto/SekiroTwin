@@ -21,7 +21,7 @@ from megumin.utils.decorators import input_str
 
 @megux.on_message(filters.command(["warnfilter"], Config.TRIGGER))
 async def save_blackfilter(c: megux, message: Message):
-    chat_id = m.chat.id
+    chat_id = message.chat.id
     cmd = len(message.text)
     if cmd > 10:
         _, args = message.text.split(maxsplit=1)
