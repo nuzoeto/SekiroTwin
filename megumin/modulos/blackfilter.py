@@ -153,4 +153,3 @@ async def serve_blackfilter(c: megux, m: Message):
                 await warns.delete_many({"user_id": user_id})
             else:
                 await m.reply((await get_string(chat_id, "USER_WARNED")).format(mention, user_warns, chat_limit, reason or None))
-    await m.stop_propagation()
