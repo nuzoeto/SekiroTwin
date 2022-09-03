@@ -14,6 +14,7 @@ from megumin.utils import (
     is_self,
     sed_sticker,
     get_collection,
+    tld,
 )
 
 
@@ -26,7 +27,7 @@ async def _mute_user(_, message: Message):
         return
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
-        await message.reply("Você não tem direitos suficientes para silenciar usuários")
+        await message.reply(await tld(chat_id, "NO_MUTE_USER"))
         return
     cmd = len(message.text)
     replied = message.reply_to_message
@@ -42,7 +43,7 @@ async def _mute_user(_, message: Message):
         else:
             id_ = args
     else:
-        await message.reply("`Nenhum User_id válido ou mensagem especificada.`")
+        await message.reply(await tld(chat_id, "BANS_NOT_ESPECIFIED_USER"))
         return
     try:
         user = await megux.get_users(id_)
@@ -50,29 +51,28 @@ async def _mute_user(_, message: Message):
         mention = user.mention
     except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
         await message.reply(
-            "`User_id ou nome de usuário inválido, tente novamente com informações válidas ⚠`"
+            await tld(chat_id, "BANS_ID_INVALID")
         )
         return
     if await is_self(user_id):
-        await message.reply("Eu não vou mutar!")
+        await message.reply(await tld(chat_id, "MUTE_IN_MYSELF"))
         return
     if is_dev(user_id):
-        await message.reply("Porque eu iria mutar meu desenvolvedor? Isso me parece uma idéia muito idiota.")
+        await message.reply(await tld(chat_id, "MUTE_IN_DEV"))
         return
     if await is_admin(chat_id, user_id):
-        await message.reply("Porque eu iria mutar um(a) administrador(a)? Isso me parece uma idéia bem idiota.")
+        await message.reply(await tld(chat_id, "MUTE_IN_ADMIN"))
         return
     if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
-        await message.reply("Não posso restringir as pessoas aqui! Certifique-se de que sou administrador e de que posso adicionar novos administradores.")
+        await message.reply(await tld(chat_id, "NO_MUTE_BOT"))
         await sed_sticker(message)
         return
-    sent = await message.reply("`Mutando Usuário...`")
+    sent = await message.reply(await tld(chat_id, "MUTING"))
     try:
         await megux.restrict_chat_member(chat_id, user_id, ChatPermissions())
         await asyncio.sleep(1)
         await sent.edit(
-            f"{mention} está silenciado(mutado) em <b>{message.chat.title}</b>\n"
-            f"<b>Motivo:</b> `{reason or None}`"
+            (await tld(chat_id, "MUTE_SUCESS")).format(mention, message.chat.title, reason or None)
         )
     except Exception as e_f:
         await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR**: `{e_f}`")
