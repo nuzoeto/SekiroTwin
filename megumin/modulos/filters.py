@@ -212,6 +212,9 @@ async def clear_notes(c: megux, m: Message):
 async def serve_filter(c: megux, m: Message):
     chat_id = m.chat.id
     db = get_collection(f"CHAT_FILTERS {m.chat.id}")
+    count_groups = get_collection(f"TOTAL_GROUPS {m.from_user.id}")
+    if not count_groups.find_one({"chat_id": chat_id}):
+        await count_groups.insert_one({"chat_id": chat_id})
     text = m.text
     target_msg = m.reply_to_message or m
 
