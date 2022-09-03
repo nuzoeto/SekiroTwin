@@ -179,7 +179,7 @@ async def help_restricions(client: megux, cb: CallbackQuery):
     button = InlineKeyboardMarkup(
         [[InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="help_back")]]
     )
-    await cb.edit_message_text(text=H_BANS, reply_markup=button)
+    await cb.edit_message_text(text=await get_string(cb.message.chat.id, "HELP_BANS"), reply_markup=button)
 
 
 @megux.on_callback_query(filters.regex(pattern=r"^help_git$"))
@@ -352,24 +352,6 @@ H_GERAL = """
 • /github Retorna informações sobre um usuário ou organização do GitHub.
 • /tr (código de idioma) Texto ou mensagem respondida.
 • /getsticker Responda a um adesivo para eu enviar o PNG e as informações do sticker.
-"""
-
-
-H_BANS = """
-Aqui está a ajuda para o módulo **Bans**:
-
-• /ban Bane um usuário no chat.
-• /banme Bane-se.
-• /unban Desbane a um usuário.
-• /mute Silencia um usuário no chat.
-• /tmute (tempo) Silencia temporariamente um usuário no chat.
-• /unmute Desmuta um usuário no chat.
-• /kick Chuta um usuário do chat.
-• /kickme Saia do grupo.
-• /muteme Muta-se.
-  
-Um exemplo de silenciar alguém temporariamente:
-/tmute @username 2h isso silencia o usuário por 2 horas.
 """
 
 
