@@ -150,10 +150,10 @@ async def greet_left_members(c: megux, m: Message):
     mention = members.mention
     
     count_groups = get_collection(f"TOTAL_GROUPS {user_id}")
-    if not count_groups.find_one({"chat_id": chat_id})
+    if not count_groups.find_one({"chat_id": m.chat.id})
         continue
     else:
-        await count_groups.delete_one({"chat_id": chat_id})
+        await count_groups.delete_one({"chat_id": m.chat.id})
     
     if not m.from_user.is_bot:
         goodbye_enabled = await db_.find_one({"status": True})
