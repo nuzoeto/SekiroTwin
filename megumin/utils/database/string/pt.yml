@@ -132,6 +132,13 @@ TBAN_LOGGER: "<b>{}:</b>\n#TEMP_BANNED\n<b>Admin:</b> {}\n<b>Usuario:</b> {} (<c
 TBAN_SUCCESS: "{} foi banido(a) temporariamente por <b>{}</b> em <b>{}</b>\n<b>Motivo</b>: <code>{}</code>"
 BANS_NOT_ESPECIFIED_USER: "<code>Nenhum user_id válido ou mensagem especificada.</code>"
 BANS_ID_INVALID: "<code>Nome de usuário ou ID de usuário inválido, tente novamente com informações válidas ⚠</code>"
+MUTE_IN_ADMIN: "Porque eu iria mutar um(a) administrador(a)? Isso me parece uma idéia bem idiota."
+MUTE_IN_MYSELF: "Eu não vou mutar!"
+MUTE_SUCESS: "{} está silenciado(mutado) em <b>{}</b>\n<b>Motivo:</b> {}"
+MUTING: "<code>Mutando Usuário...</code>"
+MUTE_IN_DEV: "Porque eu iria mutar meu desenvolvedor? Isso me parece uma idéia muito idiota."
+NO_MUTE_USER: "Você não tem direitos suficientes para silenciar usuários"
+NO_MUTE_BOT: "Não posso restringir as pessoas aqui! Certifique-se de que sou administrador e de que posso adicionar novos administradores."
 
 
 #rules
