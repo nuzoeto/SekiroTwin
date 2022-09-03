@@ -131,7 +131,13 @@ TBAN_LOGGER: "<b>{}:</b>\n#TEMP_BANNED\n<b>Admin:</b> {}\n<b>User:</b> {} (<code
 TBAN_SUCCESS: "{} was temporarily banned for <b>{}</b> in <b>{}</b>\n<b>Reason</b>: <code>{}</code>"
 BANS_NOT_ESPECIFIED_USER: "<code>No valid user_id or message specified.</code>"
 BANS_ID_INVALID: "<code>Invalid username or userid, please try again with valid information ⚠</code>"
-
+MUTE_IN_ADMIN: "Why would I mutate an administrator? That seems like a pretty dumb idea to me."
+MUTE_IN_MYSELF: "I will not mutate!"
+MUTE_SUCESS: "{} is muted(mutated) on <b>{}</b>\n<b>Reason:</b> {}"
+MUTING: "<code>Muting User...</code>"
+MUTE_IN_DEV: "Why would I mutate my developer? That seems like a really stupid idea to me."
+NO_MUTE_USER: "You do not have sufficient rights to mute users"
+NO_MUTE_BOT: "I can't restrict people here! Make sure I'm an admin and I can add new admins."
 
 #rules
 RULES_UPDATED: "Successfully set rules for this group."
