@@ -20,7 +20,7 @@ from megumin.utils.decorators import input_str
 
 
 @megux.on_message(filters.command(["warnfilter"], Config.TRIGGER))
-async def save_blackfilter(c: megux, m: Message):
+async def save_blackfilter(c: megux, message: Message):
     chat_id = m.chat.id
     cmd = len(message.text)
     if cmd > 10:
@@ -38,7 +38,7 @@ async def save_blackfilter(c: megux, m: Message):
         await filter.insert_one({"name": name, "reason": reason or f"Digitar a palavra '{name}'."})
     else:
         await filter.insert_one({"name": name, "reason": reason or f"Digitar a palavra '{name}'."})
-    await m.reply(f"Se o usuario digitar '{name}' ele será advertido.")
+    await message.reply(f"Se o usuario digitar '{name}' ele será advertido.")
 
 
 @megux.on_message(filters.command("blackfilters", Config.TRIGGER) & filters.group)
