@@ -35,9 +35,9 @@ async def save_blackfilter(c: megux, message: Message):
     FILTER = get_collection(f"CHAT_FILTERS_WARN {chat_id}")
     if await FILTER.find_one({"name": name}):
         await FILTER.delete_one({"name": name})
-        await FILTER.insert_one({"name": name, "reason": reason or f"Digitar a palavra '{name}'."})
+        await FILTER.insert_one({"name": name, "reason": reason or None})
     else:
-        await FILTER.insert_one({"name": name, "reason": reason or f"Digitar a palavra '{name}'."})
+        await FILTER.insert_one({"name": name, "reason": reason or None})
     await message.reply(f"Se o usuario digitar '{name}' ele será advertido.")
 
 
