@@ -24,7 +24,7 @@ infotext = (
     " 🛇 **É Restrito**: `{is_scam}`\n"
     " ✅ **É Verificado**: `{is_verified}`\n"
     " 🇧🇷 **Idioma**: `{language}`\n\n"
-    "Eu os vi em `{total}` grupo(s)"
+    " Eu os vi em `{total}` grupo(s)"
 )
 
 
