@@ -72,8 +72,7 @@ async def whois(client, message):
     
     #check or add user to db groups
     await add_user_count(message.chat.id, user.id)
-    #count groups 
-    await count_groups_user(user.id)
+    
     if user.photo:
         async for photo in client.get_chat_photos(user.id, limit=1):
             await message.reply_photo(
@@ -91,7 +90,7 @@ async def whois(client, message):
                     is_verified=user.is_verified,
                     is_bot=user.is_bot,
                     language=user.language_code,
-                    total=num,
+                    total=await count_groups_user(user.id),
                 ),
                 disable_notification=True,
            )
@@ -110,7 +109,7 @@ async def whois(client, message):
                 is_verified=user.is_verified,
                 is_bot=user.is_bot,
                 language=user.language_code,
-                total=num,
+                total=await count_groups_user(user.id),
             ),
             disable_web_page_preview=True,
         )
