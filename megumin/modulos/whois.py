@@ -7,7 +7,7 @@ from pyrogram.errors import BadRequest
 from pyrogram.types import User, Message
 
 from megumin import megux, Config
-from megumin.utils import get_collection
+from megumin.utils import get_collection, count_groups_user, add_user_count
 from megumin.utils.decorators import input_str 
 
 http = httpx.AsyncClient()
@@ -70,14 +70,10 @@ async def whois(client, message):
 
     bio = (await client.get_chat(chat_id=user.id)).bio
     
-    DB_GROUPS = get_collection(f"TOTAL_GROUPS {user.id}")
-    
-    ALL_GROUPS = DB_GROUPS.find()
-    
-    total_groups = 0
-    async for count_groups in ALL_GROUPS:
-        total_groups += 1
-    
+    #check or add user to db groups
+    await add_user_count(message.chat.id, user.id)
+    #count groups 
+    await count_user_groups(user.id)
     if user.photo:
         async for photo in client.get_chat_photos(user.id, limit=1):
             await message.reply_photo(
@@ -95,7 +91,7 @@ async def whois(client, message):
                     is_verified=user.is_verified,
                     is_bot=user.is_bot,
                     language=user.language_code,
-                    total=total_groups,
+                    total=num,
                 ),
                 disable_notification=True,
            )
