@@ -73,7 +73,7 @@ async def whois(client, message):
     #check or add user to db groups
     await add_user_count(message.chat.id, user.id)
     #count groups 
-    await count_user_groups(user.id)
+    await count_groups_user(user.id)
     if user.photo:
         async for photo in client.get_chat_photos(user.id, limit=1):
             await message.reply_photo(
