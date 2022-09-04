@@ -11,7 +11,7 @@ async def add_user_count(chat_id, user_id):
 async count_groups_user(chat_id, user_id):
     count_groups = get_collection(f"TOTAL GROUPS")
     num = 0
-    async for count in count_groups.find():
+    async for count in count_groups.find({"user_id": user_id, "chat_id": chat_id}):
         num += 1
     return num
 
