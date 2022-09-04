@@ -15,7 +15,7 @@ async def count_groups_user(chat_id, user_id):
         num += 1
     return num
 
-async def add_user_count(chat_id, user_id):
+async def del_user_count(chat_id, user_id):
     add_groups = get_collection(f"TOTAL_GROUPS")
     try:
         if await add_groups.find_one({"user_id": user_id, "chat_id": chat_id}):
