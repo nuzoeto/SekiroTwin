@@ -5,7 +5,7 @@ async def add_user_count(chat_id, user_id):
     try:
         if not await add_groups.find_one({"user_id": user_id, "chat_id": chat_id}):
             await add_groups.insert_one({"user_id": user_id, "chat_id": chat_id})
-    except Exception
+    except Exception:
         pass
 
 async count_groups_user(chat_id, user_id):
@@ -20,5 +20,5 @@ async def add_user_count(chat_id, user_id):
     try:
         if await add_groups.find_one({"user_id": user_id, "chat_id": chat_id}):
             await add_groups.delete_one({"user_id": user_id, "chat_id": chat_id})
-    except Exception
+    except Exception:
         pass
