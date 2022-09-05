@@ -5,7 +5,7 @@ import requests
 from pyrogram import Client, filters, types
 from pyrogram.types import Message
 
-from megumin import megux
+from megumin import megux, Config
 from megumin.utils.decorators import input_str
 from megumin.utils import tld
 
