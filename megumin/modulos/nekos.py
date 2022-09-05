@@ -7,6 +7,7 @@ from pyrogram.types import Message
 
 from megumin import megux
 from megumin.utils.decorators import input_str
+from megumin.utils import tld
 
 
 @Client.on_message(filters.command("cat", prefixes=["/", "!"]))
@@ -98,3 +99,8 @@ async def fox_photo(c: megux, m: Message):
    r = await http.get("https://some-random-api.ml/img/fox")
    fox = r.json()
    await m.reply_photo(fox["link"], caption="O que a Raposa diz?")
+
+    
+@megux.on_message(filters.command("donate", Config.TRIGGER))
+async def donate(_, message: Message):
+    await message.reply(await tld(message.chat.id, "donate_string")
