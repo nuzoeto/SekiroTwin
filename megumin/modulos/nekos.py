@@ -103,4 +103,4 @@ async def fox_photo(c: megux, m: Message):
     
 @megux.on_message(filters.command("donate", Config.TRIGGER))
 async def donate(_, message: Message):
-    await message.reply(await tld(message.chat.id, "donate_string")
+    await message.reply(await tld(message.chat.id, "donate_string"))
