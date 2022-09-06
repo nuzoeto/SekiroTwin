@@ -20,14 +20,18 @@ async def pin_msg(c: megux, m: Message):
         return await m.reply(await get_string(m.chat.id, "NO_PIN_BOT"))
     if not reply:
         return await m.reply(await get_string(m.chat.id, "PIN_NO_REPLY"))
-    silent = False 
-    mode = await get_string(m.chat.id, "PIN_SILENT_OFF")
     msg_id = reply.id
     chat = str(f"{gid}").replace("-100", "")
     link = f"https://t.me/c/{chat}/{reply.id}"
     string = await get_string(m.chat.id, "PIN_SUCCESS")
     if input_:
-        if ("silent" or "s") in input_:
+        if input_ in ("silent", "s"):
+            silent = True
+            mode = await get_string(m.chat.id, "PIN_SILENT_ON")
+        elif input_ in ("notify", "loud"):
+            silent = False 
+            mode = await get_string(m.chat.id, "PIN_SILENT_OFF")
+        else:
             silent = True
             mode = await get_string(m.chat.id, "PIN_SILENT_ON")
     try:
