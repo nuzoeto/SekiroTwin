@@ -15,7 +15,7 @@ from typing import Callable, List, Optional, Union
 
 
 from megumin import megux, Config
-from megumin.utils import get_collection, check_rights, check_bot_rights, is_admin
+from megumin.utils import get_collection, check_rights, check_bot_rights, is_admin, add_user_count
 
 
 
@@ -150,9 +150,7 @@ async def greet_new_members(c: megux, m: Message):
         map(lambda a: "@" + a.username if a.username else a.mention, members)
     )
     mention = ", ".join(map(lambda a: a.mention, members))
-    count_groups = get_collection(f"TOTAL_GROUPS {user_id}") 
-    if not await count_groups.find_one({"chat_id": m.chat.id}):
-        await count_groups.insert_one({"chat_id": m.chat.id})
+    await add_user_count(chat_id, user_id)
     if not m.from_user.is_bot:
         welcome_enabled = await db_.find_one({"status": True})
         welcome_pack = await db.find_one()
