@@ -14,6 +14,8 @@ async def pin_msg(c: megux, m: Message):
     input_ = input_str(m).split()
     reply = m.reply_to_message
     gid = m.chat.id
+    silent = bool()
+    mode = ""
     if not await check_rights(gid, m.from_user.id, "can_pin_messages"):
         return await m.reply(await get_string(m.chat.id, "NO_PIN_USER"))
     if not await check_rights(gid, c.me.id, "can_pin_messages"):
@@ -26,14 +28,14 @@ async def pin_msg(c: megux, m: Message):
     string = await get_string(m.chat.id, "PIN_SUCCESS")
     if input_:
         if input_ in ("silent", "s"):
-            silent = True
-            mode = await get_string(m.chat.id, "PIN_SILENT_ON")
+            silent += True
+            mode += await get_string(m.chat.id, "PIN_SILENT_ON")
         elif input_ in ("notify", "loud"):
-            silent = False 
-            mode = await get_string(m.chat.id, "PIN_SILENT_OFF")
+            silent += False 
+            mode += await get_string(m.chat.id, "PIN_SILENT_OFF")
         else:
-            silent = True
-            mode = await get_string(m.chat.id, "PIN_SILENT_ON")
+            silent += True
+            mode += await get_string(m.chat.id, "PIN_SILENT_ON")
     try:
         await megux.pin_chat_message(gid, msg_id, disable_notification=silent)
         await m.reply(string.format(link))
