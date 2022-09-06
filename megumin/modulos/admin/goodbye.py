@@ -16,7 +16,7 @@ from typing import Callable, List, Optional, Union
 
 
 from megumin import megux, Config
-from megumin.utils import get_collection, check_rights
+from megumin.utils import get_collection, check_rights, del_user_count
 
 
 
@@ -149,9 +149,7 @@ async def greet_left_members(c: megux, m: Message):
     
     mention = members.mention
     
-    count_groups = get_collection(f"TOTAL_GROUPS {user_id}")
-    if await count_groups.find_one({"chat_id": m.chat.id}):
-        await count_groups.delete_one({"chat_id": m.chat.id})
+    await del_user_count(m.chat.id, user_id)
     
     if not m.from_user.is_bot:
         goodbye_enabled = await db_.find_one({"status": True})
