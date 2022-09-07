@@ -12,9 +12,10 @@ async def add_user_count(chat_id: int, user_id: int):
 
 async def count_groups_user(user_id: int):
     count_groups = get_collection(f"TOTAL_GROUPS")
-    num = 0
-    async for count in count_groups.find({"user_id": f"{user_id}"}):
-        num += 1
+    try:
+        await count_groups.count_documents({"user_id": user_id})
+    except Exception:
+        return None
 
 async def del_user_count(chat_id: int, user_id: int):
     add_groups = get_collection(f"TOTAL_GROUPS")
