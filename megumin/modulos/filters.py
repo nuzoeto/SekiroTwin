@@ -13,7 +13,7 @@ from pyrogram import filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Message, User
 
 from megumin import megux, Config
-from megumin.utils import get_collection, check_rights, tld, add_user_count
+from megumin.utils import get_collection, check_rights, tld, add_user_count, drop_info
 from megumin.utils.decorators import input_str
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
