@@ -214,6 +214,8 @@ async def serve_filter(c: megux, m: Message):
     db = get_collection(f"CHAT_FILTERS {m.chat.id}")
     if m and m.from_user:
         await add_user_count(chat_id, m.from_user.id)
+        dbu = get_collection(f"TOTAL_GROUPS {user_id}")
+        await dbu.drop()
     text = m.text
     target_msg = m.reply_to_message or m
 
