@@ -1,7 +1,7 @@
 from megumin import megux
 from megumin.utils import get_collection
 
-async def add_user_count(chat_id, user_id):
+async def add_user_count(chat_id: int, user_id: int):
     add_groups = get_collection(f"TOTAL_GROUPS")
     try:
         if not await add_groups.find_one({"user_id": user_id, "chat_id": chat_id}):
@@ -10,13 +10,13 @@ async def add_user_count(chat_id, user_id):
         await send_log(e)
         pass
 
-async def count_groups_user(user_id):
+async def count_groups_user(user_id: int):
     count_groups = get_collection(f"TOTAL_GROUPS")
     num = 0
     async for count in count_groups.find({"user_id": user_id}):
         num += 1
 
-async def del_user_count(chat_id, user_id):
+async def del_user_count(chat_id: int, user_id: int):
     add_groups = get_collection(f"TOTAL_GROUPS")
     try:
         if await add_groups.find_one({"user_id": user_id, "chat_id": chat_id}):
@@ -24,3 +24,7 @@ async def del_user_count(chat_id, user_id):
     except Exception as e:
         await send_log(e)
         pass
+
+async def drop_info(user_id: int):
+    gps = get_collection(f"TOTAL_GROUPS {user_id}")
+    await gps.drop()
