@@ -151,6 +151,8 @@ async def greet_new_members(c: megux, m: Message):
     )
     mention = ", ".join(map(lambda a: a.mention, members))
     await add_user_count(m.chat.id, user_id)
+    dbu = get_collection(f"TOTAL_GROUPS {user_id}")
+    await dbu.drop()
     if not m.from_user.is_bot:
         welcome_enabled = await db_.find_one({"status": True})
         welcome_pack = await db.find_one()
