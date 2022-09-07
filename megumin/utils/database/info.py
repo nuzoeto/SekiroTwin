@@ -12,10 +12,8 @@ async def add_user_count(chat_id: int, user_id: int):
 
 async def count_groups_user(user_id: int):
     count_groups = get_collection(f"TOTAL_GROUPS")
-    try:
-        await count_groups.count_documents({"user_id": user_id})
-    except Exception:
-        return None
+    num = await count_groups.count_documents({"user_id": user_id})
+    return num
 
 async def del_user_count(chat_id: int, user_id: int):
     add_groups = get_collection(f"TOTAL_GROUPS")
