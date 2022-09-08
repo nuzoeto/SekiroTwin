@@ -17,7 +17,6 @@ from megumin.utils import is_disabled
 
 DISABLABLE_CMDS: List[str] = []
     
-cmds = ""
 
 def input_str(message) -> str:
     return " ".join(message.text.split()[1:])
