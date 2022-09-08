@@ -16,16 +16,19 @@ from megumin import megux
 from megumin.utils import is_disabled
 
 DISABLABLE_CMDS: List[str] = []
+    
+cmds = ""
 
 def input_str(message) -> str:
     return " ".join(message.text.split()[1:])
 
 def disableable_dec(command):
     if command not in DISABLABLE_CMDS:
-        print(
-        f"Adding {command} to the disableable commands...",
-        )
+        cmds += f"'{command}' -- "
         DISABLABLE_CMDS.append(command)
+     print(
+         f"Adding {cmds} to the disableable commands...",
+     )
 
     def decorator(func):
         async def wrapper(c: megux, message: Message, *args, **kwargs):
