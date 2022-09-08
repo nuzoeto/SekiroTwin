@@ -24,11 +24,10 @@ def input_str(message) -> str:
 
 def disableable_dec(command):
     if command not in DISABLABLE_CMDS:
-        cmds += f"'{command}' -- "
+        print(
+            f"Adding {command} to the disableable commands...",
+        )
         DISABLABLE_CMDS.append(command)
-     print(
-         f"Adding {cmds} to the disableable commands...",
-     )
 
     def decorator(func):
         async def wrapper(c: megux, message: Message, *args, **kwargs):
