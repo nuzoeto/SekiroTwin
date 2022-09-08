@@ -21,12 +21,10 @@ def input_str(message) -> str:
     return " ".join(message.text.split()[1:])
 
 def disableable_dec(command):
-    print(
-        "Adding %s to the disableable commands...",
-        command,
-    )
-
     if command not in DISABLABLE_CMDS:
+        print(
+        f"Adding {command} to the disableable commands...",
+        )
         DISABLABLE_CMDS.append(command)
 
     def decorator(func):
