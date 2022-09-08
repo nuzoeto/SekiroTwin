@@ -14,6 +14,7 @@ http = httpx.AsyncClient()
 
 
 @megux.on_message(filters.command("ip", Config.TRIGGER))
+@disableable_dec("ip")
 async def ip_cmd_(c: megux, m: Message):
     query = "ip"
     if await is_disabled(m.chat.id, query):
