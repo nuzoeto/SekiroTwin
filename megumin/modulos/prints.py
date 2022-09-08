@@ -2,16 +2,14 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux
-from megumin.utils import get_collection, get_string, cssworker_url, http  
+from megumin.utils import get_collection, get_string, cssworker_url, http, disableable_dec, is_disabled  
 
 
 @megux.on_message(filters.command("print", prefixes=["/","!"]))
+@disableable_dec("print")
 async def prints(c: megux, message: Message):
-    DISABLED = get_collection(f"DISABLED {message.chat.id}")
-    query = "print"
-    off = await DISABLED.find_one({"_cmd": query})
-    if off:
-        return 
+    if await is_disabled(message.chat.id, "print"):
+        return
     msg = message.text
     user_id = f"{message.from_user.id}"
     the_url = msg.split(" ", 1)
