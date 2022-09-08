@@ -9,13 +9,37 @@
 
 from typing import List
 
+from pyrogram import filters
+from pyrogram.types import Message
+
+from megumin import megux
+from megumin.utils import is_disabled
+
 DISABLABLE_CMDS: List[str] = []
 
 def input_str(message) -> str:
     return " ".join(message.text.split()[1:])
 
 def disableable_dec(command):
+    print(
+        "[%s] Adding %s to the disableable commands...",
+        megux.__name__,
+        command,
+    )
 
-    print("Loading commands...")
     if command not in DISABLABLE_CMDS:
         DISABLABLE_CMDS.append(command)
+
+    def decorator(func):
+        async def wrapper(c: megux, message: Message, *args, **kwargs):
+            chat_id = message.chat.id
+
+            check = await is_disabled(chat_id, command)
+            if check and not await filters.admin(c, message):
+                return
+
+            return await func(bot, message, *args, **kwargs)
+
+        return wrapper
+
+    return decorator
