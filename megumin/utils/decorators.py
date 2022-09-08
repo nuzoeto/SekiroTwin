@@ -22,8 +22,7 @@ def input_str(message) -> str:
 
 def disableable_dec(command):
     print(
-        "[%s] Adding %s to the disableable commands...",
-        megux.__name__,
+        "Adding %s to the disableable commands...",
         command,
     )
 
