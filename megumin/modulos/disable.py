@@ -54,7 +54,7 @@ async def enable_cmd(_, m: Message):
 
 @megux.on_message(filters.command("disableable", Config.TRIGGER))
 async def disableable(_, m: Message):
-    text = "<b>Comandos disponiveis para ser Desativados\n\n</b>"
+    text = "<b>Comandos disponiveis para ser Desativados:\n\n</b>"
     for command in sorted(DISABLABLE_CMDS):
         text += f"• <code>{command}</code>\n"
     await m.reply(text)
