@@ -56,5 +56,5 @@ async def enable_cmd(_, m: Message):
 async def disableable(_, m: Message):
     text = "<b>Comandos disponiveis para ser Desativados\n\n</b>"
     for command in sorted(DISABLABLE_CMDS):
-        text += f"• <code>/{command}</code>\n"
+        text += f"• <code>{command}</code>\n"
     await m.reply(text)
