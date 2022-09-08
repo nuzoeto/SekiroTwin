@@ -14,5 +14,5 @@ async def mentionadmins(c: megux, m: Message):
             mention += f"{i.user.mention}\n"
     await c.send_message(
         m.chat.id,
-        (await tld(m.chat.id, "ADMINS_SRING")).format(chat_title=m.chat.title, admins_list=mention),
+        (await tld(m.chat.id, "ADMINS_STRING")).format(chat_title=m.chat.title, admins_list=mention),
     )
