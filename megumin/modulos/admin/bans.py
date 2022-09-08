@@ -20,10 +20,12 @@ from megumin.utils import (
     get_collection,
     get_string,
     is_disabled,
+    disableable_dec
 )
 
 
 @megux.on_message(filters.command("ban", prefixes=["/", "!"]))
+@disableable_dec("ban")
 async def _ban_user(_, message: Message):
     LOGS = get_collection(f"LOGS {message.chat.id}")
     chat_id = message.chat.id
@@ -89,6 +91,7 @@ async def _ban_user(_, message: Message):
 
 
 @megux.on_message(filters.command("unban", prefixes=["/", "!"]))
+@disableable_dec("unban")
 async def _unban_user(_, message: Message):
     LOGS = get_collection(f"LOGS {message.chat.id}")
     query = "unban"
@@ -138,6 +141,7 @@ async def _unban_user(_, message: Message):
 
 
 @megux.on_message(filters.command("kick", prefixes=["/", "!"]))
+@disableable_dec("kick")
 async def _kick_user(_, message: Message):
     query = "kick"
     chat_id = message.chat.id 
@@ -194,6 +198,7 @@ async def _kick_user(_, message: Message):
 
 
 @megux.on_message(filters.command("kickme", prefixes=["/", "!"]))
+@disableable_dec("kickme")
 async def kickme_(_, message: Message):
     query = "kickme"
     chat_id = message.chat.id
@@ -217,6 +222,7 @@ async def kickme_(_, message: Message):
 
 
 @megux.on_message(filters.command("banme", prefixes=["/", "!"]))
+@disableable_dec("banme")
 async def kickme_(_, message: Message):
     query = "banme"
     chat_id = message.chat.id
