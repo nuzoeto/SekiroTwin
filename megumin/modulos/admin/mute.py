@@ -15,15 +15,15 @@ from megumin.utils import (
     sed_sticker,
     get_collection,
     tld,
+    is_disabled,
+    disableable_dec
 )
 
 
 @megux.on_message(filters.command("mute", prefixes=["/", "!"]))
+@disableable_dec("mute")
 async def _mute_user(_, message: Message):
-    DISABLED = get_collection(f"DISABLED {message.chat.id}")
-    query = "mute"
-    off = await DISABLED.find_one({"_cmd": query})
-    if off:
+    if await is_disabled(message.chat.id, "mute"):
         return
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
@@ -79,11 +79,9 @@ async def _mute_user(_, message: Message):
 
 
 @megux.on_message(filters.command("tmute", prefixes=["/", "!"]))
+@disableable_dec("tmute")
 async def _tmute_user(_, message: Message):
-    DISABLED = get_collection(f"DISABLED {message.chat.id}")
-    query = "tmute"
-    off = await DISABLED.find_one({"_cmd": query})
-    if off:
+    if await is_disabled(message.chat.id, "tmute"):
         return
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
@@ -152,11 +150,9 @@ async def _tmute_user(_, message: Message):
 
 
 @megux.on_message(filters.command("unmute", prefixes=["/", "!"]))
+@disableable_dec("unmute")
 async def _unmute_user(_, message: Message):
-    DISABLED = get_collection(f"DISABLED {message.chat.id}")
-    query = "unmute"
-    off = await DISABLED.find_one({"_cmd": query})
-    if off:
+    if await is_disabled(message.chat.id, "unmute"):
         return
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
@@ -197,11 +193,9 @@ async def _unmute_user(_, message: Message):
 
 
 @megux.on_message(filters.command("muteme", prefixes=["/", "!"]))
+@disableable_dec("muteme")
 async def muteme_(_, message: Message):
-    DISABLED = get_collection(f"DISABLED {message.chat.id}")
-    query = "muteme"
-    off = await DISABLED.find_one({"_cmd": query})
-    if off:
+    if await is_disabled(message.chat.id, "muteme"):
         return
     chat_id = message.chat.id
     user_id = message.from_user.id
