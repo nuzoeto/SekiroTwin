@@ -7,18 +7,16 @@ from pyrogram.types import Message
 from pyrogram.errors import BadRequest
 
 from megumin import megux
-from megumin.utils import get_collection, get_string 
+from megumin.utils import get_collection, get_string, is_disabled, disableable_dec 
 
 http = httpx.AsyncClient()
 
 
 
 @megux.on_message(filters.command(["ddd"], prefixes=["/", "!"]))
+@disableable_dec("ddd")
 async def ddd(c: megux, m: Message):
-    DISABLED = get_collection(f"DISABLED {m.chat.id}")
-    query = "ddd"
-    off = await DISABLED.find_one({"_cmd": query})
-    if off:
+    if await is_disabled(m.chat.id, "ddd"):
         return
     try:
          ddd = m.text.split(maxsplit=1)[1]
