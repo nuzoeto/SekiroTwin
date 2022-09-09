@@ -5,14 +5,17 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux, Config
-from megumin.utils.decorators import input_str
+from megumin.utils.decorators import input_str, disableable_dec, is_disabled
 
 cvid = Covid(source="worldometers")
 tr = Translator()
 
 
 @megux.on_message(filters.command("covid", Config.TRIGGER))
+@disableable_dec("covid")
 async def covid_command(c: megux, m: Message):
+    if await is_disabled(m.chat.id, "covid"):
+        return
     country = input_str(m).lower()
     if not country:
         country = "world"
