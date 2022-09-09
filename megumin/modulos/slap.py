@@ -5,14 +5,12 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux
-from megumin.utils import get_collection, tld
+from megumin.utils import get_collection, tld, disableable_dec, is_disabled
 
 @megux.on_message(filters.command(["slap"], prefixes=["/", "!"]))
+@disableable_dec("slap")
 async def printer(_, m: Message):
-    DISABLED = get_collection(f"DISABLED {m.chat.id}")
-    query = "slap"  
-    off = await DISABLED.find_one({"_cmd": query})
-    if off:
+    if await is_disabled(m.chat.id, "slap"):
         return
     if m.reply_to_message:
         try:
