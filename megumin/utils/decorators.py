@@ -36,7 +36,7 @@ def disableable_dec(command):
             if check and not await filters.admin(c, message):
                 return
 
-            return await func(bot, message, *args, **kwargs)
+            return await func(c, message, *args, **kwargs)
 
         return wrapper
 
