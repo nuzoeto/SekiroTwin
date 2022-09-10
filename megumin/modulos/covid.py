@@ -39,5 +39,5 @@ async def covid_command(c: megux, m: Message):
         total_tests = "N/A"
     else:
         total_tests = total_tests
-    msg = f"""<b>Estaticas da Covid-19 para o {country_}:</b>\n<b>Casos Confirmados</b>: <i>{confirmed}</i>\n<b>Novos Casos</b>: <i>{new_cases}</i>\n<b>Casos Ativos</b>: <i>{active}</i>\n<b>Casos Criticos</b>: <i>{critical}</i>\n<b>Mortes</b>: <i>{deaths}</i>\n<b>Recuperados</b>: <i>{recovered}</i>\n<b>Total de Testes</b>: <i>{total_tests}</i>"""
+    msg = f"""<b>Estaticas da Covid-19 para o {country_}:</b>\n\n<b>Casos Confirmados</b>: <i>{confirmed}</i>\n<b>Novos Casos</b>: <i>{new_cases}</i>\n<b>Casos Ativos</b>: <i>{active}</i>\n<b>Casos Criticos</b>: <i>{critical}</i>\n<b>Mortes</b>: <i>{deaths}</i>\n<b>Recuperados</b>: <i>{recovered}</i>\n<b>Total de Testes</b>: <i>{total_tests}</i>"""
     await m.reply(msg)
