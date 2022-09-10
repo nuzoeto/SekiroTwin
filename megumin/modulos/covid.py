@@ -10,6 +10,26 @@ from megumin.utils.decorators import input_str, disableable_dec, is_disabled
 cvid = Covid(source="worldometers")
 tr = Translator()
 
+#format numbers
+def format_integer(number, thousand_separator=','):
+    def reverse(string):
+        string = "".join(reversed(string))
+        return string
+
+    s = reverse(str(number))
+    count = 0
+    result = ''
+    for char in s:
+        count = count + 1
+        if count % 3 == 0:
+            if len(s) == count:
+                result = char + result
+            else:
+                result = thousand_separator + char + result
+        else:
+            result = char + result
+    return result
+
 
 @megux.on_message(filters.command("covid", Config.TRIGGER))
 @disableable_dec("covid")
@@ -26,7 +46,7 @@ async def covid_command(c: megux, m: Message):
         c_case = cvid.get_status_by_country_name(tr_.text)
     except Exception:
         return await m.reply("An error have occured!, Are you sure the country name is correct?")
-    active = c_case["active"]
+    active = format_integer(c_case["active"])
     confirmed = c_case["confirmed"]
     country_ = c_case["country"]
     critical = c_case["critical"]
