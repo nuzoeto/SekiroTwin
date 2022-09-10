@@ -47,14 +47,14 @@ async def covid_command(c: megux, m: Message):
     except Exception:
         return await m.reply("An error have occured!, Are you sure the country name is correct?")
     active = format_integer(c_case["active"])
-    confirmed = c_case["confirmed"]
+    confirmed = format_integer(c_case["confirmed"])
     country_ = c_case["country"]
-    critical = c_case["critical"]
-    deaths = c_case["deaths"]
-    new_cases = c_case["new_cases"]
-    new_deaths = c_case["new_deaths"]
-    recovered = c_case["recovered"]
-    total_tests = c_case["total_tests"]
+    critical = format_integer(c_case["critical"])
+    deaths = format_integer(c_case["deaths"])
+    new_cases = format_integer(c_case["new_cases"])
+    new_deaths = format_integer(c_case["new_deaths"])
+    recovered = format_integer(c_case["recovered"])
+    total_tests = format_integer(c_case["total_tests"])
     if total_tests == 0:
         total_tests = "N/A"
     else:
