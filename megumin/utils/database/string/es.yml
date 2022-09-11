@@ -280,3 +280,6 @@ donate_string: "Si te gusta el proyecto, ¿quieres donar? Increíble.\n¡Esto me
 
 #admins
 ADMINS_STRING: "<b>Administradores en el chat</b> <code>{chat_title}</code>:\n\n{admins_list}"
+
+#gps
+GPS_BNT: "🌍 Abrir en Google Maps"
