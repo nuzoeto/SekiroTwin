@@ -5,9 +5,13 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from megumin import megux, Config
 from megumin.utils.decorators import input_str
+from megumin.utils import is_disabled, disableable_dec
 
 @megux.on_message(filters.command("gps", Config.TRIGGER))
+@disableable_dec("gps")
 async def gps_(c: megux, m: Message):
+    if await is_disabled(m.chat.id, "gps"):
+        return
     target_msg = m.reply_to_message or m
     text = input_str(m)
     input_ = f"{text}"
