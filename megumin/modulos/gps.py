@@ -5,7 +5,7 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 from megumin import megux, Config
 from megumin.utils.decorators import input_str
-from megumin.utils import is_disabled, disableable_dec
+from megumin.utils import is_disabled, disableable_dec, tld
 
 @megux.on_message(filters.command("gps", Config.TRIGGER))
 @disableable_dec("gps")
@@ -21,7 +21,7 @@ async def gps_(c: megux, m: Message):
     if geoloc:
         lon = geoloc.longitude
         lat = geoloc.latitude
-        keyboard = [[InlineKeyboardButton(text="🌎 Abrir no Google Maps", url=f"https://www.google.com/maps/search/{lat},{lon}")]]
+        keyboard = [[InlineKeyboardButton(text=await tld(m.chat.id, "GPS_BNT"), url=f"https://www.google.com/maps/search/{lat},{lon}")]]
         await megux.send_location(m.chat.id, lat, lon, reply_markup=InlineKeyboardMarkup(keyboard))
         await msg.delete()
     else:
