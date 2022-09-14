@@ -2,10 +2,10 @@ import asyncio
 import datetime
 
 from pyrogram import filters, enums
-from pyrogram.types import Message
+from pyrogram.types import Message, ChatPermissions
 
 from megumin import megux
-from megumin.utils import get_collection
+from megumin.utils import get_collection, is_admin
 
 MSGS_CACHE = {}
 
@@ -38,3 +38,29 @@ async def check_flood(chat_id: int, user_id: int):
         return True
     MSGS_CACHE[chat_id] = {"cur_user": user_id, "count": count}
     return False
+
+
+@megux.on_message(filters.group & filters.incoming, group=10)
+async def flood(c: megux, m: Message):
+
+    if not m.from_user: #ignore_channels
+        return
+
+    if m.from_user.id == 777000: #ignore_telegram
+        return
+
+    chat_id = m.chat.id
+    user_id = m.from_user.id
+
+    if not await DB.find_one({"chat_id": chat_id, "status": "on"}):
+        return
+
+    if await is_admin(chat_id, user_id):
+        if chat_id in MSGS_CACHE:
+            del MSGS_CACHE[chat_id]
+        return
+    
+    if check_flood(chat_id, user_id):
+        await c.restrict_chat_member(chat_id, user_id, ChatPermissions())
+        await m.reply("Você fala muito. Ficará mutado por flood ate um admin remover o mute!")
+        return
