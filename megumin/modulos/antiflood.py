@@ -28,7 +28,7 @@ async def check_flood(chat_id: int, user_id: int):
     limit_pack  = await DB.find_one({"chat_id": chat_id}) 
 
     if limit_pack:
-        limit = limit_pack["limit"]
+        limit = int(limit_pack["limit"])
     else: 
         limit = 5
 
@@ -36,7 +36,7 @@ async def check_flood(chat_id: int, user_id: int):
     if count >=  limit:
         del MSGS_CACHE[chat_id]
         return True
-    MSGS_CACHE[chat_id] = {"cur_user": user_id, "count": count}
+    MSGS_CACHE[chat_id] = {"user": user_id, "count": count}
     return False
 
 
