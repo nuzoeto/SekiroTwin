@@ -2,6 +2,7 @@ import json
 
 from aiohttp import ClientSession
 from pyrogram import filters
+from pyrogram.enums import ParseMode
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
@@ -142,7 +143,7 @@ async def char_search(client: megux, message: Message):
         ]
     )
     await message.reply_photo(
-        photo=img, caption=cap_text, parse_mode="html", reply_markup=buttons_
+        photo=img, caption=cap_text, parse_mode=ParseMode.HTML, reply_markup=buttons_
     )
 
     @megux.on_callback_query(filters.regex(pattern=r"^char_serie$"))
@@ -199,6 +200,6 @@ async def char_search(client: megux, message: Message):
             chat_id=cb.message.chat.id,
             message_id=cb.message.message_id,
             caption=cap_text_,
-            parse_mode="html",
+            parse_mode=ParseMode.HTML,
             reply_markup=buttons_,
         )
