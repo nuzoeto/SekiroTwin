@@ -60,7 +60,7 @@ async def flood(c: megux, m: Message):
             del MSGS_CACHE[chat_id][user_id]
         return
     
-    if check_flood(chat_id, user_id):
+    if await check_flood(chat_id, user_id):
         await c.restrict_chat_member(chat_id, user_id, ChatPermissions())
         await m.reply("Você fala muito. Ficará mutado por flood ate um admin remover o mute!")
         return
