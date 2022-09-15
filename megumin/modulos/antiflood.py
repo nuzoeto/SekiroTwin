@@ -12,12 +12,7 @@ MSGS_CACHE = {}
 DB = get_collection("ANTIFLOOD_CHATS")
 DB_ = get_collection("STATUS_FLOOD_MSGS")
 
-async def check_flood(chat_id: int, user_id: int, mid: int, m):
-    x = await DB_.insert_one({"chat_id": chat_id, "user_id": user_id, "m_id": mid})
-    if not x:
-        await m.reply("Report to @DaviTudo if problems persists")
-        return
-    
+async def check_flood(chat_id: int, user_id: int, mid: int, m):   
     count = await DB_.count_documents({"chat_id": chat_id, "user_id": user_id})
     
     limit = await DB.find_one({"chat_id": chat_id})
@@ -30,6 +25,10 @@ async def check_flood(chat_id: int, user_id: int, mid: int, m):
     if count >= limit:
         await DB_.delete_many({"chat_id": chat_id, "user_id": user_id})
         return True
+    x = await DB_.insert_one({"chat_id": chat_id, "user_id": user_id, "m_id": mid})
+    if not x:
+        await m.reply("Report to @DaviTudo if problems persists")
+        return
     return False
     
 
