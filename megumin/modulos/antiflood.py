@@ -18,6 +18,14 @@ async def check_flood(chat_id: int, user_id: int):
             "count": 1
         }
         return False
+    
+    
+    if MSGS_CACHE[chat_id][user_id] == {}:
+        MSGS_CACHE[chat_id][user_id] = {
+            "user": user_id,
+            "count": 1
+        }
+        return False
      
     #check_flood
     chat_flood = MSGS_CACHE[chat_id][user_id]
