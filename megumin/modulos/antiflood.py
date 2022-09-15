@@ -25,10 +25,7 @@ async def check_flood(chat_id: int, user_id: int, mid: int, m):
     if count >= limit:
         await DB_.delete_many({"chat_id": chat_id, "user_id": user_id})
         return True
-    x = await DB_.insert_one({"chat_id": chat_id, "user_id": user_id, "m_id": mid})
-    if not x:
-        await m.reply("Report to @DaviTudo if problems persists")
-        return
+    await DB_.insert_one({"chat_id": chat_id, "user_id": user_id, "m_id": mid})
     return False
     
 
@@ -50,7 +47,7 @@ async def flood(c: megux, m: Message):
 
     if await is_admin(chat_id, user_id):
         if chat_id in MSGS_CACHE:
-            MSGS_CACHE[chat_id][user_id] = {}
+            await DB_.delete_many({"chat_id": chat_id, "user_id": user_id})
         return
     
     if await check_flood(chat_id, user_id, m.id, Message):
@@ -59,4 +56,4 @@ async def flood(c: megux, m: Message):
         return
     
     await asyncio.sleep(15)
-    MSGS_CACHE[chat_id][user_id] = {}
+    await DB_.delete_many({"chat_id": chat_id, "user_id": user_id})
