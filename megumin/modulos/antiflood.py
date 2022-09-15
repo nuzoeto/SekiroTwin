@@ -10,42 +10,28 @@ from megumin.utils import get_collection, is_admin
 MSGS_CACHE = {}
 
 DB = get_collection("ANTIFLOOD_CHATS")
+DB_ = get_collection("STATUS_FLOOD_MSGS")
 
-async def check_flood(chat_id: int, user_id: int):
-    if not MSGS_CACHE.get(chat_id, user_id) or MSGS_CACHE[chat_id]["user"] != user_id:
-        MSGS_CACHE[chat_id][user_id] = {
-            "user": user_id,
-            "count": 1
-        }
-        return False
+async def check_flood(chat_id: int, user_id: int, mid: int, m):
+    x = await DB_.insert_one({"chat_id": chat_id, "user_id": user_id, "m_id": mid})
+    if not x:
+        await m.reply("Report to @DaviTudo if problems persists")
+        return
     
+    count = await DB_.count_documents({"chat_id": chat_id, "user_id": user_id})
     
-    if MSGS_CACHE[chat_id][user_id] == {}:
-        MSGS_CACHE[chat_id][user_id] = {
-            "user": user_id,
-            "count": 1
-        }
-        return False
-     
-    #check_flood
-    chat_flood = MSGS_CACHE[chat_id][user_id]
-    count = chat_flood["count"]
-
-    count += 1
-
-    limit_pack  = await DB.find_one({"chat_id": chat_id}) 
-
-    if limit_pack:
-        limit = int(limit_pack["limit"])
-    else: 
+    limit = await DB.find_one({"chat_id": chat_id})
+    
+    if limit:
+        chat_limit = int(limit["limit"])
+    else:
         limit = 5
-
-
-    if count >=  limit:
-        MSGS_CACHE[chat_id][user_id] = {}
+        
+    if count >= limit:
+        await DB_.delete_many({"chat_id": chat_id, "user_id": user_id})
         return True
-    MSGS_CACHE[chat_id][user_id] = {"user": user_id, "count": count}
     return False
+    
 
 
 @megux.on_message(filters.group & filters.all, group=10)
@@ -68,7 +54,7 @@ async def flood(c: megux, m: Message):
             MSGS_CACHE[chat_id][user_id] = {}
         return
     
-    if await check_flood(chat_id, user_id):
+    if await check_flood(chat_id, user_id, m.id, Message):
         await c.restrict_chat_member(chat_id, user_id, ChatPermissions())
         await m.reply("Você fala muito. Ficará mutado por flood ate um admin remover o mute!")
         return
