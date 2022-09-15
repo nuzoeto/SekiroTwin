@@ -34,7 +34,7 @@ async def check_flood(chat_id: int, user_id: int):
 
 
     if count >=  limit:
-        del MSGS_CACHE[chat_id]
+        MSGS_CACHE[chat_id] = 0
         return True
     MSGS_CACHE[chat_id] = {"user": user_id, "count": count}
     return False
@@ -57,7 +57,7 @@ async def flood(c: megux, m: Message):
 
     if await is_admin(chat_id, user_id):
         if chat_id in MSGS_CACHE:
-            del MSGS_CACHE[chat_id]
+            MSGS_CACHE[chat_id] = 0
         return
     
     if check_flood(chat_id, user_id):
