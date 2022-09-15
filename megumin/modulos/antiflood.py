@@ -12,15 +12,15 @@ MSGS_CACHE = {}
 DB = get_collection("ANTIFLOOD_CHATS")
 
 async def check_flood(chat_id: int, user_id: int):
-    if not MSGS_CACHE.get(chat_id) or MSGS_CACHE[chat_id]["user"] != user_id:
-        MSGS_CACHE[chat_id] = {
+    if not MSGS_CACHE.get(chat_id, user_id) or MSGS_CACHE[chat_id]["user"] != user_id:
+        MSGS_CACHE[chat_id][user_id] = {
             "user": user_id,
             "count": 1
         }
         return False
      
     #check_flood
-    chat_flood = MSGS_CACHE[chat_id]
+    chat_flood = MSGS_CACHE[chat_id][user_id]
     count = chat_flood["count"]
 
     count += 1
@@ -34,9 +34,9 @@ async def check_flood(chat_id: int, user_id: int):
 
 
     if count >=  limit:
-        MSGS_CACHE[chat_id] = 0
+        del MSGS_CACHE[chat_id][user_id]
         return True
-    MSGS_CACHE[chat_id] = {"user": user_id, "count": count}
+    MSGS_CACHE[chat_id][user_id] = {"user": user_id, "count": count}
     return False
 
 
@@ -57,7 +57,7 @@ async def flood(c: megux, m: Message):
 
     if await is_admin(chat_id, user_id):
         if chat_id in MSGS_CACHE:
-            MSGS_CACHE[chat_id] = 0
+            del MSGS_CACHE[chat_id][user_id]
         return
     
     if check_flood(chat_id, user_id):
