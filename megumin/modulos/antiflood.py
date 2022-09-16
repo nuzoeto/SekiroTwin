@@ -56,5 +56,4 @@ async def flood(c: megux, m: Message):
         await m.reply("Você fala muito. Ficará mutado por flood ate um admin remover o mute!")
         return
     
-    await asyncio.sleep(15)
-    await DB_.delete_many({"chat_id": chat_id, "user_id": user_id})
+    
