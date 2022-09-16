@@ -1,8 +1,10 @@
 # Copyright (C) 2022 by fnixdev
 #
 import logging
+
 from .bot import megux
 from pyrogram import idle
+from logging.handlers import RotatingFileHandler
 import asyncio
 from .utils.database.lang import load_language
 
