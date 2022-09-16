@@ -38,9 +38,9 @@ async def flood_control_func(_, message: Message):
     if not message.chat:
         return
     chat_id = message.chat.id
-    if not check_flood_on(chat_id):
+    if not await check_flood_on(chat_id):
         return
-    chat_limit = flood_limit(chat_id)
+    chat_limit = await flood_limit(chat_id)
     if chat_id not in MSGS_CACHE:
         MSGS_CACHE[chat_id] = {}
     if not message.from_user:
