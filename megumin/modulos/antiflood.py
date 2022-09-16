@@ -17,6 +17,20 @@ def reset_flood(chat_id, user_id=0):
     for user in MSGS_CACHE[chat_id].keys():
         if user != user_id:
             MSGS_CACHE[chat_id][user] = 0
+            
+async def flood_limit(chat_id: int):
+    limit = await DB.find_one({"chat_id": chat_id})
+    if limit:
+        chat_limit = limit["limit"]
+    else:
+        chat_limit = 5
+    return chat_limit
+
+async def check_flood_on(chat_id: int):
+    if await DB.find_one({"chat_id": chat_id, "status": "on"}):
+        return True
+    else:
+        return False
 
 
 @megux.on_message(~filters.service & ~filters.me & ~filters.private & ~filters.channel & ~filters.bot , group=10)
@@ -24,13 +38,9 @@ async def flood_control_func(_, message: Message):
     if not message.chat:
         return
     chat_id = message.chat.id
-    limit = await DB.find_one({"chat_id": chat_id})
-    if not await DB.find_one({"chat_id": chat_id, "status": "on"}):
+    if not check_flood(chat_id):
         return
-    if limit:
-        chat_limit = int(limit["limit"])
-    else:
-        chat_limit = 5
+    chat_limit = flood_limit(chat_id)
     if chat_id not in MSGS_CACHE:
         MSGS_CACHE[chat_id] = {}
     if not message.from_user:
