@@ -12,48 +12,40 @@ MSGS_CACHE = {}
 DB = get_collection("ANTIFLOOD_CHATS")
 DB_ = get_collection("STATUS_FLOOD_MSGS")
 
-async def check_flood(chat_id: int, user_id: int, mid: int, m):   
-    count = await DB_.count_documents({"chat_id": chat_id, "user_id": user_id})
-    
-    limit = await DB.find_one({"chat_id": chat_id})
-    
-    if limit:
-        chat_limit = int(limit["limit"])
-    else:
-        chat_limit = 5
-        
-    if count >= chat_limit:
-        await DB_.delete_many({"chat_id": chat_id, "user_id": user_id})
-        return True
-    else:
-        await DB_.insert_one({"chat_id": chat_id, "user_id": user_id, "m_id": mid})
-        return False
-    
+
+def reset_flood(chat_id, user_id=0):
+    for user in MSGS_CACHE[chat_id].keys():
+        if user != user_id:
+            MSGS_CACHE[chat_id][user] = 0
 
 
-@megux.on_message(filters.group & filters.all, group=10)
-async def flood(c: megux, m: Message):
-
-    if not m.from_user: #ignore_channels
+@megux.on_message(~filters.service & ~filters.me & ~filters.private & ~filters.channel & ~filters.bot , group=10)
+async def flood_control_func(_, message: Message):
+    if not message.chat:
         return
-
-    if m.from_user.id == 777000: #ignore_telegram
-        return
-
-    chat_id = m.chat.id
-    user_id = m.from_user.id
-
+    chat_id = message.chat.id
     if not await DB.find_one({"chat_id": chat_id, "status": "on"}):
         return
+    if chat_id not in MSGS_CACHE:
+        MSGS_CACHE[chat_id] = {}
+    if not message.from_user:
+        reset_flood(chat_id)
+        return
+    user_id = message.from_user.id
+    mention = message.from_user.mention
+    if user_id not in MSGS_CACHE[chat_id]:
+        MSGS_CACHE[chat_id][user_id] = 0
+    reset_flood(chat_id, user_id)
+    if MSGS_CACHE[chat_id][user_id] >= 10:
+        MSGS_CACHE[chat_id][user_id] = 0
+        try:
+            if is_admin(chat_id, user_id):
+                return
+            await message.chat.restrict_member(user_id,permissions=ChatPermissions(),until_date=int(time() + 5))
+        except Exception:
+            return
+        await message.reply_text(f"Você fala muito. Ficara mutado por flood ate um admin remover o mute.")
+    MSGS_CACHE[chat_id][user_id] += 1
+    await asyncio.sleep(15)
+    MSGS_CACHE[chat_id][user_id] = 0
 
-    if await is_admin(chat_id, user_id):
-        if await DB_.find_one({"chat_id": chat_id, "user_id": user_id}):
-            await DB_.delete_many({"chat_id": chat_id, "user_id": user_id})
-        return
-    
-    if await check_flood(chat_id, user_id, m.id, m):
-        await c.restrict_chat_member(chat_id, user_id, ChatPermissions())
-        await m.reply("Você fala muito. Ficará mutado por flood ate um admin remover o mute!")
-        return
-    
-    
