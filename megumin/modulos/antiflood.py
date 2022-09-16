@@ -45,7 +45,7 @@ async def flood_control_func(_, message: Message):
         MSGS_CACHE[chat_id] = {}
     if not message.from_user:
         reset_flood(chat_id)
-        return
+        return await message.reply("if 1")
     user_id = message.from_user.id
     mention = message.from_user.mention
     if user_id not in MSGS_CACHE[chat_id]:
@@ -55,7 +55,7 @@ async def flood_control_func(_, message: Message):
         MSGS_CACHE[chat_id][user_id] = 0
         try:
             if is_admin(chat_id, user_id):
-                return
+                return await message.reply(":")
             await message.chat.restrict_member(user_id, ChatPermissions())
         except Exception:
             return await messge.reply("Você fala muito por favor fale menos")
