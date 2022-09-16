@@ -23,9 +23,14 @@ def reset_flood(chat_id, user_id=0):
 async def flood_control_func(_, message: Message):
     if not message.chat:
         return
+    limit = await DB.find_one({"chat_id": chat_id})
     chat_id = message.chat.id
     if not await DB.find_one({"chat_id": chat_id, "status": "on"}):
         return
+    if limit:
+        chat_limit = limit["limit"]
+    else:
+        chat_limit = 5
     if chat_id not in MSGS_CACHE:
         MSGS_CACHE[chat_id] = {}
     if not message.from_user:
@@ -36,7 +41,7 @@ async def flood_control_func(_, message: Message):
     if user_id not in MSGS_CACHE[chat_id]:
         MSGS_CACHE[chat_id][user_id] = 0
     reset_flood(chat_id, user_id)
-    if MSGS_CACHE[chat_id][user_id] >= 10:
+    if MSGS_CACHE[chat_id][user_id] >= :
         MSGS_CACHE[chat_id][user_id] = 0
         try:
             if is_admin(chat_id, user_id):
