@@ -20,9 +20,9 @@ async def check_flood(chat_id: int, user_id: int, mid: int, m):
     if limit:
         chat_limit = int(limit["limit"])
     else:
-        limit = 5
+        chat_limit = 5
         
-    if count >= limit:
+    if count >= chat_limit:
         await DB_.delete_many({"chat_id": chat_id, "user_id": user_id})
         return True
     else:
