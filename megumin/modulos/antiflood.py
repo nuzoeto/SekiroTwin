@@ -47,7 +47,7 @@ async def flood(c: megux, m: Message):
         return
 
     if await is_admin(chat_id, user_id):
-        if chat_id in MSGS_CACHE:
+        if await DB_.find_one({"chat_id": chat_id, "user_id": user_id}):
             await DB_.delete_many({"chat_id": chat_id, "user_id": user_id})
         return
     
