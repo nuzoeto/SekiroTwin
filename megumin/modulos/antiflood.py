@@ -46,7 +46,7 @@ async def flood_control_func(_, message: Message):
         try:
             if is_admin(chat_id, user_id):
                 return
-            await message.chat.restrict_member(user_id, ChatPermissions()))
+            await message.chat.restrict_member(user_id, ChatPermissions())
         except Exception:
             return
         await message.reply_text(f"Você fala muito. Ficara mutado por flood ate um admin remover o mute.")
