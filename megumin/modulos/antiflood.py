@@ -25,8 +25,9 @@ async def check_flood(chat_id: int, user_id: int, mid: int, m):
     if count >= limit:
         await DB_.delete_many({"chat_id": chat_id, "user_id": user_id})
         return True
-    await DB_.insert_one({"chat_id": chat_id, "user_id": user_id, "m_id": mid})
-    return False
+    else:
+        await DB_.insert_one({"chat_id": chat_id, "user_id": user_id, "m_id": mid})
+        return False
     
 
 
@@ -50,7 +51,7 @@ async def flood(c: megux, m: Message):
             await DB_.delete_many({"chat_id": chat_id, "user_id": user_id})
         return
     
-    if await check_flood(chat_id, user_id, m.id, Message):
+    if await check_flood(chat_id, user_id, m.id, m):
         await c.restrict_chat_member(chat_id, user_id, ChatPermissions())
         await m.reply("Você fala muito. Ficará mutado por flood ate um admin remover o mute!")
         return
