@@ -58,7 +58,7 @@ async def flood_control_func(_, message: Message):
                 return
             await message.chat.restrict_member(user_id, ChatPermissions())
         except Exception:
-            return
+            return await messge.reply("Você fala muito por favor fale menos")
         await message.reply_text(f"Você fala muito. Ficara mutado por flood ate um admin remover o mute.")
     MSGS_CACHE[chat_id][user_id] += 1
     await asyncio.sleep(15)
