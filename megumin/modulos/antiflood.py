@@ -23,8 +23,8 @@ def reset_flood(chat_id, user_id=0):
 async def flood_control_func(_, message: Message):
     if not message.chat:
         return
-    limit = await DB.find_one({"chat_id": chat_id})
     chat_id = message.chat.id
+    limit = await DB.find_one({"chat_id": chat_id})
     if not await DB.find_one({"chat_id": chat_id, "status": "on"}):
         return
     if limit:
