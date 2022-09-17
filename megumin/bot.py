@@ -56,5 +56,6 @@ class WhiterKang(Client):
             *args,
             **kwargs
         )
+        logging.error(text)
 
 megux = WhiterKang()
