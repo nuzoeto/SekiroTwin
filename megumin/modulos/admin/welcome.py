@@ -310,7 +310,7 @@ async def enable_welcome_message(c: megux, m: Message):
     if r:
         await db.update_one({"chat_id": m.chat.id}, {"$set": {"status": True}}, upsert=True)
     else: 
-        await db.update_one({"chat_id": m.chat.id}, {"$add": {"status": True}}, upsert=True)
+        await db.update_one({"chat_id": m.chat.id}, {"$set": {"status": True}}, upsert=True)
     await m.reply_text("Captcha agora está Ativado.")
 
     
@@ -323,7 +323,7 @@ async def enable_welcome_message(c: megux, m: Message):
     if r:
         await db.update_one({"chat_id": m.chat.id}, {"$set": {"status": False}}, upsert=True)
     else: 
-        await db.update_one({"chat_id": m.chat.id}, {"$add": {"status": False}}, upsert=True)
+        await db.update_one({"chat_id": m.chat.id}, {"$set": {"status": False}}, upsert=True)
     await m.reply_text("Captcha agora está Desativado.")
     
 
