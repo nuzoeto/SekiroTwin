@@ -8,7 +8,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 
 from megumin import Config
 
-logging.info("Connecting to Database ...")
+print("Connecting to Database ...")
 
 DATABASE_URL = Config.DB_URI
 
