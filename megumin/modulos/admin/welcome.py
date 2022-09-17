@@ -240,14 +240,14 @@ async def warn_rules(client: megux, cb: CallbackQuery):
         data, userid = cb.data.split("|")
     except ValueError:
         return print(cb.data)
-    db = get_collection(f"WELCOME {cb.message.chat.id}")
+    db = get_collection(f"WELCOME_CHAT")
     if cb.from_user.id != int(userid):
         await cb.answer("Isso não é para você!")
         return
     if await is_admin(cb.message.chat.id, userid):
         await cb.answer("Você não precisa mais compretar o captcha já que és administrador.")
         return
-    response = await db.find_one()
+    response = await db.find_one({"chat_id": m.chat.id})
     if response:
         msg = response["msg"]
     else:
@@ -303,31 +303,27 @@ async def warn_rules(client: megux, cb: CallbackQuery):
     
 @megux.on_message(filters.command("captcha on", Config.TRIGGER) & filters.group)
 async def enable_welcome_message(c: megux, m: Message):
-    db = get_collection(f"CAPTCHA {m.chat.id}")
+    db = get_collection(f"CAPTCHA")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
-    r = await db.find_one()
+    r = await db.find_one({"chat_id": m.chat.id})
     if r:
-        db_ = r["status"]
-        await db.delete_one({"status": db_})
-        await db.insert_one({"status": True})
+        await db.update_one({"chat_id": m.chat.id}, {"$set": {"status": True}}, upsert=True)
     else: 
-        await db.insert_one({"status": True})
+        await db.update_one({"chat_id": m.chat.id}, {"$add": {"status": True}}, upsert=True)
     await m.reply_text("Captcha agora está Ativado.")
 
     
 @megux.on_message(filters.command("captcha off", Config.TRIGGER) & filters.group)
 async def enable_welcome_message(c: megux, m: Message):
-    db = get_collection(f"CAPTCHA {m.chat.id}")
+    db = get_collection(f"CAPTCHA")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
-    r = await db.find_one()
+    r = await db.find_one({"chat_id": m.chat.id})
     if r:
-        db_ = r["status"]
-        await db.delete_one({"status": db_})
-        await db.insert_one({"status": False})
+        await db.update_one({"chat_id": m.chat.id}, {"$set": {"status": False}}, upsert=True)
     else: 
-        await db.insert_one({"status": False})
+        await db.update_one({"chat_id": m.chat.id}, {"$add": {"status": False}}, upsert=True)
     await m.reply_text("Captcha agora está Desativado.")
     
 
