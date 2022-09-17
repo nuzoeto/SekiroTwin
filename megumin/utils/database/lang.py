@@ -1,4 +1,5 @@
 import yaml
+import logging
 import pathlib
 from megumin.utils import get_collection
 
@@ -39,4 +40,4 @@ def load_language():
             data = yaml.safe_load(f)
             language_to_load = data.get("language")
             language_string[language_to_load] = data
-    print("All language Loaded.")
+    logging.info("All language Loaded.")
