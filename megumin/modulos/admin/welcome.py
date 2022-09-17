@@ -247,7 +247,7 @@ async def warn_rules(client: megux, cb: CallbackQuery):
     if await is_admin(cb.message.chat.id, userid):
         await cb.answer("Você não precisa mais compretar o captcha já que és administrador.")
         return
-    response = await db.find_one({"chat_id": m.chat.id})
+    response = await db.find_one({"chat_id": cb.message.chat.id})
     if response:
         msg = response["msg"]
     else:
