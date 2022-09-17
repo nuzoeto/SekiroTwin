@@ -197,5 +197,5 @@ def escape_definition(definition):
     return definition
 
 async def unwarn_bnt(gid: int, user_id: int):
-    DB = get_collection(f"WARNS {gid}")
-    await DB.delete_one({"user_id": user_id})
+    DB = get_collection(f"WARNS")
+    await DB.delete_one({"chat_id": gid, "user_id": user_id})
