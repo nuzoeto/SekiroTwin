@@ -21,7 +21,7 @@ async def afk_cmd(_, m: Message):
     AFK_COUNT = get_collection("AFK_COUNT")
     if input_str(m):
         await AFK_COUNT.delete_one({"mention_": m.from_user.mention()})
-        await AFK_STATUS.delete_one({"user_id": user_id, "_afk": "on"})
+        await AFK_STATUS.delete_one({"user_id": m.from_user.id, "_afk": "on"})
         await REASON.delete_one({"user_id": m.from_user.id}) 
         await AFK_COUNT.insert_one({"mention_": m.from_user.mention()})
         await AFK_STATUS.insert_one({"user_id": m.from_user.id, "_afk": "on"})
