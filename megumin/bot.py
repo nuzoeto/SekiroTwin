@@ -4,6 +4,7 @@
 from pyrogram import Client
 
 import time
+import logging
 import os
 
 START_TIME = time.time()
@@ -30,14 +31,14 @@ class WhiterKang(Client):
         self.me = await self.get_me()
         text_ = f"#Whiter #Logs\n\n__WhiterKang está trabalhando agora.__\n\n**Versão:** `{version.__megumin_version__}`\n**System:** `{self.system_version}`\n**Python:** `{version.__python_version__}`\n**Pyrogram:** `{version.__pyro_version__}`"
         await self.send_message(chat_id=GP_LOGS, text=text_) 
-        print("WhiterKang esta acordando...")
+        logging.info("WhiterKang esta acordando...")
 
     async def stop(self):
         await super().stop()
         self.me = await self.get_me()
         text_ = f"#Whiter #sleep\n\n__WhiterKang foi dormir.__"
         await self.send_message(chat_id=GP_LOGS, text=text_)
-        print("WhiterKang merreu...")
+        logging.info("WhiterKang merreu...")
 
     async def send_log(self, text: str, *args, **kwargs):
         await self.send_message(
@@ -46,6 +47,7 @@ class WhiterKang(Client):
             *args,
             **kwargs,
         )
+        logging.info(text)
         
     async def send_err(self, err: str, *args, **kwargs):
         await self.send_message(
