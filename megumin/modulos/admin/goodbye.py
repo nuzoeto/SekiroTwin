@@ -66,7 +66,7 @@ def button_parser(markdown_note):
 
 @megux.on_message(filters.command("setgoodbye", Config.TRIGGER))
 async def set_goodbye_message(c: megux, m: Message):
-    db = get_collection(f"GOODBYE {m.chat.id}")
+    db = get_collection(f"GOODBYE_CHAT")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
     if len(m.text.split()) > 1:
@@ -97,8 +97,7 @@ async def set_goodbye_message(c: megux, m: Message):
                 )
             )
         else:
-            await db.drop()
-            await db.insert_one({"msg": message})
+            await db.update_one({"chat_id": m.chat.id}, {"$set": {"msg": message}}, upsert=True)
             await sent.edit_text(
                 "Mensagem de Despedida Alterada em {chat_title}".format(chat_title=m.chat.title)
             )
@@ -110,21 +109,19 @@ async def set_goodbye_message(c: megux, m: Message):
 
 @megux.on_message(filters.command("goodbye on", Config.TRIGGER) & filters.group)
 async def enable_welcome_message(c: megux, m: Message):
-    db = get_collection(f"GOODBYE_STATUS {m.chat.id}")
+    db = get_collection(f"GOODBYE_STATUS")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
-    await db.drop()
-    await db.insert_one({"status": True})
+    await db.update_one({"chat_id": m.chat.id}, {"$set": {"status": True}}, upsert=True)
     await m.reply_text("Mensagem de Despedida agora está Ativada.")
     
     
 @megux.on_message(filters.command("goodbye off", Config.TRIGGER) & filters.group)
 async def enable_goodbye_message(c: megux, m: Message):
-    db = get_collection(f"GOODBYE_STATUS {m.chat.id}")
+    db = get_collection(f"GOODBYE_STATUS")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
-    await db.drop()
-    await db.insert_one({"status": False})
+    await db.update_one({"chat_id": m.chat.id}, {"$set": {"status": False}}, upsert=True)
     await m.reply_text("Mensagem de Despedida agora está Desativada.")
     
     
@@ -137,8 +134,8 @@ async def enable_goodbye_message(c: megux, m: Message):
 
 @megux.on_message(filters.left_chat_member & filters.group)
 async def greet_left_members(c: megux, m: Message):
-    db = get_collection(f"GOODBYE {m.chat.id}")
-    db_ = get_collection(f"GOODBYE_STATUS {m.chat.id}")
+    db = get_collection(f"GOODBYE_CHAT")
+    db_ = get_collection(f"GOODBYE_STATUS")
     members = m.left_chat_member
     chat_title = m.chat.title
     first_name = members.first_name
@@ -153,8 +150,8 @@ async def greet_left_members(c: megux, m: Message):
     dbu = get_collection(f"TOTAL_GROUPS {user_id}")
     await dbu.drop()
     if not m.from_user.is_bot:
-        goodbye_enabled = await db_.find_one({"status": True})
-        goodbye_pack = await db.find_one()
+        goodbye_enabled = await db_.find_one({"chat_id": m.chat.id, "status": True})
+        goodbye_pack = await db.find_one({"chat_id": m.chat.id})
         if goodbye_enabled:
             if not goodbye_pack:
                 welcome = "Nice knowing ya!"
@@ -193,8 +190,8 @@ async def greet_left_members(c: megux, m: Message):
             
 @megux.on_message(filters.command("getgoodbye", Config.TRIGGER))
 async def get_welcome(c: megux, m: Message):
-    db = get_collection(f"GOODBYE {m.chat.id}")
-    resp = await db.find_one()
+    db = get_collection(f"GOODBYE_CHAT")
+    resp = await db.find_one({"chat_id": m.chat.id})
     if resp:
         goodbye = resp["msg"]
     else:
@@ -205,10 +202,11 @@ async def get_welcome(c: megux, m: Message):
     
 @megux.on_message(filters.command("resetgoodbye", Config.TRIGGER))
 async def rm_welcome(c: megux, m: Message):
-    db = get_collection(f"GOODBYE {m.chat.id}")
-    r = await db.find_one()
+    db = get_collection(f"GOODBYE_CHAT")
+    r = await db.find_one({"chat_id": m.chat.id})
     if r:
-        await db.drop()
+        message = r["msg"]
+        await db.delete_one({"chat_id": m.chat.id, "msg": message})
         await m.reply("A mensagem despedida foi resetada!") 
     else:
         return await m.reply("Nenhuma mensagem de despedida foi definida.")
