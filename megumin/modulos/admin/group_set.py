@@ -48,25 +48,24 @@ async def rules_set(_, m: Message):
     x = ""
     if input_str(m):
         x += m.text.split(None, 1)[1]
-    if m.reply_to_message:
+    elif m.reply_to_message:
         x += m.reply_to_message.text
-    data = get_collection(f"RULES {m.chat.id}")
+    data = get_collection(f"RULES")
     if x in "":
         return await m.reply(await get_string(m.chat.id, "RULES_NO_ARGS"))
     else:
          if await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
-             await data.drop()
-             await data.insert_one({"_rules": x})
+             await data.update_one({"chat_id": m.chat.id}, {"$set": {"_rules": x}=, upsert=True)
              await m.reply(await get_string(m.chat.id, "RULES_UPDATED"))
 
 
 @megux.on_message(filters.command("clearrules", Config.TRIGGER))
 async def del_rules_(_, m: Message):
     if await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
-        RULES = get_collection(f"RULES {m.chat.id}")
-        i = await RULES.find_one()
+        RULES = get_collection(f"RULES")
+        i = await RULES.find_one({"chat_id": m.chat.id})
         res = i["_rules"]
-        await RULES.delete_one({"_rules": res})
+        await RULES.delete_one({"chat_id": m.chat.id, "_rules": res})
         await m.reply(await get_string(m.chat.id, "RULES_CLEAR_SUCCESS"))
 
 
