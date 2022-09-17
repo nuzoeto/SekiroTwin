@@ -77,7 +77,7 @@ async def warn_users(_, message: Message):
         warns_limit = 3
     
     if await DB_ACTION.find_one({"chat_id": message.chat.id}):
-        ACTION = await DB_ACTION.find_one({"chat_id": message.chat.id)
+        ACTION = await DB_ACTION.find_one({"chat_id": message.chat.id})
         warn_action = ACTION["action"]
     else:
         warn_action = "ban"
