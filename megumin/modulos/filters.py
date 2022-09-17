@@ -159,7 +159,7 @@ async def get_all_chat_note(c: megux, m: Message):
     async for filter_s in all_filters:
         keyword = filter_s["name"]
         reply_text += f" • <code>{keyword}</code> \n"
-    if not await db.find_one():
+    if not await db.find_one({"chat_id": m.chat.id}):
         await m.reply_text("<i>Esse chat não tem filtros.</i>", quote=True)
     else:
         await m.reply_text(reply_text, quote=True)
