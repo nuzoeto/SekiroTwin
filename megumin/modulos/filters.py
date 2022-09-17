@@ -71,7 +71,7 @@ async def save_notes(c: megux, m: Message):
     if m.reply_to_message is None and len(input_str(m)) < 2:
         await m.reply_text("Você Precisa dar um nome ao filtro.", quote=True)
         return
-    db = get_collection(f"CHAT_FILTERS {m.chat.id}")
+    db = get_collection(f"CHAT_FILTERS")
     args = m.text.html.split(maxsplit=1)
     split_text = f"{args[1]}"
     trigger = split_text.lower()
@@ -152,10 +152,10 @@ async def save_notes(c: megux, m: Message):
 async def get_all_chat_note(c: megux, m: Message):
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
-    db = get_collection(f"CHAT_FILTERS {m.chat.id}")
+    db = get_collection(f"CHAT_FILTERS")
     chat_id = m.chat.id
     reply_text = "<b>Lista de filtros em {}:</b>\n\n".format(m.chat.title)
-    all_filters = db.find()          
+    all_filters = db.find({"chat_id": m.chat.id})          
     async for filter_s in all_filters:
         keyword = filter_s["name"]
         reply_text += f" • <code>{keyword}</code> \n"
@@ -173,7 +173,7 @@ async def rmnote(c: megux, m: Message):
     args = m.text.html.split(maxsplit=1)
     trigger = args[1].lower()
     chat_id = m.chat.id
-    db = get_collection(f"CHAT_FILTERS {chat_id}")
+    db = get_collection(f"CHAT_FILTERS")
     check_note = await db.find_one({"chat_id": chat_id, "name": trigger})
     if check_note:
         await db.delete_one({"chat_id": chat_id, "name": trigger})
@@ -192,10 +192,10 @@ async def clear_notes(c: megux, m: Message):
     chat_id = m.chat.id
     if not await check_rights(chat_id, m.from_user.id, "can_change_info"):
         return
-    db = get_collection(f"CHAT_FILTERS {chat_id}")
-    check_note = await db.find_one()
+    db = get_collection(f"CHAT_FILTERS")
+    check_note = await db.find_one({"chat_id": m.chat.id})
     if check_note:
-        await db.drop()
+        await db.delete_many({"chat_id": m.chat.id})
         await m.reply_text(
             "Todas os filtros desse chat foram apagadas.", quote=True
         )
@@ -211,14 +211,14 @@ async def clear_notes(c: megux, m: Message):
 )
 async def serve_filter(c: megux, m: Message):
     chat_id = m.chat.id
-    db = get_collection(f"CHAT_FILTERS {m.chat.id}")
+    db = get_collection(f"CHAT_FILTERS")
     if m and m.from_user:
         await add_user_count(chat_id, m.from_user.id)
         await drop_info(m.from_user.id)
     text = m.text
     target_msg = m.reply_to_message or m
 
-    all_filters = db.find()
+    all_filters = db.find({"chat_id": m.chat.id})
     async for filter_s in all_filters:
         keyword = filter_s["name"]
         pattern = r"( |^|[^\w])" + re.escape(keyword) + r"( |$|[^\w])"
