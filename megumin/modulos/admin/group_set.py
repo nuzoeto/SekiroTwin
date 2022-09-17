@@ -55,7 +55,7 @@ async def rules_set(_, m: Message):
         return await m.reply(await get_string(m.chat.id, "RULES_NO_ARGS"))
     else:
          if await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
-             await data.update_one({"chat_id": m.chat.id}, {"$set": {"_rules": x}=, upsert=True)
+             await data.update_one({"chat_id": m.chat.id}, {"$set": {"_rules": x}}, upsert=True)
              await m.reply(await get_string(m.chat.id, "RULES_UPDATED"))
 
 
