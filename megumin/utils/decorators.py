@@ -6,6 +6,7 @@
 # <https://www.github.com/DaviTudoPlugins1234/WhiterKang/blob/master/LICENSE/>.
 
 ## WhiterKang Decorators
+import logging
 
 from typing import List
 
@@ -23,7 +24,7 @@ def input_str(message) -> str:
 
 def disableable_dec(command):
     if command not in DISABLABLE_CMDS:
-        print(
+        logging.info(
             f"Adding {command} to the disableable commands...",
         )
         DISABLABLE_CMDS.append(command)
