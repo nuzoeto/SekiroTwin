@@ -1,7 +1,7 @@
 __all__ = ["get_collection"]
 
 import asyncio
-import logging
+
 
 from motor.core import AgnosticClient, AgnosticCollection, AgnosticDatabase
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -16,9 +16,9 @@ _MGCLIENT: AgnosticClient = AsyncIOMotorClient(DATABASE_URL)
 _RUN = asyncio.get_event_loop().run_until_complete
 
 if "megumin" in _RUN(_MGCLIENT.list_database_names()):
-    logging.info("WhiterKang Database Found :) => Now Logging to it...")
+    print("WhiterKang Database Found :) => Now Logging to it...")
 else:
-    logging.info("WhiterKang Database Not Found :( => Creating New Database...")
+    print("WhiterKang Database Not Found :( => Creating New Database...")
 
 _DATABASE: AgnosticDatabase = _MGCLIENT["megumin"]
 
