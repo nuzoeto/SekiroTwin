@@ -66,25 +66,25 @@ async def warn_users(_, message: Message):
         await sed_sticker(message)
         return
       
-    DB_ACTION = get_collection(f"WARN_ACTION {message.chat.id}")
-    DB_WARNS = get_collection(f"WARNS {message.chat.id}")
-    DB_LIMIT = get_collection(f"WARN_LIMIT {message.chat.id}")
+    DB_ACTION = get_collection(f"WARN_ACTION")
+    DB_WARNS = get_collection(f"WARNS")
+    DB_LIMIT = get_collection(f"WARN_LIMIT")
     
-    if await DB_LIMIT.find_one():
-        LIMIT = await DB_LIMIT.find_one()
+    if await DB_LIMIT.find_one({"chat_id": message.chat.id}):
+        LIMIT = await DB_LIMIT.find_one({"chat_id": message.chat.id})
         warns_limit = LIMIT["limit"]
     else:
         warns_limit = 3
     
-    if await DB_ACTION.find_one():
-        ACTION = await DB_ACTION.find_one()
+    if await DB_ACTION.find_one({"chat_id": message.chat.id}):
+        ACTION = await DB_ACTION.find_one({"chat_id": message.chat.id)
         warn_action = ACTION["action"]
     else:
         warn_action = "ban"
         
-    await DB_WARNS.insert_one({"user_id": user_id, "warn_id": str(uuid.uuid4()), "reason": reason or None})
+    await DB_WARNS.insert_one({"chat_id": message.chat.id, "user_id": user_id, "warn_id": str(uuid.uuid4()), "reason": reason or None})
     
-    user_warns = await DB_WARNS.count_documents({"user_id": user_id})
+    user_warns = await DB_WARNS.count_documents({"chat_id": message.chat.id, "user_id": user_id})
     
     if user_warns >= warns_limit:
         if warn_action == "ban":
@@ -99,7 +99,7 @@ async def warn_users(_, message: Message):
             await message.reply((await get_string(chat_id, "WARNS_KICKED")).format(user_warns, warns_limit, mention))
         else:
             return
-        await DB_WARNS.delete_many({"user_id": user_id})
+        await DB_WARNS.delete_many({"chat_idd": message.chat.id, "user_id": user_id})
     else:
         keyboard = [[InlineKeyboardButton(await get_string(chat_id, "RULES_WARN_BNT"), callback_data=f"rules|{user_id}"), InlineKeyboardButton(await get_string(chat_id, "UNWARN_BNT"), callback_data=f"rm_warn|{user_id}")]]
         await message.reply((await get_string(chat_id, "USER_WARNED")).format(mention, user_warns, warns_limit, reason or None), reply_markup=InlineKeyboardMarkup(keyboard))
@@ -150,10 +150,10 @@ async def unwarn_users(_, message: Message):
         await message.reply(await get_string(chat_id, "NO_BAN_BOT"))
         await sed_sticker(message)
         return
-    DB_WARNS = get_collection(f"WARNS {message.chat.id}")
+    DB_WARNS = get_collection(f"WARNS")
     #delete one warn--user
-    if await DB_WARNS.find_one({"user_id": user_id}):
-        await DB_WARNS.delete_one({"user_id": user_id})
+    if await DB_WARNS.find_one({"chat_id": message.chat.id, "user_id": user_id}):
+        await DB_WARNS.delete_one({"chat_id": message.chat.id, "user_id": user_id})
         await message.reply(await get_string(chat_id, "UNWARNED"))
     else:
         await message.reply(await get_string(chat_id, "USER_NOT_WARNS"))
@@ -170,9 +170,8 @@ async def set_warns_limit(_, message: Message):
         warns_limit = int(message.command[1])
     except ValueError:
         return await message.reply("Esse limite não é valido.")
-    DB = get_collection(f"WARN_LIMIT {message.chat.id}")
-    await DB.drop()
-    await DB.insert_one({"limit": warns_limit})
+    DB = get_collection(f"WARN_LIMIT")
+    await DB.update_one({"chat_id": message.chat.id}, {"$set": {"limit": warns_limit}}, upsert=True)
     await message.reply(f"<i>O limite de advertências foi alterado para {warns_limit}</i>")
 
     
@@ -180,7 +179,7 @@ async def set_warns_limit(_, message: Message):
 async def set_warns_limit(_, message: Message):
     if not await check_rights(message.chat.id, message.from_user.id, "can_change_info"):
         return
-    DB = get_collection(f"WARN_ACTION {message.chat.id}")   
+    DB = get_collection(f"WARN_ACTION")   
     if len(message.text.split()) > 1:
         if not message.command[1] in ("ban", "mute", "kick"):
             return await message.reply_text("Esse argumento não é valido.")
@@ -188,15 +187,14 @@ async def set_warns_limit(_, message: Message):
         warn_action_txt = message.command[1]
         
             
-        await DB.drop()
-        await DB.insert_one({"action": warn_action_txt})
+        await DB.update_one({"chat_id": message.chat.id}, {"$set": {"action": warn_action_txt}}, upsert=True)
        
         await message.reply_text(
         f"A ação de advertências do chat foi alterado para: {warn_action_txt}"
     )
     else:
-        if await DB.find_one():
-            r = await DB.find_one()
+        if await DB.find_one({"chat_id": message.chat.id}):
+            r = await DB.find_one({"chat_id": message.chat.id})
             warn_act = r["action"]
         else:
             warn_act = "ban"
@@ -240,19 +238,19 @@ async def warns_from_users(_, message: Message):
         await sed_sticker(message)
         return
       
-    DB_WARNS = get_collection(f"WARNS {message.chat.id}")
-    DB_LIMIT = get_collection(f"WARN_LIMIT {message.chat.id}")
+    DB_WARNS = get_collection(f"WARNS")
+    DB_LIMIT = get_collection(f"WARN_LIMIT")
     
-    if not await DB_WARNS.find_one({"user_id": user_id}):
+    if not await DB_WARNS.find_one({"chat_id": message.chat.id, "user_id": user_id}):
         return await message.reply((await get_string(chat_id, "ATT_USER_NO_WARNS")).format(mention))
     
-    if await DB_LIMIT.find_one():
-        res = await DB_LIMIT.find_one()
+    if await DB_LIMIT.find_one({"chat_id": message.chat.id}):
+        res = await DB_LIMIT.find_one({"chat_id": message.chat.id})
         warns_limit = res["limit"]
     else:
         warns_limit = 3
         
-    user_warns = await DB_WARNS.count_documents({"user_id": user_id})
+    user_warns = await DB_WARNS.count_documents({"chat_id": message.chat.id, "user_id": user_id})
     
     await message.reply((await get_string(chat_id, "ATT_USER_WARNS")).format(mention, user_warns, warns_limit))
 
