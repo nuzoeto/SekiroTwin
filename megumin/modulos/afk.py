@@ -51,7 +51,7 @@ async def rem_afk(c: megux, m: Message):
     if m.sender_chat:
         return
     user = m.from_user
-    AFK_STATUS = get_collection(f"_AFK")
+    AFK_STATUS = get_collection("_AFK")
     AFK_COUNT = get_collection("AFK_COUNT")
     
     try:
