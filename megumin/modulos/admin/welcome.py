@@ -65,7 +65,7 @@ def button_parser(markdown_note):
 
 @megux.on_message(filters.command("setwelcome", Config.TRIGGER))
 async def set_welcome_message(c: megux, m: Message):
-    db = get_collection(f"WELCOME {m.chat.id}")
+    db = get_collection(f"WELCOME_CHAT")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
     if len(m.text.split()) > 1:
@@ -96,8 +96,7 @@ async def set_welcome_message(c: megux, m: Message):
                 )
             )
         else:
-            await db.drop()
-            await db.insert_one({"msg": message})
+            await db.update_one({"chat_id": m.chat.id}, {"$set": {"msg": message}}, upsert=True)
             await sent.edit_text(
                 "Boas Vindas Alterada em {chat_title}".format(chat_title=m.chat.title)
             )
@@ -109,21 +108,19 @@ async def set_welcome_message(c: megux, m: Message):
 
 @megux.on_message(filters.command("welcome on", Config.TRIGGER) & filters.group)
 async def enable_welcome_message(c: megux, m: Message):
-    db = get_collection(f"WELCOME_STATUS {m.chat.id}")
+    db = get_collection(f"WELCOME_STATUS")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
-    await db.drop()
-    await db.insert_one({"status": True})
+    await db.update_one({"chat_id": m.chat.id}, {"$set": {"status": True}}, upsert=True)
     await m.reply_text("Boas Vindas agora está Ativadas.")
     
     
 @megux.on_message(filters.command("welcome off", Config.TRIGGER) & filters.group)
 async def enable_welcome_message(c: megux, m: Message):
-    db = get_collection(f"WELCOME_STATUS {m.chat.id}")
+    db = get_collection(f"WELCOME_STATUS")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
-    await db.drop()
-    await db.insert_one({"status": False})
+    await db.update_one({"chat_id": m.chat.id}, {"$set": {"status": False}}, upsert=True)
     await m.reply_text("Boas Vindas agora está Desativadas.")
     
     
@@ -136,9 +133,9 @@ async def enable_welcome_message(c: megux, m: Message):
 
 @megux.on_message(filters.new_chat_members & filters.group)
 async def greet_new_members(c: megux, m: Message):
-    db = get_collection(f"WELCOME {m.chat.id}")
-    db_ = get_collection(f"WELCOME_STATUS {m.chat.id}")
-    captcha = get_collection(f"CAPTCHA {m.chat.id}")
+    db = get_collection(f"WELCOME_CHAT")
+    db_ = get_collection(f"WELCOME_STATUS")
+    captcha = get_collection(f"CAPTCHA")
     members = m.new_chat_members
     chat_title = m.chat.title
     first_name = ", ".join(map(lambda a: a.first_name, members))
@@ -154,9 +151,9 @@ async def greet_new_members(c: megux, m: Message):
     dbu = get_collection(f"TOTAL_GROUPS {user_id}")
     await dbu.drop()
     if not m.from_user.is_bot:
-        welcome_enabled = await db_.find_one({"status": True})
-        welcome_pack = await db.find_one()
-        captcha_pack = await captcha.find_one()
+        welcome_enabled = await db_.find_one({"chat_id": m.chat.id, "status": True})
+        welcome_pack = await db.find_one({"chat_id": m.chat.id})
+        captcha_pack = await captcha.find_one({"chat_id": m.chat.id})
         if welcome_enabled:
             if not welcome_pack:
                 welcome = "Hey {first_name}, how are you?"
@@ -182,7 +179,7 @@ async def greet_new_members(c: megux, m: Message):
                 count=count,
             )
             welcome, welcome_buttons = button_parser(welcome)
-            if await captcha.find_one({"status": True}):
+            if await captcha.find_one({"chat_id": m.chat.id, "status": True}):
                 if await is_admin(m.chat.id, user_id):
                     #send message for admin 
                     await m.reply_text(
@@ -215,8 +212,8 @@ async def greet_new_members(c: megux, m: Message):
     
 @megux.on_message(filters.command("getwelcome", Config.TRIGGER))
 async def get_welcome(c: megux, m: Message):
-    db = get_collection(f"WELCOME {m.chat.id}")
-    resp = await db.find_one()
+    db = get_collection(f"WELCOME_CHAT")
+    resp = await db.find_one({"chat_id": m.chat.id})
     if resp:
         welcome = resp["msg"]
     else:
@@ -227,10 +224,11 @@ async def get_welcome(c: megux, m: Message):
     
 @megux.on_message(filters.command("resetwelcome", Config.TRIGGER))
 async def rm_welcome(c: megux, m: Message):
-    db = get_collection(f"WELCOME {m.chat.id}")
+    db = get_collection(f"WELCOME_CHAT")
     r = await db.find_one()
     if r:
-        await db.drop()
+        message = r["msg"]
+        await db.delete_one({"chat_id": m.chat.id, "msg": message})
         await m.reply("A mensagem de boas vindas foi resetada!") 
     else:
         return await m.reply("Nenhuma mensagem de boas vindas foi definida.")
