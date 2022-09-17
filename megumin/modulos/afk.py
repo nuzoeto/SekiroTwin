@@ -16,27 +16,27 @@ from megumin.utils.decorators import input_str
 @megux.on_message(filters.regex(r"^(?i)brb(\s(?P<args>.+))?"))
 async def afk_cmd(_, m: Message):
     x = input_str(m)
-    REASON = get_collection(f"REASON {m.from_user.id}")
-    AFK_STATUS = get_collection(f"_AFK {m.from_user.id}")
+    REASON = get_collection("REASON_AFK")
+    AFK_STATUS = get_collection("_AFK")
     AFK_COUNT = get_collection("AFK_COUNT")
     if input_str(m):
         await AFK_COUNT.delete_one({"mention_": m.from_user.mention()})
-        await AFK_STATUS.drop()
-        await REASON.drop() 
+        await AFK_STATUS.delete_one({"user_id": user_id, "_afk": "on"})
+        await REASON.delete_one({"user_id": m.from_user.id}) 
         await AFK_COUNT.insert_one({"mention_": m.from_user.mention()})
-        await AFK_STATUS.insert_one({"_afk": "on"})
-        await REASON.insert_one({"_reason": x})
-        res = await REASON.find_one()
+        await AFK_STATUS.insert_one({"user_id": m.from.user.id, "_afk": "on"})
+        await REASON.insert_one({"user_id": m.from_user.id, "_reason": x})
+        res = await REASON.find_one({"user_id": m.from_user.id})
         r = res["_reason"]     
         await m.reply((await get_string(m.chat.id, "AFK_IS_NOW_REASON")).format(m.from_user.first_name, r))
         await m.stop_propagation()
     else:
         try:
-            await AFK_STATUS.drop()
-            await REASON.drop() 
+            await AFK_STATUS.delete_one({"user_id": m.from_user.id, "status": "on"})
+            await REASON.delete_one({"user_id": m.from_user.id}) 
             await AFK_COUNT.delete_one({"mention_": m.from_user.mention()})
             await AFK_COUNT.insert_one({"mention_": m.from_user.mention()})
-            await AFK_STATUS.insert_one({"_afk": "on"})
+            await AFK_STATUS.insert_one({"user_id": m.from_user.id, "_afk": "on"})
             await m.reply((await get_string(m.chat.id, "AFK_IS_NOW")).format(m.from_user.first_name))
         except AttributeError as err: 
             await megux.send_log(err)
@@ -51,7 +51,7 @@ async def rem_afk(c: megux, m: Message):
     if m.sender_chat:
         return
     user = m.from_user
-    AFK_STATUS = get_collection(f"_AFK {user.id}")
+    AFK_STATUS = get_collection(f"_AFK")
     AFK_COUNT = get_collection("AFK_COUNT")
     
     try:
@@ -61,8 +61,8 @@ async def rem_afk(c: megux, m: Message):
     except AttributeError:
         return
 
-    if user and await AFK_STATUS.find_one({"_afk": "on"}):
-        await AFK_STATUS.drop()
+    if user and await AFK_STATUS.find_one({"user_id": user.id, "_afk": "on"}):
+        await AFK_STATUS.delete_one({"user_id": user.id, "_afk": "on"})
         await AFK_COUNT.delete_one({"mention_": m.from_user.mention()})
         try:
             return await m.reply_text(
