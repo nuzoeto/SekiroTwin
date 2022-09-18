@@ -7,3 +7,7 @@ async def is_disabled(gid: int, query: str) -> bool:
     return bool(off)
 
 
+async def is_disabled(gid: int, query: str) -> bool:
+    DISABLED = get_collection(f"DISABLED_USER")
+    off = await DISABLED.find_one({"user_id": gid, "_cmd": query})
+    return bool(off)
