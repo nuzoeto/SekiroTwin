@@ -5,7 +5,7 @@ from pyrogram.enums import ChatMemberStatus, ChatMembersFilter
 
 
 from megumin import megux 
-from megumin.utils import get_collection, is_admin, check_bot_rights, check_rights, tld, is_dev, is_self, is_disabled_user
+from megumin.utils import get_collection, is_admin, check_bot_rights, check_rights, tld, is_dev, is_self, is_disabled
 from megumin.utils.decorators import input_str
 
 
@@ -57,8 +57,7 @@ async def report_admins(c: megux, m: Message):
         if admin.user.is_bot or admin.user.is_deleted:
             continue
         #avoid admins disabled pm
-        if await is_disabled_user(admin.user.id, "report"):
-            return
+        
         try:    
             await megux.send_message(admin.user.id, f"{user} está chamando os administradores em {chat_title}", reply_markup=InlineKeyboardMarkup(keyboard))
             await megux.forward_messages(admin.user.id, chat_id, msg)
