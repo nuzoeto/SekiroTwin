@@ -30,9 +30,4 @@ async def main():
     
 
 if __name__ == "__main__" :
-    try:
-        asyncio.get_event_loop().run_until_complete(main())
-    except Exception as err:
-        logging.error(err.with_traceback(None))
-    finally:
-        asyncio.get_event_loop().stop()
+      asyncio.get_event_loop().run_until_complete(main())
