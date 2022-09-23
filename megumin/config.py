@@ -58,6 +58,7 @@ HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY")
 HEROKU_API_NAME = os.environ.get("HEROKU_API_NAME")
 
 heroku_app = heroku3.from_key(HEROKU_API_KEY).apps()[HEROKU_API_NAME] \
+    if HEROKU_API_KEY and HEROKU_APP_NAME else None
 
 
 trg = Config.TRIGGER
