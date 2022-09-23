@@ -53,12 +53,11 @@ class Config:
     DURACION_YT = (
       3609
 )
-    
-HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY")
-HEROKU_API_NAME = os.environ.get("HEROKU_API_NAME")
+    HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY")
+    HEROKU_API_NAME = os.environ.get("HEROKU_API_NAME")
 
-heroku_app = heroku3.from_key(HEROKU_API_KEY).apps()[HEROKU_API_NAME] \
-    if HEROKU_API_KEY and HEROKU_API_NAME else None
+    heroku_app = heroku3.from_key(HEROKU_API_KEY).apps()[HEROKU_API_NAME] \
+        if HEROKU_API_KEY and HEROKU_API_NAME else None
 
 
 trg = Config.TRIGGER
