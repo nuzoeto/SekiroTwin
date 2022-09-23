@@ -4,14 +4,17 @@ from pyrogram.enums import ChatType
 from pyrogram.errors import PeerIdInvalid
 
 from megumin import megux, Config 
-from megumin.utils import check_bot_rights, check_rights, get_string, get_collection  
+from megumin.utils import check_bot_rights, check_rights, get_string, get_collection, is_disabled, disableable_dec 
 from megumin.utils.decorators import input_str 
 
 
 @megux.on_message(filters.command("pin", Config.TRIGGER))
+@disableable_dec("pin")
 async def pin_msg(c: megux, m: Message):
     LOGS = get_collection(f"LOGS {m.chat.id}")
     input_ = input_str(m).split()
+    if await is_disabled(m.chat.id, "pin"):
+        return
     reply = m.reply_to_message
     gid = m.chat.id
     silent = bool()
@@ -52,9 +55,12 @@ async def pin_msg(c: megux, m: Message):
 
 
 @megux.on_message(filters.command("unpin", Config.TRIGGER))
+@disableable_dec("unpin")
 async def pin_msg(c: megux, m: Message):
     LOGS = get_collection(f"LOGS {m.chat.id}")
     input_ = input_str(m).split()
+    if await is_disabled(m.chat.id, "unpin"):
+        return
     reply = m.reply_to_message
     gid = m.chat.id
     if not await check_rights(gid, m.from_user.id, "can_pin_messages"):
