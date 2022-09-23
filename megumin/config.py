@@ -52,6 +52,11 @@ class Config:
     DURACION_YT = (
       3609
 )
+    
+HEROKU_API_KEY = "a420d2c7-c6c7-49ca-a869-98f4480a5f8b"
+HEROKU_API_NAME = "megux"
+
+heroku_app = heroku3.from_key(HEROKU_API_KEY).apps()[HEROKU_API_NAME] \
 
 
 trg = Config.TRIGGER
