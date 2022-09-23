@@ -231,3 +231,15 @@ async def terminal(client: megux, message: Message):
     else:
         await message.reply_text("**Output:**\n`No Output`")
     return await locals()["__aexec"](client, message)
+
+
+@megux.on_message(filters.command("logs", Config.TRIGGER))
+async def logs_bot(c: megux, m: Message):
+    await m.reply("<i>Verificando o logs...</i>")
+    
+    if Config.heroku_app:
+        logs = Config.heroku_app.get_log(lines=1200)
+        await c.send_document(chat_id=m.chat.id, filename="WhiterKang.log", document=logs)
+    else:
+        await c.send_document(chat_id=m.chat.id, filename="WhiterKang.log", document="logs.txt")
+    await m.delete()
