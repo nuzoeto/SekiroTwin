@@ -1,6 +1,6 @@
 from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
-from pyrogram.errors import PeerIdInvalid, Forbidden, UsernameInvalid, PeerIdInvalid, UserIdInvalid
+from pyrogram.errors import PeerIdInvalid, Forbidden, UsernameInvalid, PeerIdInvalid, UserIdInvalid, UserIsBlocked
 from pyrogram.enums import ChatMemberStatus, ChatMembersFilter
 
 
@@ -63,6 +63,11 @@ async def report_admins(c: megux, m: Message):
             await megux.send_message(admin.user.id, f"{user} está chamando os administradores em {chat_title}", reply_markup=InlineKeyboardMarkup(keyboard))
             await megux.forward_messages(admin.user.id, chat_id, msg)
         except PeerIdInvalid:
+            continue
+        except UserIsBlocked:
+            continue
+        except Exception as e:
+            await megux.send_err(e)
             continue
     await m.reply(f"{reported_user} Reportado para os administradores.")
 
