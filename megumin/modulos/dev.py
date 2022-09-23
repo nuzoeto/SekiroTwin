@@ -239,7 +239,7 @@ async def logs_bot(c: megux, m: Message):
     
     if Config.heroku_app:
         logs = Config.heroku_app.get_log(lines=1200)
-        await c.send_document(chat_id=m.chat.id, filename="WhiterKang.log", document=logs)
+        await c.send_document(chat_id=m.chat.id, document=logs)
     else:
-        await c.send_document(chat_id=m.chat.id, filename="WhiterKang.log", document="logs.txt")
+        await c.send_document(chat_id=m.chat.id, document="logs.txt")
     await m.delete()
