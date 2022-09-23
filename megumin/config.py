@@ -4,6 +4,7 @@
 __all__ = ["Config"]
 
 import os
+import heroku3
 from dotenv import load_dotenv
 
 if os.path.isfile("config.env"):
