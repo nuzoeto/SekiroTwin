@@ -58,10 +58,7 @@ async def report_admins(c: megux, m: Message):
     async for admin in admins_list:
         #avoid bots in chat
         if admin.user.is_bot or admin.user.is_deleted:
-            continue
-        #avoid admins disabled pm
-        if await is_disabled_user(admin.user.id, chat_id, "report"):
-            continue     
+            continue  
         try:    
             await megux.send_message(admin.user.id, f"{user} está chamando os administradores em {chat_title}", reply_markup=InlineKeyboardMarkup(keyboard))
             await megux.forward_messages(admin.user.id, chat_id, msg)
