@@ -5,7 +5,7 @@ from pyrogram.enums import ChatMemberStatus, ChatMembersFilter
 
 
 from megumin import megux 
-from megumin.utils import get_collection, is_admin, check_bot_rights, check_rights, tld, is_dev, is_self, is_disabled, is_disabled_user
+from megumin.utils import get_collection, is_admin, check_bot_rights, check_rights, tld, is_dev, is_self, is_disabled, disableable_dec
 from megumin.utils.decorators import input_str
 
 
@@ -15,7 +15,10 @@ admin_status = [ChatMemberStatus.ADMINISTRATOR or ChatMemberStatus.OWNER]
     (filters.command("report", prefixes=["/", "!"]) | filters.regex("^@admin"))
     & filters.group
 )
+@disableable_dec("report")
 async def report_admins(c: megux, m: Message):
+    if await is_disabled(m.chat.id, "report"):
+        return
     if not m.reply_to_message:
         return await m.reply("Responda a mensagem que deseja reportar.")
     chat_id = m.chat.id
