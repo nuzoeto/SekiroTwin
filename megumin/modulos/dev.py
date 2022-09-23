@@ -16,7 +16,7 @@ from pyrogram.types import Message
 from datetime import datetime 
 
 from megumin import megux, Config
-from megumin.utils import is_dev, get_collection
+from megumin.utils import is_dev, get_collection, http
 from megumin.utils.decorators import input_str
 
 
@@ -237,6 +237,6 @@ async def terminal(client: megux, message: Message):
 async def logs_bot(c: megux, m: Message):
     await m.reply("<i>Verificando o logs...</i>")
     
-    logs = Config.heroku_app.get_log(lines=1200)
+    logs = await http.get(Config.heroku_app.get_log(lines=1200))["url"]
     await c.send_document(chat_id=m.chat.id, document=logs)
     await m.delete()
