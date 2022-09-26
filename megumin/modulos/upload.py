@@ -170,12 +170,6 @@ async def vid_upload(message: Message, path, del_path: bool = False, extra: str 
     await megux.send_chat_action(message.chat.id, ChatAction.UPLOAD_VIDEO)
     width = 0
     height = 0
-    if thumb:
-        t_m = extractMetadata(createParser(thumb))
-        if t_m and t_m.has("width"):
-            width = t_m.get("width")
-        if t_m and t_m.has("height"):
-            height = t_m.get("height")
     try:
         msg = await megux.send_video(
             chat_id=message.chat.id,
