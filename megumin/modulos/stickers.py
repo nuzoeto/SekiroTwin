@@ -12,7 +12,7 @@ from PIL import Image
 
 
 from pyrogram import filters, emoji, enums
-from pyrogram.errors import PeerIdInvalid, StickersetInvalid
+from pyrogram.errors import PeerIdInvalid, StickersetInvalid, BadRequest
 from pyrogram.raw.functions.messages import GetStickerSet, SendMedia
 from pyrogram.raw.functions.stickers import AddStickerToSet, CreateStickerSet
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
@@ -300,13 +300,15 @@ async def kang_sticker(c: megux, m: Message):
                         [
                             [
                                 InlineKeyboardButton(
-                                    "/start", url=f"https://t.me/{bot_username}?start"
+                                    "/start", url=f"https://t.me/{c.me.username}?start"
                                 )
                             ]
                         ]
                     ),
                 )
 
+     except BadRequest:
+         return await prog_msg.edit_text("O Seu Pacote de Stickers está cheio se o seu pacote não estiver na v1 Digite /kang 1, se ele não estiver na v2 Digite /kang 2 e assim sucessivamente.")       
     except Exception as all_e:
         await prog_msg.edit_text(f"{all_e.__class__.__name__} : {all_e}")
     else:
