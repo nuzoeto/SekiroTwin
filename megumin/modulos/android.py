@@ -450,7 +450,7 @@ async def ofox_cmd(c: megux, message: Message):
         file_id = build["_id"]
 
     data = await http.get(API_HOST + f"releases/get?_id={file_id}")
-    release = json.loads(data.text)
+    release = rapidjson.loads(data.text)
     if data.status_code == 404:
         await message.reply(await tld(m.chat.id, "ANDROID_NOT_FOUND"))
         return
