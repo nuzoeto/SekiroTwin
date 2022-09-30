@@ -476,7 +476,8 @@ async def ofox_cmd(c: megux, message: Message):
     except BaseException:
         pass
 
-    btn = strings["dl_btn"]
+    btn = await tld(message.chat.id, "ANDROID_BNT_DOWNLOAD")
+    
     mirror = release["mirrors"]["US"]
     url = mirror if mirror is not None else release["url"]
     button = [[InlineKeyboardButton(text=btn, url=url)]]
