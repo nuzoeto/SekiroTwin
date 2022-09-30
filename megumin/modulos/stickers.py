@@ -307,8 +307,8 @@ async def kang_sticker(c: megux, m: Message):
                     ),
                 )
 
-     except BadRequest:
-         return await prog_msg.edit_text("O Seu Pacote de Stickers está cheio se o seu pacote não estiver na v1 Digite /kang 1, se ele não estiver na v2 Digite /kang 2 e assim sucessivamente.")       
+    except BadRequest:
+        return await prog_msg.edit_text("O Seu Pacote de Stickers está cheio se o seu pacote não estiver na v1 Digite /kang 1, se ele não estiver na v2 Digite /kang 2 e assim sucessivamente.")       
     except Exception as all_e:
         await prog_msg.edit_text(f"{all_e.__class__.__name__} : {all_e}")
     else:
