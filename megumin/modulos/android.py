@@ -425,7 +425,7 @@ async def ofox_cmd(c: megux, message: Message):
     if data.status_code == 404:
         await message.reply(await tld(message.chat.id, "ANDROID_NOT_FOUND"))
         return
-    device = json.loads(data.text)
+    device = rapidjson.loads(data.text)
 
     data = await http.get(
         API_HOST
