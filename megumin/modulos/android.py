@@ -375,3 +375,108 @@ async def realmeui(c: megux, message: Message):
     text += f"\n**MD5:** `{md5}`"
 
     await m.edit(text, reply_markup=InlineKeyboardMarkup(keyboard))
+
+    
+@megux.on_message(filters.command(["ofox", "of"], Config.TRIGGER))
+async def ofox_cmd(c: megux, message: Message):
+    API_HOST = "https://api.orangefox.download/v3/"
+    try:
+        args = message.text.split()
+        codename = args[1].lower()
+    except BaseException:
+        codename = ""
+    try:
+        build_type = args[2].lower()
+    except BaseException:
+        build_type = ""
+
+    if build_type == "":
+        build_type = "stable"
+        
+    if codename in {"devices", ""}:
+        text = "<b>OrangeFox Recovery <i>{build_type}</i> está atualmente disponível para:</b>".format(build_type=build_type)
+        data = await http.get(
+            API_HOST + f"devices/?release_type={build_type}&sort=device_name_asc"
+        )
+        devices = json.loads(data.text)
+        try:
+            for device in devices["data"]:
+                text += (
+                    f"\n - {device['full_name']} (<code>{device['codename']}</code>)"
+                )
+        except BaseException:
+            await message.reply(
+                "'<b>{build_type}</b>' não é um tipo de compilação disponível, os tipos são apenas '<b>beta</b>' ou '<b>stable</b>'.".format(build_type=build_type)
+            )
+            return
+        
+        if build_type == "stable":
+            text += "\n\n" + strings["of_stable_ex"]
+        elif build_type == "beta":
+            text += "\n\n" + strings["of_beta_ex"]
+        await message.reply(text)
+        return
+    try:
+        data = await http.get(API_HOST + f"devices/get?codename={codename}")
+    except TimeoutException:
+        await message.reply("Desculpe, não consegui conectar à API do OranegFox!")
+        return
+    
+    if data.status_code == 404:
+        await message.reply(await tld(message.chat.id, "ANDROID_NOT_FOUND"))
+        return
+    device = json.loads(data.text)
+
+    data = await http.get(
+        API_HOST
+        + f"releases/?codename={codename}&type={build_type}&sort=date_desc&limit=1"
+    )
+    if data.status_code == 404:
+        btn = "Página do dispositivo"
+        url = f"https://orangefox.download/device/{device['codename']}"
+        button = [[InlineKeyboardButton(text=btn, url=url)]]
+        await message.reply(
+            "⚠️ "
+            + "Não há nenhuma build '<b>{build_type}</b>' para <b>{device}</b>.".format(
+                build_type=build_type, device=device["full_name"]
+            ),
+            reply_markup=InlineKeyboardMarkup(button),
+            disable_web_page_preview=True,
+        )
+        return
+
+    find_id = json.loads(data.text)
+    for build in find_id["data"]:
+        file_id = build["_id"]
+
+    data = await http.get(API_HOST + f"releases/get?_id={file_id}")
+    release = json.loads(data.text)
+    if data.status_code == 404:
+        await message.reply(await tld(m.chat.id, "ANDROID_NOT_FOUND"))
+        return
+
+    text = "<u><b>OrangeFox Recovery <i>{build_type}</i> release</b></u>\n".format(build_type=build_type)
+    text += ("<b>Dispositivo:</b> {fullname} (<code>{codename}</code>)\n").format(
+        fullname=device["full_name"], codename=device["codename"]
+    )
+    text += ("<b>Versão:</b> {version}\n").format(version=release["version"])
+    text += ("<b>Data de lançamento:</b> {date}\n").format(
+        date=time.strftime("%d/%m/%Y", time.localtime(release["date"]))
+    )
+
+    text += ("<b>Mantedor:</b> {name}\n").format(name=device["maintainer"]["name"])
+    changelog = release["changelog"]
+    try:
+        text += "<u><b>Mudanças:</b></u>\n"
+        for entry_num in range(len(changelog)):
+            if entry_num == 10:
+                break
+            text += f"    - {changelog[entry_num]}\n"
+    except BaseException:
+        pass
+
+    btn = strings["dl_btn"]
+    mirror = release["mirrors"]["US"]
+    url = mirror if mirror is not None else release["url"]
+    button = [[InlineKeyboardButton(text=btn, url=url)]]
+    await message.reply(text, reply_markup=InlineKeyboardMarkup(button), disable_web_page_preview=True)
