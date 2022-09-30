@@ -104,11 +104,6 @@ async def kang_sticker(c: megux, m: Message):
     if await is_disabled(m.chat.id, "kang"):
         return
     prog_msg = await m.reply_text(await get_string(m.chat.id, "KANGING"))
-    try:
-        user = await c.get_me()
-    except FloodWait as e:
-        await asyncio.sleep(e.value)
-    bot_username = user.username
     sticker_emoji = "🤔"
     packnum = 0
     packname_found = False
@@ -132,12 +127,11 @@ async def kang_sticker(c: megux, m: Message):
             if "image" in reply.document.mime_type:
                 # mime_type: image/webp
                 resize = True
-            elif enums.MessageMediaType.VIDEO == reply.document.mime_type:
+            elif (
+                MessageMediaType.VIDEO == reply.document.mime_type
+                or MessageMediaType.ANIMATION == reply.document.mime_type
+            ):
                 # mime_type: application/video
-                videos = True
-                convert = True
-            elif enums.MessageMediaType.ANIMATION == reply.document.mime_type:
-                # mime_type: video/mp4
                 videos = True
                 convert = True
             elif "tgsticker" in reply.document.mime_type:
@@ -154,43 +148,44 @@ async def kang_sticker(c: megux, m: Message):
             videos = reply.sticker.is_video
             if videos:
                 convert = False
-            else:
-                if not reply.sticker.file_name.endswith(".tgs"):
-                    resize = True
+            elif not reply.sticker.file_name.endswith(".tgs"):
+                resize = True
         else:
             return await prog_msg.edit_text(
                 await get_string(m.chat.id, "NO_STICKER_SUPORTED")
             )
 
         pack_prefix = "anim" if animated else "vid" if videos else "a"
-        packname = f"{pack_prefix}_{m.from_user.id}_by_{bot_username}"
+        packname = f"{pack_prefix}_{m.from_user.id}_by_{c.me.username}"
 
+        if len(m.command) > 1 and m.command[1].isdigit() and int(m.command[1]) > 0:
+            # provide pack number to kang in desired pack
+            packnum = m.command.pop(1)
+            packname = f"{pack_prefix}{packnum}_{m.from_user.id}_by_{c.me.username}"
         if len(m.command) > 1:
-            if m.command[1].isdigit() and int(m.command[1]) > 0:
-                # provide pack number to kang in desired pack
-                packnum = m.command.pop(1)
-                packname = f"{pack_prefix}{packnum}_{m.from_user.id}_by_{bot_username}"
-            if len(m.command) > 1:
-                # matches all valid emojis in input
-                sticker_emoji = (
-                    "".join(set(EMOJI_PATTERN.findall("".join(m.command[1:]))))
-                    or sticker_emoji
-                )
+            # matches all valid emojis in input
+            sticker_emoji = (
+                "".join(set(EMOJI_PATTERN.findall("".join(m.command[1:]))))
+                or sticker_emoji
+            )
         filename = await c.download_media(m.reply_to_message)
         if not filename:
             # Failed to download
             await prog_msg.delete()
             return
     elif m.entities and len(m.entities) > 1:
-        packname = f"c{m.from_user.id}_by_{bot_username}"
         pack_prefix = "a"
-        # searching if image_url is given
-        img_url = None
         filename = "sticker.png"
-        for y in m.entities:
-            if y.type == "url":
-                img_url = m.text[y.offset : (y.offset + y.length)]
-                break
+        packname = f"c{m.from_user.id}_by_{c.me.username}"
+        img_url = next(
+            (
+                m.text[y.offset : (y.offset + y.length)]
+                for y in m.entities
+                if y.type == "url"
+            ),
+            None,
+        )
+
         if not img_url:
             await prog_msg.delete()
             return
@@ -205,7 +200,7 @@ async def kang_sticker(c: megux, m: Message):
             # m.command[1] is image_url
             if m.command[2].isdigit() and int(m.command[2]) > 0:
                 packnum = m.command.pop(2)
-                packname = f"a{packnum}_{m.from_user.id}_by_{bot_username}"
+                packname = f"a{packnum}_{m.from_user.id}_by_{c.me.username}"
             if len(m.command) > 2:
                 sticker_emoji = (
                     "".join(set(EMOJI_PATTERN.findall("".join(m.command[2:]))))
@@ -233,7 +228,7 @@ async def kang_sticker(c: megux, m: Message):
                 if stickerset.set.count >= max_stickers:
                     packnum += 1
                     packname = (
-                        f"{pack_prefix}_{packnum}_{m.from_user.id}_by_{bot_username}"
+                        f"{pack_prefix}_{packnum}_{m.from_user.id}_by_{c.me.username}"
                     )
                 else:
                     packname_found = True
@@ -326,6 +321,8 @@ async def kang_sticker(c: megux, m: Message):
             pass
 
 
+
+
 def resize_image(filename: str) -> str:
     im = Image.open(filename)
     maxsize = 512
@@ -363,6 +360,7 @@ async def convert_video(filename: str) -> str:
         "-s",
         "512x512",
         "-y",
+        "-an",
         webm_video,
     ]
 
@@ -373,3 +371,4 @@ async def convert_video(filename: str) -> str:
     if webm_video != filename:
         os.remove(filename)
     return webm_video
+
