@@ -64,6 +64,6 @@ youtube-search-python
 wget
 wikipedia
 gpytranslate==1.4.0
-yt-dlp==2022.8.8
+yt-dlp==2022.9.1
 psutil==5.9.0
 zalgo_text
