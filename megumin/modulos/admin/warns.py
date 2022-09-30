@@ -17,14 +17,19 @@ from megumin.utils import (
     get_collection,
     get_string,
     unwarn_bnt,
+    is_disabled,
+    disableable_dec,
 )
 
 
 @megux.on_message(filters.command("warn", Config.TRIGGER))
+@disableable_dec("warn")
 async def warn_users(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
         await message.reply(await get_string(chat_id, "NO_BAN_USER"))
+        return
+    if await is_disabled(message.chat.id, "warn"):
         return
     cmd = len(message.text)
     replied = message.reply_to_message
@@ -106,10 +111,13 @@ async def warn_users(_, message: Message):
         
         
 @megux.on_message(filters.command("unwarn", Config.TRIGGER))
+@disableable_dec("unwarn")
 async def unwarn_users(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
         await message.reply(await get_string(chat_id, "NO_BAN_USER"))
+        return
+    if await is_disabled(message.chat.id, "unwarn"):
         return
     cmd = len(message.text)
     replied = message.reply_to_message
@@ -202,10 +210,13 @@ async def set_warns_limit(_, message: Message):
         
 
 @megux.on_message(filters.command("warns", Config.TRIGGER))
+@disableable_dec("warns")
 async def warns_from_users(_, message: Message):
     chat_id = message.chat.id
     if not await check_rights(chat_id, message.from_user.id, "can_restrict_members"):
         await message.reply(await get_string(chat_id, "NO_BAN_USER"))
+        return
+    if await is_disabled(message.chat.id, "warns"):
         return
     cmd = len(message.text)
     replied = message.reply_to_message
