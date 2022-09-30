@@ -398,7 +398,7 @@ async def ofox_cmd(c: megux, message: Message):
         data = await http.get(
             API_HOST + f"devices/?release_type={build_type}&sort=device_name_asc"
         )
-        devices = json.loads(data.text)
+        devices = rapidjson.loads(data.text)
         try:
             for device in devices["data"]:
                 text += (
@@ -445,7 +445,7 @@ async def ofox_cmd(c: megux, message: Message):
         )
         return
 
-    find_id = json.loads(data.text)
+    find_id = rapidjson.loads(data.text)
     for build in find_id["data"]:
         file_id = build["_id"]
 
