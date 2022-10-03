@@ -26,4 +26,6 @@ async def del_user_count(chat_id: int, user_id: int):
 
 async def drop_info(user_id: int):
     gps = get_collection(f"TOTAL_GROUPS {user_id}")
+    dbs = get_collection(f"WARMS {user_id}")
     await gps.drop()
+    await dbs.drop()
