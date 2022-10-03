@@ -273,7 +273,8 @@ USER_WARNED: "{} <b>foi advertido!</b>\nEle(a) têm {}/{} Advertências.\n<b>Mot
 UNWARNED: "A última advertencia foi removida!"
 USER_NOT_WARNS: "Este usuário não possui nenhuma advertencia!"
 ATT_USER_NO_WARNS: "{} não possui advertências."
-ATT_USER_WARNS: "Atualmente, {} têm {}/{} Advertências!"
+ATT_USER_WARNS: "Atualmente, {} têm {}/{} Advertências, Pelos seguintes motivos:"
+NO_WARNS_REASON: "Nenhum motivo foi dado."
 NO_RULES_WARN_YOU: "Isso não é para você! Caso queira ver as regras digite /rules"
 UNWARNED_CALLBACKQUERY: "A advertência de {} foi removida por {}."
 
