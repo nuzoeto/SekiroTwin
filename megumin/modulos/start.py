@@ -242,8 +242,8 @@ async def start_(c: megux, message: Message):
                 ],
                 [
                     InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_16"), callback_data="welcome_help_button"),
-                    InlineKeyboardButton(await get_string(message.chat.id, "BNT_17"), callback_data="warnings_help_button"),
-                    InlineKeyboardButton(await get_string(message.chat.id, "BNT_18"), callback_data="filters_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_17"), callback_data="warnings_help_button"),
+                    InlineKeyboardButton(await get_string(cb.message.chat.id, "BNT_18"), callback_data="filters_help_button"),
                 ],
                 [
                     InlineKeyboardButton(await get_string(cb.message.chat.id, "BACK_BNT"), callback_data="start_back"),
