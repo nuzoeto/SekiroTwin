@@ -237,6 +237,8 @@ async def terminal(client: megux, message: Message):
 async def logs_bot(c: megux, m: Message):
     await m.reply("<i>Verificando o logs...</i>")
     
-    logs = await Config.heroku_app.get_log(lines=1200)
-    await c.send_document(chat_id=m.chat.id, document=logs)
+    logs = Config.heroku_app.get_log(lines=1200)
+    with io.BytesIO(str.encode(logs)) as out_file:
+        out_file.name = "WhiterKang.log"
+        await c.send_document(chat_id=m.chat.id, document=logs)
     await m.delete()
