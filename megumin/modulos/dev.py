@@ -241,4 +241,4 @@ async def logs_bot(c: megux, m: Message):
     with io.BytesIO(str.encode(logs)) as log_file:
         log_file.name = "WhiterKang.log"
         await m.reply_document(document=log_file)
-    await m.delete()
+        await m.delete()
