@@ -235,10 +235,10 @@ async def terminal(client: megux, message: Message):
 
 @megux.on_message(filters.command("logs", Config.TRIGGER))
 async def logs_bot(c: megux, m: Message):
-    await m.reply("<i>Verificando o logs...</i>")
+    wait = await m.reply("<i>Verificando o logs...</i>")
     
     logs = Config.heroku_app.get_log(lines=1200)
     with io.BytesIO(str.encode(logs)) as log_file:
         log_file.name = "WhiterKang.log"
         await m.reply_document(document=log_file)
-        await m.delete()
+    await wait.delete()
