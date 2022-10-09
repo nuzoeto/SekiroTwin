@@ -285,3 +285,7 @@ ADMINS_STRING: "<b>Chat admins</b> <code>{chat_title}</code>:\n\n{admins_list}"
 
 #gps
 GPS_BNT: "🌎 Open in Google Maps"
+
+
+#welcome
+WELCOME_LOGGER: "<b>{}</b>\n#WELCOME\n<b>User</b>: <i>{}</i>\n<b>User Id</b>: <code>{}</code>"
