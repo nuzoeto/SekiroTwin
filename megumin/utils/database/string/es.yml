@@ -283,3 +283,6 @@ ADMINS_STRING: "<b>Administradores en el chat</b> <code>{chat_title}</code>:\n\n
 
 #gps
 GPS_BNT: "🌍 Abrir en Google Maps"
+
+#welcome
+WELCOME_LOGGER: "<b>{}</b>\n#WELCOME\n<b>Usuario</b>: <i>{}</i>\n<b>ID de usuario</b>: <code>{}</code>"
