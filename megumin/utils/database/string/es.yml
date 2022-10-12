@@ -140,6 +140,7 @@ MUTING: "<code>Usuario silenciando...</code>"
 MUTE_IN_DEV: "¿Por qué mutaría a mi desarrollador? Me parece una idea realmente estúpida."
 NO_MUTE_USER: "No tiene suficientes derechos para silenciar usuarios"
 NO_MUTE_BOT: "¡No puedo restringir a las personas aquí! Asegúrate de que soy un administrador y puedo agregar nuevos administradores."
+PEER_ID_INVALID: "No tengo control sobre este usuario, o la identificación no es válida.  Si respondes a uno de sus mensajes, podré interactuar con él."
   
 #rules
 RULES_UPDATED: "¡Las nuevas reglas del grupo se establecieron con éxito!"
