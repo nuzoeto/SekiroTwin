@@ -138,6 +138,7 @@ MUTING: "<code>Muting User...</code>"
 MUTE_IN_DEV: "Why would I mutate my developer? That seems like a really stupid idea to me."
 NO_MUTE_USER: "You do not have sufficient rights to mute users"
 NO_MUTE_BOT: "I can't restrict people here! Make sure I'm an admin and I can add new admins."
+PEER_ID_INVALID: "I have no control over this user, or the ID is not valid.  If you reply to one of his messages, I will be able to interact with him."
 
 #rules
 RULES_UPDATED: "Successfully set rules for this group."
