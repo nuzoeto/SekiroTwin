@@ -3,11 +3,11 @@ import httpx
 
 from pyrogram import filters
 from pyrogram.enums import UserStatus
-from pyrogram.errors import BadRequest
+from pyrogram.errors import BadRequest, PeerIdInvalid 
 from pyrogram.types import User, Message
 
 from megumin import megux, Config
-from megumin.utils import get_collection, count_groups_user, add_user_count
+from megumin.utils import get_collection, count_groups_user, add_user_count, tld
 from megumin.utils.decorators import input_str 
 
 http = httpx.AsyncClient()
@@ -63,6 +63,8 @@ async def whois(client, message):
             user = message.reply_to_message.from_user
         elif not message.reply_to_message and not cmd:
             user = message.from_user
+    except PeerIdInvalid:
+        return await message.reply(await tld(message.chat.id, "PEER_ID_INVALID")) 
     except BadRequest as e:
         return await message.reply_text(f"<b>Error!</b>\n<code>{e}</code>")
     except IndexError:
