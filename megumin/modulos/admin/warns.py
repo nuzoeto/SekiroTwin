@@ -167,7 +167,7 @@ async def unwarn_users(_, message: Message):
         await message.reply(await get_string(chat_id, "USER_NOT_WARNS"))
         
         
-@megux.on_message(filters.command("setwarnslimit", Config.TRIGGER))
+@megux.on_message(filters.command(["setwarnslimit", "setwarnlimit"], Config.TRIGGER))
 async def set_warns_limit(_, message: Message):
     if not await check_rights(message.chat.id, message.from_user.id, "can_change_info"):
         return
