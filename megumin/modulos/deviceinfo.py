@@ -2,7 +2,8 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux, Config
-from megumin.utils import disableable_dec, is_disabled, http, input_str
+from megumin.utils import disableable_dec, is_disabled, http
+from megumin.utils.decorators import input_str
 
 @megux.on_message(filters.command("deviceinfo", Config.TRIGGER))
 @disableable_dec("deviceinfo")
