@@ -24,3 +24,5 @@ async def deviceinfo(c: megux, m: Message):
             await m.reply(f"<b>Foto Device</b>: {img}\n<b>URL Fonte:</b>: https://www.gsmarena.com/{id}", disable_web_page_preview=False)
         except Exception:
             return await m.reply("Não consegui obter resultados sobre o aparelho. O gsmarena pode estar offline.")
+    else:
+        return await m.reply("Não consigo advinhar o dispositivo!! woobs!!")
