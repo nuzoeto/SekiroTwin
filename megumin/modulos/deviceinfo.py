@@ -16,8 +16,8 @@ async def deviceinfo(c: megux, m: Message):
         get_search_api = (await http.get(f"http://api.davitudo.tk/search/{search}")).json()
         if get_search_api == "[]":
             return await m.reply("<code>Não encontrei esse dispositivo!!</code> <i>:(</i>")
-        id = get_search_api[0]["url"]
-        img = get_search_api[0]["img"]
+        id = get_search_api["url"]
+        img = get_search_api["img"]
         get_device_api = (await http.get(f"http://api.davitdo.tk/device/{id}"))
         try:
             name_cll = get_device_api["title"]
