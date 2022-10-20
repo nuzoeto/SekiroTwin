@@ -11,8 +11,8 @@ async def deviceinfo(c: megux, m: Message):
     if await is_disabled(m.chat.id, "deviceinfo"):
         return
     if input_str(m):
-        name = m.text.split(" ", 1) 
-        search = f"{name}".replace(" ", "+")
+        name = input_str(m) 
+        search = f"{name}".replace(" ", "%")
         get_search_api = (await http.get(f"http://api.davitudo.tk/search/{search}")).json()
         if get_search_api == "[]":
             return await m.reply("<code>Não encontrei esse dispositivo!!</code> <i>:(</i>")
