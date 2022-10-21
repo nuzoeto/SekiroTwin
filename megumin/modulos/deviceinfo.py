@@ -12,15 +12,15 @@ async def deviceinfo(c: megux, m: Message):
         return
     if input_str(m):
         name = input_str(m) 
-        search = f"{name}".replace(" ", "+")
+        search = f"{name}".replace(" ", "%")
         get_search_api = (await http.get(f"http://api.davitudo.tk/search/motog5")).json()
-        if get_search_api == "[]":
+        if get_search_api == '[]':
             return await m.reply("<code>Não encontrei esse dispositivo!!</code> <i>:(</i>")
-        id = get_search_api[0]["url"]
-        img = get_search_api[0]["img"]
+        id = get_search_api[0]['url']
+        img = get_search_api[0]['img']
         get_device_api = (await http.get(f"http://api.davitdo.tk/device/{id}"))
         try:
-            name_cll = get_device_api["title"]
+            name_cll = get_device_api['title']
             await m.reply(f"<b>Foto Device</b>: {img}\n<b>URL Fonte:</b>: https://www.gsmarena.com/{id}", disable_web_page_preview=False)
         except Exception:
             return await m.reply("Não consegui obter resultados sobre o aparelho. O gsmarena pode estar offline.")
