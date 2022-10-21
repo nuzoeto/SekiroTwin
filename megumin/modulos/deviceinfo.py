@@ -22,15 +22,15 @@ async def deviceinfo(c: megux, m: Message):
         try:
             get_device_api = (await http.get(link_base)).json()
             name_cll = get_device_api['title'] or None
-            1 = get_device_api['spec_detail'][0]['specs'][0]['value'] 
-            1_name = get_device_api['spec_detail'][0]['specs'][0]['name'] 
-            2 = get_device_api['spec_detail'][1]['specs'][0]['value']
-            2_name = get_device_api['spec_detail'][1]['specs'][0]['name']
-            3 = get_device_api['spec_detail'][2]['specs'][3]['value']
-            3_name = get_device_api['spec_detail'][2]['specs'][3]['name']
-            4 = get_device_api['spec_detail'][5]['specs'][1]['value']
-            4_name = get_device_api['spec_detail'][5]['specs'][1]['name']
-            await m.reply(f"<b>Foto Device</b>: {img}\n<b>URL Fonte:</b>: https://www.gsmarena.com/{id}\n\n<b>- Aparelho</b>:  <i>{name_cll}</i>\n<b>- {1_name}</b>: <i>{1}</i>\n<b>- {2_name}</b>: <i>{2}</i>\n<b>- {3_name}</b>: <i>{3}</i>\n<b>- {name_4}</b>: <i>{4}</i>", disable_web_page_preview=False)
+            s1 = get_device_api['spec_detail'][0]['specs'][0]['value'] 
+            s1_name = get_device_api['spec_detail'][0]['specs'][0]['name'] 
+            s2 = get_device_api['spec_detail'][1]['specs'][0]['value']
+            s2_name = get_device_api['spec_detail'][1]['specs'][0]['name']
+            s3 = get_device_api['spec_detail'][2]['specs'][3]['value']
+            s3_name = get_device_api['spec_detail'][2]['specs'][3]['name']
+            s4 = get_device_api['spec_detail'][5]['specs'][1]['value']
+            s4_name = get_device_api['spec_detail'][5]['specs'][1]['name']
+            await m.reply(f"<b>Foto Device</b>: {img}\n<b>URL Fonte:</b>: https://www.gsmarena.com/{id}\n\n<b>- Aparelho</b>:  <i>{name_cll}</i>\n<b>- {s1_name}</b>: <i>{s1}</i>\n<b>- {s2_name}</b>: <i>{s2}</i>\n<b>- {s3_name}</b>: <i>{s3}</i>\n<b>- {name_s4}</b>: <i>{s4}</i>", disable_web_page_preview=False)
         except Exception as err:
             return await m.reply(f"Não consegui obter resultados sobre o aparelho. O gsmarena pode estar offline. <i>Erro</i>: <b>{err}</b>")
     else:
