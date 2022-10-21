@@ -22,11 +22,15 @@ async def deviceinfo(c: megux, m: Message):
         try:
             get_device_api = (await http.get(link_base)).json()
             name_cll = get_device_api['title'] or None
-            network = get_device_api['spec_detail'][0]['specs'][0]['value'] or None
-            anonciament = get_device_api['spec_detail'][1]['specs'][0]['value'] or None
-            sim = get_device_api['spec_detail'][2]['specs'][3]['value'] or None
-            memory = get_device_api['spec_detail'][5]['specs'][1]['value'] or None
-            await m.reply(f"<b>Foto Device</b>: {img}\n<b>URL Fonte:</b>: https://www.gsmarena.com/{id}\n\n<b>- Aparelho</b>:  <i>{name_cll}</i>\n<b>- Lançamento</b>: <i>{anonciament}</i>\n<b>- Redes</b>: <i>{network}</i>\n<b>- SIM Card</b>: <i>{sim}</i>\n<b>- Armazenamento/RAM</b>: <i>{memory}</i>", disable_web_page_preview=False)
+            1 = get_device_api['spec_detail'][0]['specs'][0]['value'] 
+            1_name = get_device_api['spec_detail'][0]['specs'][0]['name'] 
+            2 = get_device_api['spec_detail'][1]['specs'][0]['value']
+            2_name = get_device_api['spec_detail'][1]['specs'][0]['name']
+            3 = get_device_api['spec_detail'][2]['specs'][3]['value']
+            3_name = get_device_api['spec_detail'][2]['specs'][3]['name']
+            4 = get_device_api['spec_detail'][5]['specs'][1]['value']
+            4_name = get_device_api['spec_detail'][5]['specs'][1]['name']
+            await m.reply(f"<b>Foto Device</b>: {img}\n<b>URL Fonte:</b>: https://www.gsmarena.com/{id}\n\n<b>- Aparelho</b>:  <i>{name_cll}</i>\n<b>- {1_name}</b>: <i>{1}</i>\n<b>- {2_name}</b>: <i>{2}</i>\n<b>- {3_name}</b>: <i>{3}</i>\n<b>- {name_4}</b>: <i>{4}</i>", disable_web_page_preview=False)
         except Exception as err:
             return await m.reply(f"Não consegui obter resultados sobre o aparelho. O gsmarena pode estar offline. <i>Erro</i>: <b>{err}</b>")
     else:
