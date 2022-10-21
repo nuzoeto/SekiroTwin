@@ -19,9 +19,9 @@ async def deviceinfo(c: megux, m: Message):
         try:
             id = get_search_api[0]['url']
             img = get_search_api[0]['img']
-            link_base = f"http://api.davitdo.tk/device/{id}"
         except IndexError:
             return await m.reply("<code>Não encontrei esse dispositivo!!</code> <i>:(</i>")
+        link_base = f"http://api.davitdo.tk/device/{id}"
         try:
             get_device_api = (await http.get(link_base)).json()
             name_cll = get_device_api[0]['title']
