@@ -1,3 +1,4 @@
+import requests
 from pyrogram import filters
 from pyrogram.types import Message
 
@@ -22,7 +23,7 @@ async def deviceinfo(c: megux, m: Message):
         await m.reply(f"{img}")
         link_base = f"http://api.davitdo.tk/device/{id}"
         try:
-            get_device_api = (await http.get(link_base)).json()
+            get_device_api = requests.get(link_base).json()
             name_cll = get_device_api[0]['title']
             await m.reply(f"<b>Foto Device</b>: {img}\n<b>URL Fonte:</b>: https://www.gsmarena.com/{id}", disable_web_page_preview=False)
         except Exception:
