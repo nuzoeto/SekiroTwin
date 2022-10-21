@@ -18,12 +18,12 @@ async def deviceinfo(c: megux, m: Message):
             return await m.reply("<code>Não encontrei esse dispositivo!!</code> <i>:(</i>")        
         id = get_search_api[0]['url']
         img = get_search_api[0]['img']
-        link_base = f"http://api.davitdo.tk/device/{id}"
+        link_base = f"http://api.davitudo.tk/device/{id}"
         try:
             get_device_api = (await http.get(link_base)).json()
-            name_cll = get_device_api[0]['title']
+            name_cll = get_device_api['title']
             await m.reply(f"<b>Foto Device</b>: {img}\n<b>URL Fonte:</b>: https://www.gsmarena.com/{id}\n<b>-Aparelho</b>: {name_cll}", disable_web_page_preview=False)
-        except Exception:
-            return await m.reply("Não consegui obter resultados sobre o aparelho. O gsmarena pode estar offline.")
+        except Exception as err:
+            return await m.reply("Não consegui obter resultados sobre o aparelho. O gsmarena pode estar offline. <i>Erro</i>: <b>{err}</b>")
     else:
         return await m.reply("Não consigo advinhar o dispositivo!! woobs!!")
