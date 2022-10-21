@@ -23,7 +23,7 @@ async def deviceinfo(c: megux, m: Message):
             get_device_api = (await http.get(link_base)).json()
             name_cll = get_device_api['title']
             network = get_device_api['spec_detail'][0]['specs'][0]['value']
-            anonciament = get_device_api['spec_detail'][1]['specs'][0]['name']
+            anonciament = get_device_api['spec_detail'][1]['specs'][0]['value']
             await m.reply(f"<b>Foto Device</b>: {img}\n<b>URL Fonte:</b>: https://www.gsmarena.com/{id}\n\n<b>- Aparelho</b>:  <i>{name_cll}</i>\n<b>- Anunciado</b>: <i>{anonciament}</i>", disable_web_page_preview=False)
         except Exception as err:
             return await m.reply("Não consegui obter resultados sobre o aparelho. O gsmarena pode estar offline. <i>Erro</i>: <b>{err}</b>")
