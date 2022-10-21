@@ -21,11 +21,11 @@ async def deviceinfo(c: megux, m: Message):
         link_base = f"http://api.davitudo.tk/device/{id}"
         try:
             get_device_api = (await http.get(link_base)).json()
-            name_cll = get_device_api['title']
-            network = get_device_api['spec_detail'][0]['specs'][0]['value']
-            anonciament = get_device_api['spec_detail'][1]['specs'][0]['value']
-            sim = get_device_api['spec_detail'][2]['specs'][3]['value']
-            memory = get_device_api['spec_detail'][5]['specs'][1]['value']
+            name_cll = get_device_api['title'] or None
+            network = get_device_api['spec_detail'][0]['specs'][0]['value'] or None
+            anonciament = get_device_api['spec_detail'][1]['specs'][0]['value'] or None
+            sim = get_device_api['spec_detail'][2]['specs'][3]['value'] or None
+            memory = get_device_api['spec_detail'][5]['specs'][1]['value'] or None
             await m.reply(f"<b>Foto Device</b>: {img}\n<b>URL Fonte:</b>: https://www.gsmarena.com/{id}\n\n<b>- Aparelho</b>:  <i>{name_cll}</i>\n<b>- Lançamento</b>: <i>{anonciament}</i>\n<b>- Redes</b>: <i>{network}</i>\n<b>- SIM Card</b>: <i>{sim}</i>\n<b>- Armazenamento/RAM</b>: <i>{memory}</i>", disable_web_page_preview=False)
         except Exception as err:
             return await m.reply(f"Não consegui obter resultados sobre o aparelho. O gsmarena pode estar offline. <i>Erro</i>: <b>{err}</b>")
