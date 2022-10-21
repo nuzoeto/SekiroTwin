@@ -21,7 +21,7 @@ async def deviceinfo(c: megux, m: Message):
         await m.reply(f"{id}")
         img = get_search_api[0]['img']
         await m.reply(f"{img}")
-        link_base = f"http://api.davitdo.tk/device/{id}"
+        link_base = f"http://api.davitudo.tk/device/{id}"
         await m.reply(link_base)
         try:
             get_device_api = (await http.get(link_base)).json()
