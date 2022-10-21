@@ -13,7 +13,7 @@ async def deviceinfo(c: megux, m: Message):
     if input_str(m):
         name = input_str(m) 
         search = f"{name}".replace(" ", "+")
-        get_search_api = (await http.get(f"http://api.davitudo.tk/search/{search}")).json()
+        get_search_api = (await http.get(f"http://api.davitudo.tk/search/moto%g5")).json()
         if get_search_api == "[]":
             return await m.reply("<code>Não encontrei esse dispositivo!!</code> <i>:(</i>")
         id = get_search_api[0]["url"]
