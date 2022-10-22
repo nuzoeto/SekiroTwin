@@ -18,12 +18,11 @@ async def deviceinfo(c: megux, m: Message):
         search = f"{name}".replace(" ", "+")
         get_search_api = (await http.get(f"http://api.davitudo.tk/search/{search}")).json()
         if get_search_api == '[]':
-            return await m.reply("<code>Não encontrei esse dispositivo!!</code> <i>:(</i>")
-        get_lang = await tld(m.chat.id, "language")         
+            return await m.reply("<code>Não encontrei esse dispositivo!!</code> <i>:(</i>")         
         id = get_search_api[0]['url']
         img = get_search_api[0]['img']
         description = get_search_api[0]['description']
-        translated_description = await tr.translate(description, target_lang=get_lang)
+        translated_description = await tr.translate(description, target_lang="pt")
         link_base = f"http://api.davitudo.tk/device/{id}"
         try:
             get_device_api = (await http.get(link_base)).json()
