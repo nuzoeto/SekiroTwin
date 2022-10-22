@@ -1,9 +1,12 @@
+from gpytranslate import Translator
 from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux, Config
-from megumin.utils import disableable_dec, is_disabled, http
+from megumin.utils import disableable_dec, is_disabled, http, tld
 from megumin.utils.decorators import input_str
+
+tr = Translator 
 
 @megux.on_message(filters.command(["deviceinfo", "di"], Config.TRIGGER))
 @disableable_dec("deviceinfo")
@@ -15,7 +18,8 @@ async def deviceinfo(c: megux, m: Message):
         search = f"{name}".replace(" ", "+")
         get_search_api = (await http.get(f"http://api.davitudo.tk/search/{search}")).json()
         if get_search_api == '[]':
-            return await m.reply("<code>Não encontrei esse dispositivo!!</code> <i>:(</i>")        
+            return await m.reply("<code>Não encontrei esse dispositivo!!</code> <i>:(</i>")
+        get_lang = await tld(m.chat.id, "language")         
         id = get_search_api[0]['url']
         img = get_search_api[0]['img']
         description = get_search_api[0]['description']
