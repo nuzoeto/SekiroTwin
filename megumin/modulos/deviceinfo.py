@@ -22,7 +22,7 @@ async def deviceinfo(c: megux, m: Message):
         id = get_search_api[0]['url']
         img = get_search_api[0]['img']
         description = get_search_api[0]['description']
-        translated_description = await tr.translate(description, target_lang="pt")
+        translated_description = await tr.translate(description, targetlang="pt")
         link_base = f"http://api.davitudo.tk/device/{id}"
         try:
             get_device_api = (await http.get(link_base)).json()
