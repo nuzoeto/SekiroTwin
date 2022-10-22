@@ -6,7 +6,7 @@ from megumin import megux, Config
 from megumin.utils import disableable_dec, is_disabled, http, tld
 from megumin.utils.decorators import input_str
 
-tr = Translator 
+tr = Translator()
 
 @megux.on_message(filters.command(["deviceinfo", "di"], Config.TRIGGER))
 @disableable_dec("deviceinfo")
@@ -18,11 +18,13 @@ async def deviceinfo(c: megux, m: Message):
         search = f"{name}".replace(" ", "+")
         get_search_api = (await http.get(f"http://api.davitudo.tk/search/{search}")).json()
         if get_search_api == '[]':
-            return await m.reply("<code>Não encontrei esse dispositivo!!</code> <i>:(</i>")         
+            return await m.reply("<code>Não encontrei esse dispositivo!!</code> <i>:(</i>") 
+        get_lang = await tld(m.chat.id, "language")        
         id = get_search_api[0]['url']
         img = get_search_api[0]['img']
         description = get_search_api[0]['description']
         link_base = f"http://api.davitudo.tk/device/{id}"
+        translated_description = await tr.translate(description, targetlang=get_lang).text
         try:
             get_device_api = (await http.get(link_base)).json()
             name_cll = get_device_api['title'] or None
@@ -34,7 +36,7 @@ async def deviceinfo(c: megux, m: Message):
             s3_name = get_device_api['spec_detail'][2]['specs'][3]['name']
             s4 = get_device_api['spec_detail'][5]['specs'][1]['value']
             s4_name = get_device_api['spec_detail'][5]['specs'][1]['name']
-            await m.reply(f"<b>Foto Device</b>: {img}\n<b>URL Fonte:</b>: https://www.gsmarena.com/{id}\n\n<b>- Aparelho</b>:  <i>{name_cll}</i>\n<b>- {s1_name}</b>: <i>{s1}</i>\n<b>- {s2_name}</b>: <i>{s2}</i>\n<b>- {s3_name}</b>: <i>{s3}</i>\n<b>- {s4_name}</b>: <i>{s4}</i>\n\n<b>Descrição</b>: {description}", disable_web_page_preview=False)
+            await m.reply(f"<b>Foto Device</b>: {img}\n<b>URL Fonte:</b>: https://www.gsmarena.com/{id}\n\n<b>- Aparelho</b>:  <i>{name_cll}</i>\n<b>- {s1_name}</b>: <i>{s1}</i>\n<b>- {s2_name}</b>: <i>{s2}</i>\n<b>- {s3_name}</b>: <i>{s3}</i>\n<b>- {s4_name}</b>: <i>{s4}</i>\n\n<b>Descrição</b>: {translated_description}", disable_web_page_preview=False)
         except Exception as err:
             return await m.reply(f"Não consegui obter resultados sobre o aparelho. O gsmarena pode estar offline. <i>Erro</i>: <b>{err}</b>")
     else:
