@@ -332,6 +332,7 @@ async def sdl(c: megux, m: Message):
                     await c.send_chat_action(m.chat.id, enums.ChatAction.UPLOAD_VIDEO)
                     try:
                         await m.reply_media_group(media=videos)
+                        await msg.delete()
                     except FloodWait as e:
                         await asyncio.sleep(e.value)
                     except MediaEmpty:
