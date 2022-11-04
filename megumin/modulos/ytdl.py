@@ -238,7 +238,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
     shutil.rmtree(tempdir, ignore_errors=True)
 
     
-@megux.on_message(filters.command(["sdl", "mdl"]))
+@megux.on_message(filters.command(["sdl", "mdl", "dl"]))
 @megux.on_message(filters.regex(SDL_REGEX_LINKS))
 async def sdl(c: megux, m: Message):
     if m.matches:
@@ -261,6 +261,7 @@ async def sdl(c: megux, m: Message):
         url,
         re.M,
     ):
+        msg = await m.reply((await tld(m.chat.id, "DOWNLOAD_YT")))
         with tempfile.TemporaryDirectory() as tempdir:
             path = os.path.join(tempdir, f"sdl|{random.randint(0, 300)}")
             try:
@@ -327,6 +328,7 @@ async def sdl(c: megux, m: Message):
                     InputMediaVideo(os.path.join(path, video))
                     for video in os.listdir(path)
                 ]:
+                    await msg.edit((await tld(m.chat.id, "UPLOADING_YT")))
                     await c.send_chat_action(m.chat.id, enums.ChatAction.UPLOAD_VIDEO)
                     try:
                         await m.reply_media_group(media=videos)
