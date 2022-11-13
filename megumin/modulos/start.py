@@ -84,7 +84,7 @@ async def start_(c: megux, message: Message):
             ],
             [
               InlineKeyboardButton(text="Info", callback_data="infos"),
-              InlineKeyboardButton(text="Suporte", url="https://t.me/fnixsup"),
+              InlineKeyboardButton(text=await get_string(cb.message.chat.id, "SUP_BNT"), url="https://t.me/fnixsup"),
             ],
             [                
               InlineKeyboardButton(
