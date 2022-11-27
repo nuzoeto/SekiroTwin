@@ -1,6 +1,14 @@
 import random
 from re import findall
 
+from pyrogram.types import (
+    ForceReply,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    KeyboardButton,
+    ReplyKeyboardMarkup,
+)
+
 # funções futuras
 
 
@@ -16,14 +24,6 @@ def get_urls_from_text(text: str) -> bool:
                 ()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))""".strip()
     return [x[0] for x in findall(regex, str(text))]
 
-
-from .types import (
-    ForceReply,
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    KeyboardButton,
-    ReplyKeyboardMarkup,
-)
 
 
 def ikb(rows=[]):
