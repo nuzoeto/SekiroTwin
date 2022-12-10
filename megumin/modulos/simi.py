@@ -2,6 +2,7 @@ import requests
 
 from pyrogram import filters 
 from pyrogram.types import Message 
+from pyrogram.enums import ChatType
 
 from megumin import megux, Config
 from megumin.utils import get_collection, get_string 
