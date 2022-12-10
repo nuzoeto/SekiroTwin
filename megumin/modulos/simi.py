@@ -27,7 +27,7 @@ async def simi_(_, m: Message):
 
 
 @megux.on_message(
-    (filters.group | filters.private) & filters.text & filters.incoming)
+    (filters.group | filters.private) & filters.text)
 async def serve_filter(c: megux, m: Message):
     chat_id = m.chat.id
     db = get_collection(f"CHAT_SIMI")
