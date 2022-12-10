@@ -26,22 +26,3 @@ async def simi_(_, m: Message):
         return await m.reply(await get_string(m.chat.id, "SIMI_API_OFF"))
 
 
-@megux.on_message(
-    (filters.group | filters.private) & filters.text & ~filters.command)
-async def serve_filter(c: megux, m: Message):
-    chat_id = m.chat.id
-    db = get_collection(f"CHAT_SIMI")
-    text = m.text
-
-    all_filters = db.find_one({"chat_id": m.chat.id})
-    if m.chat.type == ChatType.PRIVATE:
-        API = f"https://api.simsimi.net/v2/?text={text}&lc=pt&cf=false"
-        r = requests.get(API).json()  
-        if r["success"] in "Eu não resposta. Por favor me ensine.":
-            return await m.reply(await get_string(m.chat.id, "SIMI_NO_RESPONSE"))
-        if r["success"]:
-            return await m.reply(r["success"])
-        else:
-            return await m.reply(await get_string(m.chat.id, "SIMI_API_OFF"))
-    else:
-         return
