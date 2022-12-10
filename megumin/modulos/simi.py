@@ -33,8 +33,8 @@ async def serve_filter(c: megux, m: Message):
     text = m.text
 
     all_filters = db.find_one({"chat_id": m.chat.id})
-    if all_filters:
-        API = f"https://api.simsimi.net/v2/?text={text_}&lc=pt&cf=false"
+    if m.chat.type == ChatType.PRIVATE:
+        API = f"https://api.simsimi.net/v2/?text={text}&lc=pt&cf=false"
         r = requests.get(API).json()  
         if r["success"] in "Eu não resposta. Por favor me ensine.":
             return await m.reply(await get_string(m.chat.id, "SIMI_NO_RESPONSE"))
