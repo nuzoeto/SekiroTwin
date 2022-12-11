@@ -18,8 +18,6 @@ class Config:
         AUTH_CHATS.update(map(int, os.environ.get("AUTH_CHATS").split()))
     DEV_USERS = (  # lista de devs
         838926101,  # @fnixdev
-        2138770172,  # @Luska1331
-        1157759484,  # @yusukesy
         1926812534, # @giovanYCringe
         1715384854,  # @DaviTudo 
         5204291028, #TiltLesm
