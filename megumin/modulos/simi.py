@@ -33,7 +33,7 @@ async def on_chatbot(_, m: Message):
     id = m.from_user.id
     chat_id = m.chat.id
     configure = await CHATBOT_STATUS.update_one({"user_id": id, "chat_id": chat_id, {"$set": "status": query}}, upsert=True)
-    await message.reply("Olá {m.from_user.mention}, Como posso lhe ajudar amigo(a)\nSobre o que quer conversar?\n, <b>Para parar a conversa<b> digite  <i>/chatbotstop</i>")  
+    await message.reply(f"Olá {m.from_user.mention}, Como posso lhe ajudar amigo(a)\nSobre o que quer conversar?\n, <b>Para parar a conversa<b> digite  <i>/chatbotstop</i>")  
  
 
 @megux.on_message(filters.command("chatbotstop", Config.TRIGGER))
