@@ -32,7 +32,7 @@ async def on_chatbot(_, m: Message):
     query = "on"
     id = m.from_user.id
     chat_id = m.chat.id
-    configure = await CHATBOT_STATUS.update_one({"user_id": id, "chat_id": chat_id {"$set": "status": query}}, upsert=True)
+    configure = await CHATBOT_STATUS.update_one({"user_id": id, "chat_id": chat_id, {"$set": "status": query}}, upsert=True)
     await message.reply("Olá {m.from_user.mention}, Como posso lhe ajudar amigo(a)\nSobre o que quer conversar?\n, <b>Para parar a conversa<b> digite  <i>/chatbotstop</i>")  
  
 
@@ -42,7 +42,7 @@ async def off_chatbot(_, m: Message):
     query = "off"
     id = m.from_user.id
     chat_id = m.chat.id
-    configure = await CHATBOT_STATUS.update_one({"user_id": id, "chat_id": chat_id {"$set": "status": query}}, upsert=True)
+    configure = await CHATBOT_STATUS.update_one({"user_id": id, "chat_id": chat_id, {"$set": "status": query}}, upsert=True)
     await message.reply("Assunto encerrado {m.from_user.first_name}")  
  
 
@@ -54,7 +54,7 @@ async def serve_filter(c: megux, m: Message):
     db = get_collection(f"CHATBOT_STATUS")
     text = m.text
 
-    all_configs = await db.find_one({"user_id": uid, "status": "on", "chat_id": m.chat.id})
+    all_configs = await db.find_one({"user_id": uid, "chat_id": m.chat.id, "status": "on"})
     if all_configs:
         API = f"https://api.simsimi.net/v2/?text={text}&lc=pt&cf=false"
         r = requests.get(API).json()  
