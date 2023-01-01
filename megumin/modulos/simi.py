@@ -65,4 +65,4 @@ async def serve_filter(c: megux, m: Message):
         else:
             return await m.reply(await get_string(m.chat.id, "SIMI_API_OFF"))
     else:
-         return
+         pass
