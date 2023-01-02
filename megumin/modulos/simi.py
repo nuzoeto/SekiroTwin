@@ -32,7 +32,7 @@ async def on_chatbot(_, m: Message):
     query = "on"
     id = m.from_user.id
     chat_id = m.chat.id
-    configure = await CHATBOT_STATUS.update_one({"user_id": id, "chat_id": chat_id, {"$set": "status": query}}, upsert=True)
+    configure = await CHATBOT_STATUS.update_one({"user_id": id, "chat_id": chat_id, {"$set": {"status": query}}}, upsert=True)
     await m.reply(f"Olá {m.from_user.mention}, Como posso lhe ajudar amigo(a)\nSobre o que quer conversar?\n, <b>Para parar a conversa<b> digite  <i>/chatbotstop</i>")  
  
 
@@ -42,7 +42,7 @@ async def off_chatbot(_, m: Message):
     query = "off"
     id = m.from_user.id
     chat_id = m.chat.id
-    configure = await CHATBOT_STATUS.update_one({"user_id": id, "chat_id": chat_id, {"$set": "status": query}}, upsert=True)
+    configure = await CHATBOT_STATUS.update_one({"user_id": id, "chat_id": chat_id, {"$set": {"status": query}}}, upsert=True)
     await m.reply("Assunto encerrado {m.from_user.first_name}")  
  
 
