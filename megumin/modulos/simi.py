@@ -46,7 +46,7 @@ async def off_chatbot(_, m: Message):
     await m.reply("Assunto encerrado {m.from_user.first_name}")  
  
 
-@megux.on_message(~filters.command 
+@megux.on_message(
     (filters.group | filters.private) & filters.text)
 async def serve_filter(c: megux, m: Message):
     chat_id = m.chat.id
