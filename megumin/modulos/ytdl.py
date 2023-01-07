@@ -261,7 +261,7 @@ async def sdl(c: megux, m: Message):
         url,
         re.M,
     ):
-        msg = await m.reply((await tld(m.chat.id, "DOWNLOAD_YT")))
+        #files
         with tempfile.TemporaryDirectory() as tempdir:
             path = os.path.join(tempdir, f"sdl|{random.randint(0, 300)}")
             try:
@@ -328,7 +328,7 @@ async def sdl(c: megux, m: Message):
                     InputMediaVideo(os.path.join(path, video))
                     for video in os.listdir(path)
                 ]:
-                    await msg.edit((await tld(m.chat.id, "UPLOADING_YT")))
+                    #upload
                     await c.send_chat_action(m.chat.id, enums.ChatAction.UPLOAD_VIDEO)
                     try:
                         await m.reply_media_group(media=videos)
