@@ -221,9 +221,16 @@ async def clear_notes(c: megux, m: Message):
 async def serve_filter(c: megux, m: Message):
     chat_id = m.chat.id
     db = get_collection(f"CHAT_FILTERS")
+    GROUPS = get_collection("GROUPS")
+    gp_title = m.chat.title
     if m and m.from_user:
         await add_user_count(chat_id, m.from_user.id)
         await drop_info(m.from_user.id)
+    found = await GROUPS.find_one({"id_": chat_id})
+    if not found:
+        await asyncio.gather(
+            GROUPS.insert_one({"id_": chat_id, "title": gp_title}))    
+
     text = m.text
     target_msg = m.reply_to_message or m
 
