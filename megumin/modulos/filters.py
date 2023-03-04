@@ -10,6 +10,7 @@ from pyrogram.enums import ParseMode
 from typing import Callable, List, Optional, Union
 
 from pyrogram import filters
+from pyrogram.enums import ChatType
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, Message, User
 
 from megumin import megux, Config
@@ -226,10 +227,12 @@ async def serve_filter(c: megux, m: Message):
     if m and m.from_user:
         await add_user_count(chat_id, m.from_user.id)
         await drop_info(m.from_user.id)
-    found = await GROUPS.find_one({"id_": chat_id})
-    if not found:
-        await asyncio.gather(
-            GROUPS.insert_one({"id_": chat_id, "title": gp_title}))    
+    
+    if not m.chat.type == ChatType.PRIVATE:
+        found = await GROUPS.find_one({"id_": chat_id})
+        if not found:
+            await asyncio.gather(
+                GROUPS.insert_one({"id_": chat_id, "title": gp_title}))    
 
     text = m.text
     target_msg = m.reply_to_message or m
