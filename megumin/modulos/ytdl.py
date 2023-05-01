@@ -19,6 +19,7 @@ from functools import wraps, partial
 from pyrogram.helpers import ikb
 from pyrogram import filters, enums
 from pyrogram.errors import BadRequest, FloodWait, Forbidden, MediaEmpty, MessageNotModified
+from pyrogram.raw.functions import channels, messages
 from pyrogram.types import Message, CallbackQuery, InputMediaVideo, InputMediaPhoto
 
 
@@ -33,7 +34,13 @@ YOUTUBE_REGEX = re.compile(
     r"(?m)http(?:s?):\/\/(?:www\.)?(?:music\.)?youtu(?:be\.com\/(watch\?v=|shorts/|embed/)|\.be\/|)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?"
 )
 
-SDL_REGEX_LINKS = r"^http(?:s)?:\/\/(?:www\.)?(?:v\.)?(?:mobile.|m.)?(?:instagram.com|twitter.com|vm.tiktok.com|tiktok.com|facebook.com)\/(?:\S*)"
+SDL_REGEX_LINKS = r"http(?:s)?:\/\/(?:www.|mobile.|m.|vm.)?(?:instagram|twitter|reddit|tiktok|facebook).com\/(?:\S*)"
+
+
+TWITTER_REGEX = (
+    r"(http(s)?:\/\/(?:www\.)?(?:v\.)?(?:mobile.)?(?:twitter.com)\/(?:.*?))(?:\s|$)"
+)
+
 
 TIME_REGEX = re.compile(r"[?&]t=([0-9]+)")
 
