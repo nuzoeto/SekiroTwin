@@ -352,8 +352,9 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
 @megux.on_message(filters.command(["sdl", "mdl", "dl"]))
 @megux.on_message(filters.regex(SDL_REGEX_LINKS))
 async def sdl(c: megux, m: Message):
+
     if m.matches:
-        if m.chat.type == enums.ChatType.PRIVATE or await csdl(m.chat.id) == True:
+        if m.chat.type is ChatType.PRIVATE or await csdl(m.chat.id) == True:
             url = m.matches[0].group(0)
         else:
             return
@@ -362,96 +363,68 @@ async def sdl(c: megux, m: Message):
     elif m.reply_to_message and m.reply_to_message.text:
         url = m.reply_to_message.text
     else:
-        await m.reply_text(
-            (await tld(m.chat.id, "NO_ARGS_YT"))
-        )
-        return
+        return await m.reply_text((await tld(m.chat.id, "NO_ARGS_YT")))
 
-    if re.match(
-        SDL_REGEX_LINKS,
-        url,
-        re.M,
-    ):
-        #files
-        with tempfile.TemporaryDirectory() as tempdir:
-            path = os.path.join(tempdir, f"sdl|{random.randint(0, 300)}")
-            try:
-                await gallery_down(path, url)
-                files = []
-                try:
-                    files += [
-                        InputMediaVideo(os.path.join(path, video))
-                        for video in os.listdir(path)
-                        if video.endswith(".mp4")
-                    ]
-                except FileNotFoundError:
-                    pass
-                if not re.match(
-                    r"(http(s)?:\/\/(?:www\.)?(?:v\.)?(?:mobile.)?(?:twitter.com)\/(?:.*?))(?:\s|$)",
-                    url,
-                    re.M,
-                ) and (
-                    (
-                        m.chat.type == enums.ChatType.PRIVATE
-                        or await cisdl(m.chat.id) == True
-                    )
-                ):
-                    try:
-                        files += [
-                            InputMediaPhoto(os.path.join(path, photo))
-                            for photo in os.listdir(path)
-                            if photo.endswith((".jpg", ".png", ".jpeg"))
-                        ]
-                    except FileNotFoundError:
-                        pass
-                try:
-                    if files:
-                        await c.send_chat_action(
-                            m.chat.id, enums.ChatAction.UPLOAD_DOCUMENT
-                        )
-                        await m.reply_media_group(media=files)
-                except FloodWait as e:
-                    await asyncio.sleep(e.value)
-                except MediaEmpty:
-                    return
-                except Forbidden:
-                    return shutil.rmtree(tempdir, ignore_errors=True)
-            except gallery_dl.exception.GalleryDLException:
-                ydl_opts = {
-                    "outtmpl": f"{path}/%(extractor)s-%(id)s.%(ext)s",
-                    "wait-for-video": "1",
-                    "noplaylist": True,
-                }
-
-                if re.match(
-                    r"https?://(?:vm|vt)\.tiktok\.com/(?P<id>\w+)",
-                    url,
-                    re.M,
-                ):
-                    r = await http.head(url, follow_redirects=True)
-                    url = r.url
-
-                try:
-                    await extract_info(YoutubeDL(ydl_opts), str(url), download=True)
-                except BaseException:
-                    return
-                if videos := [
-                    InputMediaVideo(os.path.join(path, video))
-                    for video in os.listdir(path)
-                ]:
-                    #upload
-                    await c.send_chat_action(m.chat.id, enums.ChatAction.UPLOAD_VIDEO)
-                    try:
-                        await m.reply_media_group(media=videos)
-                        await msg.delete()
-                    except FloodWait as e:
-                        await asyncio.sleep(e.value)
-                    except MediaEmpty:
-                        return
-                    except Forbidden:
-                        return shutil.rmtree(tempdir, ignore_errors=True)
-        await asyncio.sleep(2)
-        shutil.rmtree(tempdir, ignore_errors=True)
-    else:
+    if not re.match(REGEX_LINKS, url, re.M):
         return await m.reply_text("This is not a valid sdl link")
 
+    if re.match(TWITTER_LINKS, url, re.M) and m.chat.type is not ChatType.PRIVATE:
+        with contextlib.suppress(UserNotParticipant):
+            # To avoid conflict with @SmudgeLordBOT
+            return await m.chat.get_member(909467520)
+
+    path = f"{m.chat.id}.{m.id}"
+    if m.chat.type == ChatType.PRIVATE:
+        method = messages.GetMessages(id=[InputMessageID(id=(m.id))])
+    else:
+        method = channels.GetMessages(
+            channel=await c.resolve_peer(m.chat.id), id=[InputMessageID(id=(m.id))]
+        )
+    rawM = (await c.invoke(method)).messages[0].media
+    files, caption = await DownloadMedia().download(url, path)
+
+    medias = []
+    for media in files:
+        if media["path"][-3:] == "mp4" and len(files) == 1:
+            await c.send_chat_action(m.chat.id, ChatAction.UPLOAD_VIDEO)
+            await m.reply_video(
+                video=media["path"],
+                width=media["width"],
+                height=media["height"],
+                caption=caption,
+            )
+            return shutil.rmtree(f"./downloads/{path}/", ignore_errors=True)
+
+        if media["path"][-3:] == "mp4":
+            if medias:
+                medias.append(
+                    InputMediaVideo(
+                        media["path"], width=media["width"], height=media["height"]
+                    )
+                )
+            else:
+                medias.append(
+                    InputMediaVideo(
+                        media["path"],
+                        width=media["width"],
+                        height=media["height"],
+                        caption=caption,
+                    )
+                )
+        elif not medias:
+            medias.append(InputMediaPhoto(media["path"], caption=caption))
+        else:
+            medias.append(InputMediaPhoto(media["path"]))
+
+    if medias:
+        if (
+            rawM
+            and not re.search(r"instagram.com/", url)
+            and len(medias) == 1
+            and "InputMediaPhoto" in str(medias[0])
+        ):
+            return
+
+        await c.send_chat_action(m.chat.id, ChatAction.UPLOAD_DOCUMENT)
+        await m.reply_media_group(media=medias)
+    return shutil.rmtree(f"./downloads/{path}/", ignore_errors=True)
