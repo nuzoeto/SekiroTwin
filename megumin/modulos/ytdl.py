@@ -374,7 +374,7 @@ async def sdl(c: megux, m: Message):
             return await m.chat.get_member(909467520)
 
     path = f"{m.chat.id}.{m.id}"
-    if m.chat.type == ChatType.PRIVATE:
+    if m.chat.type == enums.ChatType.PRIVATE:
         method = messages.GetMessages(id=[InputMessageID(id=(m.id))])
     else:
         method = channels.GetMessages(
