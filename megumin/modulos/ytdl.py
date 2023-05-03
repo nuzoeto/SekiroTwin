@@ -354,7 +354,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
 async def sdl(c: megux, m: Message):
 
     if m.matches:
-        if m.chat.type is ChatType.PRIVATE or await csdl(m.chat.id) == True:
+        if m.chat.type == enums.ChatType.PRIVATE or await csdl(m.chat.id) == True:
             url = m.matches[0].group(0)
         else:
             return
