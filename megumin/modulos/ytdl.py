@@ -10,6 +10,7 @@ import tempfile
 import datetime
 import httpx
 import gallery_dl
+import contextlib
 
 
 from yt_dlp import YoutubeDL
