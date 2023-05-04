@@ -14,6 +14,7 @@ import contextlib
 
 
 from yt_dlp import YoutubeDL
+from urllib.parse import unquote
 from typing import Tuple, Callable
 from functools import wraps, partial
 from bs4 import BeautifulSoup
