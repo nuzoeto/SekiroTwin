@@ -132,7 +132,7 @@ class DownloadMedia:
         # Send the request and parse the response as JSON
         res = await http.get(
             f"{self.TwitterAPI}tweets/{tweet_id}{params}",
-            headers={"Authorization": f"Bearer {BARRER_TOKEN}"},
+            headers={"Authorization": f"Bearer {Config.BARRER_API}"},
         )
         tweet = json.loads(res.content)
 
