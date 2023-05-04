@@ -15,6 +15,7 @@ import gallery_dl
 from yt_dlp import YoutubeDL
 from typing import Tuple, Callable
 from functools import wraps, partial
+from bs4 import BeautifulSoup
 
 from pyrogram.helpers import ikb
 from pyrogram import filters, enums
