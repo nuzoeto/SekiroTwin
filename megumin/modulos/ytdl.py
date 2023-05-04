@@ -138,7 +138,7 @@ class DownloadMedia:
             f"{self.TwitterAPI}tweets/{tweet_id}{params}",
             headers={"Authorization": f"Bearer {Config.BARRER_API}"},
         )
-        tweet = json.loads(res.content)
+        tweet = rapidjson.loads(res.content)
 
         self.caption = f"<a href='{url}'>🔗 Link</a>"
 
