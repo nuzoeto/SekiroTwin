@@ -426,6 +426,6 @@ async def sdl(c: megux, m: Message):
         ):
             return
 
-        await c.send_chat_action(m.chat.id, ChatAction.UPLOAD_DOCUMENT)
+        await c.send_chat_action(m.chat.id, enums.ChatAction.UPLOAD_DOCUMENT)
         await m.reply_media_group(media=medias)
     return shutil.rmtree(f"./downloads/{path}/", ignore_errors=True)
