@@ -353,10 +353,8 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
     shutil.rmtree(tempdir, ignore_errors=True)
 
     
-@megux.on_message(filters.command(["sdl", "mdl", "dl"]))
-@megux.on_message(filters.regex(SDL_REGEX_LINKS))
+@megux.on_message(filters.command(["sdl", "mdl", "dl"]) | filters.regex(SDL_REGEX_LINKS), group=17)
 async def sdl(c: megux, m: Message):
-
     if m.matches:
         if m.chat.type == enums.ChatType.PRIVATE or await csdl(m.chat.id) == True:
             url = m.matches[0].group(0)
