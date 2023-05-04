@@ -19,6 +19,7 @@ from functools import wraps, partial
 from pyrogram.helpers import ikb
 from pyrogram import filters, enums
 from pyrogram.errors import BadRequest, FloodWait, Forbidden, MediaEmpty, MessageNotModified
+from pyrogram.raw.types import InputMessageID
 from pyrogram.raw.functions import channels, messages
 from pyrogram.types import Message, CallbackQuery, InputMediaVideo, InputMediaPhoto
 
