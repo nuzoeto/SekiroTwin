@@ -387,7 +387,7 @@ async def sdl(c: megux, m: Message):
     medias = []
     for media in files:
         if media["path"][-3:] == "mp4" and len(files) == 1:
-            await c.send_chat_action(m.chat.id, ChatAction.UPLOAD_VIDEO)
+            await c.send_chat_action(m.chat.id, enums.ChatAction.UPLOAD_VIDEO)
             await m.reply_video(
                 video=media["path"],
                 width=media["width"],
