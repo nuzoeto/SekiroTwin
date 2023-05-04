@@ -365,7 +365,7 @@ async def sdl(c: megux, m: Message):
     else:
         return await m.reply_text((await tld(m.chat.id, "NO_ARGS_YT")))
 
-    if not re.match(REGEX_LINKS, url, re.M):
+    if not re.match(SDL_REGEX_LINKS, url, re.M):
         return await m.reply_text("This is not a valid sdl link")
 
     if re.match(TWITTER_LINKS, url, re.M) and m.chat.type is not ChatType.PRIVATE:
