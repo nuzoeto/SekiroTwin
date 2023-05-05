@@ -21,7 +21,7 @@ from bs4 import BeautifulSoup
 
 from pyrogram.helpers import ikb
 from pyrogram import filters, enums
-from pyrogram.errors import BadRequest, FloodWait, Forbidden, MediaEmpty, MessageNotModified
+from pyrogram.errors import BadRequest, FloodWait, Forbidden, MediaEmpty, MessageNotModified, UserNotParticipant
 from pyrogram.raw.types import InputMessageID
 from pyrogram.raw.functions import channels, messages
 from pyrogram.types import Message, CallbackQuery, InputMediaVideo, InputMediaPhoto
@@ -373,8 +373,8 @@ async def sdl(c: megux, m: Message):
     
     if re.match(TWITTER_REGEX, url, re.M) and m.chat.type is not enums.ChatType.PRIVATE:
         with contextlib.suppress(UserNotParticipant):
-            # To avoid conflict with @SmudgeLordBOT
-            return await m.chat.get_member(909467520)
+            # To avoid conflict with @TwitterGramBOT
+            return await m.chat.get_member(1703426201)
     
     path = f"{m.chat.id}.{m.id}"
     if m.chat.type == enums.ChatType.PRIVATE:
