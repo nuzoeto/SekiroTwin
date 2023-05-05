@@ -371,7 +371,10 @@ async def sdl(c: megux, m: Message):
     if not re.match(SDL_REGEX_LINKS, url, re.M):
         return await m.reply_text("This is not a valid sdl link")
     
-    #up
+    if re.match(TWITTER_REGEX, url, re.M) and m.chat.type is not enums.ChatType.PRIVATE:
+        with contextlib.suppress(UserNotParticipant):
+            # To avoid conflict with @SmudgeLordBOT
+            return await m.chat.get_member(909467520)
     
     path = f"{m.chat.id}.{m.id}"
     if m.chat.type == enums.ChatType.PRIVATE:
