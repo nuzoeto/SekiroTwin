@@ -72,7 +72,7 @@ async def getsticker_(c: megux, m: Message):
 
         await m.reply_to_message.reply_document(
             document=file,
-            caption=(_("<b>Emoji:</b> {}\n<b>Sticker ID:</b> <code>{}</code>\n<b>Send By: @WhiterKangBOT")).format(
+            caption=("<b>Emoji:</b> {}\n<b>Sticker ID:</b> <code>{}</code>\n<b>Send By: @WhiterKangBOT").format(
                 sticker.emoji, sticker.file_id
             ),
         )
