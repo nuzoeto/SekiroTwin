@@ -30,6 +30,7 @@ lxml==4.8.0
 meval==2.5
 multidict==5.1.0
 motor
+openai
 Pillow==9.1.0
 pyaes==1.6.1
 git+https://github.com/BubbalooTeam/pyrogram
