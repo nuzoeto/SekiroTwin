@@ -47,7 +47,7 @@ async def chatgpt(c: megux, m: Message):
     args = m.text
     msg = await m.reply("<i>Aguarde...</i>")
     await asyncio.sleep(2)
-    await msg.edit("A resposta está sendo gerada...")
+    await msg.edit("<i>A resposta está sendo gerada...</i>")
     response = await generate_response(args)
-    await msg.edit("Resposta Gerada!! Enviando Resposta...")
+    await msg.edit("<i>Resposta Gerada!!</i> <b>Enviando Resposta...</b>")
     await msg.edit(response)
