@@ -1,11 +1,15 @@
 import requests 
 
+from chatgpt import ChatGPT
+
 from pyrogram import filters 
 from pyrogram.types import Message 
 from pyrogram.enums import ChatType
 
 from megumin import megux, Config
 from megumin.utils import get_collection, get_string 
+
+
  
 
 @megux.on_message(filters.command("simi", Config.TRIGGER))
@@ -26,3 +30,9 @@ async def simi_(_, m: Message):
         return await m.reply(await get_string(m.chat.id, "SIMI_API_OFF"))
 
 
+@megux.on_message(filters.command("ask", Config.TRIGGER))
+async def chatgpt(c: megux, m: Message):
+    args = m.text.split()[:1]
+    text = " ".join(args)
+    response = await chat_gpt.generate_response(text)
+    await m.reply(response)
