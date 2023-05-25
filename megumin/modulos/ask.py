@@ -45,5 +45,9 @@ async def simi_(_, m: Message):
 @megux.on_message(filters.command("ask", Config.TRIGGER))
 async def chatgpt(c: megux, m: Message):
     args = m.text
+    await m.reply("<i>Aguarde...</i>")
+    await asyncio.sleep(2)
+    await m.edit("A resposta está sendo gerada...")
     response = await generate_response(args)
-    await m.reply(response)
+    await m.edit("Resposta Gerada!! Enviando Resposta...")
+    await m.edit(response)
