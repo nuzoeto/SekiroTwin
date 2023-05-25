@@ -61,28 +61,28 @@ async def getsticker_(c: megux, m: Message):
     if await is_disabled(m.chat.id, "getsticker"):
         return
     sticker = m.reply_to_message.sticker
-
     if sticker:
         if sticker.is_animated:
-            await m.reply_text("Sticker animado não é suportado!")
-        elif not sticker.is_animated:
-            with tempfile.TemporaryDirectory() as tempdir:
-                path = os.path.join(tempdir, "getsticker")
-            sticker_file = await c.download_media(
-                message=m.reply_to_message,
-                file_name=f"{path}/{sticker.set_name}.png",
+            await m.reply_text(_("Stickers Animados, Não são suportados!"))
+        else:
+            extension = ".png" if not sticker.is_video else ".webm"
+            file = await message.reply_to_message.download(
+                in_memory=True, file_name=f"{sticker.file_unique_id}.{extension}"
             )
-            await m.reply_to_message.reply_document(
-                document=sticker_file,
-                caption=(
-                    f"<b>Emoji:</b> {sticker.emoji}\n"
-                    f"<b>Sticker ID:</b> <code>{sticker.file_id}</code>\n\n"
-                    f"<b>Send by:</b> @WhiterKangBOT"
-                ),
-            )
-            shutil.rmtree(tempdir, ignore_errors=True)
+
+        await message.reply_to_message.reply_document(
+            document=file,
+            caption=(_("<b>Emoji:</b> {}\n<b>Sticker ID:</b> <code>{}</code>")).format(
+                sticker.emoji, sticker.file_id
+            ),
+        )
     else:
-        await m.reply_text("Isso não é um sticker!")
+        await message.reply_text(
+            _(
+                "Responda a um adesivo com esse comando para que eu possa enviá-lo para você como \
+<b>Arquivo .png ou .gif</b>.\n<i>Só funcionara com vídeos e adesivos estáticos</i>"
+            )
+        )
 
 
 @megux.on_message(filters.command("stickerid", prefixes=["/", "!"]) & filters.reply)
