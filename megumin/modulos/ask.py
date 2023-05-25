@@ -10,7 +10,7 @@ from megumin.utils import get_collection, get_string
 
 openai.api_key = Config.API_CHATGPT
 
-def generate_response(text):
+async def generate_response(text):
     response = openai.Completion.create(
         engine='text-davinci-003',  # Especifique o modelo do ChatGPT a ser usado
         prompt=text,  # O texto de entrada ou pergunta para o modelo
