@@ -34,6 +34,7 @@ class Config:
     API_HASH = os.environ.get("API_HASH")
     BOT_TOKEN = os.environ.get("BOT_TOKEN")
     GP_LOGS = int(os.environ.get("GP_LOGS"))
+    API_CHATGPT = os.environ.get("OPENAI_API")
     BARRER_API = os.environ.get("BARRER_TOKEN")
     REMOVE_BG_API_KEY = os.environ.get("REMOVE_BG_API_KEY")  
     DB_URI = os.environ.get("DATABASE_URL")
