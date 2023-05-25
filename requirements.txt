@@ -8,6 +8,7 @@ bs4
 babel==2.9.1
 certifi==2021.5.30
 captcha
+chatgpt
 chardet==4.0.0
 charset-normalizer==2.0.6
 covid
