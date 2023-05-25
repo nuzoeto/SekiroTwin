@@ -66,13 +66,13 @@ async def getsticker_(c: megux, m: Message):
             await m.reply_text(_("Stickers Animados, Não são suportados!"))
         else:
             extension = ".png" if not sticker.is_video else ".webm"
-            file = await message.reply_to_message.download(
+            file = await m.reply_to_message.download(
                 in_memory=True, file_name=f"{sticker.file_unique_id}.{extension}"
             )
 
-        await message.reply_to_message.reply_document(
+        await m.reply_to_message.reply_document(
             document=file,
-            caption=(_("<b>Emoji:</b> {}\n<b>Sticker ID:</b> <code>{}</code>")).format(
+            caption=(_("<b>Emoji:</b> {}\n<b>Sticker ID:</b> <code>{}</code>\n<b>Send By: @WhiterKangBOT")).format(
                 sticker.emoji, sticker.file_id
             ),
         )
