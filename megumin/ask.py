@@ -13,7 +13,7 @@ openai.api_key = Config.API_CHATGPT
 async def generate_response(text):
     response = await openai.Completion.create(
         engine='text-davinci-003',  # Especifique o modelo do ChatGPT a ser usado
-        prompt=question,  # O texto de entrada ou pergunta para o modelo
+        prompt=text,  # O texto de entrada ou pergunta para o modelo
         max_tokens=50,  # O número máximo de tokens para a resposta gerada
         n=1,  # O número de respostas a serem geradas
         stop=None,  # Um token opcional para indicar o fim da resposta gerada
