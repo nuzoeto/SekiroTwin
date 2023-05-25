@@ -1,5 +1,6 @@
 import requests 
 import openai
+import asyncio
 
 from pyrogram import filters 
 from pyrogram.types import Message 
@@ -43,7 +44,6 @@ async def simi_(_, m: Message):
 
 @megux.on_message(filters.command("ask", Config.TRIGGER))
 async def chatgpt(c: megux, m: Message):
-    args = m.text.split()[:1]
-    text = " ".join(args)
-    response = await generate_response(text)
+    args = m.text
+    response = await generate_response(args)
     await m.reply(response)
