@@ -9,7 +9,14 @@ from pyrogram.enums import ChatType
 from megumin import megux, Config
 from megumin.utils import get_collection, get_string 
 
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
+
+
+
 openai.api_key = Config.API_CHATGPT
+
+model = GPT2LMHeadModel.from_pretrained("EleutherAI/gpt-neo-1.3B")
+tokenizer = GPT2Tokenizer.from_pretrained("EleutherAI/gpt-neo-1.3B")
 
 async def generate_response(text):
     response = openai.Completion.create(
@@ -22,6 +29,18 @@ async def generate_response(text):
 
     answer = response.choices[0].text.strip()  # Obtém a resposta gerada do ChatGPT
     return answer
+
+async def one_generate_response(message: Message):
+    input_text = message.text.lower()  # Converta o texto de entrada para minúsculas
+
+    # Codifique o texto de entrada
+    input_ids = tokenizer.encode(input_text, return_tensors="pt")
+
+    # Gere a resposta do modelo
+    response_ids = model.generate(input_ids, max_length=2048, num_return_sequences=1)
+    response_text = tokenizer.decode(response_ids[0], skip_special_tokens=True)
+
+    return response_text
 
 
 @megux.on_message(filters.command("simi", Config.TRIGGER))
@@ -48,6 +67,6 @@ async def chatgpt(c: megux, m: Message):
     msg = await m.reply("<i>Aguarde...</i>")
     await asyncio.sleep(2)
     await msg.edit("<i>A resposta está sendo gerada...</i>")
-    response = await generate_response(args)
+    response = await one_generate_response(args)
     await msg.edit("<i>Resposta Gerada!!</i> <b>Enviando Resposta...</b>")
     await msg.edit(response)
