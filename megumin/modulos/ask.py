@@ -30,8 +30,8 @@ async def generate_response(text):
     answer = response.choices[0].text.strip()  # Obtém a resposta gerada do ChatGPT
     return answer
 
-async def one_generate_response(message: Message):
-    input_text = message.text.lower()  # Converta o texto de entrada para minúsculas
+async def one_generate_response(text):
+    input_text = text.lower()  # Converta o texto de entrada para minúsculas
 
     # Codifique o texto de entrada
     input_ids = tokenizer.encode(input_text, return_tensors="pt")
