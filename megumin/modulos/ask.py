@@ -17,6 +17,7 @@ async def generate_response(text):
     response = openai.Completion.create(
         engine='text-davinci-003',  # Especifique o modelo do ChatGPT a ser usado
         prompt=text,  # O texto de entrada ou pergunta para o modelo
+        temperature=0.8, # Modo de temperatura. forma da mensagem.
         max_tokens=2048,  # O número máximo de tokens para a resposta gerada
         n=1,  # O número de respostas a serem geradas
         stop=None,  # Um token opcional para indicar o fim da resposta gerada
@@ -48,6 +49,8 @@ async def simi_(_, m: Message):
 @megux.on_message(filters.command("ask", Config.TRIGGER))
 async def chatgpt(c: megux, m: Message):
     args = m.text
+    if not args:
+        return await m.reply("Não foi possivel entender a sua pergunta, Já que não descreveste ela!")
     msg = await m.reply("<i>Aguarde...</i>")
     await asyncio.sleep(2)
     await msg.edit("<i>A resposta está sendo gerada...</i>")
