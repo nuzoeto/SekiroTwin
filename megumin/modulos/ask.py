@@ -49,7 +49,7 @@ async def simi_(_, m: Message):
 @megux.on_message(filters.command("ask", Config.TRIGGER))
 async def chatgpt(c: megux, m: Message):
     args = m.text
-    if not args:
+    if len(args) < 2:
         return await m.reply("Não foi possivel entender a sua pergunta, Já que não descreveste ela!")
     msg = await m.reply("<i>Aguarde...</i>")
     await asyncio.sleep(2)
