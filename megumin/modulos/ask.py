@@ -7,7 +7,7 @@ from pyrogram.types import Message
 from pyrogram.enums import ChatType
 
 from megumin import megux, Config
-from megumin.utils import get_collection, get_string 
+from megumin.utils import get_collection, get_string, disableable_dec, is_disabled 
 
 
 
@@ -29,11 +29,10 @@ async def generate_response(text):
 
 
 @megux.on_message(filters.command("simi", Config.TRIGGER))
+@disableable_dec("simi")
 async def simi_(_, m: Message):
-    DISABLED = get_collection(f"DISABLED {m.chat.id}")
-    query = "simi"
-    off = await DISABLED.find_one({"_cmd": query})
-    if off:
+    chat_id = m.chat.id
+    if await is_disabled(chat_id, "simi"):
         return
     text_ = m.text.split(maxsplit=1)[1]
     API = f"https://api.simsimi.net/v2/?text={text_}&lc=pt&cf=false"
@@ -47,7 +46,11 @@ async def simi_(_, m: Message):
 
 
 @megux.on_message(filters.command("ask", Config.TRIGGER))
+@disableable_dec("ask")
 async def chatgpt(c: megux, m: Message):
+    chat_id = m.chat.id
+    if await is_disabled(chat_id, "ask"):
+        return
     args = m.text
     if len(args) < 2:
         return await m.reply("Não foi possivel entender a sua pergunta, afirmação e entre outros..., Já que não descreveste ela!")
