@@ -50,7 +50,7 @@ async def simi_(_, m: Message):
 async def chatgpt(c: megux, m: Message):
     args = m.text
     if len(args) < 2:
-        return await m.reply("Não foi possivel entender a sua pergunta, Já que não descreveste ela!")
+        return await m.reply("Não foi possivel entender a sua pergunta, afirmação e entre outros..., Já que não descreveste ela!")
     msg = await m.reply("<i>Aguarde...</i>")
     await asyncio.sleep(2)
     await msg.edit("<i>A resposta está sendo gerada...</i>")
