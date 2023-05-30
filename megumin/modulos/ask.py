@@ -7,7 +7,8 @@ from pyrogram.types import Message
 from pyrogram.enums import ChatType
 
 from megumin import megux, Config
-from megumin.utils import get_collection, get_string, disableable_dec, is_disabled 
+from megumin.utils import get_collection, get_string, disableable_dec, is_disabled, input_str
+
 
 
 
@@ -52,7 +53,7 @@ async def chatgpt(c: megux, m: Message):
     if await is_disabled(chat_id, "ask"):
         return
     args = m.text
-    if len(args) < 2:
+    if not input_str(m):
         return await m.reply("Não foi possivel entender a sua pergunta, afirmação e entre outros..., Já que não descreveste ela!")
     msg = await m.reply("<i>Aguarde...</i>")
     await asyncio.sleep(2)
