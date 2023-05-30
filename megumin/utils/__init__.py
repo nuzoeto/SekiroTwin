@@ -9,7 +9,7 @@ from .database.fed import new_fed, join_fed, leave_fed, user_fban, is_user_fban,
 from .functions import rand_array, get_urls_from_text  # nao_meche
 from .logger import logging
 from .tools import extract_time  # nao_meche
-from .decorators import disableable_dec, DISABLABLE_CMDS
+from .decorators import disableable_dec, DISABLABLE_CMDS, input_str
 from .tools import (
     admin_check,
     check_bot_rights,
