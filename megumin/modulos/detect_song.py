@@ -87,9 +87,16 @@ async def transcriber(c: megux, m: Message):
                     ctext += cword + " "
                 sent_tokens = nltk.sent_tokenize(ctext)
                 ptext = " "
-                for sentence in sent_tokens:
-                    ptext += sentence.strip() + ". "
-                await sent.edit(f"<b>Texto:</b> <i>{ptext}</i>")
+                for i, sentence in enumerate(sent_tokens):
+                    sentence = sentence.strip()
+                    if i < len(sentences) - 1:
+                        if sentence[-1] not in [".", ",", ":", "?", "!", ";"]:
+                            sentence += "."
+                    else:
+                        if sentence[-1] not in [".", ",", ":", "?", "!", ";"]:
+                            sentence += "."
+                    ptext += sentence + " "                 
+                await sent.edit(f"<b>Texto:</b>\n<i>{ptext}</i>")
             except sr.UnknownValueError:
                 await sent.edit("<i>Não consegui, Identificar o que você quis dizer com isso.")
                 await asyncio.sleep(5)
