@@ -83,3 +83,4 @@ async def transcriber(c: megux, m: Message):
                 await sent.edit("<i>O Serviço de conversão de fala em texto, Não está disponivel no momento.</i>")
                 await asyncio.sleep(5)
                 await sent.delete()
+    os.remove(wav_file_path)
