@@ -79,24 +79,8 @@ async def transcriber(c: megux, m: Message):
             audio = recognizer.record(source)
             try:
                 await sent.edit("Transcrevendo Fala em Texto...")
-                text = recognizer.recognize_google(audio, language="pt-BR")
-                ctext = ""
-                words = text.split()
-                for word in words:
-                    cword = spell.correction(word)
-                    ctext += cword + " "
-                sent_tokens = nltk.sent_tokenize(ctext)
-                ptext = " "
-                for i, sentence in enumerate(sent_tokens):
-                    sentence = sentence.strip()
-                    if i < len(sent_tokens) - 1:
-                        if sentence[-1] not in [".", ",", ":", "?", "!", ";"]:
-                            sentence += "."
-                    else:
-                        if sentence[-1] not in [".", ",", ":", "?", "!", ";"]:
-                            sentence += "."
-                    ptext += sentence + " "                 
-                await sent.edit(f"<b>Texto:</b>\n<i>{ptext}</i>")
+                text = recognizer.recognize_google(audio, language="pt-BR")         
+                await sent.edit(f"<b>Texto:</b>\n<i>{text}</i>")
             except sr.UnknownValueError:
                 await sent.edit("<i>Não consegui, Identificar o que você quis dizer com isso.")
                 await asyncio.sleep(5)
