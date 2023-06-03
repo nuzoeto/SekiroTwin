@@ -6,6 +6,8 @@ import nltk
 
 
 from shazamio import Shazam
+from nltk.tokenize import word_tokenize
+from nltk.tag import pos_tag
 from spellchecker import SpellChecker
 
 from pyrogram import filters
@@ -19,6 +21,35 @@ recognizer = sr.Recognizer()
 spell = SpellChecker(language="pt")
 
 nltk.download("punkt")
+nltk.download('averaged_perceptron_tagger')
+
+def adicionar_pontuacao(texto):
+    tokens = word_tokenize(texto)
+    tags = pos_tag(tokens)
+    
+    texto_pontuado = ""
+    
+    for i in range(len(tags)):
+        palavra = tags[i][0]
+        classe_gramatical = tags[i][1]
+        
+        if i > 0:
+            if classe_gramatical == 'NN' or classe_gramatical == 'NNS' or classe_gramatical == 'NNP' or classe_gramatical == 'NNPS':
+                texto_pontuado += " " + palavra
+            else:
+                texto_pontuado += palavra
+        else:
+            texto_pontuado += palavra
+            
+        if i < len(tags) - 1:
+            proxima_classe_gramatical = tags[i+1][1]
+            if proxima_classe_gramatical != '.' and proxima_classe_gramatical != ',' and proxima_classe_gramatical != '#' and proxima_classe_gramatical != '/' and proxima_classe_gramatical != ':' and proxima_classe_gramatical != ';' and proxima_classe_gramatical != '?' and proxima_classe_gramatical != '!' and proxima_classe_gramatical != '%':
+                texto_pontuado += " "
+        else:
+            texto_pontuado += "."
+    
+    return texto_pontuado
+
 
 @megux.on_message(filters.command(["whichsong", "detectsong"], Config.TRIGGER))
 async def which_song(c: megux, message: Message):
@@ -79,8 +110,9 @@ async def transcriber(c: megux, m: Message):
             audio = recognizer.record(source)
             try:
                 await sent.edit("Transcrevendo Fala em Texto...")
-                text = recognizer.recognize_google(audio, language="pt-BR")         
-                await sent.edit(f"<b>Texto:</b>\n<i>{text}</i>")
+                text = recognizer.recognize_google(audio, language="pt-BR")
+                text2 = adicionar_pontuacao(text)
+                await sent.edit(f"<b>Texto:</b>\n<i>{text2}</i>")
             except sr.UnknownValueError:
                 await sent.edit("<i>Não consegui, Identificar o que você quis dizer com isso.")
                 await asyncio.sleep(5)
