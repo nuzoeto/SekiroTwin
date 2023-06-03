@@ -1,6 +1,7 @@
 import os
 import asyncio
 import speech_recognition as sr
+import subprocess
 
 from shazamio import Shazam
 
@@ -60,8 +61,15 @@ async def transcriber(c: megux, m: Message):
                     )
         except Exception as e:
             await sent.edit(f"<i>Ocorreu um erro: {e}")
+         
+        try:
+            wav_file_path = "Transcriber_WAV.wav"
+            ffmpeg_cmd = f"ffmpeg -i {file} {wav_file_path}"
+            subprocess.run(ffmpeg_cmd, shell=True)
+        except Exception as e:
+            await sent.edit(f"Ocorreu um erro: {e}")
         
-        with sr.AudioFile(file) as source:
+        with sr.AudioFile(wav_file_path) as source:
             audio = recognizer.record(source)
             try:
                 await sent.edit("Transcrevendo Fala em Texto...")
