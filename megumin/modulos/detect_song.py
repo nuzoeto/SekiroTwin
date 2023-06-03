@@ -1,6 +1,6 @@
 import os
 import asyncio
-import speech_recogniton as sr
+import speech_recognition as sr
 
 from shazamio import Shazam
 
