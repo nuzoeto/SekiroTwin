@@ -1,4 +1,6 @@
 import os
+import asyncio
+import speech_recogniton as sr
 
 from shazamio import Shazam
 
@@ -9,6 +11,7 @@ from megumin import megux, Config
 
 
 shazam = Shazam()
+recognizer = sr.Recognizer()
 
 @megux.on_message(filters.command(["whichsong", "detectsong"], Config.TRIGGER))
 async def which_song(c: megux, message: Message):
@@ -44,3 +47,31 @@ async def which_song(c: megux, message: Message):
         os.remove(file)
         return await sent.edit("<i>Failed to get sound data.</i>")
     os.remove(file)
+
+    
+@megux.on_message(filters.voice)
+async def transcriber(m: Message, c: megux):
+    if m.voice:
+        sent = await message.reply("<i>Downloading audio..</i>")
+        try:
+            file = await c.download_media(
+                        message=message.reply_to_message,
+                        file_name=Config.DOWN_PATH
+                    )
+        except Exception as e:
+            await sent.edit(f"<i>Ocorreu um erro: {e}")
+        
+        with sr.AudioFile(file) as source:
+            audio = recognizer.record(source)
+            try:
+                await sent.edit("Transcrevendo Fala em Texto...")
+                text = recognizer.recognize_google(audio, language="pt-BR")
+                await sent.edit(f"<b>Texto:</b> <i>{text}</i>")
+            except sr.UnknownValueError:
+                await sent.edit("<i>Não consegui, Identificar o que você quis dizer com isso.")
+                await asyncio.sleep(5)
+                await sent.delete()
+            except sr.RequestError:
+                await sent.edit("<i>O Serviço de conversão de fala em texto, Não está disponivel no momento.</i>")
+                await asyncio.sleep(5)
+                await sent.delete()
