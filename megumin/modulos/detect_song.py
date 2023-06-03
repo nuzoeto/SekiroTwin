@@ -89,7 +89,7 @@ async def transcriber(c: megux, m: Message):
                 ptext = " "
                 for i, sentence in enumerate(sent_tokens):
                     sentence = sentence.strip()
-                    if i < len(sentences) - 1:
+                    if i < len(sent_tokens) - 1:
                         if sentence[-1] not in [".", ",", ":", "?", "!", ";"]:
                             sentence += "."
                     else:
