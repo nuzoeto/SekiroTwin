@@ -2,6 +2,7 @@ import os
 import asyncio
 import speech_recognition as sr
 import subprocess
+import nltk
 
 
 from shazamio import Shazam
@@ -16,6 +17,8 @@ from megumin import megux, Config
 shazam = Shazam()
 recognizer = sr.Recognizer()
 spell = SpellChecker(language="pt")
+
+nltk.download("punkt")
 
 @megux.on_message(filters.command(["whichsong", "detectsong"], Config.TRIGGER))
 async def which_song(c: megux, message: Message):
@@ -82,7 +85,9 @@ async def transcriber(c: megux, m: Message):
                 for word in words:
                     cword = spell.correction(word)
                     ctext += cword + " "
-                await sent.edit(f"<b>Texto:</b> <i>{ctext}</i>")
+                sent_tokens = nltk.sent_tokenize(ctext)
+                ptext = " ".join(sent_tokens)
+                await sent.edit(f"<b>Texto:</b> <i>{ptext}</i>")
             except sr.UnknownValueError:
                 await sent.edit("<i>Não consegui, Identificar o que você quis dizer com isso.")
                 await asyncio.sleep(5)
