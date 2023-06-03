@@ -3,7 +3,9 @@ import asyncio
 import speech_recognition as sr
 import subprocess
 
+
 from shazamio import Shazam
+from spellchecker import SpellChecker
 
 from pyrogram import filters
 from pyrogram.types import Message
@@ -13,6 +15,7 @@ from megumin import megux, Config
 
 shazam = Shazam()
 recognizer = sr.Recognizer()
+spell = SpellChecker(language="pt")
 
 @megux.on_message(filters.command(["whichsong", "detectsong"], Config.TRIGGER))
 async def which_song(c: megux, message: Message):
@@ -74,7 +77,12 @@ async def transcriber(c: megux, m: Message):
             try:
                 await sent.edit("Transcrevendo Fala em Texto...")
                 text = recognizer.recognize_google(audio, language="pt-BR")
-                await sent.edit(f"<b>Texto:</b> <i>{text}</i>")
+                ctext = ""
+                words = text.split()
+                for word in words:
+                    cword = spell.correction(word)
+                    ctext += cword + " "
+                await sent.edit(f"<b>Texto:</b> <i>{ctext}</i>")
             except sr.UnknownValueError:
                 await sent.edit("<i>Não consegui, Identificar o que você quis dizer com isso.")
                 await asyncio.sleep(5)
