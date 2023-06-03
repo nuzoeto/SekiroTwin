@@ -86,7 +86,9 @@ async def transcriber(c: megux, m: Message):
                     cword = spell.correction(word)
                     ctext += cword + " "
                 sent_tokens = nltk.sent_tokenize(ctext)
-                ptext = " ".join(sent_tokens)
+                ptext = " "
+                for sentence in sent_tokens:
+                    ptext += sentence.strip() + ". "
                 await sent.edit(f"<b>Texto:</b> <i>{ptext}</i>")
             except sr.UnknownValueError:
                 await sent.edit("<i>Não consegui, Identificar o que você quis dizer com isso.")
