@@ -52,10 +52,10 @@ async def which_song(c: megux, message: Message):
 @megux.on_message(filters.voice)
 async def transcriber(m: Message, c: megux):
     if m.audio:
-        sent = await message.reply("<i>Fazendo  Download do Áudio..</i>")
+        sent = await m.reply("<i>Fazendo  Download do Áudio..</i>")
         try:
             file = await c.download_media(
-                        message=message.audio,
+                        message=m.audio,
                         file_name=Config.DOWN_PATH
                     )
         except Exception as e:
