@@ -343,63 +343,54 @@ async def sdl(c: megux, m: Message):
             url = m.matches[0].group(0)
         else:
             return
-    elif len(m.command) > 1:
+     elif not m.matches and len(m.command) > 1:
         url = m.text.split(None, 1)[1]
+        if not re.match(DL_REGEX, url, re.M):
+            return await m.reply_text("O Link não é válido.")
+                
     elif m.reply_to_message and m.reply_to_message.text:
         url = m.reply_to_message.text
     else:
-        return await m.reply_text((await tld(m.chat.id, "NO_ARGS_YT")))
+        return await m.reply_text(await tld(m.chat.id, "NO_ARGS_YT"))
 
-    if not re.match(SDL_REGEX_LINKS, url, re.M):
-        return await m.reply_text("This is not a valid sdl link")
-    
-    if re.match(TWITTER_REGEX, url, re.M) and m.chat.type is not enums.ChatType.PRIVATE:
-        with contextlib.suppress(UserNotParticipant):
-            # To avoid conflict with @TwitterGramBOT
-            return await m.chat.get_member(1703426201)
-    
-    path = f"{m.chat.id}.{m.id}"
-    if m.chat.type == enums.ChatType.PRIVATE:
-        method = messages.GetMessages(id=[InputMessageID(id=(m.id))])
+    if m.chat.type == ChatType.PRIVATE:
+        method = messages.GetMessages(id=[InputMessageID(id=(message.id))])
     else:
         method = channels.GetMessages(
-            channel=await c.resolve_peer(m.chat.id), id=[InputMessageID(id=(m.id))]
+            channel=await c.resolve_peer(m.chat.id),
+            id=[InputMessageID(id=(m.id))],
         )
+
     rawM = (await c.invoke(method)).messages[0].media
-    files, caption = await DownloadMedia().download(url, path)
+    files, caption = await DownloadMedia().download(url)
 
     medias = []
     for media in files:
-        if media["path"][-3:] == "mp4" and len(files) == 1:
-            await c.send_chat_action(m.chat.id, enums.ChatAction.UPLOAD_VIDEO)
-            await m.reply_video(
-                video=media["path"],
-                width=media["width"],
-                height=media["height"],
+        if filetype.is_video(media["p"]) and len(files) == 1:
+            await client.send_chat_action(m.chat.id, ChatAction.UPLOAD_VIDEO)
+            return await message.reply_video(
+                video=media["p"],
+                width=media["h"],
+                height=media["h"],
                 caption=caption,
             )
-            return shutil.rmtree(f"./downloads/{path}/", ignore_errors=True)
 
-        if media["path"][-3:] == "mp4":
+        if filetype.is_video(media["p"]):
             if medias:
-                medias.append(
-                    InputMediaVideo(
-                        media["path"], width=media["width"], height=media["height"]
-                    )
-                )
+                medias.append(InputMediaVideo(media["p"], width=media["w"], height=media["h"]))
             else:
                 medias.append(
                     InputMediaVideo(
-                        media["path"],
-                        width=media["width"],
-                        height=media["height"],
+                        media["p"],
+                        width=media["w"],
+                        height=media["h"],
                         caption=caption,
                     )
                 )
         elif not medias:
-            medias.append(InputMediaPhoto(media["path"], caption=caption))
+            medias.append(InputMediaPhoto(media["p"], caption=caption))
         else:
-            medias.append(InputMediaPhoto(media["path"]))
+            medias.append(InputMediaPhoto(media["p"]))
 
     if medias:
         if (
@@ -410,6 +401,9 @@ async def sdl(c: megux, m: Message):
         ):
             return
 
-        await c.send_chat_action(m.chat.id, enums.ChatAction.UPLOAD_DOCUMENT)
-        await m.reply_media_group(media=medias)
-    return shutil.rmtree(f"./downloads/{path}/", ignore_errors=True)
+        await client.send_chat_action(m.chat.id, ChatAction.UPLOAD_DOCUMENT)
+        await m.reply(medias)
+        return 
+    return 
+
+    
