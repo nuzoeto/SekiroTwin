@@ -343,7 +343,7 @@ async def sdl(c: megux, m: Message):
             url = m.matches[0].group(0)
         else:
             return
-     elif not m.matches and len(m.command) > 1:
+    elif not m.matches and len(m.command) > 1:
         url = m.text.split(None, 1)[1]
         if not re.match(DL_REGEX, url, re.M):
             return await m.reply_text("O Link não é válido.")
