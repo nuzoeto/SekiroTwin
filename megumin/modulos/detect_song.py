@@ -16,7 +16,7 @@ from megumin import megux, Config
 
 
 shazam = Shazam()
-nlp = spacy.load("pt_core_news_sm")
+nlp = spacy.load("pt_core_news_lg")
 recognizer = sr.Recognizer()
 spell = SpellChecker(language="pt")
 str_uuid = str(uuid.uuid4())
