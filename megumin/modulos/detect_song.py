@@ -18,7 +18,6 @@ from megumin import megux, Config
 shazam = Shazam()
 recognizer = sr.Recognizer()
 spell = SpellChecker(language="pt")
-str_uuid = str(uuid.uuid4())
 
 
 @megux.on_message(filters.command(["whichsong", "detectsong"], Config.TRIGGER))
@@ -70,6 +69,7 @@ async def transcriber(c: megux, m: Message):
             await sent.edit(f"<i>Ocorreu um erro: {e}")
          
         try:
+            str_uuid = str(uuid.uuid4())
             wav_file_path = f"Transcriber{str_uuid}_WAV.wav"
             ffmpeg_cmd = f"ffmpeg -i {file} {wav_file_path}"
             subprocess.run(ffmpeg_cmd, shell=True)
