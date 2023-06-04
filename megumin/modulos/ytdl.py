@@ -353,8 +353,8 @@ async def sdl(c: megux, m: Message):
     else:
         return await m.reply_text(await tld(m.chat.id, "NO_ARGS_YT"))
 
-    if m.chat.type == ChatType.PRIVATE:
-        method = messages.GetMessages(id=[InputMessageID(id=(message.id))])
+    if m.chat.type == enums.ChatType.PRIVATE:
+        method = messages.GetMessages(id=[InputMessageID(id=(m.id))])
     else:
         method = channels.GetMessages(
             channel=await c.resolve_peer(m.chat.id),
@@ -368,7 +368,7 @@ async def sdl(c: megux, m: Message):
     for media in files:
         if filetype.is_video(media["p"]) and len(files) == 1:
             await c.send_chat_action(m.chat.id, enums.ChatAction.UPLOAD_VIDEO)
-            return await message.reply_video(
+            return await m.reply_video(
                 video=media["p"],
                 width=media["h"],
                 height=media["h"],
