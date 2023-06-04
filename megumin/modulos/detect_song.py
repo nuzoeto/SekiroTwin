@@ -1,14 +1,12 @@
 import os
+import spacy
 import uuid
 import asyncio
 import speech_recognition as sr
 import subprocess
-import nltk
 
 
 from shazamio import Shazam
-from nltk.tokenize import word_tokenize
-from nltk.tag import pos_tag
 from spellchecker import SpellChecker
 
 from pyrogram import filters
@@ -18,38 +16,22 @@ from megumin import megux, Config
 
 
 shazam = Shazam()
+nlp = spacy.load("pt_core_news_sm")
 recognizer = sr.Recognizer()
 spell = SpellChecker(language="pt")
 str_uuid = str(uuid.uuid4())
 
-nltk.download("punkt")
-nltk.download('averaged_perceptron_tagger')
 
 def adicionar_pontuacao(texto):
-    tokens = word_tokenize(texto)
-    tags = pos_tag(tokens)
-    
-    texto_pontuado = ""
-    
-    for i in range(len(tags)):
-        palavra = tags[i][0]
-        classe_gramatical = tags[i][1]
-        
-        if i > 0:
-            if classe_gramatical == 'NN' or classe_gramatical == 'NNS' or classe_gramatical == 'NNP' or classe_gramatical == 'NNPS':
-                texto_pontuado += " " + palavra
-            else:
-                texto_pontuado += palavra
-        else:
-            texto_pontuado += palavra
-            
-        if i < len(tags) - 1:
-            proxima_classe_gramatical = tags[i+1][1]
-            if proxima_classe_gramatical != '.' and proxima_classe_gramatical != ',' and proxima_classe_gramatical != '#' and proxima_classe_gramatical != '/' and proxima_classe_gramatical != ':' and proxima_classe_gramatical != ';' and proxima_classe_gramatical != '?' and proxima_classe_gramatical != '!' and proxima_classe_gramatical != '%':
-                texto_pontuado += " "
-        else:
-            texto_pontuado += "."
-    
+    doc = nlp(texto)
+    tokens = []
+
+    for token in doc:
+        tokens.append(token.text)
+        if token.is_punct:
+            tokens.append(token.text)
+
+    texto_pontuado = " ".join(tokens)
     return texto_pontuado
 
 
@@ -113,8 +95,8 @@ async def transcriber(c: megux, m: Message):
             try:
                 await sent.edit("Transcrevendo Fala em Texto...")
                 text = recognizer.recognize_google(audio, language="pt-BR")
-                text2 = adicionar_pontuacao(text)
-                await sent.edit(f"<b>Texto:</b>\n<i>{text2}</i>")
+                ctext = adicionar_pontuacao(text)
+                await sent.edit(f"<b>Texto:</b>\n<i>{ctext}</i>")
             except sr.UnknownValueError:
                 await sent.edit("<i>Não consegui, Identificar o que você quis dizer com isso.")
                 await asyncio.sleep(5)
