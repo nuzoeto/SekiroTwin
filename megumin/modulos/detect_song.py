@@ -7,7 +7,6 @@ import subprocess
 
 
 from shazamio import Shazam
-from punctuator import Punctuador
 from spellchecker import SpellChecker
 
 from pyrogram import filters
@@ -82,8 +81,6 @@ async def transcriber(c: megux, m: Message):
             try:
                 await sent.edit("Transcrevendo Fala em Texto...")
                 text = recognizer.recognize_google(audio, language="pt-BR")
-                punctuador = Punctuador("pontuador/Model.pt")
-                ptext = punctuator.punctuate(text)
                 await sent.edit(f"<b>Texto:</b>\n<i>{text}</i>")
             except sr.UnknownValueError:
                 await sent.edit("<i>Não consegui, Identificar o que você disse.")
