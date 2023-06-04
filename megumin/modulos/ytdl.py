@@ -362,7 +362,7 @@ async def sdl(c: megux, m: Message):
         )
 
     rawM = (await c.invoke(method)).messages[0].media
-    files, caption = await DownloadMedia().download(url)
+    files, caption = await DownloadMedia().download(url, True)
 
     medias = []
     for media in files:
