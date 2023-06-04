@@ -1,4 +1,5 @@
 import os
+import uuid
 import asyncio
 import speech_recognition as sr
 import subprocess
@@ -19,6 +20,7 @@ from megumin import megux, Config
 shazam = Shazam()
 recognizer = sr.Recognizer()
 spell = SpellChecker(language="pt")
+str_uuid = str(uuid.uuid4())
 
 nltk.download("punkt")
 nltk.download('averaged_perceptron_tagger')
@@ -100,7 +102,7 @@ async def transcriber(c: megux, m: Message):
             await sent.edit(f"<i>Ocorreu um erro: {e}")
          
         try:
-            wav_file_path = "Transcriber_WAV.wav"
+            wav_file_path = f"Transcriber{str_uuid}_WAV.wav"
             ffmpeg_cmd = f"ffmpeg -i {file} {wav_file_path}"
             subprocess.run(ffmpeg_cmd, shell=True)
         except Exception as e:
