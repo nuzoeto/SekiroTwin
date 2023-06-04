@@ -14,6 +14,7 @@ charset-normalizer==2.0.6
 covid
 dnspython
 emoji-country-flag
+filetype==1.2.0
 git+https://github.com/kkroening/ffmpeg-python.git
 geopy
 gallery-dl>=1.21.2
