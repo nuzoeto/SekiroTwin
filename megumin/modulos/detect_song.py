@@ -7,6 +7,7 @@ import subprocess
 
 
 from shazamio import Shazam
+from punctuator import Punctuador
 from spellchecker import SpellChecker
 
 from pyrogram import filters
@@ -16,23 +17,9 @@ from megumin import megux, Config
 
 
 shazam = Shazam()
-nlp = spacy.load("pt_core_news_lg")
 recognizer = sr.Recognizer()
 spell = SpellChecker(language="pt")
 str_uuid = str(uuid.uuid4())
-
-
-def adicionar_pontuacao(texto):
-    doc = nlp(texto)
-    tokens = []
-
-    for token in doc:
-        tokens.append(token.text)
-        if token.is_punct:
-            tokens.append(token.text)
-
-    texto_pontuado = " ".join(tokens)
-    return texto_pontuado
 
 
 @megux.on_message(filters.command(["whichsong", "detectsong"], Config.TRIGGER))
@@ -74,7 +61,7 @@ async def which_song(c: megux, message: Message):
 @megux.on_message(filters.voice)
 async def transcriber(c: megux, m: Message):
     if m.voice:
-        sent = await m.reply("<i>Fazendo  Download do Áudio..</i>")
+        sent = await m.reply("<i>Fazendo Download do Áudio..</i>")
         try:
             file = await c.download_media(
                         message=m.voice,
@@ -95,10 +82,11 @@ async def transcriber(c: megux, m: Message):
             try:
                 await sent.edit("Transcrevendo Fala em Texto...")
                 text = recognizer.recognize_google(audio, language="pt-BR")
-                ctext = adicionar_pontuacao(text)
-                await sent.edit(f"<b>Texto:</b>\n<i>{ctext}</i>")
+                punctuador = Punctuador("pontuador/Model.pt")
+                ptext = punctuator.punctuate(text)
+                await sent.edit(f"<b>Texto:</b>\n<i>{text}</i>")
             except sr.UnknownValueError:
-                await sent.edit("<i>Não consegui, Identificar o que você quis dizer com isso.")
+                await sent.edit("<i>Não consegui, Identificar o que você disse.")
                 await asyncio.sleep(5)
                 await sent.delete()
             except sr.RequestError:
