@@ -39,7 +39,7 @@ YOUTUBE_REGEX = re.compile(
     r"(?m)http(?:s?):\/\/(?:www\.)?(?:music\.)?youtu(?:be\.com\/(watch\?v=|shorts/|embed/)|\.be\/|)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?"
 )
 
-SDL_REGEX_LINKS = r"http(?:s)?:\/\/(?:www.|mobile.|m.|vm.)?(?:instagram|twitter|reddit|tiktok|facebook).com\/(?:\S*)"
+SDL_REGEX_LINKS = r"(?:htt.+?//)?(?:.+?)?(?:instagram|twitter|tiktok|facebook).com\/(?:\S*)"
 
 
 TWITTER_REGEX = (
@@ -345,7 +345,7 @@ async def sdl(c: megux, m: Message):
             return
     elif not m.matches and len(m.command) > 1:
         url = m.text.split(None, 1)[1]
-        if not re.match(DL_REGEX, url, re.M):
+        if not re.match(SDL_REGEX_LINKS, url, re.M):
             return await m.reply_text("O Link não é válido.")
                 
     elif m.reply_to_message and m.reply_to_message.text:
@@ -367,7 +367,7 @@ async def sdl(c: megux, m: Message):
     medias = []
     for media in files:
         if filetype.is_video(media["p"]) and len(files) == 1:
-            await client.send_chat_action(m.chat.id, ChatAction.UPLOAD_VIDEO)
+            await c.send_chat_action(m.chat.id, enums.ChatAction.UPLOAD_VIDEO)
             return await message.reply_video(
                 video=media["p"],
                 width=media["h"],
@@ -401,7 +401,7 @@ async def sdl(c: megux, m: Message):
         ):
             return
 
-        await client.send_chat_action(m.chat.id, ChatAction.UPLOAD_DOCUMENT)
+        await c.send_chat_action(m.chat.id, enums.ChatAction.UPLOAD_DOCUMENT)
         await m.reply(medias)
         return 
     return 
