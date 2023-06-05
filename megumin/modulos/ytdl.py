@@ -130,7 +130,7 @@ type,variants,url,height,width&tweet.fields=entities"
             f"{self.TwitterAPI}tweets/{tweet_id}{params}",
             headers={"Authorization": f"Bearer {BARRER_TOKEN}"},
         )
-        tweet = json.loads(res.content)
+        tweet = rapidjson.loads(res.content)
         self.caption = f"<b>{tweet['includes']['users'][0]['name']}</b>\n{tweet['data']['text']}"
 
         # Iterate over the media attachments in the tweet
@@ -188,7 +188,7 @@ class DownloadMedia:
             f"https://www.instagram.com/p/{post_id}/embed/captioned",
             follow_redirects=True,
         )
-        soup = bs4(r.text, "html.parser")
+        soup = BeautifulSoup(r.text, "html.parser")
         medias = []
 
         if soup.find("div", {"data-media-type": "GraphImage"}):
