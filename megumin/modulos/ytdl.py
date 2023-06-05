@@ -229,6 +229,54 @@ class DownloadMedia:
                             medias.append(
                                 {"p": url, "w": dimensions["width"], "h": dimensions["height"]}
                             )
+        for m in medias:
+            file = io.BytesIO((await http.get(m["p"])).content)
+            file.name = f"{m['p'][60:80]}.{filetype.guess_extension(file)}"
+            self.files.append({"p": file, "w": m["w"], "h": m["h"]})
+        return
+
+    async def Twitter(self, url: str, captions: str):
+        # Extract the tweet ID from the URL
+        tweet_id = re.match(".*twitter.com/.+status/([A-Za-z0-9]+)", url)[1]
+        params: str = "?expansions=attachments.media_keys,author_id&media.fields=\
+type,variants,url,height,width&tweet.fields=entities"
+        # Send the request and parse the response as JSON
+        res = await http.get(
+            f"{self.TwitterAPI}tweets/{tweet_id}{params}",
+            headers={"Authorization": f"Bearer {BARRER_TOKEN}"},
+        )
+        tweet = json.loads(res.content)
+        self.caption = f"<b>{tweet['includes']['users'][0]['name']}</b>\n{tweet['data']['text']}"
+
+        # Iterate over the media attachments in the tweet
+        for media in tweet["includes"]["media"]:
+            if media["type"] in ("animated_gif", "video"):
+                bitrate = [
+                    a["bit_rate"] for a in media["variants"] if a["content_type"] == "video/mp4"
+                ]
+                media["media_key"]
+                for a in media["variants"]:
+                    if a["content_type"] == "video/mp4" and a["bit_rate"] == max(bitrate):
+                        path = io.BytesIO((await http.get(a["url"])).content)
+                        path.name = f"{media['media_key']}.{filetype.guess_extension(path)}"
+            else:
+                path = media["url"]
+            self.files.append({"p": path, "w": media["width"], "h": media["height"]})
+
+    async def TikTok(self, url: str, captions: str):
+        path = io.BytesIO()
+        with contextlib.redirect_stdout(path):
+            ydl = YoutubeDL({"outtmpl": "-"})
+            yt = await extract_info(ydl, url, download=True)
+        path.name = yt["title"]
+        self.caption = f"{yt['title']}\n\n<a href='{url}'>🔗 Link</a>"
+        self.files.append(
+            {
+                "p": path,
+                "w": yt["formats"][0]["width"],
+                "h": yt["formats"][0]["height"],
+            }
+        )
 
 
 @megux.on_message(filters.command("ytdl", Config.TRIGGER))
