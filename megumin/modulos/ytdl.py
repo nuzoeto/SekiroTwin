@@ -168,7 +168,7 @@ class DownloadMedia:
         self.cors: str = "https://cors-bypass.amanoteam.com/"
         self.TwitterAPI: str = "https://api.twitter.com/2/"
 
-    async def download(self, url: str, captions):
+    async def download(self, url: str, captions: bool):
         self.files: list = []
         if re.search(r"instagram.com/", url):
             await self.instagram(url, captions)
