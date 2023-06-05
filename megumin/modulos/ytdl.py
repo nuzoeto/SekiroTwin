@@ -11,6 +11,7 @@ import datetime
 import httpx
 import gallery_dl
 import contextlib
+import esprima
 import filetype
 
 
@@ -80,7 +81,7 @@ def gallery_down(path, url: str):
     return gallery_dl.job.DownloadJob(url).run()
 
 
-class DownloadMedia:
+class LegacyDownloadMedia:
     def __init__(self):
         self.cors: str = "https://cors-bypass.amanoteam.com/"
         self.TwitterAPI: str = "https://api.twitter.com/2/"
@@ -162,6 +163,73 @@ type,variants,url,height,width&tweet.fields=entities"
             }
         )
     
+class DownloadMedia:
+    def __init__(self):
+        self.cors: str = "https://cors-bypass.amanoteam.com/"
+        self.TwitterAPI: str = "https://api.twitter.com/2/"
+
+    async def download(self, url: str, captions):
+        self.files: list = []
+        if re.search(r"instagram.com/", url):
+            await self.instagram(url, captions)
+        elif re.search(r"tiktok.com/", url):
+            await self.TikTok(url, captions)
+        elif re.search(r"twitter.com/", url):
+            await self.Twitter(url, captions)
+
+        if captions is False:
+            self.caption = f"<a href='{url}'>🔗 Link</a>"
+
+        return self.files, self.caption
+
+    async def instagram(self, url: str, captions: str):
+        post_id = re.findall(r"/(?:reel|p)/([a-zA-Z0-9_-]+)/", url)[0]
+        r = await http.get(
+            f"https://www.instagram.com/p/{post_id}/embed/captioned",
+            follow_redirects=True,
+        )
+        soup = bs4(r.text, "html.parser")
+        medias = []
+
+        if soup.find("div", {"data-media-type": "GraphImage"}):
+            caption = re.sub(
+                r'.*</a><br/><br/>(.*)(<div class="CaptionComments">.*)',
+                r"\1",
+                str(soup.find("div", {"class": "Caption"})),
+            ).replace("<br/>", "\n")
+            self.caption = f"{caption}\n<a href='{url}'>🔗 Link</a>"
+            file = soup.find("img", {"class": "EmbeddedMediaImage"}).get("src")
+            medias.append({"p": file, "w": 0, "h": 0})
+
+        data = re.findall(r'<script>(requireLazy\(\["TimeSliceImpl".*)<\/script>', r.text)
+
+        if data and "shortcode_media" in data[0]:
+            tokenized = esprima.tokenize(data[0])
+            for token in tokenized:
+                if "shortcode_media" in token.value:
+                    jsoninsta = rapidjson.loads(rapidjson.loads(token.value))["gql_data"]["shortcode_media"]
+
+                    if caption := jsoninsta["edge_media_to_caption"]["edges"]:
+                        self.caption = f"{caption[0]['node']['text']}\n<a href='{url}'>🔗 Link</a>"
+                    else:
+                        self.caption = f"\n<a href='{url}'>🔗 Link</a>"
+
+                    if jsoninsta["__typename"] == "GraphVideo":
+                        url = jsoninsta["video_url"]
+                        dimensions = jsoninsta["dimensions"]
+                        medias.append(
+                            {"p": url, "w": dimensions["width"], "h": dimensions["height"]}
+                        )
+                    else:
+                        for post in jsoninsta["edge_sidecar_to_children"]["edges"]:
+                            url = post["node"]["display_url"]
+                            if post["node"]["is_video"] is True:
+                                url = post["node"]["video_url"]
+                            dimensions = post["node"]["dimensions"]
+                            medias.append(
+                                {"p": url, "w": dimensions["width"], "h": dimensions["height"]}
+                            )
+
 
 @megux.on_message(filters.command("ytdl", Config.TRIGGER))
 async def ytdlcmd(c: megux, m: Message):
