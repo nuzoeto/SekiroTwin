@@ -222,7 +222,7 @@ async def terminal(client: megux, message: Message):
             await client.send_document(
                 message.chat.id,
                 filename,
-                reply_to_message_id=message.message_id,
+                reply_to_message_id=message.id,
                 caption="`Output file`",
             )
             os.remove(filename)
