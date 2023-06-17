@@ -46,7 +46,8 @@ async def flood_control_func(_, message: Message):
     if not await check_flood_on(chat_id):
         return
     chat_limit = await flood_limit(chat_id)
-    if await check_flood(chat_id: int, user_id: int, chat_limit: int):
+    should_mute = await check_flood(chat_id: int, user_id: int, chat_limit: int)
+    if should_mute:
         try:
             await message.chat.restrict_member(user_id, ChatPermissions())
             await message.reply_text(f"Você fala muito. Ficara mutado por flood ate um admin remover o mute.")
