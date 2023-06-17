@@ -3,6 +3,9 @@ import asyncio
 from pyrogram import filters, enums
 from pyrogram.types import Message, ChatPermissions
 
+from datetime import datetime, timedelta
+
+
 from megumin import megux
 from megumin.utils import get_collection, is_admin
 
