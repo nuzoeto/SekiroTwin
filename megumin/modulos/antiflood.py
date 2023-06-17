@@ -1,5 +1,4 @@
 import asyncio
-import datetime
 
 from pyrogram import filters, enums
 from pyrogram.types import Message, ChatPermissions
@@ -7,17 +6,11 @@ from pyrogram.types import Message, ChatPermissions
 from megumin import megux
 from megumin.utils import get_collection, is_admin
 
-MSGS_CACHE = {}
 
 DB = get_collection("ANTIFLOOD_CHATS")
 DB_ = get_collection("FLOOD_MSGS")
 
-
-def reset_flood(chat_id, user_id=0):
-    for user in MSGS_CACHE[chat_id].keys():
-        if user != user_id:
-            MSGS_CACHE[chat_id][user] = 0
-            
+      
 async def flood_limit(chat_id: int):
     limit = await DB.find_one({"chat_id": chat_id})
     if limit:
