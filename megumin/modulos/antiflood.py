@@ -10,7 +10,7 @@ from megumin.utils import get_collection, is_admin
 MSGS_CACHE = {}
 
 DB = get_collection("ANTIFLOOD_CHATS")
-DB_ = get_collection("STATUS_FLOOD_MSGS")
+DB_ = get_collection("FLOOD_MSGS")
 
 
 def reset_flood(chat_id, user_id=0):
@@ -39,26 +39,32 @@ async def flood_control_func(_, message: Message):
     if not await check_flood_on(chat_id):
         return
     chat_limit = await flood_limit(chat_id)
-    if chat_id not in MSGS_CACHE:
-        MSGS_CACHE[chat_id] = {}
-    if not message.from_user:
-        reset_flood(chat_id)
-        return 
-    user_id = message.from_user.id
-    mention = message.from_user.mention
-    if user_id not in MSGS_CACHE[chat_id]:
-        MSGS_CACHE[chat_id][user_id] = 0
-    reset_flood(chat_id, user_id)
-    if MSGS_CACHE[chat_id][user_id] >= chat_limit:
-        MSGS_CACHE[chat_id][user_id] = 0
-        try:
-            if is_admin(chat_id, user_id):
-                return 
-            await message.chat.restrict_member(user_id, ChatPermissions())
-        except Exception:
-            return await message.reply("Você fala muito por favor fale menos")
-        await message.reply_text(f"Você fala muito. Ficara mutado por flood ate um admin remover o mute.")
-    MSGS_CACHE[chat_id][user_id] += 1
-    await asyncio.sleep(15)
-    MSGS_CACHE[chat_id][user_id] = 0
+    
 
+
+
+
+async def remove_old_messages(chat_id, user_id):
+    current_time = datetime.utcnow()
+    threshold = current_time - timedelta(seconds=10)
+    chat_flood = await DB_.find_one({"chat_id": chat_id, "user_id": user_id})
+    count = chat_flood["count"]
+    await DB_.delete_many({"chat_id": chat_id, "user_id": user_id, "count": count, "time": {"$lt": threshold}})
+
+
+async def check_flood(chat_id: int, user_id: int, chat_limit: int):
+    time = datetime.utcnow()
+    if not await DB_.find_one({"chat_id": chat_id}) or await DB_.find_one({"chat_id": chat_id, "user_id": user_id})
+        await DB_.insert_one({"chat_id": chat_id, "user_id": user_id, "count": 1, "time": time})
+        return False
+    chat_flood = await DB_.find_one({"chat_id": chat_id, "user_id": user_id})
+    count = chat_flood["count"]
+
+    addcount += 1
+
+    if count >= chat_limit:
+        await DB_.delete_many({"chat_id": chat_id, "user_id": user_id, "count": count})
+        return True
+    await DB_.update_one({"chat_id": chat_id, "user_id": user_id, {"$set": {"count": addcount}}, "time": time})
+    await remove_old_messages(chat_id, user_id):
+    return False                    
