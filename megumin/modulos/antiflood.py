@@ -41,7 +41,7 @@ async def flood_control_func(_, message: Message):
     user_id = message.from_user.id
     if user_id == 777000:  # ignore telegram
         return 
-    if await is_admin(chat_id, user_id):
+    if await is_admin(chat_id, user_id): # ignore admins
         return 
     if not await check_flood_on(chat_id):
         return
