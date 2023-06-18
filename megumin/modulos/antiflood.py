@@ -52,7 +52,7 @@ async def flood_control_func(_, message: Message):
             return await message.reply("Você fala muito por favor fale menos")
 
 
-async def remove_old_messages(chat_id, user_id):
+async def remove_old_messages(chat_id: int, user_id: int):
     current_time = datetime.utcnow()
     threshold = current_time - timedelta(seconds=10)
     chat_flood = await DB_.find_one({"chat_id": chat_id, "user_id": user_id})
@@ -71,5 +71,5 @@ async def check_flood(chat_id: int, user_id: int, chat_limit: int):
         await DB_.delete_many({"chat_id": chat_id, "user_id": user_id})
         return True
     await DB_.insert_one({"chat_id": chat_id, "user_id": user_id, "time": time})
-    await remove_old_messages(chat_id, user_id):
+    await remove_old_messages(chat_id, user_id)
     return False                    
