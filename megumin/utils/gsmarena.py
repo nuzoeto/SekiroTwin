@@ -26,20 +26,14 @@ def device_info(link):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
 
-    search_results = soup.select(".makers .search-brand-model-name")
-    if search_results:
-        first_result = search_results[0]
-        device_link = first_result['href']
-        device_url = f"https://www.gsmarena.com/{device_link}"
-        device_response = requests.get(device_url)
-        device_soup = BeautifulSoup(device_response.content, "html.parser")
-
-        processor = device_soup.select_one("#specs-list span[data-spec='cpu'] + strong").text.strip()
-        battery = device_soup.select_one("#specs-list span[data-spec='batdescription1'] + strong").text.strip()
-        ram = device_soup.select_one("#specs-list span[data-spec='internalmemory'] + strong").text.strip()
-        wifi = device_soup.select_one("#specs-list span[data-spec='wlan'] + strong").text.strip()
-        connection = device_soup.select_one("#specs-list span[data-spec='networkspeed'] + strong").text.strip()
-        bluetooth = device_soup.select_one("#specs-list span[data-spec='bluetooth'] + strong").text.strip()
+    specs_list = soup.find("div", class_="specs-list")
+    if specs_list:
+        processor = specs_list.find("span", attrs={"data-spec": "cpu"}).find_next_sibling("strong").text.strip()
+        battery = specs_list.find("span", attrs={"data-spec": "batdescription1"}).find_next_sibling("strong").text.strip()
+        ram = specs_list.find("span", attrs={"data-spec": "internalmemory"}).find_next_sibling("strong").text.strip()
+        wifi = specs_list.find("span", attrs={"data-spec": "wlan"}).find_next_sibling("strong").text.strip()
+        connection = specs_list.find("span", attrs={"data-spec": "networkspeed"}).find_next_sibling("strong").text.strip()
+        bluetooth = specs_list.find("span", attrs={"data-spec": "bluetooth"}).find_next_sibling("strong").text.strip()
 
         info = {
             "processor": processor,
