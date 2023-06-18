@@ -7,7 +7,6 @@ def search(query):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
 
-    results = []
     for li in soup.select(".makers ul li"):
         name = li.a.text.strip()
         image = li.img["src"]
@@ -19,9 +18,8 @@ def search(query):
             "link": link,
             "id": id
         }
-        results.append(result)
 
-    return results
+    return result
 
 def device_info(link):
     url = f"https://www.gsmarena.com/{link}"
