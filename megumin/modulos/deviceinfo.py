@@ -3,28 +3,23 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux, Config
-from megumin.utils import disableable_dec, is_disabled, http, tld
+from megumin.utils import disableable_dec, is_disabled, http, tld, get_device_info
 from megumin.utils.decorators import input_str
 
 tr = Translator()
 
-@megux.on_message(filters.command(["deviceinfo", "di"], Config.TRIGGER))
+@megux.on_message(filters.command(["deviceinfo", "d"], Config.TRIGGER))
 @disableable_dec("deviceinfo")
 async def deviceinfo(c: megux, m: Message):
     if await is_disabled(m.chat.id, "deviceinfo"):
         return
     if input_str(m):
         name = input_str(m) 
-        search = f"{name}".replace(" ", "+")
-        get_search_api = (await http.get(f"http://api.davitudo.tk/search/{search}")).json()
-        if get_search_api == '[]':
+        get_search_api = get_device_info(name)
+        if get_search_api == None:
             return await m.reply("<code>Não encontrei esse dispositivo!!</code> <i>:(</i>")         
-        id = get_search_api[0]['url']
-        img = get_search_api[0]['img']
-        description = get_search_api[0]['description']
-        link_base = f"http://api.davitudo.tk/device/{id}"
         try:
-            get_device_api = (await http.get(link_base)).json()
+            get_device_api = get_search_api
             name_cll = get_device_api['title'] or None
             s1 = get_device_api['spec_detail'][0]['specs'][0]['value'] 
             s1_name = get_device_api['spec_detail'][0]['specs'][0]['name'] 
