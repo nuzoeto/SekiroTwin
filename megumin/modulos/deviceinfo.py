@@ -15,11 +15,16 @@ async def deviceinfo(c: megux, m: Message):
         return
     if input_str(m):
         name = input_str(m) 
-        get_search_api = get_device_info(name)
+        searchi = f"{name}".replace(" ", "+")
+        get_search_api = search(searchi)
         if get_search_api == None:
-            return await m.reply("<code>Não encontrei esse dispositivo!!</code> <i>:(</i>")         
+            return await m.reply("<code>Não encontrei esse dispositivo!!</code> <i>:(</i>")    
+        name = get_search_api["name"]
+        image = get_search_api["image"]
+        link = get_search_api["link"]
+        id = get_search_api["id"]
         try:
-            get_device_api = get_search_api
+            get_device_api = device_info(link)
             name_cll = get_device_api['title'] or None
             s1 = get_device_api['spec_detail'][0]['specs'][0]['value'] 
             s1_name = get_device_api['spec_detail'][0]['specs'][0]['name'] 
