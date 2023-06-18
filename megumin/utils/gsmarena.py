@@ -26,22 +26,30 @@ def device_info(link):
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
 
-    processor = soup.select_one("#specs-list span[data-spec='cpu'] + strong").text.strip()
-    battery = soup.select_one("#specs-list span[data-spec='batdescription1'] + strong").text.strip()
-    ram = soup.select_one("#specs-list span[data-spec='internalmemory'] + strong").text.strip()
-    wifi = soup.select_one("#specs-list span[data-spec='wlan'] + strong").text.strip()
-    connection = soup.select_one("#specs-list span[data-spec='networkspeed'] + strong").text.strip()
-    bluetooth = soup.select_one("#specs-list span[data-spec='bluetooth'] + strong").text.strip()
+    search_results = soup.select(".makers .search-brand-model-name")
+    if search_results:
+        first_result = search_results[0]
+        device_link = first_result['href']
+        device_url = f"https://www.gsmarena.com/{device_link}"
+        device_response = requests.get(device_url)
+        device_soup = BeautifulSoup(device_response.content, "html.parser")
 
-    info = {
-        "processor": processor,
-        "battery": battery,
-        "ram": ram,
-        "wifi": wifi,
-        "connection": connection,
-        "bluetooth": bluetooth
-    }
+        processor = device_soup.select_one("#specs-list span[data-spec='cpu'] + strong").text.strip()
+        battery = device_soup.select_one("#specs-list span[data-spec='batdescription1'] + strong").text.strip()
+        ram = device_soup.select_one("#specs-list span[data-spec='internalmemory'] + strong").text.strip()
+        wifi = device_soup.select_one("#specs-list span[data-spec='wlan'] + strong").text.strip()
+        connection = device_soup.select_one("#specs-list span[data-spec='networkspeed'] + strong").text.strip()
+        bluetooth = device_soup.select_one("#specs-list span[data-spec='bluetooth'] + strong").text.strip()
 
-    return info
+        info = {
+            "processor": processor,
+            "battery": battery,
+            "ram": ram,
+            "wifi": wifi,
+            "connection": connection,
+            "bluetooth": bluetooth
+        }
 
+        return info
 
+    return None
