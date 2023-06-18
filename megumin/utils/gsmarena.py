@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
-def search(query):
+def search(query: str):
     url = f"https://www.gsmarena.com/results.php3?sQuickSearch=yes&sName={query}"
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
@@ -21,7 +21,7 @@ def search(query):
 
     return result
 
-def device_info(link):
+def device_info(link: str):
     url = f"https://www.gsmarena.com/{link}"
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
