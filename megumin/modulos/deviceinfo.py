@@ -3,7 +3,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux, Config
-from megumin.utils import disableable_dec, is_disabled, http, tld, get_device_info
+from megumin.utils import disableable_dec, is_disabled, http, tld, device_info, search
 from megumin.utils.decorators import input_str
 
 tr = Translator()
