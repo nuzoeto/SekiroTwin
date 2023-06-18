@@ -42,7 +42,7 @@ async def flood_control_func(_, message: Message):
     if not await check_flood_on(chat_id):
         return
     chat_limit = await flood_limit(chat_id)
-    should_mute = await check_flood(chat_id: int, user_id: int, chat_limit: int)
+    should_mute = await check_flood(chat_id, user_id, chat_limit)
     if should_mute:
         try:
             await message.chat.restrict_member(user_id, ChatPermissions())
