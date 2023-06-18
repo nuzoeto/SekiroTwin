@@ -46,18 +46,4 @@ def device_info(link):
 
     return info
 
-def get_device_details(query):
-    results = search(query)
-    devices = []
-    for result in results:
-        device = {
-            "name": result["name"],
-            "image": result["image"],
-            "link": result["link"]
-            "id": result["id"]
-        }
-        device.update(device_info(result["link"]))
-        devices.append(device)
-
-    return devices
 
