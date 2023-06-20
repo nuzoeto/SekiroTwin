@@ -10,8 +10,10 @@ import os
 START_TIME = time.time()
 
 from megumin import version, Config
+from megumin.utils import get_collection
 
 GP_LOGS = Config.GP_LOGS
+db = get_collection("FLOOD_MSGS")
 
 class WhiterKang(Client):
     def __init__(self):
@@ -29,6 +31,7 @@ class WhiterKang(Client):
     async def start(self):
         await super().start()
         self.me = await self.get_me()
+        await db.drop()
         text_ = f"#Whiter #Logs\n\n__WhiterKang está trabalhando agora.__\n\n**Versão:** `{version.__megumin_version__}`\n**System:** `{self.system_version}`\n**Python:** `{version.__python_version__}`\n**Pyrogram:** `{version.__pyro_version__}`"
         await self.send_message(chat_id=GP_LOGS, text=text_) 
         logging.info("WhiterKang esta acordando...")
