@@ -22,6 +22,14 @@ async def flood_limit(chat_id: int):
         chat_limit = int(5)
     return chat_limit
 
+async def time_flood(chat_id: int):
+    time = await DB.find_one({"chat_id": chat_id})
+    if time and "cooldown" in time:
+        chat_time = int(limit["cooldown"])
+    else:
+        chat_time = int(10)
+    return chat_time
+
 async def check_flood_on(chat_id: int):
     if await DB.find_one({"chat_id": chat_id, "status": "on"}):
         return True
@@ -54,7 +62,7 @@ async def flood_control_func(_, message: Message):
 
 async def check_flood(chat_id: int, user_id: int, chat_limit: int):
     current_time = datetime.now().time()
-    cooldown = 10
+    cooldown = await time_flood(chat_id)
 
     user_info = await DB_.find_one({"chat_id": chat_id, "user_id": user_id})
 
