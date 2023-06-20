@@ -69,6 +69,7 @@ async def check_flood(chat_id: int, user_id: int, chat_limit: int):
     if not user_info:
         # Se o usuário não estiver no banco de dados, adiciona-o com as informações iniciais
         user_info = {
+            "chat_id": chat_id,
             "user_id": user_id,
             "timestamp": current_time,
             "count": 1
@@ -81,18 +82,18 @@ async def check_flood(chat_id: int, user_id: int, chat_limit: int):
 
     if elapsed_time >= cooldown:
         # Se o tempo decorrido for maior ou igual ao intervalo de cooldown, reinicia as informações do usuário
-        await DB_.update_one({"user_id": user_id}, {"$set": {"timestamp": current_time, "count": 1}})
+        await DB_.update_one({"chat_id": chat_id, "user_id": user_id}, {"$set": {"timestamp": current_time, "count": 1}})
         return False
 
     message_count = user_info["count"]
 
     if message_count >= chat_limit:
         # Se o número de mensagens exceder o limite, é um flood
-        await DB_.update_one({"user_id": user_id}, {"$set": {"timestamp": current_time, "count": 1}})
+        await DB_.update_one({"chat_id": chat_id, "user_id": user_id}, {"$set": {"timestamp": current_time, "count": 1}})
         return True
     else:
         # Atualiza as informações do usuário no banco de dados
-        await DB_.update_one({"user_id": user_id}, {"$set": {"timestamp": current_time, "count": message_count + 1}})
+        await DB_.update_one({"chat_id": chat_id, "user_id": user_id}, {"$set": {"timestamp": current_time, "count": message_count + 1}})
         return False
 
 
