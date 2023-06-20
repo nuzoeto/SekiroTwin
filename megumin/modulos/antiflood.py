@@ -52,24 +52,39 @@ async def flood_control_func(_, message: Message):
             return await message.reply("Você fala muito por favor fale menos")
 
 
-async def remove_old_messages(chat_id: int, user_id: int):
-    current_time = datetime.utcnow()
-    threshold = current_time - timedelta(seconds=10)
-    chat_flood = await DB_.find_one({"chat_id": chat_id, "user_id": user_id})
-    count = chat_flood["count"]
-    await DB_.delete_many({"chat_id": chat_id, "user_id": user_id, "time": {"$lt": threshold}})
-
-
 async def check_flood(chat_id: int, user_id: int, chat_limit: int):
-    time = datetime.utcnow()
-    if not await DB_.find_one({"chat_id": chat_id}) and await DB_.find_one({"chat_id": chat_id, "user_id": user_id}):
-        await DB_.insert_one({"chat_id": chat_id, "user_id": user_id, "time": time})
-        return False
-    count = await DB_.count_documents({"chat_id": chat_id, "user_id": user_id})
+    current_time = time.time()
+    cooldown = 10
 
-    if count >= chat_limit:
-        await DB_.delete_many({"chat_id": chat_id, "user_id": user_id})
+    user_info = await DB_.find_one({"chat_id": chat_id, "user_id": user_id})
+
+    if not user_info:
+        # Se o usuário não estiver no banco de dados, adiciona-o com as informações iniciais
+        user_info = {
+            "user_id": user_id,
+            "timestamp": current_time,
+            "count": 1
+        }
+        await DB_.insert_one(user_info)
+        return False
+
+    last_message_time = user_info["timestamp"]
+    elapsed_time = current_time - last_message_time
+
+    if elapsed_time >= cooldown:
+        # Se o tempo decorrido for maior ou igual ao intervalo de cooldown, reinicia as informações do usuário
+        await DB_.update_one({"user_id": user_id}, {"$set": {"timestamp": current_time, "count": 1}})
+        return False
+
+    message_count = user_info["count"]
+
+    if message_count >= chat_limit:
+        # Se o número de mensagens exceder o limite, é um flood
+        await DB_.update_one({"user_id": user_id}, {"$set": {"timestamp": current_time, "count": 1}})
         return True
-    await DB_.insert_one({"chat_id": chat_id, "user_id": user_id, "time": time})
-    await remove_old_messages(chat_id, user_id)
-    return False                    
+    else:
+        # Atualiza as informações do usuário no banco de dados
+        await DB_.update_one({"user_id": user_id}, {"$set": {"timestamp": current_time, "count": message_count + 1}})
+        return False
+
+
