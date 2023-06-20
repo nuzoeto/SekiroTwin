@@ -16,7 +16,7 @@ DB_ = get_collection("FLOOD_MSGS")
       
 async def flood_limit(chat_id: int):
     limit = await DB.find_one({"chat_id": chat_id})
-    if limit["limit"]:
+    if limit and "limit" in limit:
         chat_limit = int(limit["limit"])
     else:
         chat_limit = int(5)
