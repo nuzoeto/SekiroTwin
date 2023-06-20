@@ -53,7 +53,7 @@ async def flood_control_func(_, message: Message):
 
 
 async def check_flood(chat_id: int, user_id: int, chat_limit: int):
-    current_time = time.time()
+    current_time = datetime.now().time()
     cooldown = 10
 
     user_info = await DB_.find_one({"chat_id": chat_id, "user_id": user_id})
