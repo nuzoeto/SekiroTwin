@@ -25,7 +25,7 @@ logging.getLogger("pyrogram.session.session").setLevel(logging.ERROR)
 
 async def main():
     load_language()
-    drop_flood()
+    await drop_flood()
     await megux.start()
     await idle()
     await megux.stop()
