@@ -37,7 +37,7 @@ async def check_flood_on(chat_id: int):
         return False
 
 
-@megux.on_message(filters.group)
+@megux.on_message(~filters.service & ~filters.me & ~filters.private & ~filters.channel & ~filters.bot , group=10)
 async def flood_control_func(_, message: Message):
     if not message.from_user:
         return 
