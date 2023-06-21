@@ -7,7 +7,6 @@ from pyrogram import idle
 from logging.handlers import RotatingFileHandler
 import asyncio
 from .utils.database.lang import load_language
-from .utils.database.antiflood import drop_flood
 
 logging.basicConfig(level=logging.INFO,
                     format='[%(asctime)s - %(levelname)s] - %(name)s - %(message)s',
