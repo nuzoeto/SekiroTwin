@@ -7,7 +7,6 @@ import subprocess
 
 
 from shazamio import Shazam
-from spellchecker import SpellChecker
 
 from pyrogram import filters
 from pyrogram.types import Message
@@ -17,7 +16,6 @@ from megumin import megux, Config
 
 shazam = Shazam()
 recognizer = sr.Recognizer()
-spell = SpellChecker(language="pt")
 
 
 @megux.on_message(filters.command(["whichsong", "detectsong"], Config.TRIGGER))
@@ -70,7 +68,7 @@ async def transcriber(c: megux, m: Message):
          
         try:
             str_uuid = str(uuid.uuid4())
-            wav_file_path = f"Transcriber{str_uuid}_WAV.wav"
+            wav_file_path = f"{Config.DOWN_PATH}Transcriber{str_uuid}_WAV.wav"
             ffmpeg_cmd = f"ffmpeg -i {file} {wav_file_path}"
             subprocess.run(ffmpeg_cmd, shell=True)
         except Exception as e:
