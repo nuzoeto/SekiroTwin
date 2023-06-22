@@ -53,6 +53,7 @@ shazamio
 spacy
 search_engine_parser
 speedtest-cli
+SpeechRecognition
 pySmartDL
 punctuator
 telegraph
