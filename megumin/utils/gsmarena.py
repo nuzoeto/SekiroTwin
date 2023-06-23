@@ -1,10 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
 import json
+import uuid
 
 def search(query):
+    gid = uuid.uuid4()
+    headers = {
+        "User-Agent": f"Dalvik/2.1.0 (Linux; U; Android 13; {gid}/gsmarena Build/SQ1D.211205.017)"
+    }
     url = f"https://www.gsmarena.com/results.php3?sQuickSearch=yes&sName={query}"
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.content, "html.parser")
 
     results = []
@@ -25,7 +30,11 @@ def search(query):
 
 def device_info(link):
     url = f"https://www.gsmarena.com/{link}"
-    response = requests.get(url)
+    gid = uuid.uuid4()
+    headers = {
+        "User-Agent": f"Dalvik/2.1.0 (Linux; U; Android 13; {gid}/gsmarena Build/SQ1D.211205.017)"
+    }
+    response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.content, "html.parser")
 
     specs_list = soup.find("div", class_="specs-list")
