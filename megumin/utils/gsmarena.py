@@ -54,7 +54,7 @@ def search(query):
 
             # Obtém as informações adicionais do dispositivo
             device_url = f"https://www.gsmarena.com/{result['link']}"
-            device_info = get_device_info(device_url)
+            device_info = device_info(device_url)
             if device_info:
                 result.update(device_info)
 
