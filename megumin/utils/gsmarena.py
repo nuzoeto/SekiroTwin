@@ -3,16 +3,12 @@ from bs4 import BeautifulSoup
 import json
 import uuid
 
-import requests
-from bs4 import BeautifulSoup
-import json
-
-def device_info(url):
+def get_device_info(url):
     gid = uuid.uuid4()
-    headers = {
+    headeris = {
         "User-Agent": f"Dalvik/2.1.0 (Linux; U; Android 13; {gid}/gsmarena Build/SQ1D.211205.017)"
     }
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headeris)
     soup = BeautifulSoup(response.content, "html.parser")
 
     device_info = {}
@@ -30,12 +26,12 @@ def device_info(url):
     return device_info
 
 def search(query):
-    url = f"https://www.gsmarena.com/results.php3?sQuickSearch=yes&sName={query}"
     gid = uuid.uuid4()
-    headers = {
+    headeris = {
         "User-Agent": f"Dalvik/2.1.0 (Linux; U; Android 13; {gid}/gsmarena Build/SQ1D.211205.017)"
     }
-    response = requests.get(url, headers=headers)
+    url = f"https://www.gsmarena.com/results.php3?sQuickSearch=yes&sName={query}"
+    response = requests.get(url, headers=headeris)
     soup = BeautifulSoup(response.content, "html.parser")
 
     results = []
@@ -54,13 +50,11 @@ def search(query):
 
             # Obtém as informações adicionais do dispositivo
             device_url = f"https://www.gsmarena.com/{result['link']}"
-            device_info = device_info(device_url)
+            device_info = get_device_info(device_url)
             if device_info:
                 result.update(device_info)
 
             results.append(result)
 
     return json.dumps(results)
-
-
 
