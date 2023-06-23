@@ -2,52 +2,53 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
-def search(query: str):
-    url = f"https://www.kimovil.com/en/where-to-buy-{query}"
+def search(query):
+    url = f"https://www.gsmarena.com/results.php3?sQuickSearch=yes&sName={query}"
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
 
     results = []
-    for li in soup.select(".list.grid li"):
-        name = li.select_one(".model-info h2").text.strip()
-        image = li.select_one(".model-img img")["src"]
-        link = li.select_one(".model-img a")["href"]
-        id_ = link.split("/")[-1].split("-")[-1]
+    for li in soup.select(".makers ul li"):
+        name = li.a.text.strip()
+        link = li.a["href"]
+        image = li.img["src"]
+        id = link.split("-")[0].split("_")[-1]
+
         result = {
             "name": name,
-            "image": image,
+            "id": id,
             "link": link,
-            "id": id_
+            "image": image
         }
         results.append(result)
 
-    return results
+    return json.dumps(results)
 
 
-def device_info(link: str):
-    url = f"https://www.kimovil.com{link}"
+def device_info(link):
+    url = f"https://www.gsmarena.com/{link}"
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
 
-    specs_list = soup.find("div", class_="full-specs")
+    specs_list = soup.find("div", class_="specs-list")
     if specs_list:
-        processor = specs_list.find("th", string="Processor").find_next_sibling("td").text.strip()
-        battery = specs_list.find("th", string="Battery").find_next_sibling("td").text.strip()
-        ram = specs_list.find("th", string="RAM").find_next_sibling("td").text.strip()
-        wifi = specs_list.find("th", string="Wi-Fi").find_next_sibling("td").text.strip()
-        connection = specs_list.find("th", string="Network Speed").find_next_sibling("td").text.strip()
-        bluetooth = specs_list.find("th", string="Bluetooth").find_next_sibling("td").text.strip()
+        battery = specs_list.find("span", attrs={"data-spec": "batdescription1"}).find_next_sibling("strong").text.strip()
+        processor = specs_list.find("span", attrs={"data-spec": "cpu"}).find_next_sibling("strong").text.strip()
+        ram = specs_list.find("span", attrs={"data-spec": "internalmemory"}).find_next_sibling("strong").text.strip()
+        connection = specs_list.find("span", attrs={"data-spec": "networkspeed"}).find_next_sibling("strong").text.strip()
+        wifi = specs_list.find("span", attrs={"data-spec": "wlan"}).find_next_sibling("strong").text.strip()
+        internal_memory = specs_list.find("span", attrs={"data-spec": "internalmemory"}).find_next_sibling("strong").text.strip()
 
         info = {
-            "processor": processor,
             "battery": battery,
+            "processor": processor,
             "ram": ram,
-            "wifi": wifi,
             "connection": connection,
-            "bluetooth": bluetooth
+            "wifi": wifi,
+            "internal_memory": internal_memory
         }
 
-        return info
+        return json.dumps(info)
 
     return None
 
