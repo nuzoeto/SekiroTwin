@@ -17,11 +17,20 @@ def get_device_info(url):
     specs_list = soup.find("div", class_="specs-list")
     if specs_list:
         # Obtém as informações desejadas
-        device_info["processor"] = specs_list.find("span", attrs={"data-spec": "cpu"}).find_next_sibling("strong").text.strip()
-        device_info["ram"] = specs_list.find("span", attrs={"data-spec": "internalmemory"}).find_next_sibling("strong").text.strip()
-        device_info["internal_storage"] = specs_list.find("span", attrs={"data-spec": "rom"}).find_next_sibling("strong").text.strip()
-        device_info["battery"] = specs_list.find("span", attrs={"data-spec": "batdescription1"}).find_next_sibling("strong").text.strip()
-        device_info["description"] = soup.find("div", class_="section-body").text.strip()
+        processor = specs_list.find("span", attrs={"data-spec": "cpu"}).find_next_sibling("strong")
+        device_info["processor"] = processor.text.strip() if processor else None
+        
+        ram = specs_list.find("span", attrs={"data-spec": "internalmemory"}).find_next_sibling("strong")
+        device_info["ram"] = ram.text.strip() if ram else None
+        
+        internal_storage = specs_list.find("span", attrs={"data-spec": "rom"}).find_next_sibling("strong")
+        device_info["internal_storage"] = internal_storage.text.strip() if internal_storage else None
+        
+        battery = specs_list.find("span", attrs={"data-spec": "batdescription1"}).find_next_sibling("strong")
+        device_info["battery"] = battery.text.strip() if battery else None
+        
+        description = soup.find("div", class_="section-body")
+        device_info["description"] = description.text.strip() if description else None
 
     return device_info
 
@@ -32,6 +41,10 @@ def search(query):
     }
     url = f"https://www.gsmarena.com/results.php3?sQuickSearch=yes&sName={query}"
     response = requests.get(url, headers=headeris)
+    
+    if response.content is None:
+        return json.dumps([])  # Retorna uma lista vazia caso não haja conteúdo na resposta
+    
     soup = BeautifulSoup(response.content, "html.parser")
 
     results = []
@@ -51,8 +64,7 @@ def search(query):
             # Obtém as informações adicionais do dispositivo
             device_url = f"https://www.gsmarena.com/{result['link']}"
             device_info = get_device_info(device_url)
-            if device_info:
-                result.update(device_info)
+            result.update(device_info)
 
             results.append(result)
 
