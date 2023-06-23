@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import json
 import uuid
 
-def get_device_info(url):
+def device_info(url):
     gid = uuid.uuid4()
     headeris = {
         "User-Agent": f"Dalvik/2.1.0 (Linux; U; Android 13; {gid}/gsmarena Build/SQ1D.211205.017)"
@@ -63,7 +63,7 @@ def search(query):
 
             # Obtém as informações adicionais do dispositivo
             device_url = f"https://www.gsmarena.com/{result['link']}"
-            device_info = get_device_info(device_url)
+            device_info = device_info(device_url)
             result.update(device_info)
 
             results.append(result)
