@@ -19,10 +19,10 @@ async def deviceinfo(c: megux, m: Message):
         get_search_api = search(searchi)
         if get_search_api:
             # Access the link from the first search result  
-            name = get_search_api["name"]
-            img = get_search_api["image"]
-            link = get_search_api["link"]
-            id = get_search_api["id"]
+            name = get_search_api[0]["name"]
+            img = get_search_api[0]["image"]
+            link = get_search_api[0]["link"]
+            id = get_search_api[0]["id"]
             try:
                 get_device_api = device_info(link)
                 name_cll = name or None
