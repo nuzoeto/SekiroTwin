@@ -12,16 +12,16 @@ def search(query: str):
         name = li.a.text.strip()
         image = li.img["src"]
         link = li.a["href"]
-        id = link.split("-")[0].split("_")[-1]
+        id_ = link.split("-")[0].split("_")[-1]  # Changed variable name to id_
         result = {
             "name": name,
             "image": image,
             "link": link,
-            "id": id
+            "id": id_
         }
         results.append(result)
 
-    return json.dumps(results)
+    return results  # Return the list of dictionaries directly
 
 
 def device_info(link: str):
@@ -50,3 +50,5 @@ def device_info(link: str):
         return info
 
     return None
+
+
