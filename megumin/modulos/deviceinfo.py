@@ -16,7 +16,7 @@ async def deviceinfo(c: megux, m: Message):
     if input_str(m):
         name = input_str(m) 
         searchi = f"{name}".replace(" ", "+")
-        get_search_api = search(searchi)
+        get_search_api = await search(searchi)
         if not get_search_api[0] == []:
             # Access the link from the first search result  
             name = get_search_api[0]["name"]
