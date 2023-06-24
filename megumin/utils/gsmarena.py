@@ -11,28 +11,28 @@ def device_info(url):
     response = requests.get(url, headers=headeris)
     soup = BeautifulSoup(response.content, "html.parser")
 
-    device_info = {}
+    device_json = {}
 
     # Verifica se as informações do dispositivo estão disponíveis
     specs_list = soup.find("div", class_="specs-list")
     if specs_list:
         # Obtém as informações desejadas
         processor = specs_list.find("span", attrs={"data-spec": "cpu"}).find_next_sibling("strong")
-        device_info["processor"] = processor.text.strip() if processor else None
+        device_json["processor"] = processor.text.strip() if processor else None
         
         ram = specs_list.find("span", attrs={"data-spec": "internalmemory"}).find_next_sibling("strong")
-        device_info["ram"] = ram.text.strip() if ram else None
+        device_json["ram"] = ram.text.strip() if ram else None
         
         internal_storage = specs_list.find("span", attrs={"data-spec": "rom"}).find_next_sibling("strong")
-        device_info["internal_storage"] = internal_storage.text.strip() if internal_storage else None
+        device_json["internal_storage"] = internal_storage.text.strip() if internal_storage else None
         
         battery = specs_list.find("span", attrs={"data-spec": "batdescription1"}).find_next_sibling("strong")
-        device_info["battery"] = battery.text.strip() if battery else None
+        device_json["battery"] = battery.text.strip() if battery else None
         
         description = soup.find("div", class_="section-body")
-        device_info["description"] = description.text.strip() if description else None
+        device_json["description"] = description.text.strip() if description else None
 
-    return device_info
+    return device_json
 
 def search(query):
     gid = uuid.uuid4()
