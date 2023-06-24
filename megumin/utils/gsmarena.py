@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import uuid
+import asyncio
 
 def device_info(url):
     gid = uuid.uuid4()
@@ -17,22 +18,22 @@ def device_info(url):
     specs_list = soup.find("div", class_="specs-list")
     if specs_list:
         # Obtém as informações desejadas
-        processor = specs_list.find("span", attrs={"data-spec": "cpu"}).find_next_sibling("strong")
-        device_json["processor"] = processor.text.strip() if processor else None
-        
-        ram = specs_list.find("span", attrs={"data-spec": "internalmemory"}).find_next_sibling("strong")
-        device_json["ram"] = ram.text.strip() if ram else None
-        
-        internal_storage = specs_list.find("span", attrs={"data-spec": "rom"}).find_next_sibling("strong")
-        device_json["internal_storage"] = internal_storage.text.strip() if internal_storage else None
-        
-        battery = specs_list.find("span", attrs={"data-spec": "batdescription1"}).find_next_sibling("strong")
-        device_json["battery"] = battery.text.strip() if battery else None
-        
+        processor = specs_list.find("span", attrs={"data-spec": "cpu"})
+        device_json["processor"] = processor.find_next_sibling("strong").text.strip() if processor else None
+
+        ram = specs_list.find("span", attrs={"data-spec": "internalmemory"})
+        device_json["ram"] = ram.find_next_sibling("strong").text.strip() if ram else None
+
+        internal_storage = specs_list.find("span", attrs={"data-spec": "rom"})
+        device_json["internal_storage"] = internal_storage.find_next_sibling("strong").text.strip() if internal_storage else None
+
+        battery = specs_list.find("span", attrs={"data-spec": "batdescription1"})
+        device_json["battery"] = battery.find_next_sibling("strong").text.strip() if battery else None
+
         description = soup.find("div", class_="section-body")
         device_json["description"] = description.text.strip() if description else None
 
-    return device_json
+    return device_info
 
 async def search(query):
     gid = uuid.uuid4()
@@ -59,7 +60,7 @@ async def search(query):
 
             # Obtém as informações adicionais do dispositivo
             device_url = f"https://www.gsmarena.com/{result['link']}"
-            device_info = get_device_info(device_url)
+            device_info = await asyncio.to_thread(device_info, device_url)
             if device_info:
                 result.update(device_info)
 
