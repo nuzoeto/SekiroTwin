@@ -33,7 +33,7 @@ def device_info(url):
         description = soup.find("div", class_="section-body")
         device_json["description"] = description.text.strip() if description else None
 
-    return device_info
+    return device_json
 
 async def search(query):
     gid = uuid.uuid4()
