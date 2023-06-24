@@ -34,17 +34,13 @@ def device_info(url):
 
     return device_json
 
-def search(query):
+async def search(query):
     gid = uuid.uuid4()
     headeris = {
         "User-Agent": f"Dalvik/2.1.0 (Linux; U; Android 13; {gid}/gsmarena Build/SQ1D.211205.017)"
     }
     url = f"https://www.gsmarena.com/results.php3?sQuickSearch=yes&sName={query}"
     response = requests.get(url, headers=headeris)
-    
-    if response.content is None:
-        return json.dumps([])  # Retorna uma lista vazia caso não haja conteúdo na resposta
-    
     soup = BeautifulSoup(response.content, "html.parser")
 
     results = []
@@ -63,7 +59,7 @@ def search(query):
 
             # Obtém as informações adicionais do dispositivo
             device_url = f"https://www.gsmarena.com/{result['link']}"
-            device_info = device_info(device_url)
+            device_info = get_device_info(device_url)
             if device_info:
                 result.update(device_info)
 
