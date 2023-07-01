@@ -86,10 +86,6 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
     off = await DISABLED.find_one({"_cmd": query})
     if off:
         return
-    if len(m.command) == 1:
-        return await m.reply_text(
-            await get_string(m.chat.id, "WEATHER_NO_ARGS")
-        )
     if len(text.split(maxsplit=1)) == 1:
         if isinstance(m, Message):
             return await m.reply_text(await get_string(m.chat.id, "WEATHER_NO_ARGS"))
