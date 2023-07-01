@@ -158,23 +158,23 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
         )
 
         if isinstance(m, Message):
-        await m.reply_text(res)
-    else:
-        await m.answer(
-            [
-                InlineQueryResultArticle(
-                    title=loc_json["location"]["address"][0],
-                    description=await get_string(m.chat.id, "WEATHER_DETAILS").format(
-                        temperature=obs_dict["temperature"],
-                        feels_like=obs_dict["temperatureFeelsLike"],
-                        air_humidity=obs_dict["relativeHumidity"],
-                        wind_speed=obs_dict["windSpeed"],
-                        overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
-                    ),
-                    input_message_content=InputTextMessageContent(
-                        message_text=res,
-                    ),
-                )
-            ],
-            cache_time=0,
-        )
+            await m.reply_text(res)
+        else:
+            await m.answer(
+                [
+                    InlineQueryResultArticle(
+                        title=loc_json["location"]["address"][0],
+                        description=await get_string(m.chat.id, "WEATHER_DETAILS").format(
+                            temperature=obs_dict["temperature"],
+                            feels_like=obs_dict["temperatureFeelsLike"],
+                            air_humidity=obs_dict["relativeHumidity"],
+                            wind_speed=obs_dict["windSpeed"],
+                            overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
+                        ),
+                        input_message_content=InputTextMessageContent(
+                            message_text=res,
+                        ),
+                    )
+                ],
+                cache_time=0,
+            )
