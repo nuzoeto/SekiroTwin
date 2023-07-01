@@ -107,7 +107,7 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
             apiKey=weather_apikey,
             format="json",
             language=await get_string(m.chat.id, "WEATHER_LANGUAGE"),
-            query=m.text.split(maxsplit=1)[1],
+            query=text.split(maxsplit=1)[1],
         ),
     )
     loc_json = r.json()
