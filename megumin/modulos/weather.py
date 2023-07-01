@@ -153,7 +153,7 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
             feels_like=obs_dict["temperatureFeelsLike"],
             air_humidity=obs_dict["relativeHumidity"],
             wind_speed=obs_dict["windSpeed"],
-            overview=f"{get_status_emoji(obs_dict["iconCode"])} {obs_dict["wxPhraseLong"]}",
+            overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
         )
 
         if isinstance(m, Message):
