@@ -78,7 +78,7 @@ def get_status_emoji(status_code: int) -> str:
 
 
 @megux.on_message(filters.command(["weather", "clima"], prefixes=["/", "!"]))
-@megux.on_inline_query(filters.regex(r"^(clima|weather) .+"))
+@megux.on_inline_query(filters.regex(r"^(clima|weather)"))
 async def weather(c: megux, m: Union[InlineQuery, Message]):
     text = m.text if isinstance(m, Message) else m.query
     DISABLED = get_collection(f"DISABLED {m.chat.id}")
