@@ -1,10 +1,10 @@
 import httpx
 from pyrogram import filters
-from pyrogram.types import (
-    Message, 
+from pyrogram.types import ( 
     InlineQuery,
     InlineQueryResultArticle,
     InputTextMessageContent,
+    Message,
 )
 from typing import Union
 
