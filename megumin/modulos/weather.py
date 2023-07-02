@@ -89,7 +89,7 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
                 InlineQueryResultArticle(
                     title="Local não especificado",
                     input_message_content=InputTextMessageContent(
-                        message_text=await get_string(m.chat.id, "WEATHER_NO_ARGS"),
+                        message_text="Local não especificado uso weather < location >,
                     ),
                 )
             ],
