@@ -172,7 +172,7 @@ WEATHER_NO_ARGS: "<b>Usage:</b> <code>/weather location or city</code> - Gets in
 WEATHER_LOCATION_NOT_FOUND: "Location not found."
 WEATHER_INLINE_DETAILS: "{overview}, Temperature: {temperature} °F, Thermal Feeling: {feels_like} °F, Air Humidity: {air_humidity}%, Wind: {wind_speed} mph"
 WEATHER_INLINE_NO_ARGS: "weather < location >"
-WEATHER_ERROR: "🌐 There was an error sending the weather information"
+WEATHER_SENDER_ERROR: "🌐 There was an error sending the weather information"
 
 #telegra.ph
 TG_NO_REPLY_MEDIA: "<code>Reply to some media.</code>"
