@@ -81,15 +81,16 @@ def get_status_emoji(status_code: int) -> str:
 @megux.on_inline_query(filters.regex(r"^(clima|weather)"))
 async def weather(c: megux, m: Union[InlineQuery, Message]):
     text = m.text if isinstance(m, Message) else m.query
+    chat_id = m.chat.id if isinstance(m, Message) else m.from_user.id
     if len(text.split(maxsplit=1)) == 1:
         if isinstance(m, Message):
-            return await m.reply_text(await get_string(m.chat.id, "WEATHER_NO_ARGS"))
+            return await m.reply_text(await get_string(chat_id, "WEATHER_NO_ARGS"))
         return await m.answer(
             [
                 InlineQueryResultArticle(
                     title="Local não especificado",
                     input_message_content=InputTextMessageContent(
-                        message_text="Local não especificado uso weather < location >",
+                        message_text=await get_string(chat_id, "WEATHER_NO_ARGS"),
                     ),
                 )
             ],
@@ -101,19 +102,19 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
         params=dict(
             apiKey=weather_apikey,
             format="json",
-            language=await get_string(m.chat.id, "WEATHER_LANGUAGE"),
+            language=await get_string(chat_id, "WEATHER_LANGUAGE"),
             query=text.split(maxsplit=1)[1],
         ),
     )
     loc_json = r.json()
     if not loc_json.get("location"):
         if isinstance(m, Message):
-            return await m.reply_text(await get_string(m.chat.id, "WEATHER_LOCATION_NOT_FOUND"))
+            return await m.reply_text(await get_string(chat_id, "WEATHER_LOCATION_NOT_FOUND"))
 
         return await m.answer(
             [
                 InlineQueryResultArticle(
-                    title=await get_string(m.chat.id, "WEATHER_LOCATION_NOT_FOUND"),
+                    title=await get_string(chat_id, "WEATHER_LOCATION_NOT_FOUND"),
                     input_message_content=InputTextMessageContent(
                         message_text=await get_string(m.chat.id, "WEATHER_LOCATION_NOT_FOUND"),
                     ),
@@ -128,16 +129,16 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
         params=dict(
             apiKey=weather_apikey,
             format="json",
-            language=await get_string(m.chat.id, "WEATHER_LANGUAGE"),
+            language=await get_string(chat_id, "WEATHER_LANGUAGE"),
             geocode=pos,
-            units=await get_string(m.chat.id, "WEATHER_UNIT"),
+            units=await get_string(chat_id, "WEATHER_UNIT"),
         ),
     )
     res_json = r.json()
 
     obs_dict = res_json["v3-wx-observations-current"]
 
-    res = (await get_string(m.chat.id, "WEATHER_DETAILS")).format(
+    res = (await get_string(chat_id, "WEATHER_DETAILS")).format(
         location=loc_json["location"]["address"][0],
         temperature=obs_dict["temperature"],
         feels_like=obs_dict["temperatureFeelsLike"],
