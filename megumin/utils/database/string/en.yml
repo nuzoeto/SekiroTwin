@@ -171,7 +171,8 @@ WEATHER_DETAILS: "<b>{location}</b>:\n\nTemperature: <code>{temperature} °F</co
 WEATHER_NO_ARGS: "<b>Usage:</b> <code>/weather location or city</code> - Gets information about the weather in the <i>location or city</i>."
 WEATHER_LOCATION_NOT_FOUND: "Location not found."
 WEATHER_INLINE_DETAILS: "{overview}, Temperature: {temperature} °F, Thermal Feeling: {feels_like} °F, Air Humidity: {air_humidity}%, Wind: {wind_speed} mph"
-WEATHER_INLINE_NO_ARGS: "Weather < Location >"
+WEATHER_INLINE_NO_ARGS: "weather < location >"
+WEATHER_ERROR: "🌐 An error occurred while getting the weather information"
 
 #telegra.ph
 TG_NO_REPLY_MEDIA: "<code>Reply to some media.</code>"
