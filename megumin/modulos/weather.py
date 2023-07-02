@@ -105,7 +105,7 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
             language=await get_string(chat_id, "WEATHER_LANGUAGE"),
             query=text.split(maxsplit=1)[1],
         ),
-     )
+    )
     loc_json = r.json()
     if not loc_json.get("location"):
         if isinstance(m, Message):
