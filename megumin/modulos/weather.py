@@ -154,7 +154,7 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
             [
                 InlineQueryResultArticle(
                     title=loc_json["location"]["address"][0],
-                    description=await get_string(m.chat.id, "WEATHER_DETAILS").format(
+                    description=await get_string(chat_id, "WEATHER_DETAILS").format(
                         temperature=obs_dict["temperature"],
                         feels_like=obs_dict["temperatureFeelsLike"],
                         air_humidity=obs_dict["relativeHumidity"],
