@@ -96,16 +96,16 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
             ],
             cache_time=0,
         )
-    r = await http.get(
+     r = await http.get(
         get_coords,
         headers=headers,
-        params={
-            "apiKey": weather_apikey,
-            "format": "json",
-            "language": await get_string(chat_id, "WEATHER_LANGUAGE"),
-            "query": text.split(maxsplit=1)[1],
-        },
-    )
+        params=dict(
+            apiKey=weather_apikey,
+            format="json",
+            language=await get_string(chat_id, "WEATHER_LANGUAGE"),
+            query=text.split(maxsplit=1)[1],
+        ),
+     )
     loc_json = r.json()
     if not loc_json.get("location"):
         if isinstance(m, Message):
@@ -122,19 +122,17 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
             ],
             cache_time=0,
         )
-    pos = (
-        f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
-    )
+    pos = f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
     r = await http.get(
         url,
         headers=headers,
-        params={
-            "apiKey": weather_apikey,
-            "format": "json",
-            "language": await get_string(chat_id, "WEATHER_LANGUAGE"),
-            "geocode": pos,
-            "units": await get_string(chat_id, "WEATHER_UNIT"),
-        },
+        params=dict(
+            apiKey=weather_apikey,
+            format="json",
+            language=await get_string(chat_id, "WEATHER_LANGUAGE"),
+            geocode=pos,
+            units=await get_string(chat_id, "WEATHER_UNIT"),
+        ),
     )
     res_json = r.json()
 
