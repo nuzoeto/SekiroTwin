@@ -116,7 +116,7 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
                 InlineQueryResultArticle(
                     title=await get_string(chat_id, "WEATHER_LOCATION_NOT_FOUND"),
                     input_message_content=InputTextMessageContent(
-                        message_text=await get_string(m.chat.id, "WEATHER_LOCATION_NOT_FOUND"),
+                        message_text=await get_string(chat_id, "WEATHER_LOCATION_NOT_FOUND"),
                     ),
                 )
             ],
