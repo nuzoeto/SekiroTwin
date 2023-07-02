@@ -88,7 +88,7 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
         return await m.answer(
             [
                 InlineQueryResultArticle(
-                    title=await get_string(chat_id, "WEATHER_NO_ARGS"),
+                    title=await get_string(chat_id, "WEATHER_INLINE_NO_ARGS"),
                     input_message_content=InputTextMessageContent(
                         message_text=await get_string(chat_id, "WEATHER_NO_ARGS"),
                     ),
@@ -154,7 +154,7 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
             [
                 InlineQueryResultArticle(
                     title=loc_json["location"]["address"][0],
-                    description=await get_string(chat_id, "WEATHER_DETAILS").format(
+                    description=await get_string(chat_id, "WEATHER_INLINE_DETAILS").format(
                         temperature=obs_dict["temperature"],
                         feels_like=obs_dict["temperatureFeelsLike"],
                         air_humidity=obs_dict["relativeHumidity"],
