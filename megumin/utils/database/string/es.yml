@@ -171,6 +171,8 @@ WEATHER_UNIT: "m"
 WEATHER_DETAILS: "<b>{location}</b>:\n\nTemperatura: <code>{temperature} °C</code>\nSensación térmica: <code>{feels_like} °C\n</code>Humedad desde el aire: <code>{air_humidity}%</code>\nViento: <code>{wind_speed} km/h</code>\n\n- <i>{overview}</i>"
 WEATHER_NO_ARGS: "<b>Uso:</b> <code>/weather location or city</code> - Obtiene información sobre el clima en la <i>ubicación o ciudad</i>."
 WEATHER_LOCATION_NOT_FOUND: "Ubicación no encontrada."
+WEATHER_INLINE_DETAILS: "{overview}, temperatura: {temperature} °C, sensación térmica: {feels_like} °C, humedad del aire: {air_humidity}%, viento: {wind_speed} km/h"
+WEATHER_INLINE_NO_ARGS: "Clima <Ubicación>"
 
 #telegraph
 TG_NO_REPLY_MEDIA: "<code>Responder a algunos medios.</code>"
