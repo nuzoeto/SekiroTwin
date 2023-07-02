@@ -6,6 +6,7 @@ from pyrogram.types import (
     InputTextMessageContent,
     Message,
 )
+from pyrogram.errors import BadRequest
 from typing import Union
 
 
@@ -83,19 +84,34 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
     text = m.text if isinstance(m, Message) else m.query
     chat_id = m.chat.id if isinstance(m, Message) else m.from_user.id
     if len(text.split(maxsplit=1)) == 1:
-        if isinstance(m, Message):
-            return await m.reply_text(await get_string(chat_id, "WEATHER_NO_ARGS"))
-        return await m.answer(
-            [
-                InlineQueryResultArticle(
-                    title=await get_string(chat_id, "WEATHER_INLINE_NO_ARGS"),
-                    input_message_content=InputTextMessageContent(
-                        message_text=await get_string(chat_id, "WEATHER_NO_ARGS"),
-                    ),
-                )
-            ],
-            cache_time=0,
-        )
+        try:
+            if isinstance(m, Message):
+                return await m.reply_text(await get_string(chat_id, "WEATHER_NO_ARGS"))
+            return await m.answer(
+                [
+                    InlineQueryResultArticle(
+                        title=await get_string(chat_id, "WEATHER_INLINE_NO_ARGS"),
+                        input_message_content=InputTextMessageContent(
+                            message_text=await get_string(chat_id, "WEATHER_NO_ARGS"),
+                        ),
+                    )
+                ],
+                cache_time=0,
+            )
+        except BadRequest:
+            if isinstance(m, Message):
+                return await m.reply_text(await get_string(chat_id, "WEATHER_SENDER_ERROR"))
+            return await m.answer(
+                [
+                    InlineQueryResultArticle(
+                        title=await get_string(chat_id, "WEATHER_SENDER_ERROR"),
+                        input_message_content=InputTextMessageContent(
+                            message_text=await get_string(chat_id, "WEATHER_SENDER_ERROR"),
+                        ),
+                    )
+                ],
+                cache_time=0,
+            )
     r = await http.get(
         get_coords,
         headers=headers,
@@ -108,20 +124,35 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
     )
     loc_json = r.json()
     if not loc_json.get("location"):
-        if isinstance(m, Message):
-            return await m.reply_text(await get_string(chat_id, "WEATHER_LOCATION_NOT_FOUND"))
+        try:
+            if isinstance(m, Message):
+                return await m.reply_text(await get_string(chat_id, "WEATHER_LOCATION_NOT_FOUND"))
 
-        return await m.answer(
-            [
-                InlineQueryResultArticle(
-                    title=await get_string(chat_id, "WEATHER_LOCATION_NOT_FOUND"),
-                    input_message_content=InputTextMessageContent(
-                        message_text=await get_string(chat_id, "WEATHER_LOCATION_NOT_FOUND"),
-                    ),
-                )
-            ],
-            cache_time=0,
-        )
+            return await m.answer(
+                [
+                    InlineQueryResultArticle(
+                        title=await get_string(chat_id, "WEATHER_LOCATION_NOT_FOUND"),
+                        input_message_content=InputTextMessageContent(
+                            message_text=await get_string(chat_id, "WEATHER_LOCATION_NOT_FOUND"),
+                        ),
+                    )
+                ],
+                cache_time=0,
+            )
+        except BadRequest:
+            if isinstance(m, Message):
+                return await m.reply_text(await get_string(chat_id, "WEATHER_SENDER_ERROR"))
+            return await m.answer(
+                [
+                    InlineQueryResultArticle(
+                        title=await get_string(chat_id, "WEATHER_SENDER_ERROR"),
+                        input_message_content=InputTextMessageContent(
+                            message_text=await get_string(chat_id, "WEATHER_SENDER_ERROR"),
+                        ),
+                    )
+                ],
+                cache_time=0,
+            )
     pos = f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
     r = await http.get(
         url,
@@ -147,24 +178,39 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
         overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
     )
 
-    if isinstance(m, Message):
-        await m.reply_text(res)
-    else:
-        await m.answer(
-            [
-                InlineQueryResultArticle(
-                    title=loc_json["location"]["address"][0],
-                    description=(await get_string(chat_id, "WEATHER_INLINE_DETAILS")).format(
-                        overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
-                        temperature=obs_dict["temperature"],
-                        feels_like=obs_dict["temperatureFeelsLike"],
-                        air_humidity=obs_dict["relativeHumidity"],
-                        wind_speed=obs_dict["windSpeed"],
-                    ),
-                    input_message_content=InputTextMessageContent(
-                        message_text=res,
-                    ),
-                )
-            ],
-            cache_time=0,
-        )
+    try:
+        if isinstance(m, Message):
+            await m.reply_text(res)
+        else:
+            await m.answer(
+                [
+                    InlineQueryResultArticle(
+                        title=loc_json["location"]["address"][0],
+                        description=(await get_string(chat_id, "WEATHER_INLINE_DETAILS")).format(
+                            overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
+                            temperature=obs_dict["temperature"],
+                            feels_like=obs_dict["temperatureFeelsLike"],
+                            air_humidity=obs_dict["relativeHumidity"],
+                            wind_speed=obs_dict["windSpeed"],
+                        ),
+                        input_message_content=InputTextMessageContent(
+                            message_text=res,
+                        ),
+                    )
+                ],
+                cache_time=0,
+            )
+    except BadRequest:
+        if isinstance(m, Message):
+                return await m.reply_text(await get_string(chat_id, "WEATHER_SENDER_ERROR"))
+            return await m.answer(
+                [
+                    InlineQueryResultArticle(
+                        title=await get_string(chat_id, "WEATHER_SENDER_ERROR"),
+                        input_message_content=InputTextMessageContent(
+                            message_text=await get_string(chat_id, "WEATHER_SENDER_ERROR"),
+                        ),
+                    )
+                ],
+                cache_time=0,
+            )
