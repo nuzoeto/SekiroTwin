@@ -173,7 +173,7 @@ WEATHER_NO_ARGS: "<b>Uso:</b> <code>/clima localização ou cidade</code> - Obt�
 WEATHER_LOCATION_NOT_FOUND: "Localização não encontrada."
 WEATHER_INLINE_DETAILS: "{overview}, Temperatura: {temperature} °C, Sensação Termica: {feels_like} °C, Umidade do Ar: {air_humidity}%, Vento: {wind_speed} km/h"
 WEATHER_INLINE_NO_ARGS: "clima < local >"
-WEATHER_ERROR: "🌐 Ocorreu um erro ao obter as informações meteorológicas"
+WEATHER_SENDER_ERROR: "🌐 Ocorreu um erro ao enviar as informações meteorológicas"
 
 #telegra.ph
 TG_NO_REPLY_MEDIA: "<code>Responda a alguma mídia.</code>"
