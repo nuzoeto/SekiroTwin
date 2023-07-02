@@ -17,6 +17,7 @@ from megumin import megux
 from megumin.utils import is_disabled
 
 DISABLABLE_CMDS: List[str] = []
+INLINE_CMDS = []
     
 
 def input_str(message) -> str:
