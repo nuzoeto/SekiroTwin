@@ -156,12 +156,12 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
             [
                 InlineQueryResultArticle(
                     title=loc_json["location"]["address"][0],
-                    description=await get_string(chat_id, "WEATHER_INLINE_DETAILS").format(
+                    description=(await get_string(chat_id, "WEATHER_INLINE_DETAILS")).format(
+                        overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
                         temperature=obs_dict["temperature"],
                         feels_like=obs_dict["temperatureFeelsLike"],
                         air_humidity=obs_dict["relativeHumidity"],
                         wind_speed=obs_dict["windSpeed"],
-                        overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
                     ),
                     input_message_content=InputTextMessageContent(
                         message_text=res,
