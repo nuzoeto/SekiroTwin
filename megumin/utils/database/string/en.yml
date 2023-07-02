@@ -170,6 +170,8 @@ WEATHER_UNIT: "e"
 WEATHER_DETAILS: "<b>{location}</b>:\n\nTemperature: <code>{temperature} °F</code>\nThermal sensation: <code>{feels_like} °F</code>\nAir  umidity: <code>{air_humidity}%</code>\nWind: <code>{wind_speed} mph</code>\n\n- <i>{overview}</i>"
 WEATHER_NO_ARGS: "<b>Usage:</b> <code>/weather location or city</code> - Gets information about the weather in the <i>location or city</i>."
 WEATHER_LOCATION_NOT_FOUND: "Location not found."
+WEATHER_INLINE_DETAILS: "{overview}, Temperature: {temperature} °C, Thermal Feeling: {feels_like} °C, Air Humidity: {air_humidity}%, Wind: {wind_speed} km/h"
+WEATHER_INLINE_NO_ARGS: "Weather < Location >"
 
 #telegra.ph
 TG_NO_REPLY_MEDIA: "<code>Reply to some media.</code>"
