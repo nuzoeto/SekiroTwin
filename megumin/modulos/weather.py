@@ -96,7 +96,7 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
             ],
             cache_time=0,
         )
-     r = await http.get(
+    r = await http.get(
         get_coords,
         headers=headers,
         params=dict(
