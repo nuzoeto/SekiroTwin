@@ -99,19 +99,7 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
                 cache_time=0,
             )
         except BadRequest:
-            if isinstance(m, Message):
-                return await m.reply_text(await get_string(chat_id, "WEATHER_SENDER_ERROR"))
-            return await m.answer(
-                [
-                    InlineQueryResultArticle(
-                        title=await get_string(chat_id, "WEATHER_SENDER_ERROR"),
-                        input_message_content=InputTextMessageContent(
-                            message_text=await get_string(chat_id, "WEATHER_SENDER_ERROR"),
-                        ),
-                    )
-                ],
-                cache_time=0,
-            )
+            return
     r = await http.get(
         get_coords,
         headers=headers,
@@ -140,19 +128,7 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
                 cache_time=0,
             )
         except BadRequest:
-            if isinstance(m, Message):
-                return await m.reply_text(await get_string(chat_id, "WEATHER_SENDER_ERROR"))
-            return await m.answer(
-                [
-                    InlineQueryResultArticle(
-                        title=await get_string(chat_id, "WEATHER_SENDER_ERROR"),
-                        input_message_content=InputTextMessageContent(
-                            message_text=await get_string(chat_id, "WEATHER_SENDER_ERROR"),
-                        ),
-                    )
-                ],
-                cache_time=0,
-            )
+            return
     pos = f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
     r = await http.get(
         url,
@@ -201,16 +177,4 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
                 cache_time=0,
             )
     except BadRequest:
-        if isinstance(m, Message):
-                return await m.reply_text(await get_string(chat_id, "WEATHER_SENDER_ERROR"))
-        return await m.answer(
-            [
-                InlineQueryResultArticle(
-                    title=await get_string(chat_id, "WEATHER_SENDER_ERROR"),
-                    input_message_content=InputTextMessageContent(
-                        message_text=await get_string(chat_id, "WEATHER_SENDER_ERROR"),
-                    ),
-                )
-            ],
-            cache_time=0,
-        )
+        return
