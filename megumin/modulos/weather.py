@@ -121,50 +121,49 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
             ],
             cache_time=0,
         )
+    pos = f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
+    r = await http.get(
+        url,
+        headers=headers,
+        params=dict(
+            apiKey=weather_apikey,
+            format="json",
+            language=await get_string(m.chat.id, "WEATHER_LANGUAGE"),
+            geocode=pos,
+            units=await get_string(m.chat.id, "WEATHER_UNIT"),
+        ),
+    )
+    res_json = r.json()
+
+    obs_dict = res_json["v3-wx-observations-current"]
+
+    res = (await get_string(m.chat.id, "WEATHER_DETAILS")).format(
+        location=loc_json["location"]["address"][0],
+        temperature=obs_dict["temperature"],
+        feels_like=obs_dict["temperatureFeelsLike"],
+        air_humidity=obs_dict["relativeHumidity"],
+        wind_speed=obs_dict["windSpeed"],
+        overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
+    )
+
+    if isinstance(m, Message):
+        await m.reply_text(res)
     else:
-        pos = f"{loc_json['location']['latitude'][0]},{loc_json['location']['longitude'][0]}"
-        r = await http.get(
-            url,
-            headers=headers,
-            params=dict(
-                apiKey=weather_apikey,
-                format="json",
-                language=await get_string(m.chat.id, "WEATHER_LANGUAGE"),
-                geocode=pos,
-                units=await get_string(m.chat.id, "WEATHER_UNIT"),
-            ),
+        await m.answer(
+            [
+                InlineQueryResultArticle(
+                    title=loc_json["location"]["address"][0],
+                    description=await get_string(m.chat.id, "WEATHER_DETAILS").format(
+                        temperature=obs_dict["temperature"],
+                        feels_like=obs_dict["temperatureFeelsLike"],
+                        air_humidity=obs_dict["relativeHumidity"],
+                        wind_speed=obs_dict["windSpeed"],
+                        overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
+                    ),
+                    input_message_content=InputTextMessageContent(
+                        message_text=res,
+                    ),
+                )
+            ],
+            cache_time=0,
         )
-        res_json = r.json()
-
-        obs_dict = res_json["v3-wx-observations-current"]
-
-        res = (await get_string(m.chat.id, "WEATHER_DETAILS")).format(
-            location=loc_json["location"]["address"][0],
-            temperature=obs_dict["temperature"],
-            feels_like=obs_dict["temperatureFeelsLike"],
-            air_humidity=obs_dict["relativeHumidity"],
-            wind_speed=obs_dict["windSpeed"],
-            overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
-        )
-
-        if isinstance(m, Message):
-            await m.reply_text(res)
-        else:
-            await m.answer(
-                [
-                    InlineQueryResultArticle(
-                        title=loc_json["location"]["address"][0],
-                        description=await get_string(m.chat.id, "WEATHER_DETAILS").format(
-                            temperature=obs_dict["temperature"],
-                            feels_like=obs_dict["temperatureFeelsLike"],
-                            air_humidity=obs_dict["relativeHumidity"],
-                            wind_speed=obs_dict["windSpeed"],
-                            overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
-                        ),
-                        input_message_content=InputTextMessageContent(
-                            message_text=res,
-                        ),
-                    )
-                ],
-                cache_time=0,
-            )
