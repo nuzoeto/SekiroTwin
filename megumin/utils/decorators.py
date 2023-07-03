@@ -48,13 +48,11 @@ class InlineHandler:
     def add_command(
         command: str,
         txt_description: str,
-        aliases: Optional[list] = None,
     ):
         INLINE_CMDS.append(
             {
                 "command": command,
                 "description": txt_description,
-                "aliases": aliases or [],
             }
         )
     
@@ -65,7 +63,6 @@ class InlineHandler:
             if (
                 not query
                 or query in cmd["command"]
-                or any(query in alias for alias in cmd["aliases"])
             )
         ]
 
