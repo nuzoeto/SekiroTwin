@@ -47,14 +47,14 @@ def disableable_dec(command):
 class InlineHandler:
     def add_command(
         command: str,
+        txt_description: str,
         aliases: Optional[list] = None,
-        description_txt: str,
     ):
         INLINE_CMDS.append(
             {
                 "command": command,
+                "description": txt_description,
                 "aliases": aliases or [],
-                "description": description_txt,
             }
         )
     
