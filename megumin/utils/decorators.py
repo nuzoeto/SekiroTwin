@@ -43,3 +43,32 @@ def disableable_dec(command):
         return wrapper
 
     return decorator
+
+class InlineHandler:
+    def add_command(
+        command: str,
+        aliases: Optional[list] = None,
+        context: str,
+    ):
+        description_key = f"{command.split()[0]}_description"
+        INLINE_CMDS.append(
+            {
+                "command": command,
+                "description_key": description_key,
+                "context": context,
+                "aliases": aliases or [],
+            }
+        )
+    
+    def search_cmds(query: Optional[str] = None):
+        return [
+            cmd
+            for cmd in sorted(INLINE_CMDS, key=lambda k: k["command"])
+            if (
+                not query
+                or query in cmd["command"]
+                or any(query in alias for alias in cmd["aliases"])
+            )
+        ]
+
+inline_handler = InlineHandler()
