@@ -179,4 +179,4 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
     except BadRequest:
         return
 
-inline_handler.add_command("weather <location>", "Gets information about the weather in specified location or city.", aliases=["clima"])
+inline_handler.add_command("weather <location>", "Gets information about the weather in specified location or city.")
