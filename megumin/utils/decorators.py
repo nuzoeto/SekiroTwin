@@ -1,5 +1,5 @@
 # WhiterKang Bot
-# Copyright (C) 2022 Davi
+# Copyright (C) 2023 Davi
 #
 # This file is a part of < https://github.com/DaviTudoPlugins1234/WhiterKang/ >
 # PLease read the GNU v3.0 License Agreement in 
@@ -47,7 +47,6 @@ def disableable_dec(command):
 class InlineHandler:
     def add_command(
         command: str,
-        aliases: Optional[list] = None,
         context: str,
     ):
         description_key = f"{command.split()[0]}_description"
@@ -56,7 +55,6 @@ class InlineHandler:
                 "command": command,
                 "description_key": description_key,
                 "context": context,
-                "aliases": aliases or [],
             }
         )
     
@@ -67,7 +65,7 @@ class InlineHandler:
             if (
                 not query
                 or query in cmd["command"]
-                or any(query in alias for alias in cmd["aliases"])
+                or any(query)
             )
         ]
 
