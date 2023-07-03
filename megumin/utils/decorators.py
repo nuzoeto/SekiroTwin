@@ -48,13 +48,13 @@ class InlineHandler:
     def add_command(
         command: str,
         aliases: Optional[list] = None,
-        description: str,
+        description_txt: str,
     ):
         INLINE_CMDS.append(
             {
                 "command": command,
                 "aliases": aliases or [],
-                "description": description,
+                "description": description_txt,
             }
         )
     
