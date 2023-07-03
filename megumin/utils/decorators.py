@@ -8,7 +8,7 @@
 ## WhiterKang Decorators
 import logging
 
-from typing import List
+from typing import List, Optional
 
 from pyrogram import filters
 from pyrogram.types import Message
@@ -47,14 +47,14 @@ def disableable_dec(command):
 class InlineHandler:
     def add_command(
         command: str,
-        context: str,
+        aliases: Optional[list] = None,
+        description: str,
     ):
-        description_key = f"{command.split()[0]}_description"
         INLINE_CMDS.append(
             {
                 "command": command,
-                "description_key": description_key,
-                "context": context,
+                "aliases": aliases or [],
+                "description": description,
             }
         )
     
@@ -65,7 +65,7 @@ class InlineHandler:
             if (
                 not query
                 or query in cmd["command"]
-                or any(query)
+                or any(query in alias for alias in cmd["aliases"])
             )
         ]
 
