@@ -54,6 +54,7 @@ def get_caller_context(depth: int = 2) -> str:
 
 
 class InlineHandler:
+    "This class is a python interface to InlineHandler"
     def __init__(self):
         self.INLINE_CMDS = []
 
