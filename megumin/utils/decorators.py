@@ -46,13 +46,6 @@ def disableable_dec(command):
     return decorator
 
 
-def get_caller_context(depth: int = 2) -> str:
-    fpath = Path(inspect.stack()[depth].filename)
-    cwd = Path.cwd()
-    fpath = fpath.relative_to(cwd)
-    return fpath.parts[2] if len(fpath.parts) == 4 else fpath.stem
-
-
 class InlineHandler:
     """This class is a python interface to InlineHandler"""
     def __init__(self):
@@ -64,13 +57,10 @@ class InlineHandler:
         txt_description: str,
         aliases: Optional[list] = None,
     ):
-        context = get_caller_context()
-
         self.INLINE_CMDS.append(
             {
                 "command": command,
                 "txt_description": txt_description,
-                "context": context,
                 "aliases": aliases or [],
             }
         )
