@@ -57,7 +57,7 @@ class InlineHandler:
     def __init__(self):
         self.INLINE_CMDS = []
 
-    def add_command(
+    def add_cmd(
         self,
         command: str,
         txt_description: str,
