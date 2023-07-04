@@ -7,9 +7,7 @@
 
 ## WhiterKang Decorators
 import logging
-import inspect
 
-from pathlib import Path
 from typing import List, Optional
 
 from pyrogram import filters
