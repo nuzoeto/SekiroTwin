@@ -7,7 +7,9 @@
 
 ## WhiterKang Decorators
 import logging
+import inspect
 
+from pathlib import Path
 from typing import List, Optional
 
 from pyrogram import filters
@@ -17,7 +19,6 @@ from megumin import megux
 from megumin.utils import is_disabled
 
 DISABLABLE_CMDS: List[str] = []
-INLINE_CMDS = {}
     
 
 def input_str(message) -> str:
@@ -44,3 +45,44 @@ def disableable_dec(command):
 
     return decorator
 
+
+def get_caller_context(depth: int = 2) -> str:
+    fpath = Path(inspect.stack()[depth].filename)
+    cwd = Path.cwd()
+    fpath = fpath.relative_to(cwd)
+    return fpath.parts[2] if len(fpath.parts) == 4 else fpath.stem
+
+
+class InlineHandler:
+    def __init__(self):
+        self.INLINE_CMDS = []
+
+    def add_command(
+        self,
+        command: str,
+        txt_description: str,
+        aliases: Optional[list] = None,
+    ):
+        context = get_caller_context()
+
+        self.INLINE_CMDS.append(
+            {
+                "command": command,
+                "txt_description": txt_description,
+                "context": context,
+                "aliases": aliases or [],
+            }
+        )
+
+    def search_cmds(self, query: Optional[str] = None):
+        return [
+            cmd
+            for cmd in sorted(self.INLINE_CMDS, key=lambda k: k["command"])
+            if (
+                not query
+                or query in cmd["command"]
+                or any(query in alias for alias in cmd["aliases"])
+            )
+        ]
+
+inline_handler = InlineHandler()
