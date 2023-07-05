@@ -11,7 +11,7 @@ from typing import Union
 
 
 from megumin import megux, Config
-from megumin.utils import get_collection, get_string, weather_apikey, http
+from megumin.utils import get_collection, get_string, weather_apikey, http, inline_handler
 
 
 get_coords = "https://api.weather.com/v3/location/search"
@@ -176,5 +176,7 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
                 ],
                 cache_time=0,
             )
+
+inline_handler.add_cmd("weather <location>", "Get weather information for the given location or city.", aliases=["weather"])
     except BadRequest:
         return
