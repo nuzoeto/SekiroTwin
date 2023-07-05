@@ -7,7 +7,9 @@ from pyrogram.types import (
     Message,
 )
 from pyrogram.errors import BadRequest
+
 from typing import Union
+from telegraph import upload_file
 
 
 from megumin import megux, Config
@@ -83,6 +85,7 @@ def get_status_emoji(status_code: int) -> str:
 async def weather(c: megux, m: Union[InlineQuery, Message]):
     text = m.text if isinstance(m, Message) else m.query
     chat_id = m.chat.id if isinstance(m, Message) else m.from_user.id
+    url_thumb = "https://telegra.ph/file/719c814707cba5419ae85.jpg"
     if len(text.split(maxsplit=1)) == 1:
         try:
             if isinstance(m, Message):
@@ -91,6 +94,7 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
                 [
                     InlineQueryResultArticle(
                         title=await get_string(chat_id, "WEATHER_INLINE_NO_ARGS"),
+                        thumb_url=url_thumb,
                         input_message_content=InputTextMessageContent(
                             message_text=await get_string(chat_id, "WEATHER_NO_ARGS"),
                         ),
@@ -120,6 +124,7 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
                 [
                     InlineQueryResultArticle(
                         title=await get_string(chat_id, "WEATHER_LOCATION_NOT_FOUND"),
+                        thumb_url=url_thumb,
                         input_message_content=InputTextMessageContent(
                             message_text=await get_string(chat_id, "WEATHER_LOCATION_NOT_FOUND"),
                         ),
@@ -162,6 +167,7 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
                 [
                     InlineQueryResultArticle(
                         title=loc_json["location"]["address"][0],
+                        thumb_url=url_thumb,
                         description=(await get_string(chat_id, "WEATHER_INLINE_DETAILS")).format(
                             overview=f"{get_status_emoji(obs_dict['iconCode'])} {obs_dict['wxPhraseLong']}",
                             temperature=obs_dict["temperature"],
