@@ -44,7 +44,7 @@ async def search_inline(c: megux, q: InlineQuery):
                 title=result["command"],
                 description=result["txt_description"],
                 input_message_content=InputTextMessageContent(
-                    f"{html.escape(result['command'])}: result['txt_description']}"
+                    f"{html.escape(result['command'])}: {result['txt_description']}"
                 ),
                 reply_markup=InlineKeyboardMarkup(
                     [
