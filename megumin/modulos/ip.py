@@ -5,7 +5,7 @@ from pyrogram.types import Message, InlineQuery, InlineQueryResultArticle, Input
 
 from yarl import URL
 from megumin import megux, Config
-from megumin.utils import get_collection, is_disabled, disableable_dec 
+from megumin.utils import get_collection, is_disabled, disableable_dec, inline_handler
 
 
 
