@@ -84,7 +84,7 @@ def get_status_emoji(status_code: int) -> str:
 async def weather(c: megux, m: Union[InlineQuery, Message]):
     text = m.text if isinstance(m, Message) else m.query
     chat_id = m.chat.id if isinstance(m, Message) else m.from_user.id
-    url_thumb = "https://telegra.ph/file/719c814707cba5419ae85.jpg"
+    url_thumb = "https://telegra.ph/file/f3e9eecfe5a086a1bb050.png"
     if len(text.split(maxsplit=1)) == 1:
         try:
             if isinstance(m, Message):
