@@ -50,7 +50,7 @@ async def search_inline(c: megux, q: InlineQuery):
                     [
                         [
                             InlineKeyboardButton(
-                                text="🌐 Rodar '{query}'".format(
+                                text="🌐 Run '{query}'".format(
                                     query=stripped_command
                                 ),
                                 switch_inline_query_current_chat=stripped_command,
