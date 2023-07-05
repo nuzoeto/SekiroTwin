@@ -22,8 +22,8 @@ from megumin.utils import inline_handler
 async def search_inline(c: megux, q: InlineQuery):
     cmd = q.query.split(maxsplit=1)[0] if q.query else q.query
 
-    res = inline_handler.search_cmds(command)
-    if not results:
+    res = inline_handler.search_cmds(cmd)
+    if not res:
         return await q.answer(
             [
                 InlineQueryResultArticle(
@@ -36,7 +36,7 @@ async def search_inline(c: megux, q: InlineQuery):
             cache_time=0,
         )
     articles = []
-    for result in results:
+    for result in res:
         stripped_command = result["command"].split()[0]
         articles.append(
             InlineQueryResultArticle(
