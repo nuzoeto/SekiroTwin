@@ -9,7 +9,6 @@ from pyrogram.types import (
 from pyrogram.errors import BadRequest
 
 from typing import Union
-from telegraph import upload_file
 
 
 from megumin import megux, Config
