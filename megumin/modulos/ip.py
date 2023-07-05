@@ -63,3 +63,5 @@ async def ip_inline(c: megux, q: InlineQuery):
                 )
             ]
         )
+
+inline_handler.add_cmd("ip <host>", "Gets information about the specified ip address.", aliases=["ip"])
