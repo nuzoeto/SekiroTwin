@@ -1,14 +1,67 @@
+#Based in https://github.com/AmanoTeam/EduuRobot/blob/main/eduu/plugins/inline_search.py
+
+import html
+
 from pyrogram import filters
 from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
 from pyrogram.types import (
     InlineKeyboardMarkup,
+    InlineKeyboardButton,
     InlineQuery,
     InlineQueryResultArticle,
     InputTextMessageContent,
 )
 
+from uuid import uuid4
 
-from megumin import megux 
+from megumin import megux
+from megumin.utils import inline_handler
+
+
+@megux.on_inline_query(group=4)
+async def search_inline(c: megux, q: InlineQuery):
+    cmd = q.query.split(maxsplit=1)[0] if q.query else q.query
+
+    res = inline_handler.search_cmds(command)
+    if not results:
+        return await q.answer(
+            [
+                InlineQueryResultArticle(
+                    title="No results for {query}".format(query=command),
+                    input_message_content=InputTextMessageContent(
+                        "No results for {query}".format(query=command)
+                    ),
+                )
+            ],
+            cache_time=0,
+        )
+    articles = []
+    for result in results:
+        stripped_command = result["command"].split()[0]
+        articles.append(
+            InlineQueryResultArticle(
+                id=uuid4(),
+                title=result["command"],
+                description=result["txt_description"],
+                input_message_content=InputTextMessageContent(
+                    f"{html.escape(result['command'])}: result['txt_description']}"
+                ),
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                text="🌐 Rodar {}".format(
+                                    query=stripped_command
+                                ),
+                                switch_inline_query_current_chat=stripped_command,
+                            )
+                        ]
+                    ]
+                ),
+            )
+        )
+    await q.answer(articles, cache_time=0)
+
 
 
 @megux.on_inline_query(filters.regex(r"^info"))
