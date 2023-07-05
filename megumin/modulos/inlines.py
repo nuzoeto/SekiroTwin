@@ -27,9 +27,9 @@ async def search_inline(c: megux, q: InlineQuery):
         return await q.answer(
             [
                 InlineQueryResultArticle(
-                    title="No results for {query}".format(query=command),
+                    title="No results for {query}".format(query=cmd),
                     input_message_content=InputTextMessageContent(
-                        "No results for {query}".format(query=command)
+                        "No results for {query}".format(query=cmd)
                     ),
                 )
             ],
