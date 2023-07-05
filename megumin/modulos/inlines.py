@@ -46,3 +46,5 @@ async def info_inline(c: megux, q: InlineQuery):
             )
         ]
     )
+
+inline_handler.add_cmd("info <userid>", "Get the specified user information", aliases=["info"])
