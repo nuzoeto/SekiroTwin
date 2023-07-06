@@ -3,7 +3,7 @@
 import html
 
 from pyrogram import filters
-from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
+from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid, BadRequest
 from pyrogram.types import (
     InlineKeyboardMarkup,
     InlineKeyboardButton,
@@ -76,7 +76,7 @@ async def info_inline(c: megux, q: InlineQuery):
         elif q.query.lower().split(None, 1)[1]:
             txt = q.query.lower().split(None, 1)[1]
             user = await c.get_users(txt)
-    except (PeerIdInvalid, UsernameInvalid, UserIdInvalid):
+    except (PeerIdInvalid, UsernameInvalid, UserIdInvalid, BadRequest, IndexError):
         await q.answer(
             [
                 InlineQueryResultArticle(
