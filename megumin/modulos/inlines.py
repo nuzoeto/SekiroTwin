@@ -18,6 +18,8 @@ from megumin import megux
 from megumin.utils import inline_handler
 
 
+info_thumb_url = "https://telegra.ph/file/0bf64eb57a779f7bf18c2.png"
+
 @megux.on_inline_query(group=4)
 async def search_inline(c: megux, q: InlineQuery):
     cmd = q.query.split(maxsplit=1)[0] if q.query else q.query
@@ -100,4 +102,4 @@ async def info_inline(c: megux, q: InlineQuery):
         ]
     )
 
-inline_handler.add_cmd("info <userid>", "Get the specified user information", aliases=["info"])
+inline_handler.add_cmd("info <userid>", "Get the specified user information", info_thumb_url, aliases=["info"])
