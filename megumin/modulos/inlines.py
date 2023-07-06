@@ -5,6 +5,7 @@ import html
 from pyrogram import filters
 from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
 from pyrogram.types import (
+    User,
     InlineKeyboardMarkup,
     InlineKeyboardButton,
     InlineQuery,
@@ -13,12 +14,14 @@ from pyrogram.types import (
 )
 
 from uuid import uuid4
+from telegraph import upload_file
 
 from megumin import megux
 from megumin.utils import inline_handler
 
 
 info_thumb_url = "https://telegra.ph/file/0bf64eb57a779f7bf18c2.png"
+
 
 @megux.on_inline_query(group=4)
 async def search_inline(c: megux, q: InlineQuery):
@@ -80,6 +83,7 @@ async def info_inline(c: megux, q: InlineQuery):
             [
                 InlineQueryResultArticle(
                     title="Usuário não encontrado.",
+                    thumb_url=info_thumb_url,
                     input_message_content=InputTextMessageContent(
                         "Usuário não encontrado."
                     ),
@@ -90,6 +94,7 @@ async def info_inline(c: megux, q: InlineQuery):
         [
             InlineQueryResultArticle(
                 title="Clique aqui para obter informações do usuário.",
+                thumb_url=info_thumb_url,
                 input_message_content=InputTextMessageContent(
                     "Nome de usuário: {usernameformat}\nID: {useridformat}\nDC: {userdcformat}\nLink do usuário: {usermentionformat}\nÉ bot: {is_bot_user}".format(
                         usernameformat=user.username,
@@ -103,4 +108,4 @@ async def info_inline(c: megux, q: InlineQuery):
         ]
     )
 
-inline_handler.add_cmd("info <userid>", "Get the specified user information", info_thumb_url, aliases=["info"])
+inline_handler.add_cmd("info <username>", "Get the specified user information", info_thumb_url, aliases=["info"])
