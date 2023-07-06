@@ -23,6 +23,8 @@ headers = {
     "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 13; M2012K11AG Build/SQ1D.211205.017)"
 }
 
+url_thumb = "https://telegra.ph/file/abf3e0a8dd7ebd33f74e1.png"
+
 status_emojis = {
     0: "⛈",
     1: "⛈",
@@ -84,7 +86,6 @@ def get_status_emoji(status_code: int) -> str:
 async def weather(c: megux, m: Union[InlineQuery, Message]):
     text = m.text if isinstance(m, Message) else m.query
     chat_id = m.chat.id if isinstance(m, Message) else m.from_user.id
-    url_thumb = "https://telegra.ph/file/abf3e0a8dd7ebd33f74e1.png"
     if len(text.split(maxsplit=1)) == 1:
         try:
             if isinstance(m, Message):
@@ -184,4 +185,4 @@ async def weather(c: megux, m: Union[InlineQuery, Message]):
     except BadRequest:
         return
 
-inline_handler.add_cmd("weather <location>", "Get weather information for the given location or city.", aliases=["weather"])
+inline_handler.add_cmd("weather <location>", "Get weather information for the given location or city.", url_thumb, aliases=["weather"])
