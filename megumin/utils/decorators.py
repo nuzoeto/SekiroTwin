@@ -53,12 +53,14 @@ class InlineHandler:
         self,
         command: str,
         txt_description: str,
+        url_thumb: str,
         aliases: Optional[list] = None,
     ):
         self.INLINE_CMDS.append(
             {
                 "command": command,
                 "txt_description": txt_description,
+                "url_thumb": url_thumb,
                 "aliases": aliases or [],
             }
         )
