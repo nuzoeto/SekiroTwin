@@ -5,7 +5,6 @@ import html
 from pyrogram import filters
 from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
 from pyrogram.types import (
-    User,
     InlineKeyboardMarkup,
     InlineKeyboardButton,
     InlineQuery,
@@ -14,7 +13,6 @@ from pyrogram.types import (
 )
 
 from uuid import uuid4
-from telegraph import upload_file
 
 from megumin import megux
 from megumin.utils import inline_handler
