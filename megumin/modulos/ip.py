@@ -8,7 +8,7 @@ from megumin import megux, Config
 from megumin.utils import get_collection, is_disabled, disableable_dec, inline_handler
 
 
-
+url_thumb = "https://telegra.ph/file/5dd6900fa31f83d74e3c7.png"
 
 http = httpx.AsyncClient()
 
@@ -48,6 +48,7 @@ async def ip_inline(c: megux, q: InlineQuery):
             [
                 InlineQueryResultArticle(
                     title="Clique aqui para ver a informação de IP de {domain}.".format(domain=url),
+                    thumb_url=url_thumb,
                     input_message_content=InputTextMessageContent(x),
                 )
             ]
@@ -57,6 +58,7 @@ async def ip_inline(c: megux, q: InlineQuery):
             [
                 InlineQueryResultArticle(
                     title="Você deve especificar a url.",
+                    thumb_url=url_thumb,
                     input_message_content=InputTextMessageContent(
                         "Você deve especificar a url, por exemplo: <code>@{bot_username} ip example.com</code>.".format(bot_username=c.me.username),
                     ),
@@ -64,4 +66,4 @@ async def ip_inline(c: megux, q: InlineQuery):
             ]
         )
 
-inline_handler.add_cmd("ip <host>", "Gets information about the specified ip address.", aliases=["ip"])
+inline_handler.add_cmd("ip <host>", "Gets information about the specified ip address.", url_thumb, aliases=["ip"])
