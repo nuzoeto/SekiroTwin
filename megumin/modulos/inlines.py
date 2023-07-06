@@ -44,7 +44,7 @@ async def search_inline(c: megux, q: InlineQuery):
             InlineQueryResultArticle(
                 id=uuid4(),
                 title=result["command"],
-                thumb_url=result["url_thumb"]
+                thumb_url=result["url_thumb"],
                 description=result["txt_description"],
                 input_message_content=InputTextMessageContent(
                     f"{html.escape(result['command'])}: {result['txt_description']}"
