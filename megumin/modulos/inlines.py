@@ -106,4 +106,19 @@ async def info_inline(c: megux, q: InlineQuery):
         ]
     )
 
+
+@megux_on_inline_query(filters.regex(r"^picgo"))
+async def picgo(c: megux, q: InlineQuery):
+    gimg = GoogleImagesAPI()
+    try:
+        query = q.query
+        user_id = q.from_user.id
+        res = gimg.results_photo(query, chat_id)
+    except Exception:
+        return
+    await q.answer(
+        results=res,
+        cache_time=1,
+    )
+
 inline_handler.add_cmd("info <username>", "Get the specified user information", info_thumb_url, aliases=["info"])
