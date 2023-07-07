@@ -107,7 +107,7 @@ async def info_inline(c: megux, q: InlineQuery):
     )
 
 
-@megux_on_inline_query(filters.regex(r"^picgo"))
+@megux.on_inline_query(filters.regex(r"^picgo"))
 async def picgo(c: megux, q: InlineQuery):
     gimg = GoogleImagesAPI()
     try:
