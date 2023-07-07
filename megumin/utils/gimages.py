@@ -4,12 +4,14 @@ import re
 
 from pyrogram.types import InlineQueryResultPhoto
 
+from uuid import uuid4
+
 class GoogleImagesApi:
     def __init__(self, query):
         self.query = query
         self.results = []
         self.headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0;Win64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+            f"User-Agent": "Mozilla/5.0 (Windows NT 10.0;Win64(Build: {uuid4()})) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
         }
     
     def image(self, chat_id: str):
