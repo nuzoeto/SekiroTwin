@@ -34,5 +34,5 @@ class GoogleImagesAPI:
                     thumb_url=image_url,
                 )
             )
-        return results
+        return self.results
             
