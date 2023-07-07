@@ -113,7 +113,7 @@ async def picgo(c: megux, q: InlineQuery):
     try:
         query = q.query
         user_id = q.from_user.id
-        res = gimg.results_photo(query, chat_id)
+        res = gimg.results_photo(query, user_id)
     except Exception:
         return
     await q.answer(
