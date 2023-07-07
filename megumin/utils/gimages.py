@@ -36,3 +36,16 @@ class GoogleImagesAPI:
             )
         return self.results
             
+    def resolution(self, url):
+        response = requests.get(url)
+        code = uuid4()
+        with open(f'{code}_image.jpg', 'wb') as f:
+            f.write(response.content)
+        
+        with open(f'{code}_image.jpg', 'rb') as f:
+            header = f.read(24)
+            try:
+                width, height = re.search(rb'(\d+)x(\d+)', header).groups()
+                return int(width), int(height)
+            except AttributeError:
+                return 0, 0
