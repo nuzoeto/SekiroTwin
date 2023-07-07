@@ -15,7 +15,7 @@ from pyrogram.types import (
 from uuid import uuid4
 
 from megumin import megux
-from megumin.utils import inline_handler
+from megumin.utils import inline_handler, GoogleImagesAPI
 
 
 info_thumb_url = "https://telegra.ph/file/0bf64eb57a779f7bf18c2.png"
