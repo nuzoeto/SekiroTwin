@@ -6,7 +6,7 @@ from pyrogram.types import InlineQueryResultPhoto
 
 from uuid import uuid4
 
-class GoogleImagesApi:
+class GoogleImagesAPI:
     def __init__(self, query):
         self.query = query
         self.results = []
