@@ -35,10 +35,8 @@ class GoogleImagesAPI:
         for img in soup.find_all('img'):
             src = img['src']
             if src.startswith('http') and re.match(r'^https?://\S+$', src):
-                width, height = self.resolution(src)
-                if width >= 720 and height >= 480:
-                    images.append(src)
-        
+                images.append(src)
+                
         return images[:10]
     
     def results_photo(self, query: str, chat_id: str):
