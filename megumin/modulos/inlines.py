@@ -19,6 +19,7 @@ from megumin.utils import inline_handler, GoogleImagesAPI
 
 
 info_thumb_url = "https://telegra.ph/file/0bf64eb57a779f7bf18c2.png"
+picgo_thumb_url = "https://telegra.ph/file/ab4cc383d35bf14fa3e88.png"
 
 
 @megux.on_inline_query(group=4)
@@ -122,3 +123,4 @@ async def picgo(c: megux, q: InlineQuery):
     )
 
 inline_handler.add_cmd("info <username>", "Get the specified user information", info_thumb_url, aliases=["info"])
+inline_handler.add_cmd("picgo <query>", "Gets Images from Google (at low resolution 144p).", picgo_thumb_url, aliases=["picgo"])
