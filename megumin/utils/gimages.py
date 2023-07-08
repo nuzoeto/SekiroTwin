@@ -5,6 +5,8 @@ import re
 from pyrogram.types import InlineQueryResultPhoto
 
 from uuid import uuid4
+from google_images_download import GoogleImagesDownload
+
 
 class GoogleImagesAPI:
     def __init__(self):
@@ -28,16 +30,11 @@ class GoogleImagesAPI:
                 return 0, 0
     
     def image(self, query: str, chat_id: str):
-        url = "https://www.google.com/search?tbm=isch&q=" + query
-        response = requests.get(url, headers=self.headers)
-        soup = BeautifulSoup(response.content, 'html.parser')
-        images = []
-        for img in soup.find_all('img'):
-            src = img['src']
-            if src.startswith('http') and re.match(r'^https?://\S+$', src):
-                images.append(src)
-                
-        return images[:10]
+        response = GoogleImagesDownload()
+        search_params = {"keywords": query, "limit": 10, "print_urls": True, "no_download": True}
+        result = response.download(search_params)
+        links = result[0][query]
+        return links
     
     def results_photo(self, query: str, chat_id: str):
         search_results = self.image(query, chat_id)
