@@ -5,7 +5,6 @@ import re
 from pyrogram.types import InlineQueryResultPhoto
 
 from uuid import uuid4
-from google_images_download import GoogleImagesDownload
 
 
 class GoogleImagesAPI:
