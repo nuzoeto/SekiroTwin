@@ -36,7 +36,7 @@ class GoogleImagesAPI:
         images = []
         for img in soup.find_all('img'):
             src = img['src']
-            if src.startswith('http') and re.match(r'^https?://\S+$', src):
+            if src and src.startswith("https://"):
                 images.append(src)
 
         return images
