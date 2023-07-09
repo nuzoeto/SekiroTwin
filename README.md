@@ -16,6 +16,8 @@ Can be found as [WhiterKang](https://t.me/whiterkangbot) on Telegram.
 - `LASTFM_API_KEY` - Last.fm 
 - `REMOVE_BG_API_KEY` - removebg
 - `GP_LOGS` - Seu grupo de registro
+- `OPENAI_API` - Sua API do ChatGPT
+- `PIXABAY_API_KEY` - Sua API do PIXABAY
 
 
 
