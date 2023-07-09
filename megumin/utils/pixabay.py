@@ -18,7 +18,7 @@ class PixabayImagesAPI:
         }
         
         res = requests.get(self.pixabay_url, params=params)
-        data = response.json()
+        data = res.json()
 
         images = []
         for image in data["hits"]:
