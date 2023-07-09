@@ -133,9 +133,9 @@ async def images(c: megux, q: InlineQuery):
             return await q.answer(
                 [
                     InlineQueryResultArticle(
-                        title="No images for {query}".format(query=cmd),
+                        title="No images for {query}".format(query=query),
                         input_message_content=InputTextMessageContent(
-                            "No images for {query}".format(query=cmd)
+                            "No images for {query}".format(query=query)
                         ),
                     )
                 ],
