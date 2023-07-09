@@ -45,6 +45,7 @@ class Config:
     DOWN_PATH = "downloads/"
     SW_API = os.environ.get("SW_API")
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY")
+    PIXABAY_API_KEY = os.environ.get("PIXABAY_API_KEY")
     SUDOS_GT_OFERTAS = (
       548711141,
       1248926627,
