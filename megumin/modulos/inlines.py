@@ -128,7 +128,7 @@ async def images(c: megux, q: InlineQuery):
     try:
         query = q.query.split(maxsplit=1)[1]
         user_id = q.from_user.id
-        res = pixabay.pixabay_results_photo(query, 200)
+        res = pixabay.pixabay_results_photo(query, 5)
     except Exception:
         return
     await q.answer(
