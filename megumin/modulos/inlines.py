@@ -20,6 +20,7 @@ from megumin.utils import inline_handler, GoogleImagesAPI, PixabayImagesAPI
 
 info_thumb_url = "https://telegra.ph/file/0bf64eb57a779f7bf18c2.png"
 picgo_thumb_url = "https://telegra.ph/file/ab4cc383d35bf14fa3e88.png"
+images_thumb_url = "https://telegra.ph/file/fa89b430dd0ce176bf001.png"
 
 
 @megux.on_inline_query(group=4)
@@ -139,7 +140,7 @@ async def images(c: megux, q: InlineQuery):
                         ),
                     )
                 ],
-                cache_time=0,
+                cache_time=60,
             )
     except Exception:
         return
@@ -149,4 +150,5 @@ async def images(c: megux, q: InlineQuery):
     )
 
 inline_handler.add_cmd("info <username>", "Get the specified user information", info_thumb_url, aliases=["info"])
-inline_handler.add_cmd("picgo <query>", "Gets Images from Google (at low resolution 144p).", picgo_thumb_url, aliases=["picgo"])
+inline_handler.add_cmd("picgo <query>", "Gets Images from Google (at low resolution 144p).", picgo_thumb_url, aliases=["images"])
+inline_handler.add_cmd("images <query>", "Get Images from Pixabay (In high quality)", images_thumb_url, aliases=["images"])
