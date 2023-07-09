@@ -129,6 +129,18 @@ async def images(c: megux, q: InlineQuery):
         query = q.query.split(maxsplit=1)[1]
         user_id = q.from_user.id
         res = pixabay.pixabay_results_photo(query, 50)
+        if not res:
+            return await q.answer(
+                [
+                    InlineQueryResultArticle(
+                        title="No images for {query}".format(query=cmd),
+                        input_message_content=InputTextMessageContent(
+                            "No images for {query}".format(query=cmd)
+                        ),
+                    )
+                ],
+                cache_time=0,
+            )
     except Exception:
         return
     await q.answer(
