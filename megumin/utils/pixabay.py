@@ -32,6 +32,8 @@ class PixabayImagesAPI:
                 InlineQueryResultPhoto(
                     photo_url=image_url,
                     thumb_url=image_url,
+                    thumb_width=200
+                    thumb_height=200
                 )
             )
         return self.pixabay_results
