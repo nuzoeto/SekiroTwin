@@ -123,7 +123,7 @@ async def picgo(c: megux, q: InlineQuery):
     )
 
 @megux.on_inline_query(filters.regex(r"^images"))
-async def picgo(c: megux, q: InlineQuery):
+async def images(c: megux, q: InlineQuery):
     pixabay = PixabayImagesAPI()
     try:
         query = q.query.split(maxsplit=1)[1]
