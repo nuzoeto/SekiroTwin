@@ -128,12 +128,12 @@ async def images(c: megux, q: InlineQuery):
     try:
         query = q.query.split(maxsplit=1)[1]
         user_id = q.from_user.id
-        res = pixabay.pixabay_results_photo(query, 5)
+        res = pixabay.pixabay_results_photo(query, 50)
     except Exception:
         return
     await q.answer(
         results=res,
-        cache_time=60,
+        cache_time=1,
     )
 
 inline_handler.add_cmd("info <username>", "Get the specified user information", info_thumb_url, aliases=["info"])
