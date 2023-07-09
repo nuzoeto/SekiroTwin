@@ -15,7 +15,7 @@ from pyrogram.types import (
 from uuid import uuid4
 
 from megumin import megux
-from megumin.utils import inline_handler, GoogleImagesAPI
+from megumin.utils import inline_handler, GoogleImagesAPI, PixabayImagesAPI
 
 
 info_thumb_url = "https://telegra.ph/file/0bf64eb57a779f7bf18c2.png"
@@ -112,7 +112,7 @@ async def info_inline(c: megux, q: InlineQuery):
 async def picgo(c: megux, q: InlineQuery):
     gimg = GoogleImagesAPI()
     try:
-        query = q.query
+        query = q.query.split(maxsplit=1)[1]
         user_id = q.from_user.id
         res = gimg.results_photo(query, user_id)
     except Exception:
@@ -120,6 +120,20 @@ async def picgo(c: megux, q: InlineQuery):
     await q.answer(
         results=res,
         cache_time=1,
+    )
+
+@megux.on_inline_query(filters.regex(r"^images"))
+async def picgo(c: megux, q: InlineQuery):
+    pixabay = PixabayImagesAPI()
+    try:
+        query = q.query.split(maxsplit=1)[1]
+        user_id = q.from_user.id
+        res = pixabay.pixabay_results_photo(query, 200)
+    except Exception:
+        return
+    await q.answer(
+        results=res,
+        cache_time=60,
     )
 
 inline_handler.add_cmd("info <username>", "Get the specified user information", info_thumb_url, aliases=["info"])
