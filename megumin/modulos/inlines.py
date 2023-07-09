@@ -129,7 +129,7 @@ async def images(c: megux, q: InlineQuery):
         query = q.query.split(maxsplit=1)[1]
         user_id = q.from_user.id
         res = pixabay.pixabay_results_photo(query, 50)
-        if not res:
+        if res == []:
             return await q.answer(
                 [
                     InlineQueryResultArticle(
