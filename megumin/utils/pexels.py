@@ -10,7 +10,7 @@ class PexelsImagesAPI:
         self.pexels_api_key = Config.PEXELS_API_KEY
         self.pexels_url = "https://api.pexels.com/v1/search"
 
-    def pixabay_image(self, query: str, per_page: int):
+    def pexels_image(self, query: str, per_page: int):
         headers = {
             "Authorization": self.pexels_api_key
         }
@@ -27,8 +27,8 @@ class PexelsImagesAPI:
             images.append(image["src"]["large"])
         return images
 
-    def pixabay_results_photo(self, query: str, per_page: int):
-        search_results = self.pixabay_image(query, per_page)
+    def pexels_results_photo(self, query: str, per_page: int):
+        search_results = self.pexels_image(query, per_page)
         for i, image_url in enumerate(search_results):
             self.pexels_results.append(
                 InlineQueryResultPhoto(
