@@ -15,7 +15,7 @@ from pyrogram.types import (
 from uuid import uuid4
 
 from megumin import megux
-from megumin.utils import inline_handler, GoogleImagesAPI, PixabayImagesAPI
+from megumin.utils import inline_handler, GoogleImagesAPI, PexelsImagesAPI
 
 
 info_thumb_url = "https://telegra.ph/file/0bf64eb57a779f7bf18c2.png"
@@ -125,11 +125,11 @@ async def picgo(c: megux, q: InlineQuery):
 
 @megux.on_inline_query(filters.regex(r"^images"))
 async def images(c: megux, q: InlineQuery):
-    pixabay = PixabayImagesAPI()
+    pexels = PexelsImagesAPI()
     try:
         query = q.query.split(maxsplit=1)[1]
         user_id = q.from_user.id
-        res = pixabay.pixabay_results_photo(query, 50)
+        res = pexels.pexels_results_photo(query, 50)
         if res == []:
             return await q.answer(
                 [
@@ -144,11 +144,13 @@ async def images(c: megux, q: InlineQuery):
             )
     except Exception:
         return
+        
     await q.answer(
         results=res,
         cache_time=1,
     )
 
+    
 inline_handler.add_cmd("info <username>", "Get the specified user information", info_thumb_url, aliases=["info"])
 inline_handler.add_cmd("picgo <query>", "Gets Images from Google (at low resolution 144p).", picgo_thumb_url, aliases=["images"])
 inline_handler.add_cmd("images <query>", "Get Images from Pixabay (In high quality)", images_thumb_url, aliases=["images"])
