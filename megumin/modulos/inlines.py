@@ -153,4 +153,4 @@ async def images(c: megux, q: InlineQuery):
     
 inline_handler.add_cmd("info <username>", "Get the specified user information", info_thumb_url, aliases=["info"])
 inline_handler.add_cmd("picgo <query>", "Gets Images from Google (at low resolution 144p).", picgo_thumb_url, aliases=["images"])
-inline_handler.add_cmd("images <query>", "Get Images from Pixabay (In high quality)", images_thumb_url, aliases=["images"])
+inline_handler.add_cmd("images <query>", "Get Images from Pexels (In high quality)", images_thumb_url, aliases=["images"])
