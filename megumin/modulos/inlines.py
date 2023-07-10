@@ -123,7 +123,6 @@ async def picgo(c: megux, q: InlineQuery):
         return
     try:
         await q.answer(
-            id=uuid4(),
             results=res,
             cache_time=0,
         )
