@@ -4,8 +4,6 @@ from pyrogram.types import InlineQueryResultPhoto
 
 from megumin import Config
 
-from uuid import uuid4
-
 class PexelsImagesAPI:
     def __init__(self):
         self.pexels_results = []
@@ -34,7 +32,6 @@ class PexelsImagesAPI:
         for i, image_url in enumerate(search_results):
             self.pexels_results.append(
                 InlineQueryResultPhoto(
-                    id=uuid4(),
                     photo_url=image_url,
                 )
             )
