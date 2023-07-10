@@ -34,7 +34,7 @@ class PexelsImagesAPI:
         for i, image_url in enumerate(search_results):
             self.pexels_results.append(
                 InlineQueryResultPhoto(
-                    id=uuid4()
+                    id=uuid4(),
                     photo_url=image_url,
                 )
             )
