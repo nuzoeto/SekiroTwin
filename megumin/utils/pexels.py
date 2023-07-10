@@ -33,7 +33,6 @@ class PexelsImagesAPI:
             self.pexels_results.append(
                 InlineQueryResultPhoto(
                     photo_url=image_url,
-                    thumb_url=image_url,
                 )
             )
         return self.pexels_results
