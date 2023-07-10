@@ -120,7 +120,7 @@ async def picgo(c: megux, q: InlineQuery):
         return
     await q.answer(
         results=res,
-        cache_time=60,
+        cache_time=0,
     )
 
 @megux.on_inline_query(filters.regex(r"^images"))
@@ -140,7 +140,7 @@ async def images(c: megux, q: InlineQuery):
                         ),
                     )
                 ],
-                cache_time=60,
+                cache_time=0,
             )
     except Exception:
         return
