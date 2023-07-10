@@ -146,6 +146,7 @@ async def images(c: megux, q: InlineQuery):
         return
         
     await q.answer(
+        id=uuid4(),
         results=res,
         cache_time=60,
     )
