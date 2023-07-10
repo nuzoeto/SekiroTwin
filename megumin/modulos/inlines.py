@@ -66,7 +66,10 @@ async def search_inline(c: megux, q: InlineQuery):
                 ),
             )
         )
-    await q.answer(articles, cache_time=0)
+    try:
+        await q.answer(articles, cache_time=0)
+    except Exception:
+        return
 
 
 
@@ -118,11 +121,14 @@ async def picgo(c: megux, q: InlineQuery):
         res = gimg.results_photo(query, user_id)
     except Exception:
         return
-    await q.answer(
-        id=uuid4(),
-        results=res,
-        cache_time=0,
-    )
+    try:
+        await q.answer(
+            id=uuid4(),
+            results=res,
+            cache_time=0,
+        )
+    except Exception:
+        return
 
 @megux.on_inline_query(filters.regex(r"^images"))
 async def images(c: megux, q: InlineQuery):
@@ -145,12 +151,13 @@ async def images(c: megux, q: InlineQuery):
             )
     except Exception:
         return
-        
-    await q.answer(
-        id=uuid4(),
-        results=res,
-        cache_time=60,
-    )
+    try:    
+        await q.answer(
+            results=res,
+            cache_time=60,
+        )
+    except Exception:
+        return
 
     
 inline_handler.add_cmd("info <username>", "Get the specified user information", info_thumb_url, aliases=["info"])
