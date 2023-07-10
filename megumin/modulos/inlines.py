@@ -119,6 +119,7 @@ async def picgo(c: megux, q: InlineQuery):
     except Exception:
         return
     await q.answer(
+        q.id,
         results=res,
         cache_time=1,
     )
@@ -146,6 +147,7 @@ async def images(c: megux, q: InlineQuery):
         return
         
     await q.answer(
+        q.id,
         results=res,
         cache_time=1,
     )
