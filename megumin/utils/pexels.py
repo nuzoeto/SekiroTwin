@@ -23,7 +23,7 @@ class PexelsImagesAPI:
         data = res.json()
 
         images = []
-        for image in data["photo"]:
+        for image in data["photos"]:
             images.append(image["src"]["large"])
         return images
 
