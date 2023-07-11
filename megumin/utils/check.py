@@ -15,7 +15,7 @@ def check_requirements():
         return False
 
     # Verifica a versão do sistema operacional
-    version = float(platform.release())
+    version = platform.release()
     if version < Config.MIN_SYSTEM:
         return False
 
