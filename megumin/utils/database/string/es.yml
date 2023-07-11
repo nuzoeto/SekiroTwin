@@ -3,7 +3,7 @@
 
 language: "es"
 language_flag: "🇪🇸 Español" 
-button_lang: "🇪🇸 Idioma"
+button_lang: "🌐 Idioma"
 select_lang: "<b>Seleccionar idioma.</b>\n<b>Idioma del usuario:</b> <code>{}</code>"
 language_switch_success: "¡Cambiado a {} con éxito!"
 LANG_SET: "<i>El idioma del chat se ha configurado en 🇪🇸 Español.</i>"
