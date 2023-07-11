@@ -1,5 +1,6 @@
 import psutil
 import platform
+import os
 
 from megumin import Config
 
