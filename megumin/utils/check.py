@@ -3,7 +3,7 @@ import platform
 
 from megumin import Config
 
-def check_pc():
+def check_requirements():
     # Verifica a quantidade de RAM
     ram = psutil.virtual_memory().total / (1024 ** 3)  # em GB
     if ram < Config.RAM_CHECK:
