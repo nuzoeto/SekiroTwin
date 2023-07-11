@@ -30,7 +30,8 @@ class Config:
     API_ID = int(os.environ.get("API_ID"))
     RAM_CHECK = "1024"
     CPU_MHZ_CHECK = "1000"
-    STORAGE_CHECK = "20000"
+    STORAGE_CHECK = "20"
+    MIN_SYSTEM = "20.04"
     API_HASH = os.environ.get("API_HASH")
     BOT_TOKEN = os.environ.get("BOT_TOKEN")
     GP_LOGS = int(os.environ.get("GP_LOGS"))
