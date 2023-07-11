@@ -8,6 +8,7 @@ from logging.handlers import RotatingFileHandler
 import asyncio
 from .utils.database.lang import load_language
 from .utils.database.antiflood import rflood
+from .utils.check import check_requirements
 
 
 logging.basicConfig(level=logging.INFO,
@@ -25,11 +26,14 @@ logging.getLogger("pyrogram.session.session").setLevel(logging.ERROR)
 
 
 async def main():
-    load_language()
-    await rflood()
-    await megux.start()
-    await idle()
-    await megux.stop()
+    if check_requirements():
+        load_language()
+        await rflood()
+        await megux.start()
+        await idle()
+        await megux.stop()
+    else:
+        return logging.warning("WhiterKang has not been started. Due to the VM not meeting the Minimum Requirements!")
     
 
 if __name__ == "__main__" :
