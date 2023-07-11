@@ -28,9 +28,9 @@ class Config:
     ADMINS = {}
     LASTFM_API_KEY = os.environ.get("LASTFM_API_KEY")
     API_ID = int(os.environ.get("API_ID"))
-    RAM_CHECK = "1"
-    CPU_MHZ_CHECK = "1000"
-    STORAGE_CHECK = "20"
+    RAM_CHECK = 1
+    CPU_MHZ_CHECK = 1000
+    STORAGE_CHECK = 20
     MIN_SYSTEM = 20.04
     API_HASH = os.environ.get("API_HASH")
     BOT_TOKEN = os.environ.get("BOT_TOKEN")
