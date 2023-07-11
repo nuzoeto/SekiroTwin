@@ -24,7 +24,7 @@ def check_requirements():
             return False
     else:
         # Executando no Ubuntu normal
-        if LooseVersion(version) < LooseVersion(Config.MIN_SYSTEM):
+        if LooseVersion(version.split('-')[0]) < LooseVersion(Config.MIN_SYSTEM):
             return False
 
     # Verifica o espaço em disco
