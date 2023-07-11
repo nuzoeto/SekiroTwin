@@ -16,13 +16,8 @@ def check_requirements():
     if freq < Config.CPU_MHZ_CHECK:
         return False
 
-    # Verifica a versão do sistema operacional
-    version = platform.release()
-    if version == "5.15.90.1-microsoft-standard-WSL2" or LooseVersion(version) < LooseVersion(Config.MIN_SYSTEM):
-        return False
-
-    # Verifica o espaço livre em disco
-    disk = psutil.disk_usage('/').free / (1024 ** 3)  # em GB
+    # Verifica o espaço em disco
+    disk = psutil.disk_usage('/').total / (1024 ** 3)  # em GB
     if disk < Config.STORAGE_CHECK:
         return False
 
