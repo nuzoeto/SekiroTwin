@@ -14,6 +14,7 @@ from .tools import extract_time  # nao_meche
 from .decorators import disableable_dec, DISABLABLE_CMDS, input_str, inline_handler
 from .gimages import GoogleImagesAPI
 from .pexels import PexelsImagesAPI
+from .check import check_requirements
 from .tools import (
     admin_check,
     check_bot_rights,
