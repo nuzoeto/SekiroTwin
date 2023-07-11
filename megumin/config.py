@@ -31,7 +31,7 @@ class Config:
     RAM_CHECK = 1
     CPU_MHZ_CHECK = 1000
     STORAGE_CHECK = 20
-    MIN_SYSTEM = "5.10"
+    MIN_SYSTEM = "5.10.0"
     WSL_SYSTEM = "5.10"
     API_HASH = os.environ.get("API_HASH")
     BOT_TOKEN = os.environ.get("BOT_TOKEN")
