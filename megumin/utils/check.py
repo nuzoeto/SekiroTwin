@@ -16,6 +16,10 @@ def check_requirements():
     if freq < Config.CPU_MHZ_CHECK:
         return False
 
+    # Verifica se está sendo executado no heroku
+    if os.path.exists('/etc/heroku/dyno') and Config.heroku_app is not None:
+        return False
+
     # Verifica a versão do sistema operacional
     version = platform.release()
     if 'microsoft' in platform.uname().release.lower():
