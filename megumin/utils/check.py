@@ -3,6 +3,8 @@ import platform
 
 from megumin import Config
 
+from distutils.version import LooseVersion
+
 def check_requirements():
     # Verifica a quantidade de RAM
     ram = psutil.virtual_memory().total / (1024 ** 3)  # em GB
@@ -16,7 +18,7 @@ def check_requirements():
 
     # Verifica a versão do sistema operacional
     version = platform.release()
-    if version < Config.MIN_SYSTEM:
+    if LooseVersion(version) < LooseVersion(Config.MIN_SYSTEM):
         return False
 
     # Verifica o espaço livre em disco
