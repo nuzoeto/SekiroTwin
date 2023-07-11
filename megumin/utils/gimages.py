@@ -46,7 +46,6 @@ class GoogleImagesAPI:
             self.results.append(
                 InlineQueryResultPhoto(
                     photo_url=image_url,
-                    thumb_url=image_url,
                 )
             )
         return self.results
