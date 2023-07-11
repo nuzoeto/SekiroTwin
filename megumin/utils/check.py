@@ -19,7 +19,7 @@ def check_requirements():
 
     # Verifica se está sendo executado no heroku
     if os.path.exists('/etc/heroku/dyno') and Config.heroku_app is not None:
-        return False
+        return True
 
     # Verifica a versão do sistema operacional
     version = platform.release()
