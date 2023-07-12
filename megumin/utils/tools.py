@@ -5,6 +5,7 @@ import re
 import time
 import httpx
 import requests
+import asyncio
 
 from datetime import datetime, timedelta
 from httpx import HTTPError
