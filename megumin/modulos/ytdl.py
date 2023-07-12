@@ -3,17 +3,11 @@ import io
 import os
 import re
 import random
-import rapidjson
 import shutil
 import asyncio
 import tempfile
 import datetime
-import httpx
-import gallery_dl
 import contextlib
-import esprima
-import filetype
-
 
 from yt_dlp import YoutubeDL
 from urllib.parse import unquote
@@ -31,10 +25,7 @@ from pyrogram.enums import ChatType, ChatAction
 
 
 from megumin import megux, Config 
-from megumin.utils import humanbytes, tld, csdl, cisdl, DownloadMedia
-
-
-http = httpx.AsyncClient()
+from megumin.utils import humanbytes, tld, csdl, cisdl, DownloadMedia, extract_info, http
 
 
 YOUTUBE_REGEX = re.compile(
@@ -43,43 +34,13 @@ YOUTUBE_REGEX = re.compile(
 
 SDL_REGEX_LINKS = r"(?:htt.+?//)?(?:.+?)?(?:instagram|twitter|tiktok|facebook).com\/(?:\S*)"
 
-
 TWITTER_REGEX = (
     r"(http(s)?:\/\/(?:www\.)?(?:v\.)?(?:mobile.)?(?:twitter.com)\/(?:.*?))(?:\s|$)"
 )
 
-
 TIME_REGEX = re.compile(r"[?&]t=([0-9]+)")
 
 MAX_FILESIZE = 2000000000
-
-
-def aiowrap(func: Callable) -> Callable:
-    @wraps(func)
-    async def run(*args, loop=None, executor=None, **kwargs):
-        if loop is None:
-            loop = asyncio.get_event_loop()
-        pfunc = partial(func, *args, **kwargs)
-        return await loop.run_in_executor(executor, pfunc)
-
-    return run
-
-@aiowrap
-def extract_info(instance: YoutubeDL, url: str, download=True):
-    return instance.extract_info(url, download)
-
-
-@aiowrap
-def gallery_down(path, url: str):
-    gallery_dl.config.set(("output",), "mode", "null")
-    gallery_dl.config.set((), "directory", [])
-    gallery_dl.config.set((), "base-directory", [path])
-    gallery_dl.config.set(
-        (),
-        "cookies",
-        "~/instagram.com_cookies.txt",
-    )
-    return gallery_dl.job.DownloadJob(url).run()
 
 
 @megux.on_message(filters.command("ytdl", Config.TRIGGER))
@@ -253,7 +214,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
     shutil.rmtree(tempdir, ignore_errors=True)
 
     
-@megux.on_message(filters.command(["dl", "sdl", "mdl"]) | filters.regex(SDL_REGEX_LINKS))
+@megux.on_message(filters.command(["dl", "sdl", "mdl"]) | filters.regex(SDL_REGEX_LINKS), group=8)
 async def sdl(c: megux, message: Message):
     if message.matches:
         if (
