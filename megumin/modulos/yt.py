@@ -8,6 +8,7 @@ import rapidjson
 import youtube_search
 
 from pyrogram.types import Message
+from pyrogram.enums import ChatType
 from pyrogram.errors import BadRequest
 from pyrogram import filters
 from youtubesearchpython import Search, SearchVideos
