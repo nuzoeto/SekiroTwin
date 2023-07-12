@@ -212,7 +212,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
     shutil.rmtree(tempdir, ignore_errors=True)
 
     
-@megux.on_message(filters.command(["dl", "sdl", "mdl"]) | filters.regex(SDL_REGEX_LINKS), group=8)
+@megux.on_message(filters.command(["dl", "sdl", "mdl"]) | filters.regex(SDL_REGEX_LINKS))
 async def sdl(c: megux, message: Message):
     if message.matches:
         if (
