@@ -5,8 +5,11 @@ import re
 import time
 import httpx
 import requests
+
 from datetime import datetime, timedelta
 from httpx import HTTPError
+from typing import Tuple, Callable
+from functools import partial, wraps
 
 from pyrogram.enums import ChatMemberStatus 
 from pyrogram.types import Message
@@ -199,3 +202,13 @@ def escape_definition(definition):
 async def unwarn_bnt(gid: int, user_id: int):
     DB = get_collection(f"WARNS")
     await DB.delete_one({"chat_id": gid, "user_id": user_id})
+
+def aiowrap(func: Callable) -> Callable:
+    @wraps(func)
+    async def run(*args, loop=None, executor=None, **kwargs):
+        if loop is None:
+            loop = asyncio.get_event_loop()
+        pfunc = partial(func, *args, **kwargs)
+        return await loop.run_in_executor(executor, pfunc)
+
+    return run
