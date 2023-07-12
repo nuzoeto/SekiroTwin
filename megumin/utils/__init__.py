@@ -15,6 +15,7 @@ from .decorators import disableable_dec, DISABLABLE_CMDS, input_str, inline_hand
 from .gimages import GoogleImagesAPI
 from .pexels import PexelsImagesAPI
 from .check import check_requirements
+from .medias import DownloadMedia
 from .tools import (
     admin_check,
     check_bot_rights,
