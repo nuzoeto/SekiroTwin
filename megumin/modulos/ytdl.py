@@ -280,11 +280,11 @@ async def sdl(c: megux, message: Message):
     else:
         captions = True
         method = channels.GetMessages(
-            channel=await client.resolve_peer(message.chat.id),
+            channel=await c.resolve_peer(message.chat.id),
             id=[InputMessageID(id=(message.id))],
         )
 
-    rawM = (await client.invoke(method)).messages[0].media
+    rawM = (await c.invoke(method)).messages[0].media
     files, caption = await DownloadMedia().download(url, captions)
 
     medias = []
