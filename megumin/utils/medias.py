@@ -10,6 +10,7 @@ import esprima
 import filetype
 from bs4 import BeautifulSoup as bs
 from httpx import AsyncClient
+from yt_dlp import YoutubeDL
 
 from .tools import http
 
