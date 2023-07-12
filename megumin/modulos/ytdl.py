@@ -256,37 +256,41 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
 @megux.on_message(filters.command(["sdl", "mdl", "dl"]))
 @megux.on_message(filters.regex(SDL_REGEX_LINKS))
 async def sdl(c: megux, m: Message):
-    if m.matches:
-        if m.chat.type is enums.ChatType.PRIVATE or await csdl(m.chat.id) == True:
-            url = m.matches[0].group(0)
+    if message.matches:
+        if (
+            message.chat.type is ChatType.PRIVATE
+            or await csdl(message.chat.id)
+        ):
+            url = message.matches[0].group(0)
         else:
-            return
-    elif not m.matches and len(m.command) > 1:
-        url = m.text.split(None, 1)[1]
+            return None
+    elif not message.matches and len(message.command) > 1:
+        url = message.text.split(None, 1)[1]
         if not re.match(SDL_REGEX_LINKS, url, re.M):
-            return await m.reply_text("O Link não é válido.")
-                
-    elif m.reply_to_message and m.reply_to_message.text:
-        url = m.reply_to_message.text
+            return await message.reply_text("This link is not valid")
+    elif message.reply_to_message and message.reply_to_message.text:
+        url = message.reply_to_message.text
     else:
-        return await m.reply_text(await tld(m.chat.id, "NO_ARGS_YT"))
+        return await message.reply_text(await tld(message.chat.id, "NO_ARGS_YT"))
 
-    if m.chat.type == enums.ChatType.PRIVATE:
-        method = messages.GetMessages(id=[InputMessageID(id=(m.id))])
+    if message.chat.type == ChatType.PRIVATE:
+        captions = True
+        method = messages.GetMessages(id=[InputMessageID(id=(message.id))])
     else:
+        captions = True
         method = channels.GetMessages(
-            channel=await c.resolve_peer(m.chat.id),
-            id=[InputMessageID(id=(m.id))],
+            channel=await client.resolve_peer(message.chat.id),
+            id=[InputMessageID(id=(message.id))],
         )
 
-    rawM = (await c.invoke(method)).messages[0].media
-    files, caption = await DownloadMedia().download(url, True)
+    rawM = (await client.invoke(method)).messages[0].media
+    files, caption = await DownloadMedia().download(url, captions)
 
     medias = []
     for media in files:
         if filetype.is_video(media["p"]) and len(files) == 1:
-            await c.send_chat_action(m.chat.id, enums.ChatAction.UPLOAD_VIDEO)
-            return await m.reply_video(
+            await client.send_chat_action(message.chat.id, ChatAction.UPLOAD_VIDEO)
+            return await message.reply_video(
                 video=media["p"],
                 width=media["h"],
                 height=media["h"],
@@ -313,15 +317,14 @@ async def sdl(c: megux, m: Message):
     if medias:
         if (
             rawM
-            and not re.search(r"instagram.com/", url)
+            and not re.search(r"(instagram.com/|threads.net)", url)
             and len(medias) == 1
             and "InputMediaPhoto" in str(medias[0])
         ):
-            return
+            return None
 
-        await c.send_chat_action(m.chat.id, enums.ChatAction.UPLOAD_DOCUMENT)
-        await m.reply(medias)
-        return 
-    return 
+        await client.send_chat_action(message.chat.id, ChatAction.UPLOAD_DOCUMENT)
+        await message.reply_media_group(media=medias)
+        return None
+    return None
 
-    
