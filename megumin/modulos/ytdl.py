@@ -255,7 +255,7 @@ async def cli_ytdl(c: megux, cq: CallbackQuery):
 
 @megux.on_message(filters.command(["sdl", "mdl", "dl"]))
 @megux.on_message(filters.regex(SDL_REGEX_LINKS))
-async def sdl(c: megux, m: Message):
+async def sdl(c: megux, message: Message):
     if message.matches:
         if (
             message.chat.type is ChatType.PRIVATE
