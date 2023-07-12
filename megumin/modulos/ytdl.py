@@ -290,7 +290,7 @@ async def sdl(c: megux, message: Message):
     medias = []
     for media in files:
         if filetype.is_video(media["p"]) and len(files) == 1:
-            await client.send_chat_action(message.chat.id, ChatAction.UPLOAD_VIDEO)
+            await c.send_chat_action(message.chat.id, ChatAction.UPLOAD_VIDEO)
             return await message.reply_video(
                 video=media["p"],
                 width=media["h"],
@@ -324,7 +324,7 @@ async def sdl(c: megux, message: Message):
         ):
             return None
 
-        await client.send_chat_action(message.chat.id, ChatAction.UPLOAD_DOCUMENT)
+        await c.send_chat_action(message.chat.id, ChatAction.UPLOAD_DOCUMENT)
         await message.reply_media_group(media=medias)
         return None
     return None
