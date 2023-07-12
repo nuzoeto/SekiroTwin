@@ -191,7 +191,6 @@ DKbT3jJPCEVnMYqilB28NHfOPqkca3qaAxGfsyKCs0wRbw"
 
         self.files.append({"p": path, "w": width, "h": height})
 
-    
     async def TikTok(self, url: str, captions: str):
         path = io.BytesIO()
         with contextlib.redirect_stdout(path):
