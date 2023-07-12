@@ -11,7 +11,7 @@ import filetype
 from bs4 import BeautifulSoup as bs
 from httpx import AsyncClient
 
-from .utils import http
+from .tools import http
 
 class DownloadMedia:
     def __init__(self):
