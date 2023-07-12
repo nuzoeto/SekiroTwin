@@ -12,7 +12,12 @@ from bs4 import BeautifulSoup as bs
 from httpx import AsyncClient
 from yt_dlp import YoutubeDL
 
-from .tools import http
+from .tools import http, aiowrap
+
+
+@aiowrap
+def extract_info(instance: YoutubeDL, url: str, download=True):
+    return instance.extract_info(url, download)
 
 class DownloadMedia:
     def __init__(self):
