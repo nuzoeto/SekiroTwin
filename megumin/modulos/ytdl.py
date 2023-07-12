@@ -4,15 +4,13 @@ import os
 import re
 import random
 import shutil
-import asyncio
 import tempfile
 import datetime
 import contextlib
+import filetype
 
 from yt_dlp import YoutubeDL
 from urllib.parse import unquote
-from typing import Tuple, Callable
-from functools import wraps, partial
 from bs4 import BeautifulSoup
 
 from pyrogram.helpers import ikb
