@@ -15,7 +15,7 @@ from .decorators import disableable_dec, DISABLABLE_CMDS, input_str, inline_hand
 from .gimages import GoogleImagesAPI
 from .pexels import PexelsImagesAPI
 from .check import check_requirements
-from .medias import DownloadMedia
+from .medias import DownloadMedia, extract_info
 from .tools import (
     admin_check,
     check_bot_rights,
@@ -32,5 +32,6 @@ from .tools import (
     cleanhtml,
     escape_definition,
     unwarn_bnt,
+    aiowrap,
 )
 from .aiohttp import AioHttp as get_response #nao_meche
