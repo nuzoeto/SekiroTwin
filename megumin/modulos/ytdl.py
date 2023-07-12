@@ -27,7 +27,7 @@ from pyrogram.errors import BadRequest, FloodWait, Forbidden, MediaEmpty, Messag
 from pyrogram.raw.types import InputMessageID
 from pyrogram.raw.functions import channels, messages
 from pyrogram.types import Message, CallbackQuery, InputMediaVideo, InputMediaPhoto
-from pyrogram.enums import ChatType 
+from pyrogram.enums import ChatType, ChatAction 
 
 
 from megumin import megux, Config 
