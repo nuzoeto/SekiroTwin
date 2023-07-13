@@ -238,7 +238,10 @@ async def sdl(c: megux, message: Message):
         )
 
     rawM = (await c.invoke(method)).messages[0].media
-    files, caption = await DownloadMedia().download(url, captions)
+    try:
+        files, caption = await DownloadMedia().download(url, captions)
+    except Exception as e:
+        return await asyncio.gather(c.send_err(e))
 
     medias = []
     for media in files:
