@@ -27,7 +27,7 @@ from megumin.utils import tld
 async def wiki(c: megux, m: Union[InlineQuery, Message]):
     query = m.text if isinstance(m, Message) else m.query
     chat_id = m.chat.id if isinstance(m, Message) else m.from_user.id
-    if len(text.split(maxsplit=1)) == 1:
+    if len(query.split(maxsplit=1)) == 1:
         try:
             if isinstance(m, Message):
                 return await m.reply_text("Você não especificou o que deseja buscar. Por favor especifique o que deseja buscar.")
