@@ -35,7 +35,6 @@ async def wiki(c: megux, m: Union[InlineQuery, Message]):
                 [
                     InlineQueryResultArticle(
                         title="wiki <query>",
-                        thumb_url=url_thumb,
                         input_message_content=InputTextMessageContent(
                             message_text="Você não especificou o que deseja buscar. Por favor digite o que deseja pesquisar no wiki Inline",
                         ),
@@ -75,7 +74,6 @@ async def wiki(c: megux, m: Union[InlineQuery, Message]):
                 [
                     InlineQueryResultArticle(
                         title="error: {}".format(e),
-                        thumb_url=url_thumb,
                         input_message_content=InputTextMessageContent(
                             message_text="error: {}".format(e),
                         ),
@@ -90,7 +88,6 @@ async def wiki(c: megux, m: Union[InlineQuery, Message]):
                 [
                     InlineQueryResultArticle(
                         title="error: {}".format(et),
-                        thumb_url=url_thumb,
                         input_message_content=InputTextMessageContent(
                             message_text="error: {}".format(et),
                         ),
@@ -105,7 +102,6 @@ async def wiki(c: megux, m: Union[InlineQuery, Message]):
                 [
                     InlineQueryResultArticle(
                         title="Multiplos resultados".format(e),
-                        thumb_url=url_thumb,
                         input_message_content=InputTextMessageContent(
                             message_text="⚠ Error\nHá muitas coisas! Expresse melhor para achar o resultado!\nPossíveis resultados da consulta:\n{}".format(eet),
                         ),
