@@ -60,9 +60,9 @@ async def wiki(c: megux, m: Union[InlineQuery, Message]):
                         description=("Resultados para '{search}'").format(
                            search=kueri
                         ),
+                        reply_markup=InlineKeyboardMarkup(keyboard),
                         input_message_content=InputTextMessageContent(
-                            message_text=res,
-                            reply_markup=InlineKeyboardMarkup(keyboard),
+                            message_text=res
                         ),
                     )
                 ],
