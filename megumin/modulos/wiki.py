@@ -15,6 +15,7 @@ from pyrogram.types import (
     InlineKeyboardButton, 
     Message,
 )
+from pyrogram.errors import BadRequest
 
 from typing import Union
 
