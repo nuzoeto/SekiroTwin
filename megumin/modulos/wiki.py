@@ -61,7 +61,7 @@ async def wiki(c: megux, m: Union[InlineQuery, Message]):
                         ),
                         input_message_content=InputTextMessageContent(
                             message_text=res,
-                            reply_markup=keyboard,
+                            reply_markup=InlineKeyboardMarkup(keyboard),
                         ),
                     )
                 ],
