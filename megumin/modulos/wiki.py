@@ -47,7 +47,7 @@ async def wiki(c: megux, m: Union[InlineQuery, Message]):
     kueri = re.split(pattern="wiki", string=query)
     try:
         wikipedia.set_lang(await tld(chat_id, "language"))
-        keyboard = [[InlineKeyboardButton(text=await tld(m.chat.id, "MOREINFO_BNT"), url=wikipedia.page(kueri).url)]]
+        keyboard = [[InlineKeyboardButton(text=await tld(chat_id, "MOREINFO_BNT"), url=wikipedia.page(kueri).url)]]
         if isinstance(m, Message):
             await m.reply((await tld(chat_id, "WIKI_RESULT")).format(wikipedia.summary(kueri, sentences=2)), reply_markup=InlineKeyboardMarkup(keyboard))
         else:
