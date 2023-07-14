@@ -58,7 +58,7 @@ async def wiki(c: megux, m: Union[InlineQuery, Message]):
                     InlineQueryResultArticle(
                         title=(wikipedia.summary(kueri, sentences=2)),
                         description=("Resultados para '{search}'").format(
-                           search=kueri
+                           search=(wikipedia.summary(kueri, sentences=2)
                         ),
                         reply_markup=InlineKeyboardMarkup(keyboard),
                         input_message_content=InputTextMessageContent(
