@@ -20,8 +20,9 @@ from pyrogram.errors import BadRequest
 from typing import Union
 
 from megumin import megux, Config
-from megumin.utils import tld 
+from megumin.utils import tld
 
+url_thumb = "https://telegra.ph/file/1cc388a023a9068ccc220.png"
 
 @megux.on_message(filters.command("wiki", Config.TRIGGER))
 @megux.on_inline_query(filters.regex(r"^wiki"))
@@ -36,6 +37,7 @@ async def wiki(c: megux, m: Union[InlineQuery, Message]):
                 [
                     InlineQueryResultArticle(
                         title="wiki <query>",
+                        thumb_url=url_thumb,
                         input_message_content=InputTextMessageContent(
                             message_text="Você não especificou o que deseja buscar. Por favor digite o que deseja pesquisar no wiki Inline",
                         ),
@@ -60,6 +62,7 @@ async def wiki(c: megux, m: Union[InlineQuery, Message]):
                         description=("Resultados para '{search}'").format(
                            search=(wikipedia.summary(kueri, sentences=2))
                         ),
+                        thumb_url=url_thumb,
                         reply_markup=InlineKeyboardMarkup(keyboard),
                         input_message_content=InputTextMessageContent(
                             message_text=res
@@ -75,6 +78,7 @@ async def wiki(c: megux, m: Union[InlineQuery, Message]):
                 [
                     InlineQueryResultArticle(
                         title="error: {}".format(e),
+                        thumb_url=url_thumb,
                         input_message_content=InputTextMessageContent(
                             message_text="error: {}".format(e),
                         ),
@@ -89,6 +93,7 @@ async def wiki(c: megux, m: Union[InlineQuery, Message]):
                 [
                     InlineQueryResultArticle(
                         title="error: {}".format(et),
+                        thumb_url=url_thumb,
                         input_message_content=InputTextMessageContent(
                             message_text="error: {}".format(et),
                         ),
@@ -103,6 +108,7 @@ async def wiki(c: megux, m: Union[InlineQuery, Message]):
                 [
                     InlineQueryResultArticle(
                         title="Multiplos resultados".format(e),
+                        thumb_url=url_thumb,
                         input_message_content=InputTextMessageContent(
                             message_text="⚠ Error\nHá muitas coisas! Expresse melhor para achar o resultado!\nPossíveis resultados da consulta:\n{}".format(eet),
                         ),
@@ -110,3 +116,6 @@ async def wiki(c: megux, m: Union[InlineQuery, Message]):
                 ],
                 cache_time=0,
             )
+
+
+inline_handler.add_cmd("wiki <query>", "Do a search on Wikipedia.", url_thumb, aliases=["wikipedia"])
