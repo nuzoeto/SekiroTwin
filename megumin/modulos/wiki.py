@@ -20,7 +20,7 @@ from pyrogram.errors import BadRequest
 from typing import Union
 
 from megumin import megux, Config
-from megumin.utils import tld
+from megumin.utils import tld, inline_handler
 
 url_thumb = "https://telegra.ph/file/1cc388a023a9068ccc220.png"
 
