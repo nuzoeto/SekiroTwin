@@ -165,6 +165,34 @@ COMMAND_NOW_ENABLED: "<i>Comando {} Agora Ativado!!!</i>"
 NO_DISABLED_COMMAND: "<i>Comando não desativado!</i>"
 NO_ENABLE_COMMAND: "<i>Qual comando você deseja ativar?</i>"
 
+
+#antispam
+ANTISPAM_ERR_USR_SUDO: "Eu espio com meus olhinhos... Uma guerra de usuário sudo! Por que eles estão brigando?"
+ANTISPAM_ERR_USR_SUPPORT: "¡OOOOH, alguém está tentando banir um usuário de suporte! <b>pegando pipoca</b>"
+ANTISPAM_ERR_USR_BOT: "Bruuh! Tão divertido isso! Que tal eu me banir globamente, Por que não? Boa tentativa."
+ANTISPAM_ERR_NOT_USR: "Isso não é um usuário!"
+ANTISPAM_ERR_USR_DELETED: "Essa é uma conta excluída! Por que incomodá-la?"
+ANTISPAM_ERR_NO_NEW_REASON: "Este usuário já foi banido; Eu mudaria o motivo, mas você não me deu uma razão...
+ANTISPAM_LOGGER_UPDATE_GBAN: "<b>Novo motivo para Banimento Global</b>\n<b>Admin sudo:</b> {}\n<b>Usuário:</b> {}\n<b>ID:</b> <code>{}</code>\n<b>Motivo anterior:</b> {}\n<b>Novo motivo:</b> {}"
+ANTISPAM_REASON_UPDATED: "Este usuário já foi banido. Atualizei o motivo.\nMotivo anterior: <code>{}</code>\nNovo motivo: <code>{}</code>"
+ANTISPAM_NEW_GBAN: "<b>Banido Globalmente</b>\n<b>Usuário:</b> {}\n<b>ID:</b> <code>{}</code>\n<b>Motivo:</b> {}\n<b>LOGS:</b>@WhiterKangGBANs
+ANTISPAM_LOGGER_NEW_GBAN: "<b>Ban Global</b>\n<b>Admin sudo:</b> {}\n<b>Usuário:</b> {}\n<b>ID:</b> <code>{}</code>\n<b>Motivo:</b> {}\n<b>LOGs:</b>@WhiterKangGBANs
+ANTISPAM_NO_REASON: "Não há motivo dado"
+ANTISPAM_USER_NOT_GBANNED: "Este usuário não está banido globalmente"
+ANTISPAM_UNGBANNED: "Darei uma segunda chance, pronto, desbanido globalmente."
+ANTISPAM_LOGGER_UNGBAN: "<b>Remoção do Banimento Global</b>\n<b>Admin Sudo:</b> {}\n<b>Usuário:</b> {}\n<b>ID:</b> <code>{}</code><b>Motivo:</b> {}"
+ANTISPAM_ERR_UNGBAN: "Não foi possível desbanir globalmente devido a: {}"
+ANTISPAM_CHECKBAN_USER_REMOVED: "<b>Este usuário foi banido globalmente e foi removido.<b>\nMotivo: <code>{}</code>"
+ANTISPAM_ON: "Eu ativei a segurança antispam neste grupo. Isso ajudará a protegê-lo contra spammers, personagens desagradáveis ​​e os maiores trolls."
+ANTISPAM_OFF: "Desativei a segurança antispam neste grupo. Global Bans não afetarão mais seus usuários. Você estará menos protegido contra trolls e spammers!"
+ANTISPAM_ERR_WRONG_ARG: "Dê-me alguns argumentos para escolher um ajuste! true/false, yes/no!\n\nSua configuração atual é: {}\nSe for true, quaisquer gbans que ocorrerem também acontecerão no seu grupo. Quando false, você ficará a mercê de spammers."
+ANTISPAM_USERINFO_GBANNED: "Banido globalmente: <b>{}</b>"
+ANTISPAM_USERINFO_GBAN_REASON: "\nMotivo: {}"
+ANTISPAM_CHATSETTINGS_GBAN: "Este grupo está cumprindo *gbans*: `{}`."
+ANTISPAM_ATTEAL: "\n<b>Fale com</b> @DaviTudo"
+
+
+
 #weather
 WEATHER_LANGUAGE: "pt-BR"
 WEATHER_UNIT: "m"
