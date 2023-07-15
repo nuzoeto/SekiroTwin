@@ -101,7 +101,7 @@ async def wiki(c: megux, m: Union[InlineQuery, Message]):
                 ],
                 cache_time=0,
             )
-    except wikipedia.exceptions.DesambiguationError as eet:
+    except wikipedia.exceptions.DisambiguationError as eet:
         if isinstance(m, Message):
             return await m.reply("⚠ Error\nHá muitas coisas! Expresse melhor para achar o resultado!\nPossíveis resultados da consulta:\n{}".format(eet))
         return await m.answer(
