@@ -1,7 +1,7 @@
 ##BubbalooTeam contribute from WhiterKang
+#WhiterKang MIT LICENSE
 
-
-##module by DAVI
+##module by DAVITUDO
 
 import wikipedia
 import re
@@ -59,7 +59,7 @@ async def wiki(c: megux, m: Union[InlineQuery, Message]):
                 [
                     InlineQueryResultArticle(
                         title=(wikipedia.summary(kueri, sentences=2)),
-                        description=("Resultados para '{search}'").format(
+                        description=("'{search}'").format(
                            search=(wikipedia.summary(kueri, sentences=2))
                         ),
                         thumb_url=url_thumb,
