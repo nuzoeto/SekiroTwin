@@ -6,6 +6,8 @@ import time
 import httpx
 import requests
 import asyncio
+import spamwatch
+import logging
 
 from datetime import datetime, timedelta
 from httpx import HTTPError
@@ -213,3 +215,14 @@ def aiowrap(func: Callable) -> Callable:
         return await loop.run_in_executor(executor, pfunc)
 
     return run
+
+
+spamwatch_api = Config.SW_API
+if spamwatch_api == None:
+    sw = None
+    logging.warning("SpamWatch API key is missing! Check your config.env.")
+else:
+    try:
+        sw = spamwatch.Client(spamwatch_api)
+    except Exception:
+        sw = None
