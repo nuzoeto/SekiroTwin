@@ -54,6 +54,7 @@ spacy
 search_engine_parser
 speedtest-cli
 SpeechRecognition
+spamwatch
 pySmartDL
 punctuator
 telegraph
