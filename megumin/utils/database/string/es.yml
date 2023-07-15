@@ -179,7 +179,7 @@ ANTISPAM_NEW_GBAN: "<b>Prohibido globalmente</b>\n<b>Usuario:</b> {}\n<b>ID:</b>
 ANTISPAM_LOGGER_NEW_GBAN: "<b>Prohibición global</b>\n<b>Admin sudo:</b> {}\n<b>Usuario:</b> {}\n<b>ID:</b> <code>{}</code>\n<b>Razón:</b> {}\n<b>REGISTROS:</b>@WhiterKangGBANs"
 ANTISPAM_NO_REASON: "Sin motivo"
 ANTISPAM_USER_NOT_GBANNED: "Este usuario no está baneado globalmente"
-ANTISPAM_UNGBANNED: "Te daré una segunda oportunidad, hecho, globalmente desbaneado".
+ANTISPAM_UNGBANNED: "Te daré una segunda oportunidad, hecho, globalmente desbaneado."
 ANTISPAM_LOGGER_UNGBAN: "<b>Eliminación de prohibición global</b>\n<b>Sudo de administrador:</b> {}\n<b>Usuario:</b> {}\n<b>ID:</b > b> <código>{}</código><b>Motivo:</b> {}"
 ANTISPAM_ERR_UNGBAN: "No se puede desbanear globalmente debido a: {}"
 ANTISPAM_CHECKBAN_USER_REMOVED: "<b>Este usuario ha sido baneado globalmente y ha sido eliminado.<b>\nMotivo: <code>{}</code>"
