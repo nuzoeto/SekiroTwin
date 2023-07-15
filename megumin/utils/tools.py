@@ -218,7 +218,7 @@ def aiowrap(func: Callable) -> Callable:
 
 
 spamwatch_api = Config.SW_API
-if spamwatch_api == None:
+if spamwatch_api == "None":
     sw = None
     logging.warning("SpamWatch API key is missing! Check your config.env.")
 else:
