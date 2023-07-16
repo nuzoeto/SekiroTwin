@@ -70,3 +70,28 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
                     except Exception as e:
                         await asyncio.gather(megux.send_err(e))
                         return
+
+async def check_ban(m: Message, chat_id: int, user_id: int):
+    try:
+        if is_dev(user_id):
+            pass
+        elif sw != None:
+            sw_response = sw.get_ban(user_id)
+            if sw_response:
+                sw_reason = sw_response.reason
+                if await check_rights(chat_id, megux.me.id, "can_restrict_members"):
+                    await megux.ban_chat_member(chat_id, user_id)
+                    return await m.reply((await tld(chat_id, "ANTISPAM_SPAMWATCH_BANNED")).format())
+                else:
+                    pass
+            else:
+                gbaneed = await db.find_one({"user_id": user_id})
+                if gbanned:
+                    usrreason = gbanned["reason"]
+                    if usrreason:
+                        await megux.ban_chat_member(chat_id, user_id)
+                        return await m.reply((await tld(chat_id, "ANTISPAM_CHECKBAN_USER_REMOVED")).format(reason))
+                    else:
+                        return
+    except Exception:
+        return
