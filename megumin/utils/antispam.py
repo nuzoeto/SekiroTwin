@@ -92,6 +92,6 @@ async def check_ban(m: Message, chat_id: int, user_id: int):
                         await megux.ban_chat_member(chat_id, user_id)
                         return await m.reply((await tld(chat_id, "ANTISPAM_CHECKBAN_USER_REMOVED")).format(reason))
                     else:
-                        return
+                        pass
     except Exception:
-        return
+        pass
