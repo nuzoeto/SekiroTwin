@@ -48,6 +48,7 @@ class Config:
     SW_API = os.environ.get("SW_API")
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY")
     PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY")
+    GBAN_LOGS = os.environ.get("GBAN_LOGS")
     SUDOS_GT_OFERTAS = (
       548711141,
       1248926627,
