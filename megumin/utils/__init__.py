@@ -1,5 +1,4 @@
-from .antispam import gban_user, check_ban
-from .database import get_collection
+from .database import get_collection #nao_meche
 from .database.lang import get_string, add_lang # nao_meche
 from .database.lang import get_string as tld # nao_meche
 from .database.antiflood import rflood  # nao_meche
@@ -37,3 +36,4 @@ from .tools import (
     sw,
 )
 from .aiohttp import AioHttp as get_response #nao_meche
+from .antispam import gban_user, check_ban #nao_meche
