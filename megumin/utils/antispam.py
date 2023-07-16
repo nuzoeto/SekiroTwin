@@ -2,7 +2,7 @@ import html
 
 from pyrogram.types import Message
 
-from megumin import megux
+from megumin import megux, Config
 from megumin.utils import get_collection, is_dev, sw, tld, check_rights, is_self
 
 db = get_collection("ANTISPAM_CHATS")
