@@ -95,3 +95,40 @@ async def check_ban(m: Message, chat_id: int, user_id: int):
                         pass
     except Exception:
         pass
+
+async def ungban_user(m: Message, user_id: int, user_name: str, admin_name: str, reason: str):
+    gban_results = await gban_db.find_one({"user_id": user_id})
+    elif not gban_results:
+        await m.reply(await tld(m.chat.id, "ANTISPAM_USER_NOT_GBANNED"))
+        return
+    else:
+        if gban_results:
+            if reason == "None":
+                await m.reply(await tld(m.chat.id, "ANTISPAM_NO_REASON"))
+                return
+            
+            await gban_db.delete_many({"user_id": user_id})
+
+            find_chats = db.find()
+        
+            for chats in find_chats:
+                chat_id = chats["chat_id"]
+#               # Try unban user gbanned
+                try:
+                    if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
+                        pass
+                
+                    await megux.unban_chat_member(chat_id, user_id)
+                except Exception:
+                    continue
+            await m.reply(await tld(m.chat.id, "ANTISPAM_UNGBANNED"))
+            if not LOGS == "None":
+                group_logs = LOGS
+                try:
+                    id_log = int(group_logs)
+                    await megux.send_message(id_log, (await tld(id_logs, "ANTISPAM_LOGGER_UNGBAN")).format(admin_name, user_name, user_id, reason))
+                    return
+                except Exception as e:
+                    await asyncio.gather(megux.send_err(e))
+                    await m.reply((await tld(m.chat.id, "ANTISPAM_ERR_UNGBAN")).format(e))
+                    return
