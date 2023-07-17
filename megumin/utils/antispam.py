@@ -81,7 +81,8 @@ async def check_ban(m: Message, chat_id: int, user_id: int):
                 sw_reason = sw_response.reason
                 if await check_rights(chat_id, megux.me.id, "can_restrict_members"):
                     await megux.ban_chat_member(chat_id, user_id)
-                    return await m.reply((await tld(chat_id, "ANTISPAM_SPAMWATCH_BANNED")).format(sw_reason))
+                    await m.reply((await tld(chat_id, "ANTISPAM_SPAMWATCH_BANNED")).format(sw_reason))
+                    return await m.stop_propagation()
                 else:
                     pass
             else:
@@ -90,7 +91,8 @@ async def check_ban(m: Message, chat_id: int, user_id: int):
                     usrreason = gbanned["reason"]
                     if usrreason:
                         await megux.ban_chat_member(chat_id, user_id)
-                        return await m.reply((await tld(chat_id, "ANTISPAM_CHECKBAN_USER_REMOVED")).format(reason))
+                        await m.reply((await tld(chat_id, "ANTISPAM_CHECKBAN_USER_REMOVED")).format(reason))
+                        return await m.stop_propagation()
                     else:
                         pass
     except Exception:
