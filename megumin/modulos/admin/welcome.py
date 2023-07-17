@@ -106,7 +106,7 @@ async def set_welcome_message(c: megux, m: Message):
             disable_web_page_preview=True,
         )
 
-@megux.on_message(filters.command("welcome on", Config.TRIGGER) & filters.group)
+@megux.on_message(filters.command(["welcome on", "welcome true"], Config.TRIGGER) & filters.group)
 async def enable_welcome_message(c: megux, m: Message):
     db = get_collection(f"WELCOME_STATUS")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
@@ -115,7 +115,7 @@ async def enable_welcome_message(c: megux, m: Message):
     await m.reply_text("Boas Vindas agora está Ativadas.")
     
     
-@megux.on_message(filters.command("welcome off", Config.TRIGGER) & filters.group)
+@megux.on_message(filters.command(["welcome off", "welcome false"], Config.TRIGGER) & filters.group)
 async def enable_welcome_message(c: megux, m: Message):
     db = get_collection(f"WELCOME_STATUS")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
@@ -128,7 +128,7 @@ async def enable_welcome_message(c: megux, m: Message):
 async def enable_welcome_message(c: megux, m: Message):
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
-    await m.reply_text("Dê um argumento exemplo: /welcome on/off")
+    await m.reply_text("Dê um argumento exemplo: /welcome on/off/true/false")
  
 
 @megux.on_message(filters.new_chat_members & filters.group)
