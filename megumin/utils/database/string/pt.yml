@@ -190,6 +190,8 @@ ANTISPAM_USERINFO_GBANNED: "Banido globalmente: <b>{}</b>"
 ANTISPAM_USERINFO_GBAN_REASON: "\nMotivo: {}"
 ANTISPAM_CHATSETTINGS_GBAN: "Este grupo está cumprindo *gbans*: `{}`."
 ANTISPAM_ATTEAL: "\n<b>Fale com</b> @DaviTudo"
+ANTISPAM_SPAMWATCH_BANNED: "<i>Este usuário foi detectado como um spambot pela SpamWatch e foi removido!<i>\n\n<b>Motivo</b>: <code>{}</code>"
+
 
 
 
