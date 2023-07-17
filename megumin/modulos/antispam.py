@@ -1,3 +1,4 @@
+import asyncio
 from pyrogram import filters
 from pyrogram.types import Message
 
@@ -10,16 +11,16 @@ async def enable_antispam_message(c: megux, m: Message):
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
     await db.update_one({"chat_id": m.chat.id}, {"$set": {"status": True}}, upsert=True)
-    await m.reply_text("Boas Vindas agora está Ativadas.")
+    await m.reply_text("Antispam Ativado.")
     
     
 @megux.on_message(filters.command(["welcome off", "welcome false"], Config.TRIGGER) & filters.group)
-async def enable_antispam_message(c: megux, m: Message):
+async def disable_antispam_message(c: megux, m: Message):
     db = get_collection("ANTISPAM_CHATS")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
     await db.update_one({"chat_id": m.chat.id}, {"$set": {"status": False}}, upsert=True)
-    await m.reply_text("Boas Vindas agora está Desativadas.")
+    await m.reply_text("Antispam Desativado.")
     
     
 @megux.on_message(filters.command("welcome", Config.TRIGGER) & filters.group)
