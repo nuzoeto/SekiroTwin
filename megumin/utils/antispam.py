@@ -81,7 +81,7 @@ async def check_ban(m: Message, chat_id: int, user_id: int):
                 sw_reason = sw_response.reason
                 if await check_rights(chat_id, megux.me.id, "can_restrict_members"):
                     await megux.ban_chat_member(chat_id, user_id)
-                    return await m.reply((await tld(chat_id, "ANTISPAM_SPAMWATCH_BANNED")).format())
+                    return await m.reply((await tld(chat_id, "ANTISPAM_SPAMWATCH_BANNED")).format(sw_reason))
                 else:
                     pass
             else:
