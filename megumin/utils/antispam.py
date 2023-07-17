@@ -31,7 +31,7 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
             count = 0
             for chats in find_chats:
                 chat_id = chats["chat_id"]
-#               # Try ban user gbanned
+                # Try ban user gbanned
                 try:
                     if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
                         pass
@@ -62,7 +62,18 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
                 except Exception as e:
                     await m.reply(e)
                     return
-                await m.reply((await tld("ANTISPAM_REASON_UPDATED")).format(old_reason, reason))
+
+                for chats in find_chats:
+                    chat_id = chats["chat_id"]
+                    # Try ban user gbanned
+                    try:
+                        if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
+                            pass
+                
+                        await megux.ban_chat_member(chat_id, user_id)
+                    except Exception:
+                        continue
+                    await m.reply((await tld("ANTISPAM_REASON_UPDATED")).format(old_reason, reason))
                 if not LOGS == "None":
                     group_logs = LOGS
                     try:
