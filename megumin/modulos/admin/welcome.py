@@ -15,7 +15,7 @@ from typing import Callable, List, Optional, Union
 
 
 from megumin import megux, Config
-from megumin.utils import get_collection, check_rights, check_bot_rights, is_admin, add_user_count, check_ban
+from megumin.utils import get_collection, check_rights, check_bot_rights, is_admin, add_user_count, check_ban, check_antispam
 
 
 
