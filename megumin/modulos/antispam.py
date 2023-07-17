@@ -2,7 +2,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux
-from megumin.utils import check_rights, get_collecton, is_dev, tld
+from megumin.utils import check_rights, get_collection, is_dev, tld
 
 @megux.on_message(filters.command(["antispam on", "antispam true"], Config.TRIGGER) & filters.group)
 async def enable_welcome_message(c: megux, m: Message):
