@@ -134,3 +134,11 @@ async def ungban_user(m: Message, user_id: int, user_name: str, admin_name: str,
                     await asyncio.gather(megux.send_err(e))
                     await m.reply((await tld(m.chat.id, "ANTISPAM_ERR_UNGBAN")).format(e))
                     return
+                    
+
+async def check_antispam(chat_id: int):
+    atspam = await db.find_one({"chat_id": chat_id})
+    if atspam:
+        return True
+    else:
+        return False
