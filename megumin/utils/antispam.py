@@ -73,7 +73,7 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
                         await megux.ban_chat_member(chat_id, user_id)
                     except Exception:
                         continue
-                    await m.reply((await tld("ANTISPAM_REASON_UPDATED")).format(old_reason, reason))
+                await m.reply((await tld(m.chat.id, "ANTISPAM_REASON_UPDATED")).format(old_reason, reason))
                 if not LOGS == "None":
                     group_logs = LOGS
                     try:
