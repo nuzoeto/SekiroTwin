@@ -27,7 +27,8 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
             await gban_db.insert_one({"user_id": user_id, "reason": reason})
 
             find_chats = db.find()
-        
+
+            count = 0
             for chats in find_chats:
                 chat_id = chats["chat_id"]
 #               # Try ban user gbanned
@@ -36,6 +37,7 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
                         pass
                 
                     await megux.ban_chat_member(chat_id, user_id)
+                    count += 1
                 except Exception:
                     continue
             await m.reply((await tld(m.chat.id, "ANTISPAM_NEW_GBAN")).format(user_name, user_id, reason))
@@ -43,7 +45,7 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
                 group_logs = LOGS
                 try:
                     id_log = int(group_logs)
-                    await megux.send_message(id_log, (await tld(id_logs, "ANTISPAM_LOGGER_NEW_GBAN")).format(admin_name, user_name, user_id, reason))
+                    await megux.send_message(id_log, (await tld(id_logs, "ANTISPAM_LOGGER_NEW_GBAN")).format(admin_name, user_name, user_id, reason, count))
                     return
                 except Exception as e:
                     await asyncio.gather(megux.send_err(e))
@@ -112,7 +114,9 @@ async def ungban_user(m: Message, user_id: int, user_name: str, admin_name: str,
             await gban_db.delete_many({"user_id": user_id})
 
             find_chats = db.find()
-        
+
+            count = 0
+            
             for chats in find_chats:
                 chat_id = chats["chat_id"]
 #               # Try unban user gbanned
@@ -121,6 +125,7 @@ async def ungban_user(m: Message, user_id: int, user_name: str, admin_name: str,
                         pass
                 
                     await megux.unban_chat_member(chat_id, user_id)
+                    count += 1
                 except Exception:
                     continue
             await m.reply(await tld(m.chat.id, "ANTISPAM_UNGBANNED"))
@@ -128,7 +133,7 @@ async def ungban_user(m: Message, user_id: int, user_name: str, admin_name: str,
                 group_logs = LOGS
                 try:
                     id_log = int(group_logs)
-                    await megux.send_message(id_log, (await tld(id_logs, "ANTISPAM_LOGGER_UNGBAN")).format(admin_name, user_name, user_id, reason))
+                    await megux.send_message(id_log, (await tld(id_logs, "ANTISPAM_LOGGER_UNGBAN")).format(admin_name, user_name, user_id, reason, count))
                     return
                 except Exception as e:
                     await asyncio.gather(megux.send_err(e))
@@ -137,7 +142,7 @@ async def ungban_user(m: Message, user_id: int, user_name: str, admin_name: str,
                     
 
 async def check_antispam(chat_id: int):
-    atspam = await db.find_one({"chat_id": chat_id})
+    atspam = await db.find_one({"chat_id": chat_id, "status": True})
     if atspam:
         return True
     else:
