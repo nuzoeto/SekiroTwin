@@ -1,11 +1,11 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from megumin import megux
-from megumin.utils import check_rights, get_collection, is_dev, tld, Config
+from megumin import megux, Config
+from megumin.utils import check_rights, get_collection, is_dev, tld
 
 @megux.on_message(filters.command(["antispam on", "antispam true"], Config.TRIGGER) & filters.group)
-async def enable_welcome_message(c: megux, m: Message):
+async def enable_antispam_message(c: megux, m: Message):
     db = get_collection("ANTISPAM_CHATS")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
@@ -14,7 +14,7 @@ async def enable_welcome_message(c: megux, m: Message):
     
     
 @megux.on_message(filters.command(["welcome off", "welcome false"], Config.TRIGGER) & filters.group)
-async def enable_welcome_message(c: megux, m: Message):
+async def enable_antispam_message(c: megux, m: Message):
     db = get_collection("ANTISPAM_CHATS")
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
