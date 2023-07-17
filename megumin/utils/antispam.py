@@ -98,7 +98,7 @@ async def check_ban(m: Message, chat_id: int, user_id: int):
 
 async def ungban_user(m: Message, user_id: int, user_name: str, admin_name: str, reason: str):
     gban_results = await gban_db.find_one({"user_id": user_id})
-    elif not gban_results:
+    if not gban_results:
         await m.reply(await tld(m.chat.id, "ANTISPAM_USER_NOT_GBANNED"))
         return
     else:
