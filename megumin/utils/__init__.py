@@ -36,4 +36,4 @@ from .tools import (
     sw,
 )
 from .aiohttp import AioHttp as get_response #nao_meche
-from .antispam import gban_user, check_ban #nao_meche
+from .antispam import gban_user, check_ban, ungban_user #nao_meche
