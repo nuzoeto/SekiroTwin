@@ -15,7 +15,7 @@ from typing import Callable, List, Optional, Union
 
 
 from megumin import megux, Config
-from megumin.utils import get_collection, check_rights, check_bot_rights, is_admin, add_user_count
+from megumin.utils import get_collection, check_rights, check_bot_rights, is_admin, add_user_count, check_ban
 
 
 
@@ -146,6 +146,10 @@ async def greet_new_members(c: megux, m: Message):
     username = ", ".join(
         map(lambda a: "@" + a.username if a.username else a.mention, members)
     )
+    
+    #Check if is GBANNED
+    await check_ban(m, m.chat.id, user_id)
+    
     mention = ", ".join(map(lambda a: a.mention, members))
     await add_user_count(m.chat.id, user_id)
     dbu = get_collection(f"TOTAL_GROUPS {user_id}")
