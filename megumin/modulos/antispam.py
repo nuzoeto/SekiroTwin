@@ -28,3 +28,82 @@ async def enable_welcome_message(c: megux, m: Message):
     if not await check_rights(m.chat.id, m.from_user.id, "can_change_info"):
         return
     await m.reply_text("Dê um argumento exemplo: /antispam on/off/true/false")
+
+
+@megux.on_message(filters.command("gban", prefixes=["/", "!"]))
+async def _ban_user(_, message: Message):
+    if not is_dev(user_id):
+        return
+    chat_id = message.chat.id
+    
+    cmd = len(message.text)
+    replied = message.reply_to_message
+    reason = ""
+    if replied:
+        id_ = replied.from_user.id
+        if cmd > 4:
+            _, reason = message.text.split(maxsplit=1)
+    elif cmd > 4:
+        _, args = message.text.split(maxsplit=1)
+        if " " in args:
+            id_, reason = args.split(" ", maxsplit=1)
+        else:
+            id_ = args
+    else:
+        await message.reply(await get_string(chat_id, "BANS_NOT_ESPECIFIED_USER"))
+        return
+    try:
+        user = await megux.get_users(id_)
+        user_id = user.id
+        mention = user.mention
+    except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
+        await message.reply(
+            await get_string(message.chat.id, "BANS_ID_INVALID")
+        )
+        return
+    
+    sudo_name = message.chat.id
+    try:
+        await gban_user(message, user_id, user_name, sudo_name, reason) 
+    except Exception as e_f:
+        await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
+
+
+@megux.on_message(filters.command("ungban", prefixes=["/", "!"]))
+async def _ban_user(_, message: Message):
+    if not is_dev(user_id):
+        return
+    chat_id = message.chat.id
+    
+    cmd = len(message.text)
+    replied = message.reply_to_message
+    reason = ""
+    if replied:
+        id_ = replied.from_user.id
+        if cmd > 4:
+            _, reason = message.text.split(maxsplit=1)
+    elif cmd > 4:
+        _, args = message.text.split(maxsplit=1)
+        if " " in args:
+            id_, reason = args.split(" ", maxsplit=1)
+        else:
+            id_ = args
+    else:
+        await message.reply(await get_string(chat_id, "BANS_NOT_ESPECIFIED_USER"))
+        return
+    try:
+        user = await megux.get_users(id_)
+        user_id = user.id
+        mention = user.mention
+    except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
+        await message.reply(
+            await get_string(message.chat.id, "BANS_ID_INVALID")
+        )
+        return
+    
+    sudo_name = message.chat.id
+    try:
+        await ungban_user(message, user_id, user_name, sudo_name, reason) 
+    except Exception as e_f:
+        await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
+
