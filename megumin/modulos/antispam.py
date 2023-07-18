@@ -3,7 +3,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from megumin import megux, Config
-from megumin.utils import check_rights, get_collection, is_dev, tld
+from megumin.utils import check_rights, get_collection, is_dev, tld, gban_user, ungban_user
 
 @megux.on_message(filters.command(["antispam on", "antispam true"], Config.TRIGGER) & filters.group)
 async def enable_antispam_message(c: megux, m: Message):
