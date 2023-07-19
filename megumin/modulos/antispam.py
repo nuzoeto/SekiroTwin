@@ -66,7 +66,7 @@ async def _ban_user(_, message: Message):
     try:
         await gban_user(message, user_id, user_name, sudo_name, reason) 
     except Exception as e_f:
-        await sent.edit(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
+        await message.reply(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
 
 
 @megux.on_message(filters.command("ungban", prefixes=["/", "!"]))
