@@ -29,7 +29,7 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
             
             await gban_db.insert_one({"user_id": user_id, "reason": reason})
 
-            find_chats = db.find()
+            find_chats = db.find({"status": True})
 
             count = 0
             async for chats in find_chats:
@@ -129,7 +129,7 @@ async def ungban_user(m: Message, user_id: int, user_name: str, admin_name: str,
             
             await gban_db.delete_many({"user_id": user_id})
 
-            find_chats = db.find()
+            find_chats = db.find({"status": True})
 
             count = 0
             
