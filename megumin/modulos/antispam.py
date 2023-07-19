@@ -41,9 +41,9 @@ async def _ban_user(_, message: Message):
     reason = ""
     if replied:
         id_ = replied.from_user.id
-        if cmd > 5:
+        if cmd > 6:
             _, reason = message.text.split(maxsplit=1)
-    elif cmd > 5:
+    elif cmd > 6:
         _, args = message.text.split(maxsplit=1)
         if " " in args:
             id_, reason = args.split(" ", maxsplit=1)
