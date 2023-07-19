@@ -29,7 +29,7 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
             find_chats = db.find()
 
             count = 0
-            for chats in find_chats:
+            async for chats in find_chats:
                 chat_id = chats["chat_id"]
                 # Try ban user gbanned
                 try:
@@ -63,7 +63,7 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
                     await m.reply(e)
                     return
 
-                for chats in find_chats:
+                async for chats in find_chats:
                     chat_id = chats["chat_id"]
                     # Try ban user gbanned
                     try:
@@ -128,7 +128,7 @@ async def ungban_user(m: Message, user_id: int, user_name: str, admin_name: str,
 
             count = 0
             
-            for chats in find_chats:
+            async for chats in find_chats:
                 chat_id = chats["chat_id"]
 #               # Try unban user gbanned
                 try:
