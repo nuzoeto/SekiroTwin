@@ -176,7 +176,7 @@ ANTISPAM_ERR_NO_NEW_REASON: "Este usuario ya ha sido baneado; cambiaría el moti
 ANTISPAM_LOGGER_UPDATE_GBAN: "<b>Nuevo motivo para la prohibición global</b>\n<b>Admin sudo:</b> {}\n<b>Usuario:</b> {}\n<b>ID:< /b> <code>{}</code>\n<b>Motivo anterior:</b> {}\n<b>Motivo nuevo:</b> {}"
 ANTISPAM_REASON_UPDATED: "Este usuario ya ha sido baneado. Actualicé el motivo.\nMotivo anterior: <code>{}</code>\nMotivo nuevo: <code>{}</code>"
 ANTISPAM_NEW_GBAN: "<b>Prohibido globalmente</b>\n<b>Usuario:</b> {}\n<b>ID:</b> <code>{}</code>\n<b> Motivo:</b> {}\n<b>REGISTROS:</b>@WhiterKangGBANs"
-ANTISPAM_LOGGER_NEW_GBAN: "<b>Prohibición global</b>\n<b>Admin sudo:</b> {}\n<b>Usuario:</b> {}\n<b>ID:</b> <code>{}</code>\n<b>Razón:</b> {}\n<code>Gbaneado en: {} Chats</code>\n<b>REGISTROS:</b>@WhiterKangGBANs"
+ANTISPAM_LOGGER_NEW_GBAN: "<b>Prohibición global</b>\n<b>Admin sudo:</b> {}\n<b>Usuario:</b> {}\n<b>ID:</b> <code>{}</code>\n<b>Razón:</b> {}\n<b>Gbaneado en:</b> <code>{} Chats</code>\n<b>REGISTROS:</b>@WhiterKangGBANs"
 ANTISPAM_NO_REASON: "Sin motivo"
 ANTISPAM_USER_NOT_GBANNED: "Este usuario no está baneado globalmente"
 ANTISPAM_UNGBANNED: "Te daré una segunda oportunidad, hecho, globalmente desbaneado."
