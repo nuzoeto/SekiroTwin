@@ -31,7 +31,7 @@ async def enable_welcome_message(c: megux, m: Message):
 
 
 @megux.on_message(filters.command("gban", prefixes=["/", "!"]))
-async def _ban_user(_, message: Message):
+async def _gban_user(_, message: Message):
     if not is_dev(message.from_user.id):
         return
     chat_id = message.chat.id
@@ -70,7 +70,7 @@ async def _ban_user(_, message: Message):
 
 
 @megux.on_message(filters.command("ungban", prefixes=["/", "!"]))
-async def _ban_user(_, message: Message):
+async def _ungban_user(_, message: Message):
     if not is_dev(message.from_user.id):
         return
     chat_id = message.chat.id
@@ -80,9 +80,9 @@ async def _ban_user(_, message: Message):
     reason = ""
     if replied:
         id_ = replied.from_user.id
-        if cmd > 5:
+        if cmd > 7:
             _, reason = message.text.split(maxsplit=1)
-    elif cmd > 5:
+    elif cmd > 7:
         _, args = message.text.split(maxsplit=1)
         if " " in args:
             id_, reason = args.split(" ", maxsplit=1)
