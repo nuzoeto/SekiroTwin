@@ -62,7 +62,7 @@ async def _ban_user(_, message: Message):
         )
         return
     
-    sudo_name = message.chat.id
+    sudo_name = message.from_user.mention
     try:
         await gban_user(message, user_id, mention, sudo_name, reason or None) 
     except Exception as e_f:
@@ -101,7 +101,7 @@ async def _ban_user(_, message: Message):
         )
         return
     
-    sudo_name = message.chat.id
+    sudo_name = message.from_user.mention
     try:
         await ungban_user(message, user_id, mention, sudo_name, reason or None) 
     except Exception as e_f:
