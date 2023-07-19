@@ -3,6 +3,8 @@ import asyncio
 
 from pyrogram.types import Message
 
+from typing import Optional
+
 from megumin import megux, Config
 from megumin.utils import get_collection, is_dev, sw, tld, check_rights, is_self
 
@@ -11,7 +13,7 @@ gban_db = get_collection("GBAN")
 
 LOGS = Config.GBAN_LOGS
 
-async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, reason: str):
+async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, reason: Optional[str] = None):
     if is_dev(user_id):
         await m.reply(await tld(m.chat.id, "ANTISPAM_ERR_USR_SUDO"))
         await gban_db.delete_many({"user_id": user_id})
@@ -21,7 +23,7 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
     else:
         gban_results = await gban_db.find_one({"user_id": user_id})
         if not gban_results:
-            if reason == "None":
+            if reason == None:
                 await m.reply(await tld(m.chat.id, "ANTISPAM_NO_REASON"))
                 return
             
@@ -52,7 +54,7 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
                     await asyncio.gather(megux.send_err(e))
                     return
         else:
-            if reason == "None":
+            if reason == None:
                 await m.reply(await tld(m.chat.id, "ANTISPAM_ERR_NO_NEW_REASON"))
                 return
             else:
@@ -63,6 +65,8 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
                 except Exception as e:
                     await m.reply(e)
                     return
+
+                find_chats = db.find()
 
                 async for chats in find_chats:
                     chat_id = chats["chat_id"]
@@ -119,7 +123,7 @@ async def ungban_user(m: Message, user_id: int, user_name: str, admin_name: str,
         return
     else:
         if gban_results:
-            if reason == "None":
+            if reason == None:
                 await m.reply(await tld(m.chat.id, "ANTISPAM_NO_REASON"))
                 return
             
@@ -131,7 +135,7 @@ async def ungban_user(m: Message, user_id: int, user_name: str, admin_name: str,
             
             async for chats in find_chats:
                 chat_id = chats["chat_id"]
-#               # Try unban user gbanned
+                # Try unban user gbanned
                 try:
                     if not await check_rights(chat_id, megux.me.id, "can_restrict_members"):
                         pass
