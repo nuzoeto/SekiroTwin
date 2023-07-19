@@ -46,7 +46,7 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
                 group_logs = LOGS
                 try:
                     id_log = int(group_logs)
-                    await megux.send_message(id_log, (await tld(id_logs, "ANTISPAM_LOGGER_NEW_GBAN")).format(admin_name, user_name, user_id, reason, count))
+                    await megux.send_message(id_log, (await tld(id_log, "ANTISPAM_LOGGER_NEW_GBAN")).format(admin_name, user_name, user_id, reason, count))
                     return
                 except Exception as e:
                     await asyncio.gather(megux.send_err(e))
@@ -79,7 +79,7 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
                     group_logs = LOGS
                     try:
                         id_log = int(group_logs)
-                        await megux.send_message(id_log, (await tld(id_logs, "ANTISPAM_LOGGER_UPDATE_GBAN")).format(admin_name, user_name, user_id, reason))
+                        await megux.send_message(id_log, (await tld(id_log, "ANTISPAM_LOGGER_UPDATE_GBAN")).format(admin_name, user_name, user_id, reason))
                         return
                     except Exception as e:
                         await asyncio.gather(megux.send_err(e))
@@ -145,7 +145,7 @@ async def ungban_user(m: Message, user_id: int, user_name: str, admin_name: str,
                 group_logs = LOGS
                 try:
                     id_log = int(group_logs)
-                    await megux.send_message(id_log, (await tld(id_logs, "ANTISPAM_LOGGER_UNGBAN")).format(admin_name, user_name, user_id, reason, count))
+                    await megux.send_message(id_log, (await tld(id_log, "ANTISPAM_LOGGER_UNGBAN")).format(admin_name, user_name, user_id, reason, count))
                     return
                 except Exception as e:
                     await asyncio.gather(megux.send_err(e))
