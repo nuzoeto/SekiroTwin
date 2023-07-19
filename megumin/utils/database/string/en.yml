@@ -175,7 +175,7 @@ ANTISPAM_ERR_NO_NEW_REASON: "This user has already been banned; I would change t
 ANTISPAM_LOGGER_UPDATE_GBAN: "<b>New Reason for Global Ban</b>\n<b>Admin sudo:</b> {}\n<b>User:</b> {}\n<b>ID:< /b> <code>{}</code>\n<b>Previous reason:</b> {}\n<b>New reason:</b> {}"
 ANTISPAM_REASON_UPDATED: "This user has already been banned. I updated the reason.\nOld reason: <code>{}</code>\nNew reason: <code>{}</code>"
 ANTISPAM_NEW_GBAN: "<b>Globally Banned</b>\n<b>User:</b> {}\n<b>ID:</b> <code>{}</code>\n<b> Reason:</b> {}\n<b>LOGS:</b>@WhiterKangGBANs"
-ANTISPAM_LOGGER_NEW_GBAN: "<b>Global Ban</b>\n<b>Admin sudo:</b> {}\n<b>User:</b> {}\n<b>ID:</b> <code>{}</code>\n<b>Reason:</b> {}\nGbanned in: {}\n<b>LOGs:</b>@WhiterKangGBANs"
+ANTISPAM_LOGGER_NEW_GBAN: "<b>Global Ban</b>\n<b>Admin sudo:</b> {}\n<b>User:</b> {}\n<b>ID:</b> <code>{}</code>\n<b>Reason:</b> {}\n<b>Gbanned in:</b> <code>{} Chats</b>\n<b>LOGs:</b>@WhiterKangGBANs"
 ANTISPAM_NO_REASON: "No reason given"
 ANTISPAM_USER_NOT_GBANNED: "This user is not globally banned"
 ANTISPAM_UNGBANNED: "I'll give you a second chance, done, globally unbanned."
