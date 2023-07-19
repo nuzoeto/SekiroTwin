@@ -1,4 +1,5 @@
 import html
+import asyncio
 
 from pyrogram.types import Message
 
