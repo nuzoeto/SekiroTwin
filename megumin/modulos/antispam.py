@@ -64,7 +64,7 @@ async def _ban_user(_, message: Message):
     
     sudo_name = message.chat.id
     try:
-        await gban_user(message, user_id, mention, sudo_name, reason) 
+        await gban_user(message, user_id, mention, sudo_name, reason or None) 
     except Exception as e_f:
         await message.reply(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
 
@@ -103,7 +103,7 @@ async def _ban_user(_, message: Message):
     
     sudo_name = message.chat.id
     try:
-        await ungban_user(message, user_id, mention, sudo_name, reason) 
+        await ungban_user(message, user_id, mention, sudo_name, reason or None) 
     except Exception as e_f:
         await message.reply(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
 
