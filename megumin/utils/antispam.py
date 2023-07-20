@@ -61,7 +61,7 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
                 try:
                     old_find = await gban_db.find_one({"user_id": user_id})
                     old_reason = old_find["reason"]
-                    await gban_db.update_one({"user_id" : user_id}, {"$set": {"reason": reason}})
+                    await gban_db.update_one({"user_id" : user_id}, {"$set": {"reason": reason}}, upsert=True)
                 except Exception as e:
                     await m.reply(e)
                     return
