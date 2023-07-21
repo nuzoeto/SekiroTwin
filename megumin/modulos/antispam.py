@@ -80,9 +80,9 @@ async def _ungban_user(_, message: Message):
     reason = ""
     if replied:
         id_ = replied.from_user.id
-        if cmd > 6:
+        if cmd > 7:
             _, reason = message.text.split(maxsplit=1)
-    elif cmd > 6:
+    elif cmd > 7:
         _, args = message.text.split(maxsplit=1)
         if " " in args:
             id_, reason = args.split(" ", maxsplit=1)
