@@ -83,7 +83,7 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
                     group_logs = LOGS
                     try:
                         id_log = int(group_logs)
-                        await megux.send_message(id_log, (await tld(id_log, "ANTISPAM_LOGGER_UPDATE_GBAN")).format(admin_name, user_name, user_id, reason))
+                        await megux.send_message(id_log, (await tld(id_log, "ANTISPAM_LOGGER_UPDATE_GBAN")).format(admin_name, user_name, user_id, old_reason, reason))
                         return
                     except Exception as e:
                         err = f"{e} Line {e.__traceback__.tb_lineno}"
