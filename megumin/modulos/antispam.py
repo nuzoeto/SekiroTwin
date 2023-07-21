@@ -50,7 +50,7 @@ async def _gban_user(_, message: Message):
         else:
             id_ = args
     else:
-        await message.reply(await get_string(chat_id, "BANS_NOT_ESPECIFIED_USER"))
+        await message.reply(await tld(chat_id, "BANS_NOT_ESPECIFIED_USER"))
         return
     try:
         user = await megux.get_users(id_)
@@ -58,7 +58,7 @@ async def _gban_user(_, message: Message):
         mention = user.mention
     except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
         await message.reply(
-            await get_string(message.chat.id, "BANS_ID_INVALID")
+            await tld(message.chat.id, "BANS_ID_INVALID")
         )
         return
     
@@ -66,7 +66,7 @@ async def _gban_user(_, message: Message):
     try:
         await gban_user(message, user_id, mention, sudo_name, reason or None) 
     except Exception as e_f:
-        await message.reply(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
+        await message.reply(f"`A error occurred 🤔`\n\n**ERROR:** `{e_f}`")
 
 
 @megux.on_message(filters.command("ungban", prefixes=["/", "!"]))
@@ -80,16 +80,16 @@ async def _ungban_user(_, message: Message):
     reason = ""
     if replied:
         id_ = replied.from_user.id
-        if cmd > 7:
+        if cmd > 6:
             _, reason = message.text.split(maxsplit=1)
-    elif cmd > 7:
+    elif cmd > 6:
         _, args = message.text.split(maxsplit=1)
         if " " in args:
             id_, reason = args.split(" ", maxsplit=1)
         else:
             id_ = args
     else:
-        await message.reply(await get_string(chat_id, "BANS_NOT_ESPECIFIED_USER"))
+        await message.reply(await tld(chat_id, "BANS_NOT_ESPECIFIED_USER"))
         return
     try:
         user = await megux.get_users(id_)
@@ -97,7 +97,7 @@ async def _ungban_user(_, message: Message):
         mention = user.mention
     except (UsernameInvalid, PeerIdInvalid, UserIdInvalid):
         await message.reply(
-            await get_string(message.chat.id, "BANS_ID_INVALID")
+            await tld(message.chat.id, "BANS_ID_INVALID")
         )
         return
     
@@ -105,5 +105,5 @@ async def _ungban_user(_, message: Message):
     try:
         await ungban_user(message, user_id, mention, sudo_name, reason or None) 
     except Exception as e_f:
-        await message.reply(f"`Algo deu errado 🤔`\n\n**ERROR:** `{e_f}`")
+        await message.reply(f"`A error occurred 🤔`\n\n**ERROR:** `{e_f}`")
 
