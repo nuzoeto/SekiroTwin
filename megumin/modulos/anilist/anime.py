@@ -7,6 +7,7 @@ import flag as cflag
 import humanize
 from aiohttp import ClientSession
 from pyrogram import filters
+from pyrogram.enums import ParseMode
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
@@ -197,7 +198,7 @@ async def anim_arch(client: megux, message: Message):
             [InlineKeyboardButton("Ver no Site", url=site_url)],
         ]
     )
-    await message.reply_photo(photo=pic, caption=ANIME_TEMPLATE, reply_markup=buttons_)
+    await message.reply_photo(photo=pic, caption=ANIME_TEMPLATE, parse_mode=ParseMode.HTML, reply_markup=buttons_)
 
     @megux.on_callback_query(filters.regex(pattern=r"^anim_char$"))
     async def c_serie(client: megux, cb: CallbackQuery):
@@ -211,6 +212,7 @@ async def anim_arch(client: megux, message: Message):
             chat_id=cb.message.chat.id,
             message_id=cb.message.id,
             caption=character,
+            parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
 
@@ -230,6 +232,7 @@ async def anim_arch(client: megux, message: Message):
             chat_id=cb.message.chat.id,
             message_id=cb.message.id,
             caption=desc_,
+            parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
 
@@ -276,5 +279,6 @@ async def anim_arch(client: megux, message: Message):
             chat_id=cb.message.chat.id,
             message_id=cb.message.id,
             caption=ANIME_TEMPLATE_,
+            parse_mode=ParseMode.HTML,
             reply_markup=buttons_,
         )
