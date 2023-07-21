@@ -14,7 +14,7 @@ from pyrogram.types import (
     Message,
 )
 
-from megumin import megux
+from megumin import megux, Config
 
 ANIME_QUERY = """
 query ($id: Int, $idMal:Int, $search: String, $type: MediaType, $asHtml: Boolean) {
@@ -101,12 +101,12 @@ def make_it_rw(time_stamp, as_countdown=False):
     return str(humanize.naturaldate(datetime.fromtimestamp(time_stamp)))
 
 
-@megux.on_message(filters.command("anime", prefixes=["/", "!"]))
+@megux.on_message(filters.command("anime", Config.TRIGGER))
 async def anim_arch(client: megux, message: Message):
     """Search Anime Info"""
     query = " ".join(message.text.split()[1:])
     if not query:
-        await message.reply("NameError: 'query' not defined")
+        await message.reply("NameError: You didn't specify the anime you want to search for.")
         return
     vars_ = {"search": query, "asHtml": True, "type": "ANIME"}
     if query.isdigit():
@@ -209,7 +209,7 @@ async def anim_arch(client: megux, message: Message):
         character = open("html_char.txt", "r").read()
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=character,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
@@ -228,7 +228,7 @@ async def anim_arch(client: megux, message: Message):
         desc_ = f"<b> Sinopse:</b>\n\n<i>{synopsis_}</i>"
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=desc_,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
@@ -274,7 +274,7 @@ async def anim_arch(client: megux, message: Message):
 """
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=ANIME_TEMPLATE_,
             reply_markup=buttons_,
         )
