@@ -158,7 +158,7 @@ async def char_search(client: megux, message: Message):
             chat_id=cb.message.chat.id,
             message_id=cb.message.id,
             caption=f"<i>{html_r}</i>",
-            parse_mode="html",
+            parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
 
@@ -178,7 +178,7 @@ async def char_search(client: megux, message: Message):
             chat_id=cb.message.chat.id,
             message_id=cb.message.id,
             caption=desc_,
-            parse_mode="html",
+            parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(buttons),
         )
 
