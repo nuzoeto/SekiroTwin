@@ -1,5 +1,6 @@
 import asyncio
 from pyrogram import filters
+from pyrogram.errors import PeerIdInvalid, UserIdInvalid, UsernameInvalid
 from pyrogram.types import Message
 
 from megumin import megux, Config
