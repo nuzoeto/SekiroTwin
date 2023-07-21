@@ -86,7 +86,8 @@ async def gban_user(m: Message, user_id: int, user_name: str, admin_name: str, r
                         await megux.send_message(id_log, (await tld(id_log, "ANTISPAM_LOGGER_UPDATE_GBAN")).format(admin_name, user_name, user_id, reason))
                         return
                     except Exception as e:
-                        await asyncio.gather(megux.send_err(e))
+                        err = f"{e} Line {e.__traceback__.tb_lineno}"
+                        await asyncio.gather(megux.send_err(err))
                         return
 
 async def check_ban(m: Message, chat_id: int, user_id: int):
