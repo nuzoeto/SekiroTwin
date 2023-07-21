@@ -5,7 +5,7 @@ from aiohttp import ClientSession
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
-from megumin import megux
+from megumin import megux, Config
 
 MANGA_QUERY = """
 query ($search: String, $page: Int) {
@@ -52,7 +52,7 @@ async def return_json_senpai(query, vars_):
     return json_data
 
 
-@megux.on_message(filters.command("manga", prefixes=["/", "!"]))
+@megux.on_message(filters.command("manga", Config.TRIGGER))
 async def manga_search(client: megux, message: Message):
     query = " ".join(message.text.split()[1:])
     if not query:
