@@ -10,7 +10,7 @@ from pyrogram.types import (
     Message,
 )
 
-from megumin import megux
+from megumin import megux, Config
 
 CHARACTER_QUERY = """
 query ($search: String, $asHtml: Boolean) {
@@ -78,7 +78,7 @@ async def return_json_senpai(query, vars_):
     return json_data
 
 
-@megux.on_message(filters.command(["char", "character"], prefixes=["/", "!"]))
+@megux.on_message(filters.command(["char", "character"], Config.TRIGGER))
 async def char_search(client: megux, message: Message):
     query = " ".join(message.text.split()[1:])
     if not query:
@@ -156,7 +156,7 @@ async def char_search(client: megux, message: Message):
         html_r = open("html.txt", "r").read()
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=f"<i>{html_r}</i>",
             parse_mode="html",
             reply_markup=InlineKeyboardMarkup(buttons),
@@ -176,7 +176,7 @@ async def char_search(client: megux, message: Message):
         desc_ = f"<b>Sobre o Personagem:</b>\n\n<i>{description_}</i>"
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=desc_,
             parse_mode="html",
             reply_markup=InlineKeyboardMarkup(buttons),
@@ -198,7 +198,7 @@ async def char_search(client: megux, message: Message):
 """
         await megux.edit_message_caption(
             chat_id=cb.message.chat.id,
-            message_id=cb.message.message_id,
+            message_id=cb.message.id,
             caption=cap_text_,
             parse_mode=ParseMode.HTML,
             reply_markup=buttons_,
