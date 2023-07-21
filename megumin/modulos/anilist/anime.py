@@ -198,7 +198,7 @@ async def anim_arch(client: megux, message: Message):
             [InlineKeyboardButton("Ver no Site", url=site_url)],
         ]
     )
-    await message.reply_photo(photo=pic, caption=ANIME_TEMPLATE, parse_mode=ParseMode.HTML, reply_markup=buttons_)
+    await message.reply_photo(photo=pic, caption=ANIME_TEMPLATE, parse_mode=ParseMode.MARKDOWN, reply_markup=buttons_)
 
     @megux.on_callback_query(filters.regex(pattern=r"^anim_char$"))
     async def c_serie(client: megux, cb: CallbackQuery):
