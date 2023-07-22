@@ -279,6 +279,7 @@ WIKI_RESULT: "<b>Results of your wikipedia search:</b>\n\n{}"
 
 
 #upload
+DOWNLOAD_UPLOAD: "<code>{}</code>\n<i>Downloaded: {}%</i>\n<i>Please wait: {}</i>\n\n📦 <i>Downloading...</i>"
 UPLOAD_DOWNLOAD_FINISHED: "<i>Download Finished, Uploading...</i>"
 
 
