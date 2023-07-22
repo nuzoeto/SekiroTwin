@@ -218,11 +218,10 @@ def aiowrap(func: Callable) -> Callable:
     return run
 
 
-
 def get_progress(percentage: int):
     progress_bar = (
-        f"[{'==' * floor(15 * percentage / 100)}"
-        f"{'\\' * floor(15 * (1 - percentage / 100))}]"
+        "[" + "==" * floor(15 * percentage / 100) +
+        "\\" * floor(15 * (1 - percentage / 100)) + "]"
     )
     return progress_bar
 
