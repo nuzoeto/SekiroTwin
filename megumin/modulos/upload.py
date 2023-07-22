@@ -90,7 +90,7 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
             count = 0
         await asyncio.sleep(2)
         try:
-            await msg.edit((await tld(message.chat.id, "DOWNLOAD_UPLOAD")).format(get_progress(int(str_percentage[:3])), str_percentage[:3], estimated_total_time))
+            await msg.edit((await tld(message.chat.id, "DOWNLOAD_UPLOAD")).format(get_progress(percentage), str_percentage[:3], estimated_total_time))
         except MessageNotModified:
             continue
         except FloodWait:
