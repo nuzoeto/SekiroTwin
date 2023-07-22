@@ -13,6 +13,7 @@ from datetime import datetime, timedelta
 from httpx import HTTPError
 from typing import Tuple, Callable
 from functools import partial, wraps
+from math import floor
 
 from pyrogram.enums import ChatMemberStatus 
 from pyrogram.types import Message
