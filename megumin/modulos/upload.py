@@ -19,7 +19,7 @@ from pyrogram import filters
 from pyrogram.types import Message 
 
 from megumin import megux, Config
-from megumin.utils import humanbytes, tld 
+from megumin.utils import humanbytes, tld, get_progress 
 from megumin.utils.decorators import input_str
 
 class ProcessCanceled(Exception):
@@ -90,7 +90,7 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
             count = 0
         await asyncio.sleep(2)
         try:
-            await msg.edit((await tld(message.chat.id, "DOWNLOAD_UPLOAD")).format(humanbytes(downloaded), str_percentage[:2], estimated_total_time))
+            await msg.edit((await tld(message.chat.id, "DOWNLOAD_UPLOAD")).format(get_progress(str_percentage[:3]), str_percentage[:3], estimated_total_time))
         except MessageNotModified:
             continue
         except FloodWait:
