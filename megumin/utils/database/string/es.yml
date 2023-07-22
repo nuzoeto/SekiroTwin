@@ -280,6 +280,7 @@ DEMOTE_LOGGER: "<b>{}</b>\n#DEMOTE\n<b>Administrador:</b> {}\n<b>Administrador d
 WIKI_RESULT: "<b>Resultados de su búsqueda en wikipedia:</b>\n\n{}"
 
 #upload
+DOWNLOAD_UPLOAD: "<code>{}</code>\n<i>Descargado: {}%</i>\n<i>Por favor, espere: {}</i>\n\n📦 <i>Descargando...</i>"
 UPLOAD_DOWNLOAD_FINISHED: "<i>Descarga finalizada, Enviando...</i>"
 
 
