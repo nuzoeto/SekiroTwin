@@ -224,6 +224,7 @@ def get_progress(percentage: int):
         f"[{'=' * floor(15 * percentage / 100)}"
         f"{'\\\' * floor(15 * (1 - 40 / 100))}]"
     )
+    
     return(progress_bar)
 
 spamwatch_api = Config.SW_API
