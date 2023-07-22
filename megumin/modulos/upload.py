@@ -87,7 +87,8 @@ async def url_download(message: Message, url: str) -> Tuple[str, int]:
         count += 1
         if count >= 10:
             count = 0
-        await asyncio.sleep(1)
+        await asyncio.sleep(2)
+        await msg.edit((await tld(message.chat.id, "DOWNLOAD_UPLOAD")).format(downloaded, percentage, estimated_total_time))
     await msg.edit(await tld(message.chat.id, "UPLOAD_DOWNLOAD_FINISHED"))
     await asyncio.sleep(5)
     await msg.delete()
