@@ -15,6 +15,15 @@ from yt_dlp import YoutubeDL
 from .tools import http, aiowrap
 
 
+proxys = {"PROXIES":
+          [
+              "203.32.121.72:80",
+              "117.159.10.124:9002",
+              "45.12.31.34:80"
+          ]
+}          
+
+
 @aiowrap
 def extract_info(instance: YoutubeDL, url: str, download=True):
     return instance.extract_info(url, download)
@@ -42,7 +51,7 @@ class DownloadMedia:
 
     async def httpx(self, url: str):
         if (await http.get(url)).status_code != 200:
-            for proxy in config["PROXIES"]:
+            for proxy in proxys["PROXIES"]:
                 http_client = AsyncClient(proxies=proxy)
                 response = await http_client.get(url)
                 if response.status_code == 200:
