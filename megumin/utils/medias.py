@@ -12,15 +12,7 @@ from bs4 import BeautifulSoup as bs
 from httpx import AsyncClient
 from yt_dlp import YoutubeDL
 
-from .tools import http, aiowrap
-
-
-proxys = {"PROXIES":
-          [
-              "https://8.213.137.155",
-              "http://181.39.139.68",
-          ]
-}          
+from .tools import http, aiowrap          
 
 
 @aiowrap
@@ -50,14 +42,13 @@ class DownloadMedia:
 
     async def httpx(self, url: str):
         if (await http.get(url)).status_code != 200:
-            for proxy in proxys["PROXIES"]:
-                http_client = AsyncClient(proxies=proxy)
-                response = await http_client.get(url)
-                if response.status_code == 200:
-                    break
-            return http_client
-        else:  # noqa: RET505
-            return http
+            http_client = AsyncClient()
+            response = await http_client.get(url)
+            if response.status_code == 200:
+                break
+              return http_client
+            else:  # noqa: RET505
+                return http
 
     async def downloader(self, url: str, width: int, height: int):
         """
