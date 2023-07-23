@@ -239,7 +239,12 @@ async def sdl(c: megux, message: Message):
         )
 
     rawM = (await c.invoke(method)).messages[0].media
-    files, caption = await DownloadMedia().download(url, captions)
+    try:
+        files, caption = await DownloadMedia().download(url, captions)
+    except Exception as e:
+        err = f"{e} as Line {e.__traceback__.tb_lineno}"
+        await asyncio.gather(c.send_err(err))
+        return
     if len(caption) > 1024:
         caption = caption[:1021] + "..."
 
