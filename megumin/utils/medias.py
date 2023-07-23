@@ -45,8 +45,7 @@ class DownloadMedia:
             http_client = AsyncClient()
             response = await http_client.get(url)
             if response.status_code == 200:
-                break
-            return http_client
+                return http_client
         else:  # noqa: RET505
             return http
 
