@@ -53,7 +53,7 @@ async def start_(c: megux, message: Message):
             ],
         ]
     )
-    gif = "https://telegra.ph/file/576f9c3193a1dade06bce.gif"
+    gif = "https://www.icegif.com/wp-content/uploads/icegif-2013.gif"
     msg = await get_string(message.chat.id or message.message.chat.id, "START")
     await message.reply_animation(gif, caption=msg, reply_markup=keyboard)
     user_id = message.from_user.id
