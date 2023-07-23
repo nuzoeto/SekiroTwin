@@ -42,10 +42,12 @@ class DownloadMedia:
 
     async def httpx(self, url: str):
         if (await http.get(url)).status_code != 200:
-            http_client = AsyncClient(http2=True)
-            response = await http_client.get(url)
-            if response.status_code == 200:
-                return http_client
+            for proxy in config["PROXIES"]:
+                http_client = AsyncClient(proxies=proxy)
+                response = await http_client.get(url)
+                if response.status_code == 200:
+                    break
+            return http_client
         else:  # noqa: RET505
             return http
 
