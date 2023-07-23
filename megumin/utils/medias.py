@@ -46,9 +46,9 @@ class DownloadMedia:
             response = await http_client.get(url)
             if response.status_code == 200:
                 break
-              return http_client
-            else:  # noqa: RET505
-                return http
+            return http_client
+        else:  # noqa: RET505
+            return http
 
     async def downloader(self, url: str, width: int, height: int):
         """
