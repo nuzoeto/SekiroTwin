@@ -23,7 +23,7 @@ class Config:
         5204291028, #TiltLesm
         1318013863, #@DarkzinSHH
         1574959180, #@KlonoaSulista
-        5666893348, @Ícaro
+        5666893348, #@Ícaro
     )
     LOG_CHANNEL_ID = set([-1001569084822])
     ADMINS = {}
