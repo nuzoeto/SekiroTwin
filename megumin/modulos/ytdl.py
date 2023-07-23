@@ -221,7 +221,7 @@ async def sdl(c: megux, message: Message):
             return None
     elif not message.matches and len(message.command) > 1:
         url = message.text.split(None, 1)[1]
-        if not re.match(DL_REGEX, url, re.M):
+        if not re.match(SDL_REGEX_LINKS, url, re.M):
             return await message.reply_text("This link is not supported use Instagram Links, Tiktok Links, Threads Links, Twitter Links")
     elif message.reply_to_message and message.reply_to_message.text:
         url = message.reply_to_message.text
