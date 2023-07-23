@@ -221,12 +221,12 @@ async def sdl(c: megux, message: Message):
             return None
     elif not message.matches and len(message.command) > 1:
         url = message.text.split(None, 1)[1]
-        if not re.match(SDL_REGEX_LINKS, url, re.M):
-            return await message.reply_text("This link is not valid")
+        if not re.match(DL_REGEX, url, re.M):
+            return await message.reply_text("This link is not supported use Instagram Links, Tiktok Links, Threads Links, Twitter Links")
     elif message.reply_to_message and message.reply_to_message.text:
         url = message.reply_to_message.text
     else:
-        return await message.reply_text(await tld(message.chat.id, "NO_ARGS_YT"))
+        return await message.reply_text(await tld(m.chat.id, "NO_ARGS_YT"))
 
     if message.chat.type == ChatType.PRIVATE:
         captions = True
@@ -234,20 +234,19 @@ async def sdl(c: megux, message: Message):
     else:
         captions = True
         method = channels.GetMessages(
-            channel=await c.resolve_peer(message.chat.id),
+            channel=await client.resolve_peer(message.chat.id),
             id=[InputMessageID(id=(message.id))],
         )
 
-    rawM = (await c.invoke(method)).messages[0].media
-    try:
-        files, caption = await DownloadMedia().download(url, captions)
-    except Exception as e:
-        return await asyncio.gather(c.send_err(e))
+    rawM = (await client.invoke(method)).messages[0].media
+    files, caption = await DownloadMedia().download(url, captions)
+    if len(caption) > 1024:
+        caption = caption[:1021] + "..."
 
     medias = []
     for media in files:
         if filetype.is_video(media["p"]) and len(files) == 1:
-            await c.send_chat_action(message.chat.id, ChatAction.UPLOAD_VIDEO)
+            await client.send_chat_action(message.chat.id, ChatAction.UPLOAD_VIDEO)
             return await message.reply_video(
                 video=media["p"],
                 width=media["h"],
@@ -281,7 +280,7 @@ async def sdl(c: megux, message: Message):
         ):
             return None
 
-        await c.send_chat_action(message.chat.id, ChatAction.UPLOAD_DOCUMENT)
+        await client.send_chat_action(message.chat.id, ChatAction.UPLOAD_DOCUMENT)
         await message.reply_media_group(media=medias)
         return None
     return None
