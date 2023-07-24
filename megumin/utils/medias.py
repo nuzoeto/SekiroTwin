@@ -5,6 +5,7 @@ import io
 import json
 import re
 import uuid
+import urllib.parse
 
 import esprima
 import filetype
