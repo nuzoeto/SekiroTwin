@@ -59,7 +59,7 @@ class DownloadMedia:
         else:  # noqa: RET505
             return http
 
-    async def downloader(self, url: str, width: int, height: int):
+ async def downloader(self, url: str, width: int, height: int):
         """
         Get the media from URL.
 
@@ -69,8 +69,13 @@ class DownloadMedia:
         Returns:
             Dict: Media url and res info.
         """
-        file = io.BytesIO((await http.get(url)).content)
-        file.name = f"{url[60:80]}.{filetype.guess_extension(file)}"
+        file_response = await self.httpx(url).get(url)
+        if not file_response:
+            return
+
+        file_content = file_response.content
+        file = io.BytesIO(file_content)
+        file.name = f"{urllib.parse.quote(url[60:80])}.{filetype.guess_extension(file)}"
         self.files.append({"p": file, "w": width, "h": height})
 
     async def Instagram(self, url: str, captions: str):
