@@ -17,7 +17,7 @@ from .tools import http, aiowrap
 proxys = {
     "PROXIES":
     [
-        "localhost:8080"
+        ""
     ]
     
 }
