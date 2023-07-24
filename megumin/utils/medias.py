@@ -66,11 +66,10 @@ class DownloadMedia:
         Returns:
             Dict: Media url and res info.
         """
-        file_bytes = io.BytesIO((await http.get(url)).content)
-        file_bytes.name = f"{url[60:80]}.{filetype.guess_extension(file_bytes)}"
-        self.files.append({"p": file_bytes, "w": width, "h": height})
-
-    # Resto do código continua igual
+        url_str = str(url)
+        file_bytes = io.BytesIO((await http.get(url_str)).content)
+        file_bytes.name = f"{url_str[60:80]}.{filetype.guess_extension(file_bytes)}"
+        self.files.append({"p": file_bytes, "w": width, "h": height}
 
 
 
