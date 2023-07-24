@@ -5,7 +5,6 @@ import io
 import json
 import re
 import uuid
-import urllib.parse
 
 import esprima
 import filetype
@@ -60,7 +59,7 @@ class DownloadMedia:
         else:  # noqa: RET505
             return http
 
- async def downloader(self, url: str, width: int, height: int):
+    async def downloader(self, url: str, width: int, height: int):
         """
         Get the media from URL.
 
@@ -70,13 +69,8 @@ class DownloadMedia:
         Returns:
             Dict: Media url and res info.
         """
-        file_response = await self.httpx(url).get(url)
-        if not file_response:
-            return
-
-        file_content = file_response.content
-        file = io.BytesIO(file_content)
-        file.name = f"{urllib.parse.quote(url[60:80])}.{filetype.guess_extension(file)}"
+        file = io.BytesIO((await http.get(url)).content)
+        file.name = f"{url[60:80]}.{filetype.guess_extension(file)}"
         self.files.append({"p": file, "w": width, "h": height})
 
     async def Instagram(self, url: str, captions: str):
@@ -277,32 +271,18 @@ _limited_actions_policy_enabled": True,
         except KeyError:
             return
 
-     async def TikTok(self, url: str, captions: str):
+    async def TikTok(self, url: str, captions: str):
         path = io.BytesIO()
-        ydl_opts = {
-            "format": "best",
-            "outtmpl": "-",
-            "quiet": True,
-        }
-        with YoutubeDL(ydl_opts) as ydl:
-            info_dict = ydl.extract_info(url, download=False)
-
-        if "entries" in info_dict:
-            # É um vídeo com várias partes (por exemplo, um vídeo de compilação)
-            for num, entry in enumerate(info_dict["entries"]):
-                video_url = entry["url"]
-                await self.downloader(video_url, entry["width"], entry["height"])
-        else:
-            video_url = info_dict["url"]
-            await self.downloader(video_url, info_dict["width"], info_dict["height"])
-
-        self.caption = f"{info_dict['title']}\n\n<a href='{url}'>🔗 Link</a>"
-        path.name = f"{info_dict['title']}.{filetype.guess_extension(path)}"
+        with contextlib.redirect_stdout(path):
+            ydl = YoutubeDL({"outtmpl": "-"})
+            yt = await extract_info(ydl, url, download=True)
+        path.name = yt["title"]
+        self.caption = f"{yt['title']}\n\n<a href='{url}'>🔗 Link</a>"
         self.files.append(
             {
                 "p": path,
-                "w": info_dict["width"],
-                "h": info_dict["height"],
+                "w": yt["formats"][0]["width"],
+                "h": yt["formats"][0]["height"],
             }
         )
 
