@@ -12,20 +12,17 @@ from bs4 import BeautifulSoup as bs
 from httpx import AsyncClient
 from yt_dlp import YoutubeDL
 
-from .tools import http, aiowrap          
+from .tools import http, aiowrap
 
 proxys = {
-    "PROXIES":
-    [
-        "https://95.216.17.79:3888"
-    ]
-    
+    "PROXIES": ["https://95.216.17.79:3888"]
 }
-          
+
 
 @aiowrap
 def extract_info(instance: YoutubeDL, url: str, download=True):
     return instance.extract_info(url, download)
+
 
 class DownloadMedia:
     def __init__(self):
@@ -69,9 +66,13 @@ class DownloadMedia:
         Returns:
             Dict: Media url and res info.
         """
-        file = io.BytesIO((await http.get(url)).content)
-        file.name = f"{url[60:80]}.{filetype.guess_extension(file)}"
-        self.files.append({"p": file, "w": width, "h": height})
+        file_bytes = io.BytesIO((await http.get(url)).content)
+        file_bytes.name = f"{url[60:80]}.{filetype.guess_extension(file_bytes)}"
+        self.files.append({"p": file_bytes, "w": width, "h": height})
+
+    # Resto do código continua igual
+
+
 
     async def Instagram(self, url: str, captions: str):
         headers = {
