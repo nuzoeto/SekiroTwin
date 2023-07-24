@@ -271,18 +271,32 @@ _limited_actions_policy_enabled": True,
         except KeyError:
             return
 
-    async def TikTok(self, url: str, captions: str):
+     async def TikTok(self, url: str, captions: str):
         path = io.BytesIO()
-        with contextlib.redirect_stdout(path):
-            ydl = YoutubeDL({"outtmpl": "-"})
-            yt = await extract_info(ydl, url, download=True)
-        path.name = yt["title"]
-        self.caption = f"{yt['title']}\n\n<a href='{url}'>🔗 Link</a>"
+        ydl_opts = {
+            "format": "best",
+            "outtmpl": "-",
+            "quiet": True,
+        }
+        with YoutubeDL(ydl_opts) as ydl:
+            info_dict = ydl.extract_info(url, download=False)
+
+        if "entries" in info_dict:
+            # É um vídeo com várias partes (por exemplo, um vídeo de compilação)
+            for num, entry in enumerate(info_dict["entries"]):
+                video_url = entry["url"]
+                await self.downloader(video_url, entry["width"], entry["height"])
+        else:
+            video_url = info_dict["url"]
+            await self.downloader(video_url, info_dict["width"], info_dict["height"])
+
+        self.caption = f"{info_dict['title']}\n\n<a href='{url}'>🔗 Link</a>"
+        path.name = f"{info_dict['title']}.{filetype.guess_extension(path)}"
         self.files.append(
             {
                 "p": path,
-                "w": yt["formats"][0]["width"],
-                "h": yt["formats"][0]["height"],
+                "w": info_dict["width"],
+                "h": info_dict["height"],
             }
         )
 
