@@ -45,7 +45,7 @@ class Config:
     WHITELIST_CHATS = set([])  # chat id aq
     EDIT_SLEEP_TIMEOUT = 10
     OWNER = int(1715384854)
-    DOWN_PATH = "downloads/"
+    DOWN_PATH = "megumin/xcache/"
     SW_API = os.environ.get("SW_API")
     ARQ_API_KEY = os.environ.get("ARQ_API_KEY")
     PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY")

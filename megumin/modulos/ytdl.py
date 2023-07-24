@@ -222,11 +222,11 @@ async def sdl(c: megux, message: Message):
     elif not message.matches and len(message.command) > 1:
         url = message.text.split(None, 1)[1]
         if not re.match(SDL_REGEX_LINKS, url, re.M):
-            return await message.reply_text("This link is not valid")
+            return await message.reply_text("This link is not supported use Instagram Links, Tiktok Links, Threads Links, Twitter Links")
     elif message.reply_to_message and message.reply_to_message.text:
         url = message.reply_to_message.text
     else:
-        return await message.reply_text(await tld(message.chat.id, "NO_ARGS_YT"))
+        return await message.reply_text(await tld(m.chat.id, "NO_ARGS_YT"))
 
     if message.chat.type == ChatType.PRIVATE:
         captions = True
@@ -239,10 +239,10 @@ async def sdl(c: megux, message: Message):
         )
 
     rawM = (await c.invoke(method)).messages[0].media
-    try:
-        files, caption = await DownloadMedia().download(url, captions)
-    except Exception as e:
-        return await asyncio.gather(c.send_err(e))
+    files, caption = await DownloadMedia().download(url, captions)
+    
+    if len(caption) > 1024:
+        caption = caption[:1021] + "..."
 
     medias = []
     for media in files:
