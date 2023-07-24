@@ -10,6 +10,7 @@ import os
 START_TIME = time.time()
 
 from megumin import version, Config
+from megumin.utils import http
 
 GP_LOGS = Config.GP_LOGS
 
@@ -37,6 +38,7 @@ class WhiterKang(Client):
         self.me = await self.get_me()
         text_ = f"#Whiter #sleep\n\n__WhiterKang foi dormir.__"
         await self.send_message(chat_id=GP_LOGS, text=text_)
+        await http.aclose()
         await super().stop()
         logging.info("WhiterKang merreu...")
 
