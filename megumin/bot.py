@@ -10,7 +10,7 @@ import os
 START_TIME = time.time()
 
 from megumin import version, Config
-from megumin.utils import http
+from megumin.utils.tools import http
 
 GP_LOGS = Config.GP_LOGS
 
