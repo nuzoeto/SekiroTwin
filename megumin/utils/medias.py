@@ -273,15 +273,10 @@ _limited_actions_policy_enabled": True,
 
     async def TikTok(self, url: str, captions: str):
         path = io.BytesIO()
-        ydl_opts = {"outtmpl": "-"}
-
         with contextlib.redirect_stdout(path):
-            with YoutubeDL(ydl_opts) as ydl:
-                yt = await extract_info(ydl, url, download=True)
-
-        path.seek(0)  # Reset the position of the BytesIO object
+            ydl = YoutubeDL({"outtmpl": "-"})
+            yt = await extract_info(ydl, url, download=True)
         path.name = yt["title"]
-
         self.caption = f"{yt['title']}\n\n<a href='{url}'>🔗 Link</a>"
         self.files.append(
             {
@@ -290,6 +285,7 @@ _limited_actions_policy_enabled": True,
                 "h": yt["formats"][0]["height"],
             }
         )
+
 
     async def Threads(self, url: str, captions: str):
         httpx = await self.httpx("https://www.threads.net/")
