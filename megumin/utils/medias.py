@@ -17,7 +17,7 @@ from .tools import http, aiowrap
 proxys = {
     "PROXIES":
     [
-        ""
+        "https://95.216.17.79:3888"
     ]
     
 }
@@ -285,6 +285,7 @@ _limited_actions_policy_enabled": True,
                 "h": yt["formats"][0]["height"],
             }
         )
+
 
     async def Threads(self, url: str, captions: str):
         httpx = await self.httpx("https://www.threads.net/")

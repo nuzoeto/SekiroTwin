@@ -34,10 +34,10 @@ class WhiterKang(Client):
         logging.info("WhiterKang esta acordando...")
 
     async def stop(self):
-        await super().stop()
         self.me = await self.get_me()
         text_ = f"#Whiter #sleep\n\n__WhiterKang foi dormir.__"
         await self.send_message(chat_id=GP_LOGS, text=text_)
+        await super().stop()
         logging.info("WhiterKang merreu...")
 
     async def send_log(self, text: str, *args, **kwargs):
