@@ -79,7 +79,6 @@ YOUTUBE_FILE_BIG: "¡Perdon! El video que desea descargar supera el tamaño de 2
 UPLOADING_YT: "📦 <i>Enviando...</i>"
 YTDL_CAPTION: "<a href={}><b>{}</b></a>\n<b>❯ Duración:</b> {}\n<b>❯ Vistas:</b> {}\n<b>❯ Canal:</b> {}"
 MEDIAS_BNT: "Videos"
-CONFIG_TEXT: "<b>⚙ Configuración</b>: esta es la configuración para este grupo. Para obtener más información, <b>haga clic en los botones a continuación.</b>"
 MEDIAS_CAPTION_BNT: "📃 Subtitulos:"
 AUTO_DOWNLOAD_BNT: "⬇️ Automático:"
 
