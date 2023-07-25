@@ -19,6 +19,7 @@ HELP_BNT: "❔ Help"
 REPO_BNT: "📦 Source Code"
 ADD_BNT: "✨ Add me to a chat"
 SUP_BNT: "Support"
+CONFIG_TEXT: "<b>⚙ Settings</b> — Here are the settings for this group. To learn more, <b>click the buttons below.</b>"
 MOREINFO_BNT: "🔧 More Info..."
 HELP_STICKERS: "Here is the help for the <b>Stickers</b> module:\n\n• /stickerid: Reply to a sticker so I can tell you your file ID.\n• /getsticker: Reply to a sticker to upload the raw PNG file.\n• /kang: respond to a sticker to add it to your pack."
 HELP_DISABLE: "Here is help for the <b>Disable</b> module:\n\nNot everyone wants all the features the bot offers.  Some commands are better left unused to prevent spam and abuse.\n\nThis allows you to disable some commands.\n\n• /disableable See which commands can be disabled.\n\n<b>Admin only:</b>\n• /enable : enables a command.\n• /disable : Disables a command."
@@ -76,6 +77,10 @@ YOUTUBE_CAPTION: "<b>[{}]({})</b>\n<b>❯ Duration:</b> <i>{}</i>\n<b>❯ Channe
 YOUTUBE_FILE_BIG: "Sorry! The video you want to download exceeds the size of 2GB.\nUnable to download and upload, Sorry."
 NO_ARGS_YT: "<code>Will I lower the wind?!</code>"
 YTDL_CAPTION: "<a href={}><b>{}</b></a>\n<b>❯ Duration:</b> {}\n<b>❯ Views:</b> {}\n<b>❯ Channel:</b> {}"
+MEDIAS_BNT: "Media"
+MEDIAS_CAPTION_BNT: "📃 Captions:"
+AUTO_DOWNLOAD_BNT: "⬇️ Automatic:"
+
 
 #reverse
 REVERSE_RESULTS: "<b>Search Results:</b> "
