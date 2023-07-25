@@ -68,7 +68,7 @@ CREATE_STICKER_PACK: "<b>Criando um novo pacote de stickers...</b>"
 STICKERS_NOT_FOUND_USER: "Parece que você nunca interagiu comigo no chat privado, é necessário que faça isso primeiro. ."
 STICKERS_KANGED: "<b>Sticker roubado com sucesso!</b>\n<a href='t.me/addstickers/{}'>Pack</a>.\n<b>Emoji:</b> {}"
 
-#YOUTUBE_DL 
+#medias 
 DOWNLOAD_YT: "📦 <i>Baixando...</i>"
 VID_BNT: "📹 Vídeo"
 SONG_BNT: "💿 Áudio"
@@ -77,6 +77,10 @@ YOUTUBE_FILE_BIG: "Desculpe! O vídeo o qual você deseja baixar excede o tamanh
 NO_ARGS_YT: "<code>Vou baixar o vento?!</code>"
 UPLOADING_YT: "📦 <i>Enviando...</i>"
 YTDL_CAPTION: "<a href={}><b>{}</b></a>\n<b>❯ Duração:</b> {}\n<b>❯ Views:</b> {}\n<b>❯ Canal:</b> {}"
+MEDIAS_BNT: "Mídias"
+CONFIG_TEXT: "<b>⚙ Configurações</b> — Aqui estão as configurações para esse grupo. Para saber mais, <b>clique nos botões abaixo.</b>"
+MEDIAS_CAPTION_BNT: "📃 Legendas:"
+AUTO_DOWNLOAD_BNT: "⬇️ Automatico:"
 
 #reverse
 REVERSE_RESULTS: "<b>Resultados da pesquisa:</b> "
