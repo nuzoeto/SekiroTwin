@@ -19,5 +19,5 @@ async def cisdl(ugid: int) -> bool:
 
 async def tisdl(ugid: int, mode: Optional[bool]) -> None:
     CISDL = get_collection(f"CAPTION_SDL")
-    await CSDL.update_one({"chat_id": ugid}, {"$set": {"status": mode}}, upsert=True)
+    await CISDL.update_one({"chat_id": ugid}, {"$set": {"status": mode}}, upsert=True)
     
