@@ -229,10 +229,10 @@ async def sdl(c: megux, message: Message):
         return await message.reply_text(await tld(message.chat.id, "NO_ARGS_YT"))
 
     if message.chat.type == ChatType.PRIVATE:
-        captions = True
+        captions = await cisdl(message.from_user.id)
         method = messages.GetMessages(id=[InputMessageID(id=(message.id))])
     else:
-        captions = True
+        captions = await cisdl(message.chat.id)
         method = channels.GetMessages(
             channel=await c.resolve_peer(message.chat.id),
             id=[InputMessageID(id=(message.id))],

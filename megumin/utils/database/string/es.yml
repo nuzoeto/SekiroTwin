@@ -20,6 +20,7 @@ HELP_BNT: "❔ Ayuda"
 REPO_BNT: "📦 Código Fuente"
 ADD_BNT: "✨ Agrégame a un chat"
 SUP_BNT: "Soporte"
+CONFIG_TEXT: "<b>⚙ Configuración</b>: esta es la configuración para este grupo. Para obtener más información, <b>haga clic en los botones a continuación.</b>"
 MOREINFO_BNT: "🔧 Más información..."
 HELP_STICKERS: "Aquí hay ayuda para el módulo <b>Pegatinas</b>:\n\n• /stickerid: responde a una pegatina para que pueda decirte tu ID de archivo.\n• /getsticker: responde a una pegatina para cargar el archivo PNG sin formato.\n• /kang: responde a una pegatina para agregarla a tu paquete."
 HELP_DISABLE: "Aquí hay ayuda para el módulo <b>Deshabilitar</b>:\n\nNo todos quieren todas las características que ofrece el bot. Es mejor no usar algunos comandos para evitar el spam y el abuso.\n\ nEsto le permite deshabilitar algunos comandos.\n\n• /disableable Vea qué comandos se pueden deshabilitar.\n\n<b>Solo administrador</b>:\n\n• /enable : habilita un comando.\n • /disable : deshabilita un comando."
@@ -68,7 +69,7 @@ CREATE_STICKER_PACK: "<b>Creando un nuevo paquete de stickers...</b>"
 STICKERS_NOT_FOUND_USER: "Parece que nunca has interactuado conmigo en un chat privado, primero debes hacerlo."
 STICKERS_KANGED: "<b>¡Pegatina robada con éxito!</b>\n<a href='t.me/addstickers/{}'>Pack</a>.\n<b>Emoji:</b> {}"
   
-#YOUTUBE_DL 
+#medias
 DOWNLOAD_YT: "📦 <i>Descargando...</i>"
 NO_ARGS_YT: "<code>¿Voy a bajar el viento?!</code>"
 VID_BNT: "📹 Video"
@@ -77,6 +78,11 @@ YOUTUBE_CAPTION: "<b>[{}]({})</b>\n<b>❯ Duración:</b> <i>{}</i>\n<b>❯ Canal
 YOUTUBE_FILE_BIG: "¡Perdon! El video que desea descargar supera el tamaño de 2GB.\nNo se puede descargar ni cargar, lo sentimos."
 UPLOADING_YT: "📦 <i>Enviando...</i>"
 YTDL_CAPTION: "<a href={}><b>{}</b></a>\n<b>❯ Duración:</b> {}\n<b>❯ Vistas:</b> {}\n<b>❯ Canal:</b> {}"
+MEDIAS_BNT: "Videos"
+MEDIAS_CAPTION_BNT: "📃 Subtitulos:"
+AUTO_DOWNLOAD_BNT: "⬇️ Automático:"
+
+
   
 #reverse 
 REVERSE_RESULTS: "<b>Resultados de la investigación:</b> "
